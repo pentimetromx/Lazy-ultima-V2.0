@@ -98,17 +98,18 @@ function muestraRodillo (vidElem, imgCont){
       }
     }
     container1.style.display='grid'
+
     const container = document.getElementById(imgCont)
     const pict = container.getElementsByTagName('img')
     container.style.display = 'flex'
     for (var i = 0; i < images.length; i ++) {
       var pic = images[i]
-      pic.style.display = 'flex'
+      pic.style.display = 'block'
     }
-    setTimeout(() => {
-      applyImageEffects1() 
-    }, 277)
     reproducirVideo('videoElement2')
+    setTimeout(() => {
+      applyImageEffects('#imageElement, #imageElement2, #imageElement3, #imageElement4, #imageElement5') 
+    }, 277)
     if (screenWidth < 500) { 
         var elementosExcluidos = ['buscador','search-form','sector-distribuidor','conti-boton-repuestos','butt-repuestos','links-iniciales','links-inicialesI','contene-images','images-distribuidor','contenedor-7-V','videosTraining','videos-training','conti-video-distribuidor','videoElement2']; 
         for (var i = 0; i < allContenedores.length; i++) { 
@@ -123,10 +124,10 @@ function muestraRodillo (vidElem, imgCont){
         buttRepuest.classList.remove('move-repuest')
         contiVidDistribuidor.classList.remove('move-video')   
         desplegarBotonesII()
-      }
+    }
   break;
   case 'videoElement3':
-    var elementosExcluidos = ['buscador','search-form','sector-entintador','conti-boton-repuestos-I','butt-repuestos-I','conti-video-entintador','videoElement3','images-entintador','contenedor-7-VI','links-iniciales','links-inicialesI','videosTraining']; 
+    var elementosExcluidos = ['buscador','search-form','sector-entintador','conti-boton-repuestos','butt-repuestos','conti-video-entintador','videoElement3','images-entintador','contenedor-7-VI','links-iniciales','links-inicialesI','videosTraining']; 
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i]) 
       if (elemento) {
@@ -134,10 +135,17 @@ function muestraRodillo (vidElem, imgCont){
       }
     }
     container1.style.display='grid'
-    setTimeout(() => {
-      applyImageEffects()
-    }, 277) 
+    const contiene = document.getElementById(imgCont)
+    const foto = contiene.getElementsByTagName('img')
+    contiene.style.display = 'flex'
+    for (var i = 0; i < images.length; i ++) {
+      var pic = images[i]
+      pic.style.display = 'block'
+    }
     reproducirVideo('videoElement3');
+    setTimeout(() => {
+      applyImageEffects('#imageElement6,#imageElement7')
+    }, 277) 
     if (screenWidth < 500) {
       var elementosExcluidos = ['buscador','search-form','sector-entintador','conti-boton-repuestos-I','butt-repuestos-I','conti-video-entintador','videoElement3','images-entintador','contenedor-7-VI','links-iniciales','links-inicialesI','videosTraining']; 
       for (var i = 0; i < allContenedores.length; i++) { 
@@ -164,7 +172,7 @@ function muestraRodillo (vidElem, imgCont){
     }
   break;
   case 'plate-smed' :
-    var elementosExcluidos = ['buscador','search-form','sector-smed','conti-boton-repuestos-II','butt-repuestos-II','conti-video-smed','plate-smed','images-smed','contenedor-7-VII','links-iniciales','links-inicialesI','videosTraining']; 
+    var elementosExcluidos = ['buscador','search-form','sector-smed','conti-boton-repuestos','butt-repuestos','conti-video-smed','plate-smed','images-smed','contenedor-7-VII','links-iniciales','links-inicialesI','videosTraining']; 
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i]) 
       if (elemento) {
@@ -172,10 +180,17 @@ function muestraRodillo (vidElem, imgCont){
       }
     }
     container1.style.display='grid'
-    setTimeout(() => {
-      applyImageEffects3()
-    }, 277)            
+    const contenedor = document.getElementById(imgCont)
+    const pict1 = contenedor.getElementsByTagName('img')
+    contenedor.style.display = 'flex'
+    for (var i = 0; i < images.length; i ++) {
+      var pic = images[i]
+      pic.style.display = 'block'
+    }
     reproducirVideo('plate-smed')
+    setTimeout(() => {
+      applyImageEffects('#imageElement11, #imageElement22, #imageElement33, #imageElement44, #imageElement55')
+    }, 277)            
     if (screenWidth < 500) {
       var elementosExcluidos = ['buscador','search-form','sector-smed','conti-boton-repuestos-II','butt-repuestos-II','conti-video-smed','plate-smed','images-smed','contenedor-7-VII','links-iniciales','links-inicialesI','videosTraining'];
       for (var i = 0; i < allContenedores.length; i++) { 
@@ -262,85 +277,39 @@ contImgsIsopropil.style.display = 'flex'
 for (let i = 0; i < pict.length; i++) {
 pict[i].style.display = 'block'
 }
-} 
-function applyImageEffects() {
-const imageElements = document.querySelectorAll('#imageElement6,#imageElement7')
-let currentIndex = 0;
-function applyEffect() {
-if (currentIndex < imageElements.length) {
-  const currentImage = imageElements[currentIndex]
-  currentImage.style.transition = 'transform 0.1s'
-  currentImage.style.transform = 'scale(2.0)'
-  setTimeout(() => {
-    currentImage.style.transition = 'transform 0.7s'
-    currentImage.style.transform = 'scale(1)'
-    currentIndex++;
-    applyEffect()
-  }, 177) }}applyEffect()
+}
+async function applyImageEffects(selector) {
+  const imageElements = document.querySelectorAll(selector);
 
-
-}
-function applyImageEffects1() {
-const imageElements = document.querySelectorAll('#imageElement, #imageElement2, #imageElement3, #imageElement4, #imageElement5')
-let currentIndex = 0;
-function applyEffect() {
-if (currentIndex < imageElements.length) {
-  const currentImage = imageElements[currentIndex]
-  currentImage.style.transition = 'transform 0.1s'
-  currentImage.style.transform = 'scale(2.0)'
-  setTimeout(() => {
-    currentImage.style.transition = 'transform 0.7s'
-    currentImage.style.transform = 'scale(1)'
-    currentIndex++;
-    applyEffect()
-  }, 177) }}applyEffect()
-}
-function applyImageEffects2() { 
-const imageElements = document.querySelectorAll('#imageElement6, #imageElement7')
-let currentIndex = 0;
-function applyEffect() {
-if (currentIndex < imageElements.length) {
-  const currentImage = imageElements[currentIndex]
-  currentImage.style.transition = 'transform 0.1s'
-  currentImage.style.transform = 'scale(2.0)'
-  setTimeout(() => {
-    currentImage.style.transition = 'transform 0.7s'
-    currentImage.style.transform = 'scale(1)'
-    currentIndex++;
-    applyEffect()
-  }, 177) }}applyEffect()
-}
-function applyImageEffects3() {
-const imageElements = document.querySelectorAll('#imageElement11,#imageElement22,#imageElement33,#imageElement44,#imageElement55')
-let currentIndex = 0;
-function applyEffect() {
-if (currentIndex < imageElements.length) {
-  const currentImage = imageElements[currentIndex]
-  currentImage.style.transition = 'transform 0.1s'
-  currentImage.style.transform = 'scale(2.0)'
-  setTimeout(() => {
-    currentImage.style.transition = 'transform 0.7s'
-    currentImage.style.transform = 'scale(1)'
-    currentIndex++;
-    applyEffect()
-  }, 177) }}applyEffect()
-}
-function applyImageEffects4() {
-const imageElements = document.querySelectorAll('#isopropil1,#isopropil2,#isopropil3')
-let currentIndex = 0;
-  function applyEffect() {
-  if (currentIndex < imageElements.length) {
-    const currentImage = imageElements[currentIndex]
-    currentImage.style.transition = 'transform 0.1s'
-    currentImage.style.transform = 'scale(2.0)'
-    setTimeout(() => {
-      currentImage.style.transition = 'transform 0.7s'
-      currentImage.style.transform = 'scale(1)'
-      currentIndex++;
-      applyEffect()
-    }, 177)}
+  if (imageElements.length === 0) {
+    console.warn('No images found for selector:', selector);
+    return;
   }
-  applyEffect()
+
+  imageElements.forEach((img, index) => {
+    img.style.display = 'block';
+    img.style.zIndex = imageElements.length - index;
+    img.style.transform = 'translateY(0)';
+    img.style.transition = 'transform 0.7s';
+  });
+
+  for (const img of imageElements) {
+    img.style.transition = 'transform 0.1s';
+    img.style.transform = 'scale(2)';
+    await delay(77);
+    img.style.transition = 'transform 0.7s';
+    img.style.transform = 'scale(1)';
+    await delay(100);
+  }
+
+  for (let i = 1; i < imageElements.length; i++) {
+    await delay(100);
+    imageElements[i].style.transform = `translateY(${i * 95}px)`;
+  }
+}
+// Helper para delay
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 function alternarVisibilidad(docId) {
 var elementosParaAlternar = document.querySelectorAll('.bot-entre, .video-training,.image-training, .butt-partes, .documentos')
@@ -2115,8 +2084,23 @@ function formateaPrepress(eltoHtml){
     videosPrepress.forEach(video => {
       if (video.id === eltoHtml) {
         video.style.display = 'flex'
-        video.currentTime = 0
-        video.play()  
+    video.pause(); // Siempre pausamos antes para evitar conflictos.
+    video.currentTime = 0;
+    // Verificamos si ya está listo para reproducirse:
+    if (video.readyState >= 4) {
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    } else {
+      // Si aún no está listo, esperamos el evento canplaythrough:
+      const reproducirCuandoListo = () => {
+        video.removeEventListener('canplaythrough', reproducirCuandoListo);
+        video.play().catch(err => {
+          console.log('Error al reproducir video:', err);
+        });
+      };
+      video.addEventListener('canplaythrough', reproducirCuandoListo);
+    } 
       }
     })  
     if(screenWidth < 500){
@@ -2473,7 +2457,6 @@ function irContenedorSiguiente() {
       abrirSeccionCalidad()        
     break;     
     case "pantalla-inicial":        
-      /* abrirSeccionContinua('pantalla-inicial') */
       mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','gran-cortina'])
     break; 
     case "pantalla-tintero":

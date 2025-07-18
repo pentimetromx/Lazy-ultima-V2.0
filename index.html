@@ -580,7 +580,7 @@
           </div>              
         </div>
         <div id="bancada-torre" class="unidad-torre">
-          <button class="boton-d" id="bancadaButton" onclick="changeButtonStyles('bancada-torre-II')">BANCADA DE TORRE</button>
+          <button class="boton-d" id="bancadaButton" onclick="changeButtonStyles('bancada-torre-II','imgsIsopropil')">BANCADA DE TORRE</button>
           <div id="cont-Verticales4">
             <div class="linea-vertical"></div>
             <button class="boton-e" id="boton42" onclick="UnidadTorre('boton42','bancadaButton')">Guía<div class="linea-horizontal"></div></button>                  
@@ -826,10 +826,12 @@
         <img data-src="./assets/DIstri-12.jpg" id="imageElement4" class="lazy image-trainings1" alt="Tornillo lupa">
         <img data-src="./assets/Distri-11.jpg" id="imageElement5" class="lazy image-trainings1" alt="Tuerca lupa">
       </div>
-      <div id="conti-boton-repuestos">
-        <button class="butt-partes" id="butt-repuestos">PARTES  /  REPUESTOS</button>
-      </div>
     </div>
+
+    <div id="conti-boton-repuestos">
+      <button class="butt-partes" id="butt-repuestos">PARTES  /  REPUESTOS</button>
+    </div>
+
     <div id="sector-entintador">
       <div id="contenedor-7-VI" class="contene-botones"> 
         <button class="boton-f " onclick="muestraRodillo('videoElement2','images-distribuidor')">Montaje distribuidor<div class="linea-horizontal"></div></button>                
@@ -843,14 +845,13 @@
         <video class="lazy video-training" id="videoElement3" autoplay loop muted>  
           <source data-src="./assets/Montaje entintador.mp4" type="video/mp4">
         </video>
-      </div>      
-      <div id="images-entintador" class="images-training" >
-        <img data-src="./assets/Entintador.png" class="lazy image-trainings image-trainings1" id="imageElement6" alt="Entintador"><br>
-        <img data-src="./assets/Rodamiento entintador.png" class="lazy image-trainings image-trainings1" id="imageElement7" alt="Rodamiento entintador"><br>
+      </div>     
+
+      <div id="images-entintador">
+        <img data-src="./assets/Entintador.png" class="lazy image-trainings1" id="imageElement6" alt="Entintador">
+        <img data-src="./assets/Rodamiento entintador.png" class="lazy image-trainings1" id="imageElement7" alt="Rodamiento entintador"><br>
       </div>
-      <div id="conti-boton-repuestos-I">
-        <button class="butt-partes" id="butt-repuestos-I">PARTES  /  REPUESTOS</button>
-      </div>      
+
     </div>
     <div id="sector-smed">
       <div id="contenedor-7-VII" class="contene-botones"> 
@@ -873,9 +874,6 @@
           <img data-src="./assets/rodillos prensa.png" class="lazy image-trainings1" id="imageElement44" alt="Rodamiento entintador">
           <img data-src="./assets/medidor.jpg" class="lazy image-trainings1" id="imageElement55" alt="Rodamiento entintador">
       </div>
-      <div id="conti-boton-repuestos-II">
-        <button class="butt-partes" id="butt-repuestos-II">PARTES  /  REPUESTOS</button>
-      </div>      
     </div>
     <div id="conteneMantaut" class="mantAuto">
       <div id="conti-boton">
@@ -1210,11 +1208,13 @@
         <div id="rodillos-I">
           <span class="labl-class">GP TINTER</span>
         </div>
+
         <div id="vidRodillos">
           <video class="lazy video-training" id="rodilleria-vid" autoplay loop muted>
             <source data-src="./assets/tinter vid.mp4" type="video/mp4">
           </video>
         </div>
+        
       </div>
       
       <div id="abuelo-cuadricula" class="marco-3">
@@ -1499,7 +1499,7 @@
       <div id="contenedor-7" class="contene-botones">
         <button class="boton-f" onclick="muestraRodillo('videoElement2','images-distribuidor')">Montaje distribuidor<div class="linea-horizontal"></div></button>                
         <button class="boton-f" onclick="muestraRodillo('videoElement3','images-entintador')">Montaje entintador delantero <div class="linea-horizontal"></div></button>  
-        <button class="boton-f" onclick="muestraRodillo('plate-smed','images-entintador')">Montaje entintador medio <div class="linea-horizontal"></div></button>  
+        <button class="boton-f" onclick="muestraRodillo('plate-smed','images-smed')">Montaje entintador medio <div class="linea-horizontal"></div></button>  
         <button class="boton-f" onclick="muestraRodillo('videoElement5')">Montaje entintador trasero<div class="linea-horizontal"></div></button>               
         <button class="boton-f" onclick="muestraRodillo('videoElement6')">Montaje tomador <div class="linea-horizontal"></div></button>
         <button class="boton-f" onclick="muestraRodillo('videoElement7')">Montaje distribuidor trasero <div class="linea-horizontal"></div></button>
@@ -1521,9 +1521,6 @@
         <img data-src="./assets/isopropil alcoholimetro.png" class="lazy image-training image-trainings image-trainings1 image-isopropil" id="isopropil1" alt="iso">
         <img data-src="./assets/isopropil ph.png" class="lazy image-training image-trainings image-trainings1 image-isopropil" id="isopropil2" alt="iso">
         <img data-src="./assets/isopropil.png" class="lazy image-training image-trainings image-trainings1 image-isopropil" id="isopropil3" alt="iso">
-      </div>
-      <div id="conti-boton-repuestos-III">
-        <button class="butt-partes" id="butt-repuestos-III">PARTES  /  REPUESTOS</button>
       </div>
       <div id="conti-video-bancada">
         <video class="lazy video-training" id="plate-smed-I" autoplay loop>
@@ -1635,7 +1632,7 @@
       </div>
     </div>
     <div id="nicho-videos">
-      <video    class="lazy vid-prepress" id="vid04" onclick="abrirPrepress('pre-prensa')" autoplay loop>
+      <video class="lazy vid-prepress" id="vid04" onclick="abrirPrepress('pre-prensa')" autoplay loop>
         <source data-src="./assets/luz.mp4" type="video/mp4">
       </video>
       <video class="lazy vid-prepress" id="vid05" onclick="abrirPrepress('pre-prensa')" autoplay loop>  
@@ -2055,7 +2052,7 @@
       <div class="linea3"></div>
       <div class="linea4"></div>
     </div>
-    <div id="contenedorElementos" onmouseover="mostrarElementos()">
+    <div id="contenedorElementos">
       <div id="linea-1" class="conte-listado">Optimizar parámetros</div>
       <div id="linea-2" class="conte-listado">Análisis de patrones</div>
       <div id="linea-3" class="conte-listado">Reflectividad</div>
@@ -3574,7 +3571,7 @@
       <video class="lazy" src="./assets/Segmento tinta.mp4" autoplay loop muted playsinline></video>
     </div>
     <div id="formulario-cuenta" class="formulario-crear-cuenta">
-      <h2>Areas de trabajo</h2 >
+      <h2>Areas de trabajo</h2 > 
       <span class="etq-frm">Perfil cuchillas sheeter</span>
       <span class="etq-frm">Montaje cuchilla sheeter</span>
       <span class="etq-frm">Ajuste cuchilla sheeter</span>

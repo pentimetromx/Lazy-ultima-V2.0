@@ -27,38 +27,64 @@ document.querySelector('#contenedor-botonera button:nth-child(2)').addEventListe
   contenedor.style.top='15vh'
   contenedor.style.left='25vw'
   const video = contenedor.querySelector('video')
+
+  video.pause();
   video.currentTime = 0
-  video.play()
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
+
 })
 document.querySelector('#contenedor-botonera button:nth-child(3)').addEventListener('click', () =>{
   mostrarElementos(['image-uno','butts-simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
 })
-document.querySelector('#contenedor-botonera button:nth-child(4)').addEventListener('click', () =>{
-  ocultarTodos(['image-tres', 'image-cuatro'])
+
+document.querySelector('#contenedor-botonera button:nth-child(4)').addEventListener('click', () => {
+  ocultarTodos(['image-tres', 'image-cuatro']);
+
   setTimeout(() => {
-    const imagen = document.querySelector("#image-cuatro");
-    // Evita que se vuelva a activar si ya está en rotación
-    if (!imagen.classList.contains("rotando")) {
-      imagen.classList.add("rotando");
-      // Opcional: Remueve la clase después de la animación para poder volver a girar
+    const contenedor = document.querySelector("#image-cuatro");
+    const img = contenedor.querySelector("img");
+
+    if (!img.src) {
+      img.src = img.dataset.src;
+    }
+
+    if (!contenedor.classList.contains("rotando")) {
+      contenedor.classList.add("rotando");
+
       setTimeout(() => {
-      imagen.classList.remove("rotando");
-      }, 1000); // Debe coincidir con la duración de la animación en CSS (1s)
-    }      
+        contenedor.classList.remove("rotando");
+      }, 1000);
+    }
+
+    setTimeout(() => {
+      let escala = 1;
+      const intervalo = setInterval(() => {
+        if (escala >= 3) {
+          clearInterval(intervalo);
+        } else {
+          escala += 0.1;
+          contenedor.style.transform = `scale(${escala})`;
+        }
+      }, 50);
+    }, 1000);
+
   }, 100);
-  setTimeout(() => {
-    const imagen = document.querySelector("#image-cuatro");
-    let escala = 1; // Tamaño inicial  
-    const intervalo = setInterval(() => {
-      if (escala >= 3) {
-        clearInterval(intervalo); // Detiene el aumento al llegar a 7X
-      } else {
-        escala += 0.1; // Incremento progresivo
-        imagen.style.transform = `scale(${escala})`;
-      }
-    }, 50); 
-  }, 1000);
-})
+});
+
+
 document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListener('click', () => {
   var elementosExcluidos = ['']  
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -127,27 +153,55 @@ document.querySelector('.formulario-crear-cuenta :nth-child(2)').addEventListene
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(3)').addEventListener('click', (e) => {
-  ocultarTodos(['contenedor-sheeter'])
-  const contenedor = document.querySelector('#contenedor-sheeter')
+  ocultarTodos(['contenedor-sheeter']);  
+  const contenedor = document.querySelector('#contenedor-sheeter');
   contenedor.style.left = '';
   contenedor.style.top = '';
-
-  document.querySelector('#formulario-cuenta').style.display = 'grid'
-  const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()
+  document.querySelector('#formulario-cuenta').style.display = 'grid';
+  const video = contenedor.querySelector('video');
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   setTimeout(() => {
-    mostrarAyudas('visor')
-  }, 500);
+    mostrarAyudas('visor');
+  }, 500);  
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(4)').addEventListener('click', (e) => {
-  ocultarTodos(['video-graduar-sheeter'])
+  ocultarTodos(['video-graduar-sheeter'])  
   const contenedor = document.querySelector('#video-graduar-sheeter')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
+  video.pause();
   video.currentTime = 0
-  video.play() 
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(5)').addEventListener('click', (e) => {
@@ -164,8 +218,22 @@ document.querySelector('.formulario-crear-cuenta :nth-child(6)').addEventListene
   const contenedor = document.querySelector('#video-la-manta')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
+  video.pause()
   video.currentTime = 0
-  video.play()  
+    if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(7)').addEventListener('click', (e) => {
@@ -173,8 +241,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(7)').addEventListene
   const contenedor = document.querySelector('#video-manta-render')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(8)').addEventListener('click', (e) => {
@@ -182,8 +265,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(8)').addEventListene
   const contenedor = document.querySelector('#video-manta-dos')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(9)').addEventListener('click', (e) => {
@@ -191,8 +289,24 @@ document.querySelector('.formulario-crear-cuenta :nth-child(9)').addEventListene
   const contenedor = document.querySelector('#video-completo')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
+
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(10)').addEventListener('click', (e) => {
@@ -200,8 +314,24 @@ document.querySelector('.formulario-crear-cuenta :nth-child(10)').addEventListen
   const contenedor = document.querySelector('#video-cadena-offset')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
+
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(11)').addEventListener('click', (e) => {
@@ -209,8 +339,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(11)').addEventListen
   const contenedor = document.querySelector('#video-manta-enrolla')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(12)').addEventListener('click', (e) => {
@@ -218,8 +363,24 @@ document.querySelector('.formulario-crear-cuenta :nth-child(12)').addEventListen
   const contenedor = document.querySelector('#video-manta-capas')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
+
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(13)').addEventListener('click', (e) => {
@@ -227,8 +388,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(13)').addEventListen
   const contenedor = document.querySelector('#video-desliza-plancha')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(14)').addEventListener('click', (e) => {
@@ -236,8 +412,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(14)').addEventListen
   const contenedor = document.querySelector('#video-insolacion')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play() 
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(15)').addEventListener('click', (e) => {
@@ -245,8 +436,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(15)').addEventListen
   const contenedor = document.querySelector('#video-doctor-blade')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play() 
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(16)').addEventListener('click', (e) => {
@@ -254,8 +460,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(16)').addEventListen
   const contenedor = document.querySelector('#tintero-interior')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play() 
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(17)').addEventListener('click', (e) => {
@@ -263,8 +484,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(17)').addEventListen
   const contenedor = document.querySelector('#tintero-palanca')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(18)').addEventListener('click', (e) => {
@@ -272,8 +508,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(18)').addEventListen
   const contenedor = document.querySelector('#tinta_segmento')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(19)').addEventListener('click', (e) => {
@@ -281,8 +532,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(19)').addEventListen
   const contenedor = document.querySelector('#trinquete-rodillo-tintero-v')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play() 
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(20)').addEventListener('click', (e) => {
@@ -290,8 +556,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(20)').addEventListen
   const contenedor = document.querySelector('#trinquete')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(21)').addEventListener('click', (e) => {
@@ -299,8 +580,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(21)').addEventListen
   const contenedor = document.querySelector('#trinquete-multi')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 document.querySelector('.formulario-crear-cuenta :nth-child(22)').addEventListener('click', (e) => {
@@ -308,8 +604,23 @@ document.querySelector('.formulario-crear-cuenta :nth-child(22)').addEventListen
   const contenedor = document.querySelector('#trinquete-rodillo-tintero')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   const video = contenedor.querySelector('video')
-  video.currentTime = 0
-  video.play()  
+  video.pause(); // Siempre pausamos antes para evitar conflictos.
+  video.currentTime = 0;
+  // Verificamos si ya está listo para reproducirse:
+  if (video.readyState >= 4) {
+    video.play().catch(err => {
+      console.log('Error al reproducir video:', err);
+    });
+  } else {
+    // Si aún no está listo, esperamos el evento canplaythrough:
+    const reproducirCuandoListo = () => {
+      video.removeEventListener('canplaythrough', reproducirCuandoListo);
+      video.play().catch(err => {
+        console.log('Error al reproducir video:', err);
+      });
+    };
+    video.addEventListener('canplaythrough', reproducirCuandoListo);
+  }
   aplicarEstiloActivo(e.target);
 });
 const labels = document.querySelectorAll('#formulario-cuenta label');
@@ -494,7 +805,6 @@ function mostrarAyudas(parametro) {
   showImage(actualPosicion, selectedArray);
 }
 function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
-
   allContenedores.forEach(id => {
     const elem = document.getElementById(id);
     if (!elem) return;

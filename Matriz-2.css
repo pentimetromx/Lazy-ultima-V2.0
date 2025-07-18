@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap'); 
 @font-face {
   font-family: "Oswald";
-  src: url('C:\Users\Juan\Downloads\matrix\matrix.ttf') format('ttf'), /* Ruta hacia el archivo .woff2 de la fuente */
-} 
+  src: url("./fonts/Oswald-Regular.ttf") format("truetype");
+}
 @font-face{   
   font-family: "Digital";
   src:url(./fonts/DS-DIGIT.TTF),
@@ -173,42 +173,6 @@ body{
   background-color: rgb(0,0,20);
   margin-bottom: 5px;
   border-radius: 5px;
-}
-#opcion1 {
-  padding: 12px;
-  background-image: url("./assets/descarga.png");
-  background-size: cover;
-  background-position: center;
-}
-#opcion2 {
-  padding: 12px;
-  background-image: url("./assets/descarga4.png");
-  background-size: cover; 
-  background-position: center;
-}
-#opcion3 {
-  padding: 12px;
-  background-image: url("./assets/descarga2.png");
-  background-size: cover;
-  background-position: center;
-}
-#opcion4 {
-  padding: 12px;
-  background-image: url("./assets/descarga3.png");
-  background-size: cover; 
-  background-position: center;
-}
-#opcion5 {
-  padding: 12px;
-  background-image: url("./assets/descarga1.png");
-  background-size: cover; 
-  background-position: center; 
-}
-#opcion6 {
-  padding: 12px;
-  background-image: url("./assets/descarga5.png");
-  background-size: cover;
-  background-position: center;
 }
 #cuadros {
   padding:1px;
@@ -1160,7 +1124,7 @@ body{
   width:15%;
   height:10%;
 }
-#cuadro-guias{
+/* #cuadro-guias{
   position: absolute;
   display: flex;
   border-radius: 4px;
@@ -1186,7 +1150,8 @@ body{
   width: 90%;
   background-color: rgb(125,125,125);
   border-radius: 2px;
-}
+} */
+
 #pliego {
   position: absolute;
   display: flex;
@@ -4118,9 +4083,10 @@ top: 44%;
 }
 .formulario-crear-cuenta h2{
   position:absolute;
+  width:25vw;
   margin-top: -15%;
-  left: 11%;
-  text-align: center;
+  left:5%;
+  text-align:left;
   overflow: hidden;
   color: rgba(0,255,0,1);
   font-family: 'Courier New', Courier, monospace; 

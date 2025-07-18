@@ -87,7 +87,7 @@ var apliqueII = document.getElementById('aplique_2')
 
 var posicionPantalla = document.getElementById('positionDisplay')              
 var positionDisplayIII = document.getElementById('positionDisplay_3')
-var allContenedores = ['visor-tools','butts-simulador','contenedor-botonera','sections-fondo','sections-fondo','imagenes-sheeter','container01','perfiles-color','contenedor-2','control-panel-rgb','control-panel-cmyk','padre-rgb','padre-cmyk','simulador','conte-butts-graphs','gran-cortina','contraseña','input1','input2','input3','input4','tareas-lubricacion','dynamic-graphs-II','tareas-limpieza','dia','actividad-lubricacion','actividad-limpieza','meses','metas-diarias','calendario-mes','ventana-lateral','etqts-festo','vidColor-II','contenedor_padre_3','contenedor_padre_2','contenedor_padre','butt-links-I','butt-links-II','butt-links-III','buscador','search-form','butt-links','imagenes-plancha','uniteñido','video-placa','placa','imagen1','imagen2','imagen3','imagen4','imagenes-impresor','video-impresor','padre-naranja','tendencia-naranja','abuelo-variable','planetary','padre-variable','cont-variable','abuelo-plana','padre-plana','cont-plana','contenedorElementos','general','frec-lubrica','padre-grilla','grilla-durezas','abuelo-entintadores','padre-entintadores','abuelo-grilla-dureza','cont-arriba-rodillos','lubricantes','abuelo-cuadricula','abuelo-teñido','abuelo-grilla','abuelo-lubrica','padre-lubricante','freno-II','conti-boton-freno','cont-arriba','conti-boton-teñido','teñido-I','teñido-II','vidTeñido','teñido-vid','cont-arriba-freno','inicio','padre-lubrica','bis-abuelo','image-background','def2','over_size','over_side','equalizer','nicho_spans','padre','patern','first_half','cortina','second_half','wall_street_II','vid_festo','instrucciones_manometro','positionDisplay_3','display_2','container_interfaz_2','butts_interfaz_2','container_interfaz_3','butts_interfaz_3','display_3','subtitulo-I','display','container_interfaz','butts_interfaz','interfaz','conte-ayudas','ayudas-video','imagen-ayudas','logo-grande','agrupaOblicuos-XI','titulo-ancho','descripcion-I','ventana-lateral','linkList','contenedor','padre-circle','circle','options','nicho-videos','primerCont','vidColor','vid01','vidCicodelia','padre-interfaz','hijo-interaz-1','hijo-interaz-2','abandonar-perfiles','MiGrafica9-II','contLineas-II','contLineas','title-interfaz','vidElem','kaizen-propuestos','canvasContainer3','troubleshooting','conti-boton','canvasContainer2','conteneMantaut','MiGrafica','contImaginario-II','contImaginario-III','padre-1','padre-2','imag3','imag4','contImaginario','bailarina','pneumatico','padre-neumat','largoImpresion','contImgEntrenos','imag1','imag2','linksMA','linkLis','sitio-en-construccion','curado-uv','video-container','conti-video-background','video-background-planas','contenedor-9','conti-video-bancada','plate-smed-I','contVid-smed-I','butt-repuestos-III','conti-boton-repuestos-III','imgsIsopropil','contenedor-8','bancada','contVid-smed','contenedor-7-VII','butt-repuestos-II','butt-repuestos-I','conti-boton-repuestos-II','conti-boton-repuestos-I','contenedor-7-VI','sector-smed','sector-entintador','sector-distribuidor','conti-video-smed','conti-video-entintador','conti-video-distribuidor','conti-boton-repuestos','contenedor-7-V','plate-smed','contenedor-7','butt-repuestos','images-entintador','toggleVideoButton','videoElement1','videoElement1-II','video-entintado','videos-training','videoElement2','contenedor-7','contene-images','cuartoContDensito','tercerContDensito','segundoContDensito','contDensito','imgs-densito','conte-botDensito','conte-botDensitoII','imgs-prepress','frame-rollers','links-inicialesI','linkListI','links-iniciales','impresorImg','agrupaOblicuos-IX','imagenes-manta','cont-titulo-operacion','cont-titulo-calidad','cont-titulo-comercial','cont-titulo-admin','control-neumatico','rodillo-infeed','contBotCasos','puesta-punto','mejoras-kai','casos-kaizen','kaizen-propuestos','toyota-kaizen','toyota-kaizen-antes','materiales-kaizen','planos-kaizen','conti-boton','conti-boton-kaizen','conti-boton-planos','kaizenCont','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','verticales-alimentador','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','pantalla-tintero','cont-links','imgTorre','imgsRepuestos','agrupaOblicuos-II','pantalla-frente','pantalla-mandos','pantalla-servicio','pantalla-atras','videosTraining','contPortPlaca','contPortManta','contImpresor','contImgDistribuidor','contImgEntintador','cont-variable','bancada-torre-II','bateria-entintado-II','cont-secador','sitema-humedad','pre-prensa','agrupaOblicuos-placa','densitometria','contImagGraf','contImagNeg','lubricacion','title-interfaz','iconos','canvasContainer4','canvasContainer4-II','canvasContainer5','canvasContainer5-II','canvasContainer6','canvasContainer6-II','canvasContainer7','canvasContainer7-II','canvasContainer8','canvasContainer8-II','canvasContainer9','canvasContainer9-II','conte-secundario','contenedor-vertical','franja-Blanca','cont-titulo','videoBackground','video-background','videoBackgroundII','lubri-II','lubri-I','images-smed','images-distribuidor','lubri-III','freno','uniTeñido','uniTeñidos','rodilleria', 'cont-user','cont-userI','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6', 'colorCMYK', 'colorDisplay','container-slider','padre-controles','alerta-perfiles', 'cliente-nombre', 'bot-revertir', 'formulario-perfiles','boton-reseteo','boton-perfiles','unit-job-track','lista-lineas','lista-clientes','job-files','clock','texto-perf-indiv','bot-modific','blur-interfaz-perfiles','cont-modificadores','info-perfiles','admin-perfiles','cronometro','cronos','inerfaz-ajuste-fino','perfil-individual','control-perfiles','interfaz-registro','perfiles-entintado','perfil-entintado','interfaz-perfiles','water-background','segunda-pantalla','contenedor-padre','conte-colors','sombra','control-panel','contiene-lineas','triada-videos','trinquete','home-gym','tinta_segmento','trinquete-multi','trinquete-rodillo-tintero-v','trinquete-rodillo-tintero','tintero-interior','tintero-palanca','dos-videos','video-doctor-blade','video-insolacion','video-desliza-plancha','ajuste-corte','corte-oscilacion','corte-ajuste','video-graduar-sheeter','video-cadena-offset','video-completo','video-manta-capas','video-manta-enrolla','video-la-manta','video-manta-dos','video-manta-render','video-cuchilla-1','video-cuchilla','video-cuchilla-1','video-cuchilla','imagenes-sheeter','contenedor-1','contenedor-2','image-uno','image-tres','image-cuatro','contenedor-sheeter','formulario-cuenta']
+var allContenedores = ['visor-tools','butts-simulador','contenedor-botonera','sections-fondo','sections-fondo','imagenes-sheeter','container01','perfiles-color','contenedor-2','control-panel-rgb','control-panel-cmyk','padre-rgb','padre-cmyk','simulador','conte-butts-graphs','gran-cortina','contraseña','input1','input2','input3','input4','tareas-lubricacion','dynamic-graphs-II','tareas-limpieza','dia','actividad-lubricacion','actividad-limpieza','meses','metas-diarias','calendario-mes','ventana-lateral','etqts-festo','vidColor-II','contenedor_padre_3','contenedor_padre_2','contenedor_padre','butt-links-I','butt-links-II','butt-links-III','buscador','search-form','butt-links','imagenes-plancha','uniteñido','video-placa','placa','imagen1','imagen2','imagen3','imagen4','imagenes-impresor','video-impresor','padre-naranja','tendencia-naranja','abuelo-variable','planetary','padre-variable','cont-variable','abuelo-plana','padre-plana','cont-plana','contenedorElementos','general','frec-lubrica','padre-grilla','grilla-durezas','abuelo-entintadores','padre-entintadores','abuelo-grilla-dureza','cont-arriba-rodillos','lubricantes','abuelo-cuadricula','abuelo-teñido','abuelo-grilla','abuelo-lubrica','padre-lubricante','freno-II','conti-boton-freno','cont-arriba','conti-boton-teñido','teñido-I','teñido-II','vidTeñido','teñido-vid','cont-arriba-freno','inicio','padre-lubrica','bis-abuelo','image-background','def2','over_size','over_side','equalizer','nicho_spans','padre','patern','first_half','cortina','second_half','wall_street_II','vid_festo','instrucciones_manometro','positionDisplay_3','display_2','container_interfaz_2','butts_interfaz_2','container_interfaz_3','butts_interfaz_3','display_3','subtitulo-I','display','container_interfaz','butts_interfaz','interfaz','conte-ayudas','ayudas-video','imagen-ayudas','logo-grande','agrupaOblicuos-XI','titulo-ancho','descripcion-I','ventana-lateral','linkList','contenedor','padre-circle','circle','options','nicho-videos','primerCont','vidColor','vid01','vidCicodelia','padre-interfaz','hijo-interaz-1','hijo-interaz-2','abandonar-perfiles','MiGrafica9-II','contLineas-II','contLineas','title-interfaz','vidElem','kaizen-propuestos','canvasContainer3','troubleshooting','conti-boton','canvasContainer2','conteneMantaut','MiGrafica','contImaginario-II','contImaginario-III','padre-1','padre-2','imag3','imag4','contImaginario','bailarina','pneumatico','padre-neumat','largoImpresion','contImgEntrenos','imag1','imag2','linksMA','linkLis','sitio-en-construccion','curado-uv','video-container','conti-video-background','video-background-planas','contenedor-9','conti-video-bancada','plate-smed-I','contVid-smed-I','butt-repuestos-III','imgsIsopropil','contenedor-8','bancada','contVid-smed','contenedor-7-VII','butt-repuestos-II','butt-repuestos-I','contenedor-7-VI','sector-smed','sector-entintador','sector-distribuidor','conti-video-smed','conti-video-entintador','conti-video-distribuidor','conti-boton-repuestos','contenedor-7-V','plate-smed','contenedor-7','butt-repuestos','images-entintador','toggleVideoButton','videoElement1','videoElement1-II','video-entintado','videos-training','videoElement2','contenedor-7','contene-images','cuartoContDensito','tercerContDensito','segundoContDensito','contDensito','imgs-densito','conte-botDensito','conte-botDensitoII','imgs-prepress','frame-rollers','links-inicialesI','linkListI','links-iniciales','impresorImg','agrupaOblicuos-IX','imagenes-manta','cont-titulo-operacion','cont-titulo-calidad','cont-titulo-comercial','cont-titulo-admin','control-neumatico','rodillo-infeed','contBotCasos','puesta-punto','mejoras-kai','casos-kaizen','kaizen-propuestos','toyota-kaizen','toyota-kaizen-antes','materiales-kaizen','planos-kaizen','conti-boton','conti-boton-kaizen','conti-boton-planos','kaizenCont','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','verticales-alimentador','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','pantalla-tintero','cont-links','imgTorre','imgsRepuestos','agrupaOblicuos-II','pantalla-frente','pantalla-mandos','pantalla-servicio','pantalla-atras','videosTraining','contPortPlaca','contPortManta','contImpresor','contImgDistribuidor','contImgEntintador','cont-variable','bancada-torre-II','bateria-entintado-II','cont-secador','sitema-humedad','pre-prensa','agrupaOblicuos-placa','densitometria','contImagGraf','contImagNeg','lubricacion','title-interfaz','iconos','canvasContainer4','canvasContainer4-II','canvasContainer5','canvasContainer5-II','canvasContainer6','canvasContainer6-II','canvasContainer7','canvasContainer7-II','canvasContainer8','canvasContainer8-II','canvasContainer9','canvasContainer9-II','conte-secundario','contenedor-vertical','franja-Blanca','cont-titulo','videoBackground','video-background','videoBackgroundII','lubri-II','lubri-I','images-smed','images-distribuidor','lubri-III','freno','uniTeñido','uniTeñidos','rodilleria', 'cont-user','cont-userI','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6', 'colorCMYK', 'colorDisplay','container-slider','padre-controles','alerta-perfiles', 'cliente-nombre', 'bot-revertir', 'formulario-perfiles','boton-reseteo','boton-perfiles','unit-job-track','lista-lineas','lista-clientes','job-files','clock','texto-perf-indiv','bot-modific','blur-interfaz-perfiles','cont-modificadores','info-perfiles','admin-perfiles','cronometro','cronos','inerfaz-ajuste-fino','perfil-individual','control-perfiles','interfaz-registro','perfiles-entintado','perfil-entintado','interfaz-perfiles','water-background','segunda-pantalla','contenedor-padre','conte-colors','sombra','control-panel','contiene-lineas','triada-videos','trinquete','home-gym','tinta_segmento','trinquete-multi','trinquete-rodillo-tintero-v','trinquete-rodillo-tintero','tintero-interior','tintero-palanca','dos-videos','video-doctor-blade','video-insolacion','video-desliza-plancha','ajuste-corte','corte-oscilacion','corte-ajuste','video-graduar-sheeter','video-cadena-offset','video-completo','video-manta-capas','video-manta-enrolla','video-la-manta','video-manta-dos','video-manta-render','video-cuchilla-1','video-cuchilla','video-cuchilla-1','video-cuchilla','imagenes-sheeter','contenedor-1','contenedor-2','image-uno','image-tres','image-cuatro','contenedor-sheeter','formulario-cuenta']
 var linksIniciales = ['links-inicialesI','links-iniciales']
 var allContIzquierdos = ['desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador']
 var contenedoresHijo = ['contImgDistribuidor','rodillForma','portaPlancha','portaMantilla','cilindroImpresor']
@@ -238,35 +238,53 @@ document.addEventListener("DOMContentLoaded", () => {
       lazyImage.src = lazyImage.dataset.src;
     });
   }
-  // Lazy loading de videos
-  const lazyVideos = Array.from(document.querySelectorAll("video.lazy"));
-  if ("IntersectionObserver" in window) {
-    let lazyVideoObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          let lazyVideo = entry.target;
-          for (let source of lazyVideo.children) {
-            if (source.tagName === "SOURCE") {
-              source.src = source.dataset.src;
-            }
+
+
+const lazyVideos = Array.from(document.querySelectorAll("video.lazy"));
+if ("IntersectionObserver" in window) {
+  let lazyVideoObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        let lazyVideo = entry.target;
+        // Pausar para evitar el error
+        lazyVideo.pause();
+        lazyVideo.removeAttribute("autoplay");  // Desactivar autoplay temporal
+        for (let source of lazyVideo.children) {
+          if (source.tagName === "SOURCE") {
+            source.src = source.dataset.src;
           }
-          lazyVideo.load();
-          lazyVideo.classList.remove("lazy");
-          lazyVideoObserver.unobserve(lazyVideo);
         }
-      });
-    });
-    lazyVideos.forEach(lazyVideo => lazyVideoObserver.observe(lazyVideo));
-  } else {
-    lazyVideos.forEach(lazyVideo => {
-      for (let source of lazyVideo.children) {
-        if (source.tagName === "SOURCE") {
-          source.src = source.dataset.src;
-        }
+        lazyVideo.load();
+        // Ahora puedes volver a activar el autoplay si quieres
+        lazyVideo.play().catch(err => {
+          // Silencia errores si el autoplay es bloqueado por políticas del navegador
+          console.log('Autoplay bloqueado o error:', err);
+        });
+        lazyVideo.classList.remove("lazy");
+        lazyVideoObserver.unobserve(lazyVideo);
       }
-      lazyVideo.load();
     });
-  }
+  });
+  lazyVideos.forEach(lazyVideo => lazyVideoObserver.observe(lazyVideo));
+} else {
+  lazyVideos.forEach(lazyVideo => {
+    lazyVideo.pause();
+    lazyVideo.removeAttribute("autoplay");
+    for (let source of lazyVideo.children) {
+      if (source.tagName === "SOURCE") {
+        source.src = source.dataset.src;
+      }
+    }
+    lazyVideo.load();
+    lazyVideo.play().catch(err => {
+      console.log('Autoplay bloqueado o error:', err);
+    });
+  });
+}
+
+
+
+
   // Hover en botones
   const buttons = document.querySelectorAll('.Bot-inicio3, .Bot-inicio7');
   buttons.forEach(button => {
@@ -1262,7 +1280,7 @@ function reproducirVideo(videoId) {
     }, { once: true });
   }
 }
-function changeButtonStyles(elementId){
+function changeButtonStyles(elementId,imgCont){
   switch (elementId) {
     case 'pantalla-tintero':
       var elementosExcluidos = ['buscador','search-form','cont-links','pantalla-tintero','links-inicialesI','links-iniciales','agrupaOblicuos-II','imgTorre','video-entintado','videoElement1-II']  
@@ -1375,7 +1393,7 @@ function changeButtonStyles(elementId){
       }
     break;
     case 'bancada-torre-II': 
-      var elementosExcluidos = ['buscador','search-form','conti-boton-repuestos-III','butt-repuestos-III','bancada-torre-II','links-inicialesI','links-iniciales','conti-video-bancada','plate-smed-I','contenedor-8','imgsIsopropil'];
+      var elementosExcluidos = ['buscador','search-form','conti-boton-repuestos','butt-repuestos','bancada-torre-II','links-inicialesI','links-iniciales','conti-video-bancada','plate-smed-I','contenedor-8','imgsIsopropil'];
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i]);  
         if (elemento) {
@@ -1392,9 +1410,17 @@ function changeButtonStyles(elementId){
         }, delay * i,i)
       }
       contVid.style.display='flex' 
+      const container = document.getElementById(imgCont)
+      const pict = container.getElementsByTagName('img')
+      container.style.display = 'flex'
+      for (var i = 0; i < images.length; i ++) {
+        var pic = images[i]
+        pic.style.display = 'block'
+      }
+
       reproducirVideo('plate-smed-I');
       setTimeout(() => {
-        applyImageEffects4() 
+        applyImageEffects('#isopropil1,#isopropil2,#isopropil3') 
       }, 277)
 
     if (screenWidth < 500) {   
@@ -1567,7 +1593,7 @@ function secuenciaEntrena(){
     }
   }
   container1.style.display='none'
-  document.querySelector('#back-container').style.display='none'
+
 
   padre.style.top='9.3vh'
   padre.style.left='40vw'

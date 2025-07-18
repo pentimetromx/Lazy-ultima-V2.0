@@ -795,7 +795,6 @@ function ocultarIndicaciones(idIndicador) {
 function rodillosKaizen(idButton,vidElem) {
   var buttsTerceros = document.getElementsByClassName('butt-mautonomo-planos') 
   var imgsEstudio = document.getElementById('mejoras-kai')
-  var casoEstudio = document.getElementById('casos-kaizen')
   var contMateriales = document.getElementById('materiales-kaizen')
   var contplanosKaizen = document.getElementById('planos-kaizen')
   var videoKaizen = document.getElementById('videoElem')
@@ -820,7 +819,7 @@ function rodillosKaizen(idButton,vidElem) {
       container1.style.display='grid'
       if(screenWidth < 500){
         for (var i = 0; i < buttsToyota.length; i++) {
-        var elemento = document.getElementById(buttsToyota[i])      
+          var elemento = document.getElementById(buttsToyota[i])      
           var estiloDisplay = window.getComputedStyle(elemento).getPropertyValue('display')
           elemento.style.display = 'none'
         }
@@ -860,6 +859,9 @@ function rodillosKaizen(idButton,vidElem) {
         }
       }
       transicionImagenes()
+      setTimeout(() => {
+      apilarCasos()        
+      }, 1500);
     } 
     break;
     case 'btn11':
@@ -908,8 +910,31 @@ function rodillosKaizen(idButton,vidElem) {
           } 
           container1.style.display='grid'
           videoKaizen.style.display = 'flex'
-          videoKaizen.currentTime = 0
-          videoKaizen.play()  
+
+          /* videoKaizen.currentTime = 0
+          videoKaizen.play()  */ 
+
+
+          videoKaizen.pause(); // Siempre pausamos antes para evitar conflictos.
+          videoKaizen.currentTime = 0;
+          // Verificamos si ya está listo para reproducirse:
+          if (videoKaizen.readyState >= 4) {
+            videoKaizen.play().catch(err => {
+              console.log('Error al reproducir videoKaizen:', err);
+            });
+          } else {
+            // Si aún no está listo, esperamos el evento canplaythrough:
+            const reproducirCuandoListo = () => {
+              videoKaizen.removeEventListener('canplaythrough', reproducirCuandoListo);
+              videoKaizen.play().catch(err => {
+                console.log('Error al reproducir videoKaizen:', err);
+              });
+            };
+            videoKaizen.addEventListener('canplaythrough', reproducirCuandoListo);
+          }
+
+
+
           contadorClicks = 0;
           if (screenWidth < 500){
             contBotKaizen.removeAttribute('style')
@@ -1003,6 +1028,43 @@ function rodillosKaizen(idButton,vidElem) {
     default:
   }
 }
+
+
+function apilarCasos() {
+  const casoEstudio = document.getElementById('casos-kaizen');
+  const mejoras = document.getElementById('mejoras-kai');
+  const caso1 = document.getElementById('caso1');
+  const caso2 = document.getElementById('caso2');
+  const caso3 = document.getElementById('caso3');
+
+  // Mostrar contenedores
+  casoEstudio.style.display = 'flex';
+  casoEstudio.style.marginLeft = '7%';
+  mejoras.style.display = 'block';
+
+  // Orden inicial
+  caso1.style.zIndex = 3;
+  caso1.style.display = 'block';
+  caso2.style.zIndex = 2;
+  caso2.style.display = 'block';
+  caso3.style.zIndex = 1;
+  caso3.style.display = 'block';
+
+  // Resetear transformaciones para que el efecto se reinicie
+  caso1.style.transform = 'translateY(0)';
+  caso2.style.transform = 'translateY(0)';
+  caso3.style.transform = 'translateY(0)';
+
+  setTimeout(() => {
+    caso2.style.transform = 'translateY(100px)';
+  }, 200);
+  setTimeout(() => {
+    caso3.style.transform = 'translateY(200px)';
+  }, 200);
+}
+
+
+
 function transicionImagenes() {
   var casoEstudio = document.getElementById('casos-kaizen')
   var index = 0;
@@ -1018,13 +1080,11 @@ function transicionImagenes() {
         if (index < buttsToyota.length) {
           setTimeout(ocultarSiguienteImagen, 150)
         } else {
-          var imgToyota = document.getElementById('toyota7')
+          var imgToyota = document.getElementById('toyota7')   
           imgToyota.style.display = 'flex'
-          casoEstudio.style.display = 'flex' 
-          casoEstudio.style.marginLeft = '7%'                                                                    
         }
     }
-    ocultarSiguienteImagen()
+  ocultarSiguienteImagen()
 }
 function mostrarBotonConRetardo(index) {
   let arrayButtCasos = ['caso1', 'caso2', 'caso3']
@@ -4453,7 +4513,9 @@ document.getElementById('butt-sitio').addEventListener('click', () => {
   }
   container1.style.display='grid' 
   document.getElementById('butt-sitio').style.display='none'
-  abrirSeccionContinua()
+
+
+  mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','gran-cortina'])
 })
 function isVisible(element) {
   const style = window.getComputedStyle(element);
