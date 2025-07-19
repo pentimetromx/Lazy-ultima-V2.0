@@ -847,157 +847,137 @@ if ("IntersectionObserver" in window) {
   })
   observarCambioDisplay()
 });
+
 function manejarLogica() {
   const inputs = document.querySelectorAll('.numero');
   let valoresIngresados = [0, 0, 0, 0];
+
+  // ✅ Siempre mostrar los inputs para ingresar la contraseña
   inputs.forEach(input => {
     input.style.display = 'flex';
   });
-  if(screenWidth < 500){
-      var tituloAngosto = document.getElementById('img-logo');
-      tituloAngosto.style.width = '100%';      
-      document.getElementById('input1').classList.add('move-inputI')
-      document.getElementById('input2').classList.add('move-inputII')
-      document.getElementById('input3').classList.add('move-inputIII')
-      document.getElementById('input4').classList.add('move-inputIV')
-      document.getElementById('contraseña').classList.add('move-contraseña')
-      if (inputs.length > 0) {
-        inputs[0].focus();
-      }
-  }else{
-      var tituloAncho = document.getElementById('titulo-ancho');
-      tituloAncho.style.width = '100%'
-      document.getElementById('input1').classList.add('move-inputI')
-      document.getElementById('input2').classList.add('move-inputII')
-      document.getElementById('input3').classList.add('move-inputIII')
-      document.getElementById('input4').classList.add('move-inputIV')
-      document.getElementById('contraseña').classList.add('move-contraseña')
-      if (inputs.length > 0) {
-        inputs[0].focus();          
-      }
-    // Función para manejar la entrada en los inputs
-    function manejarEntrada(event) {
-      const inputActual = event.target;
-      let valor = inputActual.value.replace(/\D/g, ""); // Elimina cualquier carácter que no sea número
 
-      if (valor.length > 1) {
-        valor = valor.charAt(0); // Solo permite un solo dígito
-      }
-
-      inputActual.value = valor; // Actualiza el input con solo el número válido
-
-      const indice = Array.from(inputs).indexOf(inputActual);
-      valoresIngresados[indice] = valor ? parseInt(valor) : 0;
-
-      setTimeout(() => {
-          inputActual.value = '*'; // Oculta el número ingresado
-          if (indice < inputs.length - 1) {
-            inputs[indice + 1].focus(); // Mueve el foco al siguiente input
-          }
-      }, 177);
-
-      // Verifica la suma de los valores ingresados
-      const suma = valoresIngresados.reduce((acumulador, valor) => acumulador + valor, 0);
-      if (suma === masterKey[0]) {
-          inputs.forEach(input => {
-            input.style.display = 'none';
-          });
-          document.getElementById('contraseña').style.display = 'none';
-          setTimeout(() => {
-            abrirInterfaz();
-          }, 200);
-          inputs.forEach(input => {
-            input.value = '';
-          });
-      }
-    }
-
-    // Función para evitar que se ingresen caracteres no numéricos
-    function validarTecla(event) {
-      const teclaPresionada = event.key;
-      if (!/^\d$/.test(teclaPresionada) && teclaPresionada !== "Backspace" && teclaPresionada !== "Tab") {
-        event.preventDefault(); // Bloquea la tecla si no es un número, Backspace o Tab
-      }
-    }
-
-    // Agregar eventos a cada input
-    inputs.forEach(input => {
-      input.addEventListener('input', manejarEntrada);
-      input.addEventListener('keydown', validarTecla); // Restringe la entrada de teclas no numéricas
-    });
+  if (screenWidth < 500) {
+    // Pantalla pequeña
+    document.getElementById('img-logo').style.width = '100%';
+  } else {
+    // Pantalla grande
+    document.getElementById('titulo-ancho').style.width = '100%';
   }
+
+  // ✅ Aplicar las clases de movimiento a inputs y contraseña (ambos tamaños)
+  document.getElementById('input1').classList.add('move-inputI');
+  document.getElementById('input2').classList.add('move-inputII');
+  document.getElementById('input3').classList.add('move-inputIII');
+  document.getElementById('input4').classList.add('move-inputIV');
+  document.getElementById('contraseña').classList.add('move-contraseña');
+
+  if (inputs.length > 0) {
+    inputs[0].focus();
+  }
+
+  function manejarEntrada(event) {
+    const inputActual = event.target;
+    let valor = inputActual.value.replace(/\D/g, "");
+
+    if (valor.length > 1) {
+      valor = valor.charAt(0);
+    }
+
+    inputActual.value = valor;
+
+    const indice = Array.from(inputs).indexOf(inputActual);
+    valoresIngresados[indice] = valor ? parseInt(valor) : 0;
+
+    setTimeout(() => {
+      inputActual.value = '*';
+      if (indice < inputs.length - 1) {
+        inputs[indice + 1].focus();
+      }
+    }, 177);
+
+    // Validación suma
+    const suma = valoresIngresados.reduce((acc, val) => acc + val, 0);
+    if (suma === masterKey[0]) {
+      inputs.forEach(input => input.style.display = 'none');
+      document.getElementById('contraseña').style.display = 'none';
+      setTimeout(abrirInterfaz, 200);
+      inputs.forEach(input => input.value = '');
+    }
+  }
+
+  //  Evitar no numéricos
+  function validarTecla(event) {
+    if (!/^\d$/.test(event.key) && event.key !== "Backspace" && event.key !== "Tab") {
+      event.preventDefault();
+    }
+  }
+
+  //  Asignar eventos
+  inputs.forEach(input => {
+    input.addEventListener('input', manejarEntrada);
+    input.addEventListener('keydown', validarTecla);
+  });
 }
+
 function abrirInterfaz() {
-  document.querySelectorAll("*").forEach(el => {
-    el.style.setProperty("cursor", "none", "important"); 
+  document.body.style.cursor = "none";
+
+  const elementosExcluidos = [
+    'videoBackgroundII','video-background','padre-interfaz','cont-titulo',
+    'franja-Blanca','subtitulo-I','descripcion-I','butt-Institucional',
+    'agrupaOblicuos-XI','hijo-interaz-1','hijo-interaz-2','contFrente-V',
+    'titulo-ancho','logo-grande','image-background'
+  ];
+
+  allContenedores.forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
+    }
   });
 
-  var elementosExcluidos = ['videoBackgroundII','video-background','padre-interfaz','cont-titulo','franja-Blanca','subtitulo-I','descripcion-I','butt-Institucional','padre-interfaz', 'agrupaOblicuos-XI', 'hijo-interaz-1', 'hijo-interaz-2', 'contFrente-V','titulo-ancho','logo-grande','image-background'];
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i]);
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
-    }
-  }
-  var titulo = document.getElementById('subtitulo-I')
+  const titulo = document.getElementById('subtitulo-I');
+  const elementoPadre = document.getElementById('cont-titulo');
+  const esMovil = screenWidth < 500;
 
-  if(screenWidth < 500){
-    var elementoPadre = document.getElementById('cont-titulo');
-    elementoPadre.classList.remove('move-oblicuos');
-    setTimeout(function () {
-    elementoPadre.classList.add ('move-oblicuos');
-    desactivarClicsPorUnTiempo(4000)
-    }, 177);
-    setTimeout(() => {
-      alternarColorVerde() 
-    }, 900);
-    setTimeout(() => {
-      alternarColorVerdeInverso() 
-    }, 1200); 
-    setTimeout(() => {
-      alternarColorVerde() 
-    }, 1500);
-    setTimeout(() => {
-      alternarColorVerdeInverso() 
-    }, 1800); 
-    setTimeout(() => {
-      titulo.classList.add('move-title')
-    }, 1900);
-    setTimeout(() => {
-      document.querySelectorAll("*").forEach(el => {
-        el.style.removeProperty("cursor");
-      });
-    }, 2500);
+  const secuencia = esMovil 
+    ? [
+        () => elementoPadre.classList.remove('move-oblicuos'),
+        () => elementoPadre.classList.add('move-oblicuos'),
+        () => desactivarClicsPorUnTiempo(4000),
+        () => alternarColorVerde(),
+        () => alternarColorVerdeInverso(),
+        () => alternarColorVerde(),
+        () => alternarColorVerdeInverso(),
+        () => titulo.classList.add('move-title'),
+        () => document.body.style.cursor = ""
+      ] 
+    : [
+        () => elementoPadre.classList.remove('move-oblicuosII'),
+        () => elementoPadre.classList.add('move-oblicuosII'),
+        () => desactivarClicsPorUnTiempo(4000),
+        () => titulo.classList.add('move-title'),
+        () => alternarColorVerde(),
+        () => alternarColorVerdeInverso(),
+        () => alternarColorVerde(),
+        () => alternarColorVerdeInverso(),
+        () => document.body.style.cursor = ""
+      ];
 
-  }else{
-    var elementoPadre = document.getElementById('cont-titulo');
-    elementoPadre.classList.remove('move-oblicuosII');
-    setTimeout(function () {   
-    elementoPadre.classList.add('move-oblicuosII');
-    desactivarClicsPorUnTiempo(4000)
-    }, 177);
-    setTimeout(() => {
-      titulo.classList.add('move-title')    
-    }, 1222);
-    setTimeout(() => {
-      alternarColorVerde() 
-    },2500);  
-    setTimeout(() => {
-      alternarColorVerdeInverso()           
-    }, 2800);  
-    setTimeout(() => {
-      alternarColorVerde() 
-    }, 3100);
-    setTimeout(() => {
-      alternarColorVerdeInverso() 
-    }, 3400);
-    setTimeout(() => {
-      document.querySelectorAll("*").forEach(el => {
-        el.style.removeProperty("cursor");
-      });
-    }, 4000);
-  }
+  const tiempos = esMovil 
+    ? [0, 177, 177, 900, 1200, 1500, 1800, 1900, 2500]
+    : [0, 177, 177, 1222, 2500, 2800, 3100, 3400, 4000];
+
+  ejecutarSecuencia(secuencia, tiempos);
 }
+
+function ejecutarSecuencia(funciones, tiempos) {
+  funciones.forEach((fn, i) => {
+    setTimeout(fn, tiempos[i]);
+  });
+}
+
 function activarPantallaCompleta(){
   // Verificamos si el navegador está en modo de pantalla completa
   if (
@@ -1280,205 +1260,121 @@ function reproducirVideo(videoId) {
     }, { once: true });
   }
 }
-function changeButtonStyles(elementId,imgCont){
-  switch (elementId) {
-    case 'pantalla-tintero':
-      var elementosExcluidos = ['buscador','search-form','cont-links','pantalla-tintero','links-inicialesI','links-iniciales','agrupaOblicuos-II','imgTorre','video-entintado','videoElement1-II']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i])  
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-        }
-      } 
-      container1.style.display='grid'
-      if(screenWidth < 500){        
-        var elementosExcluidos = ['buscador','search-form','cont-links','pantalla-tintero','links-inicialesI','links-iniciales','imgTorre','video-entintado','videoElement1-II']  
-        for (var i = 0; i < allContenedores.length; i++) { 
-          var elemento = document.getElementById(allContenedores[i]) 
-          if (elemento) {
-            elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-          }
-        }
-        container1.style.display='grid'
-        videoElements.forEach(video => {
-          if (video.id === 'vidTintero') {
-            video.style.top = '-4.5vh'
-            video.style.left='65vw'
-            video.style.display = 'block'            
-            video.addEventListener('canplay', function() {
-              video.play().catch(error => console.error('Error al intentar reproducir el video:', error));
-            }, { once: true });            
-            setTimeout(function () {
-              video.style.display = 'none'
-            }, 977);
-          } else {
-            video.style.display = 'none'
-          }
-          });
-          if (typeof elementId !== 'undefined') {
-            const index = idsArray.indexOf(elementId);
-            if (index !== -1) {
-              idsArray.splice(index, 1);
-            }
-            idsArray.push(elementId);
-            console.log(idsArray);
-          }   
-      }else{
-        videoElements.forEach(video => {
-        if (video.id === 'vidTintero') {
-          reproducirVideo('vidTintero');
-          setTimeout(() => {
-            video.style.display = 'none'
-          }, 1000);
-        } else {
-          video.style.display = 'none'
-        }
-        });  
-        if (typeof elementId !== 'undefined' && !idsArray.includes(elementId)) {
-          idsArray.push(elementId);
-          console.log(idsArray);
-        }
-      }  
-    break;    
-    case 'bateria-entintado-II': 
-      var elementosExcluidos = ['buscador','search-form','contenedor-7','links-inicialesI','links-iniciales','video-entintado','videoElement1-II','bateria-entintado-II'];         
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
+function mostrarOcultarContenedores(exclusiones) {
+  allContenedores.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = exclusiones.includes(id) ? 'flex' : 'none';
+  });
+}
+function ejecutarVideo(idVideo, tiempoOcultar = null) {
+  videoElements.forEach(video => {
+    if (video.id === idVideo) {
+      video.style.display = 'block';
+      video.currentTime = 0;
+      video.play().catch(err => console.error(err));
+      if (tiempoOcultar) {
+        setTimeout(() => video.style.display = 'none', tiempoOcultar);
       }
-      container1.style.display='grid'
-      videoElements.forEach(video => {
-        if (video.id === 'videoElement1-II') {
-          video.style.display = 'block'
-          video.currentTime = 0
-          video.play()      
-        } else {
-          video.style.display = 'none'
-        }
-      })
-      contibotsDistri.style.marginTop = '1%'
-      const buttonElements = document.querySelectorAll('.boton-f')
-      var delay = 10;
-      for (var i = 0; i < buttonElements.length; i++) {
-        setTimeout(function(index) {
-          buttonElements[index].style.display = 'flex'
-      }, delay * i,i)}
+    } else {
+      video.style.display = 'none';
+    }
+  });
+}
 
-      if (screenWidth < 500) {   
-        var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','contenedor-7','video-entintado','videoElement1-II','bateria-entintado-II'];
-        for (var i = 0; i < allContenedores.length; i++) { 
-          var elemento = document.getElementById(allContenedores[i]) 
-          if (elemento) {
-            elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
-          }
-        }
-        container1.style.display='grid'
-        contibotsDistri.classList.remove('move-up')
-        contVideo.classList.remove('move-up-left')
-        contVid.style.display='block' 
-        videoElements.forEach(video => {
-          if (video.id === 'videoElement1-II') {
-            video.play()      
-          } else {
-            video.style.display = 'none'
-          }
-        })
-        desplegarBotones()
+function changeButtonStyles(elementId, imgCont) {
+  const secciones = {
+    'pantalla-tintero': () => {
+      const excluidos = ['buscador', 'search-form', 'cont-links', 'pantalla-tintero', 'links-inicialesI', 'links-iniciales', 'agrupaOblicuos-II', 'imgTorre', 'video-entintado', 'videoElement1-II'];
+      mostrarOcultar(excluidos);
+      container1.style.display = 'grid';
+      crearOblicuos('agrupaOblicuos-XXX');
+      reproducirVideo('vidTintero');
+      if (screenWidth < 500) {
+        ejecutarVideoConOcultamiento('vidTintero', 977);
+      } else {
+        setTimeout(() => document.getElementById('vidTintero').style.display = 'none', 1000);
       }
-      if (typeof elementId !== 'undefined' && !idsArray.includes(elementId)) {
-        idsArray.push(elementId);
-        console.log(idsArray);
-      }
-    break;
-    case 'bancada-torre-II': 
-      var elementosExcluidos = ['buscador','search-form','conti-boton-repuestos','butt-repuestos','bancada-torre-II','links-inicialesI','links-iniciales','conti-video-bancada','plate-smed-I','contenedor-8','imgsIsopropil'];
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]);  
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
-        }
-      } 
-      container1.style.display='grid'
-      desactivarClicsPorUnTiempo(500)
-      const botonElement = document.querySelectorAll('.boton-g, .image-isopropil')
-      var delay = 100;
-      for (var i = 0; i < botonElement.length; i++) {
-        setTimeout(function(index) {
-          botonElement[index].style.display = 'flex'
-        }, delay * i,i)
-      }
-      contVid.style.display='flex' 
-      const container = document.getElementById(imgCont)
-      const pict = container.getElementsByTagName('img')
-      container.style.display = 'flex'
-      for (var i = 0; i < images.length; i ++) {
-        var pic = images[i]
-        pic.style.display = 'block'
-      }
+    },
 
+    'bateria-entintado-II': () => {
+      const excluidos = ['buscador', 'search-form', 'contenedor-7', 'links-inicialesI', 'links-iniciales', 'video-entintado', 'videoElement1-II', 'bateria-entintado-II'];
+      mostrarOcultar(excluidos);
+      container1.style.display = 'grid';
+      reproducirVideo('videoElement1-II');
+      document.querySelectorAll('.boton-f').forEach((btn, i) => {
+        setTimeout(() => btn.style.display = 'flex', i * 10);
+      });
+
+      if (screenWidth < 500) {
+        ejecutarVideoConOcultamiento('videoElement1-II');
+        contibotsDistri.classList.remove('move-up');
+        contVideo.classList.remove('move-up-left');
+        contVid.style.display = 'block';
+        desplegarBotones();
+      }
+    },
+
+    'bancada-torre-II': () => {
+      const excluidos = ['buscador', 'search-form', 'conti-boton-repuestos', 'butt-repuestos', 'bancada-torre-II', 'links-inicialesI', 'links-iniciales', 'conti-video-bancada', 'plate-smed-I', 'contenedor-8', 'imgsIsopropil'];
+      mostrarOcultar(excluidos);
+      container1.style.display = 'grid';
+      desactivarClicsPorUnTiempo(500);
+      mostrarImagenes(imgCont);
       reproducirVideo('plate-smed-I');
-      setTimeout(() => {
-        applyImageEffects('#isopropil1,#isopropil2,#isopropil3') 
-      }, 277)
-
-    if (screenWidth < 500) {   
-      var elementosExcluidos = ['buscador','search-form','conti-boton-repuestos-III','butt-repuestos-III','bancada-torre-II','links-inicialesI','links-iniciales','conti-video-bancada','plate-smed-I','contenedor-8','imgsIsopropil'];
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
-        }
+      applyImageEffects('#isopropil1,#isopropil2,#isopropil3');
+      if (screenWidth < 500) {
+        const excluidosM = ['buscador', 'search-form', 'conti-boton-repuestos-III', 'butt-repuestos-III', 'bancada-torre-II', 'links-inicialesI', 'links-iniciales', 'conti-video-bancada', 'plate-smed-I', 'contenedor-8', 'imgsIsopropil'];
+        mostrarOcultar(excluidosM);
+        contVid.style.display = 'flex';
+        reproducirVideo('plate-smed-I');
+        applyImageEffects('#isopropil1,#isopropil2,#isopropil3');
+        contibotsDistriVI.classList.remove('move-butts-IV');
+        contVideoSmed.classList.remove('move-vid-smed-II');
+        contImageneSmed.classList.remove('move-images-IV');
+        buttRepuestV.classList.remove('move-repuest-IV');
+        desplegarBotonesV();
       }
-      container1.style.display='grid'
-      const botonElement = document.querySelectorAll('.boton-g, .image-isopropil')
-      var delay = 100;
-      for (var i = 0; i < botonElement.length; i++) {
-        setTimeout(function(index) {
-          botonElement[index].style.display = 'flex'
-        }, delay * i,i)
-      }
-      contVid.style.display='flex' 
-      setTimeout(() => {
-        applyImageEffects4() 
-      }, 277)
-      reproducirVideo('plate-smed-I');
+    },
 
-      contibotsDistriVI.classList.remove('move-butts-IV')
-      contVideoSmed.classList.remove('move-vid-smed-II')
-      contImageneSmed.classList.remove('move-images-IV')
-      buttRepuestV.classList.remove('move-repuest-IV')
-      desplegarBotonesV()  
-     }
+    'sitema-humedad': () => {
+      const excluidos = ['buscador', 'search-form', 'sitema-humedad', 'links-inicialesI', 'links-iniciales', 'sitio-en-construccion'];
+      mostrarOcultar(excluidos);
+      container1.style.display = 'grid';
+      document.getElementById('butt-sitio').style.display = 'flex';
+    }
+  };
+  // Ejecutar lógica de la sección seleccionada
+  if (secciones[elementId]) {
+    secciones[elementId]();
+  }
+  // Manejo de idsArray sin duplicados
+  idsArray = idsArray.filter(id => id !== elementId);
+  idsArray.push(elementId);
+  console.log(idsArray);
+}
+function mostrarOcultar(excluidos) {
+  allContenedores.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = excluidos.includes(id) ? 'flex' : 'none';
+  });
+}
+function ejecutarVideoConOcultamiento(videoId, tiempo) {
+  const video = document.getElementById(videoId);
+  if (video) {
+    video.style.display = 'block';
+    video.currentTime = 0;
+    video.play().catch(console.error);
+    setTimeout(() => video.style.display = 'none', tiempo);
+  }
+}
+function mostrarImagenes(containerId) {
+  const container = document.getElementById(containerId);
+  if (container) {
+    container.style.display = 'flex';
+    [...container.getElementsByTagName('img')].forEach(img => img.style.display = 'block');
+  }
+}
 
-      if (typeof elementId !== 'undefined' && !idsArray.includes(elementId)) {
-        idsArray.push(elementId);
-        console.log(idsArray);
-      }
-    break;
-    case 'sitema-humedad':     
-      var elementosExcluidos = ['buscador','search-form','sitema-humedad','links-inicialesI','links-iniciales','sitio-en-construccion']
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i])  
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-        }
-      } 
-      container1.style.display='grid'
-      document.getElementById('butt-sitio').style.display='flex'
-      if (typeof elementId !== 'undefined' && !idsArray.includes(elementId)) {
-        idsArray.push(elementId);
-        console.log(idsArray);
-      } 
-    break;
-    case 'fua':
-    break;
-    case 'lup':
-    break;
-    default:
-  }  
-} 
 function desplegarBotones(){
   const buttonElements = document.querySelectorAll('.boton-f')
   var delay = 100;
@@ -1614,21 +1510,12 @@ function secuenciaEntrena(){
   }
   document.getElementById('context-menu').style.display='none'  
 }
-botonClick.addEventListener('mouseup', () => {                   
-  cierraContenedores('desbobinadorId','boton1')
-})
-botonClickII.addEventListener('mouseup', () => {
-  cierraContenedores('uTeñido')
-})   
-botonClickIII.addEventListener('mouseup', () => {                
- cierraContenedores('alimentadorId')
-}) 
-botonClickIV.addEventListener('mouseup', () => {                
-  cierraContenedores('unidProceso')
-}) 
-botonClickV.addEventListener('mouseup', () => {                
-  cierraContenedores('rebobinador')
-}) 
+botonClick.addEventListener('mouseup', () => cierraContenedores('desbobinadorId', 'boton1'));
+botonClickII.addEventListener('mouseup', () => cierraContenedores('uTeñido'));
+botonClickIII.addEventListener('mouseup', () => cierraContenedores('alimentadorId'));
+botonClickIV.addEventListener('mouseup', () => cierraContenedores('unidProceso'));
+botonClickV.addEventListener('mouseup', () => cierraContenedores('rebobinador'));
+
 videoPrisma.addEventListener('mouseup', () =>{
   abrirPrepress('pre-prensa')
 })
