@@ -25,11 +25,13 @@
     </div>
     <div id="franja-Blanca">
       <img src="./assets/cadena logo.png" id="img-logo" alt="logo">
-    </div>     
+    </div> 
+
     <input id="input1" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric" autofocus>    
     <input id="input2" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">    
     <input id="input3" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">    
     <input id="input4" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">
+
     <div class="contraseña" id="contraseña"><span id="texto">Ingrese contraseña</span></div>
     <div class="contraseña" id="contraseña"><span id="texto">ña</span></div>
     <div id="cont-titulo">
@@ -468,7 +470,8 @@
     <div class="links-inicialesI ocultos" id="links-inicialesI">      
       <div id="titleContainerI" class="cont-titulo-pilares">
         <p id="textToColorI">Pilares<span>&#9660;</span></p>
-      </div>      
+      </div>  
+
       <ul id="linkListI" class="iridescent-element">
         <li onclick="ElementosMaII('conteneMantaut')">Mantenimiento Autonomo</li>
         <li>Educación y Entrenamiento</li>
@@ -478,6 +481,8 @@
         <li>Administrativo y soporte</li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
+
+
     </div>
     <div class="links-iniciales ocultos" id="links-iniciales">
       <div id="titleContainer">
@@ -545,7 +550,7 @@
       </div>
       <div class="torre" id="rebobinador">
         <div   id="cont-Verticales8">
-          <button class="boton-b btn-bloque" id="boton25">REBOBINADOR</button><br><br>
+          <button class="boton-b btn-bloque" id="boton25">REBOBINADOR</button>
           <div class="linea-vertical-33"></div>
           <button class="boton-c" id="boton26" onclick="UnidadRebonina('boton26','boton25')">Estructura<div class="linea-horizontal"></div></button>
           <button class="boton-c" id="boton27" onclick="UnidadRebonina('boton27','boton25')">Sistema planetario<div class="linea-horizontal"></div></button>
@@ -624,24 +629,10 @@
         <img data-src="./assets/reductor.jpg" class="image-trainings" id="reductor" onclick="ampliaIndicaciones(2)" class="lazy" alt="reductor">
         <img data-src="./assets/reductorII.png" class="image-trainings" id="reductor-II" onclick="ampliaIndicaciones(3)" class="lazy" alt="reductorII">
       </div>
+      
       <div id="agrupaOblicuos-XXX">
-        <div class="cont-oblicuos" id="oblicuo-tintero-1">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-frente')">Frente</button>
-          <button class="Bot-inicio2-fondo"></button>  
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-2">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-mandos')">Mandos</button>
-          <button class="Bot-inicio2-fondo" ></button>  
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-3">
-          <button class="Bot-inicio2"  onclick="muestraTorresI('pantalla-servicio')">Servicio</button>
-          <button class="Bot-inicio2-fondo" ></button>  
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-4">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-atras')">Atras</button>
-          <button class="Bot-inicio2-fondo"></button>  
-        </div>
       </div>
+
       <div id="indicaciones-eje">
         <button class="boton-a" id="bot-indicaciones" style="text-align: center;margin-left: 97px;margin-top: 77px; z-index: 1;" onclick="ocultarIndicaciones('eje')">Volver</button>
         <header style="position: relative;margin-top: 57px;">
@@ -689,23 +680,8 @@
         <img data-src="./assets/reductorII.png" class="lazy img-pantalla" alt="eje">
       </div>
       <img data-src="./assets/Arriba abajo.jpg" class="lazy" id="imgTorre-f" alt="imagen-torre">
+      
       <div id="agrupaOblicuos-XD">
-        <div class="cont-oblicuos" id="oblicuo-tintero-5">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-frente')">Frente</button>
-          <button class="Bot-inicio2-fondo"></button>   
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-6">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-mandos')">Mandos</button>
-          <button class="Bot-inicio2-fondo"></button>    
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-7">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-servicio')">Servicio</button>
-          <button class="Bot-inicio2-fondo" ></button>  
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-8">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-atras')">Atras</button>
-          <button class="Bot-inicio2-fondo"></button>    
-        </div>
       </div>
     </div>
     <div id="pantalla-mandos" style="display: none;">
@@ -718,23 +694,7 @@
       <img data-src="./assets/Mandos.jpg" class="lazy" id="imgTorre-f" alt="imagen-torre">
 
       <div id="agrupaOblicuos-D">
-        <div class="cont-oblicuos" id="oblicuo-tintero-9">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-frente')">Frente</button>
-          <button class="Bot-inicio2-fondo" ></button>  
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-10">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-mandos')">Mandos</button>
-          <button class="Bot-inicio2-fondo" ></button>  
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-11">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-servicio')">Servicio</button>
-          <button class="Bot-inicio2-fondo" ></button>  
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-12">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-atras')">Atras</button>
-          <button class="Bot-inicio2-fondo"></button>  
-        </div>
-      </div>      
+      </div>  
     </div>
     <div id="pantalla-servicio" style="display: none;">
       <div id="imgsRepuestos-IV">
@@ -744,23 +704,8 @@
         <img data-src="./assets/piñonIII.jpg" class="lazy image-trainings rep-derecha img-pantalla" class="lazy" alt="ejes">
       </div>
       <img data-src="./assets/Transmision.jpg" class="lazy" id="imgTorre-f" alt="imagen-torre">
+
       <div id="agrupaOblicuos-DX">
-        <div class="cont-oblicuos" id="oblicuo-tintero-13">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-frente')">Frente</button>
-          <button class="Bot-inicio2-fondo"></button>   
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-14">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-mandos')">Mandos</button>
-          <button class="Bot-inicio2-fondo"></button>    
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-15">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-servicio')">Servicio</button>
-          <button class="Bot-inicio2-fondo"></button>    
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-16">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-atras')">Atras</button>
-          <button class="Bot-inicio2-fondo"></button> 
-        </div>
       </div>
     </div>
     <div id="pantalla-atras" style="display: none;">
@@ -773,23 +718,8 @@
       <img data-src="./assets/Atras.jpg" class="lazy" id="imgTorre-a" alt="imagen-torre">
 
       <div id="agrupaOblicuos-DXX">
-        <div class="cont-oblicuos" id="oblicuo-tintero-17">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-frente')">Frente</button>
-          <button class="Bot-inicio2-fondo"></button>   
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-18">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-mandos')">Mandos</button>
-          <button class="Bot-inicio2-fondo"></button>    
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-19">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-servicio')">Servicio</button>
-          <button class="Bot-inicio2-fondo"></button>    
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-20">
-          <button class="Bot-inicio2" onclick="muestraTorresI('pantalla-atras')">Atras</button>
-          <button class="Bot-inicio2-fondo"></button>   
-        </div>
       </div>
+
     </div>
     <div id="videosTraining" style="display: none;">
 
@@ -805,6 +735,7 @@
         </video>
       </div>
     </div>
+
     <div id="sector-distribuidor">
       <div id="contenedor-7-V" class="contene-botones"> 
         <button class="boton-f " onclick="muestraRodillo('videoElement2','images-distribuidor')">Montaje distribuidor<div class="linea-horizontal"></div></button>                
@@ -814,6 +745,7 @@
         <button class="boton-f " onclick="muestraRodillo('videoElement6')">Montaje tomador <div class="linea-horizontal"></div></button>  
         <button class="boton-f " onclick="muestraRodillo('videoElement7')">Montaje distribuidor trasero <div class="linea-horizontal"></div></button>  
       </div>
+
       <div id="conti-video-distribuidor">
         <video class="lazy video-training" id="videoElement2" loop autoplay muted>
           <source data-src="./assets/Montaje distribuidor.mp4" type="video/mp4">
@@ -826,42 +758,17 @@
         <img data-src="./assets/DIstri-12.jpg" id="imageElement4" class="lazy image-trainings1" alt="Tornillo lupa">
         <img data-src="./assets/Distri-11.jpg" id="imageElement5" class="lazy image-trainings1" alt="Tuerca lupa">
       </div>
-    </div>
 
-    <div id="conti-boton-repuestos">
-      <button class="butt-partes" id="butt-repuestos">PARTES  /  REPUESTOS</button>
-    </div>
-
-    <div id="sector-entintador">
-      <div id="contenedor-7-VI" class="contene-botones"> 
-        <button class="boton-f " onclick="muestraRodillo('videoElement2','images-distribuidor')">Montaje distribuidor<div class="linea-horizontal"></div></button>                
-        <button class="boton-f " onclick="muestraRodillo('videoElement3','images-entintador')">Montaje entintador delantero <div class="linea-horizontal"></div></button>  
-        <button class="boton-f " onclick="muestraRodillo('plate-smed','images-entintador')">Montaje entintador medio <div class="linea-horizontal"></div></button>  
-        <button class="boton-f " onclick="muestraRodillo('videoElement5')">Montaje entintador trasero<div class="linea-horizontal"></div></button>                
-        <button class="boton-f " onclick="muestraRodillo('videoElement6')">Montaje tomador <div class="linea-horizontal"></div></button>  
-        <button class="boton-f " onclick="muestraRodillo('videoElement7')">Montaje distribuidor trasero <div class="linea-horizontal"></div></button>  
-      </div>
       <div id="conti-video-entintador">
         <video class="lazy video-training" id="videoElement3" autoplay loop muted>  
           <source data-src="./assets/Montaje entintador.mp4" type="video/mp4">
         </video>
       </div>     
-
       <div id="images-entintador">
         <img data-src="./assets/Entintador.png" class="lazy image-trainings1" id="imageElement6" alt="Entintador">
         <img data-src="./assets/Rodamiento entintador.png" class="lazy image-trainings1" id="imageElement7" alt="Rodamiento entintador"><br>
       </div>
 
-    </div>
-    <div id="sector-smed">
-      <div id="contenedor-7-VII" class="contene-botones"> 
-        <button class="boton-f " onclick="muestraRodillo('videoElement2','images-distribuidor')">Montaje distribuidor<div class="linea-horizontal"></div></button>                
-        <button class="boton-f " onclick="muestraRodillo('videoElement3','images-entintador')">Montaje entintador delantero <div class="linea-horizontal"></div></button>  
-        <button class="boton-f " onclick="muestraRodillo('plate-smed','images-entintador')">Montaje entintador medio <div class="linea-horizontal"></div></button>  
-        <button class="boton-f " onclick="muestraRodillo('videoElement5')">Montaje entintador trasero<div class="linea-horizontal"></div></button>                
-        <button class="boton-f " onclick="muestraRodillo('videoElement6')">Montaje tomador <div class="linea-horizontal"></div></button>  
-        <button class="boton-f " onclick="muestraRodillo('videoElement7')">Montaje distribuidor trasero <div class="linea-horizontal"></div></button>  
-      </div>
       <div id="conti-video-smed">
         <video class="lazy video-training" id="plate-smed" autoplay loop>
           <source data-src="./assets/plate smed.mp4" type="video/mp4">
@@ -873,8 +780,14 @@
           <img data-src="./assets/vinil.png" class="lazy image-trainings1" id="imageElement33" alt="Rodamiento entintador">
           <img data-src="./assets/rodillos prensa.png" class="lazy image-trainings1" id="imageElement44" alt="Rodamiento entintador">
           <img data-src="./assets/medidor.jpg" class="lazy image-trainings1" id="imageElement55" alt="Rodamiento entintador">
-      </div>
+      </div>      
+
     </div>
+
+    <div id="conti-boton-repuestos">
+      <button class="butt-partes" id="butt-repuestos">PARTES  /  REPUESTOS</button>
+    </div>
+
     <div id="conteneMantaut" class="mantAuto">
       <div id="conti-boton">
         <button class="butt-mautonomo" onclick="deslizaContenedor('troubleshooting','troubleshoot')">TROUBLESHOOTING</button>
@@ -1246,22 +1159,6 @@
       </video>
 
       <div id="agrupaOblicuos-DXXX">
-        <div class="cont-oblicuos" id="oblicuo-tintero-21">
-          <button class="Bot-inicio2" onclick="ladosPlancha('imagen1')">Frente</button>
-          <button class="Bot-inicio2-fondo"></button>  
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-22">
-          <button class="Bot-inicio2" onclick="ladosPlancha('imagen2')">Mandos</button>
-          <button class="Bot-inicio2-fondo"></button>    
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-23">
-          <button class="Bot-inicio2" onclick="ladosPlancha('imagen3')">Servicio</button>
-          <button class="Bot-inicio2-fondo"></button>    
-        </div>  
-        <div class="cont-oblicuos" id="oblicuo-tintero-24">
-          <button class="Bot-inicio2" onclick="ladosPlancha('imagen4')">Atras</button>
-          <button class="Bot-inicio2-fondo"></button>  
-        </div>
       </div>
 
       <div id="placa">
@@ -1512,10 +1409,10 @@
     </div>
     <div id="bancada-torre-II">
       <div id="contenedor-8" class="contene-botones"> 
-        <button class="boton-g " onclick="muestraRodillo()">Estacion cassets<div class="linea-horizontal"></div></button>                
-        <button class="boton-g " onclick="muestraRodillo()">Puente guía <div class="linea-horizontal"></div></button>  
-        <button class="boton-g " onclick="muestraRodillo()">Alojamiento del casset<div class="linea-horizontal"></div></button>  
-        <button class="boton-g " onclick="muestraRodillo()">Expulsión y halado<div class="linea-horizontal"></div></button>                
+        <button class="boton-g">Estacion cassets<div class="linea-horizontal"></div></button>                
+        <button class="boton-g">Puente guía <div class="linea-horizontal"></div></button>  
+        <button class="boton-g">Alojamiento del casset<div class="linea-horizontal"></div></button>  
+        <button class="boton-g">Expulsión y halado<div class="linea-horizontal"></div></button>                
       </div>
       <div id="imgsIsopropil" class="images-training">
         <img data-src="./assets/isopropil alcoholimetro.png" class="lazy image-training image-trainings image-trainings1 image-isopropil" id="isopropil1" alt="iso">
@@ -1530,10 +1427,10 @@
     </div>
     <div id="sitema-humedad">
       <div id="contenedor-9" >
-        <button class="boton-f " id="btt1" onclick="muestraHumedad()">Estacion cassets<div class="linea-horizontal"></div></button>
-        <button class="boton-f " id="btt2" onclick="muestraRodillo()">Puente guía <div class="linea-horizontal"></div></button>
-        <button class="boton-f " id="btt3" onclick="muestraRodillo()">Alojamiento del casset <div class="linea-horizontal"></div></button>
-        <button class="boton-f " id="btt4" onclick="muestraRodillo()">Expulsión y halado<div class="linea-horizontal"></div></button>
+        <button class="boton-f " id="btt1">Estacion cassets<div class="linea-horizontal"></div></button>
+        <button class="boton-f " id="btt2">Puente guía <div class="linea-horizontal"></div></button>
+        <button class="boton-f " id="btt3">Alojamiento del casset <div class="linea-horizontal"></div></button>
+        <button class="boton-f " id="btt4">Expulsión y halado<div class="linea-horizontal"></div></button>
       </div>
       
       <div id="sitio-en-construccion">
@@ -1711,11 +1608,11 @@
           <h2 style="margin-left: 20px;width: 517px;color: orange;">Largo de impresión ajustes preliminares</h2>
 
           <ol class="linksTraining" id="linkLis">
-            <li><a href="#" id="link1" class="colorClick" data-imagen="imag11" onclick="imagenesPasoApaso('contImgEntrenos','','contBotInfeed','imag1','link1','control-neumatico')">Asegurar PSI neumática</a></li>
-            <li><a href="#" id="link2" class="colorClick" data-imagen="imag22" onclick="imagenesPasoApaso('contImgEntrenos','padre-neumat','pneumatico','imag2','link2','vid-pneumatic')">Optimización al freno de bobina</a></li>
-            <li><a href="#" id="link3" class="colorClick" data-imagen="imag33" onclick="imagenesPasoApaso('contImgEntrenos','bailarina','vid-basculante','imag3','link3','contImaginario')">Ajuste parámetros en basculante</a></li>
-            <li><a href="#" id="link4" class="colorClick" data-imagen="imag44" onclick="imagenesPasoApaso('contImgEntrenos','','contBotInfeed','imag4','link4','rodillo-infeed')">Calibración / Limpieza / Rugosidad en INFEED</a></li>
-            <li><a href="#" id="link5" class="colorClick" data-imagen="imag55" onclick="imagenesPasoApaso('','','contBotInfeed','','link5','puesta-punto')">Paso a paso puesta a punto</a></li>
+            <li><a href="#" id="link1" class="colorClick" data-imagen="imag11" onclick="imagenesPasoApaso('link1')">Asegurar PSI neumática</a></li>
+            <li><a href="#" id="link2" class="colorClick" data-imagen="imag22" onclick="imagenesPasoApaso('link2')">Optimización al freno de bobina</a></li>
+            <li><a href="#" id="link3" class="colorClick" data-imagen="imag33" onclick="imagenesPasoApaso('link3')">Ajuste parámetros en basculante</a></li>
+            <li><a href="#" id="link4" class="colorClick" data-imagen="imag44" onclick="imagenesPasoApaso('link4')">Calibración / Limpieza / Rugosidad en INFEED</a></li>
+            <li><a href="#" id="link5" class="colorClick" data-imagen="imag55" onclick="imagenesPasoApaso('link5')">Paso a paso puesta a punto</a></li>
         </ol>
         
         </div>        
@@ -3594,6 +3491,7 @@
       <span class="etq-frm">Trinquete multi orquilla</span>
       <span class="etq-frm">Trinquete normal</span>
     </div>
+
     <div id="contenedor-botonera" data-display="grid">
       <button>Barras amarillas</button>
       <button>Sheeter</button>
@@ -3602,6 +3500,7 @@
       <button>Interfaz azul</button>
       <button>Gimnasio en casa</button>
     </div>  
+    
     <div id="home-gym">
       <div class="video-gym">
         <video class="lazy" src="assets/video3.mp4" autoplay loop muted></video>
@@ -3649,6 +3548,7 @@
     </div>
 
     <button class="borrar-boton" onclick="mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales']);"></button>
+    
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--LIBRERIA DE GRAFICOS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>

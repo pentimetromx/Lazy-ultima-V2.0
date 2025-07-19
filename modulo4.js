@@ -804,6 +804,7 @@ function mostrarAyudas(parametro) {
   }
   showImage(actualPosicion, selectedArray);
 }
+
 function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
   allContenedores.forEach(id => {
     const elem = document.getElementById(id);
@@ -817,65 +818,58 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     }
   });
 
-  switch (expresion) {
-    case '':
-    break;
-    default:
-    break;
-  }
-}
-function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
-  allContenedores.forEach(id => {
-    const elem = document.getElementById(id);
-    if (!elem) return;
+  if (visibles.length === 0) return; // No hay elementos visibles, salir.
 
-    if (visibles.includes(id)) {
-      const dataDisplay = elem.getAttribute("data-display");
-      elem.style.display = dataDisplay || tipoDisplayDefecto;
-    } else {
-      elem.style.display = "none";
-    }
-  });
   const elementId = visibles[0];
+
   switch (elementId) {
     case 'cont-titulo-operacion':
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen(); // Método estándar
-      } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
-        document.documentElement.webkitRequestFullscreen();
-      } else if (document.documentElement.msRequestFullscreen) { /* IE11 */
-        document.documentElement.msRequestFullscreen();
-      }
-      animateScroll('agrupaOblicuos-XII')
-      if (typeof elementId !== 'undefined') {
-        const index = idsArray.indexOf(elementId);
-        if (index !== -1) {
-          idsArray.splice(index, 1);
-        }
-        idsArray.push(elementId);
-        console.log(idsArray);  
-      }
-    break; 
-    case "pantalla-inicial":
-      setTimeout(() => {
-        document.getElementById('gran-cortina').style.display='none'
-      }, 500);
-      document.body.style.zoom = "100%"
-      if (typeof elementId !== 'undefined') {
-        const index = idsArray.indexOf(elementId);
-        if (index !== -1) {
-          idsArray.splice(index, 1);
-        }
-        idsArray.push(elementId);
-        console.log(idsArray);
-      }
-      firstClick = true;   
+      solicitarPantallaCompleta();
+      animateScroll('agrupaOblicuos-XII');
+      actualizarIdsArray(elementId);
     break;
+
+    case 'pantalla-inicial':
+      ocultarGranCortina();
+      document.body.style.zoom = "100%";
+      firstClick = true;
+      actualizarIdsArray(elementId);
+    break;
+
     default:
-      /* alert("No se reconoció el primer elemento visible"); */
+      // No hay acción especial para este elemento.
     break;
   }
 }
+
+function solicitarPantallaCompleta() {
+  const docEl = document.documentElement;
+  if (docEl.requestFullscreen) {
+    docEl.requestFullscreen();
+  } else if (docEl.webkitRequestFullscreen) {
+    docEl.webkitRequestFullscreen();
+  } else if (docEl.msRequestFullscreen) {
+    docEl.msRequestFullscreen();
+  }
+}
+
+function ocultarGranCortina() {
+  setTimeout(() => {
+    const cortina = document.getElementById('gran-cortina');
+    if (cortina) cortina.style.display = 'none';
+  }, 500);
+}
+
+function actualizarIdsArray(elementId) {
+  const index = idsArray.indexOf(elementId);
+  if (index !== -1) {
+    idsArray.splice(index, 1);
+  }
+  idsArray.push(elementId);
+  console.log(idsArray);
+}
+
+
 function resaltarDiaSeleccionado(diaClicado) {
   const dias = document.querySelectorAll('.day-cell');
   dias.forEach(dia => {
