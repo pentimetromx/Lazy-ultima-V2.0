@@ -49,7 +49,6 @@ document.querySelector('#contenedor-botonera button:nth-child(2)').addEventListe
 document.querySelector('#contenedor-botonera button:nth-child(3)').addEventListener('click', () =>{
   mostrarElementos(['image-uno','butts-simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
 })
-
 document.querySelector('#contenedor-botonera button:nth-child(4)').addEventListener('click', () => {
   ocultarTodos(['image-tres', 'image-cuatro']);
 
@@ -83,8 +82,6 @@ document.querySelector('#contenedor-botonera button:nth-child(4)').addEventListe
 
   }, 100);
 });
-
-
 document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListener('click', () => {
   var elementosExcluidos = ['']  
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -804,7 +801,6 @@ function mostrarAyudas(parametro) {
   }
   showImage(actualPosicion, selectedArray);
 }
-
 function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
   allContenedores.forEach(id => {
     const elem = document.getElementById(id);
@@ -830,8 +826,14 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     break;
 
     case 'pantalla-inicial':
+      document.querySelector('#torre-imp').style.display='grid'
+      document.querySelector('#tinter-o').style.display='grid'
+      document.querySelector('#bateria-entintado').style.display='grid'
+      document.querySelector('#bancada-torre').style.display='grid'
+      document.querySelector('#sis-humedad').style.display='grid'
+
       ocultarGranCortina();
-      document.body.style.zoom = "100%";
+      document.body.style.zoom = "100%";      
       firstClick = true;
       actualizarIdsArray(elementId);
     break;
@@ -841,7 +843,6 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     break;
   }
 }
-
 function solicitarPantallaCompleta() {
   const docEl = document.documentElement;
   if (docEl.requestFullscreen) {
@@ -852,14 +853,12 @@ function solicitarPantallaCompleta() {
     docEl.msRequestFullscreen();
   }
 }
-
 function ocultarGranCortina() {
   setTimeout(() => {
     const cortina = document.getElementById('gran-cortina');
     if (cortina) cortina.style.display = 'none';
   }, 500);
 }
-
 function actualizarIdsArray(elementId) {
   const index = idsArray.indexOf(elementId);
   if (index !== -1) {
@@ -868,8 +867,6 @@ function actualizarIdsArray(elementId) {
   idsArray.push(elementId);
   console.log(idsArray);
 }
-
-
 function resaltarDiaSeleccionado(diaClicado) {
   const dias = document.querySelectorAll('.day-cell');
   dias.forEach(dia => {
@@ -885,8 +882,6 @@ document.querySelectorAll('.day-cell').forEach(dia => {
     resaltarDiaSeleccionado(dia);
   });
 });
-
-
 function actualizarAlturaBarra(contenedorPadre, nuevaAltura) {
   // Verifica si el contenedor tiene un hijo con la clase .bar
   const barra = contenedorPadre.querySelector('.bar');
@@ -896,7 +891,6 @@ function actualizarAlturaBarra(contenedorPadre, nuevaAltura) {
     console.warn('No se encontró un div con clase .bar dentro del contenedor proporcionado');
   }
 }
-
 // Selecciona el segundo contenedor de barra
 const primerContenedor = document.querySelectorAll('.bar-container')[0];
 const segundoContenedor = document.querySelectorAll('.bar-container')[1];
@@ -905,11 +899,7 @@ const cuartoContenedor = document.querySelectorAll('.bar-container')[3];
 const quintoContenedor = document.querySelectorAll('.bar-container')[4];
 const sextoContenedor = document.querySelectorAll('.bar-container')[5];
 const septimoContenedor = document.querySelectorAll('.bar-container')[6];
-
-
 const diasMes = document.querySelectorAll('.day-cell');
-
-
 const datosPorDia = {
   1: ['75%', '55%', '35%', '87%', '90%', '22%', '67%'],
   2: ['37%', '82%', '77%', '22%', '5%', '88%', '97%'],
@@ -943,7 +933,6 @@ const datosPorDia = {
   30: ['94%', '62%', '19%', '88%', '33%', '75%', '48%'],
   31: ['50%', '60%', '70%', '80%', '90%', '100%', '30%']
 };
-
 const contenedores = [
   primerContenedor,
   segundoContenedor,
@@ -953,7 +942,6 @@ const contenedores = [
   sextoContenedor,
   septimoContenedor
 ];
-
 diasMes.forEach(dia => {
   dia.addEventListener('click', () => {
     const numeroDia = parseInt(dia.textContent.trim());
@@ -964,7 +952,7 @@ diasMes.forEach(dia => {
     alturas.forEach((altura, i) => {
       setTimeout(() => {
         actualizarAlturaBarra(contenedores[i], altura);
-      }, 177 + i * 67); // escalonado como antes
+      }, 177 + i * 67); // escalonado
     });
   });
 });

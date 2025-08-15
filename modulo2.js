@@ -911,10 +911,6 @@ function rodillosKaizen(idButton,vidElem) {
           container1.style.display='grid'
           videoKaizen.style.display = 'flex'
 
-          /* videoKaizen.currentTime = 0
-          videoKaizen.play()  */ 
-
-
           videoKaizen.pause(); // Siempre pausamos antes para evitar conflictos.
           videoKaizen.currentTime = 0;
           // Verificamos si ya está listo para reproducirse:
@@ -1028,8 +1024,6 @@ function rodillosKaizen(idButton,vidElem) {
     default:
   }
 }
-
-
 function apilarCasos() {
   const casoEstudio = document.getElementById('casos-kaizen');
   const mejoras = document.getElementById('mejoras-kai');
@@ -1062,9 +1056,6 @@ function apilarCasos() {
     caso3.style.transform = 'translateY(200px)';
   }, 200);
 }
-
-
-
 function transicionImagenes() {
   var casoEstudio = document.getElementById('casos-kaizen')
   var index = 0;
@@ -3362,10 +3353,6 @@ function dañarLogo() {
 
 }
 let ocultarTimer = null; 
-function mostrarElementos() {
-  const contenedorElementos = document.getElementById('contenedorElementos');
-  contenedorElementos.style.display = 'block';
-}
 let isMouseOver = false;
 var conteElementos = document.getElementById('contenedorElementos');
 conteElementos.addEventListener('mouseover', () => {
@@ -4513,9 +4500,7 @@ document.getElementById('butt-sitio').addEventListener('click', () => {
   }
   container1.style.display='grid' 
   document.getElementById('butt-sitio').style.display='none'
-
-
-  mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','gran-cortina'])
+  mostrarElementos(['pantalla-inicial','barras-contenedor','barras-inicio','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','gran-cortina'])
 })
 function isVisible(element) {
   const style = window.getComputedStyle(element);

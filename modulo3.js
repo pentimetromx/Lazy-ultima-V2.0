@@ -212,7 +212,6 @@ let almacenObjetos = JSON.parse(localStorage.getItem('almacenObjetos')) || {};
 let objetoGlobal = null
 let nombreProvisional = null
 let objetoGlobalColor = null
-
 function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14){
   var elementosExcluidos = [id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14]  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -257,7 +256,6 @@ function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13
     break;
   }  
 }
-
 function updateDigitalClock() {   
   const now = new Date();
   let hours = now.getHours();
@@ -1049,15 +1047,7 @@ masSolucionGeneral.addEventListener('mousedown', () => {
     desactivarClicEnElementos(buttsPerfiles);
   }  
   if(flagNegro){
-    aumentarBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-negro #footer-2 .divs-grales-solucion-negro',
-      'yellow',
-      verdeAgua,  
-      'negro',
-      'nivelAgua',
-    );    
+    aumentarBalanceSolucion(estadoIntervaloSolucion,'.lineas-solucion','#footer-negro #footer-2 .divs-grales-solucion-negro','yellow',verdeAgua,'negro','nivelAgua',);    
   }
   if(flagCyan){
     aumentarBalanceSolucion(
@@ -3672,93 +3662,6 @@ function vaciarAlmacenObjetos() {
 
   console.log("El almacén de objetos ha sido vaciado.");
 }
-function ensayoAplicacion(objeto,colorPerfil,color,colorTinta){ 
-  setTimeout(() => {
-    const ledsRutaBase = `#columna-70`;
-    const ledRutaBase = `#control-perfiles`;
-    const ledGeneralBase = colorPerfil
-    const colorAplicar = amarillo
-    // Iterar sobre cada línea en la propiedad 'linea'
-    for (let lineaKey in objeto.linea) {
-      if (objeto.linea[lineaKey].length === 0) {
-        continue; // Saltar si no hay elementos en la línea
-      }
-      // Construir las rutas dinámicamente para cada línea
-      const ledsRuta = `${ledsRutaBase} #${lineaKey} #display-leds .leds`;
-      const ledRuta = `${ledRutaBase} #${lineaKey} .led`;
-      const ledGeneral = `${ledGeneralBase} #${lineaKey} .led-general`;
-      // Seleccionar los elementos de cada ruta
-      const coleccionLeds = document.querySelectorAll(ledsRuta);
-      const coleccionLed = document.querySelectorAll(ledRuta);
-      const coleccionGenerales = document.querySelectorAll(ledGeneral);
-      // Calcular los índices de inicio y fin
-      const inicio = coleccionLeds.length - 1; // Último elemento de la colección
-      const cantidadColorear = objeto.linea[lineaKey].length;
-      const fin = inicio - cantidadColorear + 1; // Índice donde debe detenerse
-      // Recorrer desde inicio hasta fin e invertir el índice
-      for (let i = inicio; i >= fin; i--) {
-        if (coleccionLeds[i]) coleccionLeds[i].style.backgroundColor = rojo;
-        if (coleccionLed[i]) coleccionLed[i].style.backgroundColor = color;
-        if (coleccionGenerales[i]) coleccionGenerales[i].style.backgroundColor = color;  
-      }
-    }
-    for (let lineaKey in objeto.lineaSeguidor) {
-      if (objeto.lineaSeguidor[lineaKey].length === 0) {
-        continue; // Saltar si no hay elementos en la línea
-      }
-      // Construir las rutas dinámicamente para cada línea
-      const ledRuta = `${ledRutaBase} #${lineaKey} .led`;
-      // Seleccionar los elementos de cada ruta
-      const coleccionLed = document.querySelectorAll(ledRuta);
-      // Calcular los índices de inicio y fin
-      const inicio = coleccionLed.length - 1; // Último elemento de la colección
-      const cantidadColorear = objeto.lineaSeguidor[lineaKey].length;
-      const fin = inicio - cantidadColorear + 1; // Índice donde debe detenerse
-      // Recorrer desde inicio hasta fin e invertir el índice
-      for (let i = inicio; i >= fin; i--) {
-        if (coleccionLed[i]) coleccionLed[i].style.backgroundColor = color;
-      }
-    }
-    for (let lineaKey in objeto.lineaGrilla) {
-      const elementosEnLinea = objeto.lineaGrilla[lineaKey].length;
-      if (elementosEnLinea === 0) {
-        console.log(`No hay elementos para colorear en ${lineaKey}`);
-        continue; // Saltar si no hay elementos en la línea
-      }
-      // Construir la ruta dinámica para cada línea
-      const ledRuta = `${ledGeneralBase} #${lineaKey} .led-general`;
-      // Seleccionar los elementos de la ruta
-      const coleccionLed = document.querySelectorAll(ledRuta);
-      console.log(`Elementos encontrados en ${lineaKey}: ${coleccionLed.length}`);
-      if (coleccionLed.length === 0) {
-        console.warn(`No se encontraron elementos DOM para ${lineaKey}. Verifica las rutas.`);
-        continue; // Saltar si no se encuentran elementos en el DOM
-      }
-      // Calcular los índices de inicio y fin
-      const inicio = coleccionLed.length - 1; // Último elemento de la colección
-      const cantidadColorear = Math.min(elementosEnLinea, coleccionLed.length); // Usar el menor entre los dos
-      const fin = inicio - cantidadColorear + 1; // Índice donde debe detenerse
-      // Recorrer desde inicio hasta fin e invertir el índice
-      for (let i = inicio; i >= fin; i--) {
-        if (coleccionLed[i]) {
-          coleccionLed[i].style.backgroundColor = color;
-        }
-      }
-    }
-    let cantidadLedsTinta = objeto.nivelTinta.length;
-    let cantidadLedsAgua = objeto.nivelAgua.length;
-     const elementosTinta = document.querySelectorAll(`.divs-grales-tinta-${colorTinta}`);
-     const elementosAgua = document.querySelectorAll(`.divs-grales-solucion-${colorTinta}`);    
-
-    // Recorrer la colección en reversa y aplicar color solo a la cantidad especificada
-    for (let i = elementosTinta.length - 1; i >= elementosTinta.length - cantidadLedsTinta && i >= 0; i--) {
-      elementosTinta[i].style.backgroundColor = color; // Aplicar el color
-    }
-    for (let i = elementosAgua.length - 1; i >= elementosAgua.length - cantidadLedsAgua && i >= 0; i--) {
-      elementosAgua[i].style.backgroundColor = verdeAgua; // Aplicar el color
-    }       
-  }, 100);
-}
 let buttonSmart = document.getElementById('seleccion-gral')
 let intervaloLeds; // Declaración global
 buttonSmart.addEventListener('mousedown', () =>{
@@ -5337,36 +5240,6 @@ function sumarPorcentaje() {
   // Para depuración (opcional)
   console.log('Nuevo porcentaje:', porcentajeCurrent + '%');
 }
-function borrarEnsayo() {
-  // Definir las rutas de las tres colecciones
-  const rutas = [
-      '.led-general .leds .led', // General
-      '#columna-70 .leds',      // Columna 70
-      '#control-perfiles .led', // Control perfiles
-      '#perfiles-entintado .led-general' // Perfiles entintado
-  ];
-
-  let totalRestaurados = 0; // Contador de elementos restaurados
-
-  // Iterar sobre cada ruta y restaurar los colores
-  rutas.forEach(ruta => {
-      const elementos = document.querySelectorAll(ruta);
-
-      if (elementos.length > 0) {
-          elementos.forEach(led => {
-              led.style.backgroundColor = 'transparent'; // Restaurar a color predeterminado
-          });
-
-          totalRestaurados += elementos.length;
-          console.log(`Se restauraron ${elementos.length} elementos de la ruta '${ruta}'.`);
-      } else {
-          console.warn(`No se encontraron elementos en la ruta '${ruta}'.`);
-      }
-  });
-
-  console.log(`En total se restauraron ${totalRestaurados} elementos.`); 
-  console.log('OBJETO GLOBAL', objetoGlobal);
-}
 //APLICA A leds, led, grilla
 function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propiedadIII, propiedadIV, propiedadV, propiedadVI, footer, foot){
   // Mapeo de nombres de colores a valores CSS válidos
@@ -6132,12 +6005,6 @@ function traerAlmacenObjetos() {
   console.log('objetoGlobal:', objetoGlobal);
   console.log('nombreProvisional:', nombreProvisional);
 
-}
-function borrarESTO(){
-  abrirSeccionOperativa('cont-titulo-operacion')
-  setTimeout(() => {
-    abrirSeccionContinua('pantalla-inicial')
-  }, 500);
 }
 function moverFormulario() {
   const formulario = document.querySelector('#formulario-perfiles'); 
