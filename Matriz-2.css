@@ -1124,34 +1124,6 @@ body{
   width:15%;
   height:10%;
 }
-/* #cuadro-guias{
-  position: absolute;
-  display: flex;
-  border-radius: 4px;
-  top: 57%;
-  left:21.7%;
-  width:6%;
-  height:10%;
-  background-image: url(./assets/aumenta\ disminuye.png);
-  background-size:60% 40%;
-  background-repeat: no-repeat;
-  background-position:7px 15px;
-
-  border: 1px solid gray;
-  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.5),
-  inset -1px -1px 1px rgba(0, 0, 0, 0.5);
-}
-#cuadro-guias::before{
-  position: absolute;
-  content: '';
-  top: 5%;
-  left: 4%;
-  height:9%;
-  width: 90%;
-  background-color: rgb(125,125,125);
-  border-radius: 2px;
-} */
-
 #pliego {
   position: absolute;
   display: flex;
@@ -1258,24 +1230,6 @@ body{
   border-radius: 7px;
   transition: background-color 0.1s linear;
 }
-/* #butt-control-tinta{
-  left: 14%;
- }
- #butt-perfil{
-  left: 28%;
- }
- #butt-job-track{
-  left: 42%;
-}
-#boton-perfiles{
-  left: 56%;
-}
-#boton-reseteo{
-  left: 70%;
-}
-#bot-revertir{
-  left: 84%;
-} */
 #perfiles-entintado{
   position:absolute;
   display: flex;
@@ -4250,3 +4204,163 @@ top: 44%;
   cursor: pointer;
   z-index: 200;
 }
+.contenedor-barras {
+  position: absolute;
+  display: flex;
+  width: 40vw;
+  height: 50vh;
+  top: 44vh;
+  left: 59vw;
+  gap: 25.5%;
+  display: none;
+}
+.barra-vertical-6 {
+  position: relative;
+  width: 2px;
+  height: 50vh;
+  background: white;
+}
+.horiz-6-1, .horiz-6-2, .horiz-6-3, .horiz-6-4, .horiz-6-5, .horiz-6-6 {
+  position: absolute;
+  width: 7px;
+  height: 3px;
+  background: white;
+  left: 2px;
+}
+.horiz-6-1 { top: 5%; }
+.horiz-6-2 { top: 23%; }
+.horiz-6-3 { top: 40%; }
+.horiz-6-4 { top: 58%; }
+.horiz-6-5 { top: 75.5%; }
+.horiz-6-6 { top: 93%; }
+.barra-vertical-5 {
+  position: relative;
+  width: 2px;
+  height: 41vh;
+  background: white;
+}
+.horiz-5-1, .horiz-5-2, .horiz-5-3, .horiz-5-4, .horiz-5-5 {
+  position: absolute;
+  width: 7px;
+  height: 3px;
+  background: white;
+  left: 2px;
+}
+.horiz-5-1 { top: 8%; }
+.horiz-5-2 { top: 29%; }
+.horiz-5-3 { top:50%; }
+.horiz-5-4 { top: 72%; }
+.horiz-5-5 { top: 92%; }
+.barra-vertical-2 {
+  position: relative;
+  width: 2px;
+  height: 14vh;
+  background: white;
+}
+.horiz-2-1, .horiz-2-2 {
+  position: absolute;
+  width: 7px;
+  height: 3px;
+  background: white;
+  left: 2px;
+}
+.horiz-2-1 { top: 17%; }
+.horiz-2-2 { top: 80%; }
+.barra-vertical-3 {
+  position: relative;
+  width: 2px;
+  height: 23vh;
+  background: white;
+}
+.horiz-3-1, .horiz-3-2, .horiz-3-3 {
+  position: absolute;
+  width: 7px;
+  height: 3px;
+  background: white;
+  left: 2px;
+}
+.horiz-3-1 { top: 10%; }
+.horiz-3-2 { top: 49%; }
+.horiz-3-3 { top: 88%; }
+.barra-vertical{
+  position: relative;
+  width: 2px;
+  background: white;
+}
+.contenedor-barras-inicio{
+  position: absolute;
+  display: flex;
+  width: 54.2vw;
+  height: 39vh;
+  top: 34.5vh;
+  left: 1vw;
+  gap: 20%;
+  display: none;
+}
+.barra-vertical-inicio{
+  position: relative;
+  width: 2px;
+  height: 100%;
+  background: white;
+
+}
+.horiz-13-1, .horiz-13-2, .horiz-13-3, .horiz-13-4, .horiz-13-5{
+  position: absolute;
+  width: 14px;
+  height: 3px;
+  background: white;
+  left: 2px;
+}
+.horiz-13-1 { top: 7%; }
+.horiz-13-2 { top: 28%; } 
+.horiz-13-3 { top: 50%; }
+.horiz-13-4 { top: 71%; }
+.horiz-13-5 { top: 93%; }
+.horiz-12-1, .horiz-12-2, .horiz-12-3, .horiz-12-4, .horiz-12-5{
+  position: absolute;
+  width: 14px;
+  height: 3px; 
+  background: white;
+  left: 2px;
+}
+.horiz-12-1 { top: 7%; }
+.horiz-12-2 { top: 28%; }
+.horiz-12-3 { top: 50%; }
+.horiz-12-4 { top: 71%; }
+.horiz-12-5 { top: 93%; }
+.horiz-11-1, .horiz-11-2, .horiz-11-3, .horiz-11-4, .horiz-11-5{
+  position: absolute;
+  width: 14px;
+  height: 3px; 
+  background: white;
+  left: 2px;
+}
+.horiz-11-1 { top: 7%; }
+.horiz-11-2 { top: 28%; }
+.horiz-11-3 { top: 50%; }
+.horiz-11-4 { top: 71%; }
+.horiz-11-5 { top: 93%; }
+.horiz-10-1, .horiz-10-2, .horiz-10-3, .horiz-10-4, .horiz-10-5{
+  position: absolute;
+  width: 14px;
+  height: 3px; 
+  background: white;
+  left: 2px;
+}
+.horiz-10-1 { top: 7%; }
+.horiz-10-2 { top: 28%; }
+.horiz-10-3 { top: 50%; }
+.horiz-10-4 { top: 71%; }
+.horiz-10-5 { top: 93%; }
+.horiz-9-1, .horiz-9-2, .horiz-9-3, .horiz-9-4, .horiz-9-5{
+  position: absolute;
+  width: 14px;
+  height: 3px; 
+  background: white;
+  left: 2px;
+}
+.horiz-9-1 { top: 7%; }
+.horiz-9-2 { top: 28%; }
+.horiz-9-3 { top: 50%; }
+.horiz-9-4 { top: 71%; }
+.horiz-9-5 { top: 93%; }
