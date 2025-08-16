@@ -3315,7 +3315,8 @@ elemento.visible {
 }
 #child-move-naranja,
 #child-move-variable,
-#child-move-II{
+#child-move-II,
+#child-move-azul{
   position: absolute;
   top: 0;
   left: 0;
@@ -3324,6 +3325,8 @@ elemento.visible {
   background-color: rgb(255, 0, 0);
   box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7);
   border-radius:50%;
+  z-index: -1;
+  transition: background-color 1s ease, box-shadow 1s ease;
 }
 #second-floor{
   position: absolute;

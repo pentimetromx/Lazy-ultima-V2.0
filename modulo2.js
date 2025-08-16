@@ -4450,6 +4450,13 @@ function stopAllIntervals() {
   }
 }
 function moveElement(element, parent) {
+  /* const movil = document.getElementById('child-move-azul')
+  movil.style.transition = 'none';
+  movil.style.backgroundColor = 'rgb(255, 0, 0)';
+  movil.style.boxShadow = '0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7)';
+  // 🔹 Forzar reflow para que el navegador "reconozca" el cambio
+  void movil.offsetWidth; */
+
   stopAllIntervals();
   let positionParent = parent.clientWidth - element.clientWidth;
   intervals.derecha = setInterval(() => {
@@ -4480,7 +4487,10 @@ function moveElement(element, parent) {
                               if (pos <= 0) {
                                   clearInterval(intervals.arriba);
                                   pos = 0;
-                                  moveElement(element, parent); // Llama de nuevo a la función para crear un bucle
+                                  /* moveElement(element, parent); */
+                                  movil.style.backgroundColor = 'transparent';
+                                  movil.style.boxShadow = 'none';
+
                               }
                           }, speed * 2);
                       }

@@ -88,10 +88,12 @@ document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListe
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-        const contenedor = document.querySelector('#formulario-cuenta').style.display = 'grid'
+      const contenedor = document.querySelector('#formulario-cuenta').style.display = 'grid'
     }
   }
-
+  const movil = document.getElementById('child-move-azul')
+  const currentZone = document.getElementById('formulario-cuenta')
+  moveElement(movil,currentZone)
 })
 document.querySelector('#contenedor-botonera button:nth-child(6)').addEventListener('click', () => {
     var elementosExcluidos = ['']  
