@@ -2600,6 +2600,7 @@ var botonSolitario = document.getElementById('buttSolitario');
 var botonSeguidor = document.getElementById('boton2');
 const buttons = document.querySelectorAll('.buttons')  
 var contButtsAround = document.getElementById('button-container')
+
 function moverBoton(boton, index) {
   const valoresLeft = ['-52px', '-104px', '-156px', '-208px', '-260px', '-312px', '-364px', '-416px', '-468px', '-520px', '-572px', '-624px', '-676px', '-728px', '-780px', '-832px', '-884px', '-936px', '-988px', '-1040px', '-1092px', '-1144px', '-1196px', '-1248px', '-1300px', '-1352px', '-1404px', '-1456px', '-1508px', '-1560px', '-1612px', '-1664px', '-1716px', '-1768px', '-1820px', '-1872px', '-1924px', '-1976px', '-2028px', '-2080px', '-2132px', '-2184px', '-2236px', '-2288px', '-2340px', '-2392px', '-2444px', '-2496px', '-2548px', '-2600px', '-2652px', '-2704px', '-2756px', '-2808px', '-2860px', '-2912px', '-2964px', '-3016px', '-3068px', '-3120px', '-3172px', '-3224px', '-3276px', '-3328px', '-3380px', '-3432px', '-3484px', '-3536px', '-3588px']
 
@@ -2620,11 +2621,11 @@ function moverBoton(boton, index) {
   const nuevosValoresLeft = Array.from({ length: cantidadBotones }, (_, index) => `-${index * (distanciaEntreBotones + espacioEntreBotones)}px`);
   // Asignar las nuevas posiciones a los botones
   nuevosValoresLeft.forEach((valor, index) => {
-  const boton = document.getElementById(`buttons${index + 2}`)
-  if (boton) {
-    boton.style.left = valor
-  } 
-});
+    const boton = document.getElementById(`buttons${index + 2}`)
+    if (boton) {
+      boton.style.left = valor
+    } 
+  });
   boton.style.left = nuevosValoresLeft[index]
   const velocidad = 26
   let x = parseFloat(boton.style.left) || 0
@@ -4433,7 +4434,7 @@ function sixthMovement(){
   changeColors()
 }
 let pos = 0;
-let step = 3;
+let step = 4;
 const speed = 1;
 const intervals = {
   derecha: null,
@@ -4449,15 +4450,11 @@ function stopAllIntervals() {
     }
   }
 }
-function moveElement(element, parent) {
-  /* const movil = document.getElementById('child-move-azul')
-  movil.style.transition = 'none';
-  movil.style.backgroundColor = 'rgb(255, 0, 0)';
-  movil.style.boxShadow = '0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7)';
-  // 🔹 Forzar reflow para que el navegador "reconozca" el cambio
-  void movil.offsetWidth; */
-
+function moveElement(element, parent,frame) {
   stopAllIntervals();
+  const marco = document.getElementById(frame);
+  marco.classList.remove("apagado");
+
   let positionParent = parent.clientWidth - element.clientWidth;
   intervals.derecha = setInterval(() => {
       pos += step;
@@ -4485,12 +4482,8 @@ function moveElement(element, parent) {
                               pos -= step;
                               element.style.top = pos + 'px';
                               if (pos <= 0) {
-                                  clearInterval(intervals.arriba);
-                                  pos = 0;
-                                  /* moveElement(element, parent); */
-                                  movil.style.backgroundColor = 'transparent';
-                                  movil.style.boxShadow = 'none';
-
+                                clearInterval(intervals.arriba);
+                                pos = 0;
                               }
                           }, speed * 2);
                       }

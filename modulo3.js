@@ -35,7 +35,7 @@ document.addEventListener('keydown', function(event) {
           });
         }
         document.addEventListener("contextmenu", (event) => {
-          event.stopPropagation(); 
+        event.stopPropagation(); 
         }, true);
       break;
       case 'X':
@@ -46,7 +46,7 @@ document.addEventListener('keydown', function(event) {
 });
 function Geometria() {
   console.clear();  
-  var contiBoton = document.getElementById('img-cuchilla-1');  
+  var contiBoton = document.getElementById('marco-planetario');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
