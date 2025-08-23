@@ -83,17 +83,15 @@ document.querySelector('#contenedor-botonera button:nth-child(4)').addEventListe
   }, 100);
 });
 document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListener('click', () => {
-  var elementosExcluidos = ['']  
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
+  var elementosExcluidos = ['']
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
       const contenedor = document.querySelector('#formulario-cuenta').style.display = 'grid'
     }
   }
-  const movil = document.getElementById('child-move-azul')
-  const currentZone = document.getElementById('formulario-cuenta')
-  moveElement(movil,currentZone)
+  manejarTransicion('child-move-azul', 'formulario-cuenta', 'marco-formulario',1200);
 })
 document.querySelector('#contenedor-botonera button:nth-child(6)').addEventListener('click', () => {
     var elementosExcluidos = ['']  
