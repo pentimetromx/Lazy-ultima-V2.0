@@ -92,6 +92,9 @@ document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListe
     }
   }
   manejarTransicion('child-move-azul', 'formulario-cuenta', 'marco-formulario',1200);
+  setTimeout(() => {
+    resaltarSecuencial();    
+  }, 1100);
 })
 document.querySelector('#contenedor-botonera button:nth-child(6)').addEventListener('click', () => {
     var elementosExcluidos = ['']  
@@ -956,3 +959,59 @@ diasMes.forEach(dia => {
     });
   });
 });
+
+
+function resaltarSecuencial() {
+  const spans = document.querySelectorAll('#formulario-cuenta .etq-frm');
+
+  // Opcional: limpiar estado previo
+  spans.forEach(s => s.classList.remove('activo'));
+
+  spans.forEach((span, index) => {
+    // Cada span inicia 10 ms después del anterior (superpuestos)
+    setTimeout(() => {
+      span.classList.add('activo');
+      // A los 2s desde su propio inicio, comienza el desvanecido (al quitar la clase)
+      setTimeout(() => {
+        span.classList.remove('activo');
+      }, 400);
+    }, index * 10);
+  });
+}
+
+function resaltarSecuencialVariable() {
+  const spans = document.querySelectorAll('#cont-variable .child-section');
+
+  // Opcional: limpiar estado previo
+  spans.forEach(s => s.classList.remove('activa'));
+
+  spans.forEach((span, index) => {
+    // Cada span inicia 10 ms después del anterior (superpuestos)
+    setTimeout(() => {
+      span.classList.add('activa');
+      // A los 2s desde su propio inicio, comienza el desvanecido (al quitar la clase)
+      setTimeout(() => {
+        span.classList.remove('activa');
+      }, 400);
+    }, index * 10);
+  });
+}
+function resaltarSecuencialDemo() {
+  const spans = document.querySelectorAll('#tendencia-naranja .item-orange');
+
+  // Opcional: limpiar estado previo
+  spans.forEach(s => s.classList.remove('activa'));
+
+  spans.forEach((span, index) => {
+    // Cada span inicia 10 ms después del anterior (superpuestos)
+    setTimeout(() => {
+      span.classList.add('activa');
+      // A los 2s desde su propio inicio, comienza el desvanecido (al quitar la clase)
+      setTimeout(() => {
+        span.classList.remove('activa');
+      }, 400);
+    }, index * 10);
+  });
+}
+
+

@@ -40,6 +40,7 @@ document.addEventListener('keydown', function(event) {
       break;
       case 'X':
         Geometria()
+        resaltarSecuencialVariable()
       break;                  
     }
   }
