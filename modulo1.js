@@ -1608,6 +1608,9 @@ function abrirSeccionVariable(elementId){
   container1.style.display='grid'
   document.getElementById('cont-variable').style.display='grid'
   manejarTransicion('child-move-variable', 'padre-variable', 'marco-variable',1200);
+  setTimeout(() => {
+    resaltarSecuencialVariable()
+  }, 1100);
   if (typeof elementId !== 'undefined') {
     const index = idsArray.indexOf(elementId);
     if (index !== -1) {
@@ -1672,6 +1675,9 @@ function abrirSeccionDemo(elementId) {
   }
   container1.style.display='grid'
   manejarTransicion('child-move-naranja', 'tendencia-naranja', 'marco-planetario',1000);
+  setTimeout(() => {
+    resaltarSecuencialDemo()
+  }, 800);
   if (typeof elementId !== 'undefined') {
     const index = idsArray.indexOf(elementId);
     if (index !== -1) {

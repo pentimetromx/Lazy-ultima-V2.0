@@ -4463,3 +4463,16 @@ top: 44%;
 .horiz-9-3 { top: 50%; }
 .horiz-9-4 { top: 71%; }
 .horiz-9-5 { top: 93%; }
+
+#tendencia-naranja .item-orange,
+#cont-variable .child-section,
+#formulario-cuenta .etq-frm {
+  transition: background-color 1s ease, box-shadow 1s ease;
+}
+#tendencia-naranja .item-orange.activa,
+#cont-variable .child-section.activa,
+#formulario-cuenta .etq-frm.activo {
+  background-color: rgb(255, 0, 0);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7);
+}
+
