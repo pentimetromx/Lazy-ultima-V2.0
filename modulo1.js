@@ -557,7 +557,7 @@ function mantAutonomo (idElement) {
     break;
   default:
 }}
-function mostrarTroublesshIntervalo() {
+/* function mostrarTroublesshIntervalo() {
   var contenedor = document.getElementById('troubleshooting')
   contenedor.style.display='grid'
   var elementos = contenedor.children;
@@ -570,7 +570,8 @@ function mostrarTroublesshIntervalo() {
     }
   }
   hacerVisibleSiguienteElemento()
-}
+} */
+
 function cambiaColorBotones(){
   var botones = [
     document.getElementById('archivo'),
@@ -1331,6 +1332,14 @@ function iniciarAnimaciones(){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }
+  ['links-inicialesI','links-iniciales'].forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.left = "";
+      elemento.style.top = "";
+    }
+  });
+  document.body.style.zoom = "100%"    
   container1.style.display = 'none'
   setTimeout(() => {
     animarColorSecuencia();
@@ -1605,6 +1614,14 @@ function abrirSeccionVariable(elementId){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
+  ['links-inicialesI','links-iniciales'].forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.left = "";
+      elemento.style.top = "";
+    }
+  });
+  document.body.style.zoom = "100%"    
   container1.style.display='grid'
   document.getElementById('cont-variable').style.display='grid'
   manejarTransicion('child-move-variable', 'padre-variable', 'marco-variable',1200);
@@ -1630,6 +1647,15 @@ function abrirSeccionPlanas(elementId){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
+  ['links-inicialesI','links-iniciales'].forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.left = "";
+      elemento.style.top = "";
+    }
+  });
+  document.body.style.zoom = "100%"    
+
   container1.style.display='grid'
   document.getElementById('cont-plana').style.display='grid'
   manejarTransicion('child-move-plana', 'padre-plana', 'marco-plana',1200);
@@ -1651,6 +1677,14 @@ function abrirSeccionCurado(elementId){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
+   ['links-inicialesI','links-iniciales'].forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.left = "";
+      elemento.style.top = "";
+    }
+  });
+
   container1.style.display='grid'
   document.body.style.zoom = "100%";
   container1.style.left=''
@@ -1673,6 +1707,15 @@ function abrirSeccionDemo(elementId) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
+   ['links-inicialesI','links-iniciales'].forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.left = "";
+      elemento.style.top = "";
+    }
+  });
+  document.body.style.zoom = "100%"    
+
   container1.style.display='grid'
   manejarTransicion('child-move-naranja', 'tendencia-naranja', 'marco-planetario',1000);
   setTimeout(() => {
@@ -1765,6 +1808,13 @@ function abrirPrepress(elementId) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
+  ['links-inicialesI','links-iniciales'].forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.left = "";
+      elemento.style.top = "";
+    }
+  });  
   container1.style.display='grid'
   botIzquierda.style.display = 'flex'
   botDerecha.style.display = 'flex'
@@ -1819,6 +1869,13 @@ function abrirDensitometria(elementId){
         botDensitometria.style.display = 'flex';
     }
   }
+  ['links-inicialesI','links-iniciales'].forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.left = "";
+      elemento.style.top = "";
+    }
+  });
   document.body.style.zoom = "100%" 
   container1.style.left=''
   contieneLinks.style.display = 'none'
@@ -2097,7 +2154,7 @@ function irContenedorAnterior() {
       abrirSeccionCalidad()        
     break;     
     case "pantalla-inicial":        
-    abrirSeccionContinua('pantalla-inicial')
+    mostrarElementos(['pantalla-inicial','barras-inicio','barras-contenedor','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])
     break; 
     case "pantalla-tintero":
       changeButtonStyles('pantalla-tintero')  
@@ -2717,6 +2774,19 @@ function irContenedorSiguiente() {
   idsArrayEliminados.pop();
   console.log('2.', idsArrayEliminados)
 }
+function mostrarLinks() {
+  const contenedor = document.getElementById("linksMA");
+  contenedor.classList.remove("activo")
+
+  setTimeout(() => {
+    // lo hacemos visible en escala 0
+    contenedor.style.display = "flex";
+    // forzamos un repaint para que la transición ocurra
+    requestAnimationFrame(() => {
+      contenedor.classList.add("activo");
+    });
+  }, 100);
+}
 function listaEntrenamientosII(btnList) {
   restablecerPosiciones(['.ocultos'])      
   const solucionador = document.querySelector('#troubleshooting') 
@@ -2741,7 +2811,8 @@ function listaEntrenamientosII(btnList) {
         }
       }
       container1.style.display='grid'
-      document.getElementById('troubleshooting').style.display='grid'
+     document.getElementById('troubleshooting').style.display='grid' 
+      mostrarLinks()
       for (var i = 0; i < contiBtt.length; i++) {
         var botonId = contiBtt[i];
         var boton = document.getElementById(botonId);
@@ -2971,6 +3042,9 @@ function imagenesPasoApaso(id) {
   const conteLink = document.getElementById('linksMA');
   const botones = document.getElementsByClassName('colorClick');
 
+  const padre = document.getElementById('padre-1');
+  padre.classList.remove("activo");
+
   document.body.style.zoom = (screenWidth < 500) ? "100%" : "67%";
   conteLink.style.left = (screenWidth < 500) ? '43.5vw' : '43.5vw';
   conteLink.style.top = '16vh';
@@ -2978,7 +3052,7 @@ function imagenesPasoApaso(id) {
   // Configuración por cada link
   const pasos = {
     'link1': {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'conti-boton', 'largoImpresion', 'butt-links-II', 'linksMA', 'linkLis', 'imag1', 'contImgEntrenos', 'control-neumatico', 'padre-1'],
+      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'conti-boton', 'largoImpresion','linksMA', 'linkLis', 'imag1', 'contImgEntrenos', 'control-neumatico', 'padre-1'],
       scroll: 'control-neumatico'
     },
     'link2': {
@@ -3021,14 +3095,11 @@ function imagenesPasoApaso(id) {
 
   // Estilos especiales para link1 (padre y boton volver)
   if (id === 'link1') {
-    const padre = document.getElementById('padre-1');
-    const botonVolver = document.getElementById('butt-links-II');
+
+    mostrarPadre1()
+
     padre.style.top = '20vh';
     padre.style.left = '77vw';
-    botonVolver.style.left = '105vw';
-    botonVolver.style.top = 'vh';
-    botonVolver.style.display = 'flex';
-    botonVolver.style.marginTop = '0';
 
     if (screenWidth < 500) {
       solucionador.style.gridTemplateColumns = 'repeat(2, 1fr)';
