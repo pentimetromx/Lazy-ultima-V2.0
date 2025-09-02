@@ -816,7 +816,14 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
       elem.style.display = "none";
     }
   });
-
+  ['links-inicialesI','links-iniciales'].forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.left = "";
+      elemento.style.top = "";
+    }
+  });
+  document.body.style.zoom = "100%"    
   if (visibles.length === 0) return; // No hay elementos visibles, salir.
 
   const elementId = visibles[0];
@@ -855,7 +862,7 @@ function solicitarPantallaCompleta() {
   } else if (docEl.msRequestFullscreen) {
     docEl.msRequestFullscreen();
   }
-}
+} 
 function ocultarGranCortina() {
   setTimeout(() => {
     const cortina = document.getElementById('gran-cortina');
@@ -1015,3 +1022,14 @@ function resaltarSecuencialDemo() {
 }
 
 
+function mostrarPadre1() {
+  const contenedor = document.getElementById("padre-1");
+
+  // mostrar en escala 0
+  contenedor.style.display = "flex";
+
+  // forzar un repaint antes de activar la clase
+  requestAnimationFrame(() => {
+    contenedor.classList.add("activo");
+  });
+}

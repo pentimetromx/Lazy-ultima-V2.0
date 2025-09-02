@@ -1817,7 +1817,16 @@ width:447px ;
   width:35vw;
   flex-direction: column;
   display: none;
+
+  transform: scale(0);       /* empieza reducido */
+  transform-origin: center;  /* crecerá desde el centro */
+  transition: transform 1s ease; /* 1000ms */  
 }
+#linksMA.activo {
+  display: flex;   /* se muestra */
+  transform: scale(1); /* crece hasta el tamaño indicado */
+}
+
 #conte-links{
   position: absolute;
   display:flex;
@@ -1836,18 +1845,17 @@ width:447px ;
   left: 0%;
   margin-top:-6%;
 } 
-.imgs-entrenos{
-  position: absolute;
-  left: 997px;
-  display: flex;
-  flex-direction: column;
-  top: 17PX;
-  display: none;
-}
 .linksTraining {
   list-style: decimal;
   border-radius: 13px;
 }
+.colorClick {
+  color:white;
+}
+.colorClick:hover {
+  color: orange;
+}
+
 .linksTraining li {
   color: rgba(255,255,255,0.8);
   transition: color 0.3s ease;
@@ -1862,7 +1870,15 @@ width:447px ;
 }
 .linksTraining li:hover,
 .linksTraining li:hover a {
-    color: orange;
+  color: orange;
+}
+.imgs-entrenos{
+  position: absolute;
+  left: 997px;
+  display: flex;
+  flex-direction: column;
+  top: 17PX;
+  display: none;
 }
 header {
   background-color: #333;
@@ -1996,8 +2012,7 @@ header {
   color: white;
   font-family: "GothamRounded", sans-serif; 
 }
-#padre-2,
-#padre-1{
+#padre-2{
   position: absolute;
   display: flex;
   flex-direction: row; 
@@ -2011,6 +2026,31 @@ header {
   background-color:black;
   border: solid 1px orange;
 } 
+#padre-1 {
+  position: absolute;
+  top: 20vh;
+  left: 77vw;
+  height: 82vh;
+  width: 69vw;
+
+  display: none; 
+  flex-direction: row; 
+  align-items: center;
+
+  border-radius: 21px; 
+  background-color: black;
+  border: solid 1px orange;
+
+  transform: scale(0);          /* empieza reducido */
+  transform-origin: center;     /* crece desde el centro */
+  transition: transform 1s ease; /* animación de 1000ms */
+}
+
+#padre-1.activo {
+  display: flex;
+  transform: scale(1); /* tamaño normal definido por CSS */
+}
+
 #control-neumatico{
   position: absolute;
   display: flex;
@@ -2308,10 +2348,16 @@ h6{
   display: none;
 }
 #troubleshooting{
-  transition: left 1.007s ease;
+  transition: transform 0.5s ease; /* 500 ms */
   z-index: 2;
-  display: none;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 } 
+#troubleshooting.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
 .contenedor-pariente {
   position: absolute;
   display: grid;
@@ -3577,12 +3623,6 @@ elemento.visible {
   cursor: pointer;
   z-index: 0;
   margin-top:6px;
-}
-.colorClick {
-  color:white;
-}
-.colorClick:hover {
-  color: orange;
 }
 #bailarina{
   position:absolute;

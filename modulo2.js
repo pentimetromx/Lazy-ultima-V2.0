@@ -1,3 +1,14 @@
+function mostrarContenedor() {
+  const contenedor = document.getElementById("troubleshooting");
+  contenedor.classList.remove("activo")
+  contenedor.style.display = "grid";
+  setTimeout(() => {
+    requestAnimationFrame(() => {
+      contenedor.classList.add("activo");
+    });
+  }, 100);
+}
+  
 function deslizaContenedor(identificador, idButton) {
   restablecerPosiciones(['.ocultos', '.class-line'])     
   let contenedor = document.querySelector('#troubleshooting')
@@ -40,8 +51,10 @@ function deslizaContenedor(identificador, idButton) {
       if (contenedorPadre) {
         contenedorPadre.style.display = 'grid'  
       }
-      mostrarTroublesshIntervalo()
-      cambiaColorBotones()
+      mostrarContenedor()
+      setTimeout(() => {
+        cambiaColorBotones()
+      }, 510);
       if(screenWidth < 500){
         document.getElementById('conti-boton').style.display='flex'
         document.getElementById('conti-boton').style.top=''

@@ -992,18 +992,21 @@ function VolveraInicio(){
   idsArrayEliminados = []
 }
 function ElementosMaII(elementId){
-    var elementosExcluidos = ['buscador','search-form', 'conteneMantaut', 'conti-boton','links-inicialesI', 'links-iniciales'];  
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var elemento = document.getElementById(allContenedores[i]);
-      if (elemento) {
-        if (elementosExcluidos.includes(allContenedores[i])) {
-          elemento.style.display = 'flex';
-        } else {
-          elemento.style.display = 'none';
-        }
-      }
-    }    
-    container1.style.display='grid'
+  var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];
+
+  allContenedores.forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) elemento.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
+  });
+
+  ['links-inicialesI','links-iniciales'].forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.left = "";
+      elemento.style.top = "";  
+    }
+  });
+  container1.style.display='grid'
     setTimeout(() => {
       document.body.style.zoom = "100%"    
     }, 10);
