@@ -772,7 +772,7 @@ function nextImage() {
 }
 function mostrarAyudas(parametro) {
   // Mostrar el visor
-  document.querySelector('.image-viewer').style.display = 'grid';
+  aparecerElemento("visor-tools", "grid")  
 
   // Resetear todas las banderas
   flagImgsVisor = false;
@@ -816,38 +816,27 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
       elem.style.display = "none";
     }
   });
-  ['links-inicialesI','links-iniciales'].forEach(id => {
-    const elemento = document.getElementById(id);
-    if (elemento) {
-      elemento.style.left = "";
-      elemento.style.top = "";
-    }
-  });
-  document.body.style.zoom = "100%"    
+
   if (visibles.length === 0) return; // No hay elementos visibles, salir.
-
   const elementId = visibles[0];
-
   switch (elementId) {
     case 'cont-titulo-operacion':
       solicitarPantallaCompleta();
       animateScroll('agrupaOblicuos-XII');
       actualizarIdsArray(elementId);
     break;
-
     case 'pantalla-inicial':
-      document.querySelector('#torre-imp').style.display='grid'
-      document.querySelector('#tinter-o').style.display='grid'
-      document.querySelector('#bateria-entintado').style.display='grid'
-      document.querySelector('#bancada-torre').style.display='grid'
-      document.querySelector('#sis-humedad').style.display='grid'
-
+      aparecerElemento('pantalla-inicial', 'flex')
+      aparecerElemento('torre-imp', 'grid')
+      setTimeout(() => {
+        aparecerElemento('barras-contenedor', 'flex')
+        aparecerElemento('barras-inicio', 'flex')        
+      }, 150);
       ocultarGranCortina();
       document.body.style.zoom = "100%";      
       firstClick = true;
       actualizarIdsArray(elementId);
     break;
-
     default:
       // No hay acción especial para este elemento.
     break;
@@ -862,7 +851,7 @@ function solicitarPantallaCompleta() {
   } else if (docEl.msRequestFullscreen) {
     docEl.msRequestFullscreen();
   }
-} 
+}
 function ocultarGranCortina() {
   setTimeout(() => {
     const cortina = document.getElementById('gran-cortina');
@@ -1018,18 +1007,5 @@ function resaltarSecuencialDemo() {
         span.classList.remove('activa');
       }, 400);
     }, index * 10);
-  });
-}
-
-
-function mostrarPadre1() {
-  const contenedor = document.getElementById("padre-1");
-
-  // mostrar en escala 0
-  contenedor.style.display = "flex";
-
-  // forzar un repaint antes de activar la clase
-  requestAnimationFrame(() => {
-    contenedor.classList.add("activo");
   });
 }

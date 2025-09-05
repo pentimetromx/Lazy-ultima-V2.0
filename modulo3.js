@@ -40,14 +40,14 @@ document.addEventListener('keydown', function(event) {
       break;
       case 'X':
         Geometria()
-        mostrarPadre1()
+        aparecerElemento("troubleshooting", "grid")
       break;                  
     }
   }
 });
 function Geometria() {
   console.clear();  
-  var contiBoton = document.getElementById('marco-planetario');  
+  var contiBoton = document.getElementById('agrupaOblicuos-XXX');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -224,7 +224,7 @@ function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13
   document.querySelector('.sections').style.display = 'grid'
   document.querySelector('.sections-btn').style.display = 'grid'
   document.querySelector('#simulador').style.display = 'flex'
-  container1.style.display = 'none'
+  container1.style.display = 'grid'
   const interfaz = document.getElementById('inerfaz-ajuste-fino');    
   let displayTraining = document.getElementById('component1')  
   displayTraining.style.display = 'flex'

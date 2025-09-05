@@ -40,6 +40,7 @@
         En cadena experimentamos internamente el crecimiento que ofrecemos a nuestros clientes<br>usando las mismas herramientas
         <button id="butt-Institucional"></button>
       </p>
+
       <div class="oblicuos-XI" id="agrupaOblicuos-XI">
         <div id="contFrente-V" class="oblicuosInicio">
           <button class="Bot-inicio3 butts-inicio" id="butt-01110" onclick="abrirSeccionCalidad('cont-titulo-calidad')">Area Calidad</button>
@@ -59,6 +60,7 @@
           <button class="Bot-inicio3-fondo" id="butt-8"></button> 
         </div>
       </div>
+
       <span class="sub-arrow">
         <i class="fas fa-caret-down"></i>
       </span>
@@ -486,7 +488,7 @@
       </div>
       
       <ul id="linkList" class="iridescent-element">
-        <li onclick="mostrarElementos(['pantalla-inicial','barras-inicio','barras-contenedor','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])">Impresion rotativa / flexográfica</li>   
+        <li onclick="mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])">Impresion rotativa / flexográfica</li>   
         <li onclick="iniciarAnimaciones()">Simulador impresion</li>
         <li onclick="abrirSeccionVariable('cont-variable')">Impresion variable</li>
         <li onclick="abrirSeccionPlanas('cont-plana')">Impresion plana</li>
@@ -494,7 +496,7 @@
         <li onclick="abrirSeccionDemo('planetary')">Demostrativo</li>
         <li onclick="abrirPrepress('pre-prensa')">Teoria del color</li> 
         <li onclick="abrirDensitometria('densitometria')">Densitometría</li>
-        <li onclick="mostrarElementos(['butts-simulador','container01','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales']);">Simulador rotativa RK-300</li>
+        <li onclick="mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales']);">Simulador rotativa RK-300</li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
     </div> 
@@ -662,6 +664,7 @@
       <button id="iniciar" onclick="activarPantallaCompleta()">Exit / Full Screen</buttonclass=>
       <button id="bot-atras12" onclick="irContenedorSiguiente()"></buttonclass=>
     </div>
+
     <div id="pantalla-tintero">  
       <div id="cont-links">
         <a href="#" class="custom-link" id="linkDistribuidor"onclick="showRepuesto('contImgDistribuidor')">Rodillo distribuidor</a>
@@ -850,7 +853,7 @@
         <button class="butt-mautonomo" onclick="deslizaContenedor('conti-boton-kaizen','kaizen')">KAIZEN</button>
         <button class="butt-mautonomo" onclick="resetBotns('troubleshoot')" style="background-color: red;color: white;">Reset</button>
         <button class="butt-mautonomo" onclick="building()" style="background-color: red;color: white;">Show everything</button>
-        <button class="butt-mautonomo" onclick="resultadosMA()">TRACKING DASHBOARD</button>               
+        <button class="butt-mautonomo" onclick="resultadosMA('interfaz-mtto')">TRACKING DASHBOARD</button>               
       </div> 
 
       <div id="troubleshooting" class="contenedor-pariente class-line">
@@ -905,6 +908,7 @@
       <img data-src="./assets/caso.jpg" id="caso2" class="lazy caso-estudio" alt="casos">
       <img data-src="./assets/caso 2.png" id="caso3" class="lazy caso-estudio" alt="casos">
    </div>
+   
     <div id="toyota-kaizen-antes">
       <img data-src="./assets/antes 1.jpg" id="antes1" class="lazy imgs-Antes" alt="toyota">
       <img data-src="./assets/antes 2.jpg" id="antes2" class="lazy imgs-Antes" alt="antes">
@@ -913,12 +917,14 @@
       <img data-src="./assets/antes 4.jpg" id="antes4" class="lazy imgs-Antes" alt="antes">
       <img data-src="./assets/antes 5.jpg" id="antes5" class="lazy imgs-Antes" alt="antes">
     </div>
+
     <div id="kaizenCont">
       <video class="lazy" id="vidElem" autoplay loop muted>
         <source data-src="./assets/kaizen vid.mp4" type="video/mp4">
       </video>
     </div>
-    <div id="kaizen-propuestos" class="grid-container">
+
+    <div id="kaizen-propuestos">
       <div class="row">
         <div class="cell">
           <div class="label">Salva manos en maquina colectora</div>
@@ -948,6 +954,7 @@
         </div>
       </div>
     </div>
+
     <div id="lubricacion">
       <div class="conti-boton" id="conti-boton-desb"> 
         <button class="butt-mautonomo-desbobina image-trainings hidden" id="btn1" onclick="LubricaDesbobinador('btn1')">REMALINER</button>
@@ -1253,6 +1260,7 @@
         <img data-src="./assets/Porta plancha8.png" class="lazy imagesTorre aumentar" id="portPlaca4" alt="porte plancha">
       </div>
     </div>
+
     <div id="contPortManta">
       <video class="lazy video-training" id="videoManta" loop autoplay>
         <source data-src="./assets/video-portaManta-v2.mp4" type="video/mp4">
@@ -1266,6 +1274,7 @@
         <img data-src="./assets/mantilla2.png" class="lazy image-trainings aumentar" alt="manta1">
       </div>     
     </div>
+    
     <div id="imagenes-manta">
       <div class="imagen-container" id="mantilla1">
         <img data-src="./assets/mantillaII.jpg" class="lazy imagesTorre imgMant aumentar" id="manta0" alt="porte plancha">
@@ -1863,10 +1872,12 @@
         <img data-src="./assets/grafilado5.jpg" class="lazy img-flex" id="imgGrafilado4" alt="neuma10">  
       </div>
     </div>
+
     <div id="conte-butts-graphs">
       <button id="dynamic-graphs" class="desactivar" onclick="updateDinamico()">Dinamico</button>      
       <button id="static-graphs" class="estilo-igual" onclick="detenerDinamica()">Estatico</button>
     </div>
+
     <div id="iconos">
       <h1 id="title-interfaz">Interfaz de seguimiento Mantenimiento Autonomo</h1>
 
@@ -2309,7 +2320,8 @@
         <span id="pantalla_III" class="spans first_table estilos">7819</span>
         <span id="pantalla_IV" class="spans first_table estilos">4987</span>
         <span id="pantalla_V" class="spans first_table estilos">0123</span>
-      </div>      
+      </div>  
+
       <div id="equalizer" class="manejo">
         <div id="column_1" class="column">
           <div id="line_1" class="lineas"></div>
@@ -2351,9 +2363,11 @@
           <div id="line_28" class="lineas"></div>
         </div>
       </div>
+
       <div id="contImagNeg">
         <img data-src="./assets/pixelate.jpg" id="imagPixelate" class="lazy" alt="Gráfico de Excel 6">
       </div>
+
       <div id="padre" class="manejo">
         <div id="barra" class="barras"></div>
         <div id="barra_I" class="barras"></div>
@@ -2379,6 +2393,7 @@
         <div id="barra_XXI" class="barras"></div>
         <div id="barra_XXII" class="barras"></div> 
       </div>
+
       <div id="patern" class="manejo">
         <div class="irisado" id="elem1"></div>
         <div class="irisado" id="elem2"></div>
@@ -2405,15 +2420,18 @@
         <div class="irisado" id="elem23"></div>
         <div class="irisado" id="elem24"></div>
       </div>
+
       <div id="contImagGraf">
         <img data-src="./assets/Excel.png" class="lazy" alt="Gráfico de Excel 6">
       </div>
+
       <div id="canvasContainer3">
         <canvas id="MiSegundaGrafica" class="canva-container"></canvas>
         <canvas id="MiTerceraGrafica" class="canva-container"></canvas>
         <canvas id="MiCuartaGrafica" class="canva-container"></canvas>  
         <canvas id="MiQuintaGrafica" class="canva-container"></canvas>              
       </div>
+
     </div>
     <ul id="context-menu" class="context-menu">
       <li>Historial</linclick=>
@@ -2632,14 +2650,13 @@
         <span id="spn-blur-12" class="btn-sections"></span><span id="spn-blur-13" class="btn-sections"></span><span id="spn-blur-14" class="btn-sections"></span><span id="spn-blur-15" class="btn-sections"></span>
       </span>
 
-
       <div id="butts-simulador" data-display="grid" class="sections">
         <div class="section" onclick="ocultaElementos('segunda-pantalla','container01','links-inicialesI','links-iniciales','buscador','search-form','simulador')">Section 1</div>
         <div class="section" onclick="ocultaElementos('water-background','clock','cronometro','botonera','cronos','container01','links-inicialesI','links-iniciales','buscador','search-form')">Section 2</div> 
         <div class="section" onclick="ocultaElementos('container01','links-inicialesI','links-iniciales','buscador','search-form','control-panel')">Section 4</div>
         <div class="section" onclick="ocultaElementos('container01','links-inicialesI','links-iniciales','buscador','search-form','interfaz-registro')">Section 5</div>
         <div class="section" onclick="iniciarAnimaciones()">Consola</div>
-        <div class="section" onclick="ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form',)">CMYK</div>
+        <div class="section" onclick="ocultaElementos('colorCMYK','container-slider','padre-cmyk','links-inicialesI','links-iniciales','buscador','search-form',)">CMYK</div>
         <div class="section" onclick="ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form',)">RGBA</div>
       </div>   
       <div class="digital-clock" id="clock">  
