@@ -1,1 +1,2 @@
-mostrarElementos(['container01','buscador','search-form','links-inicialesI','links-iniciales',])
+1. la función que muestra los elementos con transición desde tamaño mínimo hasta tamaño normal es: 
+	aparecerElemento("troubleshooting", "grid") - en parámetros se pasa el contenedor del elemento y el tipo de display

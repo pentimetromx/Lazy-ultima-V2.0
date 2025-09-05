@@ -338,14 +338,14 @@ function showRepuesto(elementId) {
       manejarTransicion('child-move-IV', 'abuelo-entintadores', 'marco-rodillos',1500);
 
     }
-
+    container1.style.display='grid'
     if (typeof elementId !== 'undefined' && !idsArray.includes(elementId)) {
       idsArray.push(elementId);
       console.log(idsArray);
     }
   break;
   case 'contPortPlaca':  
-    var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','contPortPlaca', 'agrupaOblicuos-placa','placa'];          
+    var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','agrupaOblicuos-placa','placa'];          
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i]);  
       if (elemento) {
@@ -353,6 +353,7 @@ function showRepuesto(elementId) {
       }
     }
     container1.style.display='grid'
+    aparecerElemento('contPortPlaca','flex')
     crearOblicuosPlaca('agrupaOblicuos-DXXX');
     reproducirVideo('video-placa') 
     if (typeof elementId !== 'undefined' && !idsArray.includes(elementId)) {
@@ -361,7 +362,7 @@ function showRepuesto(elementId) {
     }
   break;       
   case 'contPortManta':
-    var elementosExcluidos = ['buscador','search-form','contPortManta','manta','agrupaOblicuos-IX','links-iniciales','links-inicialesI'];           
+    var elementosExcluidos = ['buscador','search-form','manta','agrupaOblicuos-IX','links-iniciales','links-inicialesI'];           
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i]);  
       if (elemento) {
@@ -369,6 +370,7 @@ function showRepuesto(elementId) {
       }
     }
     container1.style.display='grid'
+    aparecerElemento('contPortManta','flex')
     crearOblicuosMantilla('agrupaOblicuos-XC');
     reproducirVideo('videoManta');
     if (typeof elementId !== 'undefined' && !idsArray.includes(elementId)) {
@@ -377,7 +379,7 @@ function showRepuesto(elementId) {
     } 
   break;
   case 'contImpresor':
-    var elementosExcluidos = ['buscador','search-form','agrupaOblicuos-XXIII','impresorImg','contImpresor','links-iniciales','links-inicialesI'];           
+    var elementosExcluidos = ['buscador','search-form','agrupaOblicuos-XXIII','impresorImg','links-iniciales','links-inicialesI'];           
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i]);  
       if (elemento) {
@@ -385,6 +387,7 @@ function showRepuesto(elementId) {
       }
     }
     container1.style.display='grid'
+    aparecerElemento('contImpresor','flex')
     crearOblicuosImpresor('agrupaOblicuos-C');
     reproducirVideo('video-impresor');
     if (typeof elementId !== 'undefined' && !idsArray.includes(elementId)) {
@@ -802,7 +805,6 @@ function muestraTorres(seleccion) {
       if (elementoMandosFrente) {  
         elementoMandosFrente.style.display = 'block'
         elementoMandosFrente.style.marginRight = '150px'
-
       }
 
       if (!idsArray.includes(seleccion)) {
@@ -864,8 +866,8 @@ function crearOblicuos(contenedorId) {
       <button class="Bot-inicio2">${opcion.label}</button>
       <button class="Bot-inicio2-fondo"></button>
     `;
-
     contenedor.appendChild(div);
+    aparecerElemento("agrupaOblicuos-XXX", "grid");
 
     // 🔧 Lógica de color y llamada a muestraTorresI
     const botonPrincipal = div.querySelector('.Bot-inicio2');
@@ -981,7 +983,7 @@ function crearOblicuosPlaca(contenedorId) {
   opciones.forEach((opcion, index) => {
     const div = document.createElement('div');
     div.className = 'cont-oblicuos';
-    div.id = `oblicuo-tintero-${20 + index + 1}`; // IDs 21,22,23,24
+    div.id = `oblicuo-tintero-${20 + index + 1}`;
 
     div.innerHTML = `
       <button class="Bot-inicio2">${opcion.label}</button>
@@ -989,6 +991,7 @@ function crearOblicuosPlaca(contenedorId) {
     `;
 
     contenedor.appendChild(div);
+    aparecerElemento("agrupaOblicuos-DXXX","grid")
 
     // Lógica de color + llamada a ladosPlancha
     const botonPrincipal = div.querySelector('.Bot-inicio2');
@@ -1085,7 +1088,7 @@ function crearOblicuosMantilla(contenedorId) {
     `;
 
     contenedor.appendChild(div);
-
+    aparecerElemento("agrupaOblicuos-XC", "grid");
     // Lógica de colores + llamada a ladosMantilla
     const botonPrincipal = div.querySelector('.Bot-inicio2');
     const botonesFondo = div.querySelectorAll('.Bot-inicio2-fondo');
@@ -1156,7 +1159,7 @@ function ladosMantilla(elementId) {
   const imgsManta = document.querySelectorAll('.imgMant');
   const videoCaucho = document.getElementById('videoManta');
   const imgsMantasI = document.getElementById('manta');
-
+  container1.style.display = 'grid';
   imgsMantasI.style.display = 'none';
   videoCaucho.pause();
   videoCaucho.style.display = 'none';
@@ -1203,7 +1206,7 @@ function crearOblicuosImpresor(contenedorId) {
     `;
 
     contenedor.appendChild(div);
-
+    aparecerElemento("agrupaOblicuos-C", "grid");
     const botonPrincipal = div.querySelector('.Bot-inicio2');
     const botonesFondo = div.querySelectorAll('.Bot-inicio2-fondo');
 
@@ -1283,10 +1286,7 @@ function ladosImpresor(elementId) {
   imgsImpresor.forEach(imagen => {
     imagen.style.display = idsAMostrar.includes(imagen.id) ? 'block' : 'none';
   });
-
-  // Mostrar contenedor principal
   container1.style.display = 'grid';
-
   // Manejo de idsArray sin duplicados
   idsArray = idsArray.filter(id => id !== elementId);
   idsArray.push(elementId);
@@ -1332,14 +1332,6 @@ function iniciarAnimaciones(){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }
-  ['links-inicialesI','links-iniciales'].forEach(id => {
-    const elemento = document.getElementById(id);
-    if (elemento) {
-      elemento.style.left = "";
-      elemento.style.top = "";
-    }
-  });
-  document.body.style.zoom = "100%"    
   container1.style.display = 'none'
   setTimeout(() => {
     animarColorSecuencia();
@@ -1614,14 +1606,6 @@ function abrirSeccionVariable(elementId){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
-  ['links-inicialesI','links-iniciales'].forEach(id => {
-    const elemento = document.getElementById(id);
-    if (elemento) {
-      elemento.style.left = "";
-      elemento.style.top = "";
-    }
-  });
-  document.body.style.zoom = "100%"    
   container1.style.display='grid'
   document.getElementById('cont-variable').style.display='grid'
   manejarTransicion('child-move-variable', 'padre-variable', 'marco-variable',1200);
@@ -1647,15 +1631,6 @@ function abrirSeccionPlanas(elementId){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
-  ['links-inicialesI','links-iniciales'].forEach(id => {
-    const elemento = document.getElementById(id);
-    if (elemento) {
-      elemento.style.left = "";
-      elemento.style.top = "";
-    }
-  });
-  document.body.style.zoom = "100%"    
-
   container1.style.display='grid'
   document.getElementById('cont-plana').style.display='grid'
   manejarTransicion('child-move-plana', 'padre-plana', 'marco-plana',1200);
@@ -1677,14 +1652,6 @@ function abrirSeccionCurado(elementId){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
-   ['links-inicialesI','links-iniciales'].forEach(id => {
-    const elemento = document.getElementById(id);
-    if (elemento) {
-      elemento.style.left = "";
-      elemento.style.top = "";
-    }
-  });
-
   container1.style.display='grid'
   document.body.style.zoom = "100%";
   container1.style.left=''
@@ -1707,15 +1674,6 @@ function abrirSeccionDemo(elementId) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
-   ['links-inicialesI','links-iniciales'].forEach(id => {
-    const elemento = document.getElementById(id);
-    if (elemento) {
-      elemento.style.left = "";
-      elemento.style.top = "";
-    }
-  });
-  document.body.style.zoom = "100%"    
-
   container1.style.display='grid'
   manejarTransicion('child-move-naranja', 'tendencia-naranja', 'marco-planetario',1000);
   setTimeout(() => {
@@ -1808,13 +1766,6 @@ function abrirPrepress(elementId) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
-  ['links-inicialesI','links-iniciales'].forEach(id => {
-    const elemento = document.getElementById(id);
-    if (elemento) {
-      elemento.style.left = "";
-      elemento.style.top = "";
-    }
-  });  
   container1.style.display='grid'
   botIzquierda.style.display = 'flex'
   botDerecha.style.display = 'flex'
@@ -1869,13 +1820,6 @@ function abrirDensitometria(elementId){
         botDensitometria.style.display = 'flex';
     }
   }
-  ['links-inicialesI','links-iniciales'].forEach(id => {
-    const elemento = document.getElementById(id);
-    if (elemento) {
-      elemento.style.left = "";
-      elemento.style.top = "";
-    }
-  });
   document.body.style.zoom = "100%" 
   container1.style.left=''
   contieneLinks.style.display = 'none'
@@ -2154,7 +2098,7 @@ function irContenedorAnterior() {
       abrirSeccionCalidad()        
     break;     
     case "pantalla-inicial":        
-    mostrarElementos(['pantalla-inicial','barras-inicio','barras-contenedor','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])
+      mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])
     break; 
     case "pantalla-tintero":
       changeButtonStyles('pantalla-tintero')  
@@ -2444,6 +2388,30 @@ function irContenedorAnterior() {
     case 'pantalla-atras':
       muestraTorresI('pantalla-atras')
     break;
+    case 'troubleshooting':
+      deslizaContenedor('troubleshooting','troubleshoot')
+    break;
+    case 'canvasContainer2':
+      deslizaContenedor('canvasContainer2','def1')              
+    break;
+    case 'contChecks':
+      deslizaContenedor('contChecks','def2')            
+    break;
+    case 'canvasContainer3':
+      deslizaContenedor('canvasContainer3','adtBut')           
+    break;
+    case 'contImagNeg':
+      deslizaContenedor('contImagNeg','fua1')          
+    break;
+    case 'contImagGraf':
+      deslizaContenedor('contImagGraf','lup')          
+    break;
+    case 'conti-boton-kaizen':
+      deslizaContenedor('conti-boton-kaizen','kaizen')          
+    break;
+    case 'interfaz-mtto':
+      resultadosMA('interfaz-mtto')          
+    break;   
     default:
   } 
   let elementoEliminado = idsArray.pop();
@@ -2452,6 +2420,7 @@ function irContenedorAnterior() {
   } 
   console.log('1.', idsArray)
 }
+
 function irContenedorSiguiente() {
   var previousElementID = idsArrayEliminados[idsArrayEliminados.length - 1];
   for (var i = 0; i < allContenedores.length; i++) {
@@ -2768,24 +2737,35 @@ function irContenedorSiguiente() {
     case 'pantalla-atras':
       muestraTorresI('pantalla-atras')
     break;
+    case 'troubleshooting':
+      deslizaContenedor('troubleshooting','troubleshoot')
+    break;
+    case 'canvasContainer2':
+      deslizaContenedor('canvasContainer2','def1')              
+    break;
+    case 'contChecks':
+      deslizaContenedor('contChecks','def2')            
+    break;
+    case 'canvasContainer3':
+      deslizaContenedor('canvasContainer3','adtBut')           
+    break; 
+    case 'contImagNeg':
+      deslizaContenedor('contImagNeg','fua1')           
+    break;
+    case 'contImagGraf':
+      deslizaContenedor('contImagGraf','lup')          
+    break;
+    case 'conti-boton-kaizen':
+      deslizaContenedor('conti-boton-kaizen','kaizen')         
+    break; 
+    case 'interfaz-mtto':
+      resultadosMA('interfaz-mtto')          
+    break;   
     default:
   } 
 
   idsArrayEliminados.pop();
   console.log('2.', idsArrayEliminados)
-}
-function mostrarLinks() {
-  const contenedor = document.getElementById("linksMA");
-  contenedor.classList.remove("activo")
-
-  setTimeout(() => {
-    // lo hacemos visible en escala 0
-    contenedor.style.display = "flex";
-    // forzamos un repaint para que la transición ocurra
-    requestAnimationFrame(() => {
-      contenedor.classList.add("activo");
-    });
-  }, 100);
 }
 function listaEntrenamientosII(btnList) {
   restablecerPosiciones(['.ocultos'])      
@@ -2812,7 +2792,7 @@ function listaEntrenamientosII(btnList) {
       }
       container1.style.display='grid'
      document.getElementById('troubleshooting').style.display='grid' 
-      mostrarLinks()
+      aparecerElemento("linksMA", "flex")
       for (var i = 0; i < contiBtt.length; i++) {
         var botonId = contiBtt[i];
         var boton = document.getElementById(botonId);
@@ -3037,7 +3017,6 @@ function toggleFullScreen(element) {
 }
 function imagenesPasoApaso(id) {
   desactivarClicsPorUnTiempo(500);
-
   const solucionador = document.getElementById('troubleshooting');
   const conteLink = document.getElementById('linksMA');
   const botones = document.getElementsByClassName('colorClick');
@@ -3096,7 +3075,7 @@ function imagenesPasoApaso(id) {
   // Estilos especiales para link1 (padre y boton volver)
   if (id === 'link1') {
 
-    mostrarPadre1()
+    aparecerElemento("padre-1", "flex")
 
     padre.style.top = '20vh';
     padre.style.left = '77vw';
@@ -4436,7 +4415,6 @@ function resultadosEmpleado(idEmpleado, functionExe,icono,state) {
       restablecerClick(['.desactivar', '.graphs-lines'])
     }
 
-    document.getElementById('contLineas').style.backgroundColor='rgb(0,0,17)'
     const elementos = document.querySelectorAll('.graphs-lines');
     elementos.forEach((elemento) => {
       elemento.removeAttribute('style');
@@ -4465,7 +4443,6 @@ function resultadosEmpleado(idEmpleado, functionExe,icono,state) {
         document.getElementById('links-iniciales').style.left='16vw'
 
       }else{
-          
         ubicaPerfil(idEmpleado)
         document.getElementById('conte-butts-graphs').style.display = 'grid'
     }
@@ -4504,7 +4481,7 @@ function resultadosEmpleado(idEmpleado, functionExe,icono,state) {
 
   }, 100);
 }
-function resultadosMA(){
+function resultadosMA(identificador){
   restablecerPosiciones(['.ocultos'])      
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','conte-secundario','title-interfaz']  
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -4541,6 +4518,7 @@ function resultadosMA(){
       }    
     }
   }
+  actualizarIdsArray(identificador);      
 }
 function aumentarTamaño(element, factor, tiempo) {
   const originalWidth = element.clientWidth;

@@ -3978,6 +3978,7 @@ top: 44%;
   scale: 1.1;
   background-color: rgb(6, 31, 223);
   color: #fff;
+  transition: background-color 0.6s ease, color 0.4s ease;  
 }
 #home-gym {
   display: grid;
@@ -4240,13 +4241,12 @@ top: 44%;
   background-color: rgb(0,255,0) !important;
   color: rgb(0,0,55) !important;
 }
-.image-viewer {
+#visor-tools {
   position: relative;
   display: grid;
   grid-template-columns: 7% 86% 7%;
   align-items: center;
   justify-items: center;
-  display: none;
   top: 56vh;
   left: 32vw;
   width: 50vw;
@@ -4255,7 +4255,18 @@ top: 44%;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   overflow: hidden;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#visor-tools.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 .image-container {
   width: 98%;
   height: 98%;
@@ -4302,7 +4313,7 @@ top: 44%;
   cursor: pointer;
   z-index: 200;
 }
-.contenedor-barras {
+#barras-contenedor{
   position: absolute;
   display: flex;
   width: 40vw;
@@ -4310,9 +4321,18 @@ top: 44%;
   top: 44vh;
   left: 59vw;
   gap: 25.5%;
-  display: none;
+
+  transition: transform 0.5s ease; /* 501 ms */
   z-index: -1;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#barras-contenedor.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 .barra-vertical-6 {
   position: relative;
   width: 2px;
@@ -4386,7 +4406,7 @@ top: 44%;
   width: 2px;
   background: white;
 }
-.contenedor-barras-inicio{
+#barras-inicio{
   position: absolute;
   display: flex;
   width: 54.2vw;
@@ -4394,8 +4414,18 @@ top: 44%;
   top: 34.5vh;
   left: 1vw;
   gap: 20%;
-  display: none;
+  
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: -1;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#barras-inicio.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 .barra-vertical-inicio{
   position: relative;
   width: 2px;

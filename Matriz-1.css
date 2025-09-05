@@ -208,9 +208,10 @@ color: white;
   background-color: #e0e0e0;
   border-bottom: 2px solid #aaa;
   border-top: 2px solid #fff;
+  transition: background-color 0.5s ease, color 0.8s ease;  
 }
 .iridescent-element li:hover {
-  background-color: rgb(6, 31, 223);
+  background-color: rgba(6, 31, 223,0.9);
   color: #fff;
 }
 #container2,
@@ -342,7 +343,7 @@ color: white;
   flex-direction: column; 
   margin-left: -7px;
 }
-.torre-imp {
+#torre-imp {
   position: relative;
   left: 3vw;
   top:8vh;
@@ -352,7 +353,18 @@ color: white;
   height: 60vh;
   padding: 10px;
   box-sizing: border-box;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#torre-imp.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 .unidad-torre {
   display: grid;
   grid-template-rows: repeat(7, 1fr);
@@ -456,7 +468,8 @@ color: white;
   color: white;
   cursor: pointer;
   border-radius: 7px;
-  background-color: rgba(255, 24, 55, 0.4);
+  /* background-color: rgba(255, 24, 55, 0.4); */
+  background-color:rgb(255, 24, 54);
   backdrop-filter: blur(5px);
 }
 .rebobinador,
@@ -470,14 +483,23 @@ color: white;
 }
 #pantalla-inicial{
   position: relative;
-  display: flex;
   flex-direction: row;
   top: 16%;
   left: 1%;
-  display: none;
   width: 98%;
   height: 80%;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#pantalla-inicial.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 #desbobinadorId,
 #uTeñidos,
 #alimentadorId,
@@ -1061,30 +1083,52 @@ width:447px ;
   border-radius: 15px;
   background-color: rgb(0, 0, 17);
   display: none;
+  
 }
 #canvasContainer2{
   position: absolute;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   left: 19%;
   top: 21%;
   width: 350px;
   height: 333px;
   border-radius: 20px;
-  transition: left 1.007s ease;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#canvasContainer2.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 #canvasContainer3{
   position: absolute;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
   left: 20vw;
   top:22vh;
   width:16vw;
   height:68vh;
   border-radius: 20px;
-  transition: left 1.007s ease;
+  /* transition: left 1.007s ease; */
   display:none;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#canvasContainer3.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 #MiGrafica{
   position: absolute;
   display: flex;
@@ -1093,15 +1137,24 @@ width:447px ;
 #contImagGraf,
 #contImagNeg{
   position: absolute;
-  display: flex;
   flex-direction: column;
   left:18vw;
   top:23vh;
   height:59.5vh;
   width: 11vw;
-  display: none; 
   border-radius: 20px; 
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#contImagNeg.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 #contImagGraf img,
 #contImagNeg img{
   width:100%;
@@ -1214,6 +1267,7 @@ width:447px ;
   left:0; 
   width:13%;
   height:33%;
+  z-index: 5;
 }
 #frec-lubrica{
   position: absolute;
@@ -1661,8 +1715,7 @@ width:447px ;
 #pantalla-mandos,
 #pantalla-frente,
 #pantalla-atras,
-#contLinksTorre,  
-#pantalla-tintero{
+#contLinksTorre{
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -1673,6 +1726,27 @@ width:447px ;
   width: 99vw;
   display: none;
 }
+#pantalla-tintero{
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  top:14vh;
+  left:0;
+  height: 80vh;
+  width: 99vw;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
+}
+#pantalla-tintero.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 #imgsRepuestos-V,
 #imgsRepuestos-IV,
 #imgsRepuestos-III,
@@ -1697,18 +1771,29 @@ width:447px ;
   object-fit: cover;
   border-radius: 13px;
 }
+#contImpresor,
 #contPortPlaca,
-#contPortManta,
-#contImpresor{
+#contPortManta{
   position: absolute;
   justify-content: center;
-  display: flex;
   flex-direction: row;
   top: 12.5vh;
   height: 87%;
   width: 99%;
-  display: none;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#contImpresor.activo,
+#contPortPlaca.activo,
+#contPortManta.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 #impresorImg,
 #manta,
 #placa{
@@ -2348,7 +2433,7 @@ h6{
   display: none;
 }
 #troubleshooting{
-  transition: transform 0.5s ease; /* 500 ms */
+  transition: transform 0.5s ease; /* 501 ms */
   z-index: 2;
   display: none; /* inicialmente oculto */
   transform: scale(0); /* inicia reducido */
@@ -2400,18 +2485,27 @@ h6{
 }
 #kaizenCont{
   position:absolute;
-  display: flex;
   flex-direction: column;
   left: 31vw;
   top:22.5vh;
-  transition: left 1.007s ease;
+  /* transition: left 1.007s ease; */
   border: 3px solid orange;  
   border-radius: 20px;
   overflow: hidden;
-  display: none;
   height:69vh;
   width:55vw;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#kaizenCont.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 #vidElem{
   width:100%;
   height: 100%;
@@ -3362,6 +3456,7 @@ elemento.visible {
   transform: scale(1.2);
   background: linear-gradient(to bottom, #00b7c2, #007f89);
   color: #ffffff;
+  transition: transform 0.4s ease, background-color 0.6s ease, color 2s ease;  
 }
 #cont-arriba-freno {
   position: absolute;
@@ -3556,7 +3651,6 @@ elemento.visible {
 }
 #toyota-kaizen-antes{
   position:absolute;
-  display: flex;
   left:29vw;
   top:22.5vh;
   width: 58vw;
@@ -3564,7 +3658,16 @@ elemento.visible {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
-  display: none;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
+}
+#toyota-kaizen-antes.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
 }
 #butt-17{
   position: absolute;
@@ -4134,9 +4237,6 @@ h4{
   display: none;
 }
 #kaizen-propuestos{
-  display: none;
-}
-.grid-container{ 
   position:absolute;
   display: flex;
   flex-direction: column;
@@ -4145,7 +4245,18 @@ h4{
   left: 29vw;
   top:22.5vh;
   gap: 4px;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#kaizen-propuestos.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 .row {
   flex: 1; 
   display: flex; 
@@ -5281,7 +5392,6 @@ input.numero:focus {
 }
 #wall_street_II{
   position: absolute;
-  display: grid;
   flex-direction: column;
   grid-template-columns: repeat(1, 1fr);
   gap: 12px;
@@ -5289,9 +5399,19 @@ input.numero:focus {
   top: 52vh;
   height: 200vh;
   width: 20vw;
-  z-index: 3;
   display: none;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 3;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#wall_street_II.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 #wall_street_II .horizontales{
   display: block;
   width: 100%;
@@ -5322,7 +5442,7 @@ input.numero:focus {
 }
 #equalizer{
   position:absolute;
-  display:grid;
+  /* display:grid; */
   grid-template-columns: repeat(3, 1fr);
   flex-direction:row;
   background-color: rgb(0, 0,10 ); 
@@ -5332,8 +5452,18 @@ input.numero:focus {
   top:22.5vh;
   left:30vw;
   padding:27px;
-  display:none;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#equalizer.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 .column{
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -5342,7 +5472,6 @@ input.numero:focus {
 }
 #patern{
   position:absolute;
-  display: grid;
   top:22.5vh;
   left:30vw;
   width:29vw;
@@ -5352,12 +5481,23 @@ input.numero:focus {
   grid-template-rows: repeat(6, 1fr);
   background-color: RGB(0,0,10);
   gap: 1px;
-  display: none;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#patern.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 #patern .irisado{
   display: block;
   width: 100%;
   height: 100%;
+  border-radius:4px;
 }
 .lineas{
   position: relative;
@@ -5524,7 +5664,7 @@ input.numero:focus {
 }
 #padre{
   position: absolute;
-  display: grid;
+  /* display: grid; */
   grid-template-columns: repeat(4, 1fr);
   flex-wrap: nowrap;
   top:22.7vh;
@@ -5535,8 +5675,18 @@ input.numero:focus {
   background-color: rgb(0,0,10);
   border-radius: 6px;
   overflow: hidden; 
-  display: none;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
 }
+#padre.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+
 #padre > div {
   display: block;
   width: 100%;
@@ -5907,14 +6057,10 @@ input.numero:focus {
   color: whitesmoke;
   display: none;
 }
-#agrupaOblicuos-C,
-#agrupaOblicuos-XC,
-#agrupaOblicuos-DXXX,
 #agrupaOblicuos-DXX,
 #agrupaOblicuos-DX,
 #agrupaOblicuos-D,
-#agrupaOblicuos-XD,
-#agrupaOblicuos-XXX {
+#agrupaOblicuos-XD{
 position:absolute;
 display: grid;
 grid-template-rows: repeat(4, 1fr);
@@ -5923,6 +6069,32 @@ left:81%;
 top: 0;
 width: 7vw;
 height:44vh;
+}
+#agrupaOblicuos-C,
+#agrupaOblicuos-XC,
+#agrupaOblicuos-DXXX,
+#agrupaOblicuos-XXX {
+  position:absolute;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10%;
+  left:81%;
+  top: 0;
+  width: 7vw;
+  height:44vh;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */   
+}
+#agrupaOblicuos-C.activo,
+#agrupaOblicuos-XC.activo,
+#agrupaOblicuos-DXXX.activo,
+#agrupaOblicuos-XXX.activo {
+  display: grid;          /* muestra el contenedor */
+  transform: scale(1);    /* escala al tamaño definido en CSS */
 }
 .cont-oblicuos {
 position: relative;
@@ -8998,8 +9170,6 @@ height:100%;
     left: 33%;
     top:-59%;
     gap: 2px;
-  }
-  #kaizen-propuestos{
     display: none;
   }
   #toyota-kaizen-antes{

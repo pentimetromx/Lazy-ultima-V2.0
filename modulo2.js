@@ -1,7 +1,12 @@
-function mostrarContenedor() {
-  const contenedor = document.getElementById("troubleshooting");
-  contenedor.classList.remove("activo")
-  contenedor.style.display = "grid";
+function aparecerElemento(id, display = "block") {
+  const contenedor = document.getElementById(id);
+  if (!contenedor) return; // seguridad si no existe el id
+
+  contenedor.classList.remove("activo");
+
+  // aplicamos el display inmediatamente
+  contenedor.style.display = display;
+
   setTimeout(() => {
     requestAnimationFrame(() => {
       contenedor.classList.add("activo");
@@ -9,6 +14,8 @@ function mostrarContenedor() {
   }, 100);
 }
   
+
+
 function deslizaContenedor(identificador, idButton) {
   restablecerPosiciones(['.ocultos', '.class-line'])     
   let contenedor = document.querySelector('#troubleshooting')
@@ -51,7 +58,7 @@ function deslizaContenedor(identificador, idButton) {
       if (contenedorPadre) {
         contenedorPadre.style.display = 'grid'  
       }
-      mostrarContenedor()
+      aparecerElemento("troubleshooting", "grid")  
       setTimeout(() => {
         cambiaColorBotones()
       }, 510);
@@ -59,9 +66,10 @@ function deslizaContenedor(identificador, idButton) {
         document.getElementById('conti-boton').style.display='flex'
         document.getElementById('conti-boton').style.top=''
       }
+      actualizarIdsArray(identificador);      
     break;
     case 'canvasContainer2' :
-      var elementosExcluidos = ['def2','buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','canvasContainer2','MiGrafica','wall_street_II','general']
+      var elementosExcluidos = ['def2','buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','MiGrafica','general']
       for (var i = 0; i < allContenedores.length; i++) {
         var elemento = document.getElementById(allContenedores[i]) 
         if (elemento) {
@@ -69,11 +77,16 @@ function deslizaContenedor(identificador, idButton) {
         }
       }
       container1.style.display='grid'
+      aparecerElemento("canvasContainer2", "flex")
+      setTimeout(() => {
+        aparecerElemento("wall_street_II", "flex")        
+      }, 200);       
       if(screenWidth < 500){
         document.getElementById('conti-boton').style.display='flex'
         document.getElementById('conti-boton').style.top=''
       }
       incrementoHeightVII()
+      actualizarIdsArray(identificador);      
     break;
     case 'contChecks' :
       var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','general','first_half']  
@@ -99,10 +112,11 @@ function deslizaContenedor(identificador, idButton) {
       }, 117);
       if(screenWidth < 500){
         document.getElementById('conti-boton').style.display='flex'
-      }  
+      } 
+      actualizarIdsArray(identificador);      
     break;
     case 'canvasContainer3' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','canvasContainer3','general','padre']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','general']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i]) 
         if (elemento) {
@@ -111,6 +125,10 @@ function deslizaContenedor(identificador, idButton) {
       }
       container1.style.display='grid'
       inicioTracker()
+      aparecerElemento("canvasContainer3", "flex")
+      setTimeout(() => {
+        aparecerElemento("padre", "flex")      
+      }, 200);
       if(screenWidth < 500){        
         var canvas3 = document.getElementById(identificador);
         if (canvas3 !== null) {
@@ -119,18 +137,25 @@ function deslizaContenedor(identificador, idButton) {
         document.getElementById('conti-boton').style.top='20vh'
         document.getElementById('conti-boton').style.display='flex'
       }
+      actualizarIdsArray(identificador);      
     break;
-    case 'contImagNeg' :  
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conteneMantaut','contImagNeg','general','equalizer']  
+    case 'contImagNeg' :    
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conteneMantaut','general']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i]) 
         if (elemento) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
         }
       }
+      aparecerElemento("contImagNeg", "flex")
+      setTimeout(() => {
+        aparecerElemento("equalizer", "flex")              
+      }, 150);
+      setTimeout(() => {
+        changeColorToGreen()      
+      }, 200);
       container1.style.display='grid'
       document.getElementById('conti-boton').removeAttribute('style');
-      changeColorToGreen()
       const numeros = document.querySelectorAll('.column_spans')
       document.getElementById('column_2').style.marginTop = '-6%'
       numeros.forEach((numero) => {
@@ -138,10 +163,11 @@ function deslizaContenedor(identificador, idButton) {
       });
       if(screenWidth < 500){
         document.getElementById('conti-boton').style.display='flex'
-      }  
+      } 
+      actualizarIdsArray(identificador);      
     break;
     case 'contImagGraf' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conteneMantaut','contImagGraf','general','patern']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conteneMantaut','contImagGraf','general']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i]) 
         if (elemento) {
@@ -151,15 +177,17 @@ function deslizaContenedor(identificador, idButton) {
       container1.style.display='grid'
       document.getElementById('conti-boton').removeAttribute('style');
       detenerCicodelia()
-      let padre = document.getElementById('patern')
-      padre.style.display = 'grid'
-      changeColors()
+      aparecerElemento("patern", "grid")
+      setTimeout(() => {
+        changeColors()        
+      }, 150);
         if(screenWidth < 500){
           document.getElementById('conti-boton').style.display='flex'  
         }
+      actualizarIdsArray(identificador);      
     break;
     case 'conti-boton-kaizen' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conti-boton-kaizen']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i]) 
         if (elemento) {
@@ -175,6 +203,7 @@ function deslizaContenedor(identificador, idButton) {
       if(screenWidth < 500){
         document.getElementById('conti-boton').style.display='flex'  
       }
+      actualizarIdsArray(identificador);      
     break;
     default:
   }
@@ -897,7 +926,7 @@ function rodillosKaizen(idButton,vidElem) {
     case 'btn12':
       var miBot = document.getElementById('btn12')
       var videoKaizen = document.getElementById('vidElem')
-      var contBotKaizen = document.getElementById('conti-boton-kaizen')
+      var contBotKaizen = document.getElementById('conti-boton-kaizen')            
       contadorClicks++;
       console.log(contadorClicks)
       if (contadorClicks === 1) {
@@ -910,6 +939,7 @@ function rodillosKaizen(idButton,vidElem) {
             elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
           }
         } 
+          aparecerElemento("toyota-kaizen-antes", "flex")
         container1.style.display='grid'
       } else if (contadorClicks === 2) {
           miBot.innerText = 'DESPUES';
@@ -922,8 +952,8 @@ function rodillosKaizen(idButton,vidElem) {
             }
           } 
           container1.style.display='grid'
+          aparecerElemento("kaizenCont", "flex")
           videoKaizen.style.display = 'flex'
-
           videoKaizen.pause(); // Siempre pausamos antes para evitar conflictos.
           videoKaizen.currentTime = 0;
           // Verificamos si ya está listo para reproducirse:
@@ -1032,6 +1062,7 @@ function rodillosKaizen(idButton,vidElem) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
       } 
+      aparecerElemento("kaizen-propuestos", "flex")
       container1.style.display='grid'
     break;       
     default:
@@ -4237,6 +4268,7 @@ let lista = 0
 let intervaloColors = null
 let intervaloColorsI = null
 function changeColors() {
+  clearInterval(intervaloColors);  
   setTimeout(() => {
     intervaloColors = setInterval(() => {
       if (index < elementsC.length) {
