@@ -40,14 +40,14 @@ document.addEventListener('keydown', function(event) {
       break;
       case 'X':
         Geometria()
-        aparecerElemento("troubleshooting", "grid")
+        aparecerElemento('perfiles-color','grid')
       break;                  
     }
   }
 });
 function Geometria() {
   console.clear();  
-  var contiBoton = document.getElementById('agrupaOblicuos-XXX');  
+  var contiBoton = document.getElementById('padre-rgb');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -213,6 +213,7 @@ let almacenObjetos = JSON.parse(localStorage.getItem('almacenObjetos')) || {};
 let objetoGlobal = null
 let nombreProvisional = null
 let objetoGlobalColor = null
+
 function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14){
   var elementosExcluidos = [id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14]  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -221,11 +222,12 @@ function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'  
     }
   }
+  let perfilador = document.querySelector('#perfiles-color')
+let perfiladorRGB = document.querySelector('#container-slider')
   document.querySelector('.sections').style.display = 'grid'
   document.querySelector('.sections-btn').style.display = 'grid'
   document.querySelector('#simulador').style.display = 'flex'
   container1.style.display = 'grid'
-  const interfaz = document.getElementById('inerfaz-ajuste-fino');    
   let displayTraining = document.getElementById('component1')  
   displayTraining.style.display = 'flex'
   switch(id1){
@@ -235,25 +237,16 @@ function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13
       }
     break;
     case 'colorCMYK':
-      let padreCmyk = document.querySelector("#padre-cmyk");
       let padreControles = document.querySelector("#container-slider");
-      let perfilador = document.querySelector('#perfiles-color')
-
-      padreCmyk.style.display = "grid";
       padreControles.style.display = 'grid';
-      padreCmyk.style.zIndex = 200
-      perfilador.removeAttribute("style");
+      aparecerElemento('padre-cmyk','grid')      
+      perfilador.style.display='none'
     break;
     case 'colorDisplay':
-      let padreRgb = document.querySelector("#padre-rgb");
       let padreControlesRGB = document.querySelector("#padre-controles");
-      let perfiladorRGB = document.querySelector('#perfiles-color')
-
-      padreRgb.style.display = "grid";
       padreControlesRGB.style.display = 'grid';
-      padreRgb.style.zIndex = 200
-      perfiladorRGB.removeAttribute("style");
-      
+      aparecerElemento('padre-rgb','grid')      
+      perfiladorRGB.style.display='none'
     break;
   }  
 }
@@ -6477,7 +6470,7 @@ initResize(
   document.querySelector(".esquina-cmyk")
 );
 function cmykFlotante() { // botones rojos
-  var elementosExcluidos = ['colorCMYK','container-slider','padre-cmyk','simulador','interfaz-perfiles','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','bot-revertir'] 
+  var elementosExcluidos = ['colorCMYK','container-slider','simulador','boton-perfiles','boton-reseteo'] 
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -6498,7 +6491,7 @@ function cmykFlotante() { // botones rojos
   perfilador.removeAttribute("style");
 }
 function rgbFlotante() { // botones rojos
-  var elementosExcluidos = ['colorDisplay','padre-controles','padre-rgb','simulador','interfaz-perfiles','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','bot-revertir'] 
+  var elementosExcluidos = ['colorDisplay','padre-controles','simulador','boton-perfiles','boton-reseteo'] 
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -6518,7 +6511,6 @@ function rgbFlotante() { // botones rojos
   padreRgb.style.zIndex = 200
   perfilador.removeAttribute("style");
 }
-// controlan redimensionado
 function initResize(contenedor, esquina) {
   const MIN_WIDTH = 200;
   const MIN_HEIGHT = 200;
@@ -6597,27 +6589,37 @@ function resetBotonMezclador(parentContiner) {
     updateColorRGB();
   }
 }
-function configurarBoton(selector,contenedor, callback) {
-  const boton = document.querySelector(selector)
-  const padre = document.querySelector(contenedor)
 
-  if (!boton) return
-  // Envolvemos la lógica original del botón
+function configurarBoton(selector, contenedor, callback) {
+  const boton = document.querySelector(selector);
+  const padre = document.querySelector(contenedor);
+  if (!boton || !padre) return;
+
   boton.addEventListener('mousedown', () => {
-    padre.style.width = '50vw'
-    padre.style.height = '68vh'
-    padre.style.zIndex = 200
-    boton.style.backgroundColor = 'rgb(255,0,0)'
+    // Resetear todos los botones al estilo CSS original
+    document.querySelectorAll('.cmyRgb-group').forEach(b => {
+      b.style.backgroundColor = ''; // vacío => vuelve al color CSS
+    });
 
-    padre.style.backgroundColor = ''
-    if (callback) callback() // Llama la función deseada
-  })
+    // Aplicar efecto solo al botón activo
+    boton.style.backgroundColor = 'rgb(255,0,0)';
+
+    // Ajustes al contenedor
+    padre.style.width = '50vw';
+    padre.style.height = '68vh';
+    padre.style.zIndex = 200;
+    padre.style.backgroundColor = '';
+
+    if (callback) callback();
+  });
+
   boton.addEventListener('mouseup', () => {
-    boton.style.backgroundColor = ''
-  })
+    boton.style.backgroundColor = ''; 
+  });
 }
+
+
 function alternarTeccnologia(tecnologia){
-  let perfiladorDeColor = document.querySelector('#perfiles-color')
   let inputR = document.querySelector('#input-r')
   let inputC = document.querySelector('#input-c')
 
@@ -6647,7 +6649,11 @@ function alternarTeccnologia(tecnologia){
     case 'rgb':
       document.querySelectorAll('.btn-opcion, .lbls-cmyRgb').forEach(el => {
         el.style.display = 'block';
-      });      
+      });  
+      const panelCtrlRgb = document.querySelector('#control-panel-rgb');
+      if (panelCtrlRgb) {
+        panelCtrlRgb.classList.remove('activo');
+      }
 
       primerImputRGB.value = spanR.textContent.trim();
       segundoImputRGB.value = spanG.textContent.trim();
@@ -6656,24 +6662,33 @@ function alternarTeccnologia(tecnologia){
 
       setTimeout(() => {
         rgbFlotante()
-        perfiladorDeColor.style.display = 'grid' 
       }, 177);
       setTimeout(() => {
-        aparecerColor('#control-panel-rgb') 
+        aparecerElemento('control-panel-rgb','grid') 
         let buttsGreen = document.querySelectorAll('.cmyRgb-group');
         buttsGreen.forEach((elem) => {
           elem.style.backgroundColor = ''; // Limpia el color de fondo
         });
         if (inputR) {
           inputR.focus();
-        }      
+        } 
+        const ids = ['boton-rgb', 'boton-rgb-alternar', 'boton-rgb-salir','lab-rgb','lab-alternar','lab-salir-rgb'];
+          ids.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });      
+        
       }, 354);
   
     break;
     case 'cmyk':
       document.querySelectorAll('.cmyRgb-group, .lbls-cmyRgb').forEach(el => {
         el.style.display = 'block';
-      });      
+      });
+      const panelCtrlCmyk = document.querySelector('#control-panel-cmyk');
+      if (panelCtrlCmyk) {
+        panelCtrlCmyk.classList.remove('activo');
+      }
 
       primerImputCMYK.value = spanC.textContent.trim();
       segundoImputCMYK.value = spanM.textContent.trim();
@@ -6683,10 +6698,9 @@ function alternarTeccnologia(tecnologia){
 
       setTimeout(() => {
         cmykFlotante()
-        perfiladorDeColor.style.display = 'grid' 
       }, 177);
       setTimeout(() => {
-        aparecerColor('#control-panel-cmyk') 
+        aparecerElemento('control-panel-cmyk','grid') 
         let buttsGreen = document.querySelectorAll('.cmyRgb-group');
         buttsGreen.forEach((elem) => {
           elem.style.backgroundColor = ''; // Limpia el color de fondo
@@ -6694,7 +6708,11 @@ function alternarTeccnologia(tecnologia){
         if (inputC) {
           inputC.focus();
         }      
-
+        const keys = ['lab-seis', 'boton-seis', 'lab-cmyk','boton-cmyk','lab-salir-cmyk','boton-cmyk-salir'];
+          keys.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
       }, 344);
     break;
   }
@@ -6702,11 +6720,6 @@ function alternarTeccnologia(tecnologia){
 function secuenciaAparicion(canal) {
   let inputPerfil = document.querySelector('#nombre-Perfil');
   let inputPerfilExiste = document.querySelector('#nombre-Perfil-existe');
-
-  let perfiladorColor = document.querySelector('#perfiles-color')
-  let equalizerColorMYK = document.querySelector('#control-panel-cmyk')
-  let equalizerColorRGB = document.querySelector('#control-panel-rgb')
-
   setTimeout(() => {
     if (inputPerfil) {  
       inputPerfil.value = '';                     
@@ -6717,28 +6730,21 @@ function secuenciaAparicion(canal) {
   }, 100);
   switch(canal){
     case 'rgb':
-      let etiquetasOpcion = document.querySelectorAll('.lbl-opcion')
-      let botonesOpcion = document.querySelectorAll('.btn-opcion')
-      botonesOpcion.forEach((opcion) =>{
-        opcion.style.display = 'none'
-      })
-      etiquetasOpcion.forEach((opcion) =>{
-        opcion.style.display = 'none'
-      })
-      equalizerColorRGB.style.display = 'none'
-      perfiladorColor.style.display = 'grid'
+      aparecerElemento('perfiles-color','grid')
+      const ids = ['boton-rgb', 'boton-rgb-alternar', 'boton-rgb-salir','lab-rgb','lab-alternar','lab-salir-rgb'];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
     break
     case 'cmyk' :
-      let etiquetasCmyk = document.querySelectorAll('.lbl-cmyk')
-      let botonesCmyk = document.querySelectorAll('.btnCmyk')
-      botonesCmyk.forEach((opcion) =>{
-        opcion.style.display = 'none'
-      })
-      etiquetasCmyk.forEach((opcion) =>{
-        opcion.style.display = 'none'
-      })
-      equalizerColorMYK.style.display = 'none'
-      perfiladorColor.style.display = 'grid'
+      const keys = ['lab-seis', 'boton-seis', 'lab-cmyk','boton-cmyk','lab-salir-cmyk','boton-cmyk-salir'];
+      keys.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+
+      aparecerElemento('perfiles-color','grid')
     break
   }
 }
@@ -6949,9 +6955,15 @@ configurarBoton('#boton-cmyk','#padre-cmyk', '')
 configurarBoton('#boton-rgb-alternar','#padre-rgb', '') 
 configurarBoton('#boton-rgb-salir','#padre-rgb', '')
 configurarBoton('#boton-cmyk-salir','#padre-cmyk', '')
+
 document.querySelector('#btn-salir-perfiles').addEventListener('click', ()=>{
   let etiquetasCmyk = document.querySelectorAll('.lbl-cmyk')
   let botonesCmyk = document.querySelectorAll('.btnCmyk') 
+  let panel = document.getElementById('perfiles-color');
+  let panelColorCmyk = document.getElementById('control-panel-cmyk');
+  let panelColorRgb = document.getElementById('control-panel-rgb');
+
+
   botonesCmyk.forEach((opcion) =>{
     opcion.style.display = 'flex'
   })
@@ -6967,16 +6979,14 @@ document.querySelector('#btn-salir-perfiles').addEventListener('click', ()=>{
     opcion.style.display = 'flex'
   })
   
-  let panel = document.getElementById('padre-rgb');
-  let panelcmyk = document.getElementById('padre-cmyk');
   perfilVisible = false
   desvanecerColor('#perfiles-color')
-  setTimeout(() => {
-    panel.classList.remove("move-panel-rgb");
-  }, 800);
-  setTimeout(() => {
-    panelcmyk.classList.remove("move-panel-cmyk");
-  }, 1000);
+  panel.classList.remove("activo");
+  panel.classList.remove("desvanecer");
+  panelColorCmyk.classList.remove("activo");
+  panelColorCmyk.classList.remove("desvanecer");
+  panelColorRgb.classList.remove("activo");
+  panelColorRgb.classList.remove("desvanecer");
 
 })
 document.querySelectorAll('.alterna-panel').forEach(btn => {
@@ -6991,40 +7001,36 @@ document.querySelectorAll('.alterna-panel').forEach(btn => {
   });
 });
 document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{ 
-  let padreCMYK = document.querySelector('#padre-cmyk');  
   let slidersCMYK = document.querySelector('#container-slider')
 
-    var elementosExcluidos = ['colorCMYK','container-slider','padre-cmyk','simulador','interfaz-perfiles','perfiles-entintado','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','bot-revertir'] 
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var element = document.getElementById(allContenedores[i])
-      if (element) {
-        element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-      }
-    } 
-    padreCMYK.style.display = "grid";
-    slidersCMYK.style.display = 'grid';
-    padreCMYK.style.zIndex = 200
-    padreCMYK.classList.remove('move-panel-cmyk')    
-
+  var elementosExcluidos = ['colorCMYK','container-slider','simulador'] 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var element = document.getElementById(allContenedores[i])
+    if (element) {
+      element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  } 
+  container1.style.display='grid'
+  slidersCMYK.style.display = 'grid';
+  aparecerElemento('padre-cmyk','grid')
+  actualizarIdsArray('padre-cmyk');
 })
 document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
-  let padreRGB = document.querySelector('#padre-rgb');
   let slidersRGB = document.querySelector('#padre-controles')
 
-    var elementosExcluidos = ['colorDisplay','padre-controles','padre-rgb','simulador','interfaz-perfiles','perfiles-entintado','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','bot-revertir'] 
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var element = document.getElementById(allContenedores[i])  
-      if (element) {
-        element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-      }
-    } 
-    padreRGB.style.display = "grid";
-    slidersRGB.style.display = 'grid';
-    padreRGB.style.zIndex = 200
-    padreRGB.classList.remove('move-panel-rgb')      
-
+  var elementosExcluidos = ['colorDisplay','padre-controles','simulador'] 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var element = document.getElementById(allContenedores[i])  
+    if (element) {
+      element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  } 
+  container1.style.display='grid'
+  slidersRGB.style.display = 'grid';
+  aparecerElemento('padre-rgb','grid')
+  actualizarIdsArray('padre-rgb');
 })
-document.querySelector('#boton-cmyk-salir').addEventListener('click', () => {
+/* document.querySelector('#boton-cmyk-salir').addEventListener('click', () => {
   let elementos = [
     { selector: '#padre-cmyk', delay: 0 },
     { selector: '#perfiles-color', delay: 177 },
@@ -7039,7 +7045,7 @@ document.querySelector('#boton-cmyk-salir').addEventListener('click', () => {
     }
   });
   restablecerClick(['.butt-perfiles']); 
-});
+}); */
 document.querySelector('#boton-rgb-salir').addEventListener('click', () => {
   let elementos = [
     { selector: '#padre-rgb', delay: 0 },

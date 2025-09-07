@@ -2080,6 +2080,11 @@ function formateaPrepress(eltoHtml){
     }
 }
 function irContenedorAnterior() {
+  if (idsArray.length === 2) {
+    mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','gran-cortina'])
+    idsArray=[]
+    return;
+  }
   var previousElementID = idsArray[idsArray.length - 2];  
   switch (previousElementID ) {  
     case "cont-titulo":
@@ -2411,7 +2416,42 @@ function irContenedorAnterior() {
     break;
     case 'interfaz-mtto':
       resultadosMA('interfaz-mtto')          
+    break;
+    case 'padre-cmyk':
+      let padreCMYK = document.querySelector('#padre-cmyk');  
+      let slidersCMYK = document.querySelector('#container-slider')
+
+      var elementosExcluidos = ['colorCMYK','container-slider','padre-cmyk','simulador'] 
+      for (var i = 0; i < allContenedores.length; i++) { 
+        var element = document.getElementById(allContenedores[i])
+        if (element) {
+          element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+        }
+      } 
+      container1.style.display='grid'
+      padreCMYK.style.display = "grid";
+      slidersCMYK.style.display = 'grid';
+      padreCMYK.style.zIndex = 200
+      padreCMYK.classList.remove('move-panel-cmyk')
+    break;
+    case 'padre-rgb':
+      let padreRGB = document.querySelector('#padre-rgb');
+      let slidersRGB = document.querySelector('#padre-controles')
+
+      var elementosExcluidos = ['colorDisplay','padre-controles','padre-rgb','simulador'] 
+      for (var i = 0; i < allContenedores.length; i++) { 
+        var element = document.getElementById(allContenedores[i])  
+        if (element) {
+          element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+        }
+      } 
+      container1.style.display='grid'
+      padreRGB.style.display = "grid";
+      slidersRGB.style.display = 'grid';
+      padreRGB.style.zIndex = 200
+      padreRGB.classList.remove('move-panel-rgb')      
     break;   
+
     default:
   } 
   let elementoEliminado = idsArray.pop();
@@ -2422,6 +2462,11 @@ function irContenedorAnterior() {
 }
 
 function irContenedorSiguiente() {
+  if (idsArrayEliminados.length === 2) {
+    mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','gran-cortina'])
+    idsArrayEliminados=[]
+      return;
+  }
   var previousElementID = idsArrayEliminados[idsArrayEliminados.length - 1];
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])
@@ -2429,7 +2474,6 @@ function irContenedorSiguiente() {
       elemento.style.display = 'none'
     }
   }
-
   switch (previousElementID ) {  
     case "cont-titulo":
     location.reload()
@@ -2760,7 +2804,42 @@ function irContenedorSiguiente() {
     break; 
     case 'interfaz-mtto':
       resultadosMA('interfaz-mtto')          
+    break; 
+    case 'padre-cmyk':
+      let padreCMYK = document.querySelector('#padre-cmyk');  
+      let slidersCMYK = document.querySelector('#container-slider')
+
+      var elementosExcluidos = ['colorCMYK','container-slider','padre-cmyk','simulador'] 
+      for (var i = 0; i < allContenedores.length; i++) { 
+        var element = document.getElementById(allContenedores[i])
+        if (element) {
+          element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+        }
+      } 
+      container1.style.display='grid'
+      padreCMYK.style.display = "grid";
+      slidersCMYK.style.display = 'grid';
+      padreCMYK.style.zIndex = 200
+      padreCMYK.classList.remove('move-panel-cmyk')
+    break;
+    case 'padre-rgb':
+      let padreRGB = document.querySelector('#padre-rgb');
+      let slidersRGB = document.querySelector('#padre-controles')
+
+      var elementosExcluidos = ['colorDisplay','padre-controles','padre-rgb','simulador'] 
+      for (var i = 0; i < allContenedores.length; i++) { 
+        var element = document.getElementById(allContenedores[i])  
+        if (element) {
+          element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+        }
+      } 
+      container1.style.display='grid'
+      padreRGB.style.display = "grid";
+      slidersRGB.style.display = 'grid';
+      padreRGB.style.zIndex = 200
+      padreRGB.classList.remove('move-panel-rgb')      
     break;   
+
     default:
   } 
 
@@ -3023,6 +3102,11 @@ function imagenesPasoApaso(id) {
 
   const padre = document.getElementById('padre-1');
   padre.classList.remove("activo");
+  const padre2 = document.getElementById('padre-2');
+  padre2.classList.remove("activo");
+  const padre3 = document.getElementById('contImaginario');
+  padre3.classList.remove("activo");
+
 
   document.body.style.zoom = (screenWidth < 500) ? "100%" : "67%";
   conteLink.style.left = (screenWidth < 500) ? '43.5vw' : '43.5vw';
@@ -3031,22 +3115,22 @@ function imagenesPasoApaso(id) {
   // Configuración por cada link
   const pasos = {
     'link1': {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'conti-boton', 'largoImpresion','linksMA', 'linkLis', 'imag1', 'contImgEntrenos', 'control-neumatico', 'padre-1'],
+      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut','butt-links-II','conti-boton', 'largoImpresion','linksMA', 'linkLis', 'imag1', 'contImgEntrenos', 'control-neumatico', 'padre-1'],
       scroll: 'control-neumatico'
     },
     'link2': {
       excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'linksMA', 'butt-links-II', 'linkLis', 'conteneMantaut', 'conti-boton', 'largoImpresion', 'contImgEntrenos', 'padre-2', 'imag2', 'pneumatico', 'contImaginario-III'],
       scroll: 'pneumatico'
     },
-    'link3': {
+    'contImaginario': {
       excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'conti-boton', 'contImgEntrenos', 'padre-neumat', 'contImaginario', 'imag3', 'bailarina'],
       scroll: 'bailarina'
     },
-    'link4': {
+    'contImaginario-II': {
       excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'conti-boton', 'contImgEntrenos', 'padre-neumat', 'imag4', 'rodillo-infeed', 'contImaginario-II'],
       scroll: 'rodillo-infeed'
     },
-    'link5': {
+    'puesta-punto': {
       excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'conti-boton', 'contImgEntrenos', 'padre-neumat', 'puesta-punto'],
       scroll: 'puesta-punto'
     }
@@ -3074,23 +3158,50 @@ function imagenesPasoApaso(id) {
 
   // Estilos especiales para link1 (padre y boton volver)
   if (id === 'link1') {
-
-    aparecerElemento("padre-1", "flex")
-
     padre.style.top = '20vh';
     padre.style.left = '77vw';
+    aparecerElemento("padre-1", "flex")
+    setTimeout(() => {
+      animateScroll(paso.scroll);  
+    }, 800);  
+  }
+  if (id === 'link2') {
+    padre2.style.top = '20vh';
+    padre2.style.left = '77vw';
+    aparecerElemento("padre-2", "flex")
+    setTimeout(() => {
+      animateScroll(paso.scroll);  
+    }, 1000);  
+  }
+  if (id === 'contImaginario') {
+    aparecerElemento("contImaginario", "flex")
+    padre3.style.top = '20vh';
+    padre3.style.left = '77vw';
+  }
+  if (id === 'contImaginario-II') {
+    padre3.style.top = '20vh';
+    padre3.style.left = '77vw';
+    aparecerElemento("contImaginario-II", "flex")
+    setTimeout(() => {
+      animateScroll(paso.scroll);  
+    }, 1000);  
+  }
+  if (id === 'puesta-punto') {
+    padre3.style.top = '20vh';
+    padre3.style.left = '77vw';
+    aparecerElemento("puesta-punto", "flex")
+    setTimeout(() => {
+      animateScroll(paso.scroll);  
+    }, 1000);  
+  }
 
-    if (screenWidth < 500) {
-      solucionador.style.gridTemplateColumns = 'repeat(2, 1fr)';
-      solucionador.style.gridTemplateRows = 'repeat(4, 1fr)';
-    }
+  if (screenWidth < 500) {
+    solucionador.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    solucionador.style.gridTemplateRows = 'repeat(4, 1fr)';
   }
 
   // Resaltar botón seleccionado
   Array.from(botones).forEach(b => b.style.color = (b.id === id) ? 'orange' : '');
-
-  // Scroll al elemento
-  animateScroll(paso.scroll);
 }
 function lubricacion(buttId){
   alternarButtsDesbobinador(buttId); 

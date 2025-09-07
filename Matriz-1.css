@@ -2097,20 +2097,7 @@ header {
   color: white;
   font-family: "GothamRounded", sans-serif; 
 }
-#padre-2{
-  position: absolute;
-  display: flex;
-  flex-direction: row; 
-  align-items: center;
-  top:20vh;
-  left:77vw;
-  height:82vh;
-  width:69vw;
-  display: none; 
-  border-radius: 21px; 
-  background-color:black;
-  border: solid 1px orange;
-} 
+#padre-2,
 #padre-1 {
   position: absolute;
   top: 20vh;
@@ -2130,7 +2117,7 @@ header {
   transform-origin: center;     /* crece desde el centro */
   transition: transform 1s ease; /* animación de 1000ms */
 }
-
+#padre-2.activo,
 #padre-1.activo {
   display: flex;
   transform: scale(1); /* tamaño normal definido por CSS */
@@ -2267,18 +2254,26 @@ header {
  }
 #contImaginario-II{
   position:absolute;
-  display: flex;
   flex-direction: column; 
   align-items: flex-start;
   top:19.5vh;
   left:77vw;
   height:82vh;
   width:69vw;
-  display: none; 
   border-radius: 21px; 
   background-color:black;
   border: solid 1px orange;
+
+  display: none; 
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 1s ease;
 }
+#contImaginario-II.activo {
+  display: flex;
+  transform: scale(1); /* tamaño normal definido por CSS */
+}
+
 #rodillo-infeed{
   position: absolute;
   left:27%;
@@ -2314,7 +2309,6 @@ header {
 }
 #puesta-punto{
   position:absolute;
-  display: flex;
   flex-direction: column;
   top:19.5vh;
   left:77vw;
@@ -2322,24 +2316,41 @@ header {
   width:69vw;
   border: 1px solid orange;
   border-radius: 20px;
-  display: none;
   overflow: auto;
   background-color: #000;
+
+  display: none; 
+  transform: scale(0);          /* empieza reducido */
+  transform-origin: center;     /* crece desde el centro */
+  transition: transform 1s ease; /* animación de 1000ms */
 }
+#puesta-punto.activo {
+  display: flex;
+  transform: scale(1); /* tamaño normal definido por CSS */
+}
+
 #contImaginario{
   position:absolute;
-  display: flex;
   flex-direction: column; 
   align-items: center;
   top:19vh;
   left:77vw;
   height:82vh;
-  width:69vw;  
-  display: none; 
+  width:69vw; 
   border-radius: 21px; 
   background-color:black;
   border: solid 2px orange;
+
+  display: none; 
+  transform: scale(0);          /* empieza reducido */
+  transform-origin: center;     /* crece desde el centro */
+  transition: transform 1s ease; /* animación de 1000ms */
 }
+#contImaginario.activo {
+  display: flex;
+  transform: scale(1); /* tamaño normal definido por CSS */
+}
+
 #imag3{
   position:relative;
   display: flex;

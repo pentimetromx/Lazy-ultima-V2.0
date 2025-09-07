@@ -4559,71 +4559,63 @@ function isVisible(element) {
     element.offsetHeight > 0
   );
 }
-function cerrarVentanasII(){
-  let botonVuelve = document.querySelector('#butt-links-II')
-  botonVuelve.style.left = ''
-  botonVuelve.style.top = ''
-  if(screenWidth < 500){
-    let contFreno = document.getElementById('grilla-frena');
-    let lubricantes = document.getElementById('lubricantes'); 
-    let rodamientos = document.getElementById('inicio');
-    let rodillos = document.getElementById('abuelo-cuadricula')
-    let vidManometros = document.getElementById('vid_festo')
-    let padreManometros = document.getElementById('padre-1')
-    let vidZapatas = document.getElementById('padre-2')
-    let vidBailarina = document.getElementById('contImaginario')
-    let rugosos = document.getElementById('contImaginario-II')
-    let instrucciones = document.getElementById('puesta-punto')
-    let imgsDurezas = document.getElementById('grilla-durezas')
-    if (isVisible(lubricantes)) {
-      LubricaDesbobinador('btn1');
+function cerrarVentanasII() {
+  const botonVuelve = document.querySelector('#butt-links-II');
+  botonVuelve.style.left = '';
+  botonVuelve.style.top = '';
+
+  if (screenWidth < 500) {
+    // Mapeo de secciones y acciones en móvil
+    const accionesMovil = [
+      { id: 'lubricantes',     fn: () => LubricaDesbobinador('btn1') },
+      { id: 'grilla-frena',    fn: () => abrirSeccionContinua('pantalla-inicial') },
+      { id: 'inicio',          fn: () => abrirSeccionContinua('pantalla-inicial') },
+      { id: 'abuelo-cuadricula', fn: () => abrirSeccionContinua('pantalla-inicial') },
+      { id: 'padre-1',         fn: () => listaEntrenamientosII('archivo') },
+      { id: 'vid_festo',       fn: () => imagenesPasoApaso('contImgEntrenos','','contBotInfeed','imag1','link1','control-neumatico') },
+      { id: 'padre-2',         fn: () => listaEntrenamientosII('archivo') },
+      { id: 'contImaginario',  fn: () => listaEntrenamientosII('archivo') },
+      { id: 'contImaginario-II', fn: () => listaEntrenamientosII('archivo') },
+      { id: 'puesta-punto',    fn: () => listaEntrenamientosII('archivo') },
+      { id: 'grilla-durezas',  fn: () => abrirSeccionContinua('pantalla-inicial') }
+    ];
+
+    accionesMovil.forEach(({ id, fn }) => {
+      const el = document.getElementById(id);
+      if (el && isVisible(el)) fn();
+    });
+
+  } else {
+    // IDs que deben permanecer visibles en escritorio
+    const elementosExcluidos = [
+      'buscador','search-form','conteneMantaut','conti-boton',
+      'links-inicialesI','links-iniciales','largoImpresion',
+      'contImgEntrenos','linksMA','linkLis'
+    ];
+
+    allContenedores.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
+    });
+
+    document.body.style.zoom = "100%";
+    container1.style.display = 'grid';
+
+    const troubleshooting = document.getElementById('troubleshooting');
+    if (troubleshooting) {
+      troubleshooting.style.display = 'grid';
+      troubleshooting.style.left = '';
     }
-    if (isVisible(contFreno)) {
-      abrirSeccionContinua('pantalla-inicial');
-    }
-    if (isVisible(rodamientos)) {
-      abrirSeccionContinua('pantalla-inicial');
-    }
-    if (isVisible(rodillos)) {
-      abrirSeccionContinua('pantalla-inicial'); 
-    }
-    if (isVisible(padreManometros)) {
-      listaEntrenamientosII('archivo')
-    }
-    if (isVisible(vidManometros)) {
-      imagenesPasoApaso('contImgEntrenos','','contBotInfeed','imag1','link1','control-neumatico')
-    }
-    if (isVisible(vidZapatas)) {
-      listaEntrenamientosII('archivo')
-    }
-    if (isVisible(vidBailarina)) {
-      listaEntrenamientosII('archivo')
-    }
-    if (isVisible(rugosos)) {
-      listaEntrenamientosII('archivo')
-    }
-    if (isVisible(instrucciones)) {
-      listaEntrenamientosII('archivo')
-    }
-    if (isVisible(imgsDurezas)) {
-      abrirSeccionContinua('pantalla-inicial'); 
-    }
-  }else{
-    var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos','linksMA','linkLis']  
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var elemento = document.getElementById(allContenedores[i])  
-      if (elemento) {
-        elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-      }
-    }
-    container1.style.display='grid'
-    document.getElementById('troubleshooting').style.display='grid'
-    const ventanas = document.querySelectorAll('.ventana');
-    for (let i = 0; i < ventanas.length; i++) {
-      ventanas[i].style.display = 'none';
-    }
+
+    const linksMA = document.getElementById('linksMA');
+    if (linksMA) linksMA.style.top = '';
+
+    document.querySelectorAll('.ventana').forEach(v => v.style.display = 'none');
   }
 }
+
+
+
 function cerrarPilares(){
   document.getElementById('linkListI').style.display='none'
   document.getElementById('linkList').style.display='none'
