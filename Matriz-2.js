@@ -1133,24 +1133,29 @@ function restablecerPosiciones(claseElto) {
     });
   });
 }
-function desvanecerColor(contenedor) {
-  let padreCmyk = document.querySelector(contenedor)
-  let propiedadesOriginales = {
-    opacity: 1,
-    display: padreCmyk.style.display,
-    transition: padreCmyk.style.transition
-  };
-  // Aplicar transición de opacidad
-  padreCmyk.style.transition = "opacity 1.5s ease";
-  padreCmyk.style.opacity = "0";
-  // Esperar 1.5 segundos y ocultar completamente el elemento
-  setTimeout(() => {
-    padreCmyk.style.display = "none";
-    // Restaurar propiedades originales
-    padreCmyk.style.opacity = propiedadesOriginales.opacity;
-    padreCmyk.style.transition = propiedadesOriginales.transition;
-  }, 1500);
+
+function desvanecerColor(id) {
+  const contenedor = document.querySelector(id);
+  const colorLevels = document.querySelector('#perfiles-color')
+  if(colorLevels){colorLevels.style.display='none'}
+  colorLevels.classList.remove("desvanecer");
+  colorLevels.classList.remove("activo");
+
+  if (!contenedor) return;
+
+  contenedor.classList.remove("activo");
+  contenedor.classList.add("desvanecer");
+
+  contenedor.addEventListener("transitionend", () => {
+    if (contenedor.classList.contains("desvanecer")) {
+      contenedor.style.display = "none";
+      contenedor.classList.remove("desvanecer");
+    }
+    
+  }, { once: true });
 }
+
+
 function aparecerColor(contenedor) {
   let padre = document.querySelector(contenedor);
   

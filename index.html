@@ -1666,9 +1666,9 @@
           <ol class="linksTraining" id="linkLis">
             <li><a href="#" id="link1" class="colorClick" data-imagen="imag11" onclick="imagenesPasoApaso('link1')">Asegurar PSI neumática</a></li>
             <li><a href="#" id="link2" class="colorClick" data-imagen="imag22" onclick="imagenesPasoApaso('link2')">Optimización al freno de bobina</a></li>
-            <li><a href="#" id="link3" class="colorClick" data-imagen="imag33" onclick="imagenesPasoApaso('link3')">Ajuste parámetros en basculante</a></li>
-            <li><a href="#" id="link4" class="colorClick" data-imagen="imag44" onclick="imagenesPasoApaso('link4')">Calibración / Limpieza / Rugosidad en INFEED</a></li>
-            <li><a href="#" id="link5" class="colorClick" data-imagen="imag55" onclick="imagenesPasoApaso('link5')">Paso a paso puesta a punto</a></li>
+            <li><a href="#" id="link3" class="colorClick" data-imagen="imag33" onclick="imagenesPasoApaso('contImaginario')">Ajuste parámetros en basculante</a></li>
+            <li><a href="#" id="link4" class="colorClick" data-imagen="imag44" onclick="imagenesPasoApaso('contImaginario-II')">Calibración / Limpieza / Rugosidad en INFEED</a></li>
+            <li><a href="#" id="link5" class="colorClick" data-imagen="imag55" onclick="imagenesPasoApaso('puesta-punto')">Paso a paso puesta a punto</a></li>
         </ol>
         
         </div>        
@@ -1697,6 +1697,8 @@
         </video> 
       </div>
     </div>
+
+
     <p id="instrucciones_manometro" class="ventana">
       1. Limpia el manómetro antes de calibrar.<br>
       2. Verifica la precisión utilizando un dispositivo de referencia conocido.<br>
@@ -2656,7 +2658,7 @@
         <div class="section" onclick="ocultaElementos('container01','links-inicialesI','links-iniciales','buscador','search-form','control-panel')">Section 4</div>
         <div class="section" onclick="ocultaElementos('container01','links-inicialesI','links-iniciales','buscador','search-form','interfaz-registro')">Section 5</div>
         <div class="section" onclick="iniciarAnimaciones()">Consola</div>
-        <div class="section" onclick="ocultaElementos('colorCMYK','container-slider','padre-cmyk','links-inicialesI','links-iniciales','buscador','search-form',)">CMYK</div>
+        <div class="section" onclick="ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form',)">CMYK</div>
         <div class="section" onclick="ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form',)">RGBA</div>
       </div>   
       <div class="digital-clock" id="clock">  
@@ -2952,6 +2954,7 @@
           <div id="linea-profundidad-horizontal"></div>
   
         </div>
+        
         <div id="control-perfiles"></div>
         <span id="current-Color"></span>
         <div id="linea-profundidad-horizontal-2"></div>
@@ -3255,7 +3258,7 @@
           <span id="lab-seis" class="lbls-cmyRgb lbl-cmyk">Reset</span>  
           <button id="boton-cmyk" class="cmyRgb-group btnCmyk"></button>
           <span id="lab-cmyk" class="lbls-cmyRgb lbl-cmyk">RGB</span> 
-          <button id="boton-cmyk-salir" class="cmyRgb-group btnCmyk"></button> 
+          <button id="boton-cmyk-salir" class="cmyRgb-group btnCmyk"  onclick="desvanecerColor('#padre-cmyk')"></button> 
           <span id="lab-salir-cmyk" class="lbls-cmyRgb lbl-cmyk">Salir</span>
 
         </div>
