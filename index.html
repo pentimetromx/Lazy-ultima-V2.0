@@ -1914,6 +1914,44 @@
         </div>
       </div>
 
+      <div id="conte-maquinas">
+        <div class="cont-user"  id="rotativa-4"> 
+          <img data-src="./assets/prensa.jpg" class="lazy icono-user" id="rot4" onclick="resultadosMaquina('rot4','updateRota-4','img1','true')" alt="icono">
+          <span class="lblMaquina">Rotativa 4</span> 
+        </div>
+
+        <div class="cont-user" id="rotativa-3">
+          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="rot3" onclick="resultadosEmpleado('icon-andres','updateAndres','img2','true')" alt="icono">
+          <span class="lblMaquina">Rotativa 3</span>
+        </div>
+
+        <div class="cont-user" id="rotativa-2">
+          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="rot2" onclick="resultadosEmpleado('icon-jorge','updateJorge','img3','true')" alt="icono">
+          <span class="lblMaquina">rotativa 2</span>
+        </div>
+
+        <div class="cont-user" id="rotativa-1">
+          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="rot1" onclick="resultadosEmpleado('icon-jesus','updateJesus','img4','true')" alt="icono">
+          <span class="lblMaquina">Rotativa 1</span>
+        </div>
+
+        <div class="cont-user" id="flexografica">
+          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="flexo" onclick="resultadosEmpleado('icon-sandra','updateSandra','img5','true')" alt="icono">
+          <span class="lblMaquina">Flexografica</span>
+        </div>
+
+        <div class="cont-user" id="Armadora">
+          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="Arma-sobres" onclick="resultadosEmpleado('icon-mario','updateMario','img6','true')" alt="icono">
+          <span class="lblMaquina">Armadora de sobres</span>
+        </div>
+
+        <div class="cont-user" id="colectora-1">
+          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="colectora1" onclick="resultadosEmpleado('icon-ana','updateAna','img7','true')" alt="icono">
+          <span class="lblMaquina">Colectora 1</span>
+        </div>
+      </div>
+
+
        
       <div id="contLineas">
         <div id="canvasContainer4" class="graphs-lines" onclick="openGraphics('canvasContainer4')">
@@ -2013,15 +2051,18 @@
       <div class="linea3"></div>
       <div class="linea4"></div>
     </div>
+
     <div id="contenedorElementos">
       <div id="linea-1" class="conte-listado">Optimizar parámetros</div>
       <div id="linea-2" class="conte-listado">Análisis de patrones</div>
       <div id="linea-3" class="conte-listado">Reflectividad</div>
       <div class="conte-listado" id="ultimoElemento" onclick="muestraMenu()">Aplicaciones
-        <span id="arow-direction"></span>
+        <span class="arow-direction"></span>
         <div id="segundaLista">
           <div id="linea-11" class="listado">Tratamiento 1</div>
-          <div id="linea-14" class="listado" onclick="interfazAvance()">Comparación</div>
+          <div id="linea-14" class="listado" onclick="interfazAvance()">Comparación
+           <span class="arow-direction"></span>
+          </div>
           <div id="linea-12" class="listado">Tratamiento 2</div>
           <div id="linea-13" class="listado">Análisis de datos</div>
           <div id="linea-15" class="listado">Ajuste de equipo</div>
@@ -2035,6 +2076,7 @@
       <div id="linea-9" class="conte-listado">Resultados densitométricos</div>
       <div id="linea-10" class="conte-listado">Iluminación</div>      
     </div>
+
     <div id="contenedor_padre">
       <div id="display">
         <span id="aplique" class="span_interfaz">Nivel desenfoque</span>
@@ -2477,6 +2519,7 @@
         <li><span class="indice">31.</span> Recuerda que cada día es una nueva oportunidad para mejorar.</li>
       </ol>
     </div>
+    
     <div id="contenedor-2" class="calendar-container">
       <h2 class="month-title">March</h2>
       
@@ -2596,9 +2639,8 @@
       <div class="mes">Octubre</div>
       <div class="mes">Noviembre</div>
       <div class="mes">Diciembre</div>
-      <div id="month-display"></div>
     </div>
-    <div id="dia">Dia</div>
+
     <span id="actividad-lubricacion" class="actividades">Actividades de Lubricacion</span>
     <span id="actividad-limpieza" class="actividades">Actividades de Limpieza</span>
     <div id="tareas-lubricacion" class="conjunto-tareas">
@@ -2996,16 +3038,33 @@
         </div>
   
       </div>
+
+
+      <div id="contenedor-registro">
+        <div class="encabezado-registro">
+          <span class="etiqueta-izq">Registro en progreso :</span>
+          <span class="etiqueta-der">Restzeit 14479 Std.</span>
+        </div>
+        
+        <div class="contenedor-hijo-registro">
+          <div id="barra-progreso-registro"></div>
+        </div>
+      </div>
+
+
+
+
       <div id="unit-job-track">
   
         <div id="job-files" class="files-job">  
-          <div class="jobs">
+
+          <div id="first-job" class="jobs">
             <span id="clientes" class="base-datos estilo-1">Cliente</span> <span id="panel-uno" class="base-datos datos-base"></span>
           </div>        
-          <div class="jobs">
+          <div id="second-job" class="jobs">
             <span id="lineas" class="base-datos estilo-1">Linea</span> <span id="panel-dos" class="base-datos datos-base"></span>
           </div>
-          <div class="jobs">
+          <div id="third-job" class="jobs">
             <span id="tirajes" class="base-datos estilo-1">Tiraje</span>  
             <span class="base-datos">
               <div id="display-cantidad">
@@ -3022,7 +3081,8 @@
               </div>  
             </span>
           </div>
-          <button id="abandonar-perfiles">Abandonar</button>
+          
+          <button id="abandonar-perfiles" class="btn-abandonar">Abandonar</button>
           <button id="ir-consola" class="consola-ir">Ir a la consola</button>
 
         </div>
@@ -3135,7 +3195,7 @@
       </div>  
 
       <div id="ventanaEmergente" class="oculta">
-        <div class="contenidoEmergente">
+        <div id="hijoVentana" class="contenidoEmergente">
           <p id="mensajeEmergente">Por favor, ingrese un nombre válido</p>
           <button id="cerrarEmergente">Cerrar</button>
         </div>
@@ -3149,9 +3209,6 @@
 
       <div id="padre-rgb">
         <div class="esquina esquina-rgb"></div>
-
-        <span id="color-nombre" class="nombre-cliente"></span>
-
         <div id="colorDisplay"></div>   
                  
         <div id="padre-controles" class="slider">
@@ -3191,7 +3248,7 @@
           <span id="lab-rgb" class="lbls-cmyRgb lbl-opcion">Reset</span>    
           <button id="boton-rgb-alternar" class="cmyRgb-group btn-opcion"></button>
           <span id="lab-alternar" class="lbls-cmyRgb lbl-opcion">CMYK</span>
-          <button id="boton-rgb-salir" class="cmyRgb-group btn-opcion" onclick="desvanecerColor('#padre-rgb')"></button>
+          <button id="boton-rgb-salir" class="cmyRgb-group btn-opcion"></button>
           <span id="lab-salir-rgb" class="lbls-cmyRgb lbl-opcion">Salir</span>
 
         </div>
@@ -3212,6 +3269,7 @@
 
       <div id="padre-cmyk"> 
         <div class="esquina esquina-cmyk"></div>
+
         <div id="colorCMYK"></div> 
         
         <div id="container-slider" class="slider">
@@ -3258,7 +3316,7 @@
           <span id="lab-seis" class="lbls-cmyRgb lbl-cmyk">Reset</span>  
           <button id="boton-cmyk" class="cmyRgb-group btnCmyk"></button>
           <span id="lab-cmyk" class="lbls-cmyRgb lbl-cmyk">RGB</span> 
-          <button id="boton-cmyk-salir" class="cmyRgb-group btnCmyk"  onclick="desvanecerColor('#padre-cmyk')"></button> 
+          <button id="boton-cmyk-salir" class="cmyRgb-group btnCmyk"></button> 
           <span id="lab-salir-cmyk" class="lbls-cmyRgb lbl-cmyk">Salir</span>
 
         </div>
@@ -3277,7 +3335,7 @@
       </div>
 
       <div id="perfiles-color" class="formulario">
-        <span id="span-crear">Creacion de perfil</span>
+        <span id="span-crear">Administrador perfiles</span>
         <span id="span-nombres">Nombre perfil / color</span>
   
         <input type="text" id="nombre-Perfil" placeholder="Crear perfil">
@@ -3340,7 +3398,8 @@
         
         <div id="control-btn-rgb">
           <button id="animate-btn">Actualizar color</button>
-          <button id="exit-btn" class="alterna-panel"onclick="alternarOcultarBotones('rgb')">Salir</button>
+          <button id="reset-btn-rgb">Reset</button>
+          <button id="exit-rgb" class="alterna-panel">Salir</button>
         </div>
     
       </div>
@@ -3371,7 +3430,8 @@
       
         <div id="control-btn-cmyk">
           <button id="animate-btn-cmyk">Actualizar color</button>
-          <button id="exit-btn" class="alterna-panel" onclick="alternarOcultarBotones('cmyk')">Salir</button>
+          <button id="reset-btn-cmyk">Reset</button>
+          <button id="exit-cmyk" class="alterna-panel">Salir</button>
         </div>
       
       </div>

@@ -808,6 +808,10 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
   allContenedores.forEach(id => {
     const elem = document.getElementById(id);
     if (!elem) return;
+  
+    document.querySelectorAll('#container01 > button')
+    .forEach(btn => btn.style.backgroundColor = '');
+
 
     if (visibles.includes(id)) {
       const dataDisplay = elem.getAttribute("data-display");

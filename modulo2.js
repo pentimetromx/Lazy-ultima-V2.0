@@ -1,21 +1,61 @@
-function aparecerElemento(id, display = "block") {
-  const contenedor = document.getElementById(id);
-  if (!contenedor) return; // seguridad si no existe el id
+function desvanecerColor(id) {
+  const contenedor = document.querySelector(id);
+  if (!contenedor) return;
+  contenedor.classList.remove("activo"); // <- importante
+  contenedor.classList.add("desvanecer");
 
-  contenedor.classList.remove("activo");
-
-  // aplicamos el display inmediatamente
-  contenedor.style.display = display;
-
-  setTimeout(() => {
-    requestAnimationFrame(() => {
-      contenedor.classList.add("activo");
-    });
-  }, 100);
+  contenedor.addEventListener("transitionend", () => {
+    if (contenedor.classList.contains("desvanecer")) {
+      contenedor.style.display = "none";
+      contenedor.classList.remove("desvanecer");
+    }
+  }, { once: true });
 }
+
+function aparecerElemento(id, display = "grid") {
+  const contenedor = document.getElementById(id);
+  if (!contenedor) return;
+
+  // Forzar ocultamiento previo
+  contenedor.classList.remove("activo");
+  contenedor.style.display = "none";
+
+  // limpiar hijos si es necesario
+  Array.from(contenedor.querySelectorAll("*")).forEach(hijo => {
+    hijo.style.display = "";
+    hijo.classList.remove("oculto");
+  });
+
+  // después de un pequeño delay re-aplica display y clase
+  setTimeout(() => {
+    contenedor.style.display = display;
+    requestAnimationFrame(() => contenedor.classList.add("activo"));
+  }, 30);
+}
+
+
+const salirPadreCmyk = document.querySelector('#boton-cmyk-salir')
+const salirPadreRgb= document.querySelector('#boton-rgb-salir')
+
+salirPadreCmyk.addEventListener('click', () => {
+  const padreCmyk = document.querySelector('#padre-cmyk')
+  resetBotonMezclador('padre-cmyk')
+  setTimeout(() => {
+    ocultarElementoProgressivo(padreCmyk) 
+    alternarOcultarBotones() 
+  }, 200);
+} )
+
+salirPadreRgb.addEventListener('click', () => {
+  const padreRgb = document.querySelector('#padre-rgb')
+  resetBotonMezclador('padre-rgb')
+  setTimeout(() => {
+    ocultarElementoProgressivo(padreRgb) 
+    alternarOcultarBotones() 
+  }, 200);
+} )
+
   
-
-
 function deslizaContenedor(identificador, idButton) {
   restablecerPosiciones(['.ocultos', '.class-line'])     
   let contenedor = document.querySelector('#troubleshooting')
@@ -1495,54 +1535,54 @@ var chart6 = new Chart(miCanvas5, {
 var chart7 = new Chart(miCanvas6, { 
   type: 'bar',
   data: {
-      labels: ['DEFECTOS IDENTIFICADOS', 'DEFECTOS CORREGIDOS', 'TIPO 1', 'TIPO 2'],
-      datasets: [
-          {
-              label: 'Participación en M.A',
-              backgroundColor: ['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(128,128,128)', 'rgb(255, 255, 0)'],
-              data: [57, 88, 62, 33]
-          }
-      ]
+    labels: ['DEFECTOS IDENTIFICADOS', 'DEFECTOS CORREGIDOS', 'TIPO 1', 'TIPO 2'],
+    datasets: [
+      {
+        label: 'Participación en M.A',
+        backgroundColor: ['rgb(255, 0, 0)', 'rgb(0, 255, 0)', 'rgb(128,128,128)', 'rgb(255, 255, 0)'],
+        data: [57, 88, 62, 33]
+      }
+    ]
   },
   options: {
-      scales: {
-          x: {
-              grid: {
-                  display: false
-              },
-              ticks: {
-                  color: 'rgb(255,255,255)',
-                  font: {
-                      size: 9
-                  }
-              }
-          },
-          y: {
-              grid: {
-                  display: false
-              },
-              ticks: {
-                  color: 'rgb(255,255,255)',
-                  font: {
-                      size: 10
-                  },
-                  beginAtZero: true
-              }
-          }
-      },
-      indexAxis: 'x',
-      plugins: {
-          legend: {
-              display: false
-          },
-          title: {  // Agregar un título al gráfico
-              display: true,  // Mostrar el título
-              text: 'Participacion semanal',  // Texto del título
-              font: {
-                  size: 16  // Tamaño del texto del título
-              }
-          }
-      }
+    scales: {
+        x: {
+            grid: {
+                display: false
+            },
+            ticks: {
+                color: 'rgb(255,255,255)',
+                font: {
+                    size: 9
+                }
+            }
+        },
+        y: {
+            grid: {
+                display: false
+            },
+            ticks: {
+                color: 'rgb(255,255,255)',
+                font: {
+                    size: 10
+                },
+                beginAtZero: true
+            }
+        }
+    },
+    indexAxis: 'x',
+    plugins: {
+        legend: {
+            display: false
+        },
+        title: {  // Agregar un título al gráfico
+            display: true,  // Mostrar el título
+            text: 'Participacion semanal',  // Texto del título
+            font: {
+                size: 16  // Tamaño del texto del título
+            }
+        }
+    }
   }
 })
 var chart7II = new Chart(miCanvas6II, { 
@@ -2996,6 +3036,7 @@ let intervalId4 = null
 let intervalId5 = null
 let intervalId6 = null
 let intervalId7 = null
+
 buttonLeft.addEventListener('mousedown', () => {
   if (!clickHabilitado) return; 
   intervalId = setInterval(() => {
@@ -3326,8 +3367,8 @@ function desactivarClicsPorUnTiempo(tiempoDuracion) {
   }, tiempoDuracion);
 }
 function bloquearClic(event) {
-event.stopPropagation();
-event.preventDefault();
+  event.stopPropagation();
+  event.preventDefault();
 }
 const boton = document.getElementById('butt-Institucional');
 function animarBoton() {
@@ -4864,7 +4905,6 @@ function openGraphics(elementId){
     container1.style.display='grid'
     desactivarClicsPorUnTiempo(1500)
     document.getElementById('contLineas').style.backgroundColor = 'rgb(30,30,30)';
-    document.getElementById('month-display').textContent = ''
     const month = document.querySelectorAll('.mes')
     month.forEach((mes) => {
       mes.style.backgroundColor = ''
@@ -4886,7 +4926,7 @@ function openGraphics(elementId){
       }, 1400);
     }    
     if(elementId === 'canvasContainer7'){
-      const elementosDia = document.querySelectorAll('.dia');
+      /* const elementosDia = document.querySelectorAll('.dia');
       elementosDia.forEach((elemento) => {
         elemento.removeAttribute('style');
       });
@@ -4898,7 +4938,7 @@ function openGraphics(elementId){
       }, 1400);
       setTimeout(() => {
         desvanecerDiasSimultaneamenteConIntervalo()
-      }, 1400);
+      }, 1400); */
     }
     
     setTimeout(() => {   
@@ -5033,13 +5073,14 @@ const diasPorMes = {
   Noviembre: 30,
   Diciembre: 31,
 };
+
+
+
+
 function mostrarCalendario(mesSeleccionado) {
   const diasDelMes = diasPorMes[mesSeleccionado];
   calendarioMes.innerHTML = ""; // Limpia el calendario para mostrar el mes seleccionado
-
   // Actualizar el texto del mes en el elemento 'month-display'
-  monthDisplay.textContent = mesSeleccionado;
-
   let semana = document.createElement("div");
   semana.className = "semana";
   
@@ -5071,6 +5112,10 @@ function mostrarCalendario(mesSeleccionado) {
   }
   asignarEventosDias();
 }
+
+
+
+
 let nuevoElemento;
 meses.forEach((mes) => {
   mes.addEventListener("click", function () {
@@ -5090,7 +5135,7 @@ meses.forEach((mes) => {
     document.getElementById('actividad-limpieza').style.display='none'
 
     mes.style.display = "flex";
-    mes.style.backgroundColor = "#ccc";
+    mes.style.backgroundColor = "rgb(188,188,188)";
     mes.style.color = "rgb(0,0,20)";
     // Llama a la función para mostrar el calendario del mes seleccionado
     mostrarCalendario(mes.textContent);
@@ -5100,6 +5145,11 @@ meses.forEach((mes) => {
   });
 
 }); 
+
+
+
+
+
 function mostrarSemanasSecuencialmente() {
   const semanas = document.querySelectorAll(".semana"); // Selecciona todas las semanas
   let index = 0; // Índice para rastrear la semana actual
@@ -5121,53 +5171,52 @@ function mostrarSemanasSecuencialmente() {
   }, 33); // Intervalo de 77 milisegundos
 }
 function asignarEventosDias() {
-  const day = document.getElementById('dia')
-  const dias = document.querySelectorAll(".dia");
-  const displayLimpieza = document.getElementById('actividad-limpieza')
-  const displayLubrica = document.getElementById('actividad-lubricacion')
-  desactivarClicsPorUnTiempo(500)
-  if(screenWidth < 500){  
+  const day = document.getElementById('dia');
+  const dias = document.querySelectorAll('.dia');
+  const displayLimpieza = document.getElementById('actividad-limpieza');
+  const displayLubrica = document.getElementById('actividad-lubricacion');
+
+  desactivarClicsPorUnTiempo(500);
+
+  if (screenWidth < 500) {
     dias.forEach((dia, index) => {
-      dia.addEventListener("click", () => {
-        dias.forEach((d) => {
-          d.style.display = "none"; 
+      dia.addEventListener('click', () => {
+        dias.forEach(d => d.style.display = 'none');
+        Object.assign(dia.style, {
+          display: 'flex',
+          position: 'fixed',
+          borderRadius: '0 6px 6px 0',
+          top: '45.2vh',
+          left: '68vw'
         });
-        dia.style.display = "flex";
-        dia.style.position = 'fixed';
-        dia.style.borderRadius = '0 6px 6px 0';
-        dia.style.top = '45.2vh';
-        dia.style.left = '68vw';
-        day.style.display='flex'
-        document.getElementById('month-display').classList.add('move-month')
+        day.style.display = 'flex';
+        document.getElementById('month-display').classList.add('move-month');
+
         if (index === 2) {
-          displayLubrica.style.display='flex'
-          displayLimpieza.style.display='flex'
+          displayLubrica.style.display = 'flex';
+          displayLimpieza.style.display = 'flex';
         }
       });
     });
-  }else{
-    dias.forEach((dia, index) => {
-      dia.addEventListener("click", () => {
-        dias.forEach((d) => {
-          d.style.display = "none"; 
-        });
-        dia.style.display = "flex";
-        dia.style.position = 'fixed';
-        dia.style.borderRadius = '0 6px 6px 0';
-        dia.style.top = '20vh';
-        dia.style.left = '70vw';
-        dia.style.height='4vh'
-        dia.style.width='5vw'
-        day.style.display='flex'
-        document.getElementById('month-display').classList.add('move-month')
-        if (index === 2) {
-          document.getElementById('actividad-lubricacion').style.display='flex' 
-          document.getElementById('actividad-limpieza').style.display='flex'
-        }
+  } else {
+    dias.forEach(dia => {
+      dia.addEventListener('click', () => {
+        const acciones = {
+          '1': () => console.log('1'),
+          '2': () => console.log('2'),
+          '3': () => console.log('3'),
+          '4': () => console.log('4')
+        };
+
+        const fn = acciones[dia.textContent];
+        if (fn) fn();
+
       });
     });
-  }  
-} 
+  }
+}
+
+
 const activLimpieza = document.getElementById('tareas-limpieza');  
 const activLubricacion = document.getElementById('tareas-lubricacion');
 actividadesLubricacion.addEventListener('click',() =>{

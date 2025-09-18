@@ -24,7 +24,7 @@ document.addEventListener('keydown', function(event) {
         actualizarAlturaBarra(septimoContenedor, '67%');          
         }, 600);  
 
-
+        mostrarBarraProgresII()
       break;
       case 'H':
         function restablecerClickCanvasContainers() {
@@ -37,17 +37,18 @@ document.addEventListener('keydown', function(event) {
         document.addEventListener("contextmenu", (event) => {
         event.stopPropagation(); 
         }, true);
+        mostrarBarraProgresI()
       break;
       case 'X':
         Geometria()
-        aparecerElemento('perfiles-color','grid')
+resultadosMaquina('rot4','updateRota-4','img1','true')
       break;                  
     }
   }
-});
+});  
 function Geometria() {
   console.clear();  
-  var contiBoton = document.getElementById('padre-rgb');  
+  let contiBoton = document.getElementById('conte-maquinas');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -72,7 +73,7 @@ function Geometria() {
   console.log("Z-Index:", zIndexValue);  
   console.log("Is Visible:", isVisible);
   
-  var contiBotonI = document.getElementById('padre-rgb') 
+  var contiBotonI = document.getElementById('boton-reseteo') 
   var rect = contiBotonI.getBoundingClientRect();
   var topPosition = rect.top;
   var leftPosition = rect.left;
@@ -182,30 +183,34 @@ const masTintaGeneral = document.querySelector('#ctrl-gral-tinta > div:nth-of-ty
 const menosTintaGeneral = document.querySelector('#ctrl-gral-tinta > div:nth-of-type(2)')
 const masSolucionGeneral = document.querySelector('#ctrl-gral-agua > div:nth-of-type(1)')
 const menosSolucionGeneral = document.querySelector('#ctrl-gral-agua > div:nth-of-type(2)') 
+const salirCalculadora = document.querySelector('#conte-butts-calculadora')
 const botonesSelectores = document.querySelectorAll('.butt-selector') 
-const buttsJobTrack = document.querySelectorAll('.estilo-1')
-const buttsColores = document.querySelectorAll('.cabeza')  
-const buttsGenerales = document.querySelectorAll('.mod-tinta')
-const alertaBotones = document.querySelector('.alerta-botones')
-const alertaPerfil = document.querySelector('.alerta-perfil')
-const buttsControl = document.querySelectorAll('.div-ctrl')
-const irAconsola = document.querySelector('#ir-consola')
-const listaClientes = document.getElementById('lista-clientes')
 const nombreCliente = document.querySelector('.nombre-cliente') 
-const verdeAgua = 'rgb(127, 255, 212)';
-const azul = 'blue'
-const verde = 'rgb(0,255,0)'
+const listaClientes = document.getElementById('lista-clientes')
+const alertaBotones = document.querySelector('.alerta-botones')
+const buttsGenerales = document.querySelectorAll('.mod-tinta')
+const alertaPerfil = document.querySelector('.alerta-perfil')
+const buttsJobTrack = document.querySelectorAll('.estilo-1')   
+const buttsControl = document.querySelectorAll('.div-ctrl')
+const grupoBotsCrear = document.querySelectorAll('.jobs')
+const buttsColores = document.querySelectorAll('.cabeza')  
+const irAconsola = document.querySelector('#ir-consola')
+const gridDigitos = document.querySelector('#grid-numbers')
+const verdeAgua = 'rgb(127, 255, 212)'
 const rojo = 'rgba(255, 0, 0, 0.63)'
-const amarillo ='rgb(255,255,0)'
-const cian = 'rgb(0,255,255)'
-const magenta = 'rgb(255,0,255)'  
-const negro = 'rgb(0,0,0)'
 const especial = 'rgb(255,130,0)' 
 const barniz = 'rgb(200,200,200)'
+const amarillo ='rgb(255,255,0)'
+const magenta = 'rgb(255,0,255)'  
+const cian = 'rgb(0,255,255)'
+const verde = 'rgb(0,255,0)'
+const negro = 'rgb(0,0,0)'
+const azul = 'blue'
 let botonera = document.querySelectorAll('.botones-registro');
 let botonInicio = document.getElementById('startButton')
 let botonDetener = document.getElementById('stopButton') 
 let botonReseteo = document.getElementById('resetButton')
+let lineaClientes = document.querySelector('#lista-lineas')
 let flagAplicacion = false
 let iniciador = document.getElementById('iniciador')
 let retroceder = document.getElementById('iniciador-I')
@@ -222,8 +227,6 @@ function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'  
     }
   }
-  let perfilador = document.querySelector('#perfiles-color')
-let perfiladorRGB = document.querySelector('#container-slider')
   document.querySelector('.sections').style.display = 'grid'
   document.querySelector('.sections-btn').style.display = 'grid'
   document.querySelector('#simulador').style.display = 'flex'
@@ -237,16 +240,12 @@ let perfiladorRGB = document.querySelector('#container-slider')
       }
     break;
     case 'colorCMYK':
-      let padreControles = document.querySelector("#container-slider");
-      padreControles.style.display = 'grid';
-      aparecerElemento('padre-cmyk','grid')      
-      perfilador.style.display='none'
+      const almacenCmyk = document.querySelector('#padre-cmyk')
+      mostrarElementoProgressivo(almacenCmyk);     
     break;
     case 'colorDisplay':
-      let padreControlesRGB = document.querySelector("#padre-controles");
-      padreControlesRGB.style.display = 'grid';
-      aparecerElemento('padre-rgb','grid')      
-      perfiladorRGB.style.display='none'
+      const almacenRgb = document.querySelector('#padre-rgb')
+      mostrarElementoProgressivo(almacenRgb);     
     break;
   }  
 }
@@ -3001,9 +3000,12 @@ document.getElementById('butt-control-tinta').addEventListener('click', () =>{
     restablecerClick(['.butt-selector'])      
   }, 10);
 })
+
 document.getElementById('butt-job-track').addEventListener('click', () =>{
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
   const conteJobTrack = document.querySelector('#job-files')
+  const padreBotonera = document.querySelector('#botonera-frente')
+  padreBotonera.style.display='grid'
   conteJobTrack.classList.remove('move-job-track')
   var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6'] 
   for (var i = 0; i < allContenedores.length; i++) {
@@ -3024,7 +3026,10 @@ document.getElementById('butt-job-track').addEventListener('click', () =>{
   setTimeout(() => {
     conteJobTrack.classList.add('move-job-track') 
   }, 100);
+  setTimeout(() => {
+  },1200);
 })
+
 document.getElementById('conte-img').addEventListener('click', () =>{
   var elementosExcluidos = ['simulador','interfaz-perfiles','inerfaz-ajuste-fino','perfil-individual','control-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4']  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -4448,11 +4453,14 @@ function mostrarVentanaEmergente(mensaje) {
   mensajeEmergente.textContent = mensaje;
   ventanaEmergente.classList.remove('oculta');
 }
+
 document.getElementById('cerrarEmergente').addEventListener('click', () => {
   let conteCMYK = document.querySelector('#padre-cmyk');
   let conteRGB = document.querySelector('#padre-rgb');
   const mensajeEmergente = document.getElementById('mensajeEmergente');
   const conteJobTrack = document.querySelector('#job-files');
+  const inputCreacion = document.querySelector('#nombre-Perfil')
+  const inputBusqueda = document.querySelector('#nombre-Perfil-existe')
   conteJobTrack.classList.remove('move-job-track')
 
   if (mensajeEmergente.textContent === 'Perfil creado y almacenado') {
@@ -4462,6 +4470,8 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
     // Verificar si alguno de los dos contenedores tiene display "grid"
     let cmykVisible = window.getComputedStyle(conteCMYK).display === 'grid';
     let rgbVisible = window.getComputedStyle(conteRGB).display === 'grid';
+    inputCreacion.focus()
+
 
     if (!cmykVisible && !rgbVisible) { 
       conteJobTrack.classList.add('move-job-track'); 
@@ -4485,12 +4495,43 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
       document.getElementById('nombreCliente').value = '';
     }, 700);
     
-  } else {
+  }
+  if (mensajeEmergente.textContent === 'Por favor, ingrese un nombre válido') {
     document.getElementById('ventanaEmergente').classList.add('oculta');
     document.getElementById('nombreCliente').focus();
     document.getElementById('nombreCliente').value = '';
+    detenerParpadeo() 
+    inputCreacion.focus()
   }
+  if (mensajeEmergente.textContent === 'Cargue la base de datos antes de generar el perfil de color') {
+    document.getElementById('ventanaEmergente').classList.add('oculta');
+    inputBusqueda.focus()
+    detenerParpadeo() 
+    document.querySelector('#nombre-Perfil').value = ''
+    document.querySelector('#nombre-Perfil-existe').value = ''
+
+    document.querySelectorAll('.butt-perfiles').forEach(elemento => {   
+      elemento.style.display = 'block';   
+    });
+    limpiarColoresDeFondo()
+    desactivarClick(['.butt-perfiles', '.estilo-1']);  
+    mostrarNombresDeObjetos(); 
+    setTimeout(() => {
+      if (listaClientes && listaClientes.children.length === 0) {
+        alertaCuatro.style.display='flex'
+        alertaCuatro.style.top = '30vh'       
+        alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos'   
+      }
+    }, 50);      
+
+
+  }
+  if (mensajeEmergente.textContent === 'Ya existe un perfil con este nombre') {
+    document.getElementById('ventanaEmergente').classList.add('oculta');
+  }    
+
 });
+
 function crearBotonResta(color, linea1, linea2, linea3) {
   const contenedorPrincipal = document.getElementById('columna-30');
   const botonesResta = [];
@@ -4945,6 +4986,9 @@ const alertaSiete = document.getElementById('alerta-siete')
 const alertaOcho = document.getElementById('alerta-ocho')
 let alertaNueve = document.querySelector('#alerta-nueve')
 const buttsJobs = document.querySelectorAll('.base-datos');
+const botonClientes = document.querySelector('#clientes')
+
+
 buttsJobs.forEach(boton => {
   let panelUno = document.getElementById('panel-uno')
   let panelDos = document.getElementById('panel-dos')  
@@ -5003,6 +5047,8 @@ buttsJobs.forEach(boton => {
     } 
   });
 });
+
+
 function actualizarDisplay() {
   document.querySelectorAll('#resultado-calculadora .number, #display-cantidad .cantidad-display').forEach(elemento => elemento.textContent = '');
 }
@@ -5011,7 +5057,7 @@ const arriba = document.querySelector('#job-files > div:nth-child(1) > span:nth-
 listadoClientes.forEach(cliente => {
   cliente.addEventListener('click', () => {
     arriba.textContent = cliente.textContent;
-    document.querySelector('#lista-clientes').style.display = 'none'
+    listaClientes.style.display = 'none'
     restablecerClick(['.butt-perfiles', '.estilo-1']);
   });
 });
@@ -5025,7 +5071,9 @@ listaLineas.forEach(linea => {
     destinoLinea.textContent = linea.textContent;
     document.querySelector('#lista-lineas').style.display = 'none';  
     restablecerClick(['.jobs', '.estilo-1']);
+    mostrarBarraProgres(33.5, 67);    
   });
+  
 });
 digitos.forEach((elemento) => {
   elemento.addEventListener('click', () => {
@@ -5075,14 +5123,14 @@ alertaTres.addEventListener('click', ()=> {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
 })
 alertaCuatro.addEventListener('click', ()=> {
-  restablecerClick(['.estilo-1','.digit', '.estilo-2']);
+  restablecerClick(['.estilo-1','.digit', '.estilo-2','.cont-vacio','jobs','btn-abandonar','base-datos']);
   desactivarClick(['.butt-perfiles'])
-  restablecerClick(['.cont-vacio'])
 })
-alertaCinco.addEventListener('click', ()=> {
+salirCalculadora.addEventListener('mouseleave', () => {
   restablecerClick(['.estilo-1','.digit','.digito']);
   detenerAlternarColor()
-})
+  alertaCinco.style.display='none'
+} )
 document.getElementById('alerta-seis').children[2].addEventListener('click', () => {
   alertaSeis.classList.add('move-alerta')
   restablecerClick(['.mod-tinta','.div-ctrl','.butt-perfiles', '.butt-selector', '.cabeza', '.estilo-1', '.digit', '.digito']);
@@ -5167,6 +5215,7 @@ alertaNormal.forEach((alerta) => {
       alertaItem.style.backgroundColor = verde
       alertaItem.style.color = 'black'
       setTimeout(() => {
+        listaClientes.style.display = 'none';
         alertaItem.style.display = 'none';
         alertaItem.style.backgroundColor = ''
         alertaItem.style.color = ''  
@@ -5181,8 +5230,20 @@ document.querySelector('#grid-numbers > div:nth-child(11)').addEventListener('cl
   detenerAlternarColor();
 });
 document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
+  alertaCuatro.style.display='none'
   document.querySelector('#job-files').style.display = 'none'
-  restablecerClick(['.butt-perfiles'])  
+  document.querySelector('#contenedor-registro').style.display = 'none'
+  calculadora.classList.add('move-calculadora')
+  document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {
+     elemento.style.display = 'block';
+  }) 
+  restablecerClick(['.butt-perfiles']) 
+    setTimeout(() => {          
+    animarColorSecuencia();
+  }, 100);
+  setTimeout(() => {
+    animarSecuenciaPerfiles();
+  }, 200); 
 })
 document.querySelector('#grid-numbers > div:nth-child(12)').addEventListener('click', () => {
   desactivarClick(['.butt-perfiles','.digit', '.estilo-1','digito']);
@@ -5203,16 +5264,17 @@ document.querySelector('#grid-numbers > div:nth-child(12)').addEventListener('cl
       document.querySelector('#alerta-cuatro').style.display='none'
 
     }); 
-  
     coleccionNumeros.length = 0;        
     document.querySelectorAll('#resultado-calculadora .number').forEach(elemento => elemento.textContent = '');
     calculadora.classList.add('move-calculadora')
     setTimeout(() => {
-      
-      irAconsola.style.display='block'
-    }, 1000); 
+      mostrarBarraProgres(67, 100);         
+    }, 500);
     setTimeout(() => {
-      desactivarClick(['.butt-perfiles'])    
+      irAconsola.style.display='block'
+    }, 1600); 
+    setTimeout(() => {
+      desactivarClick(['.butt-perfiles']) 
     }, 1700);
   }
 });
@@ -5393,7 +5455,8 @@ function eliminarColores(){
 
 
 } 
-function desactivarClick(classElements) {
+
+/* function desactivarClick(classElements) {
   if (!Array.isArray(classElements)) {
     console.error('El parámetro debe ser un array de selectores.');
     return;
@@ -5402,6 +5465,20 @@ function desactivarClick(classElements) {
     const botones = document.querySelectorAll(selector);
     botones.forEach(boton => {
       boton.style.pointerEvents = 'none'; // Bloquea eventos de clic
+    });
+  });
+} */
+
+function desactivarClick(classElements) {
+  if (!Array.isArray(classElements)) {
+    console.error('El parámetro debe ser un array de selectores.');
+    return;
+  }
+  classElements.forEach(selector => {
+    const botones = document.querySelectorAll(selector);
+    botones.forEach(boton => {
+      boton.style.pointerEvents = 'none'; 
+      boton.querySelectorAll('*').forEach(hijo => hijo.style.pointerEvents = 'none'); // ← aquí
     });
   });
 }
@@ -5465,10 +5542,16 @@ function limpiarColoresDeFondo() {
   console.log('Colores de fondo eliminados para las clases:', clases.join(', '));
 }
 let inputBuscar = document.getElementById('input-buscar-perfil');
+listaClientes.addEventListener('mouseleave',() =>{
+  listaClientes.style.display='none'
+  restablecerClick(['.base-datos']);
+})
+
+const jobs = document.querySelectorAll('.jobs');
+
 function mostrarNombresDeObjetos() {
   flagAplicacion = true;
-  let listadoPerfiles = document.querySelector('#lista-clientes')
-
+  
   // Recuperar el objeto almacenado en localStorage
   const almacenJSON = localStorage.getItem('almacenObjetos');
   if (almacenJSON) {
@@ -5526,6 +5609,8 @@ function mostrarNombresDeObjetos() {
       menuContextual.style.display = 'none';
     });
 
+
+    
     // Recorrer los nombres de los objetos capitalizados
     Object.keys(almacenCapitalizado).forEach(nombreCapitalizado => {  
       const nuevoDiv = document.createElement('div');
@@ -5536,6 +5621,7 @@ function mostrarNombresDeObjetos() {
       nuevoDiv.addEventListener('click', () => {
         restablecerClick(['.estilo-1']);
         const panelUno = document.getElementById('panel-uno'); // INPUT DE CLIENTES
+        const perfilador = document.querySelector('#perfiles-color')
 
         const panelPerfil = document.getElementById('nombre-Perfil-existe');
         panelPerfil.value = nombreCapitalizado;         
@@ -5548,6 +5634,9 @@ function mostrarNombresDeObjetos() {
         objetoGlobal = nombreCapitalizado;
         console.log('OBJETO GLOBAL :', objetoGlobal);
         listaClientes.style.display = 'none';
+        if (!perfilador || getComputedStyle(perfilador).display === 'none') {
+          mostrarBarraProgres(0.1, 33.5);
+        }
       });
   
       // Asignar evento 'contextmenu' para el clic derecho
@@ -5605,27 +5694,28 @@ function mostrarNombresDeObjetos() {
     document.body.appendChild(menuContextual);
   }
   
-  // Mantener visible 'listadoPerfiles' si el cursor está sobre el menú contextual
+  // Mantener visible 'listaClientes' si el cursor está sobre el menú contextual
   menuContextual.addEventListener('mouseover', () => {
-    listadoPerfiles.style.display = 'block';
+    listaClientes.style.display = 'block';
     menuContextual.style.display = 'block';
   });
   
   // Ocultar elementos cuando el cursor sale completamente del área
-  menuContextual.addEventListener('mouseleave', () => {
-    menuContextual.style.display = 'none';
-  });
+    menuContextual.addEventListener('mouseleave', () => {
+      menuContextual.style.display = 'none';
+    });
+
   
 
-  listadoPerfiles.addEventListener('mouseleave', () => {
-  
+  listaClientes.addEventListener('mouseleave', () => {
+    if (alertaCuatro && alertaCuatro.style.display !== 'none') return;  
     // Si el input existe y está visible, no hacer nada
     if (inputBuscar && inputBuscar.style.display !== 'none') {
       return;
     }
   
     // Si no hay input visible, ejecutar la lógica de ocultar
-    listadoPerfiles.style.display = 'none';
+    listaClientes.style.display = 'none';
     menuContextual.style.display = 'none';
     restablecerClick(['.base-datos']);
   });
@@ -5636,7 +5726,6 @@ function mostrarNombresDeObjetos() {
   }
 }
 function buscarPerfil(event) {
-  let listadoPerfiles = document.querySelector('#lista-clientes')
   desactivarClick(['.cliente-item']);
 
   if (!inputBuscar) {
@@ -5659,7 +5748,7 @@ function buscarPerfil(event) {
       if (inputBuscar.value.trim() === '') { 
         // Solo ocultar si el input está vacío
         inputBuscar.style.display = 'none';
-        listadoPerfiles.style.display = 'none';
+        listaClientes.style.display = 'none';
       }
     });    
 
@@ -6299,6 +6388,21 @@ document.getElementById("animate-btn").addEventListener("click", () => {
     { trackId: "slid-blanco-rgb", spanId: "w-span-rgb", channel: "W", porcentajeDestino: wValue }
   ]);
 });
+document.getElementById("reset-btn-rgb").addEventListener("click", () => {
+  const inputs = document.querySelectorAll('#control-rgb-inpt input[type="number"]');
+  inputs.forEach(input => input.value = 0);
+  resetBotonMezclador('padre-rgb') 
+});
+document.getElementById("reset-btn-cmyk").addEventListener("click", () => {
+  const padreRgb = document.querySelector('#padre-rgb')
+  const padreCmyk = document.querySelector('#padre-cmyk')
+
+  const inputs = document.querySelectorAll('#control-cmyk-inpt input[type="number"]');
+  inputs.forEach(input => input.value = 0);
+  resetBotonMezclador('padre-cmyk') 
+});
+
+
 function cmykwToRgb(c, m, y, k, a) {  // RGB
   let normalized = normalizeCMYK(c, m, y, k);
   c = normalized.c;
@@ -6618,108 +6722,146 @@ function configurarBoton(selector, contenedor, callback) {
   });
 }
 
+// RGB CMYK
+function alternarTeccnologia(tecnologia) {
+  const padreCmyk = document.getElementById('padre-cmyk');
+  const controlCmyk = document.getElementById('control-panel-cmyk');
 
-function alternarTeccnologia(tecnologia){
-  let inputR = document.querySelector('#input-r')
-  let inputC = document.querySelector('#input-c')
+  const padreRgb = document.getElementById('padre-rgb');
+  const controlRgb = document.getElementById('control-panel-rgb');
 
-  let primerImputRGB = document.querySelector('#input-r');
-  let segundoImputRGB = document.querySelector('#input-g');
-  let tercerImputRGB = document.querySelector('#input-b');
-  let cuartoImputRGB = document.querySelector('#input-w');
-
-  let primerImputCMYK = document.querySelector('#input-c');
-  let segundoImputCMYK = document.querySelector('#input-m');
-  let tercerImputCMYK = document.querySelector('#input-y');
-  let cuartoImputCMYK = document.querySelector('#input-k');
-  let quintoImputCMYK = document.querySelector('#input-a');
-
-  let spanC = document.querySelector('#c-span')
-  let spanM = document.querySelector('#m-span')
-  let spanY = document.querySelector('#y-span')
-  let spanK = document.querySelector('#k-span')
-  let spanW = document.querySelector('#w-span')
-  
-  let spanR = document.querySelector('#c-span-rgb')
-  let spanG = document.querySelector('#m-span-rgb')
-  let spanB = document.querySelector('#y-span-rgb')
-  let spanA = document.querySelector('#w-span-rgb')
-
-  switch(tecnologia){
+  switch (tecnologia) {
     case 'rgb':
-      document.querySelectorAll('.btn-opcion, .lbls-cmyRgb').forEach(el => {
-        el.style.display = 'block';
-      });  
-      const panelCtrlRgb = document.querySelector('#control-panel-rgb');
-      if (panelCtrlRgb) {
-        panelCtrlRgb.classList.remove('activo');
+      if (padreCmyk) {
+        ocultarElementoProgressivo(padreCmyk)
+        ocultarElementoProgressivo(controlCmyk)
+        mostrarElementoProgressivo(padreRgb);
+        mostrarElementoProgressivo(controlRgb);
+      
       }
-
-      primerImputRGB.value = spanR.textContent.trim();
-      segundoImputRGB.value = spanG.textContent.trim();
-      tercerImputRGB.value = spanB.textContent.trim();
-      cuartoImputRGB.value = spanA.textContent.trim();
-
-      setTimeout(() => {
-        rgbFlotante()
-      }, 177);
-      setTimeout(() => {
-        aparecerElemento('control-panel-rgb','grid') 
-        let buttsGreen = document.querySelectorAll('.cmyRgb-group');
-        buttsGreen.forEach((elem) => {
-          elem.style.backgroundColor = ''; // Limpia el color de fondo
-        });
-        if (inputR) {
-          inputR.focus();
-        } 
-        const ids = ['boton-rgb', 'boton-rgb-alternar', 'boton-rgb-salir','lab-rgb','lab-alternar','lab-salir-rgb'];
-          ids.forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.style.display = 'none';
-        });      
-        
-      }, 354);
-  
     break;
+
     case 'cmyk':
-      document.querySelectorAll('.cmyRgb-group, .lbls-cmyRgb').forEach(el => {
-        el.style.display = 'block';
-      });
-      const panelCtrlCmyk = document.querySelector('#control-panel-cmyk');
-      if (panelCtrlCmyk) {
-        panelCtrlCmyk.classList.remove('activo');
+      if (padreRgb) {
+        ocultarElementoProgressivo(padreRgb)
+        ocultarElementoProgressivo(controlRgb)
+        mostrarElementoProgressivo(padreCmyk);
+        mostrarElementoProgressivo(controlCmyk);
       }
-
-      primerImputCMYK.value = spanC.textContent.trim();
-      segundoImputCMYK.value = spanM.textContent.trim();
-      tercerImputCMYK.value = spanY.textContent.trim();
-      cuartoImputCMYK.value = spanK.textContent.trim();
-      quintoImputCMYK.value = spanW.textContent.trim();
-
-      setTimeout(() => {
-        cmykFlotante()
-      }, 177);
-      setTimeout(() => {
-        aparecerElemento('control-panel-cmyk','grid') 
-        let buttsGreen = document.querySelectorAll('.cmyRgb-group');
-        buttsGreen.forEach((elem) => {
-          elem.style.backgroundColor = ''; // Limpia el color de fondo
-        });
-        if (inputC) {
-          inputC.focus();
-        }      
-        const keys = ['lab-seis', 'boton-seis', 'lab-cmyk','boton-cmyk','lab-salir-cmyk','boton-cmyk-salir'];
-          keys.forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.style.display = 'none';
-        });
-      }, 344);
     break;
   }
 }
+
+
+function ocultarElementoProgressivo(el, callback) {
+  if (!el) return;
+  // aceptar id/selector o elemento
+  if (typeof el === 'string') el = document.getElementById(el) || document.querySelector(el);
+  if (!el) return;
+
+  // estado inicial claro para animar
+  el.style.transition = '';
+  el.style.opacity = '1';
+
+  // si estaba en display:none, temporalmente forzamos display para permitir fade (si procede)
+  /*const wasHidden = getComputedStyle(el).display === 'none';
+   if (wasHidden) {
+    el.style.display = 'grid';
+    void el.offsetWidth; // forzar reflow
+  } */
+
+    const wasHidden = getComputedStyle(el).display === 'none';
+    if (wasHidden) {
+      // ya estaba oculto → terminar inmediatamente
+      el.style.display = 'none';
+      return;
+    }
+
+
+  // iniciar fade out
+  requestAnimationFrame(() => {
+    el.style.transition = 'opacity 0.5s ease';
+    el.style.opacity = '0';
+  });
+
+  let timer = null;
+
+  const finish = () => {
+    if (timer) { clearTimeout(timer); timer = null; }
+    // mantén oculto y deja el elemento en estado "neutro" (sin residuos) excepto display:none
+    el.style.display = 'none';   // importante: conservar oculto
+    el.style.transition = '';
+    el.style.opacity = '';       // limpio para la próxima aparición
+    el.style.visibility = '';
+    if (typeof callback === 'function') callback();
+  };
+
+  const onTransitionEnd = (ev) => {
+    if (ev.target !== el) return;               // ignorar transiciones de hijos
+    if (ev.propertyName && ev.propertyName !== 'opacity') return;
+    el.removeEventListener('transitionend', onTransitionEnd);
+    finish();
+  };
+
+  el.addEventListener('transitionend', onTransitionEnd);
+
+  // fallback si no ocurre transitionend
+  const cs = getComputedStyle(el);
+  const dur = (parseFloat((cs.transitionDuration || '0').split(',')[0]) || 0) * 1000;
+  const del = (parseFloat((cs.transitionDelay || '0').split(',')[0]) || 0) * 1000;
+  const fallback = (dur + del) > 0 ? dur + del + 50 : 600;
+  timer = setTimeout(() => {
+    el.removeEventListener('transitionend', onTransitionEnd);
+    finish();
+  }, fallback);
+}
+function mostrarElementoProgressivo(el) {
+  if (!el) return;
+
+  // resetear estilos previos
+  el.style.transition = '';
+  el.style.opacity = '0';
+  el.style.display = 'grid';
+
+  // también forzar a todos los hijos
+  Array.from(el.querySelectorAll('*')).forEach(hijo => {
+    hijo.style.transition = '';
+    hijo.style.opacity = '0';
+    hijo.style.display = '';
+    hijo.style.visibility = 'visible';
+  });
+
+  requestAnimationFrame(() => {
+    // transición del padre
+    el.style.transition = 'opacity 0.5s ease';
+    el.style.opacity = '1';
+
+    // transición de los hijos
+    Array.from(el.querySelectorAll('*')).forEach(hijo => {
+      hijo.style.transition = 'opacity 0.5s ease';
+      hijo.style.opacity = '1';
+    });
+  });
+
+  el.addEventListener("transitionend", () => {
+    el.style.transition = '';
+    Array.from(el.querySelectorAll('*')).forEach(hijo => {
+      hijo.style.transition = '';
+    });
+  }, { once: true });
+}
+
+
+// MUESTRA LOS PADRES
 function secuenciaAparicion(canal) {
+ const controlColor = document.querySelector('#perfiles-color');
+  if (!controlColor || getComputedStyle(controlColor).display !== "none") {
+    return; 
+  }
   let inputPerfil = document.querySelector('#nombre-Perfil');
   let inputPerfilExiste = document.querySelector('#nombre-Perfil-existe');
+  const perfilesRgb = document.querySelector('#perfiles-color')
+  mostrarElementoProgressivo(perfilesRgb)
   setTimeout(() => {
     if (inputPerfil) {  
       inputPerfil.value = '';                     
@@ -6730,7 +6872,6 @@ function secuenciaAparicion(canal) {
   }, 100);
   switch(canal){
     case 'rgb':
-      aparecerElemento('perfiles-color','grid')
       const ids = ['boton-rgb', 'boton-rgb-alternar', 'boton-rgb-salir','lab-rgb','lab-alternar','lab-salir-rgb'];
       ids.forEach(id => {
         const el = document.getElementById(id);
@@ -6743,8 +6884,6 @@ function secuenciaAparicion(canal) {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
       });
-
-      aparecerElemento('perfiles-color','grid')
     break
   }
 }
@@ -6752,6 +6891,35 @@ document.querySelector('#nombre-Perfil').addEventListener('click', () => {
   document.querySelector('#nombre-Perfil-existe').value = ''
   listaClientes.style.display = 'none'
 })
+
+let parpadeoActivo = null; // referencia global
+
+function parpadearElemento(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  // si ya está parpadeando, no crear otro intervalo
+  if (parpadeoActivo) return;
+
+  const colorOriginal = el.style.backgroundColor;
+  let activo = false;
+
+  const intervalo = setInterval(() => {
+    el.style.backgroundColor = activo ? colorOriginal : "orange";
+    activo = !activo;
+  }, 100);
+
+  parpadeoActivo = { intervalo, el, colorOriginal };
+}
+
+function detenerParpadeo() {
+  if (!parpadeoActivo) return;
+  clearInterval(parpadeoActivo.intervalo);
+  parpadeoActivo.el.style.backgroundColor = parpadeoActivo.colorOriginal;
+  parpadeoActivo = null;
+}
+
+
 function crearPerfilColor() { // crear nuevo desde boton blanco
   
   let contRGB = document.querySelector('#padre-rgb');
@@ -6771,6 +6939,7 @@ function crearPerfilColor() { // crear nuevo desde boton blanco
   // Capturar el valor del input
   let inputNombre = document.getElementById('nombre-Perfil').value.trim();
   if (inputNombre === '') {
+    parpadearElemento("nombre-Perfil");
     mostrarVentanaEmergente('Por favor, ingrese un nombre válido');
     return;
   }
@@ -6920,35 +7089,6 @@ function renderizaMezclaCMYK() {
   traerAlmacenObjetos()
 
 }
-function alternarOcultarBotones(altern){
-  switch(altern){
-    case 'cmyk':
-      let etiquetasCmyk = document.querySelectorAll('.lbl-cmyk')
-      let botonesCmyk = document.querySelectorAll('.btnCmyk')
-      botonesCmyk.forEach((opcion) =>{
-        opcion.style.display = 'flex'
-      })
-      etiquetasCmyk.forEach((opcion) =>{
-        opcion.style.display = 'flex'
-      })
-      document.querySelector('#padre-cmyk').classList.remove('move-panel-cmyk') 
-      desvanecerColor('#control-panel-cmyk');
-    break;
-    case 'rgb':
-      let etiquetasRgb = document.querySelectorAll('.lbl-opcion')
-      let botonesRgb = document.querySelectorAll('.btn-opcion')
-      botonesRgb.forEach((opcion) =>{
-        opcion.style.display = 'flex'
-      })
-      etiquetasRgb.forEach((opcion) =>{
-        opcion.style.display = 'flex'
-      })
-      document.querySelector('#padre-cmyk').classList.remove('move-panel-cmyk') 
-      desvanecerColor('#control-panel-cmyk');
-    break;
-
-  }
-}
 configurarBoton('#boton-seis', '#padre-cmyk', () => resetBotonMezclador('padre-cmyk'));
 configurarBoton('#boton-rgb', '#padre-rgb', () => resetBotonMezclador('padre-rgb'));
 configurarBoton('#boton-cmyk','#padre-cmyk', '')
@@ -6956,48 +7096,34 @@ configurarBoton('#boton-rgb-alternar','#padre-rgb', '')
 configurarBoton('#boton-rgb-salir','#padre-rgb', '')
 configurarBoton('#boton-cmyk-salir','#padre-cmyk', '')
 
-document.querySelector('#btn-salir-perfiles').addEventListener('click', ()=>{
-  let etiquetasCmyk = document.querySelectorAll('.lbl-cmyk')
-  let botonesCmyk = document.querySelectorAll('.btnCmyk') 
-  let panel = document.getElementById('perfiles-color');
-  let panelColorCmyk = document.getElementById('control-panel-cmyk');
-  let panelColorRgb = document.getElementById('control-panel-rgb');
+document.querySelector('#btn-salir-perfiles').addEventListener('click', alternarOcultarBotones);
 
+function alternarOcultarBotones() {
+  const controlRgb = document.querySelector('#control-panel-rgb')
+  const controCmyk = document.querySelector('#control-panel-cmyk')
+  const perfiladorColor = document.querySelector('#perfiles-color')
+  const mostrarFlex = (selector) => {
+    document.querySelectorAll(selector).forEach(el => el.style.display = 'flex');
+  };
 
-  botonesCmyk.forEach((opcion) =>{
-    opcion.style.display = 'flex'
-  })
-  etiquetasCmyk.forEach((opcion) =>{
-    opcion.style.display = 'flex'
-  })
-  let etiquetasRgb = document.querySelectorAll('.lbl-opcion')
-  let botonesRgb = document.querySelectorAll('.btn-opcion')
-  botonesRgb.forEach((opcion) =>{
-    opcion.style.display = 'flex'
-  })
-  etiquetasRgb.forEach((opcion) =>{
-    opcion.style.display = 'flex'
-  })
-  
-  perfilVisible = false
-  desvanecerColor('#perfiles-color')
-  panel.classList.remove("activo");
-  panel.classList.remove("desvanecer");
-  panelColorCmyk.classList.remove("activo");
-  panelColorCmyk.classList.remove("desvanecer");
-  panelColorRgb.classList.remove("activo");
-  panelColorRgb.classList.remove("desvanecer");
+  ['.lbl-cmyk', '.btnCmyk', '.lbl-opcion', '.btn-opcion'].forEach(mostrarFlex);
+  ocultarElementoProgressivo(perfiladorColor)
+  ocultarElementoProgressivo(controlRgb)
+  ocultarElementoProgressivo(controCmyk)
 
-})
+}
+// SALIR APLICACION INFERIOR
 document.querySelectorAll('.alterna-panel').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelector('#padre-rgb').classList.remove('move-panel-rgb')
-    document.querySelector('#padre-cmyk').classList.remove('move-panel-cmyk')  
+  const panelCmyk = document.querySelector('#control-panel-cmyk')
+  const panelRgb = document.querySelector('#control-panel-rgb')
 
-    setTimeout(() => {
-      desvanecerColor('#control-panel-cmyk');
-      desvanecerColor('#control-panel-rgb');  
-    }, 1);
+  btn.addEventListener('click', () => {
+    if(btn.id === 'exit-cmyk'){
+      ocultarElementoProgressivo(panelCmyk)
+    }
+    if(btn.id === 'exit-rgb'){
+      ocultarElementoProgressivo(panelRgb)
+    }
   });
 });
 document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{ 
@@ -7030,38 +7156,6 @@ document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
   aparecerElemento('padre-rgb','grid')
   actualizarIdsArray('padre-rgb');
 })
-/* document.querySelector('#boton-cmyk-salir').addEventListener('click', () => {
-  let elementos = [
-    { selector: '#padre-cmyk', delay: 0 },
-    { selector: '#perfiles-color', delay: 177 },
-    { selector: '#control-panel-cmyk', delay: 300 },
-    { selector: '#control-panel-rgb', delay: 300 }
-  ];
- 
-  elementos.forEach(({ selector, delay }) => {
-    let elemento = document.querySelector(selector);
-    if (elemento) {
-      setTimeout(() => desvanecerColor(selector), delay);
-    }
-  });
-  restablecerClick(['.butt-perfiles']); 
-}); */
-document.querySelector('#boton-rgb-salir').addEventListener('click', () => {
-  let elementos = [
-    { selector: '#padre-rgb', delay: 0 },
-    { selector: '#perfiles-color', delay: 177 },
-    { selector: '#control-panel-cmyk', delay: 300 },
-    { selector: '#control-panel-rgb', delay: 300 }
-  ];
-
-  elementos.forEach(({ selector, delay }) => {
-    let elemento = document.querySelector(selector);
-    if (elemento) {
-      setTimeout(() => desvanecerColor(selector), delay);
-    }
-  });
-  restablecerClick(['.butt-perfiles']); 
-});
 document.querySelector('#save-tecnology').addEventListener('click', ()=>{
   crearPerfilColor()
 })
@@ -7072,7 +7166,6 @@ document.getElementById('nombre-Perfil-existe').addEventListener('click', () => 
   document.querySelectorAll('.butt-perfiles').forEach(elemento => {   
     elemento.style.display = 'block';   
   });
-  let listaClientes = document.querySelector('#lista-clientes')  
   listaClientes.style.top='39vh'  
   listaClientes.style.width = '46vw'
   listaClientes.style.left = '50vw'
@@ -7090,13 +7183,51 @@ document.getElementById('nombre-Perfil-existe').addEventListener('click', () => 
   }, 50);      
 
 });
-function pintarColor(){
-  if(tecnologyCMYK){
-    renderizaMezclaCMYK()
+function configurarOcultarLista() {
+  let temporizador;
+
+  const input = document.getElementById('nombre-Perfil-existe');
+
+  // Cuando el mouse/puntero sale del input
+  input.addEventListener('pointerleave', () => {
+    temporizador = setTimeout(() => {
+      listaClientes.style.display = 'none';
+    }, 300);
+  });
+
+  // Si el mouse entra en la lista antes de que pasen 3 segundos, cancelamos el ocultamiento
+  listaClientes.addEventListener('pointerenter', () => {
+    clearTimeout(temporizador);
+  });
+}
+// Llamada de inicialización
+configurarOcultarLista();
+function pintarColor() {
+  const inputPerfil = document.getElementById('nombre-Perfil-existe');
+  if (!inputPerfil.value.trim()) {
+    const ventana = document.getElementById('ventanaEmergente');
+    const mensaje = document.getElementById('mensajeEmergente');
+    if (ventana && mensaje) {
+      parpadearElemento("nombre-Perfil-existe");
+      mensaje.textContent = "Cargue la base de datos antes de generar el perfil de color";
+      ventana.classList.remove('oculta'); 
+    }
+
+    if (tecnologyCMYK) {
+      resetBotonMezclador('padre-cmyk');
+    }
+    if (tecnologyRGB) {
+      resetBotonMezclador('padre-rgb');
+    }
+    return;
   }
-  if(tecnologyRGB){
-    renderizaMezclaRGB()
-  }  
+
+  if (tecnologyCMYK) {
+    renderizaMezclaCMYK();
+  }
+  if (tecnologyRGB) {
+    renderizaMezclaRGB();
+  }
 }
 // Función para observar cambios en el DOM
 function observarCambioDisplay() {
@@ -7115,3 +7246,70 @@ function observarCambioDisplay() {
   // Observar cambios en el body y sus hijos
   observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['style', 'class'] });
 }
+function mostrarBarraProgres(inicio, fin) {
+  const barraProgreso = document.getElementById("barra-progreso-registro");
+  const contenedor = document.getElementById("contenedor-registro");
+
+  barraProgreso.style.width = inicio + "%";
+
+  if (intervaloProgreso) return;
+
+  contenedor.style.display = "grid";
+
+  setTimeout(() => {
+    intervaloProgreso = setInterval(() => {
+      let anchoActual = parseFloat(barraProgreso.style.width) || 0;
+      let nuevoAncho = anchoActual + 0.5;
+
+      if (nuevoAncho > fin) {
+        nuevoAncho = fin;
+        clearInterval(intervaloProgreso);
+        intervaloProgreso = null; // liberar referencia
+      }
+
+      barraProgreso.style.width = nuevoAncho + "%";
+    }, 10);
+  }, 100);
+}
+function ejecutarFase(opcion) {
+  switch (opcion) {
+    case "inicio":
+      mostrarBarraProgres(0.1, 33.5);
+      break;
+    case "medio":
+      mostrarBarraProgres(33.5, 67);
+      break;
+    case "final":
+      mostrarBarraProgres(67, 100);
+      break;
+  }
+}
+grupoBotsCrear.forEach(bot => {
+  bot.addEventListener('mouseleave', () => {
+    alertaTres.style.display = 'none';
+
+    if (listaClientes.children.length === 0) {
+      listaClientes.style.display = 'none';
+      alertaCuatro.style.display = 'none';
+      restablecerClick(['.estilo-1', '.jobs']);
+    } 
+
+    if (lineaClientes && lineaClientes.children.length === 0) {
+      lineaClientes.style.display = 'none';
+    } else {
+      alertaTres.style.display = 'none';
+    }
+
+    setTimeout(() => {
+      // Solo ocultar si el cursor NO está sobre listaClientes
+      if (!listaClientes.matches(':hover')) {
+        listaClientes.style.display = 'none';
+        restablecerClick(['.estilo-1', '.jobs']);
+      }
+    }, 300);
+  });
+});
+
+gridDigitos.addEventListener('mouseleave', () => {
+  alertaCuatro.style.display='none'
+} )
