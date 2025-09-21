@@ -24,31 +24,19 @@ document.addEventListener('keydown', function(event) {
         actualizarAlturaBarra(septimoContenedor, '67%');          
         }, 600);  
 
-        mostrarBarraProgresII()
       break;
-      case 'H':
-        function restablecerClickCanvasContainers() {
-          const elementos = document.querySelectorAll('.graphs-lines');
-          elementos.forEach((elemento) => {
-            elemento.style.setProperty('pointer-events', 'auto', 'important');
-            elemento.style.setProperty('opacity', '1', 'important');
-          });
-        }
-        document.addEventListener("contextmenu", (event) => {
-        event.stopPropagation(); 
-        }, true);
-        mostrarBarraProgresI()
+      case 'H':      
+          Geometria()          
       break;
       case 'X':
-        Geometria()
-resultadosMaquina('rot4','updateRota-4','img1','true')
+        resultadosMaquina('rot4','updateRota-4','img1','true')
       break;                  
     }
   }
 });  
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('conte-maquinas');  
+  let contiBoton = document.getElementById('calendario-mes');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -218,7 +206,6 @@ let almacenObjetos = JSON.parse(localStorage.getItem('almacenObjetos')) || {};
 let objetoGlobal = null
 let nombreProvisional = null
 let objetoGlobalColor = null
-
 function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14){
   var elementosExcluidos = [id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14]  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -3000,7 +2987,6 @@ document.getElementById('butt-control-tinta').addEventListener('click', () =>{
     restablecerClick(['.butt-selector'])      
   }, 10);
 })
-
 document.getElementById('butt-job-track').addEventListener('click', () =>{
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
   const conteJobTrack = document.querySelector('#job-files')
@@ -3029,7 +3015,6 @@ document.getElementById('butt-job-track').addEventListener('click', () =>{
   setTimeout(() => {
   },1200);
 })
-
 document.getElementById('conte-img').addEventListener('click', () =>{
   var elementosExcluidos = ['simulador','interfaz-perfiles','inerfaz-ajuste-fino','perfil-individual','control-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4']  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -4453,7 +4438,6 @@ function mostrarVentanaEmergente(mensaje) {
   mensajeEmergente.textContent = mensaje;
   ventanaEmergente.classList.remove('oculta');
 }
-
 document.getElementById('cerrarEmergente').addEventListener('click', () => {
   let conteCMYK = document.querySelector('#padre-cmyk');
   let conteRGB = document.querySelector('#padre-rgb');
@@ -4987,8 +4971,6 @@ const alertaOcho = document.getElementById('alerta-ocho')
 let alertaNueve = document.querySelector('#alerta-nueve')
 const buttsJobs = document.querySelectorAll('.base-datos');
 const botonClientes = document.querySelector('#clientes')
-
-
 buttsJobs.forEach(boton => {
   let panelUno = document.getElementById('panel-uno')
   let panelDos = document.getElementById('panel-dos')  
@@ -5047,8 +5029,6 @@ buttsJobs.forEach(boton => {
     } 
   });
 });
-
-
 function actualizarDisplay() {
   document.querySelectorAll('#resultado-calculadora .number, #display-cantidad .cantidad-display').forEach(elemento => elemento.textContent = '');
 }
@@ -5455,20 +5435,6 @@ function eliminarColores(){
 
 
 } 
-
-/* function desactivarClick(classElements) {
-  if (!Array.isArray(classElements)) {
-    console.error('El parámetro debe ser un array de selectores.');
-    return;
-  }
-  classElements.forEach(selector => {
-    const botones = document.querySelectorAll(selector);
-    botones.forEach(boton => {
-      boton.style.pointerEvents = 'none'; // Bloquea eventos de clic
-    });
-  });
-} */
-
 function desactivarClick(classElements) {
   if (!Array.isArray(classElements)) {
     console.error('El parámetro debe ser un array de selectores.');
@@ -5546,9 +5512,7 @@ listaClientes.addEventListener('mouseleave',() =>{
   listaClientes.style.display='none'
   restablecerClick(['.base-datos']);
 })
-
 const jobs = document.querySelectorAll('.jobs');
-
 function mostrarNombresDeObjetos() {
   flagAplicacion = true;
   
@@ -6401,8 +6365,6 @@ document.getElementById("reset-btn-cmyk").addEventListener("click", () => {
   inputs.forEach(input => input.value = 0);
   resetBotonMezclador('padre-cmyk') 
 });
-
-
 function cmykwToRgb(c, m, y, k, a) {  // RGB
   let normalized = normalizeCMYK(c, m, y, k);
   c = normalized.c;
@@ -6693,7 +6655,6 @@ function resetBotonMezclador(parentContiner) {
     updateColorRGB();
   }
 }
-
 function configurarBoton(selector, contenedor, callback) {
   const boton = document.querySelector(selector);
   const padre = document.querySelector(contenedor);
@@ -6721,7 +6682,6 @@ function configurarBoton(selector, contenedor, callback) {
     boton.style.backgroundColor = ''; 
   });
 }
-
 // RGB CMYK
 function alternarTeccnologia(tecnologia) {
   const padreCmyk = document.getElementById('padre-cmyk');
@@ -6751,8 +6711,6 @@ function alternarTeccnologia(tecnologia) {
     break;
   }
 }
-
-
 function ocultarElementoProgressivo(el, callback) {
   if (!el) return;
   // aceptar id/selector o elemento
@@ -6850,8 +6808,6 @@ function mostrarElementoProgressivo(el) {
     });
   }, { once: true });
 }
-
-
 // MUESTRA LOS PADRES
 function secuenciaAparicion(canal) {
  const controlColor = document.querySelector('#perfiles-color');
@@ -6891,9 +6847,7 @@ document.querySelector('#nombre-Perfil').addEventListener('click', () => {
   document.querySelector('#nombre-Perfil-existe').value = ''
   listaClientes.style.display = 'none'
 })
-
 let parpadeoActivo = null; // referencia global
-
 function parpadearElemento(id) {
   const el = document.getElementById(id);
   if (!el) return;
@@ -6911,15 +6865,12 @@ function parpadearElemento(id) {
 
   parpadeoActivo = { intervalo, el, colorOriginal };
 }
-
 function detenerParpadeo() {
   if (!parpadeoActivo) return;
   clearInterval(parpadeoActivo.intervalo);
   parpadeoActivo.el.style.backgroundColor = parpadeoActivo.colorOriginal;
   parpadeoActivo = null;
 }
-
-
 function crearPerfilColor() { // crear nuevo desde boton blanco
   
   let contRGB = document.querySelector('#padre-rgb');
@@ -7095,9 +7046,7 @@ configurarBoton('#boton-cmyk','#padre-cmyk', '')
 configurarBoton('#boton-rgb-alternar','#padre-rgb', '') 
 configurarBoton('#boton-rgb-salir','#padre-rgb', '')
 configurarBoton('#boton-cmyk-salir','#padre-cmyk', '')
-
 document.querySelector('#btn-salir-perfiles').addEventListener('click', alternarOcultarBotones);
-
 function alternarOcultarBotones() {
   const controlRgb = document.querySelector('#control-panel-rgb')
   const controCmyk = document.querySelector('#control-panel-cmyk')
@@ -7309,7 +7258,6 @@ grupoBotsCrear.forEach(bot => {
     }, 300);
   });
 });
-
 gridDigitos.addEventListener('mouseleave', () => {
   alertaCuatro.style.display='none'
 } )

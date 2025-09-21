@@ -289,7 +289,6 @@ function showNextGraf() {
   setTimeout(showNextGraf, 57)
   }
 }
-
 function showRepuesto(elementId) {
   const config = {
     contImgDistribuidor: {
@@ -361,8 +360,6 @@ function showRepuesto(elementId) {
     console.log(idsArray);
   }
 }
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const cuartoHijo   = document.getElementById('ultimoElemento');
   const segundaLista = document.getElementById('segundaLista');
@@ -413,9 +410,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-
-
 function showNextInputChec() {
 var conteneChecks = document.getElementById('contChecks')
 if (conteneChecks.style.display === 'block') {
@@ -1686,7 +1680,6 @@ function abrirSeccionCurado(elementId){
     console.log(idsArray);
   }  
 }
-
 function abrirSeccionDemo(elementId) {
   var elementosExcluidos = ['buscador','search-form', 'links-inicialesI', 'links-iniciales', 'planetary', 'tendencia-naranja','padre-naranja'];
   document.getElementById('linkList').style.display = 'none';
@@ -1734,7 +1727,6 @@ function manejarTransicion(movilId, destinoId, marcoId, delay) {
     marco.classList.add("apagado");
   }, delay + 1);
 }
-
 document.getElementById('shrinkButton').addEventListener('click', function() {
   var items = document.querySelectorAll('.item-orange');
   items.forEach(function(item) {
@@ -4539,25 +4531,27 @@ function resultadosMaquina(idMaquina, functionExe,icono,state){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }
-
-  /* const padreCalendario = document.querySelector('#calendario-mes')
-	  padreCalendario.style.display = 'grid';
-          Array.from(padreCalendario.querySelectorAll('*')).forEach(hijo => {
-            hijo.style.display = '';
-            hijo.style.visibility = 'visible';
-            hijo.style.opacity = '1';
-          }); */  
-  const elementosDia = document.querySelectorAll('.dia');
-  elementosDia.forEach((elemento) => {
-    elemento.removeAttribute('style');
-  });
-    document.getElementById('meses').style.display='grid'
-    document.getElementById('calendario-mes').style.display='grid'
-    iniciarAnimacionDias()
-    desvanecerDiasSimultaneamenteConIntervalo()
+  aparecerElemento("meses", "grid")
+  aparecerElemento("lista-maquinas", "grid")
 }
 
+document.querySelectorAll('.maquina').forEach((maquina) => {
 
+  maquina.addEventListener('click', () => {
+    let spanMaq = document.querySelectorAll('.maquina')
+      spanMaq.forEach((maquina) => {
+      maquina.removeAttribute('style');
+    } )
+
+    maquina.style.backgroundColor=' rgb(0, 191, 255)'
+    maquina.style.color='black'
+    document.querySelector('#titulo-calendar').style.display = 'flex';
+    aparecerElemento('calendario-mes', 'grid');
+    aparecerElemento('cont-span-semanas', 'grid');
+    aparecerElemento('titulo-calendar', 'grid');
+    document.querySelector('#titulo-calendar').textContent = maquina.textContent;
+  });
+});
 
 function resultadosEmpleado(idEmpleado, functionExe,icono,state) {
   detenerDinamica()
@@ -4715,6 +4709,7 @@ function deslizaMosaico(){
   }, 300)
   }, 300)
 }
+
 function graficosAutomaticos(idGrafico){
   for (var i = 0; i < idsMA.length; i++) {
     var elto = idsMA[i]
@@ -4725,6 +4720,7 @@ function graficosAutomaticos(idGrafico){
     }
   }
 }
+
 document.getElementById('textToColorI').addEventListener('mouseenter', () => {
   let padreLinks = document.getElementById('links-inicialesI');
   let conteLinks = document.getElementById('linkListI');
