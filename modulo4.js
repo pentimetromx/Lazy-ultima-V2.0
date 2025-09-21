@@ -959,8 +959,6 @@ diasMes.forEach(dia => {
     });
   });
 });
-
-
 function resaltarSecuencial() {
   const spans = document.querySelectorAll('#formulario-cuenta .etq-frm');
 
@@ -978,7 +976,6 @@ function resaltarSecuencial() {
     }, index * 10);
   });
 }
-
 function resaltarSecuencialVariable() {
   const spans = document.querySelectorAll('#cont-variable .child-section');
 

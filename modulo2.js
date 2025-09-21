@@ -33,7 +33,6 @@ function aparecerElemento(id, display = "grid") {
   }, 30);
 }
 
-
 const salirPadreCmyk = document.querySelector('#boton-cmyk-salir')
 const salirPadreRgb= document.querySelector('#boton-rgb-salir')
 
@@ -1532,6 +1531,7 @@ var chart6 = new Chart(miCanvas5, {
         }
     }
 })
+
 var chart7 = new Chart(miCanvas6, { 
   type: 'bar',
   data: {
@@ -1585,6 +1585,7 @@ var chart7 = new Chart(miCanvas6, {
     }
   }
 })
+
 var chart7II = new Chart(miCanvas6II, { 
   type: 'bar',
   data: {
@@ -4654,9 +4655,6 @@ function cerrarVentanasII() {
     document.querySelectorAll('.ventana').forEach(v => v.style.display = 'none');
   }
 }
-
-
-
 function cerrarPilares(){
   document.getElementById('linkListI').style.display='none'
   document.getElementById('linkList').style.display='none'
@@ -4776,7 +4774,6 @@ function reponerEstilos(){
   vidPrePre.forEach(child => {
     child.classList.remove('move_vid_pre')
   });
-  const dias = document.querySelectorAll(".dia");
   dias.forEach((dia) => {
     dia.removeAttribute("style");
     dia.style.display='none'
@@ -4987,7 +4984,6 @@ function openGraphics(elementId){
         document.getElementById('month-display').style.display='flex'
         document.getElementById('meses').style.display='grid'
         document.getElementById('calendario-mes').style.display='grid'
-        const dias = document.querySelectorAll(".dia");
         let index = 0;        
         const interval = setInterval(() => {
           if (index < dias.length) {  
@@ -5005,27 +5001,6 @@ function openGraphics(elementId){
       }, 1400);
     } 
   }
-}
-function iniciarAnimacionDias() {
-  if (intervalEnEjecucion) return;
-  setTimeout(() => {
-    intervalEnEjecucion = true; //intervalo en ejecución
-  }, 50);
-  setTimeout(() => {
-    const dias = document.querySelectorAll(".dia");
-    let index = 0;
-  
-    const interval = setInterval(() => {
-      if (index < dias.length) {
-        dias[index].style.display = "flex";
-        dias[index].textContent = '';
-        index++;
-      } else {
-        clearInterval(interval);
-        intervalEnEjecucion = false; // Restablecer intervalo
-      }
-    }, 17);
-  }, 100);
 }
 function mostrarSecuencialmente() {
   const padreElementos = document.getElementById('metas-diarias')
@@ -5076,80 +5051,91 @@ const diasPorMes = {
 
 
 
+// define las funciones específicas
+function cargarDatos() {
+  alert()
+  document.querySelector('#iconos').style.display='flex'
+  document.querySelector('#contLineas').style.display='flex'
+  document.querySelector('#canvasContainer4').style.display='flex'
+}
+function nextPrime() { alert("NextPrime función"); }
+function alternateFunction() { alert("Alternate función"); }
+// agrega más según el día
+function defaultFunction(dia) { alert(`Sin lógica especial para el día ${dia}`); }
+
+// relación día → función
+const funcionesPorDia = {
+  1: cargarDatos,
+  2: nextPrime,
+  3: alternateFunction
+  // ...continúa
+};
 
 function mostrarCalendario(mesSeleccionado) {
   const diasDelMes = diasPorMes[mesSeleccionado];
-  calendarioMes.innerHTML = ""; // Limpia el calendario para mostrar el mes seleccionado
-  // Actualizar el texto del mes en el elemento 'month-display'
+  calendarioMes.innerHTML = "";
+
   let semana = document.createElement("div");
   semana.className = "semana";
-  
-  for (let dia = 1; dia <= diasDelMes; dia++) {
+
+  for (let i = 1; i <= diasDelMes; i++) {
     const diaElemento = document.createElement("div");
     diaElemento.className = "dia";
-    diaElemento.textContent = dia;
-    diaElemento.style.display = 'flex'; // Asegurar que se muestre como 'flex'
+    diaElemento.textContent = i;
+    diaElemento.style.display = "flex";
+
+    // asignar la función específica si existe, de lo contrario la genérica
+    diaElemento.addEventListener("click", () => {
+      (funcionesPorDia[i] || (() => defaultFunction(i)))();
+    });
+
     semana.appendChild(diaElemento);
 
-    if (dia % 7 === 0) {
+    if (i % 7 === 0) {
       calendarioMes.appendChild(semana);
       semana = document.createElement("div");
       semana.className = "semana";
     }
   }
 
-  // Añade la última semana si tiene días restantes
-  if (semana.children.length > 0) {
-    calendarioMes.appendChild(semana);
-  }
+  if (semana.children.length > 0) calendarioMes.appendChild(semana);
 
-  // Rellena la última semana con días vacíos
   while (semana.children.length < 7) {
     const diaVacio = document.createElement("div");
     diaVacio.className = "dia vacio";
-    diaVacio.style.display = 'flex'; // Asegurar que también los días vacíos tengan display 'flex'
+    diaVacio.style.display = "flex";
     semana.appendChild(diaVacio);
   }
-  asignarEventosDias();
-}
 
+  asignarEventosDiarios();
+}
 
 
 
 let nuevoElemento;
 meses.forEach((mes) => {
   mes.addEventListener("click", function () {
-    document.getElementById('tareas-lubricacion').style.display='none'
-    document.getElementById('tareas-limpieza').style.display='none'
-    document.getElementById('actividad-lubricacion').style.display='none'
-    document.getElementById('actividad-limpieza').style.display='none'
-    meses.forEach((m) => {
-      m.style.backgroundColor = "";
-      m.style.color = "";
-    });
-    document.getElementById('actividad-lubricacion').style.backgroundColor=''
-    document.getElementById('actividad-lubricacion').style.color=''
-    document.getElementById('actividad-limpieza').style.backgroundColor=''
-    document.getElementById('actividad-limpieza').style.color=''
+    const el = document.querySelector('#calendario-mes');
+    if (!el || el.offsetParent === null) {
+      return
+    }else{
+      meses.forEach((m) => {
+        m.style.backgroundColor = "";
+        m.style.color = "";
+      });
+      mes.style.display = "flex";
+      mes.style.backgroundColor=' rgb(0, 191, 255)'
+      mes.style.color='black'
+      // Llama a la función para mostrar el calendario del mes seleccionado
+      mostrarCalendario(mes.textContent);
+      setTimeout(() => {
+        mostrarSemanasSecuencialmente()
+      }, 50);
 
-    document.getElementById('actividad-limpieza').style.display='none'
+    }
 
-    mes.style.display = "flex";
-    mes.style.backgroundColor = "rgb(188,188,188)";
-    mes.style.color = "rgb(0,0,20)";
-    // Llama a la función para mostrar el calendario del mes seleccionado
-    mostrarCalendario(mes.textContent);
-    setTimeout(() => {
-      mostrarSemanasSecuencialmente()
-    }, 50);
   });
-
 }); 
-
-
-
-
-
 function mostrarSemanasSecuencialmente() {
   const semanas = document.querySelectorAll(".semana"); // Selecciona todas las semanas
   let index = 0; // Índice para rastrear la semana actual
@@ -5168,99 +5154,26 @@ function mostrarSemanasSecuencialmente() {
     } else {
       clearInterval(interval); // Detiene el intervalo cuando todas las semanas son visibles
     }
-  }, 33); // Intervalo de 77 milisegundos
+  },133); // Intervalo de 77 milisegundos
 }
-function asignarEventosDias() {
-  const day = document.getElementById('dia');
-  const dias = document.querySelectorAll('.dia');
-  const displayLimpieza = document.getElementById('actividad-limpieza');
-  const displayLubrica = document.getElementById('actividad-lubricacion');
-
-  desactivarClicsPorUnTiempo(500);
-
-  if (screenWidth < 500) {
-    dias.forEach((dia, index) => {
-      dia.addEventListener('click', () => {
-        dias.forEach(d => d.style.display = 'none');
-        Object.assign(dia.style, {
-          display: 'flex',
-          position: 'fixed',
-          borderRadius: '0 6px 6px 0',
-          top: '45.2vh',
-          left: '68vw'
-        });
-        day.style.display = 'flex';
-        document.getElementById('month-display').classList.add('move-month');
-
-        if (index === 2) {
-          displayLubrica.style.display = 'flex';
-          displayLimpieza.style.display = 'flex';
-        }
-      });
-    });
-  } else {
-    dias.forEach(dia => {
-      dia.addEventListener('click', () => {
-        const acciones = {
-          '1': () => console.log('1'),
-          '2': () => console.log('2'),
-          '3': () => console.log('3'),
-          '4': () => console.log('4')
-        };
-
-        const fn = acciones[dia.textContent];
-        if (fn) fn();
-
-      });
-    });
-  }
-}
-
-
 const activLimpieza = document.getElementById('tareas-limpieza');  
 const activLubricacion = document.getElementById('tareas-lubricacion');
-actividadesLubricacion.addEventListener('click',() =>{
-  activLimpieza.style.display='flex'
-  actividadesLimpieza.style.backgroundColor=''
-  actividadesLimpieza.style.color=''
-  activLimpieza.classList.remove('move-tareas-limpieza')
-  activLubricacion.style.display='flex'
-  actividadesLubricacion.style.backgroundColor='rgb(0,255,0)'
-  actividadesLubricacion.style.color='rgb(33,0,0)'
-  actividadesLimpieza.style.display='flex'
-  setTimeout(() => {
-    animateScroll('tareas-lubricacion')
-  }, 500); 
-})
-actividadesLimpieza.addEventListener('click', () => {
-  activLimpieza.style.left=''
-  activLimpieza.style.display='flex'
-  actividadesLimpieza.style.backgroundColor = 'rgb(0,255,0)'; // boton
-  actividadesLimpieza.style.color = 'rgb(33,0,0)';
-  actividadesLubricacion.style.backgroundColor='' // boton
-  actividadesLubricacion.style.color=''  
-  setTimeout(() => {
-    activLimpieza.classList.add('move-tareas-limpieza'); // cajon  
-  }, 100); 
-  setTimeout(() => {
-    animateScroll('tareas-limpieza');    
-  }, 500); 
-});
-function desvanecerDiasSimultaneamenteConIntervalo() {
-  const dias = document.querySelectorAll(".dia");
-  intervaloGlobal = setInterval(() => {
-    dias.forEach((dia) => {
-      dia.style.opacity = '0';
-    });
-    setTimeout(() => {
-      dias.forEach((dia) => {
-        dia.style.opacity = '1';
-      });
-    }, 577);
-  }, 1154);
 
+function asignarEventosDiarios() {
+  const dias = document.querySelectorAll(".dia"); // seleccionar los NUEVOS nodos
+  dias.forEach(dia => {
+    dia.addEventListener("click", () => {
+      // restablecer estilos a todos
+      dias.forEach(d => {
+        d.style.backgroundColor = "";
+        d.style.color = "";
+      });
+      // aplicar estilos al elemento clicado
+      dia.style.backgroundColor = "rgb(0,255,0)";
+      dia.style.color = "black";
+    });
+  });
 }
-const dias = document.querySelectorAll('.dia');
 function mostrarDiaEspecifico(posicion) {
   dias.forEach((dia) => {
     dia.style.display = 'none';

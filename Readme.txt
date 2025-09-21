@@ -8,6 +8,7 @@
             hijo.style.visibility = 'visible';
             hijo.style.opacity = '1';
           });
+
 3. Mostrar capacidad disponible en el almacén local
     function getLocalStorageSize() {
 
@@ -33,6 +34,17 @@ console.log(getLocalStorageSize());
 4. PROMPT PARA GEMINI:
 
 A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspect ratio. Two individuals are shown from the waist up, one with their arm around the other, looking relaxed and natural. Behind them are plain white curtains. The image exhibits a subtle blur and diffused light as if captured by a flash in a dimly lit space. The overall look should replicate the authentic, slightly faded and light-streaked appearance of a vintage Polaroid, capturing a simple, unposed moment.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
