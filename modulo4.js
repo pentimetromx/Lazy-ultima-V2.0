@@ -1010,3 +1010,106 @@ function resaltarSecuencialDemo() {
     }, index * 10);
   });
 }
+
+
+let miCanvas12 = document.getElementById('MiGrafica10').getContext('2d')
+let chart13;
+function crearGrafico() {
+  const padreGrafica10 = document.querySelector('#padre-grafica4')
+  padreGrafica10.style.display='flex'
+  const canvas = document.getElementById('MiGrafica10');
+
+  // 1️⃣ Destruir si ya existe
+  if (chart13) {
+    chart13.destroy();
+    chart13 = null;
+  }
+
+  // 2️⃣ Ocultar/mostrar con transición (opcional)
+  canvas.style.display = 'none';
+  setTimeout(() => canvas.style.display = 'block', 100);
+
+  const ctx = canvas.getContext('2d');
+
+  // 3️⃣ Configuración del gráfico
+  const configBase = {
+    type: 'bar',
+    data: {
+      labels: ['Semana 1', 'Semana 2', 'Semana 3', 'Semana 4'],
+      datasets: [
+        {
+          label: 'Participación en M.A',
+          backgroundColor: [
+            'rgba(30,149,54,1)',
+            'rgba(30,149,54,0.7)',
+            'rgba(30,149,54,0.5)',
+            'rgba(30,149,54,0.3)'
+          ],
+          data: [100, 75, 86, 98],
+          barPercentage: 1.24
+        },
+        {
+          type: 'line',
+          data: [100, 80, 90, 95],
+          borderColor: 'orange',
+          borderWidth: 1,
+          pointRadius: 0,
+          fill: false,
+          tension: 0.2
+        }
+      ]
+    },
+    options: {
+      /* animation: false, */ 
+      plugins: {
+        legend: { display: false },
+        title: { display: true, text: 'Sesiones M.A', font: { size: 13 } }
+      },
+      maintainAspectRatio: false,
+      indexAxis: 'x', // horientacion de barras vertical / horizontales
+      scales: {
+        x: {
+          categoryPercentage: 1,
+          grid: { display: false },
+          ticks: { color: '#fff', font: { size: 7 } }
+        },
+        y: {
+          grid: { display: false },
+          ticks: { display: false } // sin leyendas verticales
+          /* ticks: { color: '#fff', font: { size: 7 } } */
+
+        }
+      }
+    }
+  };
+
+  // 4️⃣ Crear el nuevo gráfico
+  chart13 = new Chart(ctx, configBase);
+}
+document.querySelectorAll('.span-semana').forEach((span, index) => {
+  span.addEventListener('click', () => {
+    switch (index) {
+      case 0:
+        alert('PRIMER SPAN')
+      break;
+      case 1:
+        // Lógica para el segundo elemento
+        console.log('Acción para Semana 2');
+      break;
+      case 2:
+        // Lógica para el tercero
+        console.log('SI SEÑOR')
+      break;
+      case 3:
+        // Lógica para el cuarto
+        span.style.backgroundColor = 'orange';
+      break;
+      default:
+        console.warn('Índice no contemplado');
+    }
+  });
+});
+
+
+
+/* document.getElementById('botonActualizar').addEventListener('click',crearGrafico); */
