@@ -4592,3 +4592,38 @@ top: 44%;
   box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7);
 }
 
+
+
+#botonActualizar{
+  position: relative;
+  display: flex;
+  background-color: tomato;
+  cursor: pointer;
+  border-radius: 5px;
+  top: 90vh;
+  left: 47vw;
+  width: 5vw;
+  height: 4vh;
+}
+#MiGrafica10{
+  position: absolute;
+  display: flex;
+  width: 100%;   /* o un ancho fijo, ej: 600px */
+  height: 100%;  
+  /* transition: left 1.5s ease, top 1.5s ease; */ 
+}
+#padre-grafica4{
+ width: 49%;
+ height: 30%;
+ position: relative;
+}
+#abuelo-grafica4{
+ width: 42vw;
+ height: 80vh;
+ position: absolute;
+ background-color: #000;
+ border-radius: 7px;
+ top: 17vh;
+ left: 56vw;
+ display: none;
+}

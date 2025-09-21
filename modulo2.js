@@ -2193,6 +2193,10 @@ var chart12II = new Chart(miCanvas11II, {
 const searchForm = document.getElementById('search-form')
 const searchInput = document.getElementById('search-input')
 const suggestionsList = document.getElementById('suggestions')
+searchInput.addEventListener('click' , () =>{
+  searchInput.value=''
+})
+
 searchForm.addEventListener('submit', function (e) {
   e.preventDefault() // Evita que se envíe el formulario
   const searchTerm = searchInput.value.toLowerCase() // Obtenemos el término de búsqueda y lo convertimos a minúsculas
@@ -2243,7 +2247,7 @@ searchForm.addEventListener('submit', function (e) {
     break;
     case 'pantalla inicial':
     case 'pantalla-inicial':
-      abrirSeccionContinua('pantalla-inicial')
+      mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])
     break;
     case 'preprensa':
     abrirPrepress('pre-prensa')
@@ -5113,29 +5117,74 @@ function mostrarCalendario(mesSeleccionado) {
 
 
 let nuevoElemento;
+
 meses.forEach((mes) => {
   mes.addEventListener("click", function () {
     const el = document.querySelector('#calendario-mes');
-    if (!el || el.offsetParent === null) {
-      return
-    }else{
-      meses.forEach((m) => {
-        m.style.backgroundColor = "";
-        m.style.color = "";
-      });
-      mes.style.display = "flex";
-      mes.style.backgroundColor=' rgb(0, 191, 255)'
-      mes.style.color='black'
-      // Llama a la función para mostrar el calendario del mes seleccionado
-      mostrarCalendario(mes.textContent);
-      setTimeout(() => {
-        mostrarSemanasSecuencialmente()
-      }, 50);
+    if (!el || el.offsetParent === null) return;
+    document.querySelector('#abuelo-grafica4').style.display='flex'
 
-    }
+    // --- Reset estilos a todos los meses
+    meses.forEach((m) => {
+      m.style.backgroundColor = "";
+      m.style.color = "";
+    });
 
+    // --- Estilo del mes clicado
+    mes.style.display = "flex";
+    mes.style.backgroundColor = "rgb(0, 191, 255)";
+    mes.style.color = "black";
+
+    // --- Mostrar calendario y semanas
+    mostrarCalendario(mes.textContent);
+    setTimeout(() => {
+      mostrarSemanasSecuencialmente();
+    }, 50);
+
+    // --- Lógica específica según el mes
+    aplicarLogicaPorMes(mes.textContent.trim());
   });
-}); 
+});
+
+
+
+
+
+function aplicarLogicaPorMes(nombreMes) {
+  // 🟡 1️⃣ Ocultar, no eliminar, todos los hijos
+  const abuelo = document.getElementById('abuelo-grafica4');
+  Array.from(abuelo.children).forEach(hijo => {
+    hijo.style.display = 'none';     // los ocultamos
+  });
+
+  // 2️⃣ Lógica específica según el mes
+  switch (nombreMes.toLowerCase()) {
+    case "enero":
+      // Ejemplo: mostrar de nuevo el primer hijo
+      if (abuelo.firstElementChild) {
+        abuelo.firstElementChild.style.display = 'block';
+      }
+      crearGrafico();
+      break;
+
+    case "febrero":
+      console.log("Lógica especial para Febrero");
+      break;
+
+    case "marzo":
+      console.log("Lógica especial para Marzo");
+      break;
+
+    default:
+      console.log(`Sin lógica específica para ${nombreMes}`);
+  }
+}
+
+
+
+
+
+
 function mostrarSemanasSecuencialmente() {
   const semanas = document.querySelectorAll(".semana"); // Selecciona todas las semanas
   let index = 0; // Índice para rastrear la semana actual
