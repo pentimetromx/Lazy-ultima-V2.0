@@ -666,6 +666,7 @@ function updateCarlosII() {
   chart12II.data.datasets[0].data = nuevosDatosV
   chart12II.update()  
 }
+
 function updateDinamico() {
   desactivarClick(['.desactivar'])
   if(turnBlock === false){
@@ -696,6 +697,7 @@ function updateDinamico() {
   chart12.update();
   actualizarDatos()
 }
+
 function updateDinamicoII() {
   if(turnBlock === false){
     setTimeout(function() { graficosAutomaticos('canvasContainer4-II'); }, 500);
@@ -1535,7 +1537,7 @@ var chart6 = new Chart(miCanvas5, {
 var chart7 = new Chart(miCanvas6, { 
   type: 'bar',
   data: {
-    labels: ['DEFECTOS IDENTIFICADOS', 'DEFECTOS CORREGIDOS', 'TIPO 1', 'TIPO 2'],
+    labels: ['IDENTIFICADOS', 'CORREGIDOS', 'TIPO 1', 'TIPO 2'],
     datasets: [
       {
         label: 'Participación en M.A',
@@ -1545,6 +1547,8 @@ var chart7 = new Chart(miCanvas6, {
     ]
   },
   options: {
+    responsive: true,
+    maintainAspectRatio: false,    
     scales: {
         x: {
             grid: {
@@ -1553,7 +1557,7 @@ var chart7 = new Chart(miCanvas6, {
             ticks: {
                 color: 'rgb(255,255,255)',
                 font: {
-                    size: 9
+                    size: 7
                 }
             }
         },
@@ -1564,7 +1568,7 @@ var chart7 = new Chart(miCanvas6, {
             ticks: {
                 color: 'rgb(255,255,255)',
                 font: {
-                    size: 10
+                    size: 9
                 },
                 beginAtZero: true
             }
@@ -1572,6 +1576,7 @@ var chart7 = new Chart(miCanvas6, {
     },
     indexAxis: 'x',
     plugins: {
+        tooltip: { enabled: false },
         legend: {
             display: false
         },
@@ -1663,6 +1668,8 @@ var chart8 = new Chart(miCanvas7, {
     ]
   },
   options: {
+    responsive: true,
+    maintainAspectRatio: false,    
     scales: {
       x: {
         grid: {
@@ -1690,6 +1697,7 @@ var chart8 = new Chart(miCanvas7, {
     },
     indexAxis: 'y',
     plugins: {
+      tooltip: { enabled: false },
       legend: {
         display: false
       },
@@ -1756,6 +1764,7 @@ var chart8II = new Chart(miCanvas7II, {
     }
   }
 })
+
 var chart9 = new Chart(miCanvas8, {
   type: 'line',
   data: {
@@ -1771,6 +1780,8 @@ var chart9 = new Chart(miCanvas8, {
     ]
   },
   options: {
+    responsive: true,
+    maintainAspectRatio: false,    
     scales: {
       x: {
         grid: {
@@ -1798,6 +1809,7 @@ var chart9 = new Chart(miCanvas8, {
     },
     indexAxis: 'x',
     plugins: {
+      tooltip: { enabled: false },
       legend: {
         display: false
       },
@@ -1811,6 +1823,7 @@ var chart9 = new Chart(miCanvas8, {
     }
   }
 })
+
 var chart9II = new Chart(miCanvas8II, {
   type: 'line',
   data: {
@@ -1879,6 +1892,8 @@ var chart10 = new Chart(miCanvas9, {
     ]
   },
   options: {
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
       x: {
         grid: {
@@ -1906,6 +1921,7 @@ var chart10 = new Chart(miCanvas9, {
     },
     indexAxis: 'x',
     plugins: {
+      tooltip: { enabled: false },
       legend: {
         display: false
       },
@@ -1987,6 +2003,8 @@ var chart11 = new Chart(miCanvas10, {
     ]
   },
   options: {
+    responsive: true,              // sigue redimensionando al contenedor
+    maintainAspectRatio: false,
     scales: {
       x: {
         grid: {
@@ -2014,6 +2032,7 @@ var chart11 = new Chart(miCanvas10, {
     },
     indexAxis: 'x',
     plugins: {
+      tooltip: { enabled: false },
       legend: {
         display: false
       },
@@ -2094,6 +2113,8 @@ var chart12 = new Chart(miCanvas11, {
     ]
   },
   options: {
+    responsive: true,              // sigue redimensionando al contenedor
+    maintainAspectRatio: false,    
     scales: {
       x: {
         grid: {
@@ -2121,6 +2142,7 @@ var chart12 = new Chart(miCanvas11, {
     },
     indexAxis: 'x',
     plugins: {
+      tooltip: { enabled: false },
       legend: {
         display: false
       },
@@ -4891,12 +4913,14 @@ function muestraMenu(){
 let intervalEnEjecucion = false;
 
 function openGraphics(elementId){
+  const elementos = document.querySelectorAll('.graphs-lines');
+
   if(turnBlock === false){
     turnBlock = true
   }
   desactivarClick(['.graphs-lines'])
   if(screenWidth > 500){
-    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','contLineas','iconos','conte-secundario']
+    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','conte-secundario']
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i])
       if (elemento) {
@@ -4905,42 +4929,119 @@ function openGraphics(elementId){
     }
     container1.style.display='grid'
     desactivarClicsPorUnTiempo(1500)
-    document.getElementById('contLineas').style.backgroundColor = 'rgb(30,30,30)';
+    marcoGraficas.style.display='grid'
+
+    Array.from(marcoGraficas.querySelectorAll('*')).forEach(hijo => {
+      hijo.style.display = 'block';
+      hijo.style.visibility = 'visible';
+      hijo.style.opacity = '1';
+    });
+
+    
     const month = document.querySelectorAll('.mes')
     month.forEach((mes) => {
       mes.style.backgroundColor = ''
       mes.style.color = ''
     })
-    const elementos = document.querySelectorAll('.graphs-lines');
-    elementos.forEach((miElemento) => {
-      if (miElemento.id === elementId) {
-        miElemento.style.display = 'block';
-        miElemento.style.left = '16vw';
-        miElemento.style.top = '15vh';
-        miElemento.style.backgroundColor='rgb(0,0,17)'
-        miElemento.style.borderRadius = '10px';
-      }
-    });
+
+    if (elementId === 'canvasContainer4') {
+      elementos.forEach(el => {
+        const canvas = el.querySelector('canvas');
+        if (el.id === elementId) {
+          el.classList.add('move-canvas-1');
+          el.style.visibility = 'visible';
+          if (canvas) canvas.style.visibility = 'visible';
+        } else {
+          setTimeout(() => {
+            el.style.visibility = 'hidden';
+            if (canvas) canvas.style.visibility = 'hidden'; 
+          }, 750);
+        }
+      });
+    }
+    
+    if(elementId === 'canvasContainer5'){
+      elementos.forEach(el => {
+        const canvas = el.querySelector('canvas');
+        if (el.id === elementId) {
+          el.classList.add('move-canvas-2');
+          el.style.visibility = 'visible';
+          if (canvas) canvas.style.visibility = 'visible';
+        } else {
+          setTimeout(() => {
+            el.style.visibility = 'hidden';
+            if (canvas) canvas.style.visibility = 'hidden'; 
+          }, 1000);
+        }
+      });
+
+    }  
+    if(elementId === 'canvasContainer6'){
+      elementos.forEach(el => {
+        const canvas = el.querySelector('canvas');
+        if (el.id === elementId) {
+          el.classList.add('move-canvas-3');
+          el.style.visibility = 'visible';
+          if (canvas) canvas.style.visibility = 'visible';
+        } else {
+          setTimeout(() => {
+            el.style.visibility = 'hidden';
+            if (canvas) canvas.style.visibility = 'hidden'; 
+          }, 1250);
+        }
+      });
+    }
+    if(elementId === 'canvasContainer7'){
+      elementos.forEach(el => {
+        const canvas = el.querySelector('canvas');
+        if (el.id === elementId) {
+          el.classList.add('move-canvas-4');
+          el.style.visibility = 'visible';
+          if (canvas) canvas.style.visibility = 'visible';
+        } else {
+          setTimeout(() => {
+            el.style.visibility = 'hidden';
+            if (canvas) canvas.style.visibility = 'hidden'; 
+          }, 850);
+        }
+      });
+    }    
+    if(elementId === 'canvasContainer8'){
+      elementos.forEach(el => {
+        const canvas = el.querySelector('canvas');
+        if (el.id === elementId) {
+          el.classList.add('move-canvas-5');
+          el.style.visibility = 'visible';
+          if (canvas) canvas.style.visibility = 'visible';
+        } else {
+          setTimeout(() => {
+            el.style.visibility = 'hidden';
+            if (canvas) canvas.style.visibility = 'hidden'; 
+          }, 1150);
+        }
+      });
+
+    }    
     if(elementId === 'canvasContainer9'){
+      elementos.forEach(el => {
+        const canvas = el.querySelector('canvas');
+        if (el.id === elementId) {
+          el.classList.add('move-canvas-6');
+          el.style.visibility = 'visible';
+          if (canvas) canvas.style.visibility = 'visible';
+        } else {
+          setTimeout(() => {
+            el.style.visibility = 'hidden';
+            if (canvas) canvas.style.visibility = 'hidden'; 
+          }, 1450);
+        }
+      });
+
       setTimeout(() => {
         mostrarSecuencialmente()
       }, 1400);
+
     }    
-    if(elementId === 'canvasContainer7'){
-      /* const elementosDia = document.querySelectorAll('.dia');
-      elementosDia.forEach((elemento) => {
-        elemento.removeAttribute('style');
-      });
-      setTimeout(() => {
-        document.getElementById('month-display').style.display='flex'
-        document.getElementById('meses').style.display='grid'
-        document.getElementById('calendario-mes').style.display='grid'
-        iniciarAnimacionDias()
-      }, 1400);
-      setTimeout(() => {
-        desvanecerDiasSimultaneamenteConIntervalo()
-      }, 1400); */
-    }
     
     setTimeout(() => {   
       if(turnGraphic === false){
@@ -4948,7 +5049,13 @@ function openGraphics(elementId){
         moverElementos(["conte-butts-graphs"], 27, -7);
       }
     }, 1300);
-  }else {
+/*     setTimeout(() => {
+      document.querySelectorAll('.graphs-lines').forEach(el => {
+        el.style.display='none'
+      });
+    }, 2000);
+ */
+  }/* else {
     var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','contLineas-II','iconos','conte-secundario','MiGrafica9-II']
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i])
@@ -5004,7 +5111,7 @@ function openGraphics(elementId){
         desvanecerDiasSimultaneamenteConIntervalo()
       }, 1400);
     } 
-  }
+  } */
 }
 function mostrarSecuencialmente() {
   const padreElementos = document.getElementById('metas-diarias')
@@ -5053,27 +5160,14 @@ const diasPorMes = {
   Diciembre: 31,
 };
 
-
-
 // define las funciones específicas
 function cargarDatos() {
-  alert()
   document.querySelector('#iconos').style.display='flex'
-  document.querySelector('#contLineas').style.display='flex'
+  marcoGraficas.style.display='grid'
   document.querySelector('#canvasContainer4').style.display='flex'
 }
-function nextPrime() { alert("NextPrime función"); }
+function   nextPrime() { alert("NextPrime función"); }
 function alternateFunction() { alert("Alternate función"); }
-// agrega más según el día
-function defaultFunction(dia) { alert(`Sin lógica especial para el día ${dia}`); }
-
-// relación día → función
-const funcionesPorDia = {
-  1: cargarDatos,
-  2: nextPrime,
-  3: alternateFunction
-  // ...continúa
-};
 
 function mostrarCalendario(mesSeleccionado) {
   const diasDelMes = diasPorMes[mesSeleccionado];
@@ -5088,9 +5182,17 @@ function mostrarCalendario(mesSeleccionado) {
     diaElemento.textContent = i;
     diaElemento.style.display = "flex";
 
-    // asignar la función específica si existe, de lo contrario la genérica
+    // Listener directo: resalta y llama a manejarDia
     diaElemento.addEventListener("click", () => {
-      (funcionesPorDia[i] || (() => defaultFunction(i)))();
+      document.querySelectorAll(".dia").forEach(d => {
+        d.style.backgroundColor = "";
+        d.style.color = "";
+      });
+
+      diaElemento.style.backgroundColor = "rgb(40, 180, 110)";
+      diaElemento.style.color = "black";
+
+      manejarDia(i);
     });
 
     semana.appendChild(diaElemento);
@@ -5110,80 +5212,77 @@ function mostrarCalendario(mesSeleccionado) {
     diaVacio.style.display = "flex";
     semana.appendChild(diaVacio);
   }
-
-  asignarEventosDiarios();
 }
 
 
+/* let nuevoElemento; */
+function destruirCharts() {
+  [chart17, chart16, chart15, chart14, chart13].forEach((c, i, arr) => {
+    if (c) {
+      c.destroy();
+      arr[i] = null; // nulifica solo en el array local
+    }
+  });
+}
 
-let nuevoElemento;
+const mesesGraficos = ['Enero','Febrero','Marzo','Abril'];
+const elementosMes = document.querySelectorAll('.mes');
 
-meses.forEach((mes) => {
-  mes.addEventListener("click", function () {
-    const el = document.querySelector('#calendario-mes');
-    if (!el || el.offsetParent === null) return;
-    document.querySelector('#abuelo-grafica4').style.display='flex'
-
-    // --- Reset estilos a todos los meses
-    meses.forEach((m) => {
-      m.style.backgroundColor = "";
-      m.style.color = "";
+elementosMes.forEach((mes, index) => {
+  mes.addEventListener('click', () => {
+    // reset estilos
+    elementosMes.forEach(m => {
+      m.style.backgroundColor = '';
+      m.style.color = '';
     });
 
-    // --- Estilo del mes clicado
-    mes.style.display = "flex";
-    mes.style.backgroundColor = "rgb(0, 191, 255)";
-    mes.style.color = "black";
+    document.querySelectorAll('.span-semana').forEach(element => {
+      element.style.color='rgb(120, 150, 170)'
+    }); 
 
-    // --- Mostrar calendario y semanas
-    mostrarCalendario(mes.textContent);
-    setTimeout(() => {
-      mostrarSemanasSecuencialmente();
-    }, 50);
+    mes.style.backgroundColor ='rgb(20,40,60)';
+    mes.style.color = 'rgb(90,160,220)';
 
-    // --- Lógica específica según el mes
+    ['calendario-mes','cont-span-semanas','titulo-calendar','titulo-mes']
+      .forEach(id => aparecerElemento(id,'grid'));
+
+    mostrarCalendario(mes.textContent.trim());
+    setTimeout(mostrarSemanasSecuencialmente, 50);
     aplicarLogicaPorMes(mes.textContent.trim());
+
+    destruirCharts(); // aquí sí tienen alcance
+
+    document.querySelector('#titulo-mes').textContent = mes.textContent.trim();
+
+    if (mesesGraficos[index]) console.log(mesesGraficos[index]);
   });
 });
-
-
-
-
 
 function aplicarLogicaPorMes(nombreMes) {
   // 🟡 1️⃣ Ocultar, no eliminar, todos los hijos
   const abuelo = document.getElementById('abuelo-grafica4');
   Array.from(abuelo.children).forEach(hijo => {
-    hijo.style.display = 'none';     // los ocultamos
+    abuelo.style.display='none'
+    hijo.style.display = 'none';
   });
 
   // 2️⃣ Lógica específica según el mes
   switch (nombreMes.toLowerCase()) {
     case "enero":
-      // Ejemplo: mostrar de nuevo el primer hijo
-      if (abuelo.firstElementChild) {
-        abuelo.firstElementChild.style.display = 'block';
-      }
-      crearGrafico();
-      break;
+    break;
 
     case "febrero":
       console.log("Lógica especial para Febrero");
-      break;
+    break;
 
     case "marzo":
       console.log("Lógica especial para Marzo");
-      break;
+    break;
 
     default:
       console.log(`Sin lógica específica para ${nombreMes}`);
   }
 }
-
-
-
-
-
 
 function mostrarSemanasSecuencialmente() {
   const semanas = document.querySelectorAll(".semana"); // Selecciona todas las semanas
@@ -5203,26 +5302,21 @@ function mostrarSemanasSecuencialmente() {
     } else {
       clearInterval(interval); // Detiene el intervalo cuando todas las semanas son visibles
     }
-  },133); // Intervalo de 77 milisegundos
+  },133);
 }
 const activLimpieza = document.getElementById('tareas-limpieza');  
 const activLubricacion = document.getElementById('tareas-lubricacion');
 
-function asignarEventosDiarios() {
-  const dias = document.querySelectorAll(".dia"); // seleccionar los NUEVOS nodos
-  dias.forEach(dia => {
-    dia.addEventListener("click", () => {
-      // restablecer estilos a todos
-      dias.forEach(d => {
-        d.style.backgroundColor = "";
-        d.style.color = "";
-      });
-      // aplicar estilos al elemento clicado
-      dia.style.backgroundColor = "rgb(0,255,0)";
-      dia.style.color = "black";
-    });
-  });
+function manejarDia(n) {
+  const acciones = {
+    1: () => console.log("Día 1"),
+    2: () => console.log("Día 2"),
+    3: () => console.log("Día 3"),
+  };
+
+  (acciones[n] || (() => console.log(`Día ${n} sin acción`)))();
 }
+
 function mostrarDiaEspecifico(posicion) {
   dias.forEach((dia) => {
     dia.style.display = 'none';

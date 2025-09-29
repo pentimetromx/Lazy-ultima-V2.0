@@ -465,6 +465,7 @@
       <source data-src="./assets/galaxy.mp4" type="video/mp4">
       Tu navegador no soporta el elemento de video.
     </video>
+
     <div class="links-inicialesI ocultos" id="links-inicialesI">      
       <div id="titleContainerI" class="cont-titulo-pilares">
         <p id="textToColorI">Pilares<span>&#9660;</span></p>
@@ -477,11 +478,12 @@
         <li>Mantenimiento Progresivo</li>
         <li>Mejora Enfocada</li>
         <li>Administrativo y soporte</li>
+        <li onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">Job track</li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
 
-
     </div>
+
     <div class="links-iniciales ocultos" id="links-iniciales">
       <div id="titleContainer">
         <p id="textToColor">Entrenamientos <span>&#9660;</span></p>
@@ -562,6 +564,7 @@
           <button class="boton-c" id="boton12" onclick="UnidadTeñido('boton12','boton7')">Depositos de anilina</button>
         </div>
       </div>
+
       <div id="alimentadorId" class="torre">
         <div  id="cont-Verticales33">
           <button class="boton-b btn-bloque" id="boton13">ALIMENTADOR</button>
@@ -792,12 +795,12 @@
 
     <div id="sector-distribuidor">
       <div id="contenedor-7-V" class="contene-botones"> 
-        <button class="boton-f " onclick="muestraRodillo('videoElement2','images-distribuidor')">Montaje distribuidor<div class="linea-horizontal"></div></button>                
-        <button class="boton-f " onclick="muestraRodillo('videoElement3','images-entintador')">Montaje entintador delantero <div class="linea-horizontal"></div></button>  
-        <button class="boton-f " onclick="muestraRodillo('plate-smed','images-entintador')">Montaje entintador medio <div class="linea-horizontal"></div></button>  
-        <button class="boton-f " onclick="muestraRodillo('videoElement5')">Montaje entintador trasero<div class="linea-horizontal"></div></button>                
-        <button class="boton-f " onclick="muestraRodillo('videoElement6')">Montaje tomador <div class="linea-horizontal"></div></button>  
-        <button class="boton-f " onclick="muestraRodillo('videoElement7')">Montaje distribuidor trasero <div class="linea-horizontal"></div></button>  
+        <button class="boton-f" onclick="muestraRodillo('videoElement2','images-distribuidor')">Montaje distribuidor<div class="linea-horizontal"></div></button>                
+        <button class="boton-f" onclick="muestraRodillo('videoElement3','images-entintador')">Montaje entintador delantero <div class="linea-horizontal"></div></button>  
+        <button class="boton-f" onclick="muestraRodillo('plate-smed','images-entintador')">Montaje entintador medio <div class="linea-horizontal"></div></button>  
+        <button class="boton-f" onclick="muestraRodillo('videoElement5')">Montaje entintador trasero<div class="linea-horizontal"></div></button>                
+        <button class="boton-f" onclick="muestraRodillo('videoElement6')">Montaje tomador <div class="linea-horizontal"></div></button>  
+        <button class="boton-f" onclick="muestraRodillo('videoElement7')">Montaje distribuidor trasero <div class="linea-horizontal"></div></button>  
       </div>
 
       <div id="conti-video-distribuidor">
@@ -1100,7 +1103,7 @@
       </div>
     </div>
 
-    <div id="marco-teñido"></div>
+    <div id="marco-teñido"></div> 
     <div id="marco-freno"></div>
 
     <div id="freno">
@@ -1109,6 +1112,7 @@
         <button class="butt-mautonomo-freno image-trainings" id="btn70" onclick="LubricaDesbobinador('btn70')">ESTRUCTURA</button>
         <button class="butt-mautonomo-freno image-trainings" id="btn80" onclick="LubricaDesbobinador('btn80')">PARAMETROS</button>
       </div>
+
       <div id="cont-arriba-freno">
         <div id="freno-I">
           <span class="labl-class">FRENO</span>
@@ -1141,12 +1145,15 @@
 
     </div>
     <div id="uniteñido">
+      
       <div class="conti-boton" id="conti-boton-teñido">
         <button class="butt-mautonomo-teñido image-trainings" id="btn600" onclick="UnidadTeñido('btn600')">ACTUADORES</button>
         <button class="butt-mautonomo-teñido image-trainings" id="btn700" onclick="UnidadTeñido('btn700')">NEUMATICA</button>
         <button class="butt-mautonomo-teñido image-trainings" id="btn800" onclick="UnidadTeñido('btn800')">PARAMETROS</button>
       </div>
+
       <div id="cont-arriba">
+
         <div id="teñido-I">
           <span class="labl-class">GP TINTER</span>
         </div>
@@ -1191,6 +1198,7 @@
       </div>
 
       <div id="cont-arriba-rodillos">
+
         <div id="rodillos-I">
           <span class="labl-class">GP TINTER</span>
         </div>
@@ -1698,7 +1706,6 @@
       </div>
     </div>
 
-
     <p id="instrucciones_manometro" class="ventana">
       1. Limpia el manómetro antes de calibrar.<br>
       2. Verifica la precisión utilizando un dispositivo de referencia conocido.<br>
@@ -1876,8 +1883,8 @@
     </div>
 
     <div id="conte-butts-graphs">
-      <button id="dynamic-graphs" class="desactivar" onclick="updateDinamico()">Dinamico</button>      
-      <button id="static-graphs" class="estilo-igual" onclick="detenerDinamica()">Estatico</button>
+      <button id="dynamic-graphs" class="estilo-igual">Dinamico</button>      
+      <button id="static-graphs" class="estilo-igual">Estatico</button>
     </div>
 
     <div id="iconos">
@@ -1914,9 +1921,9 @@
         </div>
       </div>
 
-      <div id="conte-maquinas">
+      <!-- <div id="conte-maquinas">
         <div class="cont-user"  id="rotativa-4"> 
-          <img data-src="./assets/prensa.jpg" class="lazy icono-user" id="rot4" onclick="resultadosMaquina('rot4','updateRota-4','img1','true')" alt="icono">
+          <img data-src="./assets/prensa.jpg" class="lazy icono-user" id="rot4" alt="icono">
           <span class="lblMaquina">Rotativa 4</span> 
         </div>
 
@@ -1949,9 +1956,10 @@
           <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="colectora1" onclick="resultadosEmpleado('icon-ana','updateAna','img7','true')" alt="icono">
           <span class="lblMaquina">Colectora 1</span>
         </div>
-      </div>
+      </div> -->
        
       <div id="contLineas">
+
         <div id="canvasContainer4" class="graphs-lines" onclick="openGraphics('canvasContainer4')">
           <canvas id="MiGrafica4"></canvas> 
         </div> 
@@ -1960,7 +1968,7 @@
         </div> 
         <div id="canvasContainer6" class="graphs-lines" onclick="openGraphics('canvasContainer6')">
           <canvas id="MiGrafica6"></canvas> 
-        </div>        
+        </div>          
         <div id="canvasContainer7" class="graphs-lines" onclick="openGraphics('canvasContainer7')">
           <canvas id="MiGrafica7"></canvas> 
         </div>
@@ -1969,10 +1977,12 @@
         </div>
         <div id="canvasContainer9" class="graphs-lines" onclick="openGraphics('canvasContainer9')">
           <canvas id="MiGrafica9"></canvas>
-        </div>         
+        </div>   
+
       </div>
 
       <div id="contLineas-II">
+
         <div id="butts-graphs">
           <button onclick="updateDinamicoII()">Dinamico</button>
           <button onclick="detenerDinamica()">Estatico</button>
@@ -1996,6 +2006,7 @@
         <div id="canvasContainer9-II" class="graphs-employee" onclick="openGraphics('canvasContainer9-II')">
           <canvas id="MiGrafica9-II"  class="canva-graphs"></canvas>
         </div>  
+
       </div>
 
       <div class="contenedor-vertical" id="contenedor-vertical">
@@ -2328,9 +2339,13 @@
       </div>      
     </div>
     <div id="general">  
+
+
       <div id="canvasContainer2" style="display: none;">
         <canvas id="MiGrafica"></canvas>
       </div> 
+
+
       <div id="wall_street_II" class="manejo">
         <div id="iniciador_7" class="horizontales"></div>
         <div id="iniciador_8" class="horizontales"></div>
@@ -2338,8 +2353,6 @@
         <div id="iniciador_10" class="horizontales"></div>
         <div id="iniciador_11" class="horizontales"></div>
       </div>
-
-      
       <div id="first_half" class="manejo">
         <div id="cortina_II"></div>
         <div id="animatedDiv" class="first_table"></div>
@@ -2579,20 +2592,21 @@
     </div>
 
     <div id="lista-maquinas">
-      <span class="maquina">Rotativa 1</span>
-      <span class="maquina">Rotativa 2</span>
-      <span class="maquina">Rotativa 3</span>
-      <span class="maquina">Rotativa 4</span>
-      <span class="maquina">Flexografica</span>
-      <span class="maquina">Armadora sobres</span>
-      <span class="maquina">Colectora 1</span>
-      <span class="maquina">Colectora 2</span>
-      <span class="maquina">GTO 52-1</span>
-      <span class="maquina">GTO 52-2</span>
-      <span class="maquina">Guillotina</span>
+      <span class="maquina">Rotativa 1<span class="indicador"></span></span>
+      <span class="maquina">Rotativa 2<span class="indicador"></span></span>
+      <span class="maquina">Rotativa 3<span class="indicador"></span></span>
+      <span class="maquina">Rotativa 4<span class="indicador"></span></span>
+      <span class="maquina">Flexografica<span class="indicador"></span></span>
+      <span class="maquina">Armadora sobres<span class="indicador"></span></span>
+      <span class="maquina">Colectora 1<span class="indicador"></span></span>
+      <span class="maquina">Colectora 2<span class="indicador"></span></span>
+      <span class="maquina">GTO 52-1<span class="indicador"></span></span>
+      <span class="maquina">GTO 52-2<span class="indicador"></span></span>
+      <span class="maquina">Guillotina<span class="indicador"></span></span>
     </div>
     
-    <span id="titulo-calendar"></span>
+    <span id="titulo-calendar" class="titulo-graf-ma"></span>
+    <span id="titulo-mes" class="titulo-graf-ma"></span>
 
     <div id="calendario-mes">
       <div class="semana">
@@ -2643,6 +2657,8 @@
     </div>
 
     <div id="cont-span-semanas">
+      <span class="span-semana">Graficar</span>
+      <span class="span-semana">Mes</span>
       <span class="span-semana">Semana 1</span>
       <span class="span-semana">Semana 2</span>
       <span class="span-semana">Semana 3</span>
@@ -2663,7 +2679,6 @@
       <div class="mes">Noviembre</div>
       <div class="mes">Diciembre</div>
     </div>
-
 
     <!-- <span id="actividad-lubricacion" class="actividades">Actividades de Lubricacion</span>
     <span id="actividad-limpieza" class="actividades">Actividades de Limpieza</span>
@@ -2711,6 +2726,7 @@
       <div class="tarea">19. Limpieza de las zonas de almacenamiento de tinta: Asegúrate de que los depósitos de tinta estén limpios para evitar contaminación cruzada.</div>
       <div class="tarea">20. Limpieza de los rodillos de transferencia de tinta: Elimina tinta seca y residuos para asegurar una transferencia uniforme de tinta.</div>
     </div> -->
+    
     <div id="simulador">
 
       <span id="sections-fondo" data-display="grid" class="sections-btn">
@@ -2891,7 +2907,7 @@
       <div id="interfaz-perfiles">
 
         <span id="botonera-fondo" class="fondo-btn">
-          <span id="spn-blur-1" class="btn-respaldo"></span>
+          <span id="spn-blur-1" class="btn-respaldo"></span>  
           <span id="spn-blur-2" class="btn-respaldo"></span>
           <span id="spn-blur-3" class="btn-respaldo"></span>
           <span id="spn-blur-4" class="btn-respaldo"></span>
@@ -2906,7 +2922,7 @@
           <button id="butt-perfil" class="butt-perfiles">Gestionar perfiles</button>
           <button id="butt-job-track" class="butt-perfiles">Job Track</button>
           <button id="boton-perfiles" class="butt-perfiles">Crear perfil</button>
-          <button id="boton-reseteo" class="butt-perfiles">Reset perfiles</button>
+          <button id="boton-reseteo" class="butt-perfiles">Reset perfiles</button> 
           <button id="boton-prensas" class="butt-perfiles">Sala</button> 
         </div>
 
@@ -3024,7 +3040,7 @@
         <div id="control-perfiles"></div>
         <span id="current-Color"></span>
         <div id="linea-profundidad-horizontal-2"></div>
-      </div>
+      </div> 
       <div id="admin-perfiles">
         <div id="perfil-unico" class="perfilador">
           <span id="texto-admin">Administrar perfiles</span>
@@ -3063,10 +3079,9 @@
   
       </div>
 
-
       <div id="contenedor-registro">
         <div class="encabezado-registro">
-          <span class="etiqueta-izq">Registro en progreso :</span>
+          <span class="etiqueta-izq">Progreso en el registro :</span>   
           <span class="etiqueta-der">Restzeit 14479 Std.</span>
         </div>
         
@@ -3074,9 +3089,6 @@
           <div id="barra-progreso-registro"></div>
         </div>
       </div>
-
-
-
 
       <div id="unit-job-track">
   
@@ -3112,7 +3124,6 @@
         </div>
       </div>
 
-
       <div id="calculadora">
         <div id="tirada">
           <div class="digito">
@@ -3136,7 +3147,7 @@
             <div class="grid-item">3</div>
             <div class="grid-item">4</div>
             <div class="grid-item">5</div>
-            <div class="grid-item">6</div>
+            <div class="grid-item">6</div>   
             <div class="grid-item">7</div>
             <div class="grid-item">8</div>
             <div class="grid-item">9</div>
@@ -3189,14 +3200,16 @@
       <div id="alerta-siete">
         <span id="actual-nombre">Nombre actualizado :</span>
         <span id="span-nombre" class="span-alerta"></span>
-        <span id="perfil-cambio" class="span-alerta">Aceptar</span>
+        <span id="perfil-cambio" class="span-alerta">Aceptar</span> 
       </div>  
   
       <span id="alerta-ocho"class="alerta-normal cerrar">
         Ya existe un cliente con este nombre
-      </span>    
+      </span>   
+
       <span id="span-index" class="alerta-botones cerrar">
-        Seleccione el color para perfilar   
+        Seleccione el color para perfilar
+        <span>OK</span> 
       </span>
       <span class="alerta-perfil cerrar"> 
         Seleccione el perfil para aplicarlo   
@@ -3365,7 +3378,6 @@
         <input type="text" id="nombre-Perfil" placeholder="Crear perfil">
         <input type="text" id="nombre-Perfil-existe" placeholder="Buscar Perfil">
 
-  
         <div class="btns-crear">
 
           <div id="first-span" class="eltos-crear">
@@ -3395,7 +3407,6 @@
         </div>
 
       </div>
-
       
       <div id="control-panel-rgb" class="panel-color">
 
@@ -3709,23 +3720,31 @@
 
     <button class="borrar-boton" onclick="mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales']);"></button>
     
-
-
-
-
-
-
     <div id="abuelo-grafica4">
 
-      <div id="padre-grafica4">
+      <div id="padre-grafica4" class="hijo-graficos">
         <canvas id="MiGrafica10"></canvas> 
       </div>
+      <div id="padre-grafica5" class="hijo-graficos">
+        <canvas id="MiGrafica11"></canvas> 
+      </div>  
+      <div id="padre-grafica6" class="hijo-graficos">
+        <canvas id="MiGrafica12"></canvas> 
+      </div> 
+      <div id="padre-grafica7" class="hijo-graficos">
+        <canvas id="MiGrafica13"></canvas> 
+      </div>
+      <div id="padre-grafica8" class="hijo-graficos">
+        <canvas id="MiGrafica14"></canvas> 
+      </div>      
+      <div class="hijo-graficos"></div>
 
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--LIBRERIA DE GRAFICOS-->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-    <script src="./modulo-0.js"></script>
+    <script src="./modulo0.js"></script>
     <script src="./modulo1.js"></script>
     <script src="./modulo2.js"></script>
     <script src="./modulo3.js"></script>
