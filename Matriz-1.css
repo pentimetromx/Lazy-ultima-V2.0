@@ -90,7 +90,7 @@ h1, h2, h3 {
   width:39.7vw;
   height:6.5vh;
   text-align: center;
-  font-size: 0.7em;
+  font-size: 0.6em;
   align-items: center;
   cursor: pointer;
   justify-content: center;
@@ -199,11 +199,11 @@ color: white;
   transition: color 0.2s;
   cursor: pointer;
   width:100%;
-  font-size: 1.3vw;
+  font-size: 1vw;
 }
 .iridescent-element li {
   padding: 10px;
-  font-size:0.7em;
+  font-size:0.6em;
   cursor: pointer;
   background-color: #e0e0e0;
   border-bottom: 2px solid #aaa;
@@ -380,7 +380,7 @@ color: white;
   color: #fff;
   border: none;
   border-radius: 5px;
-  font-size: 0.65em;
+  font-size: 0.5em;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -520,7 +520,7 @@ color: white;
   box-shadow: inset 5px 15px 5px rgba(0, 0, 0, 0.8);
   border-radius: 7px;
   margin-right:1.9vw;
-  font-size: 0.7em;
+  font-size: 0.6em;
   cursor: pointer;
   text-align: center;
   transition: transform 0.1s; 
@@ -829,7 +829,7 @@ color: white;
   justify-content: flex-start;
   width: 60%;
   background: linear-gradient(to bottom, #008b8b, #005f5f);
-  font-size: 0.6em;
+  font-size: 0.5em;
   color: #fff;
   border-radius: 5px;
   margin-bottom: 0.5vh;
@@ -952,7 +952,7 @@ width:447px ;
   flex: 1;
   justify-content: center;
   align-items: left;
-  font-size:0.9vw;
+  font-size:0.7vw;
   font-family: "GothamRounded", sans-serif;
   color: white;
   width:100%;
@@ -1045,22 +1045,31 @@ width:447px ;
   height:100%;
   background-color: rgba(255,0,255, 1);
 }
-.estilo-igual,
-.desactivar{
+.estilo-igual{
   align-items: center;
   justify-content: center;
   cursor:pointer;
   background-color: rgb(125,125,125);
   font-size: 0.8em;
+  width: 100%;
+  height: 100%;
   border-radius: 8px;
   color: rgb(255,255,200);
+  transition: background-color 0.25s ease, color 0.25s ease, width 0.25s ease 0.15s, transform 0.5s ease;      
 }
+.estilo-igual:hover{
+  background: #f8f8c0;
+  color: #222;
+  width:105%;
+  transform: scale(1.1);
+}
+
 #conte-butts-graphs{
   position: absolute;
   display: grid;
   display: none;
   grid-template-columns: 50% 50%;
-  gap: 5px;
+  gap: 15px;
   top: 22vh;
   left:17vw;
   width: 15vw;
@@ -1071,20 +1080,8 @@ width:447px ;
 #dynamic-graphs{
   position: relative;
   display: block;
-  height:100%;
-  width: 100%;
 }
-#contLineas{
-  position: relative;
-  display: flex;
-  left: 17%;
-  margin-top:3%;
-  width: 82%;
-  height:65%;
-  border-radius: 15px;
-  background-color: rgb(0, 0, 17);
-  display: none;
-}
+
 #canvasContainer2{
   position: absolute;
   /* display: flex; */
@@ -1161,65 +1158,63 @@ width:447px ;
   height:100%;
   border-radius: 17px;
 }
-#canvasContainer4{
-  position:fixed;
-  display: flex;
-  left:17vw;
-  top: 32vh;  
-  width:26vw;
-  height:35.4vh;
-  cursor: pointer;
-  transition: left 1.5s ease, top 1.5s ease; 
+#contLineas{
+  position: absolute;
+  display: grid;
+  display: none;
+  grid-template-columns:33% 33% 34%;
+  grid-template-rows: 50% 50%;
+  left: 17%;
+  margin-top:3%;
+  width: 82%;
+  height:65%;
+  border-radius: 15px;
 }
-#canvasContainer5{
-  position:fixed;
+
+
+.graphs-lines {
   display: flex;
-  left:44vw;
-  top:32vh; 
-  width:26vw;
-  height:35.4vh;
+  opacity: 1;
+  border: 1px solid white;
+  box-sizing: border-box;
+  background-color: rgb(0, 0, 17);
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
   cursor: pointer;
-  transition: left 1.5s ease, top 1.5s ease; 
-}  
-#canvasContainer6{
-  position:fixed;
-  display: flex;
-  left: 71vw;
-  top:32vh;  
-  width:26vw;
-  height:35.4vh;
-  cursor: pointer;
-  transition: left 1.5s ease, top 1.5s ease; 
+  transition: opacity 1.5s ease, left 1.5s ease, top 1.5s ease, transform 1.6s ease;
 }
-#canvasContainer7{
-  position:fixed;
-  display: flex;
-  left:17vw;
-  top: 59vh;  
-  width:26vw;
-  height:35.4vh;
-  cursor: pointer;
-  transition: left 1.5s ease, top 1.5s ease; 
+
+/* debe ir después de la regla .graphs-lines */
+.graphs-lines.oculto {
+  opacity: 0;
+  pointer-events: none;
 }
-#canvasContainer8{
-  position:fixed;
-  display: flex;
-  left:44vw;
-  top:59vh;  
-  width:26vw;
-  height:35.4vh;
-  cursor: pointer;
-  transition: left 1.5s ease, top 1.5s ease; 
+#MiGrafica9:hover,
+#MiGrafica8:hover,
+#MiGrafica7:hover,
+#MiGrafica5:hover,
+#MiGrafica6:hover,
+#MiGrafica4:hover{
+  transform: scale(1.1);
 }
-#canvasContainer9{
-  position:fixed;
+
+#MiGrafica4,
+#MiGrafica5,
+#MiGrafica6{
+  position:relative;
   display: flex;
-  left:71vw;
-  top:59vh;  
-  width:26vw;
-  height:35.4vh;
-  cursor: pointer;
-  transition: left 1.5s ease, top 1.5s ease; 
+  width: 100%;
+  height: 100%;
+  margin: 10px;
+  transition: transform 2.5s ease;
+}
+#MiGrafica9,
+#MiGrafica8,
+#MiGrafica7{
+  transition: transform 2.5s ease;
+  width: 50%;
+  height: 90%;
 }
 #cont-links {
   position: absolute;
@@ -1950,14 +1945,23 @@ width:447px ;
 .linksTraining li a{
   color: white;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.8em;
   transition: color 0.3s ease;
   text-decoration: none;
 }
+
 .linksTraining li:hover,
 .linksTraining li:hover a {
-  color: orange;
+  color: #28a745 !important;
+  font-weight: bold;      /* pone el texto en negrita */
+  text-decoration: underline;
 }
+.linksTraining a:hover {
+  color: orange !important;
+  font-weight: bold;      /* pone el texto en negrita */
+  text-decoration: underline; /* opcional, subrayado */
+}
+
 .imgs-entrenos{
   position: absolute;
   left: 997px;
@@ -2174,12 +2178,12 @@ header {
 }
 .casos-h1{
   font-family: GothamRounded , sans-serif;
-  font-size: 1.7vw;
+  font-size: 1.5vw;
   color: orange;
 }
 .parrafo-casos{
   font-family: GothamRounded , sans-serif;
-  font-size: 1.7vw;
+  font-size: 1.5vw;
   color: whitesmoke;
 }
 #instrucciones_manometro{
@@ -2192,7 +2196,7 @@ header {
   background-color: transparent; 
   color: white;
   font-family: "Oswald", sans-serif; 
-  font-size: 1.9vw;
+  font-size: 1.7vw;
   z-index: 2;
   display: none;
 }
@@ -2469,7 +2473,7 @@ h6{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FFBF00; 
+  background-color:#28a745; 
   width: 100%;
   height: 100%;
   border: none;
@@ -2479,7 +2483,7 @@ h6{
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .miBoton:hover {
-  background-color: #4CAF50;
+  background-color: #FFBF00;
   color: white;
 }
 .inpt-class{
@@ -2491,7 +2495,7 @@ h6{
 .labl-class{
   font-family: "GothamRounded", sans-serif;
   color: yellow;
-  font-size:1.2vw;
+  font-size:0.3em;
   border-radius: 11px;
 }
 #kaizenCont{
@@ -2740,7 +2744,7 @@ h6{
   font-family: "GothamRounded", sans-serif;
   width:100%;
   height:17%;
-  font-size:0.9vw;
+  font-size:0.6vw;
   color: white;
   border-radius:20%;
   background-color: rgba(83, 82, 82, 0.678); 
@@ -3153,7 +3157,7 @@ elemento.visible {
   background-color: #1897ff;
   color: black;
   text-align: left;    
-  font-size: 1.1vw;
+  font-size: 0.9vw;
   border-radius: 5px;
   margin-right: 21px;
   margin-bottom: 10px;
@@ -3267,13 +3271,14 @@ elemento.visible {
   border-radius: 14px;
 }
 #rodillos-I{
-  display: flex;
   position: absolute;
+  display: flex;
   top:0;
   left:15%;
   background: linear-gradient(45deg, black 33%, gray 67%);
   font-size: 33px;
   width: 70%;
+  height: 10%;
   border-radius: 7px;
   justify-content: center;
   align-items: center;
@@ -3293,7 +3298,9 @@ elemento.visible {
   left: 21px;
   background: linear-gradient(45deg, black 33%, gray 67%);
   font-size: 33px;
-  width: 287px;
+  width: 70%;
+  height: 10%;
+
   border-radius: 7px;
   justify-content: center;
   align-items: center;
@@ -3307,11 +3314,11 @@ elemento.visible {
 }
 #cont-arriba-rodillos{
   position: absolute;
-  display: flex;
+  width:27%;
+  height:80%;
   top:0;
   left:15vw;
-  width:28vw;
-  height:45vh;
+  display: flex;
   margin-bottom:2.7vh;
   display: none;  
 }
@@ -3389,9 +3396,9 @@ elemento.visible {
 #teñido-I{
   position: absolute; 
   top:0;
-  left:0;
-  width:100%;
-  height:11%;
+  left:15%;
+  width:70%;
+  height:10%;
   border-radius: 11px;
   justify-content: center;
   align-items: center;
@@ -3505,10 +3512,10 @@ elemento.visible {
   display: flex;
   position: absolute;
   top:0;
-  left:7%;
+  left:15%;
   background: linear-gradient(45deg, black 33%, gray 67%);
   font-size: 33px;
-  width:86%;
+  width:70%;
   height:10%;
   border-radius: 7px;
   justify-content: center;
@@ -5279,6 +5286,33 @@ input.numero:focus {
 .move-contraseña{
   transform: translateX(77vw)     
 }
+.move-canvas-1{
+  transform: translateX(-3vh) translateY(-14vh);
+  transition: transform 1.6s ease;
+}
+.move-canvas-2{
+  transform: translateX(-51vh) translateY(-14vh);
+  transition: transform 1.6s ease;
+}
+.move-canvas-3{
+  transform: translateX(-100vh) translateY(-14vh);
+  transition: transform 1.6s ease;
+}
+.move-canvas-4{
+  transform: translateX(-3vh) translateY(-46.4vh);
+  transition: transform 1.6s ease;
+}
+.move-canvas-5{
+  transform: translateX(-51vh) translateY(-46.4vh);
+  transition: transform 1.6s ease;
+}
+.move-canvas-6{
+  transform: translateX(-100vh) translateY(-46.4vh);
+  transition: transform 1.6s ease;
+}
+
+
+
  #first_half {
   position: relative;
   display: grid;
@@ -5999,7 +6033,7 @@ input.numero:focus {
   color: yellow;
 }
 .labl-lub{
-  font-size:1vw;
+  font-size:0.6em;
   text-align: left;
   object-fit: fill;
   font-family: "GothamRounded", sans-serif;
@@ -6188,16 +6222,6 @@ height:100%;
   color: black;
   font-weight: bold;
 }
-.maquina{
-  cursor: pointer;  
-}
-.maquina:hover{
-  color: white;
-  background-color: rgb(0, 191, 255);
-  border: 1px solid rgb(0, 191, 255);
-  padding: 2px 0 2px 7px;
-  color: black;
-}
 #lista-maquinas{
   position: relative;
   display: grid;
@@ -6208,7 +6232,7 @@ height:100%;
   height: 30vh;
   font-family: Arial, sans-serif;
   color: rgb(199,199,199);
-  font-size: 0.7em;
+  font-size: 0.85vw;
   border: 1px solid rgb(0, 191, 255);
   background-color: rgb(0,0,10);
   border-radius: 8px;
@@ -6218,23 +6242,51 @@ height:100%;
   transform-origin: center;
   transition: transform 1s ease;
 }
+.indicador {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22%;
+  height: 6px;
+  background-color: rgb(200,130,30);
+  border-radius: 2px;
+}  
+.maquina{
+  position: relative;      /* clave: referencia para su hijo .indicador */
+  cursor: pointer;
+  padding-right: 35px;  
+}
+.indicador:hover,
+.maquina:hover .indicador {
+  background-color: rgb(40, 180, 110);
+}
+
+.maquina:hover{
+  color: white;
+  background-color: rgb(40, 180, 110);
+  padding: 2px 0 2px 7px;
+  color: black;
+  font-weight: bold;
+
+}
 #lista-maquinas.activo {
   display: flex;
   transform: scale(1); /* tamaño normal definido por CSS */
 }
-#titulo-calendar{
+#titulo-mes{
   position: absolute;
   display: flex;
   top: 12vh;
-  left:30vw ;
+  left:36vw;
   width: 11vw;
   height: 3vh;
   background-color: #000;
-  border: 1px solid rgb(0, 191, 255);
+  border: 1px solid rgba(0, 191, 255,0.2);
   font-family: Arial, sans-serif;
-  font-size: 0.8em;
+  font-size: 1vw;
   text-align: center;
-  color: #0f0;
+  color: rgb(120, 150, 170);
   border-radius: 3px;
   justify-content: center;
   align-items: center;
@@ -6244,29 +6296,58 @@ height:100%;
   transform-origin: center; 
   transition: transform 1s ease;
 }
+#titulo-calendar{
+  position: absolute;
+  display: flex;
+  top: 12vh;
+  left:24vw;
+  width: 11vw;
+  height: 3vh;
+  background-color: #000;
+  border: 1px solid rgba(0, 191, 255,0.2);
+  font-family: Arial, sans-serif;
+  font-size: 1vw;
+  text-align: center;
+  color: rgb(120, 150, 170);
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+  display: none;
+
+  transform: scale(0);
+  transform-origin: center; 
+  transition: transform 1s ease;
+}
+#titulo-mes.activo,
 #titulo-calendar.activo {
   display: flex;
   transform: scale(1); /* tamaño normal definido por CSS */
 }
 
 .span-semana {
-  position: relative;
+  position: relative;  
   display: flex; 
   justify-content: center;
   align-items: center;
   background-color: #000;
+  /* border: 1px solid rgb(70, 80, 90); */
+  border: 1px solid rgb(70, 80, 90);
   font-family: Arial, sans-serif;
   cursor: pointer;
   border-radius: 6px;
-  font-size: 0.8em;
+  font-size: 0.7vw;
   width: 100%;
   height: 80%;
+}
+#cont-span-semanas .span-semana:hover{
+  background-color: rgb(40, 180, 110);
+  color: black;
 }
 
 #cont-span-semanas{
   position: absolute;
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   top: 18vh;
   left:49vw ;
   width: 5vw;
@@ -6274,9 +6355,7 @@ height:100%;
   font-family: Arial, sans-serif;
   font-size: 0.8em;
   text-align: center;
-  color: #0f0;
   border-radius: 3px;
-
   transform: scale(0);
   transform-origin: center; 
   transition: transform 1s ease;
@@ -6313,10 +6392,11 @@ height:100%;
 
 .dia {
   position:relative;
+  display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 0.9em;
+  font-size: 0.5vw;
   font-family: Arial, sans-serif;
   border-radius: 5px;
   color: rgb(144,144,144);
@@ -6364,7 +6444,7 @@ height:100%;
   width: 100%;
 }  
 .vacio {
-  background-color: #f0f0f0;
+  background-color: #f0f0f085;
   border: none;
 }
 #meses{
@@ -6392,19 +6472,21 @@ height:100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgb(0, 191, 255);
+  border: 1px solid rgb(70, 80, 90);
   font-family: Arial, sans-serif;
   border-radius: 5px;
-  color: rgb(0, 191, 255);
+  color: rgb(120, 150, 170);
   background-color: rgb(0, 0, 17);
   font-weight: bold;
-  font-size: 0.6em;
+  font-size: 0.8vw;
   width: 100%;
   cursor: pointer;
+  transition: background-color 0.25s ease,  color 0.25s ease, transform 0.5s ease;  
 }
 .mes:hover {
   background-color: rgb(188,188,188);
   color:#000;
+  transform: scale(1.05);
 } 
 .conjunto-tareas{
   position: absolute;
@@ -6434,7 +6516,7 @@ height:100%;
   transition: transform 0.5s ease;
 }
 .dia:hover{
-  background-color: rgb(0,255,0);
+  background-color: rgb(40, 180, 110);
   color: rgb(40, 0, 0);
 }
 .tarea {

@@ -1011,10 +1011,9 @@ function resaltarSecuencialDemo() {
   });
 }
 
-
 let miCanvas12 = document.getElementById('MiGrafica10').getContext('2d')
 let chart13;
-function crearGrafico() {
+function crearGraficoMes() {
   const padreGrafica10 = document.querySelector('#padre-grafica4')
   padreGrafica10.style.display='flex'
   const canvas = document.getElementById('MiGrafica10');
@@ -1057,13 +1056,13 @@ function crearGrafico() {
           fill: false,
           tension: 0.2
         }
-      ]
+      ]   
     },
     options: {
       /* animation: false, */ 
       plugins: {
         legend: { display: false },
-        title: { display: true, text: 'Sesiones M.A', font: { size: 13 } }
+        title: { display: true, text: 'Sesiones M.A Mes', font: { size: 13 } }
       },
       maintainAspectRatio: false,
       indexAxis: 'x', // horientacion de barras vertical / horizontales
@@ -1086,30 +1085,442 @@ function crearGrafico() {
   // 4️⃣ Crear el nuevo gráfico
   chart13 = new Chart(ctx, configBase);
 }
+
+let miCanvas13 = document.getElementById('MiGrafica11').getContext('2d')
+let chart14;
+function crearGraficoSemana() {
+  const padreGrafica11 = document.querySelector('#padre-grafica5')
+  padreGrafica11.style.display='flex'
+  const canvas = document.getElementById('MiGrafica11');
+
+  // 1️⃣ Destruir si ya existe
+  if (chart14) {
+    chart14.destroy();
+    chart14 = null;
+  }
+
+  // 2️⃣ Ocultar/mostrar con transición (opcional)
+  canvas.style.display = 'none';
+  setTimeout(() => canvas.style.display = 'block', 100);
+
+  const ctx = canvas.getContext('2d');
+
+  // 3️⃣ Configuración del gráfico
+  const configBase = {
+    type: 'bar',
+    data: {
+      labels: ['Lunes','Martes','Miercoles','Jueves','Viernes'],
+      datasets: [
+        {
+          label: 'Cumplimiento semanal',
+          backgroundColor: [
+            'rgba(255,255,0,0.3)',
+            'rgba(255,255,0,0.4)',
+            'rgba(255,255,0,0.5)',
+            'rgba(255,255,0,0.6)',
+            'rgba(255,255,0,0.7)'
+          ],
+          data: [100, 50, 75, 100, 100],
+          barPercentage: 1.24
+        }
+        /* {
+          type: 'line',
+          data: [100, 80, 90, 95, 100],
+          borderColor: 'orange',
+          borderWidth: 1,
+          pointRadius: 0,
+          fill: false,
+          tension: 0.2
+        } */
+      ]
+    },
+    options: {
+      /* animation: false, */ 
+      plugins: {
+        legend: { display: false },
+        title: {
+          display: true, 
+          text: 'Cumplimiento semanal', 
+          font: { size: 13 } 
+        }
+      },
+      maintainAspectRatio: false,
+      indexAxis: 'y', // horientacion de barras vertical / horizontales
+      scales: {
+        x: {
+          categoryPercentage: 1,
+          grid: { display: false },
+          ticks: { color: '#fff', font: { size: 7 } }
+        },
+        y: {
+          grid: { display: false },
+          ticks: { display: true }, // sin leyendas verticales
+          ticks: { color: '#fff', font: { size: 7 } }
+
+        }
+      }
+    }
+  };
+
+  // 4️⃣ Crear el nuevo gráfico
+  chart14 = new Chart(ctx, configBase);
+}
+
+let miCanvas14 = document.getElementById('MiGrafica12').getContext('2d')
+let chart15;
+function crearGraficoParticipacion() {
+  const padreGrafica12 = document.querySelector('#padre-grafica6')
+  padreGrafica12.style.display='flex'
+  const canvas = document.getElementById('MiGrafica12');
+
+  // 1️⃣ Destruir si ya existe
+  if (chart15) {
+    chart15.destroy();
+    chart15 = null;
+  }
+
+  // 2️⃣ Ocultar/mostrar con transición (opcional)
+  canvas.style.display = 'none';
+  setTimeout(() => canvas.style.display = 'block', 100);
+
+  const ctx = canvas.getContext('2d');
+
+  // 3️⃣ Configuración del gráfico
+  const configLine = {
+    type: 'line',
+    data: {
+      labels: ['Mecanicas', 'Layout','Diseño','Temporales','Fijas','Transicion'],
+      datasets: [
+        {
+          label: 'Participación en M.A',
+          data: [17, 9, 27, 55, 19, 33],
+          borderColor: 'rgb(0,0,255)',
+          backgroundColor: 'rgb(0,255,255)',
+          borderWidth: 1,
+          pointRadius: 2,
+          pointBackgroundColor: 'rgb(0,255,255)',
+          tension: 0.3 // suaviza la línea
+        }
+      ]
+    },
+    options: {
+      maintainAspectRatio: false, 
+      plugins: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: 'Variacion general',
+          font: { size: 13 },
+          color: 'rgb(111,111,111)'
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: {
+            color: '#fff',
+            font: { size: 7 }
+          }
+        },
+        y: {
+          grid: { display: false },
+          ticks: {
+            beginAtZero: true,
+            color: '#fff',
+            font: { size: 7 }
+          }
+        }
+      }
+    }
+  };  
+
+
+  // 4️⃣ Crear el nuevo gráfico
+  chart15 = new Chart(ctx, configLine);
+}
+
+let miCanvas15 = document.getElementById('MiGrafica13').getContext('2d')
+let chart16;
+function crearGraficoApilado() {
+  const padreGrafica13 = document.querySelector('#padre-grafica7')
+  padreGrafica13.style.display='flex'
+  const canvas = document.getElementById('MiGrafica13');
+
+  // 1️⃣ Destruir si ya existe
+  if (chart16) {
+    chart16.destroy(); 
+    chart16 = null;
+  }
+
+  const oldChart = Chart.getChart(canvas);
+  if (oldChart) {
+    oldChart.destroy();
+  }  
+
+  // 2️⃣ Ocultar/mostrar con transición (opcional)
+  canvas.style.display = 'none';
+  setTimeout(() => canvas.style.display = 'block', 100);
+
+  const ctx = canvas.getContext('2d');
+
+  const configArea = {
+    type: 'line', // tipo "line" con relleno para áreas apiladas
+    data: {
+      labels: [
+        'Semana 1','Semana 2','Semana 3','Semana 4'
+      ],
+      datasets: [
+        {
+          label: 'I.V',
+          data: [5,15,22,29],
+          backgroundColor: 'rgba(220,80,40,0.7)',
+          borderColor: 'rgba(220,80,40,1)',
+          fill: true,
+          tension: 0.4
+        },
+        {
+          label: 'Tarjetas',
+          data: [10,25,30,25],
+          backgroundColor: 'rgba(0,120,255,0.7)',
+          borderColor: 'rgba(0,120,255,1)',
+          fill: true,
+          tension: 0.4
+        },
+        {
+          label: 'Formas',
+          data: [15,27,30,20,40,61,93],
+          backgroundColor: 'rgba(0,200,120,0.7)',
+          borderColor: 'rgba(0,200,120,1)',
+          fill: true,
+          tension: 0.4
+        },
+        {
+          label: 'Almacen',
+          data: [60,32,30,28],
+          backgroundColor: 'rgba(230,200,0,0.7)',
+          borderColor: 'rgba(230,200,0,1)',
+          fill: true,
+          tension: 0.4
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: 'Participación Areas',
+          color: 'rgb(111,111,111)',
+          font: { size: 14 }
+        },
+        legend: {
+          labels: {
+            color: '#fff',        // color de texto para todas las leyendas
+            font: {
+              size: 7,           // tamaño de texto (China, USA, EU, India)
+              family: 'Arial',    // (opcional) familia de fuente
+              weight: 'bold'      // (opcional) peso del texto
+            },
+            boxWidth: 10,          // ancho del rectángulo de color
+            boxHeight: 5          // alto del rectángulo de color
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          ticks: {
+            color: '#fff',
+            font: {
+              size: 6
+            }
+          },
+          grid: {
+            color: '#333'
+          }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          max: 100,
+          ticks: {
+            color: '#fff',
+            font: {
+              size: 7   // tamaño muy pequeño
+            }
+          },
+
+          grid: { color: '#333' }
+        }
+      },
+      elements: {
+        line: { borderWidth: 0 }, // elimina el borde de las líneas
+        point: { radius: 0 }      // elimina los puntos en las líneas
+      }
+    }
+  };
+
+  
+  // 4️⃣ Crear el nuevo gráfico
+  chart16 = new Chart(ctx, configArea);
+}
+
+let miCanvas16 = document.getElementById('MiGrafica14').getContext('2d')
+let chart17;
+function crearGraficoOperadores() {
+  const padreGrafica10 = document.querySelector('#padre-grafica8')
+  padreGrafica10.style.display='flex'
+  const canvas = document.getElementById('MiGrafica14');
+
+  // 1️⃣ Destruir si ya existe
+  if (chart17) {
+    chart17.destroy();
+    chart17 = null;
+  }
+
+  // 2️⃣ Ocultar/mostrar con transición (opcional)
+  canvas.style.display = 'none';
+  setTimeout(() => canvas.style.display = 'block', 100);
+
+  const ctx = canvas.getContext('2d');
+  
+
+  const configZona = {
+    type: 'bar',
+    data: {
+      labels: ['Sergio Lopez', 'Noe Alzate', 'Mario Pineda', 'Juan Taborda'],
+      datasets: [
+        {
+          label: 'Participación en M.A',
+          backgroundColor: ['#0B3D91', '#007A7C', '#E57200', '#9B1B30'],
+          data: [100, 66, 70, 85],
+          barPercentage: 0.9
+        }
+      ]
+    },
+    options: {
+      plugins: {
+        legend: { display: false },
+        title: { 
+          display: true, 
+          text: 'Aporte Mes Empleado', 
+          font: { size: 13 },
+          padding: { top: 10 } // ← controla la posición en Y del título
+        },
+        datalabels: {
+          color: '#fff',
+          anchor: 'end',
+          align: 'end',
+          font: { weight: 'bold', size: 10 },
+          formatter: value => `${value}`
+        }
+      },
+      maintainAspectRatio: false,
+      indexAxis: 'x',
+      scales: {
+        x: {
+          categoryPercentage: 1,
+          grid: { display: false },
+          ticks: { color: '#fff', font: { size: 7 } }
+        },
+        y: {
+          // 👇 Aumenta el rango superior para dar espacio
+          suggestedMax: 110,   // o max: 110 si quieres fijarlo
+          grid: { display: false },
+          ticks: { display: false }
+        }
+      },
+      layout: {
+        padding: { top: 20 }   // espacio extra entre el chart area y el título
+      }
+    },
+    plugins: [ChartDataLabels]
+  };
+
+  
+
+  // 4️⃣ Crear el nuevo gráfico
+  chart17 = new Chart(ctx, configZona);
+}
+
 document.querySelectorAll('.span-semana').forEach((span, index) => {
+
   span.addEventListener('click', () => {
+
+    document.querySelectorAll('.span-semana').forEach(s => {
+      s.style.backgroundColor = '';
+    });    
+
+    span.style.backgroundColor ='rgb(20,40,60)';
+
+    const azul = 'rgb(20, 40, 60)';
+
+    const hayMesActivo = Array.from(document.querySelectorAll('.mes'))
+      .some(el => getComputedStyle(el).backgroundColor === azul);
+
+    const hayMaquinaActiva = Array.from(document.querySelectorAll('.maquina'))
+      .some(el => getComputedStyle(el).backgroundColor === azul);
+
+    if (!hayMesActivo || !hayMaquinaActiva){
+      alert('Seleccione Maquina y Mes')
+      return;
+    }  // corta la ejecución
+
+    // --- lógica original
+    const abueloGrafica = document.querySelector('#abuelo-grafica4');
+    abueloGrafica.style.display = 'grid';
+    Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
+      hijo.style.display = '';
+      hijo.style.visibility = 'visible';
+      hijo.style.opacity = '1';
+    });
+
     switch (index) {
-      case 0:
-        alert('PRIMER SPAN')
-      break;
+      case 0: {
+        const pasos = [
+          crearGraficoMes,
+          crearGraficoSemana,
+          crearGraficoParticipacion,
+          crearGraficoApilado,
+          crearGraficoOperadores
+        ];
+        let delay = 0;
+        for (const fn of pasos) {
+          setTimeout(fn, delay);
+          delay += 150;
+        }
+        break;
+      }
       case 1:
-        // Lógica para el segundo elemento
-        console.log('Acción para Semana 2');
-      break;
+        crearGraficoMes();
+        break;
       case 2:
-        // Lógica para el tercero
-        console.log('SI SEÑOR')
-      break;
+        crearGraficoSemana();
+        break;
       case 3:
-        // Lógica para el cuarto
-        span.style.backgroundColor = 'orange';
+        crearGraficoParticipacion();
+        break;
+      case 4:
+        crearGraficoApilado();
       break;
+      case 5:
+        crearGraficoOperadores()
+      break;
+
       default:
-        console.warn('Índice no contemplado');
     }
   });
 });
 
+const btnDynamic = document.getElementById('dynamic-graphs');
+const btnStatic = document.getElementById('static-graphs');
 
+// Maneja tanto click de ratón como toque táctil
+['click','touchstart'].forEach(ev => {
+  btnDynamic.addEventListener(ev, updateDinamico, {passive:true});
+});
 
-/* document.getElementById('botonActualizar').addEventListener('click',crearGrafico); */
+['click','touchstart'].forEach(ev => {
+  btnStatic.addEventListener(ev, detenerDinamica, {passive:true});
+});
