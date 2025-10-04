@@ -96,7 +96,7 @@ document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListe
     resaltarSecuencial();    
   }, 1100);
 })
-document.querySelector('#contenedor-botonera button:nth-child(6)').addEventListener('click', () => {
+/* document.querySelector('#contenedor-botonera button:nth-child(6)').addEventListener('click', () => {
     var elementosExcluidos = ['']  
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i])  
@@ -105,7 +105,7 @@ document.querySelector('#contenedor-botonera button:nth-child(6)').addEventListe
       const contenedor = document.querySelector('#home-gym').style.display = 'grid'
     }
   }
-})
+}) */
 function alternarImagenes() {
   const imgUno = document.getElementById("image-uno");
   const imgDos = document.getElementById("image-tres");
@@ -1457,10 +1457,10 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
     const azul = 'rgb(20, 40, 60)';
 
     const hayMesActivo = Array.from(document.querySelectorAll('.mes'))
-      .some(el => getComputedStyle(el).backgroundColor === azul);
+    .some(el => getComputedStyle(el).backgroundColor === azul);
 
     const hayMaquinaActiva = Array.from(document.querySelectorAll('.maquina'))
-      .some(el => getComputedStyle(el).backgroundColor === azul);
+    .some(el => getComputedStyle(el).backgroundColor === azul);
 
     if (!hayMesActivo || !hayMaquinaActiva){
       alert('Seleccione Maquina y Mes')
