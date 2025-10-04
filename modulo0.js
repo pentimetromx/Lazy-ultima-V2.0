@@ -4,7 +4,6 @@ var intervaloColor;
 let videoStore = []
 var contenedor2 = document.getElementById('canvasContainer2')   
 var troublesh = document.getElementById('troubleshooting')  
-var grafica2 = document.getElementById('MiGrafica') 
 var linkIni1 = document.getElementById('links-inicialesI')
 var linkIni2 = document.getElementById('links-iniciales') 
 var arrayAllPneumatica = ['contImaginario-II','vid-pneumatic','bailarina','padre-neumat','pneumatico','control-neumatico','imag1','imag2','imag3','imag4','contImaginario','vid-basculante','rodillo-infeed','puesta-punto','contImgEntrenos']
@@ -164,11 +163,12 @@ var currentRotation = 0;
 var currentZoom = 0;
 let currentLeft = parseFloat(window.getComputedStyle(button).left)
 var newLeft = currentLeft + 2
+let miCanvas = document.getElementById('MiGrafica').getContext('2d')
+
 let miCanvas2 = document.getElementById('MiSegundaGrafica').getContext('2d')
 let miCanvas3 = document.getElementById('MiTerceraGrafica').getContext('2d')
 let miCanvas4 = document.getElementById('MiCuartaGrafica').getContext('2d')
 let miCanvas5 = document.getElementById('MiQuintaGrafica').getContext('2d')  
-let miCanvas = document.getElementById('MiGrafica').getContext('2d')
 let miCanvas6 = document.getElementById('MiGrafica4').getContext('2d')
 let miCanvas6II = document.getElementById('MiGrafica4-II').getContext('2d')
 let miCanvas7 = document.getElementById('MiGrafica5').getContext('2d')
