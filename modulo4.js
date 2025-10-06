@@ -1378,14 +1378,9 @@ function crearGraficoOperadores() {
     chart17.destroy();
     chart17 = null;
   }
-
-  // 2️⃣ Ocultar/mostrar con transición (opcional)
   canvas.style.display = 'none';
   setTimeout(() => canvas.style.display = 'block', 100);
-
   const ctx = canvas.getContext('2d');
-  
-
   const configZona = {
     type: 'bar',
     data: {
@@ -1401,7 +1396,8 @@ function crearGraficoOperadores() {
     },
     options: {
       plugins: {
-        legend: { display: false },
+        legend: { 
+        display: false },
         title: { 
           display: true, 
           text: 'Aporte Mes Empleado', 
@@ -1444,6 +1440,91 @@ function crearGraficoOperadores() {
   chart17 = new Chart(ctx, configZona);
 }
 
+let miCanvas17 = document.getElementById('MiGrafica15').getContext('2d')
+let chart18;
+function crearGraficoLleno() {
+  const padreGrafica11 = document.querySelector('#padre-grafica9')
+  padreGrafica11.style.display='flex'
+  const canvas = document.getElementById('MiGrafica15');
+
+  // 1️⃣ Destruir si ya existe
+  if (chart18) {
+    chart18.destroy();
+    chart18 = null;
+  }
+  canvas.style.display = 'none';
+  setTimeout(() => canvas.style.display = 'block', 100);
+  const ctx = canvas.getContext('2d');
+  
+  const configZona = {
+  type: 'line',
+  data: {
+  labels: ['dia 1','dia 2','dia 3','dia 4','dia 5','dia 6','dia 7','dia 8','dia 9','dia 10'],
+  datasets: [
+    {
+      label: 'Total FTE Availability',
+      data: [8, 10, 10, 7, 7.1, 8, 8.5, 9, 8.7, 10],
+      fill: true,
+      backgroundColor: 'rgba(22, 0, 222, 0.67)',
+      /* borderColor: 'rgba(0, 0, 255, 0.9)', */
+      pointRadius: 1
+    }
+  ]
+},
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+        labels: {
+          color: '#fff'
+        }
+      },
+      title: {
+        display: true,
+        text: 'Comportamiento',
+        /* color: '#fff', */
+        color: '#61676eff',
+        font: { size: 14 }
+      }
+    },
+    scales: {
+
+    x: {
+      ticks: {
+        color: '#ccc',
+        font: {
+          size: 7 // correcto
+        }
+      },
+      grid: { display: false }
+    },
+      
+
+      y: {
+        beginAtZero: true,
+        ticks: { color: '#ccc',
+                  font: {
+              size: 7 // correcto
+            }
+         },
+        grid: {
+          color: 'rgba(255,255,255,0.1)'
+        }
+      },
+      
+    }
+  }
+
+  };
+
+  
+
+  // 4️⃣ Crear el nuevo gráfico
+  chart18 = new Chart(ctx, configZona);
+}
+
 document.querySelectorAll('.span-semana').forEach((span, index) => {
 
   span.addEventListener('click', () => {
@@ -1483,7 +1564,8 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
           crearGraficoSemana,
           crearGraficoParticipacion,
           crearGraficoApilado,
-          crearGraficoOperadores
+          crearGraficoOperadores,
+          crearGraficoLleno
         ];
         let delay = 0;
         for (const fn of pasos) {
@@ -1505,8 +1587,11 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
         crearGraficoApilado();
       break;
       case 5:
-        crearGraficoOperadores()
+        crearGraficoOperadores();
       break;
+      case 6:
+        crearGraficoLleno();
+      break;      
 
       default:
     }

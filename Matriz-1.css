@@ -4358,21 +4358,25 @@ input.numero{
 #input1{
   left: -28vw;
   transition: transform 0.3s ease;
+  z-index: 100;
   display: none;
 }
 #input2{
   left: -28vw;
   transition: transform 0.3s ease;
+  z-index: 100;
   display: none;
 }
 #input3{
   left: -28vw;
-  transition: transform 0.3s ease;  
+  transition: transform 0.3s ease;
+  z-index: 100;
   display: none;
 }
 #input4{
   left: -28vw;
   transition: transform 0.3s ease;
+  z-index: 100;
   display: none;
 }
 input.numero:focus {
@@ -5795,10 +5799,11 @@ input.numero:focus {
   width:15.6%;
   height: 4vh;
   border-radius: 7px;
-}
-#contraseña{
   transition: transform 0.9s ease;
-}  
+}
+.contraseña span{
+  font-size: 1.2vw;
+}
 .letra-aumentada {
   font-size:2.5em;
   transition: font-size 0.6s ease;
@@ -6347,7 +6352,7 @@ height:100%;
 #cont-span-semanas{
   position: absolute;
   display: grid;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(7, 1fr);
   top: 18vh;
   left:49vw ;
   width: 5vw;
