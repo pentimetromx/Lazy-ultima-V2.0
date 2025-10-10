@@ -73,7 +73,7 @@ function deslizaContenedor(identificador, idButton) {
     if (elemento) {
       elemento.style.backgroundColor = ''
     }
-  })  
+  })
   if (document.body.style.zoom !== "100%") {                                                                                          
     document.body.style.zoom = "100%";
   }
@@ -1330,33 +1330,37 @@ var chart = new Chart(miCanvas, {
         ]
     },
     options: {
-        scales: {
-            x: {
-                grid: {
-                    display: false // Ocultar líneas de la cuadrícula en el eje X
-                },
-                ticks: {
-                    color: 'rgb(255,255,255)' // Color de las etiquetas de texto en el eje X
-                }
+      scales: {
+        x: {
+            grid: {
+                display: false // Ocultar líneas de la cuadrícula en el eje X
             },
-            y: {
-                grid: {
-                    display: false // Ocultar líneas de la cuadrícula en el eje X
-                },
-                ticks: {
-                    color: 'rgb(255,255,255)' ,// Color de las etiquetas de texto en el eje X
-
-                    beginAtZero: true // Empezar el eje Y desde cero
-                }
-
+            ticks: {
+              font: {
+                size: 8// tamaño de los valores numéricos en X
+              },
+              color: '#FFFFFFB3'
             }
         },
-        indexAxis: 'y', // Mostrar barras horizontalmente
-        plugins: {
-            legend: {
-                display: false // Ocultar la leyenda
-            }
+        y: {
+          grid: {
+              display: false // Ocultar líneas de la cuadrícula en el eje X
+          },
+          ticks: {
+            color: '#FFFFFFB3',
+            beginAtZero: true,
+            font: {
+              size: 8 // tamaño de los valores numéricos en X
+            }                    
+          }
         }
+      },
+      indexAxis: 'y', // Mostrar barras horizontalmente
+      plugins: {
+          legend: {
+              display: false // Ocultar la leyenda
+          }
+      }
     }
 })
 var chart3 = new Chart(miCanvas2, {
@@ -1375,10 +1379,13 @@ var chart3 = new Chart(miCanvas2, {
         scales: {
             x: {
                 grid: {
-                    display: false // Ocultar líneas de la cuadrícula en el eje X
+                    display: false
                 },
                 ticks: {
-                    color: 'rgb(255,255,0)' // Color de las etiquetas de texto en el eje X
+                  font: {
+                    size: 7
+                  },                 
+                  color: '#FFFFFFB3'
                 }
             },
             y: {
@@ -1386,8 +1393,11 @@ var chart3 = new Chart(miCanvas2, {
                     display: false // Ocultar líneas de la cuadrícula en el eje X
                 },
                 ticks: {
-                    color: 'rgb(255,255,0)', // Color de las etiquetas de texto en el eje X
-                    beginAtZero: true // Empezar el eje Y desde cero
+                  font: {
+                    size: 7
+                  },
+                  color: '#FFFFFFB3',
+                  beginAtZero: true
                 }
 
             }
@@ -1419,7 +1429,10 @@ var chart4 = new Chart(miCanvas3, {
                     display: false // Ocultar líneas de la cuadrícula en el eje X
                 },
                 ticks: {
-                    color: 'rgb(255,255,255)' // Color de las etiquetas de texto en el eje X
+                  font: {
+                    size: 8// tamaño de los valores numéricos en X
+                  },
+                  color: '#FFFFFFB3'
                 }
             },
             y: {
@@ -1427,8 +1440,11 @@ var chart4 = new Chart(miCanvas3, {
                     display: false // Ocultar líneas de la cuadrícula en el eje X
                 },
                 ticks: {
-                    color: 'rgb(255,255,255)', // Color de las etiquetas de texto en el eje X
-                    beginAtZero: true // Empezar el eje Y desde cero
+                  font: {
+                    size: 8// tamaño de los valores numéricos en X
+                  },
+                  color: '#FFFFFFB3',
+                  beginAtZero: true 
                 }
 
             }
@@ -1442,88 +1458,100 @@ var chart4 = new Chart(miCanvas3, {
     }
 })
 var chart5 = new Chart(miCanvas4, {
-    type: 'pie',
-    data: {
-        labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
-        datasets: [
-            {
-                label: 'Datos del Segundo Gráfico',
-                backgroundColor: ['#ff1700', '#ff2e00', '#ff4500', '#ff7300', '#ffa200)', '#ffff00'],
-                data: [15, 25, 35, 20, 10, 19],
-                borderWidth: 0.3,
-            }
-        ]
-    },
-    options: {
-        scales: {
-            x: {
-                grid: {
-                    display: false // Ocultar líneas de la cuadrícula en el eje X
-                },
-                ticks: {
-                    color: 'rgb(3, 237, 253)' // Color de las etiquetas de texto en el eje X
-                }
-            },
-            y: {
-                grid: {
-                    display: false // Ocultar líneas de la cuadrícula en el eje X
-                },
-                ticks: {
-                    color: 'rgb(3, 237, 253)', // Color de las etiquetas de texto en el eje X
-                    beginAtZero: true // Empezar el eje Y desde cero
-                }
-
-            }
+  type: 'pie',
+  data: {
+      labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+      datasets: [
+          {
+              label: 'Datos del Segundo Gráfico',
+              backgroundColor: ['#ff1700', '#ff2e00', '#ff4500', '#ff7300', '#ffa200)', '#ffff00'],
+              data: [15, 25, 35, 20, 10, 19],
+              borderWidth: 0.3,
+          }
+      ]
+  },
+  options: {
+    scales: {
+      x: {
+        grid: {
+            display: false // Ocultar líneas de la cuadrícula en el eje X
         },
-        indexAxis: 'x', // Mostrar barras horizontalmente
-        plugins: {
-            legend: {
-                display: false // Ocultar la leyenda
-            }
+        ticks: {
+          font: {
+            size: 8
+          },
+          color: '#FFFFFFB3'
+        }
+      },
+      y: {
+        grid: {
+            display: false // Ocultar líneas de la cuadrícula en el eje X
+        },
+        ticks: {
+          font: {
+            size: 8// tamaño de los valores numéricos en X
+          },
+          color: '#FFFFFFB3',
+          beginAtZero: true
+        }
+
+      }
+    },
+    indexAxis: 'x', // Mostrar barras horizontalmente
+    plugins: {
+        legend: {
+            display: false // Ocultar la leyenda
         }
     }
+  }
 })
 var chart6 = new Chart(miCanvas5, {
-    type: 'bar',
-    data: {
-        labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
-        datasets: [
-            {
-                label: 'Datos del Segundo Gráfico',
-                backgroundColor: ['rgb(0,255,0)', '#ff1700', 'green', '#ff1700', '#ffa200)', '#ffff00'],
-                data: [55, -65, 35, -90, 10, 19],
-                borderWidth: 0.3,
-            }
-        ]
-    },
-    options: {
-        scales: {
-            x: {
-                grid: {
-                    display: false // Ocultar líneas de la cuadrícula en el eje X
-                },
-                ticks: {
-                    color: 'rgb(3, 237, 253)' // Color de las etiquetas de texto en el eje X
-                }
-            },
-            y: {
-                grid: {
-                    display: false // Ocultar líneas de la cuadrícula en el eje X
-                },
-                ticks: {
-                    color: 'rgb(3, 237, 253)', // Color de las etiquetas de texto en el eje X
-                    beginAtZero: true // Empezar el eje Y desde cero
-                }
-
-            }
+  type: 'bar',
+  data: {
+      labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+      datasets: [
+          {
+              label: 'Datos del Segundo Gráfico',
+              backgroundColor: ['rgb(0,255,0)', '#ff1700', 'green', '#ff1700', '#ffa200)', '#ffff00'],
+              data: [55, -65, 35, -90, 10, 19],
+              borderWidth: 0.3,
+          }
+      ]
+  },
+  options: {
+    scales: {
+      x: {
+        grid: {
+          display: false // Ocultar líneas de la cuadrícula en el eje X
         },
-        indexAxis: 'x', // Mostrar barras horizontalmente
-        plugins: {
-            legend: {
-                display: false // Ocultar la leyenda
-            }
+        ticks: {
+          font: {
+            size: 8
+          },
+          color: '#FFFFFFB3'
+        }
+      },
+      y: {
+        grid: {
+            display: false // Ocultar líneas de la cuadrícula en el eje X
+        },
+        ticks: {
+          font: {
+            size: 8
+          },
+          color: '#FFFFFFB3',
+          beginAtZero: true 
+        }
+
+      }
+    },
+    indexAxis: 'x', // Mostrar barras horizontalmente
+    plugins: {
+        legend: {
+            display: false // Ocultar la leyenda
         }
     }
+  }
 })
 var chart7 = new Chart(miCanvas6, { 
   type: 'bar',
@@ -1541,29 +1569,29 @@ var chart7 = new Chart(miCanvas6, {
     responsive: true,
     maintainAspectRatio: false,    
     scales: {
-        x: {
-            grid: {
-                display: false
-            },
-            ticks: {
-                color: 'rgb(255,255,255)',
-                font: {
-                    size: 7
-                }
+      x: {
+          grid: {
+              display: false
+          },
+          ticks: {
+            color: '#FFFFFFB3',
+            font: {
+              size: 8
             }
+          }
+      },
+      y: {
+        grid: {
+            display: false
         },
-        y: {
-            grid: {
-                display: false
-            },
-            ticks: {
-                color: 'rgb(255,255,255)',
-                font: {
-                    size: 9
-                },
-                beginAtZero: true
-            }
+        ticks: {
+          color: '#FFFFFFB3',
+          font: {
+            size: 8
+          },
+          beginAtZero: true
         }
+      }
     },
     indexAxis: 'x',
     plugins: {
@@ -1571,11 +1599,11 @@ var chart7 = new Chart(miCanvas6, {
         legend: {
             display: false
         },
-        title: {  // Agregar un título al gráfico
-            display: true,  // Mostrar el título
-            text: 'Participacion semanal',  // Texto del título
+        title: {  
+            display: true, 
+            text: 'Participacion semanal', 
             font: {
-                size: 16  // Tamaño del texto del título
+              size: 13
             }
         }
     }
@@ -1600,7 +1628,7 @@ var chart7II = new Chart(miCanvas6II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 4
           }
@@ -1611,7 +1639,7 @@ var chart7II = new Chart(miCanvas6II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 5
           },
@@ -1632,7 +1660,7 @@ var chart7II = new Chart(miCanvas6II, {
         }
       },
       datalabels: {
-        color: 'rgb(255,255,255)',
+        color: '#FFFFFFB3',
         font: {
           size: 5 // Tamaño de la fuente para las etiquetas del conjunto de datos
         },
@@ -1666,9 +1694,9 @@ var chart8 = new Chart(miCanvas7, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
-            size: 9
+            size: 8
           }
         }
       },
@@ -1677,9 +1705,9 @@ var chart8 = new Chart(miCanvas7, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
-            size: 10
+            size: 8
           },
           beginAtZero: true
         }
@@ -1695,7 +1723,7 @@ var chart8 = new Chart(miCanvas7, {
         display: true,
         text: 'Lección de un punto',
         font: {
-          size: 16
+          size: 13
         }
       }
     }
@@ -1720,7 +1748,7 @@ var chart8II = new Chart(miCanvas7II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 4
           }
@@ -1731,7 +1759,7 @@ var chart8II = new Chart(miCanvas7II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 5
           },
@@ -1777,9 +1805,9 @@ var chart9 = new Chart(miCanvas8, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
-            size: 9
+            size: 8
           }
         }
       },
@@ -1788,9 +1816,9 @@ var chart9 = new Chart(miCanvas8, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
-            size: 10
+            size: 8
           },
           beginAtZero: true
         }
@@ -1806,7 +1834,7 @@ var chart9 = new Chart(miCanvas8, {
         display: true,
         text: 'Areas De Dificil Acceso',
         font: {
-          size: 16
+          size: 13
         }
       }
     }
@@ -1833,7 +1861,7 @@ var chart9II = new Chart(miCanvas8II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 4
           }
@@ -1844,7 +1872,7 @@ var chart9II = new Chart(miCanvas8II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 5
           },
@@ -1888,9 +1916,9 @@ var chart10 = new Chart(miCanvas9, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
-            size: 9
+            size: 8
           }
         }
       },
@@ -1899,9 +1927,9 @@ var chart10 = new Chart(miCanvas9, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
-            size: 10
+            size: 8
           },
           beginAtZero: true
         }
@@ -1917,7 +1945,7 @@ var chart10 = new Chart(miCanvas9, {
         display: true,
         text: 'Ayudas De Trabajo',
         font: {
-          size: 16
+          size: 13
         }
       }
     }
@@ -1942,7 +1970,7 @@ var chart10II = new Chart(miCanvas9II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 7
           }
@@ -1953,7 +1981,7 @@ var chart10II = new Chart(miCanvas9II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 7
           },
@@ -1999,9 +2027,9 @@ var chart11 = new Chart(miCanvas10, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
-            size: 9
+            size: 8
           }
         }
       },
@@ -2010,9 +2038,9 @@ var chart11 = new Chart(miCanvas10, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
-            size: 10
+            size: 8
           },
           beginAtZero: true
         }
@@ -2028,7 +2056,7 @@ var chart11 = new Chart(miCanvas10, {
         display: true,
         text: 'Ejecución ',
         font: {
-          size: 16
+          size: 13
         }
       }
     }
@@ -2053,7 +2081,7 @@ var chart11II = new Chart(miCanvas10II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 9
           }
@@ -2064,7 +2092,7 @@ var chart11II = new Chart(miCanvas10II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 10
           },
@@ -2109,9 +2137,9 @@ var chart12 = new Chart(miCanvas11, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
-            size: 9
+            size: 8
           }
         }
       },
@@ -2120,9 +2148,9 @@ var chart12 = new Chart(miCanvas11, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
-            size: 10
+            size: 8
           },
           beginAtZero: true
         }
@@ -2138,7 +2166,7 @@ var chart12 = new Chart(miCanvas11, {
         display: true,
         text: 'Tendencia',
         font: {
-          size: 16
+          size: 13
         }
       }
     }
@@ -2166,7 +2194,7 @@ var chart12II = new Chart(miCanvas11II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 4
           }
@@ -2177,7 +2205,7 @@ var chart12II = new Chart(miCanvas11II, {
           display: false
         },
         ticks: {
-          color: 'rgb(255,255,255)',
+          color: '#FFFFFFB3',
           font: {
             size: 5
           },
@@ -4125,7 +4153,7 @@ function changeColorToGreen() {
   INTERVALOS.intervaloXLI = setInterval(() => {
     if (index < lines.length) {
       if (index < 8) {
-        lines[index].style.backgroundColor = 'rgb(0, 255, 0)'; // Verde
+        lines[index].style.backgroundColor = '#28A745'
       } else if (index < 11) {
         lines[index].style.backgroundColor = 'rgb(255, 235, 0)'; // Naranja
       } else if (index < 13) {
@@ -4147,7 +4175,7 @@ function changeColorToGreenII() {
   INTERVALOS.intervaloXLII = setInterval(() => {
     if (index < lines.length) {
       if (index < 8) {
-        lines[index].style.backgroundColor = 'rgb(0, 255, 0)'; // Verde
+        lines[index].style.backgroundColor = '#28A745';
       } else if (index < 11) {
         lines[index].style.backgroundColor = 'rgb(255, 235, 0)'; // Naranja
       } else if (index < 13) {
@@ -4276,12 +4304,12 @@ function detenerAllInterval() {
 function resetStylesAndIntervals() {
   // Limpiar intervalos
   if (INTERVAL.intervalo1) {
-      clearInterval(INTERVAL.intervalo1);
-      INTERVAL.intervalo1 = null;
+    clearInterval(INTERVAL.intervalo1);
+    INTERVAL.intervalo1 = null;
   }
   if (INTERVAL.intervalo2) {
-      clearInterval(INTERVAL.intervalo2);
-      INTERVAL.intervalo2 = null;
+    clearInterval(INTERVAL.intervalo2);
+    INTERVAL.intervalo2 = null;
   }
 
   // Limpiar timeouts pendientes
@@ -5034,69 +5062,7 @@ function openGraphics(elementId){
         moverElementos(["conte-butts-graphs"], 27, -7);
       }
     }, 1300);
-/*     setTimeout(() => {
-      document.querySelectorAll('.graphs-lines').forEach(el => {
-        el.style.display='none'
-      });
-    }, 2000);
- */
-  }/* else {
-    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','contLineas-II','iconos','conte-secundario','MiGrafica9-II']
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var elemento = document.getElementById(allContenedores[i])
-      if (elemento) {
-        elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-      }
-    }
-    container1.style.display='grid'
-    document.getElementById('contenedor-2').style.display='none'
-
-    const elementosLi = document.querySelectorAll("#metas-diarias li")
-    elementosLi.forEach((li, index) => {
-      setTimeout(() => {
-        li.classList.remove("visible");
-      }, index * 1);
-    });  
-    
-    const elementos = document.querySelectorAll('.graphs-employee');
-    elementos.forEach((miElemento) => {
-      if (miElemento.id === elementId) {
-        miElemento.style.border='none'
-        miElemento.style.display = 'block';
-        miElemento.style.left = '33vw';
-        miElemento.style.top = '21vh';        
-        miElemento.style.height='20vh'
-        miElemento.style.backgroundColor='rgb(0,0,17)'
-      }
-    });
-    desactivarClicsPorUnTiempo(1500)
-    if(elementId === 'canvasContainer9-II'){
-      setTimeout(() => {
-        mostrarSecuencialmente()
-      }, 1400);
-    } 
-    if(elementId === 'canvasContainer7-II'){
-      setTimeout(() => {
-        document.getElementById('month-display').style.display='flex'
-        document.getElementById('meses').style.display='grid'
-        document.getElementById('calendario-mes').style.display='grid'
-        let index = 0;        
-        const interval = setInterval(() => {
-          if (index < dias.length) {  
-            dias[index].style.display = "flex";
-            dias[index].textContent = '';
-            index++;
-          } else {
-            clearInterval(interval);
-          }
-        }, 17);
-        
-      }, 1400);
-      setTimeout(() => {
-        desvanecerDiasSimultaneamenteConIntervalo()
-      }, 1400);
-    } 
-  } */
+  }
 }
 function mostrarSecuencialmente() {
   const padreElementos = document.getElementById('metas-diarias')
@@ -5198,15 +5164,30 @@ function mostrarCalendario(mesSeleccionado) {
 }
 /* let nuevoElemento; */
 function destruirCharts() {
-  [chart17, chart16, chart15, chart14, chart13].forEach((c, i, arr) => {
+  [chart18,chart17, chart16, chart15, chart14, chart13].forEach((c, i, arr) => {
     if (c) {
       c.destroy();
       arr[i] = null; // nulifica solo en el array local
     }
   });
 }
-const mesesGraficos = ['Enero','Febrero','Marzo','Abril'];
+let mesGlobal = ''
+const mesesGraficos = [
+  'Enero',
+  'Febrero',
+  'Marzo',
+  'Abril',
+  'Mayo',
+  'Junio',
+  'Julio',
+  'Agosto',
+  'Septiembre',
+  'Octubre',
+  'Noviembre',
+  'Diciembre'
+];
 const elementosMes = document.querySelectorAll('.mes');
+
 elementosMes.forEach((mes, index) => {
   mes.addEventListener('click', () => {
     // reset estilos
@@ -5223,19 +5204,19 @@ elementosMes.forEach((mes, index) => {
     mes.style.color = 'rgb(90,160,220)';
 
     ['calendario-mes','cont-span-semanas','titulo-calendar','titulo-mes']
-      .forEach(id => aparecerElemento(id,'grid'));
-
+    .forEach(id => aparecerElemento(id,'grid'));
     mostrarCalendario(mes.textContent.trim());
     setTimeout(mostrarSemanasSecuencialmente, 50);
     aplicarLogicaPorMes(mes.textContent.trim());
-
     destruirCharts(); // aquí sí tienen alcance
-
+    
     document.querySelector('#titulo-mes').textContent = mes.textContent.trim();
-
+    mesGlobal = mes.textContent.trim();
+    
     if (mesesGraficos[index]) console.log(mesesGraficos[index]);
   });
 });
+
 function aplicarLogicaPorMes(nombreMes) {
   // 🟡 1️⃣ Ocultar, no eliminar, todos los hijos
   const abuelo = document.getElementById('abuelo-grafica4');

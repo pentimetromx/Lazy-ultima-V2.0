@@ -1010,7 +1010,6 @@ function resaltarSecuencialDemo() {
     }, index * 10);
   });
 }
-
 let miCanvas12 = document.getElementById('MiGrafica10').getContext('2d')
 let chart13;
 function crearGraficoMes() {
@@ -1085,7 +1084,6 @@ function crearGraficoMes() {
   // 4️⃣ Crear el nuevo gráfico
   chart13 = new Chart(ctx, configBase);
 }
-
 let miCanvas13 = document.getElementById('MiGrafica11').getContext('2d')
 let chart14;
 function crearGraficoSemana() {
@@ -1165,7 +1163,6 @@ function crearGraficoSemana() {
   // 4️⃣ Crear el nuevo gráfico
   chart14 = new Chart(ctx, configBase);
 }
-
 let miCanvas14 = document.getElementById('MiGrafica12').getContext('2d')
 let chart15;
 function crearGraficoParticipacion() {
@@ -1238,7 +1235,6 @@ function crearGraficoParticipacion() {
   // 4️⃣ Crear el nuevo gráfico
   chart15 = new Chart(ctx, configLine);
 }
-
 let miCanvas15 = document.getElementById('MiGrafica13').getContext('2d')
 let chart16;
 function crearGraficoApilado() {
@@ -1365,7 +1361,6 @@ function crearGraficoApilado() {
   // 4️⃣ Crear el nuevo gráfico
   chart16 = new Chart(ctx, configArea);
 }
-
 let miCanvas16 = document.getElementById('MiGrafica14').getContext('2d')
 let chart17;
 function crearGraficoOperadores() {
@@ -1440,15 +1435,100 @@ function crearGraficoOperadores() {
   chart17 = new Chart(ctx, configZona);
 }
 
-let miCanvas17 = document.getElementById('MiGrafica15').getContext('2d')
+let miCanvas17 = document.getElementById('MiGrafica15').getContext('2d')    
 let chart18;
+function obtenerDiasDelMes(nombreMes) {
+  switch (nombreMes.toLowerCase()) {
+    case 'enero':
+    case 'marzo':
+    case 'mayo':
+    case 'julio':
+    case 'agosto':
+    case 'octubre':
+    case 'diciembre':
+      return 31;
+    case 'abril':
+    case 'junio':
+    case 'septiembre':
+    case 'noviembre':
+      return 30;
+    case 'febrero':
+      return 28; // puedes extender para años bisiestos si quieres
+    default:
+      return 30; // valor por defecto en caso de error
+  }
+}
+
+
+
 function crearGraficoLleno() {
   const padreGrafica11 = document.querySelector('#padre-grafica9')
+  const linksMA = document.querySelector('#links-inicialesI')
+  const linkLista = document.querySelector('#links-iniciales')
+  const buscador = document.querySelector('#buscador')
+
   padreGrafica11.style.display='flex'
   const canvas = document.getElementById('MiGrafica15');
 
+  
+
+  canvas.addEventListener('click', () => {
+    document.querySelector('#grafico-area').style.display = 'block';  
+
+    const contenedor = document.querySelector('.calendario-interfaz');
+    if (contenedor) {
+
+      // 🟡 Mostrar el mes actual en el span
+      const spanMes = document.querySelector('#mes-area');
+      spanMes.textContent = mesGlobal;
+
+      // 🟡 Determinar número de días según mesGlobal
+      const diasMes = obtenerDiasDelMes(mesGlobal);
+
+      // 🟡 Generar calendario dinámico
+      generarBotoneraDias('.calendario-interfaz', diasMes, offset, index => cambiarFuente(index));
+
+      // Aplicar blur
+      function aplicarBlur(...selectores) {
+        selectores.forEach(sel => {
+          const elemento = document.querySelector(sel);
+          if (elemento) elemento.classList.add('blur');
+        });
+      }
+
+      function ocultar(...elementos) {
+        elementos.forEach(el => {
+          if (el) el.style.display = 'none';
+        });
+      }
+
+      aplicarBlur(
+        '#abuelo-grafica4',
+        '#calendario-mes',
+        '#lista-maquinas',
+        '#meses',
+        '#cont-span-semanas'
+      );
+
+      document.querySelectorAll('.titulo-graf-ma').forEach(el => el.classList.add('blur'));
+
+      ocultar(linksMA, linkLista, buscador);
+
+    } else {
+      const obs = new MutationObserver((mutations, observer) => {
+        if (document.querySelector('.calendario-interfaz')) {
+          // Puedes regenerar aquí también si quieres
+          observer.disconnect();
+        }
+      });
+      obs.observe(document.body, { childList: true, subtree: true });
+    }
+  });
+
+
+
   // 1️⃣ Destruir si ya existe
-  if (chart18) {
+  if (chart18) {  
     chart18.destroy();
     chart18 = null;
   }
@@ -1519,11 +1599,43 @@ function crearGraficoLleno() {
 
   };
 
-  
-
   // 4️⃣ Crear el nuevo gráfico
   chart18 = new Chart(ctx, configZona);
+
+  /* const spanMes = document.querySelector('#mes-area');
+  spanMes.textContent = mesGlobal; */
+  
 }
+
+const primerSpan = document.querySelector('.box-7');
+primerSpan.addEventListener('click', () => {
+  // Función genérica para quitar blur a varios selectores
+  function quitarBlur(...selectores) {
+    selectores.forEach(sel => {
+      const elemento = document.querySelector(sel);
+      if (elemento) elemento.classList.remove('blur');
+    });
+  }
+  // Función para mostrar varios elementos
+  function mostrar(...elementos) {
+    elementos.forEach(el => {
+      if (el) el.style.display = 'block';
+    });
+  }
+  quitarBlur(
+    '#abuelo-grafica4',
+    '#calendario-mes',
+    '#lista-maquinas',
+    '#meses',
+    '#cont-span-semanas'
+  );
+  document.querySelectorAll('.titulo-graf-ma').forEach(el => el.classList.remove('blur'));
+  document.querySelector('#grafico-area').style.display='none'
+  const linksMA   = document.getElementById('links-inicialesI');
+  const linkLista = document.getElementById('links-iniciales');
+  const buscador  = document.getElementById('buscador');
+  mostrar(linksMA, linkLista, buscador);
+});
 
 document.querySelectorAll('.span-semana').forEach((span, index) => {
 
@@ -1597,7 +1709,6 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
     }
   });
 });
-
 const btnDynamic = document.getElementById('dynamic-graphs');
 const btnStatic = document.getElementById('static-graphs');
 
@@ -1609,3 +1720,251 @@ const btnStatic = document.getElementById('static-graphs');
 ['click','touchstart'].forEach(ev => {
   btnStatic.addEventListener(ev, detenerDinamica, {passive:true});
 });
+
+function generarBotoneraDias(selector = '.calendario-interfaz', days = 30, startOffset = 0, onSelect) {
+  const container = document.querySelector(selector);
+  if (!container) return null;
+
+  while (container.firstChild) container.removeChild(container.firstChild);
+  const frag = document.createDocumentFragment();
+  for (let i = 0; i < startOffset; i++) {
+    const ph = document.createElement('div');
+    ph.className = 'child-calendar empty';
+    ph.setAttribute('aria-hidden', 'true');
+    frag.appendChild(ph);
+  }
+
+  const botones = [];
+  for (let i = 1; i <= days; i++) {
+    const day = document.createElement('div');
+    day.className = 'child-calendar';
+    day.dataset.index = (i - 1).toString();
+    day.textContent = String(i);
+    day.setAttribute('role', 'button');
+    day.tabIndex = 0;
+  // Función para crear o recrear el gráfico
+  function createchart19(data, options) {
+    const ctx = document.querySelector('#miCanvas').getContext('2d');
+
+    // Si ya existe, lo destruimos primero
+    if (chart19) chart19.destroy();
+
+    chart19 = new Chart(ctx, {
+      type: 'line', // o tu tipo
+      data,
+      options
+    });
+    }
+
+    // Lógica de selección de días
+    day.addEventListener('click', () => {
+      botones.forEach(b => {
+        b.style.backgroundColor = '';
+        b.style.color = '';
+      });
+      day.style.backgroundColor = 'white';
+      day.style.color = 'black';
+
+      if (typeof onSelect === 'function') {
+        const index = Number(day.dataset.index);
+        onSelect(index);
+      }
+      const span = document.querySelector('.box-4 span');
+      span.style.height = '';      
+    });
+
+
+    day.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        day.click();
+      }
+    });
+
+    botones.push(day);
+    frag.appendChild(day);
+  }
+
+  container.appendChild(frag);
+  return botones; // array de botones creados
+}
+function resetChart() {
+  if (chart19) {
+    chart19.destroy();
+    chart19 = null;
+  }
+}
+function resetCalendarStyles() {
+  document.querySelectorAll('.child-calendar', '.box-2').forEach(el => {
+    el.removeAttribute('style');
+  });
+  document.querySelector('.box-2').style.backgroundColor= '';
+  document.querySelector('.box-2').style.color = '';
+}
+document.querySelector('.box-6').addEventListener('click', () => { 
+  animarWidth('.box-4 span', 1000);
+  setTimeout(() => {
+    resetChart();
+    resetCalendarStyles();
+  }, 1050);
+});
+const offset = 0; // calcula si necesitas alinear el primer día
+/* generarBotoneraDias('.calendario-interfaz', 30, offset, index => cambiarFuente(index)); */
+
+const fuentesDeDatos = [
+  [1]
+  [2],
+  [2, 3],  
+  [2, 3, 4],
+  [2, 3, 4, 4.5],
+  [2, 3, 4, 4.5, 5],
+  [2, 3, 4, 4.5, 5, 5.5],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1, 9.5],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1, 9.5, 9.1],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1, 9.5, 9.1, 8.9],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1, 9.5, 9.1, 8.9, 9.7],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1, 9.5, 9.1, 8.9, 9.7,8.9],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1, 9.5, 9.1, 8.9, 9.7, 8.9, 7.7],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1, 9.5, 9.1, 8.9, 9.7, 8.9, 7.7, 10],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1, 9.5, 9.1, 8.9, 9.7, 8.9, 7.7, 10, 9.5],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1, 9.5, 9.1, 8.9, 9.7, 8.9, 7.7, 10, 9.5, 8.9],
+  [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4, 7.9, 8.3, 7.7, 6.6, 5.4, 7.8, 8.3, 8.8, 10, 10, 9.5 , 8.7, 9.1, 9.5, 9.1, 8.9, 9.7, 8.9, 7.7, 10, 9.5, 8.9,7.1]
+];
+let miCanvas18 = document.getElementById('MiGrafica16').getContext('2d');
+let chart19 = null; // instanciamos la variable global para Chart.js
+function createchart19(data, options) {
+  const ctx = document.querySelector('#miCanvas').getContext('2d');
+
+  // Si ya existe, lo destruimos primero
+  if (chart19) chart19.destroy();
+
+  chart19 = new Chart(ctx, {
+    type: 'line', // o tu tipo
+    data,
+    options
+  });
+}
+function crearGraficoAreas() {
+  const ctx = document.getElementById('MiGrafica16').getContext('2d');
+
+  if (!chart19) {
+    chart19 = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['dia 1','dia 2','dia 3','dia 4','dia 5','dia 6','dia 7','dia 8','dia 9','dia 10','dia 11','dia 12','dia 13','dia 14','dia 15','dia 16','dia 17','dia 18','dia 19','dia 20','dia 21','dia 22','dia 23','dia 24','dia 25','dia 26','dia 27','dia 28','dia 29','dia 30','dia 31'],
+        datasets: [{
+          label: 'Total FTE Availability',
+          data: fuentesDeDatos[0],
+          fill: true,
+          backgroundColor: 'rgba(48, 13, 191, 0.67)',
+          pointRadius: 1,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 800,
+          easing: 'easeInOutQuart'
+        },
+        plugins: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Comportamiento',
+            color: '#848b93ff',
+            font: { size: 14 },
+            align: 'start'
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#ccc', font: { size: 7 } },
+            grid: { display: false }
+          },
+          y: {
+            min: 1,
+            max: 10,
+            ticks: {
+              color: '#ccc',
+              font: { size: 7 },
+              stepSize: 1
+            },
+            grid: { display: false }
+          }}
+      }
+    }
+  );
+  }
+}
+// Cambiar datos sin repintar completo
+function cambiarFuente(indice) {
+  crearGraficoAreas()
+  chart19.data.datasets[0].data = fuentesDeDatos[indice];
+  chart19.update();
+}
+const teclasInterfaz = document.querySelectorAll('.child-calendar');
+teclasInterfaz.forEach(tecla => {
+  // Inicializa estilos
+  tecla.style.color = '';
+  tecla.style.backgroundColor = '';
+
+  tecla.addEventListener('click', () => {
+    // Resetear todas
+    teclasInterfaz.forEach(t => {
+      t.style.backgroundColor = '';
+      t.style.color = '';
+    });
+
+    // Aplicar a la clicada
+    tecla.style.backgroundColor = 'white';
+    tecla.style.color = 'black';
+    document.querySelector('.box-2').style.backgroundColor= 'rgb(51, 0, 255)';
+    document.querySelector('.box-2').style.color = '#ff7fbd';
+  });
+});
+const slider = document.getElementById('miSlider');
+const valor = document.getElementById('sliderValor')
+slider.addEventListener('input', () => {
+  const porcentaje = slider.value;
+  valor.textContent = porcentaje;
+  slider.style.background = `linear-gradient(to right, white ${porcentaje}%, blue ${porcentaje}%)`;
+});
+function destroyChart(chartInstance) {
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+}
+
+
+function PARABORRAR(){
+  mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
+  setTimeout(() => {
+    ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form',)
+  }, 100);
+  setTimeout(() => {
+    secuenciaAparicion('cmyk')
+  }, 200);
+  setTimeout(() => {
+    alternarTeccnologia('cmyk')
+  }, 300);
+}
+
+
