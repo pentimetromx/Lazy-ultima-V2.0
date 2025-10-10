@@ -90,7 +90,7 @@ h1, h2, h3 {
   width:39.7vw;
   height:6.5vh;
   text-align: center;
-  font-size: 0.6em;
+  font-size: 0.9vw;
   align-items: center;
   cursor: pointer;
   justify-content: center;
@@ -99,13 +99,12 @@ h1, h2, h3 {
   color:#E0E0E0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
 
-
   box-shadow: inset 5px 15px 5px rgba(0, 0, 0, 0.8);
   border-radius: 7px;
-  transition: transform 0.1s;
+  transition: transform 0.5s;
+  transition: background-color 0.4s ease, color 0.4s ease, transform 0.5s;
 }
 .boton-a:hover,
-.boton-e:hover,
 .boton-f:hover,
 .boton-g:hover,
 .boton-h:hover{
@@ -114,15 +113,24 @@ background:  blue;
 color: white;
 }
 #toggleVideoButton:hover,
-.boton-b:hover,
-.boton-c:hover{
-  transform: scale(1.1);
+.boton-b:hover{
+  transform: scale(1.1) translateY(-2px);
   background-color: rgb(6, 31, 223);
   color: #fff;
 }
-.boton-d:hover {
-  transform: scale(1.1);
+.boton-e:hover,
+.boton-c:hover{
+  background: #1565C0;
+  box-shadow: 0 4px 10px rgba(21, 101, 192, 0.4);
+  transform: scale(1.1) translateY(-2px);
 }
+.boton-d:hover {
+  background: linear-gradient(145deg, #1976D2, #0D47A1);
+  transform: translateY(-2px) scale(1.05);
+  color: #fff;  
+}
+
+
 #links-inicialesI{
   position: absolute;
   display: flex;
@@ -380,13 +388,14 @@ color: white;
   color: #fff;
   border: none;
   border-radius: 5px;
-  font-size: 0.5em;
+  font-size: 0.7vw;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding-left: 0.5em;
   box-sizing: border-box;
+  transition: background-color 0.4s ease, color 0.4s ease, transform 0.5s;
 }
 .contene-1,
 .contene-3,
@@ -520,10 +529,10 @@ color: white;
   box-shadow: inset 5px 15px 5px rgba(0, 0, 0, 0.8);
   border-radius: 7px;
   margin-right:1.9vw;
-  font-size: 0.6em;
+  font-size: 0.8vw;
   cursor: pointer;
   text-align: center;
-  transition: transform 0.1s; 
+  transition: background-color 0.4s ease, color 0.4s ease, transform 0.5s;
 }
 #cont-Verticales1,
 #cont-Verticales2,
@@ -537,10 +546,6 @@ color: white;
   width: 12vw;
   height: 50vh;
   padding-left: 1.5vw;
-}
-#cont-Verticales1 button:hover{
-  background-color: rgb(6, 31, 223);
-  color: #fff;
 }
 #videosTraining{
   display: flex;
@@ -657,7 +662,7 @@ color: white;
   background-color: white;
   content: "";
 }
-.linea-vertical-II{
+/* .linea-vertical-II{
   position: absolute;
   left: 340px;
   top: -127px;
@@ -667,8 +672,8 @@ color: white;
   background-color: rgb(0,255,0);
   content: "";
   display: none;
-}
-#vertical-lineI{
+} */
+/* #vertical-lineI{
   position: absolute;
   left: -30px;
   top: -126px;
@@ -678,7 +683,7 @@ color: white;
   background-color: rgb(0,255,0);
   content: "";
   display: none;
-}
+} */
 .linea-vertical-VII{
   position: absolute;
   left: 340px;
@@ -829,13 +834,13 @@ color: white;
   justify-content: flex-start;
   width: 60%;
   background: linear-gradient(to bottom, #008b8b, #005f5f);
-  font-size: 0.5em;
+  font-size: 0.7vw;
   color: #fff;
   border-radius: 5px;
   margin-bottom: 0.5vh;
   text-align: left;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: background-color 0.4s ease, color 0.4s ease, transform 0.5s;
 }
 .boton-d{
   position: relative;
@@ -851,7 +856,7 @@ color: white;
   align-items: center;
   justify-content: center; 
   cursor: pointer; 
-  transition: transform 0.1s;
+    transition:backgroundcolor 0.4s ease-in-out 0.3s, color 0.3s ease-in-out 0.3s, transform 0.5s ease;
 }
 .boton-c > span {
   margin-left: 20px;
@@ -1050,7 +1055,7 @@ width:447px ;
   justify-content: center;
   cursor:pointer;
   background-color: rgb(125,125,125);
-  font-size: 0.8em;
+  font-size: 1vw;
   width: 100%;
   height: 100%;
   border-radius: 8px;
@@ -1088,7 +1093,7 @@ width:447px ;
   flex-direction: column;
   left: 19%;
   top: 21%;
-  width: 350px;
+  width:31vw;
   height: 333px;
   border-radius: 20px;
 
@@ -1105,25 +1110,23 @@ width:447px ;
 
 #canvasContainer3{
   position: absolute;
-  /* display: flex; */
   flex-direction: column;
   left: 20vw;
   top:22vh;
   width:16vw;
   height:68vh;
   border-radius: 20px;
-  /* transition: left 1.007s ease; */
   display:none;
 
-  transition: transform 0.5s ease; /* 501 ms */
+  transition: transform 0.5s ease;
   z-index: 2;
-  display: none; /* inicialmente oculto */
-  transform: scale(0); /* inicia reducido */
-  transform-origin: center; /* crece desde el centro */   
+  display: none;
+  transform: scale(0);
+  transform-origin: center;  
 }
 #canvasContainer3.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
+  display: grid; 
+  transform: scale(1);
 }
 
 #MiGrafica{
@@ -1627,7 +1630,7 @@ width:447px ;
   cursor: pointer;
   z-index: 1;
 }
-.Bot-inicio-fondo{
+/* .Bot-inicio-fondo{
   background-color: rgb(0,255,0);
   border-radius: 7px;
   width: 6.2vw;
@@ -1636,7 +1639,7 @@ width:447px ;
   transform: skewX(-30deg);
   cursor: pointer;
   z-index: 0;
-}
+} */
 #butt-011,
 #butt-010,
 #butt-001,
@@ -1930,6 +1933,10 @@ width:447px ;
   list-style: decimal;
   border-radius: 13px;
 }
+.linksTraining li::marker {
+  font-size: 1vw;
+  font-weight: bold;
+}
 .colorClick {
   color:white;
 }
@@ -1945,7 +1952,7 @@ width:447px ;
 .linksTraining li a{
   color: white;
   cursor: pointer;
-  font-size: 0.8em;
+  font-size: 0.9vw;
   transition: color 0.3s ease;
   text-decoration: none;
 }
@@ -2157,6 +2164,9 @@ header {
   border-radius: 13px;
   cursor: pointer;
 }
+#imag1 h6{
+  color: #FFFFFFB3;  
+}
 .img1{
   display: flex;
   position: absolute;
@@ -2172,6 +2182,7 @@ header {
 #imag2 h6{
   position:absolute;
   display:block;
+  color: #FFFFFFB3;  
   top:37%;
   font-size:1.2vw;
   width:100%;
@@ -2184,7 +2195,7 @@ header {
 .parrafo-casos{
   font-family: GothamRounded , sans-serif;
   font-size: 1.5vw;
-  color: whitesmoke;
+  color: #FFFFFFB3;
 }
 #instrucciones_manometro{
   position: absolute;
@@ -2367,6 +2378,9 @@ header {
   height:30%;
   gap: 22px;
 }
+#imag3 h4{
+  color: #FFFFFFB3;
+}
 .conte-disco{
   flex:1;
   display: flex;
@@ -2457,6 +2471,9 @@ h6{
 #troubleshooting.activo {
   display: grid;          /* muestra el contenedor */
   transform: scale(1);    /* escala al tamaño definido en CSS */
+}
+#troubleshooting .miBoton{
+  font-size:0.8vw;
 }
 .contenedor-pariente {
   position: absolute;
@@ -2831,7 +2848,7 @@ h6{
   top: -88%;
   display: none;
 }
-#vertcal-line-II{
+/* #vertcal-line-II{
   position: absolute;
   left: -237px;
   top: 17px;
@@ -2841,7 +2858,7 @@ h6{
   background-color: rgb(0,255,0);
   content: "";
   display: none;
-} 
+} */ 
 #indicaciones-III{
   display: flex;
   flex-direction: column;
@@ -2890,7 +2907,7 @@ h6{
 #indicaciones-VI label{
   margin-bottom: 117px;
 }
-#vertcal-line-I{
+/* #vertcal-line-I{
   position: absolute;
   left: 240px;
   top: 17px;
@@ -2900,7 +2917,7 @@ h6{
   background-color: rgb(0,255,0);
   content: "";
   display: none;
-}
+} */
 #aceitera{
   display: flex;
   flex-direction: column;
@@ -3099,7 +3116,7 @@ elemento.visible {
 .cont-user .lblEmpleado,
 .cont-userI .lblNombres{
   position: relative;
-  color: #cccccc;
+  color: #FFFFFFB3;
   font-family: "GothamRounded", sans-serif;
   align-items: center;
   justify-content: center; 
@@ -3283,6 +3300,9 @@ elemento.visible {
   justify-content: center;
   align-items: center;
 }
+#rodillos-I .labl-class{
+  font-size:1vw;
+}
 #vidRodillos{
   position: absolute;
   display: flex;
@@ -3296,14 +3316,15 @@ elemento.visible {
   position: absolute;
   top: -21px;
   left: 21px;
-  background: linear-gradient(45deg, black 33%, gray 67%);
-  font-size: 33px;
+  background: linear-gradient(45deg, black 33%, gray 67%); 
   width: 70%;
   height: 10%;
-
   border-radius: 7px;
   justify-content: center;
   align-items: center;
+}
+#teñido-I .labl-class{
+  font-size: 1vw;
 }
 #rodilleria-vid {
   width:100%;
@@ -3514,12 +3535,14 @@ elemento.visible {
   top:0;
   left:15%;
   background: linear-gradient(45deg, black 33%, gray 67%);
-  font-size: 33px;
   width:70%;
   height:10%;
   border-radius: 7px;
   justify-content: center;
   align-items: center;
+}
+#freno-I .labl-class{
+  font-size:1vw;
 }
 #vidFreno{
   position: absolute;
@@ -4254,6 +4277,7 @@ h4{
   color: #333; 
   border: 3px solid #ccc;
   border-radius: 5px;
+  font-size: 1vw;
   text-align: center;
   font-family: 'GothamRounded', sans-serif;
   animation: aumentarTamano 1s infinite alternate;
@@ -5417,7 +5441,7 @@ input.numero:focus {
   flex-direction: column;
   grid-template-columns: repeat(1, 1fr);
   gap: 12px;
-  left: 29.4vw;
+  left: 27vw;
   top: 52vh;
   height: 200vh;
   width: 20vw;
@@ -5495,7 +5519,7 @@ input.numero:focus {
 #patern{
   position:absolute;
   top:22.5vh;
-  left:30vw;
+  left:20.4vw;
   width:29vw;
   height:60vh; 
   border-radius:8px;                               
@@ -5714,7 +5738,7 @@ input.numero:focus {
   width: 100%;
   height: 0;
   border-radius: 0 0 5px 5px;
-  background-color: rgb(0, 255, 0);
+  background-color:#28A745;
   box-shadow: 0 0 15px rgba(0, 255, 0, 1), 0 0 30px rgba(0, 255, 0, 0.7);
 }
 #general{
@@ -5768,11 +5792,11 @@ input.numero:focus {
 }
 .butt-links{
   height: 4.5vh;
-  width: 13vw;
+  width: 11vw;
   background-color: rgb(255,0,0);
   border-radius: 5px;
   color: whitesmoke;
-  font-size: 1.2em;
+  font-size: 1.2vw;
   cursor: pointer;
   display: none;
 }
@@ -5907,7 +5931,7 @@ input.numero:focus {
   left:0;
   top:0;
   width:100%;
-  height:100%;
+  height:100%;                
 }
 #titulo-lubrica{
   position: absolute;
@@ -5916,6 +5940,9 @@ input.numero:focus {
   left:1%;
   width: 96%;
   grid-template-columns:50% 50%;
+}
+#titulo-lubrica .labl-class{
+  font-size: 1vw;
 }
 .contenedor-lubri{
   position: absolute;
@@ -6031,14 +6058,14 @@ input.numero:focus {
   position: relative;
   display: block;
   top:0;
-  font-size: 11px;
+  font-size: 0.9vw;
   text-align: left;
   width: 100%;
   font-family: "GothamRounded", sans-serif;
   color: yellow;
 }
 .labl-lub{
-  font-size:0.6em;
+  font-size:0.8vw;
   text-align: left;
   object-fit: fill;
   font-family: "GothamRounded", sans-serif;
@@ -6133,7 +6160,7 @@ height:100%;
   background-color: #302928;
   color: rgb(0,255,0);
   border-radius: 7px;
-  font-size:0.6em;
+  font-size:0.9vw;
   text-align: center;
   clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
   transform: skewX(-30deg);
@@ -6245,20 +6272,20 @@ height:100%;
 
   transform: scale(0);
   transform-origin: center;
-  transition: transform 1s ease;
+  transition: transform 1s ease, filter 0.5s ease;
 }
 .indicador {
   position: absolute;
-  right: 5%;
+  left:7.5vw;
   top: 50%;
   transform: translateY(-50%);
-  width: 22%;
+  width: 2vw;
   height: 6px;
   background-color: rgb(200,130,30);
   border-radius: 2px;
 }  
 .maquina{
-  position: relative;      /* clave: referencia para su hijo .indicador */
+  position: relative;
   cursor: pointer;
   padding-right: 35px;  
 }
@@ -6292,7 +6319,7 @@ height:100%;
   font-size: 1vw;
   text-align: center;
   color: rgb(120, 150, 170);
-  border-radius: 3px;
+  border-radius: 5px;
   justify-content: center;
   align-items: center;
   display: none;
@@ -6314,7 +6341,7 @@ height:100%;
   font-size: 1vw;
   text-align: center;
   color: rgb(120, 150, 170);
-  border-radius: 3px;
+  border-radius: 5px;
   justify-content: center;
   align-items: center;
   display: none;
@@ -6348,7 +6375,9 @@ height:100%;
   background-color: rgb(40, 180, 110);
   color: black;
 }
-
+.titulo-graf-ma{
+  transition: transform 1s ease, filter 0.5s ease;
+}
 #cont-span-semanas{
   position: absolute;
   display: grid;
@@ -6363,7 +6392,7 @@ height:100%;
   border-radius: 3px;
   transform: scale(0);
   transform-origin: center; 
-  transition: transform 1s ease;
+  transition: transform 1s ease, filter 0.5s ease;
 }
 #cont-span-semanas.activo {
   display: flex;
@@ -6388,7 +6417,7 @@ height:100%;
 
   transform: scale(0);
   transform-origin: center; 
-  transition: transform 1s ease;
+  transition: transform 1s ease, filter 0.5s ease;
 }
 #calendario-mes.activo {
   display: flex;
@@ -6429,7 +6458,7 @@ height:100%;
 }
 #metas-diarias li {
   opacity: 0;
-  color: whitesmoke;
+  color: #FFFFFFB3;
   background-color: rgb(0,0,17);
   transition: opacity 0.5s ease;
 }  
@@ -6465,7 +6494,7 @@ height:100%;
 
   transform: scale(0);
   transform-origin: center;
-  transition: transform 1s ease;
+  transition: transform 1s ease, filter 0.5s ease;
 }
 #meses.activo {
   display: flex;
@@ -6665,7 +6694,7 @@ height:100%;
     color: white;
     border-radius: 7px;
     font-size: 1.5vw;
-    transition: transform 0.1s;
+    transition: transform 0.5s;
   }
   #cont-Verticales1,
   #cont-Verticales2,
@@ -6778,13 +6807,13 @@ height:100%;
     width:49vw;
     display: none;
   } 
-  #vertical-lineI{
+  /* #vertical-lineI{
     position: absolute;
     left:1%;
     top:7%;
     width:0.16vw;
     height:36vh;
-  }
+  } */
   #grasa,
   #aceite{
     position: absolute;
@@ -6849,13 +6878,13 @@ height:100%;
     margin-top: 4vh;
     font-size: 10px;
   }
-  .linea-vertical-II{
+  /* .linea-vertical-II{
     position: absolute;
     left:1%;
     top:7%;
     width:0.16vw;
     height:36vh;
-  }
+  } */
   #lubri-II{
     position:absolute;
     display: flex;
@@ -7047,18 +7076,18 @@ height:100%;
     display:flex;
     width: 100%;
   }
-  #vertcal-line-II{
+  /* #vertcal-line-II{
     position: absolute;
     left: 1%;
     top: -5%;
     height: 257px;
-  }
-  #vertcal-line-I{
+  } */
+  /* #vertcal-line-I{
     position: absolute;
     left: 51%;
     top: -5%;
     height: 257px;
-  }
+  } */
   #balineras{
     position: absolute;
     top: -10%;

@@ -1038,7 +1038,7 @@
     </div>
     <div id="lubri-II">
 
-      <div class="linea-vertical-II" id="vertcal-line"></div>
+      <!-- <div class="linea-vertical-II" id="vertcal-line"></div> -->
       <div id="grasa">
         <span  class="labl-class">GRASA</span>
       </div>
@@ -2295,11 +2295,9 @@
     </div>
     <div id="general">  
 
-
       <div id="canvasContainer2" style="display: none;">
         <canvas id="MiGrafica"></canvas>
       </div> 
-
 
       <div id="wall_street_II" class="manejo">
         <div id="iniciador_7" class="horizontales"></div>
@@ -2308,6 +2306,7 @@
         <div id="iniciador_10" class="horizontales"></div>
         <div id="iniciador_11" class="horizontales"></div>
       </div>
+
       <div id="first_half" class="manejo">
         <div id="cortina_II"></div>
         <div id="animatedDiv" class="first_table"></div>
@@ -2356,6 +2355,7 @@
           <span id="indic_3" class="column_spans">4</span><span id="indic_4" class="column_spans">3</span><span id="indic_5" class="column_spans">2</span>
           <span id="indic_6" class="column_spans">1</span><span id="indic_7" class="column_spans">0</span>
         </div>
+
         <div id="column_3" class="column">
           <div id="line_15" class="lineas"></div>
           <div id="line_16" class="lineas"></div>
@@ -2949,12 +2949,12 @@
 
         <div id="inerfaz-ajuste-fino">
           <div id="butts-selectores">
-            <div class="butt-selector"><span class="texto-selectores"></span>N</div>
-            <div class="butt-selector"><span class="texto-selectores"></span>C</div>
-            <div class="butt-selector"><span class="texto-selectores"></span>M</div>
-            <div class="butt-selector"><span class="texto-selectores"></span>A</div>
-            <div class="butt-selector"><span class="texto-selectores"></span>E-1</div>
-            <div class="butt-selector"><span class="texto-selectores"></span>E-2</div>
+            <div class="butt-selector"><span class="texto-selectores">Negro</span></div>
+            <div class="butt-selector"><span class="texto-selectores">Cian</span></div>
+            <div class="butt-selector"><span class="texto-selectores">Magenta</span></div>
+            <div class="butt-selector"><span class="texto-selectores">Azul</span></div>
+            <div class="butt-selector"><span class="texto-selectores">Especial</span></div>
+            <div class="butt-selector"><span class="texto-selectores">Barniz</span></div>
           </div>  
   
           <div id="indexado"></div>
@@ -2962,6 +2962,7 @@
           </div>
           <div id="puntos"></div>
           <div id="columna-30" class="columna-30"></div>
+
           <div id="ctrl-gral">
             <div class="div-ctrl"> <span id="tinta-perc">0%</span> </div>
             <div class="div-ctrl"> <span id="solucion-porcentaje">0%</span> </div>
@@ -2972,6 +2973,7 @@
             <div class="div-ctrl ctrl"></div>
             <div class="div-ctrl ctrl"></div> 
           </div>
+          
           <div id="seleccion-gral"></div>
           <div id="linea-profundidad-inf"></div>
           <div id="linea-profundidad-lateral"></div>
@@ -3029,8 +3031,8 @@
 
       <div id="contenedor-registro">
         <div class="encabezado-registro">
-          <span class="etiqueta-izq">Progreso en el registro :</span>   
-          <span class="etiqueta-der">Restzeit 14479 Std.</span>
+          <span>Progreso en el registro :</span>   
+          <span>Restzeit 14479 Std.</span>
         </div>
         
         <div class="contenedor-hijo-registro">
@@ -3328,25 +3330,18 @@
 
         <div class="btns-crear">
 
-          <div id="first-span" class="eltos-crear">
-            <span>Guardar:</span>
-            <span>rgba :</span>  
-            <span>cmyk :</span>  
-          </div>
-
-          <div id="first-butts" class="eltos-crear">
-            <button id="save-tecnology"></button>
-            <button id="btn-crea-rgb" onclick="alternarTeccnologia('rgb')"></button>
-            <button id="btn-crea-cmyk" onclick="alternarTeccnologia('cmyk')"></button>
-          </div>
-
-          <div id="second-span" class="eltos-crear">
-            <span>Ejecutar:</span>
-          </div>
-
-          <div id="execute-button" class="eltos-crear">
-            <button id="btn-execute" onclick="pintarColor()"></button>
-          </div>
+          <span class="mandos-color">Guardar:</span>
+          <button id="save-tecnology" class="mandos-color boton-perfil"></button>
+          <span  class="mandos-color">Ejecutar:</span>
+          <button id="btn-execute" class="mandos-color boton-perfil" onclick="pintarColor()"></button>
+          <span class="mandos-color">rgba :</span> 
+          <button id="btn-crea-rgb" class="mandos-color boton-perfil" onclick="alternarTeccnologia('rgb')"></button>
+          <div class="mandos-color"></div>
+          <div class="mandos-color"></div>
+          <span class="mandos-color">cmyk :</span>
+          <button class="mandos-color boton-perfil" id="btn-crea-cmyk" onclick="alternarTeccnologia('cmyk')"></button>
+          <div class="mandos-color"></div>
+          <div class="mandos-color"></div>
 
         </div>
 
@@ -3358,65 +3353,39 @@
       
       <div id="control-panel-rgb" class="panel-color">
 
-        <div id="color-composition-header-rgb">
-          <span>Composición del color</span>
-        </div>
+        <span class="clase-ordenadora">Composición del color</span>
+        <span class="clase-ordenadora">R :</span>
+        <input type="number" id="input-r" class="clase-ordenadora" min="0" max="255" value="">
+        <button id="animate-btn" class="clase-ordenadora">Actualizar color</button>
+        <span class="clase-ordenadora">G :</span>
+        <input type="number" id="input-g" class="clase-ordenadora" min="0" max="255" value="">
+        <button id="reset-btn-rgb" class="clase-ordenadora">Reset</button>
+        <span class="clase-ordenadora">B :</span>
+        <input type="number" id="input-b" class="clase-ordenadora" min="0" max="255" value="">
+        <button id="exit-rgb" class="alterna-panel clase-ordenadora">Salir</button>
+        <span class="clase-ordenadora">A :</span>
+        <input type="number" id="input-w" class="clase-ordenadora" min="0" max="255" value=""> 
 
-        <div id="lbl-control-rgb">    
-          <div id="control-rgb-lbl">
-            <span class="etq-control">R :</span>
-            <span class="etq-control">G :</span>
-            <span class="etq-control">B :</span>
-            <span class="etq-control">A :</span>
-          </div>
-          
-          <div id="control-rgb-inpt">
-            <input type="number" id="input-r" min="0" max="255" value="">
-            <input type="number" id="input-g" min="0" max="255" value="">
-            <input type="number" id="input-b" min="0" max="255" value="">
-            <input type="number" id="input-w" min="0" max="255" value=""> 
-          </div>
-    
-        </div> 
-        
-        <div id="control-btn-rgb">
-          <button id="animate-btn">Actualizar color</button>
-          <button id="reset-btn-rgb">Reset</button>
-          <button id="exit-rgb" class="alterna-panel">Salir</button>
-        </div>
-    
       </div>
     
       <div id="control-panel-cmyk" class="panel-color">
   
-        <div id="color-composition-header">
-          <span>Composición del color</span>
-        </div>
-      
-        <div id="lbl-control-cmyk">          
-          <div id="control-cmyk-lbl">
-            <span class="etq-control">C :</span>
-            <span class="etq-control">M :</span>
-            <span class="etq-control">Y :</span>
-            <span class="etq-control">K :</span>
-            <span class="etq-control">W :</span>
-          </div>
-      
-          <div id="control-cmyk-inpt">
-            <input type="number" id="input-c" min="0" max="100" value="0">
-            <input type="number" id="input-m" min="0" max="100" value="0"> 
-            <input type="number" id="input-y" min="0" max="100" value="0">
-            <input type="number" id="input-k" min="0" max="100" value="0"> 
-            <input type="number" id="input-a" min="0" max="100" value="0">
-          </div>
-        </div>
-      
-        <div id="control-btn-cmyk">
-          <button id="animate-btn-cmyk">Actualizar color</button>
-          <button id="reset-btn-cmyk">Reset</button>
-          <button id="exit-cmyk" class="alterna-panel">Salir</button>
-        </div>
-      
+        <span>Composición del color</span>
+        <span class="etq-control">C :</span>
+        <input type="number" id="input-c" min="0" max="100" value="0">
+        <button id="animate-btn-cmyk">Actualizar color</button>
+        <span class="etq-control">M :</span>
+        <input type="number" id="input-m" min="0" max="100" value="0"> 
+        <button id="reset-btn-cmyk">Reset</button>
+        <span class="etq-control">Y :</span>
+        <input type="number" id="input-y" min="0" max="100" value="0">
+        <button id="exit-cmyk" class="alterna-panel">Salir</button>
+        <span class="etq-control">K :</span>
+        <input type="number" id="input-k" min="0" max="100" value="0"> 
+        <span></span>
+        <span class="etq-control">W :</span>
+        <input type="number" id="input-a" min="0" max="100" value="0">
+
       </div>
       
     </div>
@@ -3615,45 +3584,7 @@
       <button>Cureña</button>
       <button>Interfaz azul</button>
       <button>Gimnasio en casa</button>
-    </div>  
-    <!-- <div id="home-gym">
-      <div class="video-gym">
-        <video class="lazy" src="assets/video3.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/video5.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/67 Mejores EJERCICIOS con BANDAS ELÁSTICAS.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/video4.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/video6.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/GIMNASIA china Ejercicios calisténicos.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/video1.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/video7.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/video9.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/video8.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/video10.mp4" autoplay loop muted></video>
-      </div>
-      <div class="video-gym">
-        <video class="lazy" src="assets/video12.mp4" autoplay loop muted></video>
-      </div>
-    </div> -->  
+    </div>    
     <div id="visor-tools" class="image-viewer">
       <button class="nav left" onclick="prevImage()">&#10094;</button>
       <div class="image-container">
@@ -3661,7 +3592,9 @@
       </div>
       <button class="nav right" onclick="nextImage()">&#10095;</button>
     </div>
-    <button class="borrar-boton" onclick="mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales']);"></button>
+    <button class="borrar-boton" style="left: 33vw;" onclick="PARABORRAR()">1</button>
+    <button class="borrar-boton" onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">2</button>
+    
     <div id="abuelo-grafica4">
 
       <div id="padre-grafica4" class="hijo-graficos">
@@ -3683,6 +3616,46 @@
         <canvas id="MiGrafica15"></canvas> 
       </div>
 
+    </div>
+
+
+    <div id="grafico-area" class="dashboard-grid">
+      <div class="box box-1"></div>
+      <div class="box box-2">En exposicion</div>
+
+      <div class="box box-3">
+
+        <div class="slider-container">
+          <label for="miSlider">Número de medios: <span id="sliderValor">0</span></label> 
+          <input type="range" id="miSlider" min="0" max="100" value="0" step="1"> 
+        </div> 
+
+        <span id="mes-area">Mes</span>
+
+        <div class="calendario-interfaz"> </div>
+        
+      </div>
+
+      <div class="box box-4">
+        <span></span>
+        <div id="padre-grafica10" class="hijo-graficos">
+          <canvas id="MiGrafica16"></canvas> 
+        </div> 
+
+      </div>
+      <div class="box box-5">
+        <div id="info-interna"></div>
+      </div>
+      <div class="box box-6">
+        <span></span>
+        <span>Limpiar grafico</span>    
+      </div>
+      <div class="box box-7">
+        <span></span>
+        <span>Volver al Dashboard</span>
+      </div>
+      <div class="box box-8"></div>
+      <div class="box box-9"></div>
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--LIBRERIA DE GRAFICOS-->
