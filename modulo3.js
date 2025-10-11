@@ -11,7 +11,11 @@ document.addEventListener('keydown', function(event) {
       }
       break;
       case 'H':      
-          Geometria()          
+          Geometria() 
+          activarBlur()
+          setTimeout(() => {
+            desactivarBlur()   
+          }, 500);      
       break;
       case 'X':
        listaClientes.style.display='block'
