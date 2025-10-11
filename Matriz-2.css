@@ -4580,7 +4580,7 @@ top: 44%;
   z-index: 100;
   display: none; /* visible solo cuando se activa */
   -webkit-backdrop-filter: blur(15px);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(50px);
   background: rgba(0,0,0,0.15); /* opcional */
 }
 
