@@ -6626,6 +6626,20 @@ height:100%;
   font-size: 1.2vw;
   color: #EAF4FF;
 }
+#container01{
+  width: 40vw;
+  border-radius: 3px;
+  font-size: 0.8vw;
+}
+#container01 > button{
+  border-radius: 4px;
+  font-size: 1.3vw;
+}
+#buscador{
+  width: 20vw;
+  height: 3vh;
+}
+
 
   /* justify-content: flex-start;
   padding-left: 0.3em; */  

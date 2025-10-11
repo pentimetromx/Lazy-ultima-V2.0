@@ -8,8 +8,14 @@
     <link rel="stylesheet" href="./Matriz-2.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" href="./Matriz-1.css">
   </head>
+  
+  <script>
+    alert(`Width: ${window.innerWidth}, Height: ${window.innerHeight}, DPR: ${window.devicePixelRatio}`);
+  </script>
+
   <body onload="manejarLogica()"> 
     <header class="buscador" id="buscador">
+      
       <form id="search-form">
         <input type="text" id="search-input" placeholder="Buscar..."> 
         <datalist id="suggestions"></datalist>                                             
@@ -3674,5 +3680,7 @@
     <script src="./modulo2.js"></script>
     <script src="./modulo3.js"></script>
     <script src="./modulo4.js"></script>  
+
+    
   </body>  
 </html>
