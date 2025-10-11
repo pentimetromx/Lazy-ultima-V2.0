@@ -132,7 +132,7 @@ function aplicarEstiloActivo(spanClicado) {
 
   spanClicado.style.color = 'black';
 }
-document.querySelector('.formulario-crear-cuenta :nth-child(2)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(3)').addEventListener('click', (e) => {
   ocultarTodos(['imagenes-sheeter'])
   const coleccionSpans = document.querySelectorAll('.etq-frm')
   document.querySelector('#imagenes-sheeter').style.display = 'grid'
@@ -152,7 +152,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(2)').addEventListene
   contenedor.style.left='26vw'
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(3)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(4)').addEventListener('click', (e) => {
   ocultarTodos(['contenedor-sheeter']);  
   const contenedor = document.querySelector('#contenedor-sheeter');
   contenedor.style.left = '';
@@ -181,7 +181,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(3)').addEventListene
   }, 500);  
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(4)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(5)').addEventListener('click', (e) => {
   ocultarTodos(['video-graduar-sheeter'])  
   const contenedor = document.querySelector('#video-graduar-sheeter')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -204,7 +204,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(4)').addEventListene
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(5)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(6)').addEventListener('click', (e) => {
   ocultarTodos(['corte-ajuste','corte-oscilacion','ajuste-corte'])
   const contenedor = document.querySelector('#corte-ajuste')
   const contenedorI = document.querySelector('#corte-oscilacion')
@@ -213,7 +213,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(5)').addEventListene
   document.querySelector('#formulario-cuenta').style.display = 'grid'
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(6)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(7)').addEventListener('click', (e) => {
   ocultarTodos(['video-la-manta'])
   const contenedor = document.querySelector('#video-la-manta')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -236,7 +236,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(6)').addEventListene
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(7)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(8)').addEventListener('click', (e) => {
   ocultarTodos(['video-manta-render'])
   const contenedor = document.querySelector('#video-manta-render')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -260,7 +260,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(7)').addEventListene
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(8)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(9)').addEventListener('click', (e) => {
   ocultarTodos(['video-manta-dos'])
   const contenedor = document.querySelector('#video-manta-dos')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -284,7 +284,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(8)').addEventListene
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(9)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(10)').addEventListener('click', (e) => {
   ocultarTodos(['video-completo'])
   const contenedor = document.querySelector('#video-completo')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -309,7 +309,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(9)').addEventListene
 
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(10)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(11)').addEventListener('click', (e) => {
   ocultarTodos(['video-cadena-offset'])
   const contenedor = document.querySelector('#video-cadena-offset')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -334,7 +334,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(10)').addEventListen
 
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(11)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(12)').addEventListener('click', (e) => {
   ocultarTodos(['video-manta-enrolla'])
   const contenedor = document.querySelector('#video-manta-enrolla')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -358,7 +358,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(11)').addEventListen
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(12)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(13)').addEventListener('click', (e) => {
   ocultarTodos(['video-manta-capas'])
   const contenedor = document.querySelector('#video-manta-capas')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -383,7 +383,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(12)').addEventListen
 
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(13)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(14)').addEventListener('click', (e) => {
   ocultarTodos(['video-desliza-plancha'])
   const contenedor = document.querySelector('#video-desliza-plancha')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -407,7 +407,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(13)').addEventListen
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(14)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(15)').addEventListener('click', (e) => {
   ocultarTodos(['video-insolacion'])
   const contenedor = document.querySelector('#video-insolacion')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -431,7 +431,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(14)').addEventListen
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(15)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(16)').addEventListener('click', (e) => {
   ocultarTodos(['video-doctor-blade'])
   const contenedor = document.querySelector('#video-doctor-blade')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -455,7 +455,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(15)').addEventListen
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(16)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(17)').addEventListener('click', (e) => {
   ocultarTodos(['tintero-interior'])
   const contenedor = document.querySelector('#tintero-interior')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -479,7 +479,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(16)').addEventListen
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(17)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(18)').addEventListener('click', (e) => {
   ocultarTodos(['tintero-palanca'])
   const contenedor = document.querySelector('#tintero-palanca')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -503,7 +503,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(17)').addEventListen
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(18)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(19)').addEventListener('click', (e) => {
   ocultarTodos(['tinta_segmento'])
   const contenedor = document.querySelector('#tinta_segmento')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -527,7 +527,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(18)').addEventListen
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(19)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(20)').addEventListener('click', (e) => {
   ocultarTodos(['trinquete-rodillo-tintero-v'])
   const contenedor = document.querySelector('#trinquete-rodillo-tintero-v')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -551,7 +551,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(19)').addEventListen
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(20)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(21)').addEventListener('click', (e) => {
   ocultarTodos(['trinquete'])
   const contenedor = document.querySelector('#trinquete')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -575,7 +575,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(20)').addEventListen
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(21)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(22)').addEventListener('click', (e) => {
   ocultarTodos(['trinquete-multi'])
   const contenedor = document.querySelector('#trinquete-multi')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -599,7 +599,7 @@ document.querySelector('.formulario-crear-cuenta :nth-child(21)').addEventListen
   }
   aplicarEstiloActivo(e.target);
 });
-document.querySelector('.formulario-crear-cuenta :nth-child(22)').addEventListener('click', (e) => {
+document.querySelector('.formulario-crear-cuenta :nth-child(23)').addEventListener('click', (e) => {
   ocultarTodos(['trinquete-rodillo-tintero'])
   const contenedor = document.querySelector('#trinquete-rodillo-tintero')
   document.querySelector('#formulario-cuenta').style.display = 'grid'
@@ -1476,6 +1476,7 @@ function crearGraficoLleno() {
     document.querySelector('#grafico-area').style.display = 'block';  
 
     const contenedor = document.querySelector('.calendario-interfaz');
+    
     if (contenedor) {
 
       // 🟡 Mostrar el mes actual en el span
