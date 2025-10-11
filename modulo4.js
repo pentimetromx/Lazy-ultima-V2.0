@@ -1459,167 +1459,155 @@ function obtenerDiasDelMes(nombreMes) {
   }
 }
 
-
+function activarBlur() {
+  document.getElementById('blur-layer').style.display = 'block';
+}
+function desactivarBlur() {
+  document.getElementById('blur-layer').style.display = 'none';
+}
 
 function crearGraficoLleno() {
-  const padreGrafica11 = document.querySelector('#padre-grafica9')
-  const linksMA = document.querySelector('#links-inicialesI')
-  const linkLista = document.querySelector('#links-iniciales')
-  const buscador = document.querySelector('#buscador')
+  const padreGrafica11 = document.querySelector('#padre-grafica9');
+  const linksMA = document.querySelector('#links-inicialesI');
+  const linkLista = document.querySelector('#links-iniciales');
+  const buscador = document.querySelector('#buscador');
+  const blurOverlay = document.querySelector('#blur-layer'); // nuevo overlay
 
-  padreGrafica11.style.display='flex'
+  padreGrafica11.style.display = 'flex';
   const canvas = document.getElementById('MiGrafica15');
 
   ['click', 'touchstart'].forEach(evt => {
-  canvas.addEventListener(evt, () => {
-    document.querySelector('#grafico-area').style.display = 'block';  
+    canvas.addEventListener(evt, () => {
+      document.querySelector('#grafico-area').style.display = 'block';
 
-    const contenedor = document.querySelector('.calendario-interfaz');
-    if (!contenedor) return;
+      const contenedor = document.querySelector('.calendario-interfaz');
+      if (!contenedor) return;
 
-    // 🟡 Mostrar el mes actual en el span
-    const spanMes = document.querySelector('#mes-area');
-    spanMes.textContent = mesGlobal;
+      // Mostrar mes actual
+      const spanMes = document.querySelector('#mes-area');
+      spanMes.textContent = mesGlobal;
 
-    // 🟡 Determinar número de días según mesGlobal
-    const diasMes = obtenerDiasDelMes(mesGlobal);
+      // Determinar días
+      const diasMes = obtenerDiasDelMes(mesGlobal);
 
-    // 🟡 Generar calendario dinámico
-    generarBotoneraDias('.calendario-interfaz', diasMes, offset, index => cambiarFuente(index));
+      // Generar calendario dinámico
+      generarBotoneraDias('.calendario-interfaz', diasMes, offset, index => cambiarFuente(index));
 
-    // Aplicar blur
-    const aplicarBlur = (...selectores) => {
-      selectores.forEach(sel => {
-        const elemento = document.querySelector(sel);
-        if (elemento) elemento.style.filter = 'blur(15px)';
-      });
-    };
+      // Activar blur overlay
+      if (blurOverlay) activarBlur();
+      
 
-    const ocultar = (...elementos) => {
-      elementos.forEach(el => {
+      // Ocultar elementos innecesarios
+      [linksMA, linkLista, buscador].forEach(el => {
         if (el) el.style.display = 'none';
       });
-    };
-
-    aplicarBlur(
-      '#abuelo-grafica4',
-      '#calendario-mes',
-      '#lista-maquinas',
-      '#meses',
-      '#cont-span-semanas'
-    );
-
-    document.querySelectorAll('.titulo-graf-ma').forEach(el => el.classList.add('blur'));
-
-    ocultar(linksMA, linkLista, buscador);
-  });
+    });
   });
 
-
-
-
-  // 1️⃣ Destruir si ya existe
-  if (chart18) {  
+  // Destruir gráfico previo
+  if (chart18) {
     chart18.destroy();
     chart18 = null;
   }
+
   canvas.style.display = 'none';
-  setTimeout(() => canvas.style.display = 'block', 100);
+  setTimeout(() => (canvas.style.display = 'block'), 100);
+
   const ctx = canvas.getContext('2d');
-  
+
   const configZona = {
-  type: 'line',
-  data: {
-  labels: ['dia 1','dia 2','dia 3','dia 4','dia 5','dia 6','dia 7','dia 8','dia 9','dia 10'],
-  datasets: [
-    {
-      label: 'Total FTE Availability',
-      data: [8, 10, 10, 7, 7.1, 8, 8.5, 9, 8.7, 10],
-      fill: true,
-      backgroundColor: 'rgba(22, 0, 222, 0.67)',
-      /* borderColor: 'rgba(0, 0, 255, 0.9)', */
-      pointRadius: 1
-    }
-  ]
-},
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false,
-        labels: {
-          color: '#fff'
+    type: 'line',
+    data: {
+      labels: ['dia 1', 'dia 2', 'dia 3', 'dia 4', 'dia 5', 'dia 6', 'dia 7', 'dia 8', 'dia 9', 'dia 10'],
+      datasets: [
+        {
+          label: 'Total FTE Availability',
+          data: [8, 10, 10, 7, 7.1, 8, 8.5, 9, 8.7, 10],
+          fill: true,
+          backgroundColor: 'rgba(22, 0, 222, 0.67)',
+          pointRadius: 1
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+          labels: { color: '#fff' }
+        },
+        title: {
+          display: true,
+          text: 'Comportamiento',
+          color: '#61676eff',
+          font: { size: 14 }
         }
       },
-      title: {
-        display: true,
-        text: 'Comportamiento',
-        /* color: '#fff', */
-        color: '#61676eff',
-        font: { size: 14 }
+      scales: {
+        x: {
+          ticks: {
+            color: '#ccc',
+            font: { size: 7 }
+          },
+          grid: { display: false }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: '#ccc',
+            font: { size: 7 }
+          },
+          grid: {
+            color: 'rgba(255,255,255,0.1)'
+          }
+        }
       }
-    },
-    scales: {
-
-    x: {
-      ticks: {
-        color: '#ccc',
-        font: {
-          size: 7 // correcto
-        }
-      },
-      grid: { display: false }
-    },
-      
-
-      y: {
-        beginAtZero: true,
-        ticks: { color: '#ccc',
-                  font: {
-              size: 7 // correcto
-            }
-         },
-        grid: {
-          color: 'rgba(255,255,255,0.1)'
-        }
-      },
-      
     }
-  }
-
   };
 
-  // 4️⃣ Crear el nuevo gráfico
   chart18 = new Chart(ctx, configZona);
+}
 
-  /* const spanMes = document.querySelector('#mes-area');
-  spanMes.textContent = mesGlobal; */
-  
+const capas = {
+  listaMaquinas: document.getElementById('lista-maquinas'),
+  tituloCalendar: document.getElementById('titulo-calendar'),
+  tituloMes: document.getElementById('titulo-mes'),
+  calendarioMes: document.getElementById('calendario-mes'),
+  contSpanSemanas: document.getElementById('cont-span-semanas'),
+  meses: document.getElementById('meses'),
+};
+
+function aplicarZindex(valor = 200) {
+  for (const clave in capas) {
+    const el = capas[clave];
+    if (el) {
+      el.style.position = 'relative';
+      el.style.zIndex = valor;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+function mostrar(...elementos) {
+  elementos.forEach(el => {
+    if (el) el.style.display = 'block';
+  });
 }
 
 const primerSpan = document.querySelector('.box-7');
 primerSpan.addEventListener('click', () => {
   // Función genérica para quitar blur a varios selectores
-  function quitarBlur(...selectores) {
-    selectores.forEach(sel => {
-      const elemento = document.querySelector(sel);
-      if (elemento) elemento.style.filter = '';
-    });
-  }
-  // Función para mostrar varios elementos
-  function mostrar(...elementos) {
-    elementos.forEach(el => {
-      if (el) el.style.display = 'block';
-    });
-  }
-  quitarBlur(
-    '#abuelo-grafica4',
-    '#calendario-mes',
-    '#lista-maquinas',
-    '#meses',
-    '#cont-span-semanas'
-  );
+  desactivarBlur()
+  
   document.querySelectorAll('.titulo-graf-ma').forEach(el => el.classList.remove('blur'));
   document.querySelector('#grafico-area').style.display='none'
   const linksMA   = document.getElementById('links-inicialesI');
