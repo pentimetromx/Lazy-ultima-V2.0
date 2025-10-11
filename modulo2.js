@@ -1553,6 +1553,7 @@ var chart6 = new Chart(miCanvas5, {
     }
   }
 })
+
 var chart7 = new Chart(miCanvas6, { 
   type: 'bar',
   data: {
@@ -1609,6 +1610,7 @@ var chart7 = new Chart(miCanvas6, {
     }
   }
 })
+
 var chart7II = new Chart(miCanvas6II, { 
   type: 'bar',
   data: {
@@ -1673,6 +1675,7 @@ var chart7II = new Chart(miCanvas6II, {
     }
   }
 });
+
 var chart8 = new Chart(miCanvas7, {
   type: 'bar',
   data: {
@@ -1729,6 +1732,7 @@ var chart8 = new Chart(miCanvas7, {
     }
   }
 })
+
 var chart8II = new Chart(miCanvas7II, {
   type: 'bar',
   data: {
