@@ -169,6 +169,20 @@ color: white;
   z-index: 777;
   display: none;
 }
+/* CODIGO PARA QUE NO MUESTRE CONSOLA EN TACTILES */
+#linkListI li button { 
+  all: unset;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+}
+#linkListI li button:focus {
+  outline: none;
+}
+
+
+
+
 .iridescent-element{
   position: absolute;
   display: flex;
