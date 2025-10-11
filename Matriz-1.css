@@ -1207,11 +1207,17 @@ width:447px ;
   opacity: 0;
   pointer-events: none;
 }
+#MiGrafica15:hover,
+#MiGrafica14:hover,
+#MiGrafica13:hover,
+#MiGrafica12:hover,
+#MiGrafica11:hover,
+#MiGrafica10:hover,
 #MiGrafica9:hover,
 #MiGrafica8:hover,
 #MiGrafica7:hover,
-#MiGrafica5:hover,
 #MiGrafica6:hover,
+#MiGrafica5:hover,
 #MiGrafica4:hover{
   transform: scale(1.1);
 }
@@ -1226,6 +1232,12 @@ width:447px ;
   margin: 10px;
   transition: transform 2.5s ease;
 }
+#MiGrafica15,
+#MiGrafica14,
+#MiGrafica13,
+#MiGrafica12,
+#MiGrafica11,
+#MiGrafica10,
 #MiGrafica9,
 #MiGrafica8,
 #MiGrafica7{

@@ -1459,8 +1459,6 @@ function obtenerDiasDelMes(nombreMes) {
   }
 }
 
-
-
 function crearGraficoLleno() {
   const padreGrafica11 = document.querySelector('#padre-grafica9')
   const linksMA = document.querySelector('#links-inicialesI')
@@ -1469,62 +1467,6 @@ function crearGraficoLleno() {
 
   padreGrafica11.style.display='flex'
   const canvas = document.getElementById('MiGrafica15');
-
-  
-
-  /* canvas.addEventListener('click', () => {
-    document.querySelector('#grafico-area').style.display = 'block';  
-
-    const contenedor = document.querySelector('.calendario-interfaz');
-
-    if (contenedor) {
-
-      // 🟡 Mostrar el mes actual en el span
-      const spanMes = document.querySelector('#mes-area');
-      spanMes.textContent = mesGlobal;
-
-      // 🟡 Determinar número de días según mesGlobal
-      const diasMes = obtenerDiasDelMes(mesGlobal);
-
-      // 🟡 Generar calendario dinámico
-      generarBotoneraDias('.calendario-interfaz', diasMes, offset, index => cambiarFuente(index));
-
-      // Aplicar blur
-      function aplicarBlur(...selectores) {
-        selectores.forEach(sel => {
-          const elemento = document.querySelector(sel);
-          if (elemento) elemento.classList.add('blur');
-        });
-      }
-
-      function ocultar(...elementos) {
-        elementos.forEach(el => {
-          if (el) el.style.display = 'none';
-        });
-      }
-
-      aplicarBlur(
-        '#abuelo-grafica4',
-        '#calendario-mes',
-        '#lista-maquinas',
-        '#meses',
-        '#cont-span-semanas'
-      );
-
-      document.querySelectorAll('.titulo-graf-ma').forEach(el => el.classList.add('blur'));
-
-      ocultar(linksMA, linkLista, buscador);
-
-    } else {
-      const obs = new MutationObserver((mutations, observer) => {
-        if (document.querySelector('.calendario-interfaz')) {
-          // Puedes regenerar aquí también si quieres
-          observer.disconnect();
-        }
-      });
-      obs.observe(document.body, { childList: true, subtree: true });
-    }
-  }); */
 
   ['click', 'touchstart'].forEach(evt => {
   canvas.addEventListener(evt, () => {
@@ -1539,7 +1481,7 @@ function crearGraficoLleno() {
 
     // 🟡 Determinar número de días según mesGlobal
     const diasMes = obtenerDiasDelMes(mesGlobal);
-
+    
     // 🟡 Generar calendario dinámico
     generarBotoneraDias('.calendario-interfaz', diasMes, offset, index => cambiarFuente(index));
 
@@ -1547,7 +1489,7 @@ function crearGraficoLleno() {
     const aplicarBlur = (...selectores) => {
       selectores.forEach(sel => {
         const elemento = document.querySelector(sel);
-        if (elemento) elemento.classList.add('blur');
+        if (elemento) elemento.style.filter = 'blur(50px)';
       });
     };
 
@@ -1593,7 +1535,6 @@ function crearGraficoLleno() {
       data: [8, 10, 10, 7, 7.1, 8, 8.5, 9, 8.7, 10],
       fill: true,
       backgroundColor: 'rgba(22, 0, 222, 0.67)',
-      /* borderColor: 'rgba(0, 0, 255, 0.9)', */
       pointRadius: 1
     }
   ]
@@ -1643,15 +1584,11 @@ function crearGraficoLleno() {
       
     }
   }
-
   };
-
   // 4️⃣ Crear el nuevo gráfico
   chart18 = new Chart(ctx, configZona);
-
   /* const spanMes = document.querySelector('#mes-area');
   spanMes.textContent = mesGlobal; */
-  
 }
 
 const primerSpan = document.querySelector('.box-7');
