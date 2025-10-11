@@ -803,12 +803,6 @@ const estadoSolucion = {
   indices: [],
   indicador: []
 } 
-
-
-
-
-
-
 // 🟢 Función para mostrar la alerta verde
 const mostrarAlertaVerde = () => {
   darColorVerdeCabeza();
@@ -903,16 +897,13 @@ const detenerMenosTintaGeneral = () => {
   }
   menosTintaGeneral.style.backgroundColor = '';
 };
-
 // 🖱️ Eventos PC
 masTintaGeneral.addEventListener('mousedown', iniciarMasTintaGeneral);
 masTintaGeneral.addEventListener('mouseup', detenerMasTintaGeneral);
 masTintaGeneral.addEventListener('mouseleave', detenerMasTintaGeneral);
-
 menosTintaGeneral.addEventListener('mousedown', iniciarMenosTintaGeneral);
 menosTintaGeneral.addEventListener('mouseup', detenerMenosTintaGeneral);
 menosTintaGeneral.addEventListener('mouseleave', detenerMenosTintaGeneral);
-
 // 📱 Eventos táctiles
 masTintaGeneral.addEventListener('touchstart', (e) => {
   e.preventDefault();
@@ -920,24 +911,12 @@ masTintaGeneral.addEventListener('touchstart', (e) => {
 }, { passive: false });
 masTintaGeneral.addEventListener('touchend', detenerMasTintaGeneral, { passive: true });
 masTintaGeneral.addEventListener('touchcancel', detenerMasTintaGeneral, { passive: true });
-
 menosTintaGeneral.addEventListener('touchstart', (e) => {
   e.preventDefault();
   iniciarMenosTintaGeneral();
 }, { passive: false });
 menosTintaGeneral.addEventListener('touchend', detenerMenosTintaGeneral, { passive: true });
 menosTintaGeneral.addEventListener('touchcancel', detenerMenosTintaGeneral, { passive: true });
-
-
-
-
-
-
-
-
-
-
-
 
 /* masSolucionGeneral.addEventListener('mousedown', () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
@@ -1150,9 +1129,6 @@ menosSolucionGeneral.addEventListener('mouseleave', () => {
 });
  */
 
-
-
-
 // 🟢 Iniciar AUMENTAR agua general
 const iniciarMasSolucionGeneral = () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
@@ -1186,7 +1162,6 @@ const iniciarMasSolucionGeneral = () => {
 
   masSolucionGeneral.style.backgroundColor = '#2bf22bc0';
 };
-
 // 🔴 Detener AUMENTAR agua general
 const detenerMasSolucionGeneral = () => {
   if (estadoIntervaloSolucion.intervalo) {
@@ -1195,7 +1170,6 @@ const detenerMasSolucionGeneral = () => {
   }
   masSolucionGeneral.style.backgroundColor = '';
 };
-
 // 🟠 Iniciar DISMINUIR agua general
 const iniciarMenosSolucionGeneral = () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
@@ -1229,7 +1203,6 @@ const iniciarMenosSolucionGeneral = () => {
 
   menosSolucionGeneral.style.backgroundColor = 'rgb(0,255,0)';
 };
-
 // 🔴 Detener DISMINUIR agua general
 const detenerMenosSolucionGeneral = () => {
   if (estadoIntervaloSolucion.intervalo) {
@@ -1238,16 +1211,13 @@ const detenerMenosSolucionGeneral = () => {
   }
   menosSolucionGeneral.style.backgroundColor = '';
 };
-
 // 🖱️ Eventos PC
 masSolucionGeneral.addEventListener('mousedown', iniciarMasSolucionGeneral);
 masSolucionGeneral.addEventListener('mouseup', detenerMasSolucionGeneral);
 masSolucionGeneral.addEventListener('mouseleave', detenerMasSolucionGeneral);
-
 menosSolucionGeneral.addEventListener('mousedown', iniciarMenosSolucionGeneral);
 menosSolucionGeneral.addEventListener('mouseup', detenerMenosSolucionGeneral);
 menosSolucionGeneral.addEventListener('mouseleave', detenerMenosSolucionGeneral);
-
 // 📱 Eventos táctiles
 masSolucionGeneral.addEventListener('touchstart', (e) => {
   e.preventDefault();
@@ -1255,15 +1225,13 @@ masSolucionGeneral.addEventListener('touchstart', (e) => {
 }, { passive: false });
 masSolucionGeneral.addEventListener('touchend', detenerMasSolucionGeneral, { passive: true });
 masSolucionGeneral.addEventListener('touchcancel', detenerMasSolucionGeneral, { passive: true });
-
 menosSolucionGeneral.addEventListener('touchstart', (e) => {
   e.preventDefault();
   iniciarMenosSolucionGeneral();
 }, { passive: false });
+
 menosSolucionGeneral.addEventListener('touchend', detenerMenosSolucionGeneral, { passive: true });
 menosSolucionGeneral.addEventListener('touchcancel', detenerMenosSolucionGeneral, { passive: true });
-
-
 alertaBotones.addEventListener('click', () =>{
   document.querySelectorAll('.cliente-item').forEach(item => {
     item.style.filter = 'none';
@@ -1410,7 +1378,6 @@ masTinta.addEventListener('touchstart', (e) => {
   e.preventDefault(); // evita que interprete el toque como scroll o selección
   iniciarMasTinta();
 }, { passive: false });
-
 const detenerMasTinta = () => {
   if (estadoIntervaloTinta.intervalo) {
     clearInterval(estadoIntervaloTinta.intervalo);
@@ -1426,7 +1393,8 @@ masTinta.addEventListener('touchend', detenerMasTinta, { passive: true });
 masTinta.addEventListener('touchcancel', detenerMasTinta, { passive: true });
 
 
-menosTinta.addEventListener('mousedown', () => {
+
+/* menosTinta.addEventListener('mousedown', () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
     if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {   
       darColorVerdeCabeza()
@@ -1529,7 +1497,121 @@ menosTinta.addEventListener('mouseleave', () =>{
     estadoIntervaloTinta.intervalo = null; // Resetea el intervalo
   }  
   menosTinta.style.backgroundColor = ''; 
-})
+}) */
+
+
+
+const iniciarMenosTinta = () => {
+  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
+    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {   
+      darColorVerdeCabeza();
+      alertaBotones.style.display = 'flex';
+      alertaBotones.style.backgroundColor = verde;
+      alertaBotones.style.color = 'black';
+      alertaBotones.style.top = '25vh';
+      alertaBotones.style.left = '21vw';
+      setTimeout(() => {
+        alertaBotones.style.backgroundColor = ''; 
+        alertaBotones.style.color = '';  
+      }, 500);
+      desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+    }
+  } else {
+    darColorVerdeCabeza();
+    alertaBotones.style.display = 'flex';
+    alertaBotones.style.backgroundColor = verde;
+    alertaBotones.style.color = 'black';
+    alertaBotones.style.top = '25vh';
+    alertaBotones.style.left = '21vw';
+    setTimeout(() => {
+      alertaBotones.style.backgroundColor = ''; 
+      alertaBotones.style.color = '';  
+    }, 500);
+    desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+  }
+
+  if (flagNegro) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-negro #footer-1 .divs-grales-tinta-negro',
+      'yellow',
+      'black',
+      'negro'
+    );
+  }
+  if (flagCyan) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-azul #footer-3 .divs-grales-tinta-azul',
+      'yellow',
+      'cyan',
+      'azul'
+    );
+  }
+  if (flagMagenta) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-magenta #footer-5 .divs-grales-tinta-magenta',
+      'yellow',
+      'magenta',
+      'magenta'
+    );
+  }
+  if (flagAmarillo) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-amarillo #footer-7 .divs-grales-tinta-amarillo',
+      'yellow',
+      'amarillo',
+      'amarillo'
+    );
+  }
+  if (flagEspecial) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-especial #footer-9 .divs-grales-tinta-especial',
+      'yellow',
+      'especial',
+      'especial'
+    );
+  }
+  if (flagBarniz) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-barniz #footer-11 .divs-grales-tinta-barniz',
+      'yellow',
+      'gray',
+      'barniz'
+    );
+  }
+
+  menosTinta.style.backgroundColor = 'rgb(0,255,0)';
+};
+const detenerMenosTinta = () => {
+  if (estadoIntervaloTinta.intervalo) {
+    clearInterval(estadoIntervaloTinta.intervalo);
+    estadoIntervaloTinta.intervalo = null;
+  }
+  menosTinta.style.backgroundColor = ''; 
+};
+// 🖱️ PC
+menosTinta.addEventListener('mousedown', iniciarMenosTinta);
+menosTinta.addEventListener('mouseup', detenerMenosTinta);
+menosTinta.addEventListener('mouseleave', detenerMenosTinta);
+// 📱 Táctil
+menosTinta.addEventListener('touchstart', (e) => {
+  e.preventDefault(); // evita scroll accidental
+  iniciarMenosTinta();
+}, { passive: false });
+menosTinta.addEventListener('touchend', detenerMenosTinta, { passive: true });
+menosTinta.addEventListener('touchcancel', detenerMenosTinta, { passive: true });
+
 
 
 
