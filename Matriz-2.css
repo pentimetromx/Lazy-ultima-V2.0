@@ -8,12 +8,15 @@
   font-family: "Digital";
   src:url(./fonts/DS-DIGIT.TTF),
 } 
+
+html,
 body{   
   margin: 0;
   padding: 0;      
   margin: 0;
   padding: 0;
-  overflow: hidden;   
+  overflow-x: hidden;
+  overflow-y: hidden;
   background-color: rgb(30,30,30);     
   font-family: 'Arial', sans-serif;
   user-select: none;
@@ -2796,7 +2799,7 @@ width: 70%;
   display: flex;
   content: "\25B6";
   font-size: 1em;
-  color:#2bf22bc0;
+  color: #00FFC6;
   margin-left: 8px;
 }
 .siete-alerta{
@@ -2895,7 +2898,7 @@ width: 70%;
   width: 100%;
   height: 40px;
   background-color: #000;
-  color:#2bf22bc0;
+  color: #00FFC6;
   border-radius: 3px;
 }
 .interno:hover{

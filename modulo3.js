@@ -904,7 +904,12 @@ const detenerMenosTintaGeneral = () => {
 // 🖱️ Eventos PC
 masTintaGeneral.addEventListener('mousedown', iniciarMasTintaGeneral);
 masTintaGeneral.addEventListener('mouseup', detenerMasTintaGeneral);
-masTintaGeneral.addEventListener('mouseleave', detenerMasTintaGeneral);
+masTintaGeneral.addEventListener('mouseleave', () => { 
+  const aviso = document.querySelector('#span-index');
+  if (aviso) aviso.style.display = 'none';
+  detenerMasTintaGeneral(); 
+  restablecerClick(['.cabeza']);
+});
 menosTintaGeneral.addEventListener('mousedown', iniciarMenosTintaGeneral);
 menosTintaGeneral.addEventListener('mouseup', detenerMenosTintaGeneral);
 menosTintaGeneral.addEventListener('mouseleave', detenerMenosTintaGeneral);
@@ -2277,11 +2282,14 @@ function disminuirBalanceTinta(estado, lineasSelector, footerSelector, uno, dos,
     }, 77);
   }
 }
+
 function darColorVerdeCabeza() {
   const elementosCabeza = document.querySelectorAll('.cabeza');
   let index = 0;
-  const verde = '#2bf22bc0';
-  
+  const gris = '#A9B0B8';
+  const noire = 'black';
+
+
   const intervaloAplicarColor = setInterval(() => {
     if (index >= elementosCabeza.length) {
       clearInterval(intervaloAplicarColor);
@@ -2297,11 +2305,13 @@ function darColorVerdeCabeza() {
         }, 17);
       }, 300);
     } else {
-      elementosCabeza[index].style.backgroundColor = verde;
+      elementosCabeza[index].style.backgroundColor = gris;
+      elementosCabeza[index].style.color = noire;
       index++;
     }
   }, 17);
 }
+
 let indexSolucion = 99;
 let intervaloSolucion = null; 
 const controlSolucion = [];   
@@ -3191,8 +3201,6 @@ document.getElementById('butt-job-track').addEventListener('click', () =>{
   setTimeout(() => {
     conteJobTrack.classList.add('move-job-track') 
   }, 100);
-  setTimeout(() => {
-  },1200);
 })
 
 document.getElementById('conte-img').addEventListener('click', () =>{
@@ -5420,7 +5428,7 @@ document.querySelector('#perfil-existe').addEventListener('click', () => {
   alertaSeis.classList.add('move-alerta')
   const conteJobTrack = document.querySelector('#job-files')
   conteJobTrack.classList.remove('move-job-track')
-  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','abandonar-perfiles']  
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -5443,6 +5451,32 @@ document.querySelector('#perfil-existe').addEventListener('click', () => {
     alertaSeis.classList.remove('move-alerta')
     restablecerClick(['.cont-vacio', '.mod-tinta', '.div-ctrl','.base-datos'])
   }, 1000);
+
+/*   alertaSeis.classList.add('move-alerta')
+  ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
+  const conteJobTrack = document.querySelector('#job-files')
+  const padreBotonera = document.querySelector('#botonera-frente')
+  padreBotonera.style.display='grid'
+  conteJobTrack.classList.remove('move-job-track')
+  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
+    }
+  }
+  container1.style.display = 'none'
+  desactivarClick(['.butt-perfiles'])
+  restablecerClick(['.estilo-1', '.butt-revierte'])
+  document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
+  
+  conteJobTrack.style.display='flex'
+  document.querySelectorAll('.datos-base').forEach((elemento) => { 
+    elemento.textContent = ''
+  });  
+  setTimeout(() => {
+    conteJobTrack.classList.add('move-job-track') 
+  }, 100); */
 }) 
 document.querySelector('#perfil-crear').addEventListener('click', () => {
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
@@ -6483,7 +6517,10 @@ document.querySelectorAll('.section').forEach((btn, index) => {
 let values = { C: 0, M: 0, Y: 0, K: 0, A: 0, R: 0, G: 0, B: 0, W:0 };
 let red = 0, green = 0, blue = 0; 
 // ejecuta la función de inicialización de los sliders (initSliderCYK) para cada canal de color
-function initSliderCMYK(trackId, spanId, channel) {
+
+
+
+/* function initSliderCMYK(trackId, spanId, channel) {
   let track = document.getElementById(trackId);
   let thumb = track.querySelector(".slider-thumb-cmyk");
   let span = document.getElementById(spanId); 
@@ -6513,7 +6550,56 @@ function initSliderCMYK(trackId, spanId, channel) {
     document.removeEventListener("mousemove", onMouseMove);
     document.removeEventListener("mouseup", stopDragging);
   }
+} */
+
+  
+function initSliderCMYK(trackId, spanId, channel) {
+  const track = document.getElementById(trackId);
+  const thumb = track.querySelector(".slider-thumb-cmyk");
+  const span = document.getElementById(spanId);
+  let isDragging = false;
+
+  const startDrag = (e) => {
+    e.preventDefault();
+    isDragging = true;
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", stopDrag);
+    document.addEventListener("touchmove", onMove, { passive: false });
+    document.addEventListener("touchend", stopDrag);
+  };
+
+  const onMove = (e) => {
+    if (!isDragging) return;
+
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const rect = track.getBoundingClientRect();
+    const offsetY = rect.bottom - clientY;
+    const porcentaje = Math.round(
+      Math.max(0, Math.min(100, (offsetY / rect.height) * 100))
+    );
+
+    thumb.style.bottom = `${(porcentaje / 100) * (rect.height - thumb.offsetHeight)}px`;
+    track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+
+    values[channel] = porcentaje;
+    updateColorCMYK(channel);
+    if (span) span.textContent = `${porcentaje}%`;
+  };
+
+  const stopDrag = () => {
+    isDragging = false;
+    document.removeEventListener("mousemove", onMove);
+    document.removeEventListener("mouseup", stopDrag);
+    document.removeEventListener("touchmove", onMove);
+    document.removeEventListener("touchend", stopDrag);
+  };
+
+  thumb.addEventListener("mousedown", startDrag);
+  thumb.addEventListener("touchstart", startDrag, { passive: false });
 }
+
+
+
 // Convierte los valores CMYKW a RGB y actualiza el color en 'colorBox' y los valores en labels e inputs.
 function updateColorCMYK(channel) { // CMYK
   let rgb = cmykwToRgb(values.C, values.M, values.Y, values.K, values.A);

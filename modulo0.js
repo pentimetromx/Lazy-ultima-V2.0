@@ -639,7 +639,7 @@ document.addEventListener("DOMContentLoaded", () => {
         manejoGeneralIndividual('negro', negro, estadoBalanceNegro, negroGeneral, 'negro', 'NEGRO', 'flagNegro', 1, 0);  
         muestraRenderObjetoGlobal(objetoGlobal, 'negro', 'linea', 'lineaSeguidor', 'lineaGrilla', 'tanque-tinta', 'nivelTinta', 'nivelAgua', 1, 2);  
     } else {
-        alertaCrearPerfil();  
+        alertaCrearPerfil(); 
     }
   })
   cyanGeneral.addEventListener('mousedown', () => {
@@ -737,7 +737,7 @@ document.addEventListener("DOMContentLoaded", () => {
     botonesGenerales.forEach(boton => {
       boton.style.backgroundColor = ''; // Reinicia el color
     });    
-    botonActual.style.backgroundColor = verde;    
+    botonActual.style.backgroundColor = verde;  
     bloqueTinta.classList.add(`move-generales-${claseColor}`)
     bloqueAgua.classList.add(`move-generales-${claseColor}`)    
     colorActual.textContent= textoSpan    
