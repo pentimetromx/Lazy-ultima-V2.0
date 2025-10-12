@@ -6600,6 +6600,14 @@ function initSliderCMYK(trackId, spanId, channel) {
 
 
 
+
+
+
+
+
+
+
+
 // Convierte los valores CMYKW a RGB y actualiza el color en 'colorBox' y los valores en labels e inputs.
 function updateColorCMYK(channel) { // CMYK
   let rgb = cmykwToRgb(values.C, values.M, values.Y, values.K, values.A);
@@ -6712,7 +6720,7 @@ function animarSlidersCMYK(sliderConfigs, duracion = 1000) {
   }
 } */
 
-function initSliderRGB(trackId, spanId, channel) {
+/* function initSliderRGB(trackId, spanId, channel) {
   const track = document.getElementById(trackId);
   const thumb = track.querySelector(".slider-thumb-rgb");
   const span = document.getElementById(spanId);
@@ -6755,7 +6763,63 @@ function initSliderRGB(trackId, spanId, channel) {
 
   thumb.addEventListener("mousedown", startDrag);
   thumb.addEventListener("touchstart", startDrag, { passive: false });
+} */
+
+function initSliderRGB(trackId, spanId, channel) {
+  const track = document.getElementById(trackId);
+  const thumb = track.querySelector(".slider-thumb-rgb");
+  const span = document.getElementById(spanId);
+  let isDragging = false;
+
+  const startDrag = (e) => {
+    e.preventDefault();
+    isDragging = true;
+
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", stopDrag);
+    document.addEventListener("touchmove", onMove, { passive: false });
+    document.addEventListener("touchend", stopDrag);
+  };
+
+  const onMove = (e) => {
+    e.preventDefault(); // crucial en móviles
+    if (!isDragging) return;
+
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const rect = track.getBoundingClientRect();
+    const offsetY = rect.bottom - clientY;
+    const porcentaje = Math.max(0, Math.min(100, (offsetY / rect.height) * 100));
+    const newValue = (porcentaje / 100) * (rect.height - thumb.offsetHeight);
+
+    thumb.style.bottom = `${newValue}px`;
+    track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+
+    values[channel] = Math.round((porcentaje / 100) * 255);
+    if (span) span.textContent = values[channel];
+
+    updateColorRGB();
+  };
+
+  const stopDrag = () => {
+    isDragging = false;
+    document.removeEventListener("mousemove", onMove);
+    document.removeEventListener("mouseup", stopDrag);
+    document.removeEventListener("touchmove", onMove);
+    document.removeEventListener("touchend", stopDrag);
+  };
+
+  thumb.addEventListener("mousedown", startDrag);
+  thumb.addEventListener("touchstart", startDrag, { passive: false });
+
+  // Recomendado: asegurar que el thumb acepte interacciones táctiles
+  thumb.style.touchAction = "none";
+  thumb.style.cursor = "pointer";
 }
+
+
+
+
+
 
 function updateColorRGB() {
   let rgba = `rgba(${values.R}, ${values.G}, ${values.B}, ${values.W / 255})`;
@@ -6934,7 +6998,6 @@ function animarColorSecuencia() {
     restablecerClick(['.butt-perfiles'])
   }, 1010);
 }
-
 function animarSecuenciaPerfiles() {
   const perfilesFondo = document.querySelectorAll(".btn-respaldo");
 
@@ -6964,8 +7027,6 @@ function animarSecuenciaPerfiles() {
 
   cambiarColor(); // Inicia la secuencia
 }
-
-
 function colorearRespaldos() {
   const respaldos = document.querySelectorAll('.btn-respaldo');
   const frentes   = botonesPerfilColor;
@@ -6994,7 +7055,6 @@ function colorearRespaldos() {
     }, 100);
   }, 100);
 }
-
 // arrastre PADRES mezcladores
 function initDrag(elemento) {
   let isDragging = false;
