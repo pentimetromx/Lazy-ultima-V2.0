@@ -6674,7 +6674,8 @@ function animarSlidersCMYK(sliderConfigs, duracion = 1000) {
   }
   requestAnimationFrame(step);
 }
-function initSliderRGB(trackId, spanId, channel) {
+
+/* function initSliderRGB(trackId, spanId, channel) {
   let track = document.getElementById(trackId);
   let thumb = track.querySelector(".slider-thumb-rgb");
   let span = document.getElementById(spanId);
@@ -6709,7 +6710,53 @@ function initSliderRGB(trackId, spanId, channel) {
     document.removeEventListener("mousemove", onMouseMove);
     document.removeEventListener("mouseup", stopDragging);
   }
+} */
+
+function initSliderRGB(trackId, spanId, channel) {
+  const track = document.getElementById(trackId);
+  const thumb = track.querySelector(".slider-thumb-rgb");
+  const span = document.getElementById(spanId);
+  let isDragging = false;
+
+  const startDrag = (e) => {
+    e.preventDefault();
+    isDragging = true;
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", stopDrag);
+    document.addEventListener("touchmove", onMove, { passive: false });
+    document.addEventListener("touchend", stopDrag);
+  };
+
+  const onMove = (e) => {
+    if (!isDragging) return;
+
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const rect = track.getBoundingClientRect();
+    const offsetY = rect.bottom - clientY;
+    const porcentaje = Math.max(0, Math.min(100, (offsetY / rect.height) * 100));
+    const newValue = (porcentaje / 100) * (rect.height - thumb.offsetHeight);
+
+    thumb.style.bottom = `${newValue}px`;
+    track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+
+    values[channel] = Math.round((porcentaje / 100) * 255);
+    if (span) span.textContent = values[channel];
+
+    updateColorRGB();
+  };
+
+  const stopDrag = () => {
+    isDragging = false;
+    document.removeEventListener("mousemove", onMove);
+    document.removeEventListener("mouseup", stopDrag);
+    document.removeEventListener("touchmove", onMove);
+    document.removeEventListener("touchend", stopDrag);
+  };
+
+  thumb.addEventListener("mousedown", startDrag);
+  thumb.addEventListener("touchstart", startDrag, { passive: false });
 }
+
 function updateColorRGB() {
   let rgba = `rgba(${values.R}, ${values.G}, ${values.B}, ${values.W / 255})`;
   document.getElementById("colorDisplay").style.backgroundColor = rgba;
