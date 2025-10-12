@@ -1932,6 +1932,7 @@ function destroyChart(chartInstance) {
   }
 }
 
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 function PARABORRAR(){
   mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
@@ -1945,5 +1946,5 @@ function PARABORRAR(){
     alternarTeccnologia('cmyk')
   }, 300);
 }
-
-
+const info = document.getElementById('info');
+info.textContent = `W:${window.innerWidth} H:${window.innerHeight} DPR:${window.devicePixelRatio}`;
