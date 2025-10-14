@@ -11,21 +11,28 @@ document.addEventListener('keydown', function(event) {
       }
       break;
       case 'H':      
-          Geometria() 
-          activarBlur()
-          setTimeout(() => {
-            desactivarBlur()   
-          }, 500);      
+        Geometria()       
       break;
       case 'X':
-       listaClientes.style.display='block'
+        var elementosExcluidos = ['']
+        for (var i = 0; i < allContenedores.length; i++) {
+        var elemento = document.getElementById(allContenedores[i])
+        if (elemento) {
+        elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+        const contenedor = document.querySelector('#formulario-cuenta').style.display = 'grid'
+        }
+        }
+        manejarTransicion('child-move-azul', 'formulario-cuenta', 'marco-formulario',1200);
+        setTimeout(() => {
+        resaltarSecuencial();    
+        }, 1100);
       break;                  
     }
   }
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('btn-salir-perfiles');  
+  let contiBoton = document.getElementById('corte-ajuste');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  

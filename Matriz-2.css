@@ -4080,8 +4080,10 @@ top: 44%;
   transition: background-color 2s ease, box-shadow 2s ease;
 }
 #marco-formulario{
-  position: absolute;
+  position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   display: none;
   left: 1vw;
   top: 8vh;
@@ -4143,21 +4145,23 @@ top: 44%;
   display: grid;
   display: none;
   grid-template-rows: repeat(21, 1fr);
-  left: 1vw;
-  top: 8vh;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
   background-color: #071520;
-  padding: 1%;
   border-radius: 13px;
-  width: 20vw;
-  height: 85vh;
   color: white;
 }
+
 .formulario-crear-cuenta .etq-frm{
-  display: flex;
+  position: relative;
+  display: block;
+  width: 100%;
   align-items: center;
   justify-content: flex-start; 
-  font-size: 0.7em;
+  font-size: 1vw;
   cursor: pointer;
   border-radius: 7px;
   background-color: #1f3546;
@@ -4174,15 +4178,15 @@ top: 44%;
   width: 100%;
 }
 .formulario-crear-cuenta h2{
-  position:absolute;
-  width:25vw;
+  position:relative;
+  width: 100%;
   margin-top: -15%;
   left:5%;
   text-align:left;
   overflow: hidden;
   color: rgba(0,255,0,1);
   font-family: 'Courier New', Courier, monospace; 
-  font-size: 1.5rem;      
+  font-size: 1.7vw      
 }
 .formulario-crear-cuenta button:hover{
   color: rgba(0,255,0,1);
