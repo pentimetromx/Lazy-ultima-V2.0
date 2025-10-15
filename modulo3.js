@@ -867,6 +867,8 @@ const detenerMasTintaGeneral = () => {
   }
   masTintaGeneral.style.backgroundColor = '';
 };
+
+const aviso = document.querySelector('#span-index');
 // 🟠 Iniciar DISMINUIR tinta general
 const iniciarMenosTintaGeneral = () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
@@ -912,14 +914,16 @@ const detenerMenosTintaGeneral = () => {
 masTintaGeneral.addEventListener('mousedown', iniciarMasTintaGeneral);
 masTintaGeneral.addEventListener('mouseup', detenerMasTintaGeneral);
 masTintaGeneral.addEventListener('mouseleave', () => { 
-  const aviso = document.querySelector('#span-index');
   if (aviso) aviso.style.display = 'none';
   detenerMasTintaGeneral(); 
   restablecerClick(['.cabeza']);
 });
 menosTintaGeneral.addEventListener('mousedown', iniciarMenosTintaGeneral);
 menosTintaGeneral.addEventListener('mouseup', detenerMenosTintaGeneral);
-menosTintaGeneral.addEventListener('mouseleave', detenerMenosTintaGeneral);
+menosTintaGeneral.addEventListener('mouseleave', () =>{
+  if (aviso) aviso.style.display = 'none';
+  detenerMenosTintaGeneral
+} )
 // 📱 Eventos táctiles
 masTintaGeneral.addEventListener('touchstart', (e) => {
   e.preventDefault();
@@ -1230,10 +1234,16 @@ const detenerMenosSolucionGeneral = () => {
 // 🖱️ Eventos PC
 masSolucionGeneral.addEventListener('mousedown', iniciarMasSolucionGeneral);
 masSolucionGeneral.addEventListener('mouseup', detenerMasSolucionGeneral);
-masSolucionGeneral.addEventListener('mouseleave', detenerMasSolucionGeneral);
+masSolucionGeneral.addEventListener('mouseleave',() =>{
+  if (aviso) aviso.style.display = 'none';
+ detenerMasSolucionGeneral
+});
 menosSolucionGeneral.addEventListener('mousedown', iniciarMenosSolucionGeneral);
 menosSolucionGeneral.addEventListener('mouseup', detenerMenosSolucionGeneral);
-menosSolucionGeneral.addEventListener('mouseleave', detenerMenosSolucionGeneral);
+menosSolucionGeneral.addEventListener('mouseleave',() =>{
+ if (aviso) aviso.style.display = 'none';
+ detenerMenosSolucionGeneral  
+});
 // 📱 Eventos táctiles
 masSolucionGeneral.addEventListener('touchstart', (e) => {
   e.preventDefault();

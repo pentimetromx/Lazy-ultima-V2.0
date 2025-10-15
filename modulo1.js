@@ -1743,7 +1743,6 @@ function manejarTransicion(movilId, destinoId, marcoId, delay) {
     console.warn("Alguno de los elementos no existe:", { movilId, destinoId, marcoId });
     return;
   }
-
   movil.style.display = 'flex';
   moveElement(movil, destino, marcoId);
   document.body.style.zoom = "100%";
