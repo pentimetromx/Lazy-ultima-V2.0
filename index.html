@@ -10,7 +10,8 @@
   </head>
 
   <script>
-    alert(`Width: ${window.innerWidth}, Height: ${window.innerHeight}, DPR: ${window.devicePixelRatio}`);
+    /* alert(`Width: ${window.innerWidth}, Height: ${window.innerHeight}, DPR: ${window.devicePixelRatio}`); */
+
   </script>
 
   <div id="info" style="position:fixed;bottom:10px;left:10px;color:white;background:black;padding:5px;font-family:monospace;z-index:9999;"></div>
@@ -1855,11 +1856,54 @@
       <button id="dynamic-graphs" class="estilo-igual">Dinamico</button>      
       <button id="static-graphs" class="estilo-igual">Estatico</button>
     </div>
+
+
+
+
+
+
+
+
     <div id="iconos">
+
+
       <h1 id="title-interfaz">Interfaz de seguimiento Mantenimiento Autonomo</h1>
 
       <div id="conte-secundario">
-        <div class="cont-user"  id="icon-carlos">
+
+        
+
+        <div class="contenedor-visor">
+
+          <div class="visor">
+            <input type="text" id="buscador-empleado" placeholder="Buscar por nombre...">
+            <div class="visor-imagen" id="visorImagen">
+              <span>Sin selección</span>
+            </div>
+
+            <div class="navegacion">
+              <button id="prevBtn">&#9664;</button>
+              <button id="nextBtn">&#9654;</button>
+            </div>
+          </div>
+
+          <div class="panel-nombres" id="listaNombres">
+
+            <span class="lblEmpleado" data-img="./assets/Cadena-imagen.png">Carlos Mario Sanchez</span>
+            <span data-img="./assets/gato.png">Andres Felipe Montoya</span>
+            <span data-img="./assets/icono1.jpg">Jorge Alberto Lozada</span>
+            <span data-img="./assets/Cadena-invertida.png">Ana Maria Cordoba</span>
+            <span data-img="./assets/Cuchilla imagen.png">Sandra Milena Alvarez</span>
+            <span data-img="./assets/Cureña rotativa.png">John Mario Mira Pineda</span>
+            <span data-img="./assets/icono1.jpg">Ana Maria Duarte Pineda</span>
+          </div>
+          
+        </div>
+
+
+
+
+        <!-- <div class="cont-user"  id="icon-carlos">
           <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img1" onclick="resultadosEmpleado('icon-carlos','updateCarlos','img1','true')" alt="icono">
           <span class="lblEmpleado">Carlos Mario Sanchez</span>  
         </div>
@@ -1886,46 +1930,10 @@
         <div class="cont-user" id="icon-ana">
           <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img7" onclick="resultadosEmpleado('icon-ana','updateAna','img7','true')" alt="icono">
           <span class="lblEmpleado">Ana Maria Duarte Pineda</span>
-        </div>
+        </div> -->
+
       </div>
 
-      <!-- <div id="conte-maquinas">
-        <div class="cont-user"  id="rotativa-4"> 
-          <img data-src="./assets/prensa.jpg" class="lazy icono-user" id="rot4" alt="icono">
-          <span class="lblMaquina">Rotativa 4</span> 
-        </div>
-
-        <div class="cont-user" id="rotativa-3">
-          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="rot3" onclick="resultadosEmpleado('icon-andres','updateAndres','img2','true')" alt="icono">
-          <span class="lblMaquina">Rotativa 3</span>
-        </div>
-
-        <div class="cont-user" id="rotativa-2">
-          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="rot2" onclick="resultadosEmpleado('icon-jorge','updateJorge','img3','true')" alt="icono">
-          <span class="lblMaquina">rotativa 2</span>
-        </div>
-
-        <div class="cont-user" id="rotativa-1">
-          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="rot1" onclick="resultadosEmpleado('icon-jesus','updateJesus','img4','true')" alt="icono">
-          <span class="lblMaquina">Rotativa 1</span>
-        </div>
-
-        <div class="cont-user" id="flexografica">
-          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="flexo" onclick="resultadosEmpleado('icon-sandra','updateSandra','img5','true')" alt="icono">
-          <span class="lblMaquina">Flexografica</span>
-        </div>
-
-        <div class="cont-user" id="Armadora">
-          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="Arma-sobres" onclick="resultadosEmpleado('icon-mario','updateMario','img6','true')" alt="icono">
-          <span class="lblMaquina">Armadora de sobres</span>
-        </div>
-
-        <div class="cont-user" id="colectora-1">
-          <img data-src="./assets/maquinas.jpg" class="lazy icono-user" id="colectora1" onclick="resultadosEmpleado('icon-ana','updateAna','img7','true')" alt="icono">
-          <span class="lblMaquina">Colectora 1</span>
-        </div>
-      </div> -->
-       
       <div id="contLineas">
 
         <div id="canvasContainer4" class="graphs-lines" onclick="openGraphics('canvasContainer4')">
@@ -2009,6 +2017,20 @@
       </div>
       
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div id="padre-circle">
       <div id="circle" onclick="abrirAyudas()">
         <div class="line"></div>
