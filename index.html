@@ -1876,11 +1876,12 @@
         <div class="contenedor-visor">
 
           <div class="visor">
+            
             <input type="text" id="buscador-empleado" placeholder="Buscar por nombre...">
             <div class="visor-imagen" id="visorImagen">
               <span>Sin selección</span>
             </div>
-
+                
             <div class="navegacion">
               <button id="prevBtn">&#9664;</button>
               <button id="nextBtn">&#9654;</button>
@@ -1889,48 +1890,39 @@
 
           <div class="panel-nombres" id="listaNombres">
 
-            <span class="lblEmpleado" data-img="./assets/Cadena-imagen.png">Carlos Mario Sanchez</span>
+            <span data-img="./assets/Cadena-imagen.png">Carlos Mario Sanchez</span>
             <span data-img="./assets/gato.png">Andres Felipe Montoya</span>
             <span data-img="./assets/icono1.jpg">Jorge Alberto Lozada</span>
             <span data-img="./assets/Cadena-invertida.png">Ana Maria Cordoba</span>
-            <span data-img="./assets/Cuchilla imagen.png">Sandra Milena Alvarez</span>
-            <span data-img="./assets/Cureña rotativa.png">John Mario Mira Pineda</span>
+            <span data-img="./assets/ayudasII.png">Sandra Milena Alvarez</span>
+            <span data-img="./assets/arroba.png">John Mario Mira Pineda</span>
             <span data-img="./assets/icono1.jpg">Ana Maria Duarte Pineda</span>
+            <span data-img="./assets/icono1.jpg">Laura Cristina Mejía</span>
+            <span data-img="./assets/icono1.jpg">Mateo Andrés Roldán</span>
+            <span data-img="./assets/icono1.jpg">Valentina Gómez Torres</span>
+            <span data-img="./assets/icono1.jpg">Santiago López Herrera</span>
+            <span data-img="./assets/icono1.jpg">Camila Sofía Patiño</span>
+            <span data-img="./assets/icono1.jpg">Tomás Ramírez Duque</span>
+            <span data-img="./assets/icono1.jpg">Mariana Ortiz Franco</span>
+            <span data-img="./assets/icono1.jpg">Samuel Esteban Arango</span>
+            <span data-img="./assets/icono1.jpg">Isabella Cano Jaramillo</span>
+            <span data-img="./assets/icono1.jpg">Juan José Valencia</span>
+            <span data-img="./assets/icono1.jpg">Lucía Fernanda Vélez</span>
+            <span data-img="./assets/icono1.jpg">Emiliano Torres Zapata</span>
+            <span data-img="./assets/icono1.jpg">Salomé Restrepo Ruiz</span>
+            <span data-img="./assets/icono1.jpg">Nicolás David Castaño</span>
+            <span data-img="./assets/icono1.jpg">Gabriela Correa Pineda</span>
+            <span data-img="./assets/icono1.jpg">Thiago Alejandro Montoya</span>
+            <span data-img="./assets/icono1.jpg">Antonella Ríos Cardona</span>
+            <span data-img="./assets/icono1.jpg">Martín Eduardo Ospina</span>
+            <span data-img="./assets/icono1.jpg">Emily Sofía Cardona</span>
+            <span data-img="./assets/icono1.jpg">Felipe Andrés Molina</span>
+
           </div>
           
         </div>
 
 
-
-
-        <!-- <div class="cont-user"  id="icon-carlos">
-          <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img1" onclick="resultadosEmpleado('icon-carlos','updateCarlos','img1','true')" alt="icono">
-          <span class="lblEmpleado">Carlos Mario Sanchez</span>  
-        </div>
-        <div class="cont-user" id="icon-andres">
-          <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img2" onclick="resultadosEmpleado('icon-andres','updateAndres','img2','true')" alt="icono">
-          <span class="lblEmpleado">Andres Felipe Montoya</span>
-        </div>
-        <div class="cont-user" id="icon-jorge">
-          <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img3" onclick="resultadosEmpleado('icon-jorge','updateJorge','img3','true')" alt="icono">
-          <span class="lblEmpleado">Jorge Alberto Lozada</span>
-        </div>
-        <div class="cont-user" id="icon-jesus">
-          <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img4" onclick="resultadosEmpleado('icon-jesus','updateJesus','img4','true')" alt="icono">
-          <span class="lblEmpleado">Jesus Norvey Cordoba</span>
-        </div>
-        <div class="cont-user" id="icon-sandra">
-          <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img5" onclick="resultadosEmpleado('icon-sandra','updateSandra','img5','true')" alt="icono">
-          <span class="lblEmpleado">Sandra Milena Alvarez</span>
-        </div>
-        <div class="cont-user" id="icon-mario">
-          <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img6" onclick="resultadosEmpleado('icon-mario','updateMario','img6','true')" alt="icono">
-          <span class="lblEmpleado"  >John Mario Mira Pineda</span>
-        </div>
-        <div class="cont-user" id="icon-ana">
-          <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img7" onclick="resultadosEmpleado('icon-ana','updateAna','img7','true')" alt="icono">
-          <span class="lblEmpleado">Ana Maria Duarte Pineda</span>
-        </div> -->
 
       </div>
 
@@ -2016,6 +2008,39 @@
         </div>
       </div>
       
+    </div>
+
+
+    <div id="father-employees" style="position: relative;display:none;">
+      <div class="cont-user"  id="icon-carlos">
+        <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img1" onclick="resultadosEmpleado('icon-carlos','updateCarlos','img1','true')" alt="icono">
+        <span class="lblEmpleado">Carlos Mario Sanchez</span>  
+      </div>
+      <div class="cont-user" id="icon-andres">
+        <img data-src="./assets/gato.png" class="lazy icono-user" id="img2" onclick="resultadosEmpleado('icon-andres','updateAndres','img2','true')" alt="icono">
+        <span class="lblEmpleado">Andres Felipe Montoya</span>
+      </div>
+      <div class="cont-user" id="icon-jorge">
+        <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img3" onclick="resultadosEmpleado('icon-jorge','updateJorge','img3','true')" alt="icono">
+        <span class="lblEmpleado">Jorge Alberto Lozada</span>
+      </div>
+      <div class="cont-user" id="icon-jesus">
+        <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img4" onclick="resultadosEmpleado('icon-jesus','updateJesus','img4','true')" alt="icono">
+        <span class="lblEmpleado">Jesus Norvey Cordoba</span>
+      </div>
+      <div class="cont-user" id="icon-sandra">
+        <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img5" onclick="resultadosEmpleado('icon-sandra','updateSandra','img5','true')" alt="icono">
+        <span class="lblEmpleado">Sandra Milena Alvarez</span>
+      </div>
+      <div class="cont-user" id="icon-mario">
+        <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img6" onclick="resultadosEmpleado('icon-mario','updateMario','img6','true')" alt="icono">
+        <span class="lblEmpleado"  >John Mario Mira Pineda</span>
+      </div>
+      <div class="cont-user" id="icon-ana">
+        <img data-src="./assets/icono1.jpg" class="lazy icono-user" id="img7" onclick="resultadosEmpleado('icon-ana','updateAna','img7','true')" alt="icono">
+        <span class="lblEmpleado">Ana Maria Duarte Pineda</span>
+      </div>
+
     </div>
 
 
