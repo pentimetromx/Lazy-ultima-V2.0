@@ -4902,55 +4902,68 @@ top: 44%;
 }
 
 .visor {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
+  display: grid;
+  grid-template-rows: 12% 70% 18%;
+  gap: 5%;
+  top: 1%;
+  height: 97%;
+  width: 50%;
   margin-right: 20px;
+  align-content: center;
 }
-
 #buscador-empleado{
-  width: 250px;
+  width:100%;
   padding: 8px;
-  margin-bottom: 15px;
   border: none;
   border-radius: 6px;
   text-align: center;
   font-size: 14px;
 }
-
 .visor-imagen {
-  width: 250px;
-  height: 250px;
-  background: #1a2235;
+  position: relative;
   display: flex;
+  width:100%;
+  height:100%;
+  background: #1a2235;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
   overflow: hidden;
 }
-
 .visor-imagen img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  cursor: pointer;
+  object-fit: fill;
 }
 
 .navegacion {
-  margin-top: 15px;
+  position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
+  width: 100%;
+  height: 100%;
 }
 
 .navegacion button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 80%;
   background: #24314d;
   color: white;
   border: none;
   padding: 8px 14px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 1.7vw;
   transition: background 0.2s;
 }
+
 
 .navegacion button:hover {
   background: #3a4c70;
@@ -4965,9 +4978,10 @@ top: 44%;
   border-left: 2px solid #24314d;
 }
 
-.panel-nombres span {
+.panel-nombres > span {
   padding: 6px 0;
   cursor: pointer;
+  font-size:1vw;
   transition: color 0.2s;
 }
 
@@ -4975,23 +4989,22 @@ top: 44%;
   color: #00aaff;
 }
 
-/* Panel derecho */
 #listaNombres {
-  flex: 0 0 30%;
+  position: relative;
+  display: flex;
+  width: 15vw;
   background: rgba(10, 15, 25, 0.9);
   padding: 10px;
-  display: flex;
   flex-direction: column;
   gap: 8px;
-  overflow-y: auto;         /* 2️⃣ Scroll vertical */
+  overflow-y: auto;
   max-height: 80vh;
   border-left: 2px solid #1e90ff;
 }
 
 #listaNombres span {
   cursor: pointer;
-  color: #f0f0f0;           /* 3️⃣ Texto más contrastado */
-  font-size: 15px;
+  color: #bcbcbcD9;
   padding: 5px;
   transition: background 0.2s;
 }

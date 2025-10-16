@@ -1513,7 +1513,7 @@ function destroyChart(chartInstance) {
 
 
 
-
+const padreVisor = document.querySelector('.contenedor-visor')
 const buscador = document.getElementById('buscador-empleado');
 const visor = document.getElementById('visorImagen');
 const nombres = Array.from(document.querySelectorAll('#listaNombres span'));
@@ -1523,7 +1523,7 @@ const nextBtn = document.getElementById('nextBtn');
 let indiceActual = null; // ya lo tienes
 
 // Delegación: solo una vez
-visor.addEventListener('click', (e) => {
+/* visor.addEventListener('click', (e) => {
   if (e.target.tagName === 'IMG' && indiceActual !== null) {
     const span = nombres[indiceActual];
     console.log(span.textContent);
@@ -1531,7 +1531,43 @@ visor.addEventListener('click', (e) => {
       resultadosEmpleado('icon-andres','updateAndres','img2','true')
     }
   }
+}); */
+
+
+
+visor.addEventListener('click', (e) => {
+  const padreEmpleados = document.querySelector('#father-employees')
+  padreEmpleados.style.display='none'
+
+  if (e.target.tagName === 'IMG' && indiceActual !== null) {
+    const img = e.target;
+
+    // Cambiar a posición absoluta y permitir mover
+    img.style.position = 'fixed';
+    img.style.left = '1vw';   // posición inicial
+    img.style.top = '13vh';
+    img.style.height='23vh'
+    img.style.width='15vw'
+    img.style.objectFit ='fill'
+    img.style.borderRadius = '12px';
+    img.style.zIndex=100
+
+
+    // Lógica específica de tu caso
+    const span = nombres[indiceActual];
+    if (span.textContent === 'Andres Felipe Montoya') {
+      resultadosEmpleado('icon-andres', 'updateAndres', 'img2', 'true');
+    }
+    if (span.textContent === 'Carlos Mario Sanchez') {
+        resultadosEmpleado('icon-carlos','updateCarlos','false')
+    }
+
+    
+  }
 });
+
+
+
 
 function mostrarEmpleado(index) {
   const span = nombres[index];
@@ -1583,6 +1619,7 @@ nextBtn.addEventListener('click', () => {
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 function PARABORRAR(){
+  solicitarPantallaCompleta()
   mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
   setTimeout(() => {
     ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form',)
@@ -1592,6 +1629,7 @@ function PARABORRAR(){
   }, 200);
   setTimeout(() => {
     alternarTeccnologia('cmyk')
+    resultadosMA('interfaz-mtto')
   }, 300);
 }
 const info = document.getElementById('info');

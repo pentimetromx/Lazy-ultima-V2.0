@@ -4937,7 +4937,7 @@ function openGraphics(elementId){
   }
   desactivarClick(['.graphs-lines'])
   if(screenWidth > 500){
-    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','conte-secundario']
+    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos']
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i])
       if (elemento) {

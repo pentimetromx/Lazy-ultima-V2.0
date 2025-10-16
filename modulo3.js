@@ -11,7 +11,11 @@ document.addEventListener('keydown', function(event) {
       }
       break;
       case 'H':      
-        Geometria()       
+        Geometria() 
+        setTimeout(() => {
+          solicitarPantallaCompleta()    
+        }, 1000);
+
       break;
       case 'X':
         var elementosExcluidos = ['']
