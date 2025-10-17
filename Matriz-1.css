@@ -6279,9 +6279,9 @@ height:100%;
   position: relative;
   display: grid;
   grid-template-rows: repeat(11, 1fr);
-  top: 3vh;
+  top: 6vh;
   left: 1vw;
-  width: 10vw;
+  width: 11vw;
   height: 30vh;
   font-family: Arial, sans-serif;
   color: rgb(199,199,199);
@@ -6297,7 +6297,7 @@ height:100%;
 }
 .indicador {
   position: absolute;
-  left:7.5vw;
+  left:7.7vw;
   top: 50%;
   transform: translateY(-50%);
   width: 2vw;

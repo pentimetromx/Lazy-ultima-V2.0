@@ -4333,6 +4333,7 @@ function ubicaPerfilPequeño(idEmpleado){
     }
   }}
 }
+
 function ubicaPerfil(idEmpleado) {
   var contUserElements = document.getElementsByClassName('cont-user')   
   var contSecundario = document.getElementById('conte-secundario')
@@ -4443,12 +4444,14 @@ document.querySelectorAll('.maquina').forEach((maquina, index) => {
   });
 });
 
+// IMAGENES VERTICALES
 function resultadosEmpleado(idEmpleado, functionExe,icono,state) {
   detenerDinamica()
   verificarPosicionTop(['conte-butts-graphs']);
   setTimeout(() => {
     turnGraphic = false
     const iconosPermitidos = ['img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img7'];
+
     var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','contenedor-vertical','title-interfaz','canvasContainer4','MiGrafica4','canvasContainer5','MiGrafica5','canvasContainer6','MiGrafica6','canvasContainer7','MiGrafica7','canvasContainer9','MiGrafica9']
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i])
@@ -4456,6 +4459,7 @@ function resultadosEmpleado(idEmpleado, functionExe,icono,state) {
         elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
       }
     }
+
     document.querySelectorAll('.graphs-lines').forEach(div => {
       div.style.visibility = 'visible';
       div.style.opacity = '1';
@@ -4465,6 +4469,13 @@ function resultadosEmpleado(idEmpleado, functionExe,icono,state) {
         cv.style.opacity = '1';
       }
     });
+
+    if (permitirEliminarImagen) {
+      const imgDinamica = document.querySelector('#img-dinamica');
+      if (imgDinamica) imgDinamica.remove();
+    }
+
+
     marcoGraficas.style.display='grid'
     restaurarPosicion(["conte-butts-graphs"]);
     container1.style.display='grid'
@@ -4502,7 +4513,9 @@ function resultadosEmpleado(idEmpleado, functionExe,icono,state) {
         document.getElementById('links-iniciales').style.left='16vw'
 
       }else{
-        ubicaPerfil(idEmpleado)
+
+
+
         document.getElementById('conte-butts-graphs').style.display = 'grid'
     }
       switch (functionExe) {
@@ -4540,6 +4553,7 @@ function resultadosEmpleado(idEmpleado, functionExe,icono,state) {
 
   }, 100);
 }
+// ULTIMO BOTON M.A / BORRA LA IMAGEN
 function resultadosMA(identificador){
   restablecerPosiciones(['.ocultos'])      
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','conte-secundario','conte-maquinas','title-interfaz']  
@@ -4549,7 +4563,9 @@ function resultadosMA(identificador){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     } 
   }
+  
   container1.style.display='grid'
+  document.querySelector('.contenedor-visor').style.display='flex'
   document.body.style.zoom = "100%";
   var contiUsers = document.getElementsByClassName('cont-user'); 
   for (var i = 0; i < contiUsers.length; i++) {
@@ -4577,6 +4593,8 @@ function resultadosMA(identificador){
       }    
     }
   }
+  const imgDinamica = document.querySelector('#img-dinamica');
+  if (imgDinamica) imgDinamica.remove();
   actualizarIdsArray(identificador);      
 }
 function aumentarTamaño(element, factor, tiempo) {
