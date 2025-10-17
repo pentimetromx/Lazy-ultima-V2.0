@@ -4929,6 +4929,13 @@ function muestraMenu(){
 }
 let intervalEnEjecucion = false;
 
+
+
+
+
+
+
+
 function openGraphics(elementId){
   const elementos = document.querySelectorAll('.graphs-lines');
 
@@ -5068,6 +5075,26 @@ function openGraphics(elementId){
     }, 1300);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function mostrarSecuencialmente() {
   const padreElementos = document.getElementById('metas-diarias')
   const elementos = document.querySelectorAll("#metas-diarias li")
