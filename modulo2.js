@@ -4929,44 +4929,37 @@ function muestraMenu(){
 }
 let intervalEnEjecucion = false;
 
-
-
-
-
-
-
-
+// CLICK EN LAS GRAFFICAS
 function openGraphics(elementId){
   const elementos = document.querySelectorAll('.graphs-lines');
+  const botonesFlotantes = document.querySelector('#conte-butts-graphs')
+  const imagenSola = document.querySelector('#porta-imagen')
 
   if(turnBlock === false){
     turnBlock = true
   }
   desactivarClick(['.graphs-lines'])
   if(screenWidth > 500){
-    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos']
+    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','porta-imagen']
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i])
       if (elemento) {
         elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
       }   
     }
+
+    botonesFlotantes.style.display='grid'
+    imagenSola.style.zIndex = 75
+    restaurarPosicion(["conte-butts-graphs"]);    
     container1.style.display='grid'
     desactivarClicsPorUnTiempo(1500)
-    marcoGraficas.style.display='grid'
 
+    marcoGraficas.style.display='grid'  // PADRE DE GRAFICOS
     Array.from(marcoGraficas.querySelectorAll('*')).forEach(hijo => {
       hijo.style.display = 'block';
       hijo.style.visibility = 'visible';
       hijo.style.opacity = '1';
     });
-
-    
-    const month = document.querySelectorAll('.mes')
-    month.forEach((mes) => {
-      mes.style.backgroundColor = ''
-      mes.style.color = ''
-    })
 
     if (elementId === 'canvasContainer4') {
       elementos.forEach(el => {
@@ -5072,28 +5065,9 @@ function openGraphics(elementId){
         turnGraphic = true
         moverElementos(["conte-butts-graphs"], 27, -7);
       }
-    }, 1300);
+    }, 500);
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function mostrarSecuencialmente() {
   const padreElementos = document.getElementById('metas-diarias')

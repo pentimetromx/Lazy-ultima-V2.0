@@ -1507,12 +1507,6 @@ function destroyChart(chartInstance) {
   }
 }
 
-
-
-
-
-
-
 const padreVisor = document.querySelector('.contenedor-visor')
 const buscador = document.getElementById('buscador-empleado');
 const visor = document.getElementById('visorImagen');
@@ -1522,65 +1516,23 @@ const nextBtn = document.getElementById('nextBtn');
 
 let indiceActual = null; // ya lo tienes
 let permitirEliminarImagen = true;
-//IMAGEN EN SOLITARIO
+
+
+//IMAGEN EN SOLITARIO INICIAL
 visor.addEventListener('click', (e) => {
+  mostrarImagenSuperior(event.currentTarget);
+
   permitirEliminarImagen = false;
-  const padreIconos = document.querySelector('#iconos')
+  const padreBotonPosicion = document.querySelector('#conte-butts-graphs')
   const padreEmpleados = document.querySelector('#father-employees');
   const padreImagenes = document.querySelector('.contenedor-visor'); 
-  const empleadosVertical = document.querySelector('#contenedor-vertical'); 
+  padreBotonPosicion.style.display='grid'
 
   if (e.target.tagName === 'IMG' && indiceActual !== null) {
     const img = e.target;
 
-    // Mover al <body>
-    padreIconos.appendChild(img);
-    img.id = 'img-dinamica';
-
-    // Estilos
-    img.style.position = 'fixed';
-    img.style.left = '1vw';                                           
-    img.style.top = '16vh';
-    img.style.height = '20vh';
-    img.style.width = '13vw';
-    img.style.objectFit = 'fill';
-    img.style.borderRadius = '12px';
-    img.style.cursor = 'pointer';
-    img.style.zIndex = 100;
-
-    // Agregar efecto click
-    img.addEventListener('click', () => {
-      document.querySelector('#canvasContainer4').classList.remove('move-canvas-1')
-      document.querySelector('#canvasContainer5').classList.remove('move-canvas-2')
-      document.querySelector('#canvasContainer6').classList.remove('move-canvas-3')
-      document.querySelector('#canvasContainer7').classList.remove('move-canvas-4')
-      document.querySelector('#canvasContainer8').classList.remove('move-canvas-5')
-      document.querySelector('#canvasContainer9').classList.remove('move-canvas-6')
-      document.querySelector('#contLineas').style.display='grid'
-
-      const padreLineas = document.querySelector('#contLineas')
-      padreLineas.style.display = 'grid';
-      Array.from(padreLineas.querySelectorAll('*')).forEach(hijo => {
-        hijo.style.display = '';
-        hijo.style.visibility = 'visible';
-        hijo.style.opacity = '1';
-      });
-
-
-      empleadosVertical.style.display = 'flex';
-      Array.from(empleadosVertical.querySelectorAll('*')).forEach(hijo => {
-        hijo.style.display = '';
-        hijo.style.visibility = 'visible';
-        hijo.style.opacity = '1';
-      });
-
-      restablecerClick(['.graphs-lines'])
-    });
-
     padreEmpleados.style.display = 'none';  
     padreImagenes.style.display = 'none';
-
-
 
     const span = nombres[indiceActual];
     if (span.textContent === 'Andres Felipe Montoya') {
@@ -1589,8 +1541,20 @@ visor.addEventListener('click', (e) => {
     if (span.textContent === 'Carlos Mario Sanchez') {
       resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
     }
+    if (span.textContent === 'Jorge Alberto Lozada') {
+      resultadosEmpleado('icon-jorge','updateJorge','img3','true');
+    }
+    if (span.textContent === 'Jesus Norvey Cordoba') {
+      resultadosEmpleado('icon-jesus','updateJesus','img4','true');
+    }
+    if (span.textContent === 'Sandra Milena Alvarez') {
+      resultadosEmpleado('icon-sandra','updateSandra','img5','true');
+    }
+    if (span.textContent === 'John Mario Mira Pineda') {
+      resultadosEmpleado('icon-mario','updateMario','img6','true');
+    }
     if (span.textContent === 'Ana Maria Duarte Pineda') {
-      resultadosEmpleado('icon-ana','updateAna','false');
+      resultadosEmpleado('icon-ana','updateAna','img7','true');
     }
 
     // Restaurar flag para siguientes llamadas externas
@@ -1600,11 +1564,6 @@ visor.addEventListener('click', (e) => {
 
   }
 });
-
-
-
-
-
 
 const listado = document.getElementById('listaNombres');
 const spans = listado.querySelectorAll('span');
@@ -1645,15 +1604,19 @@ function mostrarEmpleado(index) {
   if (!span) return;
 
   const imgSrc = span.getAttribute('data-img');
-  visorI.innerHTML = `<img src="${imgSrc}" alt="${span.textContent}">`;
+  const spansVisor = visorI.querySelectorAll('span');
+
+  // Imagen en el primer span
+  spansVisor[0].innerHTML = `<img src="${imgSrc}" alt="${span.textContent}">`;
+  // Texto debajo en el segundo span
+  spansVisor[1].textContent = span.textContent;
+
   indiceActual = index;
 }
 
 spansI.forEach((span, i) => {
   span.addEventListener('click', () => mostrarEmpleado(i));
 });
-
-
 
 buscador.addEventListener('input', () => {
   const texto = buscador.value.toLowerCase().trim();
@@ -1671,8 +1634,7 @@ buscador.addEventListener('input', () => {
   if (index !== -1) mostrarEmpleado(index);
 });
 
-
-// LISTADO DE NOMBRES
+// CLICK EN LISTADO DE NOMBRES
 nombres.forEach((span, i) => {
   span.addEventListener('click', () => mostrarEmpleado(i));
 });

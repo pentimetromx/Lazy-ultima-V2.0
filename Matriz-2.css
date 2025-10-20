@@ -4878,11 +4878,6 @@ top: 44%;
   font-size: 0.6vw;
 }
 
-
-
-
-
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -4893,7 +4888,7 @@ top: 44%;
   position: absolute;
   display: flex;
   width: 50vw;
-  height: 50vh;
+  height: 59vh;
   left: 25vw;;
   background: rgba(20, 30, 50, 0.85);
   padding: 20px;
@@ -4907,7 +4902,7 @@ top: 44%;
   grid-template-rows: 12% 70% 18%;
   gap: 5%;
   top: 1%;
-  height: 97%;
+  height: 100%;
   width: 50%;
   margin-right: 20px;
   align-content: center;
@@ -4920,23 +4915,38 @@ top: 44%;
   text-align: center;
   font-size: 14px;
 }
+
 .visor-imagen {
   position: relative;
-  display: flex;
-  width:100%;
-  height:100%;
+  display: grid;
+  grid-template-rows: 85% 15%;
+  width: 100%;
+  height: 100%;
+  gap: 5px;
   background: #1a2235;
-  justify-content: center;
+  justify-items: center;
   align-items: center;
+  cursor: pointer;
   border-radius: 12px;
   overflow: hidden;
 }
+
 .visor-imagen img {
   width: 100%;
   height: 100%;
-  cursor: pointer;
-  object-fit: fill;
+  object-fit: contain; /* evita corte */
 }
+
+.visor-imagen > :nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:yellow;
+  font-size: 0.9rem;
+  width: 100%;
+  text-align: center;
+}
+
 
 .navegacion {
   position: relative;
