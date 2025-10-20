@@ -2,20 +2,11 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z':
-      const contene = document.getElementById('info-interna');
-      for (let i = 0; i < 64; i++) {
-        const celda = document.createElement('div');
-        celda.classList.add('col');
-        celda.style.border = '1px solid white';
-        contene.appendChild(celda);
-      }
+          desactivarClick(['.graphs-lines'])
       break;
       case 'H':      
         Geometria() 
-        setTimeout(() => {
-          solicitarPantallaCompleta()    
-        }, 1000);
-
+        restablecerClick(['.graphs-lines'])
       break;
       case 'X':
         var elementosExcluidos = ['']
@@ -36,7 +27,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('corte-ajuste');  
+  let contiBoton = document.getElementById('conte-butts-graphs');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  

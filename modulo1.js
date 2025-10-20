@@ -4443,116 +4443,187 @@ document.querySelectorAll('.maquina').forEach((maquina, index) => {
     });
   });
 });
-
-// IMAGENES VERTICALES
-function resultadosEmpleado(idEmpleado, functionExe,icono,state) {
-  detenerDinamica()
+  
+// CICK IMAGENES VERTICALES
+function resultadosEmpleado(idEmpleado, functionExe, icono, state) {
+  detenerDinamica();
   verificarPosicionTop(['conte-butts-graphs']);
-  setTimeout(() => {
-    turnGraphic = false
-    const iconosPermitidos = ['img1', 'img2', 'img3', 'img4', 'img5', 'img6', 'img7'];
-
-    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','contenedor-vertical','title-interfaz','canvasContainer4','MiGrafica4','canvasContainer5','MiGrafica5','canvasContainer6','MiGrafica6','canvasContainer7','MiGrafica7','canvasContainer9','MiGrafica9']
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var elemento = document.getElementById(allContenedores[i])
-      if (elemento) {
-        elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-      }
-    }
-
-    document.querySelectorAll('.graphs-lines').forEach(div => {
-      div.style.visibility = 'visible';
-      div.style.opacity = '1';
-      const cv = div.querySelector('canvas');
-      if (cv) {
-        cv.style.visibility = 'visible';
-        cv.style.opacity = '1';
-      }
-    });
-
-    if (permitirEliminarImagen) {
-      const imgDinamica = document.querySelector('#img-dinamica');
-      if (imgDinamica) imgDinamica.remove();
-    }
-
-
-    marcoGraficas.style.display='grid'
-    restaurarPosicion(["conte-butts-graphs"]);
-    container1.style.display='grid'
-    if(turnBlock === 'false'){
-      restablecerClick(['.desactivar', '.graphs-lines'])
-    }
-
-    const elementos = document.querySelectorAll('.graphs-lines');
-    elementos.forEach((elemento) => {
-      elemento.classList.remove('move-canvas-1','move-canvas-2','move-canvas-3','move-canvas-4','move-canvas-5','move-canvas-6')
-      restablecerClick(['.desactivar', '.graphs-lines'])
-    });
-
-    if(screenWidth < 500){
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','dynamic-graphs-II','iconos','contLineas-II','contenedor-vertical','canvasContainer4-II','MiGrafica4-II','canvasContainer5-II','MiGrafica5-II','canvasContainer6-II','MiGrafica6-II','canvasContainer7-II','MiGrafica7-II','canvasContainer8-II','MiGrafica8-II','canvasContainer9-II','MiGrafica9-II']
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i])  
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-        }
-      }     
-      container1.style.display='grid'
-      desactivarClicsPorUnTiempo(1000)
-      const elementos = document.querySelectorAll('.graphs-employee');
-      elementos.forEach((elemento) => {
-        elemento.removeAttribute('style');
-      });    
-      if(state === 'true'){
-        setTimeout(() => {
-          animateScroll('contenedor-vertical')
-        }, 500);}
-      if (iconosPermitidos.includes(icono)) {
-      }
-        ubicaPerfil(idEmpleado)
-        document.getElementById('links-iniciales').style.left='16vw'
-
-      }else{
-
-
-
-        document.getElementById('conte-butts-graphs').style.display = 'grid'
-    }
-      switch (functionExe) {
-      case 'updateAna':
-        updateAna() 
-        updateAnaII()
-      break;
-      case 'updateMario':
-        updateMario()
-        updateMarioII()
-      break;
-      case 'updateSandra':
-        updateSandra()
-        updateSandraII()
-      break;
-      case 'updateJesus':
-        updateJesus()
-        updateJesusII()      
-      break;
-      case 'updateJorge':
-        updateJorge()
-        updateJorgeII()      
-      break;
-      case 'updateAndres':
-        updateAndres()
-        updateAndresII()      
-      break;
-      case 'updateCarlos':
-        updateCarlos()
-        updateCarlosII()      
-      break;
-      default:
-      break;
-    }
-
-  }, 100);
+  mostrarImagenSuperior(event.currentTarget);
+  alternarContenedores();
+  mostrarGraficas();
+  limpiarImagenDinamica(); 
+  restaurarPosicion(['conte-butts-graphs']);
+  container1.style.display = 'grid';
+  if (turnBlock === 'false') restablecerClick(['.desactivar', '.graphs-lines']);
+  resetearAnimacionesCanvas();
+  ejecutarFuncionEmpleado(functionExe);
+  ajustarContenedorGrafs();
 }
+
+// === Auxiliares ===
+
+function mostrarImagenSuperior(imagenClicada) {
+
+  if (!imagenClicada) return;
+
+  const contenedor = document.getElementById('porta-imagen');
+  contenedor.style.marginTop = '-40px';
+  contenedor.style.height = '27vh';
+
+  // Limpiar contenido anterior
+  contenedor.innerHTML = '';
+
+  // Crear spans
+  const spanImg = document.createElement('span');
+  const spanTexto = document.createElement('span');
+
+  // Clonar imagen
+  let imgFija = imagenClicada.cloneNode(true);
+  Object.assign(imgFija.style, {
+    display: 'grid',
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain',
+    borderRadius: '12px',
+    zIndex: '9999',
+    position: 'relative',
+    objectFit: 'contain'
+  });
+  imgFija.id = 'img-fija-superior';
+
+  // Insertar en primer span
+  spanImg.appendChild(imgFija);
+
+  // Insertar leyenda en segundo span
+  spanTexto.textContent = imagenClicada.alt || '';
+  spanTexto.style.color = '#fff';
+  spanTexto.style.textAlign = 'center';
+  spanTexto.style.display = 'block';
+  spanTexto.style.marginTop = '5px';
+
+  // Agregar al contenedor
+  contenedor.appendChild(spanImg);
+  contenedor.appendChild(spanTexto);  
+
+  // CLICK IMAGEN SOLA 
+  imgFija.addEventListener('click', (ev) => {
+    
+    ev.stopPropagation();
+    restaurarPosicion(["conte-butts-graphs"]);
+    document.querySelector('#canvasContainer4').classList.remove('move-canvas-1');
+    document.querySelector('#canvasContainer5').classList.remove('move-canvas-2');
+    document.querySelector('#canvasContainer6').classList.remove('move-canvas-3');
+    document.querySelector('#canvasContainer7').classList.remove('move-canvas-4');
+    document.querySelector('#canvasContainer8').classList.remove('move-canvas-5');
+    document.querySelector('#canvasContainer9').classList.remove('move-canvas-6');
+
+    const padreLineas = document.querySelector('#contLineas');
+    const empleadosVertical = document.querySelector('#contenedor-vertical');
+
+    padreLineas.style.display = 'grid';
+    padreLineas.querySelectorAll('*').forEach(hijo => {
+      hijo.style.display = '';
+      hijo.style.visibility = 'visible';
+      hijo.style.opacity = '1';
+    });
+
+    empleadosVertical.style.display = 'grid';
+    empleadosVertical.querySelectorAll('*').forEach(hijo => {
+      hijo.style.display = '';
+      hijo.style.visibility = 'visible';
+      hijo.style.opacity = '1';
+    });
+
+      restablecerClick(['.graphs-lines']);
+  });
+
+}
+
+function alternarContenedores() {
+  const excluidos = [
+    'buscador','search-form','links-inicialesI','links-iniciales',
+    'iconos','title-interfaz','porta-imagen'
+  ];
+  allContenedores.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = excluidos.includes(id) ? 'flex' : 'none';
+  });
+
+                                                                                           
+  document.querySelector('#conte-butts-graphs').style.display='grid'
+  document.querySelector('#contenedor-vertical').style.display='grid'
+
+}
+
+function mostrarGraficas() {
+  document.querySelectorAll('.graphs-lines').forEach(div => {
+    Object.assign(div.style, { visibility: 'visible', opacity: '1' });
+    const cv = div.querySelector('canvas');
+    if (cv) Object.assign(cv.style, { visibility: 'visible', opacity: '1' });
+  });
+}
+
+function limpiarImagenDinamica() {
+  if (!permitirEliminarImagen) return;
+  const img = document.getElementById('img-dinamica');
+  if (img) img.remove();
+}
+
+function resetearAnimacionesCanvas() {
+  document.querySelectorAll('.graphs-lines').forEach(el => {
+    el.classList.remove(
+      'move-canvas-1','move-canvas-2','move-canvas-3',
+      'move-canvas-4','move-canvas-5','move-canvas-6'
+    );
+    restablecerClick(['.desactivar', '.graphs-lines']);
+  });
+}
+
+function ejecutarFuncionEmpleado(nombre) {
+  const mapa = {
+    updateAna:      () => { updateAna(); updateAnaII(); },
+    updateMario:    () => { updateMario(); updateMarioII(); },
+    updateSandra:   () => { updateSandra(); updateSandraII(); },
+    updateJesus:    () => { updateJesus(); updateJesusII(); },
+    updateJorge:    () => { updateJorge(); updateJorgeII(); },
+    updateAndres:   () => { updateAndres(); updateAndresII(); },
+    updateCarlos:   () => { updateCarlos(); updateCarlosII(); }
+  };
+  if (mapa[nombre]) mapa[nombre]();
+}
+
+function ajustarContenedorGrafs() {
+  const padre = document.getElementById('contLineas');
+  padre.style.display = 'grid';
+  padre.querySelectorAll('*').forEach(hijo => {
+    Object.assign(hijo.style, {
+      display: 'flex',
+      visibility: 'visible',
+      height: '90%',
+      width: '93%',
+      opacity: '1'
+    });
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ULTIMO BOTON M.A / BORRA LA IMAGEN
 function resultadosMA(identificador){
   restablecerPosiciones(['.ocultos'])      
