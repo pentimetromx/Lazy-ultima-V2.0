@@ -1063,20 +1063,6 @@ function restablecerClick(classElements) {
   });
 }
 
-/* function restablecerClick(classElements) { 
-  if (!Array.isArray(classElements)) {
-    console.error('El parámetro debe ser un array de selectores.');
-    return;
-  }
-  classElements.forEach(selector => {
-    const botones = document.querySelectorAll(selector);
-    botones.forEach(boton => {
-      boton.style.pointerEvents = 'auto'; // Reactiva eventos de clic
-      boton.style.opacity = '1'; // Restaura la apariencia
-    });
-  });
-} */
-
 function moverElementos(idsElementos, porcentajeLeft, porcentajeTop) {
   idsElementos.forEach(id => {
     const el = document.getElementById(id);

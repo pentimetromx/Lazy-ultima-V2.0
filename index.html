@@ -9,10 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" href="./Matriz-1.css">
   </head>
 
-  <script>
-    /* alert(`Width: ${window.innerWidth}, Height: ${window.innerHeight}, DPR: ${window.devicePixelRatio}`); */
-
-  </script>
+  <script></script>
 
   <div id="info" style="position:fixed;bottom:10px;left:10px;color:white;background:black;padding:5px;font-family:monospace;z-index:9999;"></div>
 
@@ -1859,6 +1856,7 @@
     <div id="iconos">
       <h1 id="title-interfaz">Interfaz de seguimiento Mantenimiento Autonomo</h1>
       <div id="conte-secundario">
+
         <div class="contenedor-visor">
           
           <div class="visor">
@@ -1866,7 +1864,7 @@
             <input type="text" id="buscador-empleado" placeholder="Buscar por nombre...">
             
             <div class="visor-imagen" id="visorImagen">
-              <span>Sin selección</span>
+              <span data-src="./assets/">Sin selección</span>
               <span></span>
             </div>
                 
@@ -1878,7 +1876,7 @@
 
           <div class="panel-nombres" id="listaNombres">
 
-            <span data-img="./assets/silueta.png">Carlos Mario Sanchez</span>
+            <span data-img="./assets/gato.png">Carlos Mario Sanchez</span>
             <span data-img="./assets/silueta.png">Andres Felipe Montoya</span>
             <span data-img="./assets/silueta.png">Jorge Alberto Lozada</span>
             <span data-img="./assets/silueta.png">Jesus Norvey Cordoba</span>
@@ -1907,11 +1905,13 @@
             <span data-img="./assets/silueta.png">Felipe Andrés Molina</span>
 
           </div>
+
         </div>
+
       </div>
       
       <div id="porta-imagen">
-        <span class="imagen-empleado"></span>
+        <span class="imagen-empleado" data-src="./assets/"></span>
         <span class="nombre-empleado"></span>
       </div>
 
@@ -1970,31 +1970,31 @@
       <div class="contenedor-vertical" id="contenedor-vertical">
 
         <div class="cont-userI" id="icon-carlos-I">
-          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye" onclick="resultadosEmpleado('icon-carlos-I','updateCarlos','false,event')" alt="icono">
+          <img data-src="./assets/gato.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Carlos Mario Sanchez</span> 
         </div>
         <div class="cont-userI" id="icon-andres-I">
-          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye"  onclick="resultadosEmpleado('icon-andres','updateAndres','false')" alt="icono">
+          <img data-src="./assets/icono1.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Andres Felipe Montoya</span>
         </div>   
         <div class="cont-userI" id="icon-jorge-I">
-          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye"  onclick="resultadosEmpleado('icon-jorge','updateJorge','false')" alt="icono">
+          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Jorge Alberto Lozada</span>
         </div>    
         <div class="cont-userI" id="icon-jesus-I">
-          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye"  onclick="resultadosEmpleado('icon-jesus','updateJesus','false')" alt="icono">
+          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Jesus Norvey Cordoba</span>
         </div>
         <div class="cont-userI" id="icon-sandra-I">
-          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye"  onclick="resultadosEmpleado('icon-sandra','updateSandra','false')" alt="icono">
+          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Sandra Milena Alvarez</span>
         </div> 
         <div class="cont-userI" id="icon-mario-I">
-          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye"  onclick="resultadosEmpleado('icon-mario','updateMario','false')" alt="icono">
+          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">John Mario Mira Pineda</span>
         </div>
         <div class="cont-userI" id="icon-ana-I">
-          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye"  onclick="resultadosEmpleado('icon-ana','updateAna','false')" alt="icono">
+          <img data-src="./assets/silueta.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Ana Maria Duarte Pineda</span>
         </div>
       </div>  

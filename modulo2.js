@@ -4940,7 +4940,7 @@ function openGraphics(elementId){
   }
   desactivarClick(['.graphs-lines'])
   if(screenWidth > 500){
-    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','porta-imagen']
+    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos']
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i])
       if (elemento) {
@@ -4949,12 +4949,14 @@ function openGraphics(elementId){
     }
 
     botonesFlotantes.style.display='grid'
+    container1.style.display='grid'
+    marcoGraficas.style.display='grid'
+    imagenSola.style.display='grid'
     imagenSola.style.zIndex = 75
     restaurarPosicion(["conte-butts-graphs"]);    
-    container1.style.display='grid'
+
     desactivarClicsPorUnTiempo(1500)
 
-    marcoGraficas.style.display='grid'  // PADRE DE GRAFICOS
     Array.from(marcoGraficas.querySelectorAll('*')).forEach(hijo => {
       hijo.style.display = 'block';
       hijo.style.visibility = 'visible';
@@ -5167,7 +5169,6 @@ function mostrarCalendario(mesSeleccionado) {
     semana.appendChild(diaVacio);
   }
 }
-/* let nuevoElemento; */
 function destruirCharts() {
   [chart18,chart17, chart16, chart15, chart14, chart13].forEach((c, i, arr) => {
     if (c) {

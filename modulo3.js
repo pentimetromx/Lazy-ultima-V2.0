@@ -3,10 +3,28 @@ document.addEventListener('keydown', function(event) {
     switch (event.key) {             
       case 'Z':
           desactivarClick(['.graphs-lines'])
+          
       break;
       case 'H':      
         Geometria() 
-        restablecerClick(['.graphs-lines'])
+        document.querySelector('#conte-secundario').style.display='flex'
+        document.querySelector('.visor').style.width='100%'
+
+        const padreRgb = document.querySelector('.contenedor-visor')
+        padreRgb.style.display = 'flex';
+        padreRgb.style.flexDirection='column'
+        padreRgb.style.alignItems = 'center';
+        padreRgb.style.justifyContent = 'center';
+        padreRgb.style.width='15vw'
+        padreRgb.style.height='50vh'
+        padreRgb.style.marginTop = '80px';
+        padreRgb.style.left='1vw'
+        padreRgb.style.border='1px solid #1e90ff'
+
+        setTimeout(() => {
+          document.querySelector('.panel-nombres').style.display='none'          
+        }, 10);
+        
       break;
       case 'X':
         var elementosExcluidos = ['']
@@ -27,7 +45,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('conte-butts-graphs');  
+  let contiBoton = document.getElementById('visorImagen');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -933,217 +951,6 @@ menosTintaGeneral.addEventListener('touchstart', (e) => {
 menosTintaGeneral.addEventListener('touchend', detenerMenosTintaGeneral, { passive: true });
 menosTintaGeneral.addEventListener('touchcancel', detenerMenosTintaGeneral, { passive: true });
 
-/* masSolucionGeneral.addEventListener('mousedown', () => {
-  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
-    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {
-      darColorVerdeCabeza()
-      alertaBotones.style.display = 'flex'
-      alertaBotones.style.backgroundColor = verde
-      alertaBotones.style.color = 'black'
-      alertaBotones.style.left='21vw'
-      setTimeout(() => {
-        alertaBotones.style.backgroundColor = ''
-        alertaBotones.style.color = ''  
-      }, 500);
-      desactivarClicEnElementos(botonesPerfilColor,buttsColores);
-    }
-  }else{
-    darColorVerdeCabeza()
-    alertaBotones.style.display = 'flex'
-    alertaBotones.style.backgroundColor = verde
-    alertaBotones.style.color = 'black'
-    alertaBotones.style.left='21vw'
-    setTimeout(() => {
-      alertaBotones.style.backgroundColor = ''
-      alertaBotones.style.color = ''  
-    }, 500);
-    desactivarClicEnElementos(botonesPerfilColor);
-  }  
-  if(flagNegro){
-    aumentarBalanceSolucion(estadoIntervaloSolucion,'.lineas-solucion','#footer-negro #footer-2 .divs-grales-solucion-negro','yellow',verdeAgua,'negro','nivelAgua',);    
-  }
-  if(flagCyan){
-    aumentarBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-azul #footer-4 .divs-grales-solucion-azul',
-      'yellow',
-      verdeAgua,  
-      'azul',
-      'nivelAgua',
-    );    
-  }
-  if(flagMagenta){
-    aumentarBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-magenta #footer-6 .divs-grales-solucion-magenta',
-      'yellow',
-      verdeAgua,  
-      'magenta',
-      'nivelAgua',    
-    );    
-  }
-  if(flagAmarillo){
-    aumentarBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-amarillo #footer-8 .divs-grales-solucion-amarillo',
-      'yellow',
-      verdeAgua,  
-      'amarillo',
-      'nivelAgua',
-    );    
-  }
-  if(flagEspecial){
-    aumentarBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-especial #footer-10 .divs-grales-solucion-especial',
-      'yellow',
-      verdeAgua,  
-      'especial',
-      'nivelAgua',
-    );    
-  }
-  if(flagBarniz){
-    aumentarBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-barniz #footer-12 .divs-grales-solucion-barniz',
-      'yellow',
-      verdeAgua,  
-      'barniz',
-      'nivelAgua',
-    );    
-  }
-  masSolucionGeneral.style.backgroundColor = '#2bf22bc0';
-});
-masSolucionGeneral.addEventListener('mouseup', () => {
-  if (estadoIntervaloSolucion.intervalo) { // Verifica que el intervalo esté activo
-    clearInterval(estadoIntervaloSolucion.intervalo); // Detiene el intervalo
-    estadoIntervaloSolucion.intervalo = null; // Resetea el intervalo
-  }
-  masSolucionGeneral.style.backgroundColor = ''; // Restaura el color de fondo
-});
-masSolucionGeneral.addEventListener('mouseleave', () => {
-  if (estadoIntervaloSolucion.intervalo) { // Verifica que el intervalo esté activo
-    clearInterval(estadoIntervaloSolucion.intervalo); // Detiene el intervalo
-    estadoIntervaloSolucion.intervalo = null; // Resetea el intervalo
-  }
-  masSolucionGeneral.style.backgroundColor = ''; // Restaura el color de fondo
-
-});
-menosSolucionGeneral.addEventListener('mousedown', () => {
-  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
-    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {
-      darColorVerdeCabeza()
-      alertaBotones.style.display = 'flex'
-      alertaBotones.style.backgroundColor = verde
-      alertaBotones.style.color = 'black'
-      alertaBotones.style.left='21vw'
-      setTimeout(() => {
-        alertaBotones.style.backgroundColor = ''
-        alertaBotones.style.color = ''  
-      }, 500);
-      desactivarClicEnElementos(botonesPerfilColor,buttsColores);
-    }
-  }else{
-    darColorVerdeCabeza()
-    alertaBotones.style.display = 'flex'
-    alertaBotones.style.backgroundColor = verde
-    alertaBotones.style.color = 'black'
-    alertaBotones.style.left='21vw'
-    setTimeout(() => {
-      alertaBotones.style.backgroundColor = ''
-      alertaBotones.style.color = ''  
-    }, 500);
-    desactivarClicEnElementos(botonesPerfilColor);
-  }  
-  if(flagNegro){
-    reducirBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-negro #footer-2 .divs-grales-solucion-negro',
-      'yellow',
-      verdeAgua,
-      'negro',
-      'nivelAgua',
-    );
-    }
-  if(flagCyan){
-    reducirBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-azul #footer-4 .divs-grales-solucion-azul',
-      'yellow',
-      verdeAgua,
-      'azul',
-      'nivelAgua'
-    );
-  }
-  if(flagMagenta){
-    reducirBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-magenta #footer-6 .divs-grales-solucion-magenta',
-      'yellow',
-      verdeAgua,
-      'magenta',
-      'nivelAgua',
-    );
-  }
-  if(flagAmarillo){
-    reducirBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-amarillo #footer-8 .divs-grales-solucion-amarillo',
-      'yellow',
-      verdeAgua,
-      'amarillo',
-      'nivelAgua',
-    );
-  }
-  if(flagEspecial){
-    reducirBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-especial #footer-10 .divs-grales-solucion-especial',
-      'yellow',
-      verdeAgua,
-      'especial',
-      'nivelAgua',
-    );
-  }
-  if(flagBarniz){
-    reducirBalanceSolucion(
-      estadoIntervaloSolucion,
-      '.lineas-solucion',
-      '#footer-barniz #footer-12 .divs-grales-solucion-barniz',
-      'yellow',
-      verdeAgua,
-      'barniz',
-      'nivelAgua',
-    );
-  }
-  menosSolucionGeneral.style.backgroundColor= 'rgb(0,255,0)'
-});
-menosSolucionGeneral.addEventListener('mouseup', () => {
-  if (estadoIntervaloSolucion.intervalo) { 
-    clearInterval(estadoIntervaloSolucion.intervalo); 
-    estadoIntervaloSolucion.intervalo = null;
-  }
-  menosSolucionGeneral.style.backgroundColor=''
-});
-menosSolucionGeneral.addEventListener('mouseleave', () => {
-  if (estadoIntervaloSolucion.intervalo) { // Verifica que el intervalo esté activo
-    clearInterval(estadoIntervaloSolucion.intervalo); // Detiene el intervalo
-    estadoIntervaloSolucion.intervalo = null; // Resetea el intervalo
-  }
-  menosSolucionGeneral.style.backgroundColor=''
-});
- */
-
 // 🟢 Iniciar AUMENTAR agua general
 const iniciarMasSolucionGeneral = () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
@@ -1412,115 +1219,6 @@ masTinta.addEventListener('mouseleave', detenerMasTinta);
 // 📱 Táctil
 masTinta.addEventListener('touchend', detenerMasTinta, { passive: true });
 masTinta.addEventListener('touchcancel', detenerMasTinta, { passive: true });
-
-
-
-/* menosTinta.addEventListener('mousedown', () => {
-  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
-    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {   
-      darColorVerdeCabeza()
-      alertaBotones.style.display = 'flex'
-      alertaBotones.style.backgroundColor = verde
-      alertaBotones.style.color = 'black'
-      alertaBotones.style.top = '25vh'
-      alertaBotones.style.left='21vw'
-      setTimeout(() => {
-        alertaBotones.style.backgroundColor = '' 
-        alertaBotones.style.color = ''  
-      }, 500);
-      desactivarClicEnElementos(botonesPerfilColor,botonesSelectores)
-    }
-  }else{
-    darColorVerdeCabeza()
-    alertaBotones.style.display = 'flex'
-    alertaBotones.style.backgroundColor = verde
-    alertaBotones.style.color = 'black'
-    alertaBotones.style.top = '25vh'
-    alertaBotones.style.left='21vw'
-    setTimeout(() => {
-      alertaBotones.style.backgroundColor = '' 
-      alertaBotones.style.color = ''  
-    }, 500);
-    desactivarClicEnElementos(botonesPerfilColor,botonesSelectores)
-  }  
-  if (flagNegro) {
-    disminuirBalanceTinta(
-      estadoIntervaloTinta,
-      '.lineas-tinta',
-      '#footer-negro #footer-1 .divs-grales-tinta-negro',    
-      'yellow',
-      'black',
-      'negro',
-    )
-  }
-  if (flagCyan) {
-    disminuirBalanceTinta(
-      estadoIntervaloTinta,
-      '.lineas-tinta',
-      '#footer-azul #footer-3 .divs-grales-tinta-azul',    
-      'yellow',
-      'cyan',
-      'azul',
-    )
-  }
-  if (flagMagenta) {
-    disminuirBalanceTinta(
-      estadoIntervaloTinta,
-      '.lineas-tinta',
-      '#footer-magenta #footer-5 .divs-grales-tinta-magenta',    
-      'yellow',
-      'magenta',
-      'magenta',
-    )
-  }
-  if (flagAmarillo) {
-    disminuirBalanceTinta(
-      estadoIntervaloTinta,
-      '.lineas-tinta',
-      '#footer-amarillo #footer-7 .divs-grales-tinta-amarillo',    
-      'yellow',
-      'amarillo',
-      'amarillo',
-    )
-  }
-  if (flagEspecial) {
-    disminuirBalanceTinta(
-      estadoIntervaloTinta,
-      '.lineas-tinta',
-      '#footer-especial #footer-9 .divs-grales-tinta-especial',    
-      'yellow',
-      'especial',
-      'especial',
-    )
-  }
-  if (flagBarniz) {
-    disminuirBalanceTinta(
-      estadoIntervaloTinta,
-      '.lineas-tinta',
-      '#footer-barniz #footer-11 .divs-grales-tinta-barniz',    
-      'yellow',
-      'gray',
-      'barniz', 
-    )
-  }
-  menosTinta.style.backgroundColor = 'rgb(0,255,0)'
-});
-menosTinta.addEventListener('mouseup', () => {
-  if (estadoIntervaloTinta.intervalo) { // Verifica que el intervalo esté activo
-    clearInterval(estadoIntervaloTinta.intervalo); // Detiene el intervalo
-    estadoIntervaloTinta.intervalo = null; // Resetea el intervalo
-  }
-  menosTinta.style.backgroundColor = ''; 
-});
-menosTinta.addEventListener('mouseleave', () =>{
-  if (estadoIntervaloTinta.intervalo) { // Verifica que el intervalo esté activo
-    clearInterval(estadoIntervaloTinta.intervalo); // Detiene el intervalo
-    estadoIntervaloTinta.intervalo = null; // Resetea el intervalo
-  }  
-  menosTinta.style.backgroundColor = ''; 
-}) */
-
-
 
 const iniciarMenosTinta = () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
@@ -3168,12 +2866,6 @@ document.getElementById('butt-control-tinta').addEventListener('click', () =>{
   const displayAjusteFino = document.getElementById('inerfaz-ajuste-fino'); 
   nombreCliente.style.display='flex'
   nombreCliente.style.top='5vh'
-  /* let interfazAjuste = document.getElementById('interfaz-perfiles'); 
-  interfazAjuste.style.zIndex = '';
-  interfazAjuste.style.display = 'flex';
-  interfazAjuste.style.position = 'absolute';
-  interfazAjuste.style.top = '5vh';
-  interfazAjuste.style.left = '10vw'; */
   if (!primerClickRealizado) {
     displayAjusteFino.style.display = 'flex';
     displayAjusteFino.style.top = '33vh'
@@ -4745,85 +4437,6 @@ function crearBotonResta(color, linea1, linea2, linea3) {
   const botonesResta = [];
 
   const indexarElements = document.querySelectorAll('.indexar');
-
-  /* for (let i = 1; i <= 22; i++) {
-    const elementoResta = document.createElement('div');
-    elementoResta.classList.add('linea-control', 'resta');
-    elementoResta.id = `bot-resta-${i}`;
-    contenedorPrincipal.appendChild(elementoResta); 
-    botonesResta.push(elementoResta);
-
-    elementoResta.addEventListener("mousedown", () => {
-      if(!flagAplicacion){
-        alertaBotones.style.display = 'flex'
-        alertaBotones.style.backgroundColor = verde
-        alertaBotones.style.color = 'black'
-        alertaBotones.style.top='20vh'
-        desactivarClicEnElementos(buttSelector,buttSelector,botonesPerfilColor,buttsControl ,buttsColores,buttSuma,buttResta);
-        setTimeout(() => {
-          alertaBotones.style.backgroundColor = ''  
-          alertaBotones.style.color = ''  
-        }, 500);
-      }else{
-        const numeroBoton = elementoResta.id.match(/\d+/)?.[0]; // Extrae el número del ID
-        elementoResta.style.backgroundColor = 'rgb(0, 250, 254)';
-        const colorName = getColorName(color);
-        const lineaID = `linea-${numeroBoton}`;
-        const ledID = `led-${numeroBoton}`;
-        const ledGeneral = `grilla-${numeroBoton}`;
-        const ledsRuta = `#columna-70 #${lineaID} #display-leds .leds`;
-        const ledControlRuta = `#control-perfiles #led-${numeroBoton} .led`;
-        const ledGeneralRuta = `#perfil-${colorName} #grilla-${numeroBoton} .led-general`;
-        const coleccionLeds = document.querySelectorAll(ledsRuta);
-        const coleccionLed = document.querySelectorAll(ledControlRuta);
-        const coleccionGeneral = document.querySelectorAll(ledGeneralRuta);
-        console.log(' COLORNAME :', colorName)
-        // Determinar el índice inicial dinámicamente
-        let index = (coleccionLeds.length) - almacenObjetos[objetoGlobal][colorName][linea1][lineaID].length  
-        // Iniciar el intervalo
-        let intervalID = setInterval(() => {
-        if(index === 24) return
-          if (index >=0 ) {
-            coleccionLeds[index].style.backgroundColor = '';
-            coleccionLed[index].style.backgroundColor = '';
-            coleccionGeneral[index].style.backgroundColor = '';  
-
-            almacenObjetos[objetoGlobal][colorName][linea1][lineaID].pop()
-            almacenObjetos[objetoGlobal][colorName][linea2][ledID].pop()
-            almacenObjetos[objetoGlobal][colorName][linea3][ledGeneral].pop()
-            
-            guardarObjetoEnLocalStorage()
-            guardarCambiosGeneralesEnAlmacen()
-            index++;
-          } else {
-            clearInterval(intervalID);
-          }
-        }, 177);
-        const indexarElement = indexarElements[i - 1];
-        if (indexarElement) {
-          indexarElement.style.color = 'red';
-          indexarElement.style.fontSize='1em'
-          indexarElement.style.fontWeight = 'bold';
-        }
-
-        elementoResta.addEventListener("mouseup", () => {
-          const indexarElement = indexarElements[i - 1];
-          if (indexarElement) {
-            indexarElement.style.color = '';
-            indexarElement.style.fontSize=''
-            indexarElement.style.fontWeight = '';
-          }
-          elementoResta.style.backgroundColor = '';
-          clearInterval(intervalID);
-        });
-        elementoResta.addEventListener("mouseleave", () => {
-          elementoResta.style.backgroundColor = '';
-          clearInterval(intervalID);
-        });
-      }
-    });
-  } */
-
   for (let i = 1; i <= 22; i++) {
     const elementoResta = document.createElement('div');
     elementoResta.classList.add('linea-control', 'resta');
@@ -5293,9 +4906,6 @@ buttsJobs.forEach(boton => {
   boton.addEventListener('click', () => {
     switch(boton.id) {
       case 'clientes':
-        /* botonesPerfilColor.forEach(elemento => {   
-          elemento.style.display = 'block';   
-        }); */
         let listaClientes = document.querySelector('#lista-clientes')
         listaClientes.removeAttribute('style');      
         listaClientes.style.top='43vh'
@@ -5464,31 +5074,6 @@ document.querySelector('#perfil-existe').addEventListener('click', () => {
     restablecerClick(['.cont-vacio', '.mod-tinta', '.div-ctrl','.base-datos'])
   }, 1000);
 
-/*   alertaSeis.classList.add('move-alerta')
-  ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
-  const conteJobTrack = document.querySelector('#job-files')
-  const padreBotonera = document.querySelector('#botonera-frente')
-  padreBotonera.style.display='grid'
-  conteJobTrack.classList.remove('move-job-track')
-  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
-  for (var i = 0; i < allContenedores.length; i++) {
-    var elemento = document.getElementById(allContenedores[i])  
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-    }
-  }
-  container1.style.display = 'none'
-  desactivarClick(['.butt-perfiles'])
-  restablecerClick(['.estilo-1', '.butt-revierte'])
-  document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
-  
-  conteJobTrack.style.display='flex'
-  document.querySelectorAll('.datos-base').forEach((elemento) => { 
-    elemento.textContent = ''
-  });  
-  setTimeout(() => {
-    conteJobTrack.classList.add('move-job-track') 
-  }, 100); */
 }) 
 document.querySelector('#perfil-crear').addEventListener('click', () => {
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
@@ -6529,41 +6114,6 @@ document.querySelectorAll('.section').forEach((btn, index) => {
 let values = { C: 0, M: 0, Y: 0, K: 0, A: 0, R: 0, G: 0, B: 0, W:0 };
 let red = 0, green = 0, blue = 0; 
 // ejecuta la función de inicialización de los sliders (initSliderCYK) para cada canal de color
-
-
-
-/* function initSliderCMYK(trackId, spanId, channel) {
-  let track = document.getElementById(trackId);
-  let thumb = track.querySelector(".slider-thumb-cmyk");
-  let span = document.getElementById(spanId); 
-  let isDragging = false;
-
-  thumb.addEventListener("mousedown", () => {
-    isDragging = true;
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", stopDragging);
-  });
-  // Calcula la posición del slider, actualiza el fondo y almacena el valor en 'values[channel]'.
-  function onMouseMove(e) {
-    if (!isDragging) return;
-    let rect = track.getBoundingClientRect();
-    let offsetY = rect.bottom - e.clientY;
-    let porcentaje = Math.round(Math.max(0, Math.min(100, (offsetY / rect.height) * 100)));
-    
-    thumb.style.bottom = `${(porcentaje/100) * (rect.height - thumb.offsetHeight)}px`;
-    track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
-    
-    values[channel] = porcentaje;
-    updateColorCMYK(channel);
-  }
-  // Detiene la interacción y elimina los eventos de movimiento del ratón.
-  function stopDragging() {
-    isDragging = false;
-    document.removeEventListener("mousemove", onMouseMove);
-    document.removeEventListener("mouseup", stopDragging);
-  }
-} */
-
   
 function initSliderCMYK(trackId, spanId, channel) {
   const track = document.getElementById(trackId);
@@ -6694,88 +6244,6 @@ function animarSlidersCMYK(sliderConfigs, duracion = 1000) {
   }
   requestAnimationFrame(step);
 }
-
-/* function initSliderRGB(trackId, spanId, channel) {
-  let track = document.getElementById(trackId);
-  let thumb = track.querySelector(".slider-thumb-rgb");
-  let span = document.getElementById(spanId);
-  let isDragging = false;
-
-  thumb.addEventListener("mousedown", () => {
-    isDragging = true;
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", stopDragging);
-  });
-
-  function onMouseMove(e) {
-    if (!isDragging) return;
-    let rect = track.getBoundingClientRect();
-    let offsetY = rect.bottom - e.clientY;
-    let porcentaje = Math.max(0, Math.min(100, (offsetY / rect.height) * 100));
-
-    let newValue = (porcentaje / 100) * (rect.height - thumb.offsetHeight);
-    thumb.style.bottom = `${newValue}px`;
-
-    track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
-
-    // 🔹 Ahora W usa el rango 0-255 como los demás
-    values[channel] = Math.round((porcentaje / 100) * 255);
-    span.textContent = values[channel];
-
-    updateColorRGB();
-  }
-
-  function stopDragging() {
-    isDragging = false;
-    document.removeEventListener("mousemove", onMouseMove);
-    document.removeEventListener("mouseup", stopDragging);
-  }
-} */
-
-/* function initSliderRGB(trackId, spanId, channel) {
-  const track = document.getElementById(trackId);
-  const thumb = track.querySelector(".slider-thumb-rgb");
-  const span = document.getElementById(spanId);
-  let isDragging = false;
-
-  const startDrag = (e) => {
-    e.preventDefault();
-    isDragging = true;
-    document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseup", stopDrag);
-    document.addEventListener("touchmove", onMove, { passive: false });
-    document.addEventListener("touchend", stopDrag);
-  };
-
-  const onMove = (e) => {
-    if (!isDragging) return;
-
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    const rect = track.getBoundingClientRect();
-    const offsetY = rect.bottom - clientY;
-    const porcentaje = Math.max(0, Math.min(100, (offsetY / rect.height) * 100));
-    const newValue = (porcentaje / 100) * (rect.height - thumb.offsetHeight);
-
-    thumb.style.bottom = `${newValue}px`;
-    track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
-
-    values[channel] = Math.round((porcentaje / 100) * 255);
-    if (span) span.textContent = values[channel];
-
-    updateColorRGB();
-  };
-
-  const stopDrag = () => {
-    isDragging = false;
-    document.removeEventListener("mousemove", onMove);
-    document.removeEventListener("mouseup", stopDrag);
-    document.removeEventListener("touchmove", onMove);
-    document.removeEventListener("touchend", stopDrag);
-  };
-
-  thumb.addEventListener("mousedown", startDrag);
-  thumb.addEventListener("touchstart", startDrag, { passive: false });
-} */
 
 function initSliderRGB(trackId, spanId, channel) {
   const track = document.getElementById(trackId);
@@ -7293,20 +6761,12 @@ function ocultarElementoProgressivo(el, callback) {
   el.style.transition = '';
   el.style.opacity = '1';
 
-  // si estaba en display:none, temporalmente forzamos display para permitir fade (si procede)
-  /*const wasHidden = getComputedStyle(el).display === 'none';
-   if (wasHidden) {
-    el.style.display = 'grid';
-    void el.offsetWidth; // forzar reflow
-  } */
-
-    const wasHidden = getComputedStyle(el).display === 'none';
-    if (wasHidden) {
-      // ya estaba oculto → terminar inmediatamente
-      el.style.display = 'none';
-      return;
-    }
-
+  const wasHidden = getComputedStyle(el).display === 'none';
+  if (wasHidden) {
+    // ya estaba oculto → terminar inmediatamente
+    el.style.display = 'none';
+    return;
+  }
 
   // iniciar fade out
   requestAnimationFrame(() => {
@@ -7706,16 +7166,6 @@ document.getElementById('nombre-Perfil-existe').addEventListener('click', () => 
 });
 function configurarOcultarLista() {
   let temporizador;
-
-  /* const input = document.getElementById('nombre-Perfil-existe');
-
-  // Cuando el mouse/puntero sale del input
-  input.addEventListener('pointerleave', () => {
-    temporizador = setTimeout(() => {
-      listaClientes.style.display = 'none';
-    }, 300);
-  }); */
-
   // Si el mouse entra en la lista antes de que pasen 3 segundos, cancelamos el ocultamiento
   listaClientes.addEventListener('pointerenter', () => {
     clearTimeout(temporizador);

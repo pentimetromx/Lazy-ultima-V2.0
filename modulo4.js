@@ -95,16 +95,7 @@ document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListe
    manejarTransicion('child-move-azul', 'formulario-cuenta', 'marco-formulario',100);
    resaltarSecuencial();   
 })
-/* document.querySelector('#contenedor-botonera button:nth-child(6)').addEventListener('click', () => {
-    var elementosExcluidos = ['']  
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-      const contenedor = document.querySelector('#home-gym').style.display = 'grid'
-    }
-  }
-}) */
+
 function alternarImagenes() {
   const imgUno = document.getElementById("image-uno");
   const imgDos = document.getElementById("image-tres");
@@ -661,8 +652,6 @@ function crearGraficoMes() {
         y: {
           grid: { display: false },
           ticks: { display: false } // sin leyendas verticales
-          /* ticks: { color: '#fff', font: { size: 7 } } */
-
         }
       }
     }
@@ -708,19 +697,9 @@ function crearGraficoSemana() {
           data: [100, 50, 75, 100, 100],
           barPercentage: 1.24
         }
-        /* {
-          type: 'line',
-          data: [100, 80, 90, 95, 100],
-          borderColor: 'orange',
-          borderWidth: 1,
-          pointRadius: 0,
-          fill: false,
-          tension: 0.2
-        } */
       ]
     },
     options: {
-      /* animation: false, */ 
       plugins: {
         legend: { display: false },
         title: {
@@ -1507,10 +1486,10 @@ function destroyChart(chartInstance) {
   }
 }
 
-const padreVisor = document.querySelector('.contenedor-visor')
+/* const padreVisor = document.querySelector('.contenedor-visor')
 const buscador = document.getElementById('buscador-empleado');
 const visor = document.getElementById('visorImagen');
-const nombres = Array.from(document.querySelectorAll('#listaNombres span'));
+const nombres = Array.from(document.querySelectorAll('#listaNombres span'));   
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 
@@ -1520,13 +1499,19 @@ let permitirEliminarImagen = true;
 
 //IMAGEN EN SOLITARIO INICIAL
 visor.addEventListener('click', (e) => {
-  mostrarImagenSuperior(event.currentTarget);
-
-  permitirEliminarImagen = false;
-  const padreBotonPosicion = document.querySelector('#conte-butts-graphs')
   const padreEmpleados = document.querySelector('#father-employees');
   const padreImagenes = document.querySelector('.contenedor-visor'); 
-  padreBotonPosicion.style.display='grid'
+
+  if (e.target.tagName !== 'IMG') return;
+
+  const visor = document.getElementById('visorImagen');
+  const imgSrc = e.target.getAttribute('src');
+  const segundoSpan = visor.querySelector('span:nth-child(2)');
+
+  if (!imgSrc) return;
+
+  imagenSeleccionada = imgSrc;
+  nombreSeleccionado = segundoSpan ? segundoSpan.textContent.trim() : '';
 
   if (e.target.tagName === 'IMG' && indiceActual !== null) {
     const img = e.target;
@@ -1649,17 +1634,212 @@ nextBtn.addEventListener('click', () => {
   if (indiceActual < nombres.length - 1) {
     mostrarEmpleado(indiceActual + 1);
   }
+}); */
+
+document.addEventListener('click', (e) => {
+  const contenedor = e.target.closest('.cont-userI');
+  if (!contenedor) return;
+
+  const img = contenedor.querySelector('img');
+  const span = contenedor.querySelector('.lblNombres');
+  if (!img || !span) return;
+
+  const porta = document.getElementById('porta-imagen');
+  const spanImg = porta.querySelector('.imagen-empleado');
+  const spanNombre = porta.querySelector('.nombre-empleado');
+
+  const src = img.getAttribute('data-src');
+  const nombre = span.textContent.trim();
+
+  spanImg.setAttribute('data-src', src);
+  spanNombre.textContent = nombre;  
+  spanImg.innerHTML = `<img src="${src}" alt="${nombre}">`;
+
+  // Mapeo de nombres a funciones
+  const funciones = {
+    'Carlos Mario Sanchez': 'updateCarlos',
+    'Andres Felipe Montoya': 'updateAndres',
+    'Jorge Alberto Lozada': 'updateJorge',
+    'Jesus Norvey Cordoba': 'updateJesus',
+    'Sandra Milena Alvarez': 'updateSandra',
+    'John Mario Mira Pineda': 'updateMario',
+    'Ana Maria Duarte Pineda': 'updateAna'
+  };
+
+  const functionExe = funciones[nombre];
+  if (functionExe) ejecutarFuncionEmpleado(functionExe);
+});
+
+const visorI = document.getElementById('visorImagen');
+const listado = document.getElementById('listaNombres');
+const spans = listado.querySelectorAll('span');
+const buscador = document.getElementById('buscador-empleado');
+const listaNombres = document.querySelectorAll('#listaNombres span');
+const visorImagen = document.querySelector('#visorImagen span:first-child');
+const visorTexto = document.querySelector('#visorImagen span:last-child');
+const nombres = Array.from(document.querySelectorAll('#listaNombres span')); 
+const visor = document.getElementById('visorImagen');
+
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let permitirEliminarImagen = true;
+
+
+const spansI = document.querySelector('.nombre-empleado');
+if (spansI) {
+  spansI.addEventListener('click', () => {
+    spansI.textContent = '';
+  });
+}
+
+
+
+function mostrarEmpleado(index) {
+  const span = spans[index];
+  if (!span) return;
+
+  const imgSrc = span.getAttribute('data-img');
+  const spansVisor = visorI.querySelectorAll('span');
+
+  // Imagen en el primer span
+  spansVisor[0].innerHTML = `<img src="${imgSrc}" alt="${span.textContent}">`;
+  // Texto debajo en el segundo span
+  spansVisor[1].textContent = span.textContent;
+
+  indiceActual = index;
+}
+// INPUT
+buscador.addEventListener('input', () => {
+  const texto = buscador.value.toLowerCase().trim();
+
+  if (texto === '') {
+    const spansVisor = visorI.querySelectorAll('span');
+    spansVisor[0].innerHTML = 'Sin selección';
+    spansVisor[1].textContent = '';
+    indiceActual = -1;
+    return;
+  }
+
+  const index = Array.from(spans).findIndex(span =>
+    span.textContent.toLowerCase().includes(texto)
+  );
+
+  if (index !== -1) {
+    mostrarEmpleado(index); // ← usa la función original (mantiene eventos)
+  } else {
+    const spansVisor = visorI.querySelectorAll('span');
+    spansVisor[0].innerHTML = 'Sin coincidencias';
+    spansVisor[1].textContent = '';
+  }
 });
 
 
+// CLICK EN LISTADO DE NOMBRES
+nombres.forEach((span, i) => {
+  span.addEventListener('click', () => mostrarEmpleado(i));
+});
+//BOTONES ATRAS/ADELANTE
+prevBtn.addEventListener('click', () => {
+  if (indiceActual > 0) {
+    mostrarEmpleado(indiceActual - 1);
+  }
+});
+
+nextBtn.addEventListener('click', () => {
+  if (indiceActual < nombres.length - 1) {
+    mostrarEmpleado(indiceActual + 1);
+  }
+});
+
+// CLICK EN IMAGEN EN SOLITARIO INICIAL
+visor.addEventListener('click', (e) => {
+  const padreEmpleados = document.querySelector('#father-employees');
+  const padreImagenes = document.querySelector('.contenedor-visor');
+
+  if (e.target.tagName !== 'IMG') return;
+
+  const visor = document.getElementById('visorImagen');
+  const imgSrc = e.target.getAttribute('src');
+  const segundoSpan = visor.querySelector('span:nth-child(2)');
+
+  if (!imgSrc) return;
+
+  imagenSeleccionada = imgSrc;
+  nombreSeleccionado = segundoSpan ? segundoSpan.textContent.trim() : '';
+
+  if (e.target.tagName === 'IMG' && indiceActual !== null) {
+    const img = e.target;
+  
+    padreEmpleados.style.display = 'none';  
+    padreImagenes.style.display = 'none';
+
+    const span = nombres[indiceActual];
+    if (span.textContent === 'Andres Felipe Montoya') {
+      resultadosEmpleado('icon-andres', 'updateAndres', 'img2', 'true');
+    }
+    if (span.textContent === 'Carlos Mario Sanchez') {
+      resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
+    }
+    if (span.textContent === 'Jorge Alberto Lozada') {
+      resultadosEmpleado('icon-jorge','updateJorge','img3','true');
+    }
+    if (span.textContent === 'Jesus Norvey Cordoba') {
+      resultadosEmpleado('icon-jesus','updateJesus','img4','true');
+    }
+    if (span.textContent === 'Sandra Milena Alvarez') {
+      resultadosEmpleado('icon-sandra','updateSandra','img5','true');
+    }
+    if (span.textContent === 'John Mario Mira Pineda') {
+      resultadosEmpleado('icon-mario','updateMario','img6','true');
+    }
+    if (span.textContent === 'Ana Maria Duarte Pineda') {
+      resultadosEmpleado('icon-ana','updateAna','img7','true');
+    }
+
+    // Restaurar flag para siguientes llamadas externas
+    setTimeout(() => {
+      permitirEliminarImagen = true;
+    },100);    
+
+  }
+});
 
 
+function reubicarVisor(){
+  document.querySelector('#conte-secundario').style.display='flex'
+  document.querySelector('.visor').style.width='100%'
+  const padreRgb = document.querySelector('.contenedor-visor')
+  padreRgb.style.display = 'flex';
+  padreRgb.style.flexDirection='column'
+  padreRgb.style.alignItems = 'center';
+  padreRgb.style.justifyContent = 'center';
+  padreRgb.style.width='15vw'
+  padreRgb.style.height='50vh'
+  padreRgb.style.marginTop = '80px';
+  padreRgb.style.left='1vw'
+  padreRgb.style.border='1px solid #1e90ff'
 
+  setTimeout(() => {
+  document.querySelector('.panel-nombres').style.display='none'          
+  }, 10);
+
+}
 
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 function PARABORRAR(){
+  document.querySelector('.panel-nombres').style.height=''
+  const padres = document.querySelectorAll('.contenedor-visor')
+
+  padres.forEach(padre => {
+    padre.removeAttribute('style'); // limpia el padre
+
+    padre.querySelectorAll('*').forEach(hijo => {
+      hijo.removeAttribute('style'); // limpia todos los descendientes
+    });
+  });
+
   solicitarPantallaCompleta()
   document.querySelector('.contenedor-visor').style.display='flex'
   mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
