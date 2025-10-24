@@ -424,6 +424,7 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     break;
   }
 }
+
 function solicitarPantallaCompleta() {
   const docEl = document.documentElement;
   if (docEl.requestFullscreen) {
@@ -434,6 +435,7 @@ function solicitarPantallaCompleta() {
     docEl.msRequestFullscreen();
   }
 }
+
 function ocultarGranCortina() {
   setTimeout(() => {
     const cortina = document.getElementById('gran-cortina');
@@ -1803,8 +1805,6 @@ visor.addEventListener('click', (e) => {
 
   }
 });
-
-
 function reubicarVisor(){
   document.querySelector('#conte-secundario').style.display='flex'
   document.querySelector('.visor').style.width='100%'
@@ -1825,11 +1825,24 @@ function reubicarVisor(){
 
 }
 
+function ingresoEmpleado(){
+  const excluidos = [
+    'ingresos-sistema'
+  ];
+  allContenedores.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
+  });                      
+
+}
+
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 function PARABORRAR(){
-  document.querySelector('.panel-nombres').style.height=''
+  solicitarPantallaCompleta()
+  ingresoEmpleado()
+  /* document.querySelector('.panel-nombres').style.height=''
   const padres = document.querySelectorAll('.contenedor-visor')
 
   padres.forEach(padre => {
@@ -1852,7 +1865,8 @@ function PARABORRAR(){
   setTimeout(() => {
     alternarTeccnologia('cmyk')
     resultadosMA('interfaz-mtto')
-  }, 300);
+  }, 300); */
 }
+
 const info = document.getElementById('info');
 info.textContent = `W:${window.innerWidth} H:${window.innerHeight} DPR:${window.devicePixelRatio}`;

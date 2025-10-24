@@ -208,9 +208,10 @@ color: white;
   display: flex;
   left:0;
   top:3%;
-  height:7%;
+  height:17%;
   width: auto;
   align-items: center;
+  cursor: pointer;
   z-index: 3;
 }
 #titleContainer p,
@@ -6651,4 +6652,59 @@ height:100%;
 }
 .canva-graphs {
   pointer-events: none;
+}
+
+#ingresos-sistema {
+  position: absolute;
+  display: grid;
+  justify-content: center; /* centra horizontalmente */
+  align-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  background: rgba(20, 30, 50, 0.85);
+  top: 33vh;
+  left: 15vw;
+  width: 40vw;
+  height: 50vh;
+  border: 1px solid white;
+  border-radius: 7px;
+}
+
+#ingresos-sistema > div {
+  width: 80%;
+  height: 100%;
+  margin-left: 10%;
+  box-sizing: border-box;
+}
+.columna-izq {
+  display: grid;
+  grid-template-rows: auto auto auto auto auto auto;
+  gap: 0.5rem;
+}
+
+.fila-ingreso {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 10%;
+} 
+.fila-ingreso > input{
+  width: 90%;
+  height:25%;
+  font-size: 0.8vw;
+  box-sizing: border-box;
+  border: none;
+  outline: none;  
+
+  background-color: #0d0f18;
+  color: #e0e0e0;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+}
+.fila-ingreso > label{
+  width: 90%;
+  box-sizing: border-box;
+  color: #7cb8ff;
+  font-size: 0.7rem;  
 }

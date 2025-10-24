@@ -13,7 +13,6 @@
 
   <div id="info" style="position:fixed;bottom:10px;left:10px;color:white;background:black;padding:5px;font-family:monospace;z-index:9999;"></div>
 
-
   <body onload="manejarLogica()"> 
     <header class="buscador" id="buscador">
       
@@ -480,6 +479,7 @@
         <li>Mejora Enfocada</li>
         <li>Administrativo y soporte</li>
         <li><button type="button" onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">Job track</button></li>
+        <li><button type="button" onclick="ingresoEmpleado()">Ingreso</button></li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
 
@@ -631,7 +631,6 @@
       </div> 
 
     </div>
-
     <div id="barras-contenedor" class="contenedor-barras">      
       <div class="barra-vertical barra-vertical-6">
         <div class="horiz-6-1"></div>
@@ -658,7 +657,6 @@
         <div class="horiz-3-3"></div>
       </div>
     </div>
-    
     <div id="container01" data-display="grid">
       <button id="bot-atras" onclick="irContenedorAnterior('contPortPlaca')"></button>
       <button id="bot-inicial" onclick="VolveraInicio()">Panel Inicio</buttonclass=>
@@ -2521,7 +2519,6 @@
         <li><span class="indice">31.</span> Recuerda que cada día es una nueva oportunidad para mejorar.</li>
       </ol>
     </div>
-
     <div id="contenedor-2" class="calendar-container">
       <h2 class="month-title">March</h2>
       
@@ -2581,9 +2578,7 @@
         <div></div>
       </div>
     </div>
-
     <div id="blur-layer"></div>
-
     <div id="lista-maquinas">
       <span class="maquina">Rotativa 1<span class="indicador"></span></span>
       <span class="maquina">Rotativa 2<span class="indicador"></span></span>
@@ -3383,7 +3378,6 @@
       </div>
       
     </div>
-    
     <div id="contenedor-1" class="sup-level">
     <div class="title">LEVEL <div class="sub-title">Week</div></div>
     <div class="container">
@@ -3508,7 +3502,6 @@
     <div id="video-desliza-plancha">
       <video class="lazy" src="./assets/Desliza plancha.mp4" autoplay muted playsinline></video>
     </div>
-
     <div id="triada-videos">
       <div id="corte-ajuste" class="ajuste-corte">
         <video class="lazy" src="./assets/Oscilacion.mp4" autoplay loop muted playsinline></video>
@@ -3520,7 +3513,6 @@
         <video class="lazy" src="./assets/corte ajuste.mp4" loop></video>
       </div>
     </div>
-
     <div id="video-insolacion">
       <video class="lazy" src="./assets/Insolar punto plancha.mp4" autoplay muted playsinline></video>
     </div>
@@ -3548,7 +3540,6 @@
     <div id="tinta_segmento">
       <video class="lazy" src="./assets/Segmento tinta.mp4" autoplay loop muted playsinline></video>
     </div>
-    
     <div id="marco-formulario">
 
       <div id="formulario-cuenta" class="formulario-crear-cuenta"> 
@@ -3578,7 +3569,6 @@
       </div>
 
     </div>
-
     <div id="contenedor-botonera" data-display="grid">
       <button>Barras amarillas</button>
       <button>Sheeter</button>
@@ -3596,7 +3586,6 @@
     </div>
     <button class="borrar-boton" style="left: 33vw;" onclick="PARABORRAR()">1</button>
     <button class="borrar-boton" onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">2</button>
-    
     <div id="abuelo-grafica4">
 
       <div id="padre-grafica4" class="hijo-graficos">
@@ -3619,7 +3608,6 @@
       </div>
 
     </div>
-
     <div id="grafico-area" class="dashboard-grid">
       <div class="box box-1"></div>
       <div class="box box-2">En exposicion</div>
@@ -3658,6 +3646,36 @@
       <div class="box box-8"></div>
       <div class="box box-9"></div>
     </div>
+
+
+    <div id="ingresos-sistema">
+      <div class="columna-izq">
+        <div class="fila-ingreso">
+          <label for="numDoc">Nombre empleado</label>
+          <input type="text" id="numDoc">
+        </div>
+
+        <div class="fila-ingreso">
+          <label for="numDoc">Número documento</label>
+          <input type="text" id="numDoc">
+        </div>
+        <div class="fila-ingreso">
+          <label for="numDoc">Area corporativa</label>
+          <input type="text" id="numDoc">
+        </div>
+        <div class="fila-ingreso">
+          <label for="numDoc">Equipo asignado</label>
+          <input type="text" id="numDoc">
+        </div>
+        <div class="fila-ingreso"></div>
+
+      </div>       
+      <div class="columna-centro"></div>
+      <div class="columna-derecha"></div>     
+    </div>
+
+
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--LIBRERIA DE GRAFICOS-->

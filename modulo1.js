@@ -4661,7 +4661,7 @@ function graficosAutomaticos(idGrafico){
   }
 }
 
-document.getElementById('textToColorI').addEventListener('mouseenter', () => {
+document.getElementById('titleContainerI').addEventListener('mouseenter', () => {
   let padreLinks = document.getElementById('links-inicialesI');
   let conteLinks = document.getElementById('linkListI');
 
@@ -4683,15 +4683,13 @@ document.getElementById('textToColorI').addEventListener('mouseenter', () => {
     setTimeout(() => {
       padreLinks.style.display = 'block';
       conteLinks.style.display = 'block';
-      expandHeight('linkListI');
     }, 400);
   } else {
     padreLinks.style.display = 'block';
-    conteLinks.style.display = 'block';
-    expandHeight('linkListI');    
+    conteLinks.style.display = 'block';   
   }
 });
-document.getElementById('textToColor').addEventListener('mouseenter', () => {
+document.getElementById('titleContainer').addEventListener('mouseenter', () => {
   let padreLinks = document.getElementById('links-iniciales')
   let conteLinks = document.getElementById('linkList')
 
@@ -4713,82 +4711,17 @@ document.getElementById('textToColor').addEventListener('mouseenter', () => {
     setTimeout(() => {
       padreLinks.style.display='block'
       conteLinks.style.display='block'
-      expandHeight('linkList')
     }, 400);
   }else{
     padreLinks.style.display='block'
-    conteLinks.style.display='block'
-    expandHeight('linkList')    
+    conteLinks.style.display='block'   
   }
 }
 );
 let intervaloAltura = null; 
 let intervaloAlturaI = null;
 let alturaObjetivoAlcanzada = false;
-function expandHeight(linksGuard) {
-  if(linksGuard === 'linkListI'){
-    let elemento = document.getElementById('linkListI');
-    let items = elemento.querySelectorAll('li');
-    // Eliminar estilos en línea aplicados previamente al <ul> y a los <li>
-    elemento.style.height = ''; // Restablece la altura del <ul>
-    items.forEach(item => item.style.display = 'none'); // Oculta todos los <li> al inicio
-    // Reiniciar el control de la altura objetivo alcanzada
-    alturaObjetivoAlcanzada = false;
-    const alturaInicial = elemento.offsetHeight;
-    const alturaObjetivo = alturaInicial + 200; // Define la altura objetivo
-    const incrementoPorItem = 100 / items.length; // Cuánto debe incrementarse la altura por cada <li> mostrado
-    // Verifica si ya hay un intervalo en ejecución o si la altura objetivo se alcanzó
-    if (intervaloAltura || alturaObjetivoAlcanzada) {
-      return; // Si ya hay un intervalo activo o la altura objetivo se alcanzó, no hace nada
-    }
-    // Crear el intervalo
-    intervaloAltura = setInterval(function () {
-      let alturaActual = elemento.offsetHeight;
-      // Incrementar la altura si no se ha alcanzado la altura objetivo
-      if (alturaActual < alturaObjetivo) {
-        elemento.style.height = (alturaActual + 1) + 'px';
-        // Mostrar los <li> a medida que la altura crece
-        items.forEach((item, index) => {
-          if (alturaActual >= alturaInicial + (incrementoPorItem * (index + 1))) {
-            item.style.display = 'block'; // Mostrar el <li> si la altura es suficiente
-          }
-        });
-      } else {
-        // Detener el intervalo y marcar que la altura objetivo se ha alcanzado
-        clearInterval(intervaloAltura);
-        intervaloAltura = null; // Reinicia el intervalo
-        alturaObjetivoAlcanzada = true; // Marca que la altura objetivo ha sido alcanzada
-      }
-    }, 7);
-  }else{
-    let elemento = document.getElementById('linkList');
-    let items = elemento.querySelectorAll('li');
-    elemento.style.height = '';
-    items.forEach(item => item.style.display = 'none'); 
-    alturaObjetivoAlcanzada = false;
-    const alturaInicial = elemento.offsetHeight;
-    const alturaObjetivo = alturaInicial + 200;
-    const incrementoPorItem = 100 / items.length;
-    if (intervaloAlturaI || alturaObjetivoAlcanzada) {
-      return;
-    }
-    intervaloAlturaI = setInterval(function () {
-      let alturaActual = elemento.offsetHeight;
-      if (alturaActual < alturaObjetivo) {
-        elemento.style.height = (alturaActual + 1) + 'px';
-        items.forEach((item, index) => {
-          if (alturaActual >= alturaInicial + (incrementoPorItem * (index + 1))) {
-            item.style.display = 'block'; // Mostrar el <li> si la altura es suficiente
-          }
-        });
-      } else {
-        clearInterval(intervaloAlturaI);
-        intervaloAlturaI = null;
-        alturaObjetivoAlcanzada = true;
-      }
-    }, 7);
-  }
-}
+
 document.getElementById('linkListI').addEventListener('mouseleave', () =>{
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]);
