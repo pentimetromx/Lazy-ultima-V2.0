@@ -4390,7 +4390,7 @@ function resultadosMaquina(){
     el.textContent = '';
   });
 
-  ["lista-maquinas", "meses", "calendario-mes", "cont-span-semanas", "titulo-calendar", "titulo-mes"].forEach(id => aparecerElemento(id, "grid"));
+  ["lista-maquinas", "meses", "calendario-mes", "cont-span-semanas", "titulo-calendar", "titulo-mes", "contenedor-global"].forEach(id => aparecerElemento(id, "grid"));
   destruirCharts()
 }
 document.querySelectorAll('.maquina').forEach((maquina, index) => {

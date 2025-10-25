@@ -6323,10 +6323,10 @@ height:100%;
   font-weight: bold;
 }
 #lista-maquinas{
-  position: relative;
+  position:absolute;
   display: grid;
   grid-template-rows: repeat(11, 1fr);
-  top: 6vh;
+  top: 16vh;
   left: 1vw;
   width: 11vw;
   height: 30vh;
@@ -6377,7 +6377,7 @@ height:100%;
 #titulo-mes{
   position: absolute;
   display: flex;
-  top: 12vh;
+  top: 16vh;
   left:36vw;
   width: 11vw;
   height: 3vh;
@@ -6399,7 +6399,7 @@ height:100%;
 #titulo-calendar{
   position: absolute;
   display: flex;
-  top: 12vh;
+  top: 16vh;
   left:24vw;
   width: 11vw;
   height: 3vh;
@@ -6417,11 +6417,6 @@ height:100%;
   transform: scale(0);
   transform-origin: center; 
   transition: transform 1s ease;
-}
-#titulo-mes.activo,
-#titulo-calendar.activo {
-  display: flex;
-  transform: scale(1); /* tamaño normal definido por CSS */
 }
 
 .span-semana {
@@ -6450,7 +6445,7 @@ height:100%;
   position: absolute;
   display: grid;
   grid-template-rows: repeat(7, 1fr);
-  top: 18vh;
+  top: 16vh;
   left:49vw ;
   width: 5vw;
   height: 20vh;
@@ -6472,7 +6467,7 @@ height:100%;
   display: flex;
   flex-direction: column;
   left:23vw;
-  top:17vh;
+  top:20vh;
   gap: 5px;
   width:25vw;
   height: 20vh;
@@ -6551,7 +6546,7 @@ height:100%;
 }
 #meses{
   position: absolute;
-  top: 12vh;
+  top: 16vh;
   left: 13vw;
   display: grid;
   grid-template-rows: repeat(12, 1fr);
@@ -6653,34 +6648,98 @@ height:100%;
 .canva-graphs {
   pointer-events: none;
 }
+.encabezado {
+  display: flex;
+  height: 100%;
+  margin-left: 20%;
+  margin-top: 2%;  
+  grid-column: 1 / -1; /* ocupa todo el ancho */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.3vw;
+  font-weight: bold;
+}
 
 #ingresos-sistema {
   position: absolute;
   display: grid;
-  justify-content: center; /* centra horizontalmente */
-  align-items: center;
-  grid-template-columns: repeat(3, 1fr);
-  background: rgba(20, 30, 50, 0.85);
-  top: 33vh;
-  left: 15vw;
+  grid-template-columns: 35% 45% 15%;
+  grid-template-rows: auto 1fr; /* agrega fila para el encabezado */
   width: 40vw;
   height: 50vh;
-  border: 1px solid white;
+  top: 5%;
+  left: 5%;
+  background-color: rgb(125, 144, 157);
   border-radius: 7px;
-}
+  
 
-#ingresos-sistema > div {
+  transform: scale(0);
+  transform-origin: center; 
+  transition: transform 1s ease;
+}
+#ingresos-sistema > :nth-child(3),
+#ingresos-sistema > div:first-child {
   width: 80%;
-  height: 100%;
-  margin-left: 10%;
+  height:70%;
   box-sizing: border-box;
 }
+.columna-derecha,
 .columna-izq {
   display: grid;
   grid-template-rows: auto auto auto auto auto auto;
   gap: 0.5rem;
 }
-
+.columna-centro{
+  display: grid;
+  margin-top:5%;
+  margin-left: 9%;
+  grid-template-rows: 90% 10%;
+  justify-items: center;
+  align-items:center;
+  width: 100%;
+  height:calc(100% - 20%);
+}
+.columna-centro > div {
+  border: 1px solid #ccc;
+  height: calc(100% - 5%);
+  width: calc(100% - 10%);
+  background: #f3f3f3;
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+}
+.columna-centro > label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6em 2em;
+  background: linear-gradient(145deg, #004aad, #00357a);
+  height: 100%;
+  color: #f5f5f5;
+  font-weight: 500;
+  font-size: 1vw;
+  border: none;
+  border-radius: 6px;
+  box-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.3),
+    -2px -2px 6px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.columna-centro > label:hover{
+  transform: translateY(-2px);
+  box-shadow:
+    3px 3px 8px rgba(0, 0, 0, 0.4),
+    -3px -3px 8px rgba(255, 255, 255, 0.3);
+}
+.columna-centro > label:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.3);
+}
 .fila-ingreso {
   display: flex;
   flex-direction: column;
@@ -6689,22 +6748,100 @@ height:100%;
   height: 100%;
   gap: 10%;
 } 
+.columna-derecha{
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.columna-derecha > input,
 .fila-ingreso > input{
   width: 90%;
-  height:25%;
+  height:40%;
   font-size: 0.8vw;
   box-sizing: border-box;
   border: none;
   outline: none;  
-
-  background-color: #0d0f18;
+  /* background-color: #0d0f18; */
+  background-color: rgb(0,0,50);
   color: #e0e0e0;
   padding: 0.4rem 0.6rem;
   border-radius: 4px;
 }
+.columna-derecha > label,
 .fila-ingreso > label{
   width: 90%;
   box-sizing: border-box;
-  color: #7cb8ff;
+  color: #0e2433;  
   font-size: 0.7rem;  
 }
+.columna-derecha > div{
+  justify-content:center;
+}
+#nomEmpl{
+  height: 20%;
+  width: 120%;
+}
+#ingresos-sistema.activo,
+#padre-ingresos.activo,
+#contenedor-global.activo,
+#titulo-mes.activo,
+#titulo-calendar.activo {
+  display: flex;
+  transform: scale(1); 
+}
+
+#contenedor-global {
+  position: relative;
+  display: block;
+  top: 6.5vh;
+  width: 55vw;
+  height: 60vh;
+  pointer-events: none;
+  
+  transform: scale(0);
+  transform-origin: center; 
+  transition: transform 1s ease;
+}
+#padre-ingresos{
+  position: relative;
+  display: block;
+  border-radius: 19px;
+  top: 22vh;
+  left: 28vw;
+  width: 44.5vw;
+  height: 56vh;
+  background-color: rgb(0, 0,17);
+
+  transform: scale(0);
+  transform-origin: center; 
+  transition: transform 1s ease;
+}
+.special-border::before {  
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: 
+    conic-gradient(
+      from 60deg,
+      rgba(120, 180, 150, 0.8) 0deg,
+      rgba(120, 180, 150, 0.8) 30deg,
+      rgba(80, 110, 100, 0.3) 60deg,
+      rgba(80, 110, 100, 0.3) 120deg,
+      rgba(120, 180, 150, 0.8) 150deg,
+      rgba(120, 180, 150, 0.8) 210deg,
+      rgba(80, 110, 100, 0.3) 240deg,
+      rgba(80, 110, 100, 0.3) 300deg,
+      rgba(120, 180, 150, 0.8) 330deg,
+      rgba(120, 180, 150, 0.8) 360deg
+    );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+

@@ -1832,9 +1832,12 @@ function ingresoEmpleado(){
   allContenedores.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
-  });                      
-
+  });
+  ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
 }
+
+
+
 
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */

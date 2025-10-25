@@ -2,28 +2,15 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z':
-          desactivarClick(['.graphs-lines'])
+      const contenedor = document.getElementById('contenedor-global');
+      contenedor.querySelectorAll('*').forEach(el => {
+        el.style.top = (parseInt(getComputedStyle(el).top || 0) + 50) + 'px';
+      });
+
           
-      break;
+      break;  
       case 'H':      
         Geometria() 
-        document.querySelector('#conte-secundario').style.display='flex'
-        document.querySelector('.visor').style.width='100%'
-
-        const padreRgb = document.querySelector('.contenedor-visor')
-        padreRgb.style.display = 'flex';
-        padreRgb.style.flexDirection='column'
-        padreRgb.style.alignItems = 'center';
-        padreRgb.style.justifyContent = 'center';
-        padreRgb.style.width='15vw'
-        padreRgb.style.height='50vh'
-        padreRgb.style.marginTop = '80px';
-        padreRgb.style.left='1vw'
-        padreRgb.style.border='1px solid #1e90ff'
-
-        setTimeout(() => {
-          document.querySelector('.panel-nombres').style.display='none'          
-        }, 10);
         
       break;
       case 'X':
@@ -45,7 +32,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('visorImagen');  
+  let contiBoton = document.getElementById('padre-ingresos');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
