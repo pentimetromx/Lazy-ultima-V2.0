@@ -5210,7 +5210,7 @@ elementosMes.forEach((mes, index) => {
     mes.style.color = 'rgb(90,160,220)';
 
     ['calendario-mes','cont-span-semanas','titulo-calendar','titulo-mes']
-    .forEach(id => aparecerElemento(id,'grid'));
+    
     mostrarCalendario(mes.textContent.trim());
     setTimeout(mostrarSemanasSecuencialmente, 50);
     aplicarLogicaPorMes(mes.textContent.trim());

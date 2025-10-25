@@ -4567,10 +4567,40 @@ top: 44%;
   background-color: #000;
   border-radius: 7px;
   top: 12.2vh;
-  left: 55vw;
+  left: 56vw;
   box-sizing: border-box;  
   transition: filter 0.5s ease;
 }
+#abuelo-grafica4::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: 
+    conic-gradient(
+      from 45deg,
+      rgba(120, 180, 150, 0.8) 0deg,
+      rgba(120, 180, 150, 0.8) 30deg,
+      rgba(80, 110, 100, 0.3) 60deg,
+      rgba(80, 110, 100, 0.3) 120deg,
+      rgba(120, 180, 150, 0.8) 150deg,
+      rgba(120, 180, 150, 0.8) 210deg,
+      rgba(80, 110, 100, 0.3) 240deg,
+      rgba(80, 110, 100, 0.3) 300deg,
+      rgba(120, 180, 150, 0.8) 330deg,
+      rgba(120, 180, 150, 0.8) 360deg
+    );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+
+
 .titulo-graf-ma.blur,
 #cont-span-semanas.blur,
 #meses.blur,
