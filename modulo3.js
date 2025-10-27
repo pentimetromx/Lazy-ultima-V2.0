@@ -2,11 +2,8 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z':
-      const contenedor = document.getElementById('contenedor-global');
-      contenedor.querySelectorAll('*').forEach(el => {
-        el.style.top = (parseInt(getComputedStyle(el).top || 0) + 50) + 'px';
-      });
-
+      mostrarVentanaEmergente('Perfil creado y almacenado');
+      
           
       break;  
       case 'H':      

@@ -478,8 +478,8 @@
         <li>Mantenimiento Progresivo</li>
         <li>Mejora Enfocada</li>
         <li>Administrativo y soporte</li>
-        <li><button type="button" onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">Job track</button></li>
-        <li><button type="button" onclick="ingresoEmpleado()">Ingreso</button></li>
+        <li onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">Job track</li>
+        <li onclick="ingresoEmpleado()">Ingreso</li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
 
@@ -3669,50 +3669,128 @@
         <div class="encabezado">
           Registro de empleados
         </div>
-
         <div class="columna-izq">
+
           <div class="fila-ingreso">
             <label for="numDoc">Nombre empleado</label>
-            <input type="text" id="numDoc">
+            <input type="text" id="numDoc" class="entrada-empleado" title="Solo letras y espacios">
           </div>
           <div class="fila-ingreso">
-            <label for="numDoc">Número documento</label>
-            <input type="text" id="numDoc">
+            <label for="numDoc1">Número documento</label>
+            <input type="text" id="numDoc1" class="entrada-empleado">
           </div>
           <div class="fila-ingreso">
-            <label for="numDoc">Area corporativa</label>
-            <input type="text" id="numDoc">
+            <label for="numDoc2">Área corporativa</label>
+            <input type="text" id="numDoc2" list="areas" class="entrada-empleado" placeholder="Seleccione un área">
+            <datalist id="areas">
+              <option value="Recursos Humanos"></option>
+              <option value="Finanzas"></option>
+              <option value="Mercadeo"></option>
+              <option value="Ventas"></option>
+              <option value="Producción"></option>
+              <option value="Calidad"></option>
+              <option value="Investigación y Desarrollo"></option>
+              <option value="Logística"></option>
+              <option value="Servicio al Cliente"></option>
+              <option value="Tecnología"></option>
+            </datalist>
           </div>
           <div class="fila-ingreso">
-            <label for="numDoc">Equipo asignado</label>
-            <input type="text" id="numDoc">
+            <label for="numDoc5">Cargo</label>
+            <input type="text" id="numDoc5" list="cargos" class="entrada-empleado" placeholder="Seleccione un cargo">
+            <datalist id="cargos">
+              <option value="Presidente"></option>
+              <option value="Director General"></option>
+              <option value="Gerente de Producción"></option>
+              <option value="Gerente Comercial"></option>
+              <option value="Gerente de Finanzas"></option>
+              <option value="Gerente de Calidad"></option>
+              <option value="Jefe de Preprensa"></option>
+              <option value="Jefe de Impresión Offset"></option>
+              <option value="Jefe de Acabados y Empaque"></option>
+              <option value="Jefe de Mantenimiento"></option>
+              <option value="Supervisor de Producción"></option>
+              <option value="Diseñador Gráfico"></option>
+              <option value="Coordinador de Logística"></option>
+              <option value="Asistente de Compras"></option>
+              <option value="Técnico en Control de Calidad"></option>
+              <option value="Operario de Máquina Offset"></option>
+              <option value="Auxiliar de Máquina"></option>
+              <option value="Operario de Acabados"></option>
+              <option value="Mensajero Interno"></option>
+              <option value="Servicios Generales"></option>
+            </datalist>
+          </div>          
+          <div class="fila-ingreso">
+            <label for="numDoc3">Equipo asignado</label>
+            <input type="text" id="numDoc3" list="equipos" class="entrada-empleado" placeholder="Seleccione un recurso">
+            <datalist id="equipos">
+              <option value="Epson SurePress L-6534VW"></option>
+              <option value="Epson SurePress L-6534VW (Orange Ink)"></option>
+              <option value="Epson SurePress L-6534VW (CMYKW+Or)"></option>
+              <option value="Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press"></option>
+              <option value="Ricoh Pro Z75 (Duplex)"></option>
+              <option value="Ricoh Pro Z75 (400 gsm Media Support)"></option>
+              <option value="IBM InfoPrint Production Press"></option>
+              <option value="IBM InfoPrint Color 1000"></option>
+              <option value="IBM InfoColor 70"></option>
+              <option value="Roland Sheetfed 900 Evolution"></option>
+              <option value="Roland Sheetfed DI 106-8-L (LED UV)"></option>
+              <option value="Roland Sheetfed 700 Series (High Performance)"></option>
+              <option value="Heidelberg Speedmaster SX 102"></option>
+              <option value="Heidelberg Speedmaster XL 105"></option>
+              <option value="Heidelberg Speedmaster CX 145"></option>
+              <option value="Rotatek Brava 450 Semi-Rotary/Rotary Offset Press"></option>
+              <option value="Rotatek Universal 850 Web-Offset Press"></option>
+              <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press"></option>
+            </datalist>
           </div>
           <div class="fila-ingreso">
-            <label for="numDoc">Fecha ingreso</label>
-            <input type="text" id="numDoc">
+            <label for="numDoc4">Fecha ingreso</label>
+            <input type="text" id="numDoc4" class="entrada-empleado" placeholder="DD/MM/YYYY" readonly>
           </div>
-        </div>       
-        <div class="columna-centro">
-          <div></div>
-          <label for="numDoc">Agregar</label>
+
+          <div class="fila-ingreso">
+            <label for="numDoc6">Registro fotográfico</label>
+            <input type="text"id="numDoc6"class="entrada-empleado" value="./assets/" placeholder="Ruta o enlace de la fotografía">
+          </div>          
+
         </div>
+
+        <div class="columna-centro">
+
+          <div class="imgEmpleado" data-img="./assets/gato.png">
+            <img src="./assets/"  id="empleadoImg" alt="logo"> 
+          </div>
+
+          <label for="numDoc" id="nuevo-ingreso">Registrar</label>
+          <label for="numDoc" id="limpia-ingreso">Borrar campos</label>
+        </div>
+
+
+
         <div class="columna-derecha">
           <div class="fila-ingreso">
             <label for="numDoc">Buscar</label> 
-            <input type="text" id="nomEmpl">       
-          </div>        
+            <input type="text" id="nomEmpl" class="entrada-empleado"> 
+            <label for="numDoc" id="lbl-ingreso">Ir</label>
+          </div> 
+          <div>
+
+          </div>       
         </div>
-      </div>
+      </div>     
       
     </div>
+    <div id="calendario"></div>
 
 
-
-
-
+    <div id="msg-empleado" class="ventana-mensaje">
+      <p>Perfil creado y almacenado</p>
+      <button id="cerrarVentana">Cerrar</button>
+    </div>
     
-
-
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--LIBRERIA DE GRAFICOS-->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>

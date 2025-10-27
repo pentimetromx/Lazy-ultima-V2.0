@@ -1488,156 +1488,6 @@ function destroyChart(chartInstance) {
   }
 }
 
-/* const padreVisor = document.querySelector('.contenedor-visor')
-const buscador = document.getElementById('buscador-empleado');
-const visor = document.getElementById('visorImagen');
-const nombres = Array.from(document.querySelectorAll('#listaNombres span'));   
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-
-let indiceActual = null; // ya lo tienes
-let permitirEliminarImagen = true;
-
-
-//IMAGEN EN SOLITARIO INICIAL
-visor.addEventListener('click', (e) => {
-  const padreEmpleados = document.querySelector('#father-employees');
-  const padreImagenes = document.querySelector('.contenedor-visor'); 
-
-  if (e.target.tagName !== 'IMG') return;
-
-  const visor = document.getElementById('visorImagen');
-  const imgSrc = e.target.getAttribute('src');
-  const segundoSpan = visor.querySelector('span:nth-child(2)');
-
-  if (!imgSrc) return;
-
-  imagenSeleccionada = imgSrc;
-  nombreSeleccionado = segundoSpan ? segundoSpan.textContent.trim() : '';
-
-  if (e.target.tagName === 'IMG' && indiceActual !== null) {
-    const img = e.target;
-
-    padreEmpleados.style.display = 'none';  
-    padreImagenes.style.display = 'none';
-
-    const span = nombres[indiceActual];
-    if (span.textContent === 'Andres Felipe Montoya') {
-      resultadosEmpleado('icon-andres', 'updateAndres', 'img2', 'true');
-    }
-    if (span.textContent === 'Carlos Mario Sanchez') {
-      resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
-    }
-    if (span.textContent === 'Jorge Alberto Lozada') {
-      resultadosEmpleado('icon-jorge','updateJorge','img3','true');
-    }
-    if (span.textContent === 'Jesus Norvey Cordoba') {
-      resultadosEmpleado('icon-jesus','updateJesus','img4','true');
-    }
-    if (span.textContent === 'Sandra Milena Alvarez') {
-      resultadosEmpleado('icon-sandra','updateSandra','img5','true');
-    }
-    if (span.textContent === 'John Mario Mira Pineda') {
-      resultadosEmpleado('icon-mario','updateMario','img6','true');
-    }
-    if (span.textContent === 'Ana Maria Duarte Pineda') {
-      resultadosEmpleado('icon-ana','updateAna','img7','true');
-    }
-
-    // Restaurar flag para siguientes llamadas externas
-    setTimeout(() => {
-      permitirEliminarImagen = true;
-    },100);    
-
-  }
-});
-
-const listado = document.getElementById('listaNombres');
-const spans = listado.querySelectorAll('span');
-
-// contenedor flotante único
-const visorUnico = document.createElement('div');
-visorUnico.style.position = 'fixed';
-visorUnico.style.top = '0';
-visorUnico.style.left = '0';
-visorUnico.style.width = '100vw';
-visorUnico.style.height = '100vh';
-visorUnico.style.background = 'rgba(0,0,0,0.8)';
-visorUnico.style.display = 'none';
-visorUnico.style.justifyContent = 'center';
-visorUnico.style.alignItems = 'center';
-visorUnico.style.zIndex = '1000';
-
-const imagenAmpliada = document.createElement('img');
-imagenAmpliada.style.maxWidth = '80%';
-imagenAmpliada.style.maxHeight = '80%';
-imagenAmpliada.style.borderRadius = '8px';
-imagenAmpliada.style.objectFit = 'contain';
-
-visorUnico.appendChild(imagenAmpliada);
-document.body.appendChild(visorUnico);
-
-// cerrar al hacer clic en la imagen
-visorUnico.addEventListener('click', () => {
-  visorUnico.style.display = 'none';
-  listado.style.display = 'flex';
-});
-
-const spansI = document.querySelectorAll('.nombre-empleado');
-const visorI = document.getElementById('visorImagen');
-
-function mostrarEmpleado(index) {
-  const span = spans[index];
-  if (!span) return;
-
-  const imgSrc = span.getAttribute('data-img');
-  const spansVisor = visorI.querySelectorAll('span');
-
-  // Imagen en el primer span
-  spansVisor[0].innerHTML = `<img src="${imgSrc}" alt="${span.textContent}">`;
-  // Texto debajo en el segundo span
-  spansVisor[1].textContent = span.textContent;
-
-  indiceActual = index;
-}
-
-spansI.forEach((span, i) => {
-  span.addEventListener('click', () => mostrarEmpleado(i));
-});
-
-buscador.addEventListener('input', () => {
-  const texto = buscador.value.toLowerCase().trim();
-
-  if (texto === '') {
-    visor.innerHTML = ''; // 1️⃣ Limpiar visor si input está vacío
-    indiceActual = -1;
-    return;
-  }
-
-  const index = nombres.findIndex(n =>
-    n.textContent.toLowerCase().includes(texto)
-  );
-
-  if (index !== -1) mostrarEmpleado(index);
-});
-
-// CLICK EN LISTADO DE NOMBRES
-nombres.forEach((span, i) => {
-  span.addEventListener('click', () => mostrarEmpleado(i));
-});
-
-prevBtn.addEventListener('click', () => {
-  if (indiceActual > 0) {
-    mostrarEmpleado(indiceActual - 1);
-  }
-});
-
-nextBtn.addEventListener('click', () => {
-  if (indiceActual < nombres.length - 1) {
-    mostrarEmpleado(indiceActual + 1);
-  }
-}); */
-
 document.addEventListener('click', (e) => {
   const contenedor = e.target.closest('.cont-userI');
   if (!contenedor) return;
@@ -1746,13 +1596,11 @@ prevBtn.addEventListener('click', () => {
     mostrarEmpleado(indiceActual - 1);
   }
 });
-
 nextBtn.addEventListener('click', () => {
   if (indiceActual < nombres.length - 1) {
     mostrarEmpleado(indiceActual + 1);
   }
 });
-
 // CLICK EN IMAGEN EN SOLITARIO INICIAL
 visor.addEventListener('click', (e) => {
   const padreEmpleados = document.querySelector('#father-employees');
@@ -1825,9 +1673,10 @@ function reubicarVisor(){
 
 }
 
+
 function ingresoEmpleado(){
   const excluidos = [
-    'ingresos-sistema'
+    'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
   ];
   allContenedores.forEach(id => {
     const el = document.getElementById(id);
@@ -1835,9 +1684,75 @@ function ingresoEmpleado(){
   });
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
 }
+const inputNombre = document.getElementById('numDoc');
+inputNombre.addEventListener('input', (e) => {
+  // Eliminar números y símbolos
+  let valor = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+  // Poner en minúsculas y capitalizar cada palabra
+  valor = valor
+    .toLowerCase()
+    .replace(/\b\w/g, letra => letra.toUpperCase());
+  e.target.value = valor;
+});
+document.getElementById('numDoc1').addEventListener('input', (e) => {
+  e.target.value = e.target.value.replace(/[^0-9]/g, '');
+});
+
+document.getElementById('nomEmpl').addEventListener('input', (e) => {
+  e.target.value = e.target.value.replace(/[^0-9]/g, '');
+});
+
+document.querySelector('#lbl-ingreso').addEventListener('click', () => {
+  presentarEmpleado();
+});
 
 
 
+
+function presentarEmpleado() {
+  const input = document.getElementById('nomEmpl');
+  const valor = input.value.trim();
+  if (!valor) return console.log('Debe ingresar un número de documento.');
+
+  const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
+  const empleadoEncontrado = empleados.find(emp => emp.documento === valor);
+
+  if (empleadoEncontrado) {
+    console.log('Empleado encontrado:');
+    console.log(`Nombre: ${empleadoEncontrado.nombre}`);
+    console.log(`Documento: ${empleadoEncontrado.documento}`);
+    console.log(`Área: ${empleadoEncontrado.area}`);
+    console.log(`Cargo: ${empleadoEncontrado.cargo}`);
+    console.log(`Equipo: ${empleadoEncontrado.equipo}`);
+    console.log(`Fecha ingreso: ${empleadoEncontrado.fecha}`);
+    console.log(`Imagen: ${empleadoEncontrado.imagen}`);
+
+    // Rellenar los campos del formulario
+    document.getElementById('numDoc').value = empleadoEncontrado.nombre;
+    document.getElementById('numDoc1').value = empleadoEncontrado.documento;
+    document.getElementById('numDoc2').value = empleadoEncontrado.area;
+    document.getElementById('numDoc3').value = empleadoEncontrado.equipo;
+    document.getElementById('numDoc4').value = empleadoEncontrado.fecha;
+    document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
+    document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
+
+    // Mostrar imagen en el elemento <img id="empleadoImg">
+    const imgElemento = document.getElementById('empleadoImg');
+    if (imgElemento) {
+      imgElemento.src = empleadoEncontrado.imagen || './assets/silueta.png';
+    }
+  } else {
+    console.log('No existe empleado con ese número de documento');
+  }
+}
+
+
+
+
+
+document.querySelector('#cerrarVentana').addEventListener('click', () =>{
+  document.querySelector('.ventana-mensaje').style.display='none'
+})
 
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -1845,30 +1760,6 @@ function ingresoEmpleado(){
 function PARABORRAR(){
   solicitarPantallaCompleta()
   ingresoEmpleado()
-  /* document.querySelector('.panel-nombres').style.height=''
-  const padres = document.querySelectorAll('.contenedor-visor')
-
-  padres.forEach(padre => {
-    padre.removeAttribute('style'); // limpia el padre
-
-    padre.querySelectorAll('*').forEach(hijo => {
-      hijo.removeAttribute('style'); // limpia todos los descendientes
-    });
-  });
-
-  solicitarPantallaCompleta()
-  document.querySelector('.contenedor-visor').style.display='flex'
-  mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
-  setTimeout(() => {
-    ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form',)
-  }, 100);
-  setTimeout(() => {
-    secuenciaAparicion('cmyk')
-  }, 200);
-  setTimeout(() => {
-    alternarTeccnologia('cmyk')
-    resultadosMA('interfaz-mtto')
-  }, 300); */
 }
 
 const info = document.getElementById('info');
