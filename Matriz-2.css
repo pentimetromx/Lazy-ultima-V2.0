@@ -5043,6 +5043,32 @@ top: 44%;
 }
 
 
+#lista-areas {
+  position: absolute;
+  background: #1e1e1e;
+  color: #fff;
+  width: 18vw;
+  max-height: 30vh;
+  overflow-y: auto;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  z-index: 10;
+}
+#lista-areas li {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+#lista-areas li:hover {
+  background: #004aad;
+}
+.lista-oculta {
+  display: none;
+}
+
+
 
 @media only screen and (max-width: 480px) {
 .boton-e,
