@@ -157,7 +157,8 @@ const butt2 = document.getElementById('button2')
 const dias = document.querySelectorAll(".dia");
 const actividadesLimpieza = document.getElementById('actividad-limpieza')
 const inputs = document.querySelectorAll('.numero'); 
-const marcoGraficas = document.querySelector('#contLineas')   
+const marcoGraficas = document.querySelector('#contLineas') 
+const msgEmpleado = document.querySelector('#msg-empleado p')
 var padreImgs = document.getElementById('imgs-prepress')
 var currentRotation = 0;
 var currentZoom = 0;
@@ -1607,12 +1608,26 @@ class Empleado {
     this.imagen = imagen; // nueva propiedad
   }
 }
-
 const empleadosKey = 'empleadosRegistrados';
 const empleados = JSON.parse(localStorage.getItem(empleadosKey)) || [];
-
 function guardarEmpleados() {
   localStorage.setItem(empleadosKey, JSON.stringify(empleados));
+}
+
+
+
+
+// helper para mostrar mensaje usando tu función si existe
+function mostrarVentanaMensaje(texto) {
+  const cont = document.getElementById('msg-empleado');
+  const p = cont?.querySelector('p');
+  if (!cont) return console.warn('No existe #msg-empleado en DOM');
+  if (typeof aparecerElemento === 'function') {
+    aparecerElemento('msg-empleado', 'grid');
+  } else {
+    cont.style.display = 'grid';
+  }
+  if (p) p.textContent = texto;
 }
 
 const btnAgregar = document.querySelector('#nuevo-ingreso');
@@ -1623,17 +1638,19 @@ btnAgregar.addEventListener('click', () => {
   const cargo = document.getElementById('numDoc5').value.trim();
   const equipo = document.getElementById('numDoc3')?.value.trim() || '';
   const fecha = document.getElementById('numDoc4').value.trim();
-  const imagen = document.getElementById('numDoc6').value.trim(); // nueva entrada
+  const imagen = document.getElementById('numDoc6').value.trim();
 
   if (!nombre || !documento || !area || !cargo || !equipo || !fecha || !imagen) {
-    alert('Todos los campos son obligatorios.');
+    mostrarVentanaMensaje('Todos los campos son obligatorios.');
     return;
   }
 
   const empleados = JSON.parse(localStorage.getItem(empleadosKey)) || [];
+
   const existe = empleados.some(emp => emp.documento === documento);
   if (existe) {
-    alert('Ya existe un empleado con ese número de documento.');
+    mostrarVentanaMensaje('Empleado ya existe.');
+    console.log('Empleados en localStorage:', empleados);
     return;
   }
 
@@ -1641,15 +1658,36 @@ btnAgregar.addEventListener('click', () => {
   empleados.push(nuevoEmpleado);
   localStorage.setItem(empleadosKey, JSON.stringify(empleados));
 
+  // Actualiza la imagen renderizada en el HTML
+  const imgEmpleado = document.getElementById('empleadoImg');
+  if (imgEmpleado) {
+    // Normaliza: si el usuario ya escribió algo como './assets/gato.png', no duplicar
+    const ruta = imagen.startsWith('./') || imagen.startsWith('assets/')
+      ? imagen
+      : `./assets/${imagen}`;
+    imgEmpleado.src = ruta;
+  }
+
+  
+
   console.log('Empleado agregado:', nuevoEmpleado);
   console.log('Empleados en localStorage:', empleados);
 
-  document.querySelector('.ventana-mensaje').style.display = 'grid';
-  aparecerElemento('msg-empleado', 'grid');
+  mostrarVentanaMensaje('Empleado agregado y almacenado correctamente.');
 });
 
 
 
+
+
+
+
+
+function vaciarEmpleadosEnLocal() {
+  const empleadosKey = 'empleadosRegistrados';
+  localStorage.setItem(empleadosKey, JSON.stringify([]));
+  console.log('Lista de empleados vaciada, variable conservada.');
+}
 
 
 
@@ -1659,6 +1697,11 @@ document.querySelector('#limpia-ingreso').addEventListener('click', () =>{
 function limpiarEntradas() {
   const entradas = document.querySelectorAll('.entrada-empleado');
   entradas.forEach(input => input.value = '');
+  const img = document.getElementById('empleadoImg');
+  const contenedor = img.closest('.imgEmpleado');
+  if (!img || !contenedor) return;
+  img.src = '';
+  contenedor.dataset.img = '';  
 }
 
 

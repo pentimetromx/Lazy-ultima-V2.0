@@ -1046,7 +1046,9 @@ function crearGraficoLleno() {
 
   ['click', 'touchstart'].forEach(evt => {
     canvas.addEventListener(evt, () => {
-      document.querySelector('#grafico-area').style.display = 'block';
+      /* document.querySelector('#grafico-area').style.display = 'block'; */
+
+      ["grafico-area"].forEach(id => aparecerElemento(id, "block"));
 
       const contenedor = document.querySelector('.calendario-interfaz');
       if (!contenedor) return;
@@ -1325,6 +1327,16 @@ function generarBotoneraDias(selector = '.calendario-interfaz', days = 30, start
   container.appendChild(frag);
   return botones; // array de botones creados
 }
+
+
+
+
+
+
+
+
+
+
 function resetChart() {
   if (chart19) {
     chart19.destroy();
@@ -1684,6 +1696,15 @@ function ingresoEmpleado(){
   });
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
 }
+
+
+
+
+
+
+
+
+
 const inputNombre = document.getElementById('numDoc');
 inputNombre.addEventListener('input', (e) => {
   // Eliminar números y símbolos
@@ -1708,11 +1729,16 @@ document.querySelector('#lbl-ingreso').addEventListener('click', () => {
 
 
 
-
 function presentarEmpleado() {
+  console.log('Contenido de localStorage empleadosRegistrados:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
+  
   const input = document.getElementById('nomEmpl');
   const valor = input.value.trim();
-  if (!valor) return console.log('Debe ingresar un número de documento.');
+  if (!valor){
+    aparecerElemento('msg-empleado', 'grid');
+    msgEmpleado.textContent= 'Debe ingresar un número de documento.';
+    return;
+  }
 
   const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
   const empleadoEncontrado = empleados.find(emp => emp.documento === valor);
@@ -1727,7 +1753,6 @@ function presentarEmpleado() {
     console.log(`Fecha ingreso: ${empleadoEncontrado.fecha}`);
     console.log(`Imagen: ${empleadoEncontrado.imagen}`);
 
-    // Rellenar los campos del formulario
     document.getElementById('numDoc').value = empleadoEncontrado.nombre;
     document.getElementById('numDoc1').value = empleadoEncontrado.documento;
     document.getElementById('numDoc2').value = empleadoEncontrado.area;
@@ -1736,29 +1761,113 @@ function presentarEmpleado() {
     document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
     document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
 
-    // Mostrar imagen en el elemento <img id="empleadoImg">
     const imgElemento = document.getElementById('empleadoImg');
     if (imgElemento) {
-      imgElemento.src = empleadoEncontrado.imagen || './assets/silueta.png';
+      let rutaImagen = empleadoEncontrado.imagen?.trim() || '';
+      if (!rutaImagen) {
+        rutaImagen = './assets/silueta.png';
+      } else if (!rutaImagen.startsWith('./') && !rutaImagen.startsWith('assets/')) {
+        rutaImagen = `./assets/${rutaImagen}`;
+      }
+      imgElemento.src = rutaImagen;
     }
+
   } else {
-    console.log('No existe empleado con ese número de documento');
+    aparecerElemento('msg-empleado', 'grid');
+    document.querySelector('#msg-empleado p').textContent = 'Empleado no encontrado en la BD.';
   }
 }
-
-
-
 
 
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
   document.querySelector('.ventana-mensaje').style.display='none'
 })
+document.querySelector('.cierra-graficos').addEventListener('click', ()=>{ // doble flecha boton gris
+  desaparecerElemento('grafico-area')    
+  restaurarPosicionPadreIngresos()    
+    
+})
+
+let escala = 1;
+
+function moverPadreIngresos(porcentajeX, porcentajeY) {
+  eliminarCalendario('.calendario-interfaz');
+  const grafArea = document.querySelector('#grafico-area')
+  const padre = document.getElementById('padre-ingresos');
+  if (!padre) return;
+  const desplazamientoX = padre.offsetWidth * (porcentajeX / 100);
+  const desplazamientoY = padre.offsetHeight * (porcentajeY / 100);
+  padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;
+
+  grafArea.style.display = 'block';
+  grafArea.classList.add('modo-ingresos');
+  requestAnimationFrame(() => grafArea.classList.add('activo'));
+
+  setTimeout(() => {
+    ["grafico-area"].forEach(id => aparecerElemento(id, "block"));
+    mostrarCalendario('Febrero');    
+  }, 5);
+}
+
+function restaurarPosicionPadreIngresos() {
+  const padre = document.getElementById('padre-ingresos');
+  if (!padre) return;
+  padre.style.transform = ''; // elimina el translate aplicado por JS
+}
+
+document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ // boton rojo 
+  moverPadreIngresos(61,28) // mueve boton doble flecha y aparece grafico area  
+})
+
+function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
+  const contenedor = document.querySelector(contenedorSelector);
+  if (!contenedor) return;
+
+  // Mostrar mes actual
+  const spanMes = document.querySelector('#mes-area');
+  if (spanMes) spanMes.textContent = mes;
+
+  // Determinar días
+  const diasMes = obtenerDiasDelMes(mes);
+
+  // Generar calendario dinámico
+  generarBotoneraDias(contenedorSelector, diasMes, offset, index => cambiarFuente(index));
+}
+
+// Uso en los listeners
+['click', 'touchstart'].forEach(evt => {
+  canvas.addEventListener(evt, () => {
+    document.querySelector('#grafico-area').style.display = 'block';
+
+    mostrarCalendario(mesGlobal);
+
+    if (blurOverlay) activarBlur();
+
+    [linksMA, linkLista, buscador].forEach(el => {
+      if (el) el.style.display = 'none';
+    });
+  });
+});
+
+function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
+  const contenedor = document.querySelector(contenedorSelector);
+  if (!contenedor) return;
+
+  // Vaciar estructura generada dinámicamente
+  contenedor.innerHTML = '';
+
+  // Opcional: limpiar texto del mes
+  const spanMes = document.querySelector('#mes-area');
+  if (spanMes) spanMes.textContent = '';
+}
+
 
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 function PARABORRAR(){
   solicitarPantallaCompleta()
+  restaurarPosicionPadreIngresos()
   ingresoEmpleado()
 }
 

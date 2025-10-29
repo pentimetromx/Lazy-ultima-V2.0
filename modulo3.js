@@ -2,13 +2,11 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z':
-      mostrarVentanaEmergente('Perfil creado y almacenado');
-      
-          
+        vaciarEmpleadosEnLocal()
       break;  
       case 'H':      
         Geometria() 
-        
+        eliminarCalendario('.calendario-interfaz');
       break;
       case 'X':
         var elementosExcluidos = ['']
@@ -29,7 +27,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('padre-ingresos');  
+  let contiBoton = document.getElementById('calendario-interfaz');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  

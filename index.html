@@ -3635,7 +3635,7 @@
 
         <span id="mes-area">Mes</span>
 
-        <div class="calendario-interfaz"> </div>
+        <div id="calendario-interfaz" class="calendario-interfaz"></div>
         
       </div>
 
@@ -3752,7 +3752,7 @@
 
           <div class="fila-ingreso">
             <label for="numDoc6">Registro fotográfico</label>
-            <input type="text"id="numDoc6"class="entrada-empleado" value="./assets/" placeholder="Ruta o enlace de la fotografía">
+            <input type="text"id="numDoc6"class="entrada-empleado" value="" placeholder="Ruta o enlace de la fotografía">
           </div>          
 
         </div>
@@ -3760,25 +3760,24 @@
         <div class="columna-centro">
 
           <div class="imgEmpleado" data-img="./assets/gato.png">
-            <img src="./assets/"  id="empleadoImg" alt="logo"> 
+            <img src=""  id="empleadoImg" alt=""> 
           </div>
 
           <label for="numDoc" id="nuevo-ingreso">Registrar</label>
-          <label for="numDoc" id="limpia-ingreso">Borrar campos</label>
+          <label for="numDoc" id="limpia-ingreso">Limpiar campos</label>
         </div>
-
-
 
         <div class="columna-derecha">
-          <div class="fila-ingreso">
-            <label for="numDoc">Buscar</label> 
-            <input type="text" id="nomEmpl" class="entrada-empleado"> 
-            <label for="numDoc" id="lbl-ingreso">Ir</label>
-          </div> 
-          <div>
 
-          </div>       
+          <label for="numDoc">Buscar</label> 
+          <input type="text" id="nomEmpl" class="entrada-empleado"> 
+          <button for="numDoc" class="ingresar" id="lbl-ingreso">Ir</button>
+          <span></span>
+          <button class="metricas-empleado">Métricas de desempeño</button>
+          <span class="cierra-graficos"></span>
+
         </div>
+
       </div>     
       
     </div>
