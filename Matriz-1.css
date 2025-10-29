@@ -6681,7 +6681,6 @@ height:100%;
   height:70%;
   box-sizing: border-box;
 }
-.columna-derecha,
 .columna-izq {
   display: grid;
   grid-template-rows: auto auto auto auto auto auto auto;
@@ -6723,25 +6722,36 @@ height:100%;
   object-position: center;
   display: block;
 }
-  
-#lbl-ingreso,
+.imgEmpleado img:not([src]), 
+.imgEmpleado img[src=""] {
+  display: none;
+}
+ 
 .columna-centro > label{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.6em 2em;
   background: linear-gradient(145deg, #004aad, #00357a);
   height: 90%;
   color: #f5f5f5;
   font-weight: 500;
-  font-size: 1vw;
+  font-size: 0.8vw;
   border: none;
-  border-radius: 6px;
+  border-radius: 3px;
   box-shadow:
     2px 2px 6px rgba(0, 0, 0, 0.3),
     -2px -2px 6px rgba(255, 255, 255, 0.2);
   cursor: pointer;
   transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+.columna-centro > button{
+  width: 100%;
+}
+#nuevo-ingreso{
+  width: 32%;
+}
+#limpia-ingreso{
+  width: 45%;
 }
 #lbl-ingreso:hover,
 .columna-centro > label:hover{
@@ -6764,12 +6774,87 @@ height:100%;
   height: 100%;
   gap: 10%;
 } 
-.columna-derecha{
-  width: 100%;
-  height: 100%;
+.columna-derecha {
+  position: relative;
+  top: 5%;
+  margin-left: -20%;
+  display: grid;
+  grid-template-rows: 10% 10% 14% 10% 20% 17%;
+  gap: 0.2rem;
+  width: 110%;
+  height: 50%;
   box-sizing: border-box;
+
+  place-items: center;
+  text-align: center;
 }
-.columna-derecha > input,
+
+.cierra-graficos {
+  position: relative;
+  display: block;
+  background-color: rgba(200,200,200,0.7);
+  width: 50%;
+  height: 65%;
+  border-radius: 6px;
+  background-image: url(./assets/doble\ flecha.png);
+  background-size: 30% 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: 1px solid rgba(120,120,120,0.6);
+  box-shadow:
+    inset 2px 2px 4px rgba(255,255,255,0.6),
+    inset -2px -2px 4px rgba(0,0,0,0.25),
+    2px 2px 6px rgba(0,0,0,0.3);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.cierra-graficos:active {
+  background-color: rgba(150,150,150,0.9);
+  box-shadow:
+    inset 4px 4px 6px rgba(0,0,0,0.5),
+    inset -3px -3px 6px rgba(255,255,255,0.7),
+    0 0 4px rgba(0,0,0,0.4);
+  border: 1px solid rgba(80,80,80,0.8);
+  transform: scale(0.95);
+}
+
+
+
+
+#lbl-ingreso{
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, #004aad, #00357a);
+  color: #f5f5f5;
+  font-weight: 500;
+  font-size: 0.8vw;
+  border: none;
+  border-radius: 3px;
+  box-shadow:
+    2px 2px 6px rgba(0, 0, 0, 0.3),
+    -2px -2px 6px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+
+}
+
+.columna-derecha > input{
+  width: 100%;
+  height:100%;
+  font-size: 0.8vw;
+  box-sizing: border-box;
+  border: none;
+  outline: none;  
+  background-color: rgb(0,0,50);
+  color: #e0e0e0;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+}
 .fila-ingreso > input{
   width: 90%;
   height:50%;
@@ -6789,16 +6874,28 @@ height:100%;
   color: #0e2433;  
   font-size: 0.7rem;  
 }
-.columna-derecha > div{
-  justify-content:center;
+
+.metricas-empleado {
+  position: relative;
+  display: block;
+  width: 80%;
+  height: 77%;
+  background: linear-gradient(180deg, #ff3c3c 0%, #990000 100%);
+  color: #fff;
+  border: 1px solid #8a0000;
+  border-radius: 4px;
+  font-size: 0.7vw;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
-.columna-derecha :first-child{
-  height: 50%;
+.metricas-empleado:hover{
+  background: linear-gradient(180deg, #b30000 0%, #3d0000 100%);
 }
-#nomEmpl{
-  height: 35%;
-  width: 120%;
-}
+
+
+.dashboard-grid.activo,
 #ingresos-sistema.activo,
 #padre-ingresos.activo,
 #contenedor-global.activo,

@@ -4657,6 +4657,16 @@ top: 44%;
   background-color: rgb(0,0,15);
   transition: filter 0.3s ease;
   z-index: 200;
+
+  transform: scale(0);
+  transform-origin: center; 
+  transition: transform 1s ease;
+}
+#grafico-area.modo-ingresos {
+  top: 12vh;
+  left: 46vw;
+  width: 53vw;
+  height: 70vh;
 }
 
 .box {
@@ -4895,8 +4905,8 @@ top: 44%;
   grid-template-rows: repeat(8, 1fr);
   top: 13%;
   left: 1%;
-  width: 42vw;
-  height: 40vh;
+  width:100%;
+  height:91%;
 }
 #info-interna .col {
   display: flex;

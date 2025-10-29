@@ -11,6 +11,7 @@ function desvanecerColor(id) {
     }
   }, { once: true });
 }
+
 function aparecerElemento(id, display = "grid") {
   const contenedor = document.getElementById(id);
   if (!contenedor) return;
@@ -31,6 +32,21 @@ function aparecerElemento(id, display = "grid") {
     requestAnimationFrame(() => contenedor.classList.add("activo"));
   }, 30);
 }
+function desaparecerElemento(id) {
+  const contenedor = document.getElementById(id);
+  if (!contenedor) return;
+
+  contenedor.classList.remove("activo");
+  contenedor.classList.add("cerrando");
+
+  // Espera a que termine la animación y oculta
+  const duracion = 1000; // ms, debe coincidir con el CSS
+  setTimeout(() => {
+    contenedor.style.display = "none";
+    contenedor.classList.remove("cerrando");
+  }, duracion);
+}
+
 const salirPadreCmyk = document.querySelector('#boton-cmyk-salir')
 const salirPadreRgb= document.querySelector('#boton-rgb-salir')
 salirPadreCmyk.addEventListener('click', () => {
