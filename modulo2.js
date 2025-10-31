@@ -67,7 +67,8 @@ salirPadreRgb.addEventListener('click', () => {
     alternarOcultarBotones() 
   }, 200);
 })
-function deslizaContenedor(identificador, idButton) {
+
+/* function deslizaContenedor(identificador, idButton) {
   restablecerPosiciones(['.ocultos', '.class-line'])     
   let contenedor = document.querySelector('#troubleshooting')
   contenedor.style.top=''
@@ -97,7 +98,7 @@ function deslizaContenedor(identificador, idButton) {
   }
   switch(identificador){
     case 'troubleshooting' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conti-boton','conteneMantaut']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i]) 
         if (elemento) {
@@ -105,6 +106,7 @@ function deslizaContenedor(identificador, idButton) {
         }
       }
       container1.style.display='grid'
+      document.querySelector('#conti-boton').style.display='grid'
       var contenedorPadre = document.getElementById(identificador)
       if (contenedorPadre) {
         contenedorPadre.style.display = 'grid'  
@@ -120,7 +122,7 @@ function deslizaContenedor(identificador, idButton) {
       actualizarIdsArray(identificador);      
     break;
     case 'canvasContainer2' :
-      var elementosExcluidos = ['def2','buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','MiGrafica','general']
+      var elementosExcluidos = ['def2','buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','MiGrafica','general']
       for (var i = 0; i < allContenedores.length; i++) {
         var elemento = document.getElementById(allContenedores[i]) 
         if (elemento) {
@@ -128,6 +130,7 @@ function deslizaContenedor(identificador, idButton) {
         }
       }
       container1.style.display='grid'
+      document.querySelector('#conti-boton').style.display='grid'
       aparecerElemento("canvasContainer2", "flex")
       setTimeout(() => {
         aparecerElemento("wall_street_II", "flex")        
@@ -140,7 +143,7 @@ function deslizaContenedor(identificador, idButton) {
       actualizarIdsArray(identificador);      
     break;
     case 'contChecks' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','general','first_half']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','general','first_half']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i]) 
         if (elemento) {
@@ -148,7 +151,7 @@ function deslizaContenedor(identificador, idButton) {
         }
       }
       container1.style.display='grid'
-      document.getElementById('conti-boton').removeAttribute('style');
+      document.querySelector('#conti-boton').style.display='grid'
       stopWidth = false
       let mitad1 = document.getElementById('first_half')
       let general = document.getElementById('general')
@@ -162,12 +165,12 @@ function deslizaContenedor(identificador, idButton) {
         secondMovement()
       }, 117);
       if(screenWidth < 500){
-        document.getElementById('conti-boton').style.display='flex'
+        document.getElementById('#conti-boton').style.display='grid'
       } 
       actualizarIdsArray(identificador);      
     break;
     case 'canvasContainer3' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','general']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','general']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i]) 
         if (elemento) {
@@ -175,6 +178,7 @@ function deslizaContenedor(identificador, idButton) {
         }
       }
       container1.style.display='grid'
+      document.querySelector('#conti-boton').style.display='grid'
       inicioTracker()
       aparecerElemento("canvasContainer3", "flex")
       setTimeout(() => {
@@ -258,7 +262,133 @@ function deslizaContenedor(identificador, idButton) {
     break;
     default:
   }
-}  
+} */  
+
+function deslizaContenedor(identificador, idButton) {
+  restablecerPosiciones(['.ocultos', '.class-line']);
+  let contenedor = document.querySelector('#troubleshooting');
+  contenedor.style.top = '';
+  contenedor.style.left = '';
+  clearAllIntervals();
+  desactivarClicsPorUnTiempo(500);
+
+  // Botones MA
+  arrayIdButtsMA.forEach(id => {
+    const btn = document.getElementById(id);
+    if (!btn) return;
+    const activo = id === idButton;
+    btn.style.backgroundColor = activo ? 'orange' : 'rgba(83, 82, 82, 0.678)';
+    btn.style.color = activo ? 'black' : '';
+  });
+
+  // Botones conti
+  contiBtt.forEach(id => {
+    const btn = document.getElementById(id);
+    if (btn) btn.style.backgroundColor = '';
+  });
+
+  if (document.body.style.zoom !== "100%") document.body.style.zoom = "100%";
+
+  const setDisplay = (excluidos) => {
+    allContenedores.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = excluidos.includes(id) ? 'flex' : 'none';
+    });
+  };
+
+  const activarLayout = () => {
+    container1.style.display = 'grid';
+    document.querySelector('#conti-boton').style.display = 'grid';
+    if (screenWidth < 500) {
+      const conti = document.getElementById('conti-boton');
+      conti.style.display = 'flex';
+      conti.style.top = '';
+    }
+  };
+
+  switch (identificador) {
+    case 'troubleshooting':
+      setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut']);
+      activarLayout();
+      aparecerElemento("troubleshooting", "grid");
+      setTimeout(cambiaColorBotones, 510);
+      actualizarIdsArray(identificador);
+      break;
+
+    case 'canvasContainer2':
+      setDisplay(['def2', 'buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'MiGrafica', 'general']);
+      activarLayout();
+      aparecerElemento("canvasContainer2", "flex");
+      setTimeout(() => aparecerElemento("wall_street_II", "flex"), 200);
+      incrementoHeightVII();
+      actualizarIdsArray(identificador);
+      break;
+
+    case 'contChecks':
+      setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'general', 'first_half']);
+      activarLayout();
+      stopWidth = false;
+      document.getElementById('general').style.display = 'block';
+      document.getElementById('first_half').style.display = 'grid';
+      setTimeout(firstMovement, 7);
+      setTimeout(secondMovement, 117);
+      actualizarIdsArray(identificador);
+      break;
+
+    case 'canvasContainer3':
+      setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'general']);
+      activarLayout();
+      inicioTracker();
+      aparecerElemento("canvasContainer3", "flex");
+      setTimeout(() => aparecerElemento("padre", "flex"), 200);
+      if (screenWidth < 500) {
+        const canvas3 = document.getElementById(identificador);
+        if (canvas3) canvas3.style.marginTop = '12%';
+        const conti = document.getElementById('conti-boton');
+        conti.style.top = '20vh';
+        conti.style.display = 'flex';
+      }
+      actualizarIdsArray(identificador);
+      break;
+
+    case 'contImagNeg':
+      setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'conti-boton', 'general']);
+      activarLayout();
+      document.getElementById('conti-boton').removeAttribute('style');
+      aparecerElemento("contImagNeg", "flex");
+      setTimeout(() => aparecerElemento("equalizer", "flex"), 150);
+      setTimeout(changeColorToGreen, 200);
+      document.getElementById('column_2').style.marginTop = '-6%';
+      document.querySelectorAll('.column_spans').forEach(n => n.style.marginTop = '260%');
+      actualizarIdsArray(identificador);
+      break;
+
+    case 'contImagGraf':
+      setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'conti-boton', 'general']);
+      activarLayout();
+      document.getElementById('conti-boton').removeAttribute('style');
+      detenerCicodelia();
+      aparecerElemento("patern", "grid");
+      setTimeout(changeColors, 150);
+      actualizarIdsArray(identificador);
+      break;
+
+    case 'conti-boton-kaizen':
+      setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'conti-boton']);
+      activarLayout();
+      document.getElementById('conti-boton').removeAttribute('style');
+      hideButtonsKaizenRetraso();
+      setTimeout(showButtonsKaizenRetraso, 500);
+      actualizarIdsArray(identificador);
+      break;
+
+    default:
+      break;
+  }
+}
+
+
+
 function resetearBarras(){
   let ensayos = document.querySelectorAll('.first_table .barras .horizontales');
   ensayos.forEach(ensayo => {
@@ -4450,7 +4580,7 @@ function secondMovement(){
       hijos[i].style.display = 'none';
     }
   }
-  var elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','buscador','search-form','conteneMantaut','conti-boton','links-inicialesI','links-iniciales']  
+  var elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales']  
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -4458,6 +4588,7 @@ function secondMovement(){
     }
   }
   container1.style.display='grid'
+  document.querySelector('#conti-boton').style.display='grid'
   clearInterval(INTERVALOS.intervaloI);
   clearInterval(INTERVALOS.intervaloII);
   clearInterval(INTERVALOS.intervaloIII);
@@ -4693,7 +4824,7 @@ function cerrarVentanasII() {
   } else {
     // IDs que deben permanecer visibles en escritorio
     const elementosExcluidos = [
-      'buscador','search-form','conteneMantaut','conti-boton',
+      'buscador','search-form','conteneMantaut',
       'links-inicialesI','links-iniciales','largoImpresion',
       'contImgEntrenos','linksMA','linkLis'
     ];
@@ -4705,6 +4836,7 @@ function cerrarVentanasII() {
 
     document.body.style.zoom = "100%";
     container1.style.display = 'grid';
+    document.querySelector('#conti-boton').style.display='grid'
 
     const troubleshooting = document.getElementById('troubleshooting');
     if (troubleshooting) {

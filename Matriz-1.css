@@ -965,16 +965,42 @@ width:447px ;
   display: none;
   flex: 1;
   justify-content: center;
-  align-items: left;
-  font-size:0.7vw;
+  font-size:0.8vw;
   font-family: "GothamRounded", sans-serif;
-  color: white;
   width:100%;
-  background-color: rgba(83, 82, 82, 0.678);
-  border-radius:0 9px 9px 0;
+  height: 70%;
   position: relative;
   overflow: hidden;
+  
+  /* border-radius:0 9px 9px 0;
+  background-color: rgba(83, 82, 82, 0.678);
+  cursor: pointer; */
+  background-color: rgba(200,200,200,0.7);
+  color: black;
+  font-weight: 600;
+  /* border: 6px solid rgba(120,120,120,0.6); */
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow:
+    inset 2px 2px 4px rgba(255,255,255,0.6),
+    inset -2px -2px 4px rgba(0,0,0,0.25),
+    2px 2px 6px rgba(0,0,0,0.3);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
   cursor: pointer;
+}
+.butt-mautonomo:hover {
+  /* transform: scale(1.2);
+  background: linear-gradient(to bottom, #00b7c2, #007f89);
+  color: #ffffff;
+  transition: transform 0.4s ease, background-color 0.6s ease, color 2s ease; */  
+  background-color: rgba(150,150,150,0.9);
+  box-shadow:
+    inset 4px 4px 6px rgba(0,0,0,0.5),
+    inset -3px -3px 6px rgba(255,255,255,0.7),
+    0 0 4px rgba(0,0,0,0.4);
+  border: 1px solid rgba(80,80,80,0.8);
+  transform: scale(0.95);
+  color: black;
 }
 .butt-prepre-d,
 .butt-prepre{
@@ -1919,7 +1945,7 @@ width:447px ;
 #linksMA{
   position: relative;
   display: flex;
-  top:13vh;
+  top:9vh;
   left:42vw;
   height:31vh;
   width:35vw;
@@ -1962,6 +1988,8 @@ width:447px ;
   font-weight: bold;
 }
 .colorClick {
+  position: relative;
+  left: 5%;
   color:white;
 }
 .colorClick:hover {
@@ -1969,6 +1997,9 @@ width:447px ;
 }
 
 .linksTraining li {
+  position: relative;
+  left:10% ;
+
   color: rgba(255,255,255,0.8);
   transition: color 0.3s ease;
   margin-top: 20px; 
@@ -1979,6 +2010,7 @@ width:447px ;
   font-size: 0.9vw;
   transition: color 0.3s ease;
   text-decoration: none;
+
 }
 
 .linksTraining li:hover,
@@ -2147,7 +2179,7 @@ header {
 
   border-radius: 21px; 
   background-color: black;
-  border: solid 1px orange;
+  border: solid 1px rgba(180, 180, 180, 0.5);
 
   transform: scale(0);          /* empieza reducido */
   transform-origin: center;     /* crece desde el centro */
@@ -2167,7 +2199,7 @@ header {
   top:1%;
   height:97%;
   width: 72%;  
-  border: 1px solid orange;
+  border: 1px rgba(180, 180, 180, 0.5);
   border-radius: 20px;
   overflow-y: auto;
   overflow-x:hidden ;
@@ -2184,7 +2216,7 @@ header {
   left: 1%;
   background-color: #000;
   padding: 7px;
-  border: 1px solid orange;
+  border: 1px solid rgba(180, 180, 180, 0.5);
   border-radius: 13px;
   cursor: pointer;
 }
@@ -2214,7 +2246,7 @@ header {
 .casos-h1{
   font-family: GothamRounded , sans-serif;
   font-size: 1.5vw;
-  color: orange;
+  color:rgba(255, 180, 60, 1);
 }
 .parrafo-casos{
   font-family: GothamRounded , sans-serif;
@@ -2225,11 +2257,11 @@ header {
   position: absolute;
   display: flex;
   left: 62vw;
-  top:7vh;
+  top:11vh;
   width: 45vw;
   height: 35vh;
   background-color: transparent; 
-  color: white;
+  color:rgba(200,200,200,0.9);
   font-family: "Oswald", sans-serif; 
   font-size: 1.7vw;
   z-index: 2;
@@ -2301,7 +2333,7 @@ header {
   width:69vw;
   border-radius: 21px; 
   background-color:black;
-  border: solid 1px orange;
+  border: solid 1px rgba(180, 180, 180, 0.5);
 
   display: none; 
   transform: scale(0);
@@ -2321,7 +2353,7 @@ header {
   height: 97%;
   display: flex;
   flex-direction: column;
-  border: 1px solid orange;
+  border: 1px solid rgba(180, 180, 180, 0.5);
   border-radius: 20px;
   /* display: none; */
   overflow: auto;
@@ -2337,7 +2369,7 @@ header {
   left:1%;
 }
 #imag4 .img-flex{
-  border: solid 1px orange;
+  border: solid 1px rgba(180, 180, 180, 0.5);
   border-radius: 11px;
   width:100%;
   height:24%;
@@ -2353,7 +2385,7 @@ header {
   left:77vw;
   height:82vh;
   width:69vw;
-  border: 1px solid orange;
+  border: 1px solid rgba(180, 180, 180, 0.5);
   border-radius: 20px;
   overflow: auto;
   background-color: #000;
@@ -2378,7 +2410,7 @@ header {
   width:69vw; 
   border-radius: 21px; 
   background-color:black;
-  border: solid 2px orange;
+  border: solid 2px rgba(180, 180, 180, 0.5);
 
   display: none; 
   transform: scale(0);          /* empieza reducido */
@@ -2419,7 +2451,7 @@ header {
 .img-1{
   height: 100%;
   width: 100%;
-  border: 1px solid orange;
+  border: 1px solid rgba(180, 180, 180, 0.5);
   border-radius: 7px;
   object-fit: fill;
 }
@@ -2435,7 +2467,7 @@ header {
   /* display: none; */ 
   border-radius: 21px; 
   background-color:black;
-  border: solid 2px orange;
+  border: solid 2px rgba(180, 180, 180, 0.5);
 }
 #image-2{
   position: absolute;
@@ -2469,7 +2501,7 @@ h6{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border: 2px solid orange;
+  border: 2px solid rgba(180, 180, 180, 0.5);
   border-radius: 13px;
 }
 #padre-neumat{
@@ -3546,8 +3578,9 @@ elemento.visible {
 }
  #conti-boton{
   position: absolute;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  place-items: center;  
   top:5vh;
   left:1vw;
   width:15vw;
@@ -3563,12 +3596,7 @@ elemento.visible {
   height: 100%;
   background-color: rgb(0, 255, 0);
 }
-.butt-mautonomo:hover {
-  transform: scale(1.2);
-  background: linear-gradient(to bottom, #00b7c2, #007f89);
-  color: #ffffff;
-  transition: transform 0.4s ease, background-color 0.6s ease, color 2s ease;  
-}
+
 #cont-arriba-freno {
   position: absolute;
   display: flex;
@@ -3858,7 +3886,7 @@ elemento.visible {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border: 1px solid orange;
+  border: 1px solid rgba(180, 180, 180, 0.5);
   border-radius: 33px;
 }
 h4{
@@ -6731,12 +6759,13 @@ height:100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(200,200,200,0.7);
   height: 90%;
-  color:rgba(1,1,1,0.9);
   font-weight: 500;
   font-size: 0.8vw;
   border-radius: 3px;
+
+  background-color: rgba(200,200,200,0.7);
+  color:rgba(1,1,1,0.9);
   border: 1px solid rgba(120,120,120,0.6);
   box-shadow:
     inset 2px 2px 4px rgba(255,255,255,0.6),
@@ -6755,6 +6784,13 @@ height:100%;
   transform: scale(0.95);
   color: black;
 }
+.columna-centro > label:active {
+  transform: translateY(0);
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.4),
+    inset -2px -2px 4px rgba(255, 255, 255, 0.3);
+}
+
 
 .columna-centro > button{
   width: 100%;
@@ -6766,12 +6802,6 @@ height:100%;
   width: 45%;
 }
 #lbl-ingreso:hover,
-.columna-centro > label:active {
-  transform: translateY(0);
-  box-shadow:
-    inset 2px 2px 4px rgba(0, 0, 0, 0.4),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.3);
-}
 .fila-ingreso {
   display: flex;
   flex-direction: column;
