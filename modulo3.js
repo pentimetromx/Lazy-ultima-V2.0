@@ -18,7 +18,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('lista-imagenes');  
+  let contiBoton = document.getElementById('conti-boton');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  

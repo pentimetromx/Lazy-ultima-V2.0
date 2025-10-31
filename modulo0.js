@@ -992,7 +992,7 @@ function VolveraInicio(){
   idsArrayEliminados = []
 }
 function ElementosMaII(elementId){
-  var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];
+  var elementosExcluidos = ['buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales'];
 
   allContenedores.forEach(id => {
     const elemento = document.getElementById(id);
@@ -1007,6 +1007,7 @@ function ElementosMaII(elementId){
     }
   });
   activarPantallaCompleta();
+    document.querySelector('#conti-boton').style.display='grid'
   container1.style.display='grid'
     setTimeout(() => {
       document.body.style.zoom = "100%"    

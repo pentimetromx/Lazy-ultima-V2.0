@@ -648,7 +648,7 @@ function cambiaColorBotones(){
 }
 function resetBotns() {  
   clearAllIntervals()
-  var elementosExcluidos = ['nicho_spans','pantalla','conti-boton','conteneMantaut','buscador','search-form','links-inicialesI','links-iniciales'];          
+  var elementosExcluidos = ['nicho_spans','pantalla','conteneMantaut','buscador','search-form','links-inicialesI','links-iniciales'];          
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]);
     if (elemento) {
@@ -660,6 +660,7 @@ function resetBotns() {
     }
   } 
   container1.style.display='grid'
+  document.querySelector('#conti-boton').style.display='grid'        
   document.getElementById('conti-boton').style.top=''
   linkIni1.style.left= ''  
   linkIni2.style.left = ''   
@@ -2890,7 +2891,8 @@ function irContenedorSiguiente() {
   idsArrayEliminados.pop();
   console.log('2.', idsArrayEliminados)
 }
-function listaEntrenamientosII(btnList) {
+
+/* function listaEntrenamientosII(btnList) {
   restablecerPosiciones(['.ocultos'])      
   const solucionador = document.querySelector('#troubleshooting') 
   const conteLink = document.querySelector('#linksMA')
@@ -2906,7 +2908,7 @@ function listaEntrenamientosII(btnList) {
   })  
   switch(btnList){                                                                                                                      
     case 'archivo': 
-      var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos','linksMA','linkLis']  
+      var elementosExcluidos = ['buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos','linksMA','linkLis']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -2914,7 +2916,8 @@ function listaEntrenamientosII(btnList) {
         }
       }
       container1.style.display='grid'
-     document.getElementById('troubleshooting').style.display='grid' 
+      document.querySelector('#conti-boton').style.display='grid'
+      document.getElementById('troubleshooting').style.display='grid' 
       aparecerElemento("linksMA", "flex")
       for (var i = 0; i < contiBtt.length; i++) {
         var botonId = contiBtt[i];
@@ -2932,7 +2935,7 @@ function listaEntrenamientosII(btnList) {
       }
     break;
     case 'btt2':
-      var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
+      var elementosExcluidos = ['buscador','search-form','conteneMantaut','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -2940,6 +2943,7 @@ function listaEntrenamientosII(btnList) {
         }
       }
       container1.style.display='grid'
+      document.querySelector('#conti-boton').style.display='grid'
       for (var i = 0; i < contiBtt.length; i++) {
         var botonId = contiBtt[i];
         var boton = document.getElementById(botonId);
@@ -2954,7 +2958,7 @@ function listaEntrenamientosII(btnList) {
       document.getElementById('troubleshooting').style.display='grid'
     break;
     case 'btt3':
-      var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
+      var elementosExcluidos = ['buscador','search-form','conteneMantaut','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -2962,6 +2966,7 @@ function listaEntrenamientosII(btnList) {
         }
       }
       container1.style.display='grid'
+      document.querySelector('#conti-boton').style.display='grid'
       for (var i = 0; i < contiBtt.length; i++) {
         var botonId = contiBtt[i];
         var boton = document.getElementById(botonId);
@@ -2976,7 +2981,7 @@ function listaEntrenamientosII(btnList) {
       document.getElementById('troubleshooting').style.display='grid'
     break;  
     case 'btt4':
-      var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
+      var elementosExcluidos = ['buscador','search-form','conteneMantaut','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -2984,6 +2989,7 @@ function listaEntrenamientosII(btnList) {
         }
       }
       container1.style.display='grid'
+      document.querySelector('#conti-boton').style.display='grid'
       for (var i = 0; i < contiBtt.length; i++) {
         var botonId = contiBtt[i];
         var boton = document.getElementById(botonId);
@@ -2998,7 +3004,7 @@ function listaEntrenamientosII(btnList) {
       document.getElementById('troubleshooting').style.display='grid'
     break;  
     case 'btt5':
-      var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
+      var elementosExcluidos = ['buscador','search-form','conteneMantaut','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -3006,6 +3012,7 @@ function listaEntrenamientosII(btnList) {
         }
       }
       container1.style.display='grid'
+      document.querySelector('#conti-boton').style.display='grid'
       for (var i = 0; i < contiBtt.length; i++) {
         var botonId = contiBtt[i];
         var boton = document.getElementById(botonId);
@@ -3020,7 +3027,7 @@ function listaEntrenamientosII(btnList) {
       document.getElementById('troubleshooting').style.display='grid'
     break;  
     case 'btt6':
-      var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
+      var elementosExcluidos = ['buscador','search-form','conteneMantaut','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -3028,6 +3035,7 @@ function listaEntrenamientosII(btnList) {
         }
       }
       container1.style.display='grid'
+      document.querySelector('#conti-boton').style.display='grid'
       for (var i = 0; i < contiBtt.length; i++) {
         var botonId = contiBtt[i];
         var boton = document.getElementById(botonId);
@@ -3042,7 +3050,7 @@ function listaEntrenamientosII(btnList) {
       document.getElementById('troubleshooting').style.display='grid'
     break;  
     case 'btt7':
-      var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
+      var elementosExcluidos = ['buscador','search-form','conteneMantaut','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -3050,6 +3058,7 @@ function listaEntrenamientosII(btnList) {
         }
       }
       container1.style.display='grid'
+      document.querySelector('#conti-boton').style.display='grid'
       for (var i = 0; i < contiBtt.length; i++) {
         var botonId = contiBtt[i];
         var boton = document.getElementById(botonId);
@@ -3063,8 +3072,8 @@ function listaEntrenamientosII(btnList) {
       }
       document.getElementById('troubleshooting').style.display='grid'
     break;
-        case 'btt8':
-      var elementosExcluidos = ['buscador','search-form','conteneMantaut','conti-boton','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
+    case 'btt8':
+      var elementosExcluidos = ['buscador','search-form','conteneMantaut','troubleshooting','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -3072,6 +3081,7 @@ function listaEntrenamientosII(btnList) {
         }
       }
       container1.style.display='grid'
+      document.querySelector('#conti-boton').style.display='grid'
       for (var i = 0; i < contiBtt.length; i++) {
         var botonId = contiBtt[i];
         var boton = document.getElementById(botonId);
@@ -3090,7 +3100,72 @@ function listaEntrenamientosII(btnList) {
   }
   document.getElementById('context-menu').style.display='none'
 
-}   
+} */   
+
+function listaEntrenamientosII(btnList) {
+  restablecerPosiciones(['.ocultos']);
+
+  const solucionador = document.querySelector('#troubleshooting');
+  const conteLink = document.querySelector('#linksMA');
+  conteLink.style = '';
+  solucionador.style.top = '';
+  solucionador.style.left = '';
+  document.body.style.zoom = "100%";
+
+  enlacesIDs.forEach(id => {
+    const enlace = document.getElementById(id);
+    if (enlace) enlace.style.color = 'white';
+  });
+
+  const mostrarElementos = (excluidos = []) => {
+    allContenedores.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.style.display = excluidos.includes(id) ? 'flex' : 'none';
+    });
+    container1.style.display = 'grid';
+    document.querySelector('#conti-boton').style.display = 'grid';
+    document.getElementById('troubleshooting').style.display = 'grid';
+  };
+
+  const actualizarBotones = (btnActivo) => {
+    contiBtt.forEach(id => {
+      const boton = document.getElementById(id);
+      if (!boton) return;
+      const activo = id === btnActivo;
+      boton.style.backgroundColor = activo ? '#4CAF50' : '';
+      boton.style.color = activo ? 'white' : 'black';
+    });
+  };
+
+  switch (btnList) {
+    case 'archivo':
+      mostrarElementos(['buscador','search-form','conteneMantaut','links-inicialesI',
+                        'links-iniciales','largoImpresion','contImgEntrenos','linksMA','linkLis']);
+      aparecerElemento("linksMA", "flex");
+      actualizarBotones(btnList);
+      if (screenWidth < 500) { /* lógica móvil */ }
+      break;
+
+    case 'btt2':
+    case 'btt3':
+    case 'btt4':
+    case 'btt5':
+    case 'btt6':
+    case 'btt7':
+    case 'btt8':
+      mostrarElementos(['buscador','search-form','conteneMantaut','troubleshooting',
+                        'links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']);
+      actualizarBotones(btnList);
+      break;
+
+    default:
+      break;
+  }
+
+  document.getElementById('context-menu').style.display = 'none';
+}
+
+
 function listaEntrenamientos(){
   var videoBackground = document.getElementById('videoBackground')
   var contTraining = document.getElementById('largoImpresion')
@@ -3138,115 +3213,113 @@ function toggleFullScreen(element) {
     }
   }
 }
+
 function imagenesPasoApaso(id) {
   desactivarClicsPorUnTiempo(500);
+
   const solucionador = document.getElementById('troubleshooting');
   const conteLink = document.getElementById('linksMA');
   const botones = document.getElementsByClassName('colorClick');
-
-  const padre = document.getElementById('padre-1');
-  padre.classList.remove("activo");
+  const padre1 = document.getElementById('padre-1');
   const padre2 = document.getElementById('padre-2');
-  padre2.classList.remove("activo");
   const padre3 = document.getElementById('contImaginario');
-  padre3.classList.remove("activo");
 
+  // Reinicio de clases activas
+  [padre1, padre2, padre3].forEach(p => p.classList.remove("activo"));
 
+  // Ajuste general de zoom y posición
   document.body.style.zoom = (screenWidth < 500) ? "100%" : "67%";
-  conteLink.style.left = (screenWidth < 500) ? '43.5vw' : '43.5vw';
-  conteLink.style.top = '16vh';
+  conteLink.style.left = '43.5vw';
+  conteLink.style.top = '12vh';
 
-  // Configuración por cada link
   const pasos = {
-    'link1': {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales','conteneMantaut','butt-links-II','conti-boton', 'largoImpresion','linksMA', 'linkLis', 'imag1', 'contImgEntrenos', 'control-neumatico', 'padre-1'],
-      scroll: 'control-neumatico'
+    link1: {
+      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'butt-links-II', 'largoImpresion', 'linksMA', 'linkLis', 'imag1', 'contImgEntrenos', 'control-neumatico', 'padre-1'],
+      scroll: 'control-neumatico',
+      accion: () => {
+        padre1.style.top = '20vh';
+        padre1.style.left = '77vw';
+        aparecerElemento("padre-1", "flex");
+        setTimeout(() => animateScroll('control-neumatico'), 800);
+      }
     },
-    'link2': {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'linksMA', 'butt-links-II', 'linkLis', 'conteneMantaut', 'conti-boton', 'largoImpresion', 'contImgEntrenos', 'padre-2', 'imag2', 'pneumatico', 'contImaginario-III'],
-      scroll: 'pneumatico'
+    link2: {
+      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'linksMA', 'butt-links-II', 'linkLis', 'conteneMantaut', 'largoImpresion', 'contImgEntrenos', 'padre-2', 'imag2', 'pneumatico', 'contImaginario-III'],
+      scroll: 'pneumatico',
+      accion: () => {
+        padre2.style.top = '20vh';
+        padre2.style.left = '77vw';
+        aparecerElemento("padre-2", "flex");
+        setTimeout(() => animateScroll('pneumatico'), 1000);
+      }
     },
-    'contImaginario': {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'conti-boton', 'contImgEntrenos', 'padre-neumat', 'contImaginario', 'imag3', 'bailarina'],
-      scroll: 'bailarina'
+    contImaginario: {
+      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'contImaginario', 'imag3', 'bailarina'],
+      scroll: 'bailarina',
+      accion: () => {
+        aparecerElemento("contImaginario", "flex");
+        padre3.style.top = '20vh';
+        padre3.style.left = '77vw';
+      }
     },
     'contImaginario-II': {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'conti-boton', 'contImgEntrenos', 'padre-neumat', 'imag4', 'rodillo-infeed', 'contImaginario-II'],
-      scroll: 'rodillo-infeed'
+      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'imag4', 'rodillo-infeed', 'contImaginario-II'],
+      scroll: 'rodillo-infeed',
+      accion: () => {
+        padre3.style.top = '20vh';
+        padre3.style.left = '77vw';
+        aparecerElemento("contImaginario-II", "flex");
+        setTimeout(() => animateScroll('rodillo-infeed'), 1000);
+      }
     },
     'puesta-punto': {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'conti-boton', 'contImgEntrenos', 'padre-neumat', 'puesta-punto'],
-      scroll: 'puesta-punto'
+      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'puesta-punto'],
+      scroll: 'puesta-punto',
+      accion: () => {
+        padre3.style.top = '20vh';
+        padre3.style.left = '77vw';
+        aparecerElemento("puesta-punto", "flex");
+        setTimeout(() => animateScroll('puesta-punto'), 1000);
+      }
     }
   };
 
   const paso = pasos[id];
-  if (!paso) {
-    console.warn('ID no reconocido:', id);
-    return;
-  }
+  if (!paso) return console.warn('ID no reconocido:', id);
 
-  // Mostrar/ocultar elementos
+  // Mostrar/ocultar contenedores
   allContenedores.forEach(elId => {
     const el = document.getElementById(elId);
     if (el) el.style.display = paso.excluidos.includes(elId) ? 'flex' : 'none';
   });
 
   container1.style.display = 'grid';
+  document.querySelector('#conti-boton').style.display = 'grid';
   solucionador.style.display = 'grid';
   solucionador.style.left = (screenWidth < 500) ? '2px' : '11.5%';
 
-  // Ajuste links iniciales
-  document.getElementById('links-inicialesI').style.left = (screenWidth < 500) ? '47vw' : '107vw';
-  document.getElementById('links-iniciales').style.left = (screenWidth < 500) ? '47vw' : '127vw';
+  // Ajuste de posición de enlaces
+  const linksI = document.getElementById('links-inicialesI');
+  const links = document.getElementById('links-iniciales');
+  linksI.style.left = (screenWidth < 500) ? '47vw' : '107vw';
+  links.style.left = (screenWidth < 500) ? '47vw' : '127vw';
 
-  // Estilos especiales para link1 (padre y boton volver)
-  if (id === 'link1') {
-    padre.style.top = '20vh';
-    padre.style.left = '77vw';
-    aparecerElemento("padre-1", "flex")
-    setTimeout(() => {
-      animateScroll('control-neumatico');  
-    }, 800);  
-  }
-  if (id === 'link2') {
-    padre2.style.top = '20vh';
-    padre2.style.left = '77vw';
-    aparecerElemento("padre-2", "flex")
-    setTimeout(() => {
-      animateScroll(paso.scroll);  
-    }, 1000);  
-  }
-  if (id === 'contImaginario') {
-    aparecerElemento("contImaginario", "flex")
-    padre3.style.top = '20vh';
-    padre3.style.left = '77vw';
-  }
-  if (id === 'contImaginario-II') {
-    padre3.style.top = '20vh';
-    padre3.style.left = '77vw';
-    aparecerElemento("contImaginario-II", "flex")
-    setTimeout(() => {
-      animateScroll(paso.scroll);  
-    }, 1000);  
-  }
-  if (id === 'puesta-punto') {
-    padre3.style.top = '20vh';
-    padre3.style.left = '77vw';
-    aparecerElemento("puesta-punto", "flex")
-    setTimeout(() => {
-      animateScroll(paso.scroll);  
-    }, 1000);  
-  }
+  // Ejecutar acción específica del paso
+  paso.accion();
 
+  // Reajuste móvil
   if (screenWidth < 500) {
-    solucionador.style.gridTemplateColumns = 'repeat(2, 1fr)';
-    solucionador.style.gridTemplateRows = 'repeat(4, 1fr)';
+    Object.assign(solucionador.style, {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gridTemplateRows: 'repeat(4, 1fr)'
+    });
   }
 
-  // Resaltar botón seleccionado
+  // Resaltar botón activo
   Array.from(botones).forEach(b => b.style.color = (b.id === id) ? '#28a745' : '');
 }
+
+
 
 function lubricacion(buttId) {
   alternarButtsDesbobinador(buttId);
