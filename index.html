@@ -657,11 +657,11 @@
         <div class="horiz-3-3"></div>
       </div>
     </div>
-    <div id="container01" data-display="grid">
-      <button id="bot-atras" onclick="irContenedorAnterior('contPortPlaca')"></button>
-      <button id="bot-inicial" onclick="VolveraInicio()">Panel Inicio</buttonclass=>
-      <button id="iniciar" onclick="activarPantallaCompleta()">Exit / Full Screen</buttonclass=>
-      <button id="bot-atras12" onclick="irContenedorSiguiente()"></buttonclass=>
+    <div id="container01" class="ocultos" data-display="grid">
+      <button id="bot-atras" class="entrada-empleado" onclick="irContenedorAnterior('contPortPlaca')"></button>
+      <button id="bot-inicial" class="entrada-empleado" onclick="VolveraInicio()">Panel Inicio</buttonclass=>
+      <button id="iniciar" class="entrada-empleado" onclick="activarPantallaCompleta()">Exit / Full Screen</buttonclass=>
+      <button id="bot-atras12" class="entrada-empleado" onclick="irContenedorSiguiente()"></buttonclass=>
     </div>
     <div id="pantalla-tintero">  
       <div id="cont-links">
@@ -3673,15 +3673,15 @@
 
           <div class="fila-ingreso">
             <label for="numDoc">Nombre empleado</label>
-            <input type="text" id="numDoc" class="entrada-empleado" title="Solo letras y espacios">
+            <input type="text" id="numDoc" class="entrada-empleado verGraficos" title="Solo letras y espacios">
           </div>
           <div class="fila-ingreso">
             <label for="numDoc1">Número documento</label>
-            <input type="text" id="numDoc1" class="entrada-empleado">
+            <input type="text" id="numDoc1" class="entrada-empleado verGraficos">
           </div>
           <div class="fila-ingreso">
             <label for="numDoc2">Área corporativa</label>
-            <input type="text" id="numDoc2" list="areas" class="entrada-empleado" placeholder="Seleccione un área">
+            <input type="text" id="numDoc2" list="areas" class="entrada-empleado verGraficos" placeholder="Seleccione un área">
             <datalist id="areas">
               <option value="Recursos Humanos"></option>
               <option value="Finanzas"></option>
@@ -3697,7 +3697,7 @@
           </div>
           <div class="fila-ingreso">
             <label for="numDoc5">Cargo</label>
-            <input type="text" id="numDoc5" list="cargos" class="entrada-empleado" placeholder="Seleccione un cargo">
+            <input type="text" id="numDoc5" list="cargos" class="entrada-empleado verGraficos" placeholder="Seleccione un cargo">
             <datalist id="cargos">
               <option value="Presidente"></option>
               <option value="Director General"></option>
@@ -3723,7 +3723,7 @@
           </div>          
           <div class="fila-ingreso">
             <label for="numDoc3">Equipo asignado</label>
-            <input type="text" id="numDoc3" list="equipos" class="entrada-empleado" placeholder="Seleccione un recurso">
+            <input type="text" id="numDoc3" list="equipos" class="entrada-empleado verGraficos" placeholder="Seleccione un recurso">
             <datalist id="equipos">
               <option value="Epson SurePress L-6534VW"></option>
               <option value="Epson SurePress L-6534VW (Orange Ink)"></option>
@@ -3747,34 +3747,35 @@
           </div>
           <div class="fila-ingreso">
             <label for="numDoc4">Fecha ingreso</label>
-            <input type="text" id="numDoc4" class="entrada-empleado" placeholder="DD/MM/YYYY" readonly>
+            <input type="text" id="numDoc4" class="entrada-empleado verGraficos" placeholder="DD/MM/YYYY" readonly>
           </div>
 
           <div class="fila-ingreso">
             <label for="numDoc6">Registro fotográfico</label>
-            <input type="text"id="numDoc6"class="entrada-empleado" value="" placeholder="Ruta o enlace de la fotografía">
+            <input type="text"id="numDoc6"class="entrada-empleado verGraficos" value="" placeholder="Ruta o enlace de la fotografía">
+            <div id="listaFotos" class="oculto"></div>
           </div>          
 
         </div>
 
         <div class="columna-centro">
 
-          <div class="imgEmpleado" data-img="./assets/gato.png">
+          <div class="imgEmpleado">
             <img src=""  id="empleadoImg" alt=""> 
           </div>
 
-          <label for="numDoc" id="nuevo-ingreso">Registrar</label>
-          <label for="numDoc" id="limpia-ingreso">Limpiar campos</label>
+          <label for="numDoc" id="nuevo-ingreso" class="entrada-empleado">Registrar</label>
+          <label for="numDoc" id="limpia-ingreso" class="entrada-empleado">Limpiar campos</label>
         </div>
 
         <div class="columna-derecha">
 
           <label for="numDoc">Buscar</label> 
           <input type="text" id="nomEmpl" class="entrada-empleado"> 
-          <button for="numDoc" class="ingresar" id="lbl-ingreso">Ir</button>
+          <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso">Ir</button>
           <span></span>
-          <button class="metricas-empleado">Métricas de desempeño</button>
-          <span class="cierra-graficos"></span>
+          <button class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
+          <span class="cierra-graficos entrada-empleado"></span>
 
         </div>
 
@@ -3782,7 +3783,7 @@
       
     </div>
     <div id="calendario"></div>
-
+    <div id="lista-imagenes"></div>
 
     <div id="msg-empleado" class="ventana-mensaje">
       <p>Perfil creado y almacenado</p>

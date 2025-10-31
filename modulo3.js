@@ -6,28 +6,19 @@ document.addEventListener('keydown', function(event) {
       break;  
       case 'H':      
         Geometria() 
-        eliminarCalendario('.calendario-interfaz');
+        ocultarElemento('.ocultos')
       break;
       case 'X':
-        var elementosExcluidos = ['']
-        for (var i = 0; i < allContenedores.length; i++) {
-        var elemento = document.getElementById(allContenedores[i])
-        if (elemento) {
-        elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-        const contenedor = document.querySelector('#formulario-cuenta').style.display = 'grid'
-        }
-        }
-        manejarTransicion('child-move-azul', 'formulario-cuenta', 'marco-formulario',1200);
-        setTimeout(() => {
-        resaltarSecuencial();    
-        }, 1100);
+      insertarGrafico('padre-grafica10', 'MiGrafica16')
+      activarPantallaCompleta();
+
       break;                  
     }
   }
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('calendario-interfaz');  
+  let contiBoton = document.getElementById('lista-imagenes');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
