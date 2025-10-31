@@ -104,6 +104,8 @@ let hoverTimeout;
 let hideTimeout;
 let contadorClicks = 0;
 let container1 = document.getElementById('container01')
+let flagEmpleado = true
+
 var botIzquierda = document.getElementById('bot-atras')
 var botDerecha = document.getElementById('bot-atras12')
 const botonesPerfilColor = document.querySelectorAll('.butt-perfiles')
@@ -193,6 +195,8 @@ idsArray.push("cont-titulo")
 idsArrayEliminados.push('cont-titulo')
 const IDSARRAYCICODELIA = ['first_half','cortina','second_half','nicho_spans','wall_street_II','equalizer','padre','patern']
 const masterKey = [4];
+
+
 document.addEventListener("DOMContentLoaded", () => {
   // Inicializar sliders CMYK
   initSliderCMYK("slid-cian", "c-span-", "C");
@@ -903,7 +907,7 @@ function manejarLogica() {
 
 }
 function abrirInterfaz() {
-  solicitarPantallaCompleta()
+  activarPantallaCompleta()  
   document.body.style.cursor = "none";
 
   const elementosExcluidos = [
@@ -959,39 +963,29 @@ function ejecutarSecuencia(funciones, tiempos) {
     setTimeout(fn, tiempos[i]);
   });
 }
-function activarPantallaCompleta(){
-  // Verificamos si el navegador está en modo de pantalla completa
+function activarPantallaCompleta() {
+  // Si ya está en pantalla completa, no hacer nada
   if (
-    document.fullscreenElement || 
+    document.fullscreenElement ||
     document.mozFullScreenElement ||
-    document.webkitFullscreenElement || 
-    document.msFullscreenElement 
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement
   ) {
-    // Si está en pantalla completa, salir
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) { 
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { 
-      document.msExitFullscreen();
-    }
-  } else {
-    const docEl = document.documentElement;
-    if (docEl.requestFullscreen) {
-      docEl.requestFullscreen();
-    } else if (docEl.mozRequestFullScreen) {
-      docEl.mozRequestFullScreen();
-    } else if (docEl.webkitRequestFullscreen) {
-      docEl.webkitRequestFullscreen();
-    } else if (docEl.msRequestFullscreen) {   
-      docEl.msRequestFullscreen();   
-    }
+    return;
   }
 
-
+  const docEl = document.documentElement;
+  if (docEl.requestFullscreen) {
+    docEl.requestFullscreen();
+  } else if (docEl.mozRequestFullScreen) {
+    docEl.mozRequestFullScreen();
+  } else if (docEl.webkitRequestFullscreen) {
+    docEl.webkitRequestFullscreen();
+  } else if (docEl.msRequestFullscreen) {
+    docEl.msRequestFullscreen();
+  }
 }
+
 function VolveraInicio(){
   location.reload()
   idsArray = []
@@ -1012,7 +1006,7 @@ function ElementosMaII(elementId){
       elemento.style.top = "";
     }
   });
-
+  activarPantallaCompleta();
   container1.style.display='grid'
     setTimeout(() => {
       document.body.style.zoom = "100%"    
@@ -1614,9 +1608,6 @@ function guardarEmpleados() {
   localStorage.setItem(empleadosKey, JSON.stringify(empleados));
 }
 
-
-
-
 // helper para mostrar mensaje usando tu función si existe
 function mostrarVentanaMensaje(texto) {
   const cont = document.getElementById('msg-empleado');
@@ -1631,7 +1622,11 @@ function mostrarVentanaMensaje(texto) {
 }
 
 const btnAgregar = document.querySelector('#nuevo-ingreso');
+// AGREGA EMPLEADO 
 btnAgregar.addEventListener('click', () => {
+  if(flagEmpleado === false){
+    return
+  }
   const nombre = document.getElementById('numDoc').value.trim();
   const documento = document.getElementById('numDoc1').value.trim();
   const area = document.getElementById('numDoc2').value.trim();
@@ -1639,27 +1634,35 @@ btnAgregar.addEventListener('click', () => {
   const equipo = document.getElementById('numDoc3')?.value.trim() || '';
   const fecha = document.getElementById('numDoc4').value.trim();
   const imagen = document.getElementById('numDoc6').value.trim();
+  const empleados = JSON.parse(localStorage.getItem(empleadosKey)) || [];
+  const existe = empleados.some(emp => emp.documento === documento);
+  const nuevoEmpleado = new Empleado(nombre, documento, area, cargo, equipo, fecha, imagen);
+  const imgEmpleado = document.getElementById('empleadoImg');
+  const valor = inputArchivo.value.trim().toLowerCase();
 
   if (!nombre || !documento || !area || !cargo || !equipo || !fecha || !imagen) {
     mostrarVentanaMensaje('Todos los campos son obligatorios.');
+    desactivarClick(['.entrada-empleado']);
+    ocultarElementos('.ocultos')
     return;
   }
-
-  const empleados = JSON.parse(localStorage.getItem(empleadosKey)) || [];
-
-  const existe = empleados.some(emp => emp.documento === documento);
+  if (!valor.endsWith('.png') && !valor.endsWith('.jpg') && !valor.endsWith('.jpeg')) {
+    mostrarVentanaMensaje('El archivo debe ser una imagen .png o .jpg'); 
+    desactivarClick(['.entrada-empleado']);
+    ocultarElementos('.ocultos')
+    return;
+  }
   if (existe) {
     mostrarVentanaMensaje('Empleado ya existe.');
+    desactivarClick(['.entrada-empleado']);
+    ocultarElementos('.ocultos')
     console.log('Empleados en localStorage:', empleados);
     return;
   }
-
-  const nuevoEmpleado = new Empleado(nombre, documento, area, cargo, equipo, fecha, imagen);
   empleados.push(nuevoEmpleado);
   localStorage.setItem(empleadosKey, JSON.stringify(empleados));
 
   // Actualiza la imagen renderizada en el HTML
-  const imgEmpleado = document.getElementById('empleadoImg');
   if (imgEmpleado) {
     // Normaliza: si el usuario ya escribió algo como './assets/gato.png', no duplicar
     const ruta = imagen.startsWith('./') || imagen.startsWith('assets/')
@@ -1667,21 +1670,12 @@ btnAgregar.addEventListener('click', () => {
       : `./assets/${imagen}`;
     imgEmpleado.src = ruta;
   }
-
-  
-
   console.log('Empleado agregado:', nuevoEmpleado);
   console.log('Empleados en localStorage:', empleados);
-
   mostrarVentanaMensaje('Empleado agregado y almacenado correctamente.');
+  desactivarClick(['.entrada-empleado']);
+  ocultarElementos('.ocultos')
 });
-
-
-
-
-
-
-
 
 function vaciarEmpleadosEnLocal() {
   const empleadosKey = 'empleadosRegistrados';
@@ -1689,9 +1683,10 @@ function vaciarEmpleadosEnLocal() {
   console.log('Lista de empleados vaciada, variable conservada.');
 }
 
-
-
 document.querySelector('#limpia-ingreso').addEventListener('click', () =>{
+  if(flagEmpleado === false){
+    return
+  }
   limpiarEntradas()
 })
 function limpiarEntradas() {
@@ -1703,5 +1698,3 @@ function limpiarEntradas() {
   img.src = '';
   contenedor.dataset.img = '';  
 }
-
-

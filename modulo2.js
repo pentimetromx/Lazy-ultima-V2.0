@@ -32,6 +32,8 @@ function aparecerElemento(id, display = "grid") {
     requestAnimationFrame(() => contenedor.classList.add("activo"));
   }, 30);
 }
+
+
 function desaparecerElemento(id) {
   const contenedor = document.getElementById(id);
   if (!contenedor) return;
@@ -3507,7 +3509,8 @@ conteElementos.addEventListener('mouseover', () => {
 conteElementos.addEventListener('mouseout', () => {
   isMouseOver = false;
 });
-function ocultarElementos(eltoID) {
+
+/* function ocultarElementos(eltoID) {
   const contenedorElementos = document.getElementById('contenedorElementos');
   const segundoListado = document.getElementById('segundaLista');
   segundoListado.style.display = 'none'
@@ -3549,7 +3552,8 @@ function ocultarElementos(eltoID) {
     break;
     default:  
   }
-} 
+} */
+
 let barraI = document.getElementById('iniciador_1')
 let barraII = document.getElementById('iniciador_2')
 let barraIII = document.getElementById('iniciador_3')

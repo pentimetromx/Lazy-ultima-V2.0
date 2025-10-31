@@ -383,6 +383,7 @@ function mostrarAyudas(parametro) {
   showImage(actualPosicion, selectedArray);
 }
 function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
+  activarPantallaCompleta();
   allContenedores.forEach(id => {
     const elem = document.getElementById(id);
     if (!elem) return;
@@ -390,10 +391,9 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     document.querySelectorAll('#container01 > button')
     .forEach(btn => btn.style.backgroundColor = '');
 
-
     if (visibles.includes(id)) {
       const dataDisplay = elem.getAttribute("data-display");
-      elem.style.display = dataDisplay || tipoDisplayDefecto;
+      elem.style.display = dataDisplay || tipoDisplayDefecto; 
     } else {
       elem.style.display = "none";
     }
@@ -403,7 +403,6 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
   const elementId = visibles[0];
   switch (elementId) {
     case 'cont-titulo-operacion':
-      solicitarPantallaCompleta();
       animateScroll('contLineas');
       actualizarIdsArray(elementId);
     break;
@@ -420,19 +419,8 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
       actualizarIdsArray(elementId);
     break;
     default:
-      // No hay acción especial para este elemento.
+      activarPantallaCompleta();
     break;
-  }
-}
-
-function solicitarPantallaCompleta() {
-  const docEl = document.documentElement;
-  if (docEl.requestFullscreen) {
-    docEl.requestFullscreen();
-  } else if (docEl.webkitRequestFullscreen) {
-    docEl.webkitRequestFullscreen();
-  } else if (docEl.msRequestFullscreen) {
-    docEl.msRequestFullscreen();
   }
 }
 
@@ -1148,6 +1136,8 @@ const capas = {
   meses: document.getElementById('meses'),
 };
 
+
+
 function aplicarZindex(valor = 200) {
   for (const clave in capas) {
     const el = capas[clave];
@@ -1327,15 +1317,6 @@ function generarBotoneraDias(selector = '.calendario-interfaz', days = 30, start
   container.appendChild(frag);
   return botones; // array de botones creados
 }
-
-
-
-
-
-
-
-
-
 
 function resetChart() {
   if (chart19) {
@@ -1585,7 +1566,7 @@ buscador.addEventListener('input', () => {
   }
 
   const index = Array.from(spans).findIndex(span =>
-    span.textContent.toLowerCase().includes(texto)
+    span.textContent.toLowerCase().includes(texto)  
   );
 
   if (index !== -1) {
@@ -1602,6 +1583,7 @@ buscador.addEventListener('input', () => {
 nombres.forEach((span, i) => {
   span.addEventListener('click', () => mostrarEmpleado(i));
 });
+
 //BOTONES ATRAS/ADELANTE
 prevBtn.addEventListener('click', () => {
   if (indiceActual > 0) {
@@ -1613,6 +1595,7 @@ nextBtn.addEventListener('click', () => {
     mostrarEmpleado(indiceActual + 1);
   }
 });
+
 // CLICK EN IMAGEN EN SOLITARIO INICIAL
 visor.addEventListener('click', (e) => {
   const padreEmpleados = document.querySelector('#father-employees');
@@ -1665,6 +1648,7 @@ visor.addEventListener('click', (e) => {
 
   }
 });
+
 function reubicarVisor(){
   document.querySelector('#conte-secundario').style.display='flex'
   document.querySelector('.visor').style.width='100%'
@@ -1685,7 +1669,6 @@ function reubicarVisor(){
 
 }
 
-
 function ingresoEmpleado(){
   const excluidos = [
     'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
@@ -1696,14 +1679,6 @@ function ingresoEmpleado(){
   });
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
 }
-
-
-
-
-
-
-
-
 
 const inputNombre = document.getElementById('numDoc');
 inputNombre.addEventListener('input', (e) => {
@@ -1725,18 +1700,24 @@ document.getElementById('nomEmpl').addEventListener('input', (e) => {
 
 document.querySelector('#lbl-ingreso').addEventListener('click', () => {
   presentarEmpleado();
+  
 });
 
-
-
+// EXTRAER EMPLEADO
 function presentarEmpleado() {
   console.log('Contenido de localStorage empleadosRegistrados:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
   
   const input = document.getElementById('nomEmpl');
   const valor = input.value.trim();
   if (!valor){
-    aparecerElemento('msg-empleado', 'grid');
-    msgEmpleado.textContent= 'Debe ingresar un número de documento.';
+    mostrarVentanaMensaje('Debe ingresar un número de documento.', 'padre-ingresos');
+    desactivarClick(['.entrada-empleado']);
+    ocultarElementos('.ocultos')
+
+    desaparecerElemento('grafico-area')    
+    restaurarPosicionPadreIngresos()    
+    flagEmpleado = true
+    
     return;
   }
 
@@ -1773,31 +1754,70 @@ function presentarEmpleado() {
     }
 
   } else {
-    aparecerElemento('msg-empleado', 'grid');
-    document.querySelector('#msg-empleado p').textContent = 'Empleado no encontrado en la BD.';
+    desactivarClick(['.entrada-empleado']);
+    mostrarVentanaMensaje('Empleado no encontrado en la BD.', '23vh', '56vw');
+    ocultarElementos('.ocultos')
+
   }
 }
 
-
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
+  traerElementos('.ocultos')
+  document.querySelector('#container01').style.display='grid'
+  restablecerClick(['.entrada-empleado']);
   document.querySelector('.ventana-mensaje').style.display='none'
 })
 document.querySelector('.cierra-graficos').addEventListener('click', ()=>{ // doble flecha boton gris
+ if(flagEmpleado === true){
+  return
+ }else{
   desaparecerElemento('grafico-area')    
   restaurarPosicionPadreIngresos()    
-    
+  flagEmpleado = true
+ }
 })
 
+const inputArchivo = document.getElementById('numDoc6');
 let escala = 1;
-
+// BOTON ROJO
 function moverPadreIngresos(porcentajeX, porcentajeY) {
+  flagEmpleado = false
+  const inputs = document.querySelectorAll('.verGraficos');
+  const img = document.querySelector('.imgEmpleado img');
+  const valor = inputArchivo.value.trim().toLowerCase();
+
+  for (const input of inputs) {
+    if (!input.value.trim()) {
+      mostrarVentanaMensaje('Hay campos vacíos.');
+      desactivarClick(['.entrada-empleado']);
+      ocultarElementos('.ocultos')
+      flagEmpleado = true
+      return;
+    }
+
+    if (!img || !img.src || img.src.trim() === '' || img.src.endsWith('/')) {
+      mostrarVentanaMensaje('Debe insertar una imagen.'); 
+      desactivarClick(['.entrada-empleado']);
+      ocultarElementos('.ocultos')
+      flagEmpleado = true
+      return;
+    }
+
+  }
+  if (!valor.endsWith('.png') && !valor.endsWith('.jpg') && !valor.endsWith('.jpeg')) {
+    mostrarVentanaMensaje('El archivo debe ser una imagen .png o .jpg');  
+    desactivarClick(['.entrada-empleado']);
+    ocultarElementos('.ocultos')
+    flagEmpleado = true
+    return;
+  }
+
   eliminarCalendario('.calendario-interfaz');
   const grafArea = document.querySelector('#grafico-area')
   const padre = document.getElementById('padre-ingresos');
   if (!padre) return;
   const desplazamientoX = padre.offsetWidth * (porcentajeX / 100);
   const desplazamientoY = padre.offsetHeight * (porcentajeY / 100);
-  padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;
 
   grafArea.style.display = 'block';
   grafArea.classList.add('modo-ingresos');
@@ -1805,8 +1825,12 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
 
   setTimeout(() => {
     ["grafico-area"].forEach(id => aparecerElemento(id, "block"));
-    mostrarCalendario('Febrero');    
+    mostrarCalendario('Febrero'); 
+
   }, 5);
+  setTimeout(() => {
+    padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
+  }, 25);
 }
 
 function restaurarPosicionPadreIngresos() {
@@ -1860,13 +1884,123 @@ function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
   const spanMes = document.querySelector('#mes-area');
   if (spanMes) spanMes.textContent = '';
 }
+function ocultarElementos(selectores) {
+  const elementos = document.querySelectorAll(selectores);
+  if (!elementos.length) return;
+
+  elementos.forEach(el => {
+    // Guardar display original si no está guardado
+    if (!el.dataset.displayOriginal) {
+      const estilo = getComputedStyle(el).display;
+      el.dataset.displayOriginal = estilo === 'none' ? 'block' : estilo;
+    }
+    el.style.display = 'none';
+  });
+}
+function traerElementos(selectores) {
+  const elementos = document.querySelectorAll(selectores);
+  if (!elementos.length) return;
+
+  elementos.forEach(el => {
+    // Recuperar el display original o usar block por defecto
+    const displayOriginal = el.dataset.displayOriginal || 'block';
+    el.style.display = displayOriginal;
+  });
+}
+
+
+function insertarGrafico(idContenedor, idCanvas) {
+  const contenedor = document.getElementById(idContenedor);
+  if (!contenedor) return console.error(`No existe el contenedor con id: ${idContenedor}`);
+
+  const canvas = document.createElement('canvas');
+  canvas.id = idCanvas;
+
+  // Limpia contenido previo del contenedor
+  contenedor.innerHTML = '';
+  contenedor.appendChild(canvas);
+
+  // Ejemplo de creación de gráfico (usa Chart.js)
+  const ctx = canvas.getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['A', 'B', 'D', 'E', 'F', 'G', 'H', 'I'],
+      datasets: [{
+        label: 'Ejemplo',
+        data: [10, 20, 30, 17, 23, 9, 5, 27],
+        backgroundColor: 'rgba(38,15,136)'
+        
+      }]
+    },
+    options: {
+      indexAxis: 'x', // ← cambia orientación
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  });
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+const rutasFotos = [
+  "./assets/cadena logo.png",
+  "./assets/silueta.png",
+  "./assets/silueta1.png",
+  "./assets/silueta2.png",
+  "./assets/silueta3.png",
+  "./assets/silueta4.png",
+  "./assets/silueta5.png",
+  "./assets/silueta6.png",
+  "./assets/silueta7.png",
+  "./assets/gato.png",
+  "./assets/icono1.png"
+
+];
+
+const inputFoto = document.getElementById('numDoc6');
+const listaFotos = document.getElementById('listaFotos');
+const previewFoto = document.getElementById('empleadoImg'); 
+
+// generar lista
+rutasFotos.forEach(ruta => {
+  const itemFoto = document.createElement('div');
+  itemFoto.textContent = ruta;
+
+  // vista previa al pasar el cursor
+  itemFoto.addEventListener('mouseenter', () => {
+    previewFoto.src = ruta;
+  });
+
+  // seleccionar la ruta
+  itemFoto.addEventListener('click', () => {
+    inputFoto.value = ruta;
+    previewFoto.src = ruta;
+    listaFotos.style.display = 'none';
+  });
+
+  listaFotos.appendChild(itemFoto);
+});
+
+// mostrar lista al hacer clic en el input
+inputFoto.addEventListener('click', () => {
+  listaFotos.style.display = 'block';
+});
+
+// ocultar lista si se hace clic fuera
+document.addEventListener('click', e => {
+  if (!listaFotos.contains(e.target) && e.target !== inputFoto) {
+    listaFotos.style.display = 'none';
+  }
+});
 
 
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
 function PARABORRAR(){
-  solicitarPantallaCompleta()
+  activarPantallaCompleta()
   restaurarPosicionPadreIngresos()
   ingresoEmpleado()
 }
