@@ -6,11 +6,10 @@ document.addEventListener('keydown', function(event) {
       break;  
       case 'H':      
         Geometria() 
-        ocultarElemento('.ocultos')
+        
       break;
       case 'X':
-      insertarGrafico('padre-grafica10', 'MiGrafica16')
-      activarPantallaCompleta();
+      resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
 
       break;                  
     }
@@ -18,7 +17,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('conti-boton');  
+  let contiBoton = document.getElementById('empleadoImg');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -4404,7 +4403,6 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
   }    
 
 });
-
 function crearBotonResta(color, linea1, linea2, linea3) {
   const contenedorPrincipal = document.getElementById('columna-30');
   const botonesResta = [];

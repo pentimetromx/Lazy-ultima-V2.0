@@ -3273,12 +3273,13 @@ function imagenesPasoApaso(id) {
       }
     },
     'puesta-punto': {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'puesta-punto'],
+      excluidos: ['buscador', 'search-form', 'padre-instrucciones','links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'puesta-punto'],
       scroll: 'puesta-punto',
       accion: () => {
         padre3.style.top = '20vh';
         padre3.style.left = '77vw';
         aparecerElemento("puesta-punto", "flex");
+        aparecerElemento("padre-instrucciones", "flex");
         setTimeout(() => animateScroll('puesta-punto'), 1000);
       }
     }
@@ -4532,9 +4533,11 @@ function resultadosEmpleado(idEmpleado, functionExe, icono, state) {
   container1.style.display = 'grid';
   if (turnBlock === 'false') restablecerClick(['.desactivar', '.graphs-lines']);
   resetearAnimacionesCanvas();
-  ejecutarFuncionEmpleado(functionExe);
   ajustarContenedorGrafs();
   reubicarVisor()
+  setTimeout(() => {
+    ejecutarFuncionEmpleado(functionExe);
+  }, 200);
 }
 
 // === Auxiliares ===
@@ -4641,7 +4644,7 @@ function ajustarContenedorGrafs() {
   });
 }
 
-// ULTIMO BOTON M.A / BORRA LA IMAGEN
+// ULTIMO BOTON M.A 
 function resultadosMA(identificador){
   restablecerPosiciones(['.ocultos'])      
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','conte-secundario','conte-maquinas','title-interfaz']  
@@ -4654,11 +4657,19 @@ function resultadosMA(identificador){
   
   container1.style.display='grid'
 
+  rutasFotos.forEach(ruta => {
+    const span = document.createElement('span');
+    span.textContent = ruta;
+    contenedor.appendChild(span);
+  });
+ 
+
   const padre = document.querySelector('.contenedor-visor');
   // elimina todos los estilos en línea del padre y sus hijos
   padre.removeAttribute('style');
   padre.querySelectorAll('*').forEach(hijo => hijo.removeAttribute('style'));
   document.body.style.zoom = "100%";
+  ["porta-visor"].forEach(id => aparecerElemento(id, "flex"));
 
   var contiUsers = document.getElementsByClassName('cont-user'); 
   for (var i = 0; i < contiUsers.length; i++) {
@@ -4690,6 +4701,7 @@ function resultadosMA(identificador){
   if (imgDinamica) imgDinamica.remove();
   actualizarIdsArray(identificador);      
 }
+
 function aumentarTamaño(element, factor, tiempo) {
   const originalWidth = element.clientWidth;
   const originalHeight = element.clientHeight;
@@ -4760,7 +4772,6 @@ document.getElementById('titleContainerI').addEventListener('mouseenter', () => 
     padreLinks.style.display = 'block';
     linkListI.style.display = 'block';   
     setTimeout(() => {
-      /* alert() */
     }, 300);
   }
 });

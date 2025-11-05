@@ -88,7 +88,10 @@ document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListe
     var elemento = document.getElementById(allContenedores[i])
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-      const contenedor = document.querySelector('#formulario-cuenta').style.display = 'grid'
+      document.querySelector('#formulario-cuenta').style.display = 'grid'
+      /* ["porta-visor"].forEach(id => aparecerElemento(id, "flex")); */
+      /* ["marco-formulario"].forEach(id => aparecerElemento(id, "flex")); */
+
     }
   }
 
@@ -1034,8 +1037,7 @@ function crearGraficoLleno() {
 
   ['click', 'touchstart'].forEach(evt => {
     canvas.addEventListener(evt, () => {
-      /* document.querySelector('#grafico-area').style.display = 'block'; */
-
+      
       ["grafico-area"].forEach(id => aparecerElemento(id, "block"));
 
       const contenedor = document.querySelector('.calendario-interfaz');
@@ -1073,22 +1075,27 @@ function crearGraficoLleno() {
 
   const ctx = canvas.getContext('2d');
 
+  
   const configZona = {
     type: 'line',
     data: {
-      labels: ['dia 1', 'dia 2', 'dia 3', 'dia 4', 'dia 5', 'dia 6', 'dia 7', 'dia 8', 'dia 9', 'dia 10'],
+      labels: ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'],
       datasets: [
         {
           label: 'Total FTE Availability',
-          data: [8, 10, 10, 7, 7.1, 8, 8.5, 9, 8.7, 10],
+          data:[4, 3.5, 3.75, 3.45, 4, 3.9, 4.05, 4.2, 4.45, 4, 3.5, 3.75, 3.45, 4, 3.9, 4.05, 4.2, 4.45, 4.6, 4.9, 4.85, 4.95, 5.05, 4.95, 4.75, 4.5, 5.05, 5.4, 5.5, 5.65, 5.55, 5.75, 5.85, 5.7, 5.9],
           fill: true,
-          backgroundColor: 'rgba(22, 0, 222, 0.67)',
-          pointRadius: 1
+          /* backgroundColor: 'rgba(22, 0, 222, 0.67)', */
+          backgroundColor: 'rgba(42, 18, 163, 0.78)',
+          borderColor: 'rgba(0, 255, 0, 0.9)', // color visible del borde
+          borderWidth: 1,                      // grosor de la línea
+          tension: 0,                        // suaviza la curva
+          pointRadius: 0
         }
       ]
     },
     options: {
-      responsive: true,
+      responsive: false,
       maintainAspectRatio: false,
       plugins: {
         legend: {
@@ -1104,9 +1111,11 @@ function crearGraficoLleno() {
       },
       scales: {
         x: {
+          min: 0,
+          max: 40,
           ticks: {
             color: '#ccc',
-            font: { size: 7 }
+            font: { size:1 }
           },
           grid: { display: false }
         },
@@ -1123,6 +1132,8 @@ function crearGraficoLleno() {
       }
     }
   };
+
+
 
   chart18 = new Chart(ctx, configZona);
 }
@@ -1237,6 +1248,7 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
       default:
     }
   });
+  
 });
 const btnDynamic = document.getElementById('dynamic-graphs');
 const btnStatic = document.getElementById('static-graphs');
@@ -1341,12 +1353,12 @@ document.querySelector('.box-6').addEventListener('click', () => {
 const offset = 0;
 const fuentesDeDatos = [
   [1]
-  [2],
-  [2, 3],  
-  [2, 3, 4],
-  [2, 3, 4, 4.5],
-  [2, 3, 4, 4.5, 5],
-  [2, 3, 4, 4.5, 5, 5.5],
+  [0.5],
+  [0.5,0.3],  
+  [0.5,0.3,1.6],  
+  [0.5,0.3,1.6,1.4],  
+  [0.5,0.3,1.6,1.4,1.9],  
+  [0.5,0.3,1.6,1.4,1.9,1.1],  
   [2, 3, 4, 4.5, 5, 5.5, 8.3],
   [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9],
   [2, 3, 4, 4.5, 5, 5.5, 8.3, 7.9, 6.4],
@@ -1398,11 +1410,13 @@ function crearGraficoAreas() {
         labels: ['dia 1','dia 2','dia 3','dia 4','dia 5','dia 6','dia 7','dia 8','dia 9','dia 10','dia 11','dia 12','dia 13','dia 14','dia 15','dia 16','dia 17','dia 18','dia 19','dia 20','dia 21','dia 22','dia 23','dia 24','dia 25','dia 26','dia 27','dia 28','dia 29','dia 30','dia 31'],
         datasets: [{
           label: 'Total FTE Availability',
+          borderColor: 'rgba(0, 255, 0, 0.9)', 
+          borderWidth: 1,
           data: fuentesDeDatos[0],
           fill: true,
           backgroundColor: 'rgba(48, 13, 191, 0.67)',
-          pointRadius: 1,
-          tension: 0.4
+          pointRadius: 0,
+          tension: 0
         }]
       },
       options: {
@@ -1515,15 +1529,14 @@ document.addEventListener('click', (e) => {
   if (functionExe) ejecutarFuncionEmpleado(functionExe);
 });
 
-const visorI = document.getElementById('visorImagen');
+const visorI = document.getElementById('imagenVisor');
 const listado = document.getElementById('listaNombres');
-const spans = listado.querySelectorAll('span');
 const buscador = document.getElementById('buscador-empleado');
 const listaNombres = document.querySelectorAll('#listaNombres span');
 const visorImagen = document.querySelector('#visorImagen span:first-child');
-const visorTexto = document.querySelector('#visorImagen span:last-child');
+const visorTexto = document.querySelector('.visor > span');
 const nombres = Array.from(document.querySelectorAll('#listaNombres span')); 
-const visor = document.getElementById('visorImagen');
+const visor = document.getElementById('imagenVisor');
 
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
@@ -1538,58 +1551,202 @@ if (spansI) {
 }
 
 
-
 function mostrarEmpleado(index) {
+  const listado = document.getElementById('listaNombres');
+  const spans = listado.querySelectorAll('span'); // solo los de la lista dinámica
   const span = spans[index];
   if (!span) return;
 
   const imgSrc = span.getAttribute('data-img');
-  const spansVisor = visorI.querySelectorAll('span');
+  if (!imgSrc) return; // evita errores si no tiene ruta
 
-  // Imagen en el primer span
-  spansVisor[0].innerHTML = `<img src="${imgSrc}" alt="${span.textContent}">`;
-  // Texto debajo en el segundo span
-  spansVisor[1].textContent = span.textContent;
+  const visorI = document.getElementById('visorImagen');
+  const visorTexto = document.getElementById('visorTexto');
+  const porta = document.getElementById('porta-imagen');
+  const spanImg = porta.querySelector('.imagen-empleado');
+  const spanNombre = porta.querySelector('.nombre-empleado');
+
+  visorI.innerHTML = `<img src="${imgSrc}" alt="${span.textContent}">`;
+  visorTexto.textContent = span.textContent;
+
+  spanImg.innerHTML = `<img src="${imgSrc}" alt="${span.textContent}">`;
+  spanNombre.textContent = span.textContent;
 
   indiceActual = index;
 }
-// INPUT
-buscador.addEventListener('input', () => {
-  const texto = buscador.value.toLowerCase().trim();
+indiceActual = index;
 
-  if (texto === '') {
-    const spansVisor = visorI.querySelectorAll('span');
-    spansVisor[0].innerHTML = 'Sin selección';
-    spansVisor[1].textContent = '';
-    indiceActual = -1;
-    return;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CLICK / MOUSELEAVE EN LISTADO DE NOMBRES / M.A
+
+let fotoFijada = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+  const listadoNombres = document.getElementById('listaNombres');
+  const img = document.getElementById('imagenVisor');
+  const nombre = document.querySelector('.visor > span');
+  const campoBusqueda = document.getElementById('buscador-empleado');
+
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // estado
+  let indiceActual = 0;
+  let fotoFijada = null;
+
+  // --- construir lista dinámica ---
+  colaboradores.forEach((emp, i) => {
+    const span = document.createElement('span');
+    span.textContent = emp.nombre;
+    span.dataset.img = emp.ruta; // importante para navegación
+    span.dataset.index = i;
+
+    span.addEventListener('mouseenter', () => {
+      indiceActual = i;
+      mostrarEmpleadoPorIndice(i, { fijar: false });
+    });
+
+    span.addEventListener('mouseleave', () => {
+      if (fotoFijada) {
+        mostrarEmpleadoObj(fotoFijada);
+      } else {
+        limpiarVisor();
+      }
+    });
+
+    span.addEventListener('click', () => {
+      indiceActual = i;
+      if (fotoFijada === emp) {
+        fotoFijada = null;
+        limpiarVisor();
+      } else {
+        fotoFijada = emp;
+        mostrarEmpleadoObj(emp);
+      }
+    });
+
+    listadoNombres.appendChild(span);
+  });
+
+  // --- navegación Prev / Next ---
+  prevBtn.addEventListener('click', () => {
+    const spans = listadoNombres.querySelectorAll('span');
+    if (!spans.length) return;
+    const nuevo = Math.max(0, indiceActual - 1);
+    mostrarEmpleadoPorIndice(nuevo, { fijar: false });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const spans = listadoNombres.querySelectorAll('span');
+    if (!spans.length) return;
+    const nuevo = Math.min(spans.length - 1, indiceActual + 1);
+    mostrarEmpleadoPorIndice(nuevo, { fijar: false });
+  });
+
+  // --- búsqueda ---
+  campoBusqueda.addEventListener('input', () => {
+    const valor = campoBusqueda.value.trim().toLowerCase();
+
+    if (!valor) {
+      limpiarVisor();
+      fotoFijada = null;
+      return;
+    }
+
+    const coincidencia = colaboradores.find(c =>
+      c.nombre.toLowerCase().includes(valor)
+    );
+
+    if (coincidencia) {
+      fotoFijada = coincidencia; // fija desde buscador
+      mostrarEmpleadoObj(coincidencia);
+      // sincronizar índice si coincide con la lista
+      const idx = colaboradores.indexOf(coincidencia);
+      if (idx >= 0) indiceActual = idx;
+    } else {
+      limpiarVisor();
+      fotoFijada = null;
+    }
+  });
+
+  // --- funciones auxiliares ---
+
+  // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
+  function mostrarEmpleadoPorIndice(index, opts = { fijar: false }) {
+    const spans = listadoNombres.querySelectorAll('span');
+    const span = spans[index];
+    if (!span) return;
+    const imgSrc = span.dataset.img;
+    if (!imgSrc) return;
+
+    // actualizar visor
+    img.src = imgSrc;
+    nombre.textContent = span.textContent;
+    indiceActual = Number(span.dataset.index ?? index);
+
+    if (opts.fijar) {
+      // fijar objeto si existe en colaboradores
+      const emp = colaboradores[indiceActual];
+      if (emp) fotoFijada = emp;
+    }
   }
 
-  const index = Array.from(spans).findIndex(span =>
-    span.textContent.toLowerCase().includes(texto)  
-  );
+  // muestra usando el objeto de colaboradores (click o buscador)
+  function mostrarEmpleadoObj(emp) {
+    if (!emp) return;
+    img.src = emp.ruta ?? '';
+    nombre.textContent = emp.nombre ?? '';
+    // sincronizar indiceActual con la posición en colaboradores
+    const idx = colaboradores.indexOf(emp);
+    if (idx >= 0) indiceActual = idx;
+  }
 
-  if (index !== -1) {
-    mostrarEmpleado(index); // ← usa la función original (mantiene eventos)
-  } else {
-    const spansVisor = visorI.querySelectorAll('span');
-    spansVisor[0].innerHTML = 'Sin coincidencias';
-    spansVisor[1].textContent = '';
+  function limpiarVisor() {
+    img.src = '';
+    nombre.textContent = '';
   }
 });
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// CLICK EN LISTADO DE NOMBRES
-nombres.forEach((span, i) => {
-  span.addEventListener('click', () => mostrarEmpleado(i));
-});
+const rutasFotos = [
+  "./assets/silueta.png",
+  "./assets/silueta1.png",
+  "./assets/silueta2.png",
+  "./assets/silueta3.png",
+  "./assets/silueta4.png",
+  "./assets/silueta5.png",
+  "./assets/silueta6.png",
+  "./assets/silueta7.png",
+  "./assets/gato.png",
+  "./assets/icono1.png"
+];
+const colaboradores = [
+  { ruta: "./assets/cadena logo.png", nombre: "Monica Muñoz Sepulveda" },
+  { ruta: "./assets/silueta.png", nombre: "Carlos Mario Sanchez" },
+  { ruta: "./assets/silueta1.png", nombre: "Jorge Alberto Lozada" },
+  { ruta: "./assets/silueta2.png", nombre: "Jesus Norvey Cordoba" },
+  { ruta: "./assets/silueta3.png", nombre: "Sandra Milena Alvarez" },
+  { ruta: "./assets/silueta4.png", nombre: "John Mario Mira Pineda" },
+  { ruta: "./assets/silueta5.png", nombre: "Ana Maria Duarte Pineda" },
+  { ruta: "./assets/silueta6.png", nombre: "Juan Perez" },
+  { ruta: "./assets/silueta7.png", nombre: "Camila Lopez" },
+  { ruta: "./assets/gato.png", nombre: "Roberto Diaz" },
+  { ruta: "./assets/icono1.png", nombre: "Paola Herrera" }
+];
+const imgEmpleado = document.getElementById('empleadoImg');
+const btnMostrar = document.getElementById('btnMostrar');
+const inputFoto = document.getElementById('numDoc6'); 
+const listaFotos = document.getElementById('listaFotos');
+const previewFoto = document.getElementById('empleadoImg'); 
 
-//BOTONES ATRAS/ADELANTE
 prevBtn.addEventListener('click', () => {
   if (indiceActual > 0) {
     mostrarEmpleado(indiceActual - 1);
   }
 });
+
 nextBtn.addEventListener('click', () => {
   if (indiceActual < nombres.length - 1) {
     mostrarEmpleado(indiceActual + 1);
@@ -1597,62 +1754,66 @@ nextBtn.addEventListener('click', () => {
 });
 
 // CLICK EN IMAGEN EN SOLITARIO INICIAL
+
 visor.addEventListener('click', (e) => {
   const padreEmpleados = document.querySelector('#father-employees');
-  const padreImagenes = document.querySelector('.contenedor-visor');
-
+  const padreImagenes = document.querySelector('.contenedor-visor'); 
   if (e.target.tagName !== 'IMG') return;
 
   const visor = document.getElementById('visorImagen');
   const imgSrc = e.target.getAttribute('src');
   const segundoSpan = visor.querySelector('span:nth-child(2)');
-
-  if (!imgSrc) return;
+    if (!imgSrc) return;
 
   imagenSeleccionada = imgSrc;
   nombreSeleccionado = segundoSpan ? segundoSpan.textContent.trim() : '';
 
-  if (e.target.tagName === 'IMG' && indiceActual !== null) {
-    const img = e.target;
-  
-    padreEmpleados.style.display = 'none';  
-    padreImagenes.style.display = 'none';
+  // obtener los spans actuales en el momento del clic
+  const nombres = Array.from(document.querySelectorAll('#listaNombres span'));
+  const span = indiceActual !== null ? nombres[indiceActual] : null;
+  if (!span) return; // evita el error si no existe
 
-    const span = nombres[indiceActual];
-    if (span.textContent === 'Andres Felipe Montoya') {
+  padreEmpleados.style.display = 'none';
+  padreImagenes.style.display = 'none';
+  buscador.value=''
+
+  switch (span.textContent) {
+    case 'Monica Muñoz Sepulveda':
+      console.log('NOMBRE EN SPAN:',span.textContent)
       resultadosEmpleado('icon-andres', 'updateAndres', 'img2', 'true');
-    }
-    if (span.textContent === 'Carlos Mario Sanchez') {
+      break;
+    case 'Carlos Mario Sanchez':
+      console.log('NOMBRE EN SPAN:',span.textContent)
       resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
-    }
-    if (span.textContent === 'Jorge Alberto Lozada') {
-      resultadosEmpleado('icon-jorge','updateJorge','img3','true');
-    }
-    if (span.textContent === 'Jesus Norvey Cordoba') {
-      resultadosEmpleado('icon-jesus','updateJesus','img4','true');
-    }
-    if (span.textContent === 'Sandra Milena Alvarez') {
-      resultadosEmpleado('icon-sandra','updateSandra','img5','true');
-    }
-    if (span.textContent === 'John Mario Mira Pineda') {
-      resultadosEmpleado('icon-mario','updateMario','img6','true');
-    }
-    if (span.textContent === 'Ana Maria Duarte Pineda') {
-      resultadosEmpleado('icon-ana','updateAna','img7','true');
-    }
-
-    // Restaurar flag para siguientes llamadas externas
-    setTimeout(() => {
-      permitirEliminarImagen = true;
-    },100);    
-
+      break;
+    case 'Jorge Alberto Lozada':
+      resultadosEmpleado('icon-jorge', 'updateJorge', 'img3', 'true');
+      break;
+    case 'Jesus Norvey Cordoba':
+      resultadosEmpleado('icon-jesus', 'updateJesus', 'img4', 'true');
+      break;
+    case 'Sandra Milena Alvarez':
+      resultadosEmpleado('icon-sandra', 'updateSandra', 'img5', 'true');
+      break;
+    case 'John Mario Mira Pineda':
+      resultadosEmpleado('icon-mario', 'updateMario', 'img6', 'true');
+      break;
+    case 'Ana Maria Duarte Pineda':
+      resultadosEmpleado('icon-ana', 'updateAna', 'img7', 'true');
+      break;
   }
+
+  setTimeout(() => {
+    permitirEliminarImagen = true;
+  }, 100);
 });
+
 
 function reubicarVisor(){
   document.querySelector('#conte-secundario').style.display='flex'
   document.querySelector('.visor').style.width='100%'
   const padreRgb = document.querySelector('.contenedor-visor')
+  const visorImg = document.querySelector('.visor-imagen')
   padreRgb.style.display = 'flex';
   padreRgb.style.flexDirection='column'
   padreRgb.style.alignItems = 'center';
@@ -1662,12 +1823,15 @@ function reubicarVisor(){
   padreRgb.style.marginTop = '80px';
   padreRgb.style.left='1vw'
   padreRgb.style.border='1px solid #1e90ff'
+  visorImg.style.width='100%'
+  visorImg.style.marginLeft= '-0.1vw'
 
   setTimeout(() => {
   document.querySelector('.panel-nombres').style.display='none'          
   }, 10);
 
 }
+
 
 function ingresoEmpleado(){
   const excluidos = [
@@ -1693,16 +1857,13 @@ inputNombre.addEventListener('input', (e) => {
 document.getElementById('numDoc1').addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
 });
-
 document.getElementById('nomEmpl').addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
 });
-
 document.querySelector('#lbl-ingreso').addEventListener('click', () => {
   presentarEmpleado();
   
 });
-
 // EXTRAER EMPLEADO
 function presentarEmpleado() {
   console.log('Contenido de localStorage empleadosRegistrados:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
@@ -1760,7 +1921,6 @@ function presentarEmpleado() {
 
   }
 }
-
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
   traerElementos('.ocultos')
   document.querySelector('#container01').style.display='grid'
@@ -1776,7 +1936,6 @@ document.querySelector('.cierra-graficos').addEventListener('click', ()=>{ // do
   flagEmpleado = true
  }
 })
-
 const inputArchivo = document.getElementById('numDoc6');
 let escala = 1;
 // BOTON ROJO
@@ -1832,17 +1991,14 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
     padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
   }, 25);
 }
-
 function restaurarPosicionPadreIngresos() {
   const padre = document.getElementById('padre-ingresos');
   if (!padre) return;
   padre.style.transform = ''; // elimina el translate aplicado por JS
 }
-
 document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ // boton rojo 
   moverPadreIngresos(61,28) // mueve boton doble flecha y aparece grafico area  
 })
-
 function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
   if (!contenedor) return;
@@ -1872,7 +2028,6 @@ function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
     });
   });
 });
-
 function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
   if (!contenedor) return;
@@ -1907,8 +2062,6 @@ function traerElementos(selectores) {
     el.style.display = displayOriginal;
   });
 }
-
-
 function insertarGrafico(idContenedor, idCanvas) {
   const contenedor = document.getElementById(idContenedor);
   if (!contenedor) return console.error(`No existe el contenedor con id: ${idContenedor}`);
@@ -1940,30 +2093,7 @@ function insertarGrafico(idContenedor, idCanvas) {
     }
   });
 }
-
-/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-
-
-const rutasFotos = [
-  "./assets/cadena logo.png",
-  "./assets/silueta.png",
-  "./assets/silueta1.png",
-  "./assets/silueta2.png",
-  "./assets/silueta3.png",
-  "./assets/silueta4.png",
-  "./assets/silueta5.png",
-  "./assets/silueta6.png",
-  "./assets/silueta7.png",
-  "./assets/gato.png",
-  "./assets/icono1.png"
-
-];
-
-const inputFoto = document.getElementById('numDoc6');
-const listaFotos = document.getElementById('listaFotos');
-const previewFoto = document.getElementById('empleadoImg'); 
-
-// generar lista
+// generar lista para RRHH
 rutasFotos.forEach(ruta => {
   const itemFoto = document.createElement('div');
   itemFoto.textContent = ruta;
@@ -1974,7 +2104,7 @@ rutasFotos.forEach(ruta => {
   });
 
   // seleccionar la ruta
-  itemFoto.addEventListener('click', () => {
+  itemFoto.addEventListener('click', () => {  
     inputFoto.value = ruta;
     previewFoto.src = ruta;
     listaFotos.style.display = 'none';
@@ -1982,28 +2112,66 @@ rutasFotos.forEach(ruta => {
 
   listaFotos.appendChild(itemFoto);
 });
-
-// mostrar lista al hacer clic en el input
+// CLICK EN EL INPUT
 inputFoto.addEventListener('click', () => {
   listaFotos.style.display = 'block';
 });
-
 // ocultar lista si se hace clic fuera
 document.addEventListener('click', e => {
   if (!listaFotos.contains(e.target) && e.target !== inputFoto) {
     listaFotos.style.display = 'none';
   }
 });
-
-
-
-/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-
-function PARABORRAR(){
+document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
-  restaurarPosicionPadreIngresos()
+  resultadosMA('interfaz-mtto')
+})
+document.querySelector('#borrarBoton2').addEventListener('click', () =>{
+  activarPantallaCompleta()
   ingresoEmpleado()
+})
+
+
+
+const contenedorLeds = document.getElementById('led');
+const inputCantidad = document.getElementById('inputCantidad');
+const totalLeds = 10;
+
+// construir celdas
+for (let i = 0; i < totalLeds; i++) {
+  const celda = document.createElement('div');
+  celda.classList.add('led-celda');
+  contenedorLeds.appendChild(celda);
 }
+
+const leds = contenedorLeds.querySelectorAll('.led-celda');
+
+// lógica de color
+inputCantidad.addEventListener('input', () => {
+  const valor = parseInt(inputCantidad.value) || 0;
+
+  leds.forEach((led, i) => {
+    led.className = 'led-celda';
+    led.style.borderTopRightRadius = '';
+    led.style.borderBottomRightRadius = '';
+
+    if (i < valor) {
+      if (i <= 2) led.classList.add('rojos');
+      else if (i === 3) led.classList.add('gradiente-rojo-amarillo');
+      else if (i >= 4 && i <= 6) led.classList.add('amarillo');
+      else if (i === 7) led.classList.add('gradiente-amarillo-verde');
+      else if (i >= 8) led.classList.add('verdes');
+
+      if (i === valor - 1) {
+        led.style.borderTopRightRadius = '6px';
+        led.style.borderBottomRightRadius = '6px';
+      }
+    }
+  });
+});
+
+
+
 
 const info = document.getElementById('info');
 info.textContent = `W:${window.innerWidth} H:${window.innerHeight} DPR:${window.devicePixelRatio}`;
