@@ -466,7 +466,9 @@
       <source data-src="./assets/galaxy.mp4" type="video/mp4">
       Tu navegador no soporta el elemento de video.
     </video>
-    <div class="links-inicialesI ocultos" id="links-inicialesI">      
+
+    <div id="links-inicialesI" class="links-inicialesI ocultos">      
+      
       <div id="titleContainerI" class="cont-titulo-pilares">
         <p id="textToColorI">Pilares<span>&#9660;</span></p>
       </div>  
@@ -484,6 +486,7 @@
       </ul>
 
     </div>
+
     <div class="links-iniciales ocultos" id="links-iniciales">
       <div id="titleContainer">
         <p id="textToColor">Entrenamientos <span>&#9660;</span></p>
@@ -2559,7 +2562,9 @@
         <div></div>
       </div>
     </div>
+
     <div id="blur-layer"></div>
+    
     <div id="contenedor-global" class="special-border"></div>
       <div id="lista-maquinas">
         <span class="maquina">Rotativa 1<span class="indicador"></span></span>
@@ -3567,8 +3572,6 @@
       </div>
       <button class="nav right" onclick="nextImage()">&#10095;</button>
     </div>
-    <button id="borrarBoton" class="borrar-boton" style="left: 33vw;">1</button>
-    <button id="borrarBoton2" class="borrar-boton">2</button>
     <div id="abuelo-grafica4">
 
       <div id="padre-grafica4" class="hijo-graficos">
@@ -3593,6 +3596,7 @@
       </div>
 
     </div>
+
     <div id="grafico-area" class="dashboard-grid">
       <div class="box box-1"></div>
       <div class="box box-2">En exposicion</div>
@@ -3631,6 +3635,7 @@
       <div class="box box-8"></div>
       <div class="box box-9"></div>
     </div>
+
     <div id="padre-ingresos" class="special-border">
 
       <div id="ingresos-sistema">
@@ -3737,6 +3742,7 @@
 
           <label for="numDoc" id="nuevo-ingreso" class="entrada-empleado">Registrar</label>
           <label for="numDoc" id="limpia-ingreso" class="entrada-empleado">Limpiar campos</label>
+          <label for="numDoc" id="modifica-ingreso" class="entrada-empleado">Modificar</label>
         </div>
 
         <div class="columna-derecha">
@@ -3747,6 +3753,7 @@
           <span></span>
           <button class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
           <span class="cierra-graficos entrada-empleado"></span>
+          <span class="cierra-graficos">Areas</span>
 
         </div>
 
@@ -3760,9 +3767,22 @@
       <button id="cerrarVentana">Cerrar</button>
     </div>
 
-    <input type="number" id="inputCantidad" min="0" max="10" placeholder="Cantidad (0-10)">
 
-    <div id="abuelo-indicadores">
+    <div class="padre-inputs">
+      <input type="number" id="inputCantidad" min="0" max="10" placeholder="Cantidad (0-10)">
+      <input type="number" id="inputCorregidos" min="0" max="10" placeholder="Cantidad (0-10)">
+      <input type="number" id="inputTipoA" min="0" max="10" placeholder="Cantidad (0-10)">
+      <input type="number" id="inputTipoB" min="0" max="10" placeholder="Cantidad (0-10)">
+      <input type="number" id="inputKaizen" min="0" max="10" placeholder="Cantidad (0-10)">
+      <input type="number" id="inputAda" min="0" max="10" placeholder="Cantidad (0-10)">
+      <input type="number" id="inputAdt" min="0" max="10" placeholder="Cantidad (0-10)">
+      <input type="number" id="inputLups" min="0" max="10" placeholder="Cantidad (0-10)">
+      <button id="borrarBoton" class="borrar-boton" style="left: 33vw;">1</button>
+      <button id="borrarBoton2" class="borrar-boton">2</button>
+    </div>
+
+
+    <div id="abuelo-indicadores" class="abuelos" >
 
       <div id="columna-item">
         <span>Def. identificados :</span>
@@ -3773,25 +3793,61 @@
         <span>ADA,s :</span>
         <span>ADT :</span>
         <span>Lup :</span>
-        <span> :</span>
-        <span> :</span>
+        <span> </span>
+        <span> </span>
       </div>
 
       <div id="padre-indicadores">
+
         <div id="contenedor-indicador" class="indicadores">
+          <span class="blockout"></span>
           <div id="led" class="led-indicador"></div>
         </div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        
+        <div id="contenedor-indicador" class="indicadores">
+          <span class="blockout"></span>
+          <div id="led-corregidos" class="led-indicador"> </div>
+        </div> 
+        <div id="contenedor-indicador" class="indicadores">
+          <span class="blockout"></span>
+          <div id="led-tipo-a" class="led-indicador"> </div>
+        </div>
+        <div id="contenedor-indicador" class="indicadores">
+          <span class="blockout"></span>
+          <div id="led-tipo-b" class="led-indicador"> </div>
+        </div>
+        <div id="contenedor-indicador" class="indicadores">
+          <span class="blockout"></span>
+          <div id="led-kaizen" class="led-indicador"> </div>
+        </div>
+        <div id="contenedor-indicador" class="indicadores">
+          <span class="blockout"></span>
+          <div id="led-adas" class="led-indicador"> </div>
+        </div>
+        <div id="contenedor-indicador" class="indicadores">
+          <span class="blockout"></span>
+          <div id="led-adt" class="led-indicador"> </div>
+        </div>
+        <div id="contenedor-indicador" class="indicadores">
+          <span class="blockout"></span>
+          <div id="led-lup" class="led-indicador"> </div>
+        </div>
+
         <div></div>
         <div></div>
       </div>      
 
+    </div>
+
+
+    <div id="links-ma">      
+      <ul id="vinculos-ma" class="estilo-ma">
+        <li>Mantenimiento Autonomo</li>
+        <li>Reconocimientos</li>
+        <li>Control de Puntualidad</li>
+        <li>Procesos internos</li>
+        <li>One To One</li>
+      </ul>
     </div>
 
 
