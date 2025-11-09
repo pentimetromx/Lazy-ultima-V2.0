@@ -6,7 +6,7 @@ document.addEventListener('keydown', function(event) {
       break;  
       case 'H':      
         Geometria() 
-        
+     
       break;
       case 'X':
       resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
@@ -17,7 +17,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('empleadoImg');  
+  let contiBoton = document.getElementById('abuelo-indicadores');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -4804,35 +4804,48 @@ botonesPerfilColor.forEach(boton => {
 });
 
 let intervalColor;
-function alternarColor() {
-  const elemento = document.querySelector('#grid-numbers > div:nth-child(12)')   
-  
-  if (!intervalColor) {
-    // Cambia el color inmediatamente
-    elemento.style.backgroundColor = 'rgb(0, 255, 0)';
-    
-    // Inicia el intervalColor para alternar el color
-    intervalColor = setInterval(() => {
-      if (elemento.style.backgroundColor === 'rgb(0, 255, 0)') {
-        elemento.style.backgroundColor = 'transparent'; // Cambia a transparente
-      } else {
-        elemento.style.backgroundColor = 'rgb(0, 255, 0)'; // Cambia a verde
-      }
-    }, 100);
-  } else {
-    console.log('El intervalColor ya está en ejecución.');
-  }
+
+function alternarColor(elementoAlternar) {
+  // Si ya existe un intervalo, lo cancelamos primero
+  clearInterval(intervalColor);
+
+  // Aplicamos color inicial
+  elementoAlternar.style.backgroundColor = 'rgb(0, 255, 0)';
+
+  // Reiniciamos el intervalo
+  intervalColor = setInterval(() => {
+    elementoAlternar.style.backgroundColor =
+      elementoAlternar.style.backgroundColor === 'rgb(0, 255, 0)'
+        ? 'transparent'
+        : 'rgb(0, 255, 0)';
+  }, 100);
 }
-function detenerAlternarColor() {
-  const elemento = document.querySelector('#grid-numbers > div:nth-child(12)');  
+
+
+/* function detenerAlternarColor(elementoResetear) {
   if (intervalColor) {
     clearInterval(intervalColor);
-    elemento.style.backgroundColor = '';
+    elementoResetear.style.backgroundColor = '';
     intervalColor = null;
     console.log('El intervalColor ha sido detenido.');
   }
+} */
+
+function detenerAlternarColor(elementoResetear) {
+  if (intervalColor) {
+    clearInterval(intervalColor);
+    intervalColor = null;
+
+    // Limpia completamente estilos inline
+    /* elementoResetear.removeAttribute('style'); */
+    elementoResetear.style.background = '';    
+
+    console.log('El intervalColor ha sido detenido y el elemento fue reseteado.');
+  }
 }
-document.querySelector('#conte-butts-calculadora > div:nth-child(1)').addEventListener('click', ()=>{ 
+
+
+btnSalir.addEventListener('click', ()=>{ 
   const numeros = document.querySelectorAll('.number'); // Selecciona todos los elementos con la clase .number  
   const algunoConContenido = Array.from(numeros).some(numero => numero.textContent.trim() !== '');
   if(alertaCuatro.style.display ==='flex'){
@@ -4842,13 +4855,14 @@ document.querySelector('#conte-butts-calculadora > div:nth-child(1)').addEventLi
   if (algunoConContenido) {
     alertaCinco.style.display = 'flex'
     desactivarClick(['.butt-perfiles', '.estilo-1','.digit','.digito']); 
-    alternarColor()
+    alternarColor(btnEntrar)
   }else{
     restablecerClick(['.estilo-1','.digit']);   
     const calculadora = document.getElementById('calculadora') 
     calculadora.classList.add('move-calculadora')
   }
-})                                          
+})      
+
 const coleccionNumeros = [];
 const contenedorResultado = document.querySelector('#resultado-calculadora');
 const spansNumeros = contenedorResultado.querySelectorAll('.number');
@@ -5003,11 +5017,13 @@ alertaCuatro.addEventListener('click', ()=> {
   restablecerClick(['.estilo-1','.digit', '.estilo-2','.cont-vacio','jobs','btn-abandonar','base-datos']);
   desactivarClick(['.butt-perfiles'])
 })
-salirCalculadora.addEventListener('mouseleave', () => {
+
+btnSalir.addEventListener('mouseleave', () => {
   restablecerClick(['.estilo-1','.digit','.digito']);
-  detenerAlternarColor()
+  detenerAlternarColor(btnEntrar)
   alertaCinco.style.display='none'
 } )
+
 document.getElementById('alerta-seis').children[2].addEventListener('click', () => {
   alertaSeis.classList.add('move-alerta')
   restablecerClick(['.mod-tinta','.div-ctrl','.butt-perfiles', '.butt-selector', '.cabeza', '.estilo-1', '.digit', '.digito']);

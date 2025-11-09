@@ -1055,8 +1055,6 @@ function crearGraficoLleno() {
 
       // Activar blur overlay
       if (blurOverlay) activarBlur();
-      
-
       // Ocultar elementos innecesarios
       [linksMA, linkLista, buscador].forEach(el => {
         if (el) el.style.display = 'none';
@@ -1159,7 +1157,7 @@ function aplicarZindex(valor = 200) {
   }
 }
 function mostrar(...elementos) {
-  elementos.forEach(el => {
+    elementos.forEach(el => {
     if (el) el.style.display = 'block';
   });
 }
@@ -1171,10 +1169,9 @@ primerSpan.addEventListener('click', () => {
   
   document.querySelectorAll('.titulo-graf-ma').forEach(el => el.classList.remove('blur'));
   document.querySelector('#grafico-area').style.display='none'
-  const linksMA   = document.getElementById('links-inicialesI');
-  const linkLista = document.getElementById('links-iniciales');
   const buscador  = document.getElementById('buscador');
-  mostrar(linksMA, linkLista, buscador);
+  mostrar(linkIni1, linkIni1, buscador);
+  padreLinks.style.display='none'
 });
 
 document.querySelectorAll('.span-semana').forEach((span, index) => {
@@ -1186,9 +1183,7 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
     });    
 
     span.style.backgroundColor ='rgb(20,40,60)';
-
     const azul = 'rgb(20, 40, 60)';
-
     const hayMesActivo = Array.from(document.querySelectorAll('.mes'))
     .some(el => getComputedStyle(el).backgroundColor === azul);
 
@@ -1808,7 +1803,6 @@ visor.addEventListener('click', (e) => {
   }, 100);
 });
 
-
 function reubicarVisor(){
   document.querySelector('#conte-secundario').style.display='flex'
   document.querySelector('.visor').style.width='100%'
@@ -1832,7 +1826,6 @@ function reubicarVisor(){
 
 }
 
-
 function ingresoEmpleado(){
   const excluidos = [
     'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
@@ -1841,6 +1834,12 @@ function ingresoEmpleado(){
     const el = document.getElementById(id);
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
   });
+  const padre = document.getElementById('padre-ingresos');
+  const hijo = document.getElementById('ingresos-sistema');
+  flagEmpleado = true
+  padre.removeAttribute('style');
+  hijo.removeAttribute('style');
+
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
 }
 
@@ -1860,10 +1859,12 @@ document.getElementById('numDoc1').addEventListener('input', (e) => {
 document.getElementById('nomEmpl').addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
 });
+
 document.querySelector('#lbl-ingreso').addEventListener('click', () => {
   presentarEmpleado();
   
 });
+
 // EXTRAER EMPLEADO
 function presentarEmpleado() {
   console.log('Contenido de localStorage empleadosRegistrados:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
@@ -1921,21 +1922,25 @@ function presentarEmpleado() {
 
   }
 }
+
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
   traerElementos('.ocultos')
   document.querySelector('#container01').style.display='grid'
   restablecerClick(['.entrada-empleado']);
   document.querySelector('.ventana-mensaje').style.display='none'
 })
-document.querySelector('.cierra-graficos').addEventListener('click', ()=>{ // doble flecha boton gris
+
+btnDblFlecha.addEventListener('click', ()=>{
  if(flagEmpleado === true){
   return
  }else{
-  desaparecerElemento('grafico-area')    
+  desaparecerElemento('grafico-area')
+  desaparecerElemento('abuelo-indicadores') 
   restaurarPosicionPadreIngresos()    
   flagEmpleado = true
  }
 })
+
 const inputArchivo = document.getElementById('numDoc6');
 let escala = 1;
 // BOTON ROJO
@@ -1997,7 +2002,9 @@ function restaurarPosicionPadreIngresos() {
   padre.style.transform = ''; // elimina el translate aplicado por JS
 }
 document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ // boton rojo 
-  moverPadreIngresos(61,28) // mueve boton doble flecha y aparece grafico area  
+  moverPadreIngresos(61,28)
+   desaparecerElemento('abuelo-indicadores') 
+ 
 })
 function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
@@ -2126,52 +2133,216 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
   resultadosMA('interfaz-mtto')
 })
+
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   activarPantallaCompleta()
   ingresoEmpleado()
 })
 
+function crearControlLed(idContenedor, idInput, totalLeds = 10) {
+  const contenedor = document.getElementById(idContenedor);
+  let leds = [];
+  let indice = 0;
 
+  function construir() {
+    contenedor.innerHTML = '';
+    for (let i = 0; i < totalLeds; i++) {
+      const celda = document.createElement('div');
+      celda.classList.add('led-celda');
+      contenedor.appendChild(celda);
+    }
+    leds = [...contenedor.querySelectorAll('.led-celda')];
+  }
 
-const contenedorLeds = document.getElementById('led');
-const inputCantidad = document.getElementById('inputCantidad');
-const totalLeds = 10;
+  function aumentar() {
+    if (indice >= totalLeds) return;
+    leds[indice].classList.add('led-amarillo');
+    indice++;
+  }
 
-// construir celdas
-for (let i = 0; i < totalLeds; i++) {
-  const celda = document.createElement('div');
-  celda.classList.add('led-celda');
-  contenedorLeds.appendChild(celda);
-}
+  function disminuir() {
+    if (indice <= 0) return;
+    indice--;
+    leds[indice].classList.remove('led-amarillo');
+  }
 
-const leds = contenedorLeds.querySelectorAll('.led-celda');
+  // construir de una vez
+  construir();
 
-// lógica de color
-inputCantidad.addEventListener('input', () => {
-  const valor = parseInt(inputCantidad.value) || 0;
-
-  leds.forEach((led, i) => {
-    led.className = 'led-celda';
-    led.style.borderTopRightRadius = '';
-    led.style.borderBottomRightRadius = '';
-
-    if (i < valor) {
-      if (i <= 2) led.classList.add('rojos');
-      else if (i === 3) led.classList.add('gradiente-rojo-amarillo');
-      else if (i >= 4 && i <= 6) led.classList.add('amarillo');
-      else if (i === 7) led.classList.add('gradiente-amarillo-verde');
-      else if (i >= 8) led.classList.add('verdes');
-
-      if (i === valor - 1) {
-        led.style.borderTopRightRadius = '6px';
-        led.style.borderBottomRightRadius = '6px';
-      }
+  // detectar clic arriba o abajo en el input
+  const input = document.getElementById(idInput);
+  input.addEventListener('click', (e) => {
+    const mitad = e.target.clientHeight / 2;
+    if (e.offsetY < mitad) {
+      aumentar();
+    } else {
+      disminuir();
     }
   });
+}
+
+crearControlLed('led', 'inputCantidad', 10);
+crearControlLed('led-corregidos', 'inputCorregidos', 10);
+crearControlLed('led-tipo-a', 'inputTipoA', 10);
+crearControlLed('led-tipo-b', 'inputTipoB', 10);
+crearControlLed('led-kaizen', 'inputKaizen', 10);
+crearControlLed('led-adas', 'inputAda', 10);
+crearControlLed('led-adt', 'inputAdt', 10);
+crearControlLed('led-lup', 'inputLups', 10);
+
+const contenedoresLineas = document.querySelectorAll('#contenedor-indicador');
+
+function waitUntilFull(contenedor, blockout, anchoTotal, timeout = 2000) {
+  // Espera hasta que blockout.offsetWidth sea ~ anchoTotal (tolerancia 1px)
+  // timeout en ms por seguridad
+  return new Promise((resolve) => {
+    const start = performance.now();
+    function check(now) {
+      const current = blockout.offsetWidth;
+      if (Math.abs(current - anchoTotal) <= 1) {
+        resolve(true);
+        return;
+      }
+      if (now - start > timeout) { // si se excede, forzamos
+        // Forzamos ancho final si algo falla
+        blockout.style.width = `${anchoTotal}px`;
+        resolve(true);
+        return;
+      }
+      requestAnimationFrame(check);
+    }
+    requestAnimationFrame(check);
+  });
+}
+function reducirBlockout(contenedor) {
+  const blockout = contenedor.querySelector('.blockout');
+  if (!blockout) return;
+
+  // Si ya está ocupada, evitar reiniciar
+  if (contenedor.dataset.busy === "true") return;
+  contenedor.dataset.busy = "true";
+
+  // Medir ancho real y fijarlo como ancho inicial en px
+  const anchoTotal = contenedor.offsetWidth;
+  blockout.style.width = `${anchoTotal}px`;
+
+  // Esperar hasta que DOM/render haya aplicado ese ancho (seguro)
+  waitUntilFull(contenedor, blockout, anchoTotal, 1500).then(() => {
+    // Parametros de animación
+    const duracionMs = 500;   // duracion total de reducción
+    const intervaloMs = 50;   // intervalo de paso (mantengo tu ritmo)
+    const pasos = Math.max(1, Math.round(duracionMs / intervaloMs));
+    const paso = anchoTotal / pasos;
+
+    let progreso = anchoTotal;
+    const intervalo = setInterval(() => {
+      progreso -= paso;
+
+      if (progreso <= 0) {
+        progreso = 0;
+        clearInterval(intervalo);
+        contenedor.dataset.busy = "false"; // liberar
+      }
+
+      // Aplicar en px (redondeado para evitar sub-píxeles raros)
+      blockout.style.width = `${Math.max(0, Math.round(progreso))}px`;
+    }, intervaloMs);
+  }).catch(() => {
+    // En caso de error improbable, liberamos el flag
+    contenedor.dataset.busy = "false";
+  });
+}
+
+let dentro = false;
+
+function mostrar() {
+  if(flagEmpleado === true)return
+  padreLinks.style.display = 'block';
+}
+
+function ocultar() {
+  if (!dentro) padreLinks.style.display = 'none';
+}
+
+btnAreas.addEventListener('click', () => {
+  dentro = true;
+  mostrar();
 });
 
+btnAreas.addEventListener('mouseleave', () => {
+  dentro = false;
+  ocultar();
+});
 
+padreLinks.addEventListener('mouseenter', () => {
+  dentro = true;
+  mostrar();
+});
 
+padreLinks.addEventListener('mouseleave', () => {
+  dentro = false;
+  ocultar();
+});
+
+const primerItem = document.querySelector('#vinculos-ma li:first-child');
+
+primerItem.addEventListener('click', () =>{
+  const padres = document.querySelector('#grafico-area') 
+  padres.style.display = 'block';
+    Array.from(padres.querySelectorAll('*')).forEach(hijo => {
+    hijo.style.display = '';
+    hijo.style.visibility = 'visible';
+    hijo.style.opacity = '1';
+  });
+
+  aparecerElemento("abuelo-indicadores", "grid")     
+  setTimeout(() => {
+    desaparecerElemento('grafico-area')
+  }, 700);
+  setTimeout(() => {
+    aplicarLeds([7, 3, 1, 5, 2, 4, 6, 9]);
+  }, 1300); 
+  padreLinks.style.display='none'
+})
+
+function aplicarLeds(valores) {
+  const ids = [
+    'led',
+    'led-corregidos',
+    'led-tipo-a',
+    'led-tipo-b',
+    'led-kaizen',
+    'led-adas',
+    'led-adt',
+    'led-lup'
+  ];
+
+  ids.forEach((id, index) => {
+    const cantidad = valores[index];
+    const contenedor = document.getElementById(id);
+
+    contenedor.innerHTML = ''; // limpiar antes
+
+    for (let i = 0; i < cantidad; i++) {
+      const celda = document.createElement('div');
+      celda.classList.add('led-celda', 'led-verdes');
+      contenedor.appendChild(celda);
+    }
+  });
+
+  contenedoresLineas.forEach(contenedor => {
+  const blockout = contenedor.querySelector('.blockout');
+  if (!blockout) return;
+
+  // Aseguramos ancho inicial real
+  const anchoTotal = contenedor.offsetWidth;
+  blockout.style.width = `${anchoTotal}px`;
+
+  reducirBlockout(contenedor);
+  });        
+    
+}
 
 const info = document.getElementById('info');
 info.textContent = `W:${window.innerWidth} H:${window.innerHeight} DPR:${window.devicePixelRatio}`;
+  

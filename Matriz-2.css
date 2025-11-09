@@ -4344,17 +4344,6 @@ top: 44%;
 .nav:hover {
   background-color: rgba(0,0,255  ,0.7);
 }
-.borrar-boton{
-  position: absolute;
-  display: flex;
-  top: 90vh;
-  left: 44vw;
-  width: 5vw;
-  height: 5vh;
-  background-color: #0056b3;
-  cursor: pointer;
-  z-index: 200;
-}
 #barras-contenedor{
   position: absolute;
   display: flex;
@@ -5083,8 +5072,6 @@ top: 44%;
 .lista-oculta {
   display: none;
 }
-
-
 
 @media only screen and (max-width: 480px) {
 .boton-e,
