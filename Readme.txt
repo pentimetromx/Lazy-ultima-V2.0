@@ -1,35 +1,105 @@
-1. la función que muestra los elementos con transición desde tamaño mínimo hasta tamaño normal es: 
-	aparecerElemento("troubleshooting", "grid") - en parámetros se pasa el contenedor del elemento y el tipo de display
+1. incrementar tamaño de mínimo a máximo:
+	aparecerElemento("troubleshooting", "grid") - 	en parámetros se pasa el contenedor del elemento y el tipo de display , hay que aplicar la clase (.activo)
 
-2. Estructura para forzar la aparición de elementos hijos es:
-	  padreRgb.style.display = 'grid';
-          Array.from(padreRgb.querySelectorAll('*')).forEach(hijo => {
-            hijo.style.display = '';
-            hijo.style.visibility = 'visible';
-            hijo.style.opacity = '1';
-          });
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-3. Mostrar capacidad disponible en el almacén local
-    function getLocalStorageSize() {
+2. forzar aparición de elementos hijos / Eliminar estilos en linea hijos
+	
 
-	let total = 0;
-	for (let i = 0; i < localStorage.length; i++) {
-	const key = localStorage.key(i);
-	const value = localStorage.getItem(key);
+const padres = document.querySelectorAll('.constellation');
 
-	// Cada carácter en UTF-16 ocupa 2 bytes
-	total += (key.length + value.length) * 2;
-	}
+function mostrarConstellation(coleccion) {
+  coleccion.forEach(padre => {
+    padre.style.display = 'grid';
+    padre.querySelectorAll('*').forEach(hijo => {
+      hijo.style.display = '';
+      hijo.style.visibility = 'visible';
+      hijo.style.opacity = '1';
+    });
+  });
+}
 
-	// Devolvemos en KB y MB para comodidad
-	return {
-	bytes: total,
-	kb: (total / 1024).toFixed(2),
-	mb: (total / (1024 * 1024)).toFixed(2)
-	};
-    }
-// Uso
-console.log(getLocalStorageSize());
+
+
+padres.forEach(padre => {
+  padre.removeAttribute('style'); // limpia el padre
+
+  padre.querySelectorAll('*').forEach(hijo => {
+    hijo.removeAttribute('style'); // limpia todos los descendientes
+  });
+});
+		
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 3. FORZAR OCULTAMIENTO DE ELEMENTOS 
+
+
+function ocultarConstellation(coleccion) {
+  coleccion.forEach(padre => {
+    padre.querySelectorAll('*').forEach(hijo => {
+      hijo.style.display = 'none';
+      hijo.style.visibility = 'hidden';
+      hijo.style.opacity = '0';
+    });
+  });
+}
+
+
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+
+3. No esta visible o no existe:
+	const el = document.querySelector('#calendario-mes');
+        if (!el || el.offsetParent === null) {
+         return
+       }else{ ...
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+4. Clicks activar/desactivar:
+
+desactivarClick(['.div-ctrl','.butt-perfiles', '.butt-selector', '.digit']);
+
+function desactivarClick(classElements) {
+  if (!Array.isArray(classElements)) {
+    console.error('El parámetro debe ser un array de selectores.'); 
+    return;
+  }
+  classElements.forEach(selector => {
+    const botones = document.querySelectorAll(selector);
+    botones.forEach(boton => {
+      boton.style.pointerEvents = 'none'; // Bloquea clic
+    });
+  });
+}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+restablecerClick(['.cabeza']);
+
+function restablecerClick(classElements) { 
+  if (!Array.isArray(classElements)) {
+    console.error('El parámetro debe ser un array de selectores.');
+    return;
+  }
+
+  classElements.forEach(selector => {
+    const botones = document.querySelectorAll(selector);
+    botones.forEach(boton => {
+      boton.style.pointerEvents = 'auto'; // Reactiva eventos de clic
+      boton.style.opacity = '1'; // Restaura la apariencia
+    });
+  });
+}  
+
+
+
+
+
+
+
+
+
 
 4. PROMPT PARA GEMINI:
 
@@ -39,10 +109,13 @@ A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspec
 
 
 
+COLOR MENTA 
+color: #00FFC6;
 
 
 
 
+btnAgregar
 
 
 

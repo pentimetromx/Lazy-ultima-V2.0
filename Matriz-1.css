@@ -360,59 +360,18 @@ color: white;
   background-color: #333333;
   display: none;
 }
-#descripcion-I{
-  font-family: 'Candara', sans-serif; 
-  font-size: 20px; 
-  color: white; 
-  text-align: center; 
-  margin-top: -30%;
-  display: none;
-}
-#butt-Institucional{
-  position: absolute;
-  display: flex;
-  left: 43%;
-  margin-top: 5%; 
-  height: 19px;
-  width: 147px;
-  background: linear-gradient(45deg,#ff1837 15%, #333333 85%);
-  opacity: 50%; 
-  border-radius: 9px; 
-  box-shadow: none;
-  transition: transform 1.6s ease;
-}
 #butt-Institucional.big-buttonII {
   transform: scale(30);
 }
-#padre-interfaz {
-  position: absolute;
-  left: 22%;
-  top: 32%;
-  display: grid; 
-  grid-template-columns: 1fr 1fr;
-  background-color: #000;
-  width: 50%;
-  height: 62%;
-  border: 0.1px solid rgb(0, 255, 0);
-  border-radius: 13px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-#agrupaOblicuos-XI{       
-  position: absolute;
-  display: flex;
-  flex-direction:column-reverse;
-  align-items: center;
+#video-offset-cadena video {  
   width: 100%;
-  top: 63%;
-  left: 7%;
-  gap: 55px;
-  transform: translateY(-50%);
-  z-index: 2;   
-  overflow: auto;
-  transition: transform 1.6s ease;
-  display: none;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 13px;
+  cursor: pointer;
 }
+
+
 #img-logo{
  position: relative;
  left:-318px;
@@ -1508,9 +1467,7 @@ width:447px ;
   position: relative;
   left:-7px;
 }
- #agrupaOblicuos-XI > * {
-  margin-left: 100px; 
-}
+
 .Bot-inicio3-fondo{
   border-radius: 7px;
   width:14vw;
@@ -3408,33 +3365,46 @@ elemento.visible {
   cursor: pointer; 
   transition: transform 0.1s; 
 }
+
+
+
+
+
+
+
+
+
+
+
+
 #cont-titulo{
   position: absolute;
-  top: -95%;
+  display:grid;
+  grid-template-rows: 13% 9% 7% 65%;
+  place-items: center;
+  width:100vw;
+  height: 95vh;
+  top: -85vh;
   left: 0;
-  width:100%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
   transition: transform 1.6s ease;
   z-index: 2;  
 }
+
 #cont-titulo h4{
-  position: absolute;
+  position: relative;
   display: flex;
-  top:10%;
-  left: 114%;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   width: 100%;
+  margin-top: 4%;
   font-family: 'Candara', sans-serif; 
   font-size:2.6vw;
-  font-weight: bold; color: white;
-  margin-bottom: 10px;
+  color: white;
+  font-weight: bold;
   transition: transform 1.6s ease;
   display: none;
-
 }
 #cont-titulo-operacion h4{
   position:   absolute;
@@ -3446,6 +3416,80 @@ elemento.visible {
   color: white; 
   margin-bottom: 10px;  
 }
+
+
+
+
+#padre-inicio{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  right: 3%;
+  height: 100%;
+  width: 50%;
+}
+#padre-interfaz {
+  position: relative;
+  display: grid; 
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border: 1px solid red;
+  border: 0.1px solid rgb(0, 255, 0);
+  border-radius: 13px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+
+
+
+#descripcion-I{
+  position:relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-family: 'Candara', sans-serif; 
+  font-size: 1.6vw; 
+  color: white; 
+  text-align: center; 
+  display: none;
+}
+#butt-Institucional{
+  position: absolute;
+  display: flex;
+  margin-top: 5%; 
+  height: 50%;
+  width: 15%;
+  background: linear-gradient(45deg,#ff1837 15%, #333333 85%);
+  opacity: 50%; 
+  border-radius: 9px; 
+  box-shadow: none;
+  transition: transform 1.6s ease;
+}
+
+#agrupaOblicuos-XI{       
+  position: absolute;
+  display: flex;
+  top: 46%;
+  left: 28%;
+  width: 100%;
+  height: 100%;
+  flex-direction:column-reverse;
+  align-items: center;
+  transform: translateY(-50%);
+  z-index: 2; 
+  gap: 12%;  
+  overflow: auto;
+  transition: transform 1.6s ease;
+  display: none;
+}
+
+
+
+
+
 #cont-titulo-calidad,
 #cont-titulo-comercial,
 #cont-titulo-operacion,
@@ -5496,9 +5540,6 @@ input.numero:focus {
 }
 .move-oblicuosII{
   transform: translateY(100%);
-}
-.move-title{
-  transform: translateX(-85vw);
 }
 .move_video{
   transform: translateX(16.7vw);    
