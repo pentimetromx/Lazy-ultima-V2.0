@@ -3780,14 +3780,7 @@ top: 44%;
 .flech-rgb > div:nth-child(4){
   background-color:rgba(233,255,165,0.15);
 }
-#video-offset-cadena video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 13px;
-  cursor: pointer;
-}
- .sup-level {
+.sup-level {
   display: grid;
   grid-template-rows: 7% 86% 7%;
   position: absolute;

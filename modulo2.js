@@ -3023,14 +3023,26 @@ function moverBoton(boton, index) {
   }
   mover();
 } 
+
 function iniciaMove() {
-  var contiVideoJuegos = document.getElementById('cont-videojuegos')
-  contiVideoJuegos.style.display = 'block'
+  const elementosExcluidos = [
+    'cont-videojuegos'
+  ];
+
+  allContenedores.forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
+    }
+  });
+
+
   buttons.forEach((button, index) => {
     moverBoton(button, index);
   });
   iniciarTransito()
 }
+
 function palpitarBoton(elemento){
   switch (elemento){
 

@@ -36,45 +36,58 @@
     <input id="input3" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">    
     <input id="input4" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">
     <div class="contraseña" id="contraseña"><span id="texto">Ingrese contraseña</span></div>
+
     <div id="cont-titulo">
       <h4 id="subtitulo-I">Aplicamos la transformación tecnológica</h4>
+
       <p id="descripcion-I">
         En cadena experimentamos internamente el crecimiento que ofrecemos a nuestros clientes<br>usando las mismas herramientas
         <button id="butt-Institucional"></button>
       </p>
 
-      <div class="oblicuos-XI" id="agrupaOblicuos-XI">
-        <div id="contFrente-V" class="oblicuosInicio">
-          <button class="Bot-inicio3 butts-inicio" id="butt-01110" onclick="abrirSeccionCalidad('cont-titulo-calidad')">Area Calidad</button>
-          <button class="Bot-inicio3-fondo" id="butt-112"></button>
-        </div>
-        <div id="contLateral-V" class="oblicuosInicio">
-          <button class="Bot-inicio3 butts-inicio" id="butt-3" onclick="abrirSeccionComercial('cont-titulo-comercial')">Area Comercial</button>
-          <button class="Bot-inicio3-fondo" id="butt-4"></button>
-        </div>
-        <div id="contArriba-V" class="oblicuosInicio">
-          <button class="Bot-inicio3 butts-inicio" id="butt-5" onclick="abrirSeccionAdministrativa('cont-titulo-admin')">Area Administrativa</button>
-          <button class="Bot-inicio3-fondo" id="butt-6"></button>
-        </div>
-        <div id="contAtras-V" class="oblicuosInicio">
-          <button class="Bot-inicio3 secuence" id="butt-7" onclick="mostrarElementos(['cont-titulo-operacion','container01','buscador','search-form','links-inicialesI','links-iniciales','cont-titulo-operacion','image-background'])">Area Operativa</button>
-
-          <button class="Bot-inicio3-fondo" id="butt-8"></button> 
-        </div>
-      </div>
-
       <span class="sub-arrow">
         <i class="fas fa-caret-down"></i>
       </span>
       
-      <div id="padre-interfaz">
+      <div id="padre-inicio"> <!-- SEGUNDO GRID -->
 
-        <div id="video-offset-cadena">
-          <video class="lazy" src="./assets/Offset-10.mp4" autoplay loop muted playsinline></video>
-        </div> 
-        <div id="hijo-interaz-2" class="columna"></div>  
+        <div id="agrupaOblicuos-XI" class="oblicuos-XI">
+          <div id="contFrente-V" class="oblicuosInicio">
+            <button class="Bot-inicio3 butts-inicio" id="butt-01110" onclick="abrirSeccionCalidad('cont-titulo-calidad')">Area Calidad</button>
+            <button class="Bot-inicio3-fondo" id="butt-112"></button>
+          </div>
+          <div id="contLateral-V" class="oblicuosInicio">
+            <button class="Bot-inicio3 butts-inicio" id="butt-3" onclick="abrirSeccionComercial('cont-titulo-comercial')">Area Comercial</button>
+            <button class="Bot-inicio3-fondo" id="butt-4"></button>
+          </div>
+          <div id="contArriba-V" class="oblicuosInicio">
+            <button class="Bot-inicio3 butts-inicio" id="butt-5" onclick="abrirSeccionAdministrativa('cont-titulo-admin')">Area Administrativa</button>
+            <button class="Bot-inicio3-fondo" id="butt-6"></button>
+          </div>
+          <div id="contAtras-V" class="oblicuosInicio">
+            <button class="Bot-inicio3 secuence" id="butt-7" onclick="mostrarElementos(['cont-titulo-operacion','container01','buscador','search-form','links-inicialesI','links-iniciales','cont-titulo-operacion','image-background'])">Area Operativa</button>
+
+            <button class="Bot-inicio3-fondo" id="butt-8"></button> 
+          </div>
+        </div>
+
+        <div id="padre-interfaz">
+          <!-- VIDEO OFFSET -->
+          <div id="video-offset-cadena">
+            <video class="lazy" src="./assets/Offset-10.mp4" autoplay loop muted playsinline></video>
+          </div> 
+
+          <!--  EL QUE GIRA -->
+          <div id="hijo-interaz-2" class="columna"></div>
+
+        </div>
+
       </div>
+
+
+
     </div>
+
     <div id="cont-videojuegos" style="display: none;">
       <div id="contMetrics" class="sinusoidales">
         <canvas id="sinusoidalCanvas" width="300" height="177"></canvas>
@@ -222,6 +235,7 @@
         <button class="buttons" id="button81"></button>                
       </div>
     </div>  
+    
     <div id="cont-titulo-operacion" style="display: none;">
       <h4 id="subtitulo-operacion">Aplicamos la transformación tecnológica</h4>
       <p id="descripcion-II">
