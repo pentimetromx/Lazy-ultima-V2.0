@@ -157,12 +157,10 @@ color: white;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(6px); /* Safari */
 }
-
-
 #vinculos-ma{
   position: absolute;
   display: grid;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   width: 100%;
   height: 100%;
   z-index: 777;
@@ -183,7 +181,7 @@ color: white;
   font-size: 0.6em;
   cursor: pointer;
 
-  padding: 15px;
+  padding: 5%;
   transition: background-color 0.5s ease, color 0.8s ease;
   border-radius: 0; /* Asegura que todos estén sin bordes */
 }
@@ -3751,7 +3749,7 @@ elemento.visible {
  #conti-boton{
   position: absolute;
   display: grid;
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-rows: repeat(11, 1fr);
   place-items: center;  
   top:5vh;
   left:1vw;
@@ -6858,26 +6856,6 @@ height:100%;
   font-family: "Poppins", "Segoe UI", sans-serif;
   font-weight: 600;  
 }
-
-#ingresos-sistema {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 35% 43% 15%;
-  grid-template-rows: auto 1fr;
-  gap: 2%;
-  background-color: rgb(125, 144, 157);
-  border-radius: 7px;
-  
-  transform: scale(0);
-  transform-origin: center; 
-  transition: transform 1s ease;
-}
-#ingresos-sistema > :nth-child(3),
-#ingresos-sistema > div:first-child {
-  width: 80%;
-  height:70%;
-  box-sizing: border-box;
-}
 .columna-izq {
   display: grid;
   grid-template-rows: auto auto auto auto auto auto auto;
@@ -7087,7 +7065,9 @@ height:100%;
 #abuelo-indicadores.activo,
 .contenedor-visor.activo,
 .dashboard-grid.activo,
+#ingresos-sistema-ma.activo,
 #ingresos-sistema.activo,
+#padre-ingresos-ma.activo,
 #padre-ingresos.activo,
 #contenedor-global.activo,
 #titulo-mes.activo,
@@ -7108,6 +7088,7 @@ height:100%;
   transform-origin: center; 
   transition: transform 1s ease;
 }
+#padre-ingresos-ma,
 #padre-ingresos{
   position: relative;
   display: flex;
@@ -7151,7 +7132,35 @@ height:100%;
   mask-composite: exclude;
   pointer-events: none;
 }
-
+#ingresos-sistema-ma,
+#ingresos-sistema {
+  flex: 1;
+  display: grid;
+  min-height: 0;
+  overflow: hidden;  
+  grid-template-columns: 35% 43% 15%;
+  grid-template-rows: auto 1fr;
+  gap: 2%;
+  background-color: rgb(125, 144, 157);
+  border-radius: 7px;
+  
+  transform: scale(0);
+  transform-origin: center; 
+  transition: transform 1s ease;
+}
+#ingresos-sistema-ma > :nth-child(3),
+#ingresos-sistema-ma > div:first-child,
+#ingresos-sistema > :nth-child(3),
+#ingresos-sistema > div:first-child {
+  width: 80%;
+  height:70%;
+  box-sizing: border-box;
+}
+.columna-izq,
+.columna-centro,
+.columna-derecha {
+  min-height: 0;
+}
 .ventana-mensaje{
   position: absolute;
   display: grid;
@@ -7350,19 +7359,20 @@ background-color: #3FEF9C;
   pointer-events: none;
 }
 
+
 .padre-inputs{
   position: relative;
   display: grid;
-  grid-template-columns:repeat(10, 1fr) ;
+  grid-template-columns: repeat(10, 1fr);
   top: 92vh;
   height: 5vh;
   width:30vw;
-  display: none;
+  z-index: 9999;
 }
 .padre-inputs > button,
 .padre-inputs > input{
   position: relative;
-  display: flex;
   width: 100%;
   height:100%;
 }
+
