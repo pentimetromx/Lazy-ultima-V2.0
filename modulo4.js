@@ -1842,6 +1842,22 @@ function ingresoEmpleado(){
 
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
 }
+function ingresoEmpleadoMA(){
+  const excluidos = [
+    'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
+  ];
+  allContenedores.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
+  });
+  const padre = document.getElementById('padre-ingresos-ma');
+  const hijo = document.getElementById('ingresos-sistema-ma');
+  flagEmpleado = true
+  padre.removeAttribute('style');
+  hijo.removeAttribute('style');
+
+  ["padre-ingresos-ma","ingresos-sistema-ma"].forEach(id => aparecerElemento(id, "grid"));
+}
 
 const inputNombre = document.getElementById('numDoc');
 inputNombre.addEventListener('input', (e) => {
@@ -2297,7 +2313,7 @@ primerItem.addEventListener('click', () =>{
 
   aparecerElemento("abuelo-indicadores", "grid")     
   setTimeout(() => {
-    desaparecerElemento('grafico-area')
+    desaparecerElemento('grafico-area')  
   }, 700);
   setTimeout(() => {
     aplicarLeds([7, 3, 1, 5, 2, 4, 6, 9]);

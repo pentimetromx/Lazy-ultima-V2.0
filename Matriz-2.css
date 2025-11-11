@@ -4973,6 +4973,10 @@ top: 44%;
   object-position: center;
   display: block;
 }
+.imgEmpleado img:not([src]), 
+.imgEmpleado img[src=""] {
+  display: none;
+}
 
 #imagenVisor:not([src]), 
 #imagenVisor[src=""] {

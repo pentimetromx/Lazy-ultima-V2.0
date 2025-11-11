@@ -5,8 +5,11 @@ document.addEventListener('keydown', function(event) {
         vaciarEmpleadosEnLocal()
       break;  
       case 'H':      
-        Geometria() 
-     
+        /* Geometria() */ 
+        for (let i = 0; i < localStorage.length; i++) {
+          const clave = localStorage.key(i);
+          console.log(clave);
+        }     
       break;
       case 'X':
       resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
@@ -4819,17 +4822,10 @@ function alternarColor(elementoAlternar) {
         ? 'transparent'
         : 'rgb(0, 255, 0)';
   }, 100);
+  setTimeout(() => {
+    detenerAlternarColor(elementoAlternar)      
+  }, 1500);
 }
-
-
-/* function detenerAlternarColor(elementoResetear) {
-  if (intervalColor) {
-    clearInterval(intervalColor);
-    elementoResetear.style.backgroundColor = '';
-    intervalColor = null;
-    console.log('El intervalColor ha sido detenido.');
-  }
-} */
 
 function detenerAlternarColor(elementoResetear) {
   if (intervalColor) {

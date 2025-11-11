@@ -4787,7 +4787,7 @@ function moveElement(element, parent,frame) {
   }, speed * 2);
 }
 document.getElementById('butt-sitio').addEventListener('click', () => {
-  var elementosExcluidos = ['buscador','search-form','sitema-humedad','links-inicialesI','links-iniciales']
+  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -4796,7 +4796,7 @@ document.getElementById('butt-sitio').addEventListener('click', () => {
   }
   container1.style.display='grid' 
   document.getElementById('butt-sitio').style.display='none'
-  mostrarElementos(['pantalla-inicial','barras-contenedor','barras-inicio','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','gran-cortina'])
+  ElementosMaII('conteneMantaut')
 })
 function isVisible(element) {
   const style = window.getComputedStyle(element);

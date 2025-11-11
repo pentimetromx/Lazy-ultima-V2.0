@@ -88,7 +88,7 @@
 
     </div>
 
-    <div id="cont-videojuegos" style="display: none;">
+    <div id="cont-videojuegos" class="juegos-de-video">
       <div id="contMetrics" class="sinusoidales">
         <canvas id="sinusoidalCanvas" width="300" height="177"></canvas>
         <canvas id="diagonalCanvas" width="300" height="177"></canvas>
@@ -150,7 +150,7 @@
         <button class="botoneras" id="bttn52"></button>
       </div>      
       <div id="contButtsMovement">
-        <button id="buttSolitario" class="botonTransito" style="position: absolute;left: 0px;top:7px;border-radius:7px;height: 200px;width: 200px;border-radius: 177px;"></button>
+        <button id="buttSolitario" class="botonTransito" style="position: absolute;left: 0px;top:7px;border-radius:7px;height: 200px;width: 200px;border-radius: 177px;display: none;"></button>
       </div>
       <div id="button-container" style="display: none;">
         <button class="buttons" id="button2"></button>
@@ -495,7 +495,7 @@
         <li>Mejora Enfocada</li>
         <li>Administrativo y soporte</li>
         <li onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">Job track</li>
-        <li onclick="ingresoEmpleado()">Ingreso</li>
+        <li onclick="ingresoEmpleado()">Ingreso RRHH</li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
 
@@ -865,7 +865,8 @@
         <button class="butt-mautonomo" onclick="deslizaContenedor('conti-boton-kaizen','kaizen')">KAIZEN</button>
         <button class="butt-mautonomo" onclick="resetBotns('troubleshoot')" style="background-color: red;color: white;">Reset</button>
         <button class="butt-mautonomo" onclick="building()" style="background-color: red;color: white;">Show everything</button>
-        <button class="butt-mautonomo" onclick="resultadosMA('interfaz-mtto')">TRACKING DASHBOARD</button>               
+        <button class="butt-mautonomo" onclick="resultadosMA('interfaz-mtto')">TRACKING DASHBOARD</button>
+        <button class="butt-mautonomo" onclick="ingresoEmpleadoMA()">REGISTRO</button>               
       </div> 
 
       <div id="troubleshooting" class="contenedor-pariente class-line">
@@ -3748,7 +3749,7 @@
 
         </div>
 
-        <div class="columna-centro">
+        <div class="columna-centro"> 
 
           <div class="imgEmpleado">
             <img src=""  id="empleadoImg" alt=""> 
@@ -3774,6 +3775,151 @@
       </div>     
       
     </div>
+
+
+    <div id="padre-ingresos-ma" class="special-border">
+
+      <div id="ingresos-sistema-ma">
+
+        <div class="encabezado">
+          Registro indicadores M.A
+        </div>
+        <div class="columna-izq">
+
+          <div class="fila-ingreso">
+            <label for="numDoc">Nombre empleado</label>
+            <input type="text" id="numDoc" class="entrada-empleado verGraficos" title="Solo letras y espacios">
+          </div>
+          <div class="fila-ingreso">
+            <label for="numDoc1">Defectos identificados</label>
+            <input type="text" id="numDoc1" class="entrada-empleado verGraficos">
+          </div>
+          <div class="fila-ingreso">
+            <label for="numDoc2">Defectos corregidos</label>
+
+            <select id="cargo" class="entrada-empleado verGraficos">
+              <option value="" disabled selected>Seleccione un cargo</option>
+              <option>Presidente</option>
+              <option>Director General</option>
+              <option>Gerente de Producción</option>
+              <option>Gerente Comercial</option>
+              <option>Gerente de Finanzas</option>
+              <option>Gerente de Calidad</option>
+              <option>Jefe de Preprensa</option>
+              <option>Jefe de Impresión Offset</option>
+              <option>Jefe de Acabados y Empaque</option>
+              <option>Jefe de Mantenimiento</option>
+              <option>Supervisor de Producción</option>
+              <option>Diseñador Gráfico</option>
+              <option>Coordinador de Logística</option>
+              <option>Asistente de Compras</option>
+              <option>Técnico en Control de Calidad</option>
+              <option>Operario de Máquina Offset</option>
+              <option>Auxiliar de Máquina</option>
+              <option>Operario de Acabados</option>
+              <option>Mensajero Interno</option>
+              <option>Servicios Generales</option>
+            </select>
+
+            
+
+
+          </div>
+          <div class="fila-ingreso">
+            <label for="numDoc5">Defectos tipo A</label>
+            <input type="text" id="numDoc5" list="cargos" class="entrada-empleado verGraficos" placeholder="Seleccione un cargo">
+            <datalist id="cargos">
+              <option value="Presidente"></option>
+              <option value="Director General"></option>
+              <option value="Gerente de Producción"></option>
+              <option value="Gerente Comercial"></option>
+              <option value="Gerente de Finanzas"></option>
+              <option value="Gerente de Calidad"></option>
+              <option value="Jefe de Preprensa"></option>
+              <option value="Jefe de Impresión Offset"></option>
+              <option value="Jefe de Acabados y Empaque"></option>
+              <option value="Jefe de Mantenimiento"></option>
+              <option value="Supervisor de Producción"></option>
+              <option value="Diseñador Gráfico"></option>
+              <option value="Coordinador de Logística"></option>
+              <option value="Asistente de Compras"></option>
+              <option value="Técnico en Control de Calidad"></option>
+              <option value="Operario de Máquina Offset"></option>
+              <option value="Auxiliar de Máquina"></option>
+              <option value="Operario de Acabados"></option>
+              <option value="Mensajero Interno"></option>
+              <option value="Servicios Generales"></option>
+            </datalist>
+          </div>          
+          <div class="fila-ingreso">
+            <label for="numDoc3">Defectos tipo B</label>
+            <input type="text" id="numDoc3" list="equipos" class="entrada-empleado verGraficos" placeholder="Seleccione un recurso">
+            <datalist id="equipos">
+              <option value="Epson SurePress L-6534VW"></option>
+              <option value="Epson SurePress L-6534VW (Orange Ink)"></option>
+              <option value="Epson SurePress L-6534VW (CMYKW+Or)"></option>
+              <option value="Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press"></option>
+              <option value="Ricoh Pro Z75 (Duplex)"></option>
+              <option value="Ricoh Pro Z75 (400 gsm Media Support)"></option>
+              <option value="IBM InfoPrint Production Press"></option>
+              <option value="IBM InfoPrint Color 1000"></option>
+              <option value="IBM InfoColor 70"></option>
+              <option value="Roland Sheetfed 900 Evolution"></option>
+              <option value="Roland Sheetfed DI 106-8-L (LED UV)"></option>
+              <option value="Roland Sheetfed 700 Series (High Performance)"></option>
+              <option value="Heidelberg Speedmaster SX 102"></option>
+              <option value="Heidelberg Speedmaster XL 105"></option>
+              <option value="Heidelberg Speedmaster CX 145"></option>
+              <option value="Rotatek Brava 450 Semi-Rotary/Rotary Offset Press"></option>
+              <option value="Rotatek Universal 850 Web-Offset Press"></option>
+              <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press"></option>
+            </datalist>
+          </div>
+          <div class="fila-ingreso">
+            <label for="numDoc4">Kaizen</label>
+            <input type="text" id="numDoc4" class="entrada-empleado verGraficos" placeholder="DD/MM/YYYY" readonly>
+          </div>   
+
+          <div class="fila-ingreso">
+            <label for="numDoc6">Lup</label>
+            <input type="text"id="numDoc6"class="entrada-empleado verGraficos" value="" placeholder="Ruta o enlace de la fotografía">
+            
+            <div id="listaFotos" class="oculto"></div>
+
+          </div>           
+
+        </div>
+
+        <div class="columna-centro"> 
+
+          <div class="imgEmpleado">
+            <img src=""  id="empleadoImg" alt=""> 
+          </div>
+
+          <label for="numDoc" id="nuevo-ingreso" class="entrada-empleado">Registrar</label>
+          <label for="numDoc" id="limpia-ingreso" class="entrada-empleado">Limpiar campos</label>
+          <label for="numDoc" id="modifica-ingreso" class="entrada-empleado">Modificar</label>
+        </div>
+
+        <div class="columna-derecha">
+
+          <label for="numDoc">Buscar</label> 
+          <input type="text" id="nomEmpl" class="entrada-empleado"> 
+          <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso">Ir</button>
+          <span></span>
+          <button class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
+          <span class="cierra-graficos entrada-empleado"></span>
+          <span class="cierra-graficos">Areas</span>
+
+        </div>
+
+      </div>     
+      
+    </div>
+
+
+
+
     <div id="calendario"></div>
     <div id="lista-imagenes"></div>
     <div id="msg-empleado" class="ventana-mensaje">
@@ -3791,7 +3937,7 @@
       <input type="number" id="inputAda" min="0" max="10" placeholder="Cantidad (0-10)">
       <input type="number" id="inputAdt" min="0" max="10" placeholder="Cantidad (0-10)">
       <input type="number" id="inputLups" min="0" max="10" placeholder="Cantidad (0-10)">
-      <button id="borrarBoton" class="borrar-boton" style="left: 33vw;">1</button>
+      <button id="borrarBoton" class="borrar-boton">1</button>
       <button id="borrarBoton2" class="borrar-boton">2</button>
     </div>
 
@@ -3858,9 +4004,10 @@
       <ul id="vinculos-ma" class="estilo-ma">
         <li>Mantenimiento Autonomo</li>
         <li>Reconocimientos</li>
+        <li>One To One</li>
+        <li>Q.A</li>
         <li>Control de Puntualidad</li>
         <li>Procesos internos</li>
-        <li>One To One</li>
       </ul>
     </div>
 

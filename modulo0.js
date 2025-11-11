@@ -1606,7 +1606,8 @@ document.addEventListener('click', (e) => {
 });
 
 class Empleado {
-  constructor(nombre, documento, area, cargo, equipo, fecha, imagen, identificados) {
+  constructor(nombre, documento, area, cargo, equipo, fecha, imagen, identificados, corregidos, tipoA, tipoB,
+     kaizen, adas, adt, lup) {
     this.nombre = nombre;
     this.documento = documento;
     this.area = area;
@@ -1614,7 +1615,16 @@ class Empleado {
     this.equipo = equipo;
     this.fecha = fecha;
     this.imagen = imagen;
+    
     this.identificados = identificados;
+    this.corregidos = corregidos;
+    this.tipoA = tipoA;
+    this.tipoB = tipoB;
+    this.kaizen = kaizen;
+    this.adas = adas;
+    this.adt = adt;
+    this.lup = lup;
+
   }
 }
 const empleadosKey = 'empleadosRegistrados';
