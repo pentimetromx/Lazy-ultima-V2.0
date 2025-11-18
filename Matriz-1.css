@@ -6861,6 +6861,11 @@ height:100%;
   grid-template-rows: auto auto auto auto auto auto auto;
   gap: 0.2rem;
 }
+.columna-izq-ma{
+  display: grid;
+  grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+ 
+}
 .columna-centro{
   position: relative;
   display: grid;
@@ -6930,6 +6935,7 @@ height:100%;
 #limpia-ingreso{
   width: 45%;
 }
+#lbl-ingreso-ma:hover,
 #lbl-ingreso:hover,
 .fila-ingreso {
   display: flex;
@@ -6939,6 +6945,15 @@ height:100%;
   height: 100%;
   gap: 10%;
 } 
+.fila-ingreso-ma{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:flex-start;
+  height: 100%;
+  padding-left: 8px;
+  gap: 5%;
+}
 .columna-derecha {
   position: relative;
   top: 5%;
@@ -6990,7 +7005,7 @@ height:100%;
 
 
 
-
+#lbl-ingreso-ma,
 #lbl-ingreso{
   position: relative;
   display: block;
@@ -7024,6 +7039,7 @@ height:100%;
   padding: 0.4rem 0.6rem;
   border-radius: 4px;
 }
+.fila-ingreso > select,
 .fila-ingreso > input{
   width: 90%;
   height:50%;
@@ -7033,17 +7049,29 @@ height:100%;
   outline: none;  
   background-color: rgb(0,0,50);
   color: #52E3F6;
-  padding: 0.4rem 0.6rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+.fila-ingreso-ma > input{
+  width: 30%;
+  height:50%;
+  font-size: 0.8vw;
+  box-sizing: border-box;
+  border: none;
+  outline: none;  
+  background-color: rgb(0,0,50);
+  color: #52E3F6;
+  padding: 0.2rem 0.6rem;
   border-radius: 4px;
 }
 .columna-derecha > label,
+.fila-ingreso-ma > label,
 .fila-ingreso > label{
   width: 90%;
   box-sizing: border-box;
   color: #0e2433;  
   font-size: 0.7rem;  
 }
-
 .metricas-empleado {
   position: relative;
   display: block;
@@ -7156,10 +7184,14 @@ height:100%;
   height:70%;
   box-sizing: border-box;
 }
+.columna-izq-ma,
 .columna-izq,
 .columna-centro,
 .columna-derecha {
   min-height: 0;
+}
+.columna-izq-ma{
+  padding-left: 10px;
 }
 .ventana-mensaje{
   position: absolute;

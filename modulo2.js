@@ -68,202 +68,6 @@ salirPadreRgb.addEventListener('click', () => {
   }, 200);
 })
 
-/* function deslizaContenedor(identificador, idButton) {
-  restablecerPosiciones(['.ocultos', '.class-line'])     
-  let contenedor = document.querySelector('#troubleshooting')
-  contenedor.style.top=''
-  contenedor.style.left=''
-  clearAllIntervals()   
-  desactivarClicsPorUnTiempo(500)
-  arrayIdButtsMA.forEach(element => {                                                                                                        
-    var elemento = document.getElementById(element)
-    if (elemento) {
-      if (element === idButton) {
-         elemento.style.backgroundColor = 'orange'
-         elemento.style.color = 'black'
-      } else {
-        elemento.style.backgroundColor = 'rgba(83, 82, 82, 0.678)'
-        elemento.style.color = ''
-      }
-    }
-  })
-  contiBtt.forEach(element => {                                                                                                                                                   
-    var elemento = document.getElementById(element)
-    if (elemento) {
-      elemento.style.backgroundColor = ''
-    }
-  })
-  if (document.body.style.zoom !== "100%") {                                                                                          
-    document.body.style.zoom = "100%";
-  }
-  switch(identificador){
-    case 'troubleshooting' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
-      }
-      container1.style.display='grid'
-      document.querySelector('#conti-boton').style.display='grid'
-      var contenedorPadre = document.getElementById(identificador)
-      if (contenedorPadre) {
-        contenedorPadre.style.display = 'grid'  
-      }
-      aparecerElemento("troubleshooting", "grid")  
-      setTimeout(() => {
-        cambiaColorBotones()
-      }, 510);
-      if(screenWidth < 500){
-        document.getElementById('conti-boton').style.display='flex'
-        document.getElementById('conti-boton').style.top=''
-      }
-      actualizarIdsArray(identificador);      
-    break;
-    case 'canvasContainer2' :
-      var elementosExcluidos = ['def2','buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','MiGrafica','general']
-      for (var i = 0; i < allContenedores.length; i++) {
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
-      }
-      container1.style.display='grid'
-      document.querySelector('#conti-boton').style.display='grid'
-      aparecerElemento("canvasContainer2", "flex")
-      setTimeout(() => {
-        aparecerElemento("wall_street_II", "flex")        
-      }, 200);       
-      if(screenWidth < 500){
-        document.getElementById('conti-boton').style.display='flex'
-        document.getElementById('conti-boton').style.top=''
-      }
-      incrementoHeightVII()
-      actualizarIdsArray(identificador);      
-    break;
-    case 'contChecks' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','general','first_half']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
-      }
-      container1.style.display='grid'
-      document.querySelector('#conti-boton').style.display='grid'
-      stopWidth = false
-      let mitad1 = document.getElementById('first_half')
-      let general = document.getElementById('general')
-      general.style.display = 'block'
-      mitad1.style.display = 'grid'
-
-      setTimeout(() => {
-        firstMovement()
-      }, 7);
-      setTimeout(() => {
-        secondMovement()
-      }, 117);
-      if(screenWidth < 500){
-        document.getElementById('#conti-boton').style.display='grid'
-      } 
-      actualizarIdsArray(identificador);      
-    break;
-    case 'canvasContainer3' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','general']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
-      }
-      container1.style.display='grid'
-      document.querySelector('#conti-boton').style.display='grid'
-      inicioTracker()
-      aparecerElemento("canvasContainer3", "flex")
-      setTimeout(() => {
-        aparecerElemento("padre", "flex")      
-      }, 200);
-      if(screenWidth < 500){        
-        var canvas3 = document.getElementById(identificador);
-        if (canvas3 !== null) {
-          canvas3.style.marginTop = '12%';
-        }
-        document.getElementById('conti-boton').style.top='20vh'
-        document.getElementById('conti-boton').style.display='flex'
-      }
-      actualizarIdsArray(identificador);      
-    break;
-    case 'contImagNeg' :    
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conteneMantaut','general']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
-      }
-      aparecerElemento("contImagNeg", "flex")
-      setTimeout(() => {
-        aparecerElemento("equalizer", "flex")              
-      }, 150);
-      setTimeout(() => {
-        changeColorToGreen()      
-      }, 200);
-      container1.style.display='grid'
-      document.getElementById('conti-boton').removeAttribute('style');
-      const numeros = document.querySelectorAll('.column_spans')
-      document.getElementById('column_2').style.marginTop = '-6%'
-      numeros.forEach((numero) => {
-        numero.style.marginTop = '260%'
-      });
-      if(screenWidth < 500){
-        document.getElementById('conti-boton').style.display='flex'
-      } 
-      actualizarIdsArray(identificador);      
-    break;
-    case 'contImagGraf' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conteneMantaut','contImagGraf','general']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
-      }
-      container1.style.display='grid'
-      document.getElementById('conti-boton').removeAttribute('style');
-      detenerCicodelia()
-      aparecerElemento("patern", "grid")
-      setTimeout(() => {
-        changeColors()        
-      }, 150);
-        if(screenWidth < 500){
-          document.getElementById('conti-boton').style.display='flex'  
-        }
-      actualizarIdsArray(identificador);      
-    break;
-    case 'conti-boton-kaizen' :
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
-      }
-      container1.style.display='grid'
-      document.getElementById('conti-boton').removeAttribute('style');
-      hideButtonsKaizenRetraso()
-      setTimeout(function() {
-        showButtonsKaizenRetraso();
-      }, 500);
-      if(screenWidth < 500){
-        document.getElementById('conti-boton').style.display='flex'  
-      }
-      actualizarIdsArray(identificador);      
-    break;
-    default:
-  }
-} */  
-
 function deslizaContenedor(identificador, idButton) {
   restablecerPosiciones(['.ocultos', '.class-line']);
   let contenedor = document.querySelector('#troubleshooting');
@@ -3652,50 +3456,6 @@ conteElementos.addEventListener('mouseout', () => {
   isMouseOver = false;
 });
 
-/* function ocultarElementos(eltoID) {
-  const contenedorElementos = document.getElementById('contenedorElementos');
-  const segundoListado = document.getElementById('segundaLista');
-  segundoListado.style.display = 'none'
-  switch(eltoID){
-    case 'miBoton':
-      if (segundoListado.style.display === 'block') {
-        return;
-      }      
-      ocultarTimer = setTimeout(() => {
-        // Verifica si el ratón todavía está sobre el contenedor
-        if (!contenedorElementos.matches(':hover')) {
-          contenedorElementos.style.display = 'none';
-        }
-      }, 100)
-    break;
-    case 'contenedorElementos':
-      if (segundoListado.style.display === 'none') {   
-        ocultarTimer = setTimeout(() => {
-          if (!contenedorElementos.matches(':hover')) {
-            contenedorElementos.style.display = 'none';
-          }
-        }, 200)        
-      }else{
-        contenedorElementos.style.display = 'block';
-        segundoListado.style.display = 'block';
-      }
-    break;
-    case 'imagen-ayudas':
-      const imagenAyudas = document.getElementById('imagen-ayudas');
-      imagenAyudas.style.display = 'flex'
-      if (conteElementos.style.display === 'block') { 
-        setTimeout(() => {
-          // Solo oculta el elemento si el ratón no está sobre él
-          if (!isMouseOver) {
-            conteElementos.style.display = 'none';
-          }
-        }, 200);
-      }
-    break;
-    default:  
-  }
-} */
-
 let barraI = document.getElementById('iniciador_1')
 let barraII = document.getElementById('iniciador_2')
 let barraIII = document.getElementById('iniciador_3')
@@ -4671,23 +4431,23 @@ function thirdMovement(){
   incrementoHeightVII()
 }
 function fourthMovement(){
-var elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','wall_street_II','equalizer','buscador','search-form','cortina','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];
-for (var i = 0; i < allContenedores.length; i++) { 
-  var elemento = document.getElementById(allContenedores[i])  
-  if (elemento) {
-    elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+  var elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','wall_street_II','equalizer','buscador','search-form','cortina','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
   }
-}
-container1.style.display='grid'
-var padre = document.getElementById('equalizer');    
-if (padre) {
-  padre.style = ''
-    var hijos = padre.children;
-  for (var i = 0; i < hijos.length; i++) {
-    hijos[i].style = ''
+  container1.style.display='grid'
+  var padre = document.getElementById('equalizer');    
+  if (padre) {
+    padre.style = ''
+      var hijos = padre.children;
+    for (var i = 0; i < hijos.length; i++) {
+      hijos[i].style = ''
+    }
   }
-}
-changeColorToGreen()
+  changeColorToGreen()
 }
 function fifthMovement(){
   var elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','wall_street_II','equalizer','padre','buscador','search-form','cortina','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];

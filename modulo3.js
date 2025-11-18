@@ -2,17 +2,14 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z':
-        vaciarEmpleadosEnLocal()
+        mostrarLocalStorageComoJSON() 
       break;  
       case 'H':      
-        /* Geometria() */ 
-        for (let i = 0; i < localStorage.length; i++) {
-          const clave = localStorage.key(i);
-          console.log(clave);
-        }     
+        vaciarEmpleadosEnLocal()
       break;
       case 'X':
-      resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
+        console.log('GLOBAL DESDE X : ', empleadoGlobal)
+        console.log(JSON.stringify(empleadoGlobal, null, 2));
 
       break;                  
     }

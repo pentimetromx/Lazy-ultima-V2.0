@@ -1156,8 +1156,9 @@ function aplicarZindex(valor = 200) {
     }
   }
 }
+
 function mostrar(...elementos) {
-    elementos.forEach(el => {
+  elementos.forEach(el => {
     if (el) el.style.display = 'block';
   });
 }
@@ -1826,7 +1827,7 @@ function reubicarVisor(){
 
 }
 
-function ingresoEmpleado(){
+function ingresoEmpleado(){  
   const excluidos = [
     'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
   ];
@@ -1842,65 +1843,107 @@ function ingresoEmpleado(){
 
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
 }
+
 function ingresoEmpleadoMA(){
   const excluidos = [
-    'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
+    'buscador','search-form','links-inicialesI','links-iniciales','container01'
   ];
   allContenedores.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
   });
+
   const padre = document.getElementById('padre-ingresos-ma');
   const hijo = document.getElementById('ingresos-sistema-ma');
+  const inputs = document.querySelectorAll('.verGraficos');
   flagEmpleado = true
   padre.removeAttribute('style');
   hijo.removeAttribute('style');
 
   ["padre-ingresos-ma","ingresos-sistema-ma"].forEach(id => aparecerElemento(id, "grid"));
+
+  inputs.forEach(input => {
+    if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+      input.value = '';
+    }
+  });
 }
 
-const inputNombre = document.getElementById('numDoc');
-inputNombre.addEventListener('input', (e) => {
-  // Eliminar números y símbolos
+const inputNombreMA = document.getElementById('numDoc-ma');
+const inputNombre   = document.getElementById('numDoc');
+
+// Lógica reutilizable
+function limpiarYCapitalizar(e) {
   let valor = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
-  // Poner en minúsculas y capitalizar cada palabra
+
   valor = valor
     .toLowerCase()
     .replace(/\b\w/g, letra => letra.toUpperCase());
+
   e.target.value = valor;
+}
+
+// Aplicarlo a ambos inputs
+[inputNombre, inputNombreMA].forEach(input => {
+  if (input) input.addEventListener('input', limpiarYCapitalizar);
 });
-document.getElementById('numDoc1').addEventListener('input', (e) => {
+function permitirSoloNumeros(e) {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
+}
+
+const soloNumerosInputs = [
+  document.getElementById('numDoc1'),          
+  document.getElementById('numDoc9-ma'),
+  document.getElementById('numDoc1-ma'),
+  document.getElementById('numDoc2-ma'),
+  document.getElementById('numDoc5-ma'),
+  document.getElementById('numDoc3-ma'),
+  document.getElementById('numDoc4-ma'),
+  document.getElementById('numDoc8-ma'),
+  document.getElementById('numDoc7-ma'),
+  document.getElementById('numDoc6-ma'),
+  document.getElementById('nomEmpl-ma')
+];
+
+soloNumerosInputs.forEach(input => {
+  if (input) input.addEventListener('input', permitirSoloNumeros);
 });
+
 document.getElementById('nomEmpl').addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
 });
 
-document.querySelector('#lbl-ingreso').addEventListener('click', () => {
-  presentarEmpleado();
-  
-});
+// BTN 'Ir' RRHH
+document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
+  console.log(
+    'Contenido de localStorage empleadosRegistrados:',
+    JSON.parse(localStorage.getItem('empleadosRegistrados'))
+  );
 
-// EXTRAER EMPLEADO
-function presentarEmpleado() {
-  console.log('Contenido de localStorage empleadosRegistrados:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
-  
-  const input = document.getElementById('nomEmpl');
-  const valor = input.value.trim();
-  if (!valor){
+  const input   = document.getElementById('nomEmpl');
+  /* const inputMA = document.getElementById('nomEmpl-ma'); */
+
+  const valor   = input.value.trim();
+  /* const valorMA = inputMA.value.trim(); */
+
+  // Validación inicial
+  if (!valor/*  && !valorMA */) {
     mostrarVentanaMensaje('Debe ingresar un número de documento.', 'padre-ingresos');
     desactivarClick(['.entrada-empleado']);
-    ocultarElementos('.ocultos')
+    ocultarElementos('.ocultos');
 
-    desaparecerElemento('grafico-area')    
-    restaurarPosicionPadreIngresos()    
-    flagEmpleado = true
-    
+    desaparecerElemento('grafico-area');
+    restaurarPosicionPadreIngresos();
+    flagEmpleado = true;
     return;
   }
 
   const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
-  const empleadoEncontrado = empleados.find(emp => emp.documento === valor);
+
+  // Buscar usando cualquiera de los dos valores
+  const empleadoEncontrado = empleados.find(emp =>
+    emp.documento === valor /* || emp.documento === valorMA */
+  );
 
   if (empleadoEncontrado) {
     console.log('Empleado encontrado:');
@@ -1911,6 +1954,15 @@ function presentarEmpleado() {
     console.log(`Equipo: ${empleadoEncontrado.equipo}`);
     console.log(`Fecha ingreso: ${empleadoEncontrado.fecha}`);
     console.log(`Imagen: ${empleadoEncontrado.imagen}`);
+    console.log(`Identificados: ${empleadoEncontrado.identificados}`);
+    console.log(`Corregidos: ${empleadoEncontrado.corregidos}`);
+    console.log(`Tipo A: ${empleadoEncontrado.tipoA}`);
+    console.log(`Tipo B: ${empleadoEncontrado.tipoB}`);
+    console.log(`Kaizen: ${empleadoEncontrado.kaizen}`);
+    console.log(`ADA.s: ${empleadoEncontrado.adas}`);
+    console.log(`ADT: ${empleadoEncontrado.adt}`);
+    console.log(`Lup: ${empleadoEncontrado.lup}`);
+
 
     document.getElementById('numDoc').value = empleadoEncontrado.nombre;
     document.getElementById('numDoc1').value = empleadoEncontrado.documento;
@@ -1919,6 +1971,17 @@ function presentarEmpleado() {
     document.getElementById('numDoc4').value = empleadoEncontrado.fecha;
     document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
     document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
+
+    document.getElementById('numDoc-ma').value = empleadoEncontrado.nombre;
+    document.getElementById('numDoc9-ma').value = empleadoEncontrado.documento;
+    document.getElementById('numDoc1-ma').value = empleadoEncontrado.identificados;
+    document.getElementById('numDoc2-ma').value = empleadoEncontrado.corregidos;
+    document.getElementById('numDoc5-ma').value = empleadoEncontrado.tipoA;
+    document.getElementById('numDoc3-ma').value = empleadoEncontrado.tipoB;
+    document.getElementById('numDoc4-ma').value = empleadoEncontrado.kaizen;
+    document.getElementById('numDoc8-ma').value = empleadoEncontrado.lup;
+    document.getElementById('numDoc7-ma').value = empleadoEncontrado.adas;
+    document.getElementById('numDoc6-ma').value = empleadoEncontrado.adt;  
 
     const imgElemento = document.getElementById('empleadoImg');
     if (imgElemento) {
@@ -1937,7 +2000,10 @@ function presentarEmpleado() {
     ocultarElementos('.ocultos')
 
   }
-}
+  empleadoGlobal = empleadoEncontrado
+  console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal  )
+
+}) 
 
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
   traerElementos('.ocultos')
@@ -1962,7 +2028,7 @@ let escala = 1;
 // BOTON ROJO
 function moverPadreIngresos(porcentajeX, porcentajeY) {
   flagEmpleado = false
-  const inputs = document.querySelectorAll('.verGraficos');
+  const inputs = document.querySelectorAll('.storeText');
   const img = document.querySelector('.imgEmpleado img');
   const valor = inputArchivo.value.trim().toLowerCase();
 
@@ -2149,12 +2215,10 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
   resultadosMA('interfaz-mtto')
 })
-
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   activarPantallaCompleta()
-  ingresoEmpleado()
+  ingresoEmpleadoMA()
 })
-
 function crearControlLed(idContenedor, idInput, totalLeds = 10) {
   const contenedor = document.getElementById(idContenedor);
   let leds = [];
@@ -2196,8 +2260,7 @@ function crearControlLed(idContenedor, idInput, totalLeds = 10) {
     }
   });
 }
-
-crearControlLed('led', 'inputCantidad', 10);
+crearControlLed('led-identificados', 'inputCantidad', 10);
 crearControlLed('led-corregidos', 'inputCorregidos', 10);
 crearControlLed('led-tipo-a', 'inputTipoA', 10);
 crearControlLed('led-tipo-b', 'inputTipoB', 10);
@@ -2205,9 +2268,7 @@ crearControlLed('led-kaizen', 'inputKaizen', 10);
 crearControlLed('led-adas', 'inputAda', 10);
 crearControlLed('led-adt', 'inputAdt', 10);
 crearControlLed('led-lup', 'inputLups', 10);
-
 const contenedoresLineas = document.querySelectorAll('#contenedor-indicador');
-
 function waitUntilFull(contenedor, blockout, anchoTotal, timeout = 2000) {
   // Espera hasta que blockout.offsetWidth sea ~ anchoTotal (tolerancia 1px)
   // timeout en ms por seguridad
@@ -2268,14 +2329,11 @@ function reducirBlockout(contenedor) {
     contenedor.dataset.busy = "false";
   });
 }
-
 let dentro = false;
-
 function mostrar() {
   if(flagEmpleado === true)return
   padreLinks.style.display = 'block';
 }
-
 function ocultar() {
   if (!dentro) padreLinks.style.display = 'none';
 }
@@ -2284,23 +2342,18 @@ btnAreas.addEventListener('click', () => {
   dentro = true;
   mostrar();
 });
-
 btnAreas.addEventListener('mouseleave', () => {
   dentro = false;
   ocultar();
 });
-
 padreLinks.addEventListener('mouseenter', () => {
   dentro = true;
   mostrar();
 });
-
 padreLinks.addEventListener('mouseleave', () => {
   dentro = false;
   ocultar();
 });
-
-const primerItem = document.querySelector('#vinculos-ma li:first-child');
 
 primerItem.addEventListener('click', () =>{
   const padres = document.querySelector('#grafico-area') 
@@ -2316,14 +2369,50 @@ primerItem.addEventListener('click', () =>{
     desaparecerElemento('grafico-area')  
   }, 700);
   setTimeout(() => {
-    aplicarLeds([7, 3, 1, 5, 2, 4, 6, 9]);
+     aplicarLedsDesdeEmpleado(empleadoGlobal.nombre);
   }, 1300); 
   padreLinks.style.display='none'
 })
 
-function aplicarLeds(valores) {
+
+function aplicarLedsDesdeEmpleado(empleadoGlobal) {
+  // 1. Cargar la colección completa
+  const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados'));
+  if (!almacen || !Array.isArray(almacen)) {
+    console.error('No existe el objeto empleadosRegistrados en localStorage.');
+    return;
+  }
+
+  // 2. Buscar el empleado seleccionado por nombre
+  const empleado = almacen.find(e => e.nombre === empleadoGlobal);
+  if (!empleado) {
+    console.error(`No se encontró un empleado con nombre: ${empleadoGlobal}`);
+    return;
+  }
+
+  // 3. Propiedades requeridas en el orden exacto
+  const campos = [
+    'identificados',
+    'corregidos',
+    'tipoA',
+    'tipoB',
+    'kaizen',
+    'adas',
+    'adt',
+    'lup'
+  ];
+
+  // 4. Extraer valores numéricos en ese orden
+  const valores = campos.map(prop => Number(empleado[prop] ?? 0));
+
+  // 5. Llamar a tu función base
+  aplicarLeds(valores);
+}
+
+
+function   aplicarLeds(valores) {
   const ids = [
-    'led',
+    'led-identificados',
     'led-corregidos',
     'led-tipo-a',
     'led-tipo-b',
@@ -2358,6 +2447,196 @@ function aplicarLeds(valores) {
   });        
     
 }
+
+
+function  cargarEmpleadoMA() {
+  const inputBusqueda = document.getElementById('nomEmpl-ma'); // NUMERO DECULA INPUT
+  const valorBusqueda = inputBusqueda.value.trim();
+
+  if (!valorBusqueda){
+    console.log('NO HAY VALOR DE BUSQUEDA')
+    return;
+  }
+
+  const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
+
+  // Buscar por documento
+  const empleado = empleados.find(emp => emp.documento === valorBusqueda);
+
+  if (!empleado){
+    console.log('NO HAY COINCIDENCIA EN LOCAL ALMACEN')
+    return;
+  } 
+
+  // Rellenar inputs destino
+  const inputNombreMA = document.getElementById('numDoc-ma');
+  const inputDocumentoMA = document.getElementById('numDoc9-ma');
+  const inputIdentificadosMA = document.getElementById('numDoc1-ma');
+  const inputCorregidosMA = document.getElementById('numDoc2-ma');
+  const inputTipoAMA = document.getElementById('numDoc5-ma');
+  const inputTipoBMA = document.getElementById('numDoc3-ma');
+  const inputAdasMA = document.getElementById('numDoc7-ma');
+  const inputAdtMA = document.getElementById('numDoc6-ma');
+  const inputLupMA = document.getElementById('numDoc8-ma');
+  const inputKaizenMA = document.getElementById('numDoc4-ma');
+
+  if (inputNombreMA)       inputNombreMA.value =        empleado.nombre || '';
+  if (inputDocumentoMA)    inputDocumentoMA.value =     empleado.documento || '';
+  if (inputIdentificadosMA)inputIdentificadosMA.value = empleado.identificados || '';
+  if (inputCorregidosMA)   inputCorregidosMA.value =    empleado.corregidos || '';
+  if (inputTipoAMA)        inputTipoAMA.value =         empleado.tipoA || '';
+  if (inputTipoBMA)        inputTipoBMA.value =         empleado.tipoB || '';
+  if (inputAdasMA)         inputAdasMA.value =          empleado.adas || '';
+  if (inputAdtMA)          inputAdtMA.value =           empleado.adt || '';
+  if (inputLupMA)          inputLupMA.value =           empleado.lup || '';
+  if (inputKaizenMA)       inputKaizenMA.value =        empleado.kaizen || '';
+
+          const imgElemento = document.getElementById('empleadoImg');
+
+          if (!empleadoGlobal) {
+            console.warn('empleadoGlobal está vacío o es null');
+          }
+
+          if (!imgElemento) {
+            console.warn('Elemento #empleadoImg no existe en el DOM');
+          }
+
+          if (empleadoGlobal && imgElemento) {
+            console.log('Valor original de imagen:', empleadoGlobal.imagen);
+
+            let rutaImagen = empleadoGlobal.imagen?.trim() || '';
+
+            if (!rutaImagen) {
+              console.log('No hay ruta en el objeto. Usando silueta.');
+              rutaImagen = './assets/silueta.png';
+            } else if (!rutaImagen.startsWith('./') && !rutaImagen.startsWith('assets/')) {
+              console.log('Ruta sin prefijo. Ajustando:', rutaImagen);
+              rutaImagen = `./assets/${rutaImagen}`;
+            }
+
+            console.log('Ruta final que intenta cargar:', rutaImagen);
+
+            imgElemento.onerror = () => {
+              console.warn('ERROR cargando imagen. Colocando silueta por fallback.');
+              imgElemento.src = './assets/silueta.png';
+            };
+
+            imgElemento.src = rutaImagen;
+          }
+
+  
+}
+
+
+
+
+// BOTON 'Ir' / M.A 
+document.querySelector('#lbl-ingreso-ma').addEventListener('click',()=>{
+  cargarEmpleadoMA()
+})
+  
+
+// BOTON REGISTRAR M.A
+function actualizarIdentificadosMA() {
+  const docInput   = document.getElementById('numDoc9-ma');
+  const identInput = document.getElementById('numDoc1-ma');
+  const corrInput = document.getElementById('numDoc2-ma');
+  const tipoaInput = document.getElementById('numDoc5-ma');
+  const tipobInput = document.getElementById('numDoc3-ma');
+  const kaizenInput = document.getElementById('numDoc4-ma');
+  const adaInput = document.getElementById('numDoc7-ma');
+  const adtInput = document.getElementById('numDoc6-ma');
+  const lupInput = document.getElementById('numDoc8-ma');
+
+
+  const documentoBusqueda = docInput.value.trim();
+  const nuevoIdentificado = identInput.value.trim();
+  const nuevoCorregido = corrInput.value.trim();
+  const nuevoTipoA = tipoaInput.value.trim();
+  const nuevoTipoB = tipobInput.value.trim();
+  const nuevoKaizen = kaizenInput.value.trim();
+  const nuevoAda = adaInput.value.trim();
+  const nuevoAdt = adtInput.value.trim();
+  const nuevoLup = lupInput.value.trim();
+
+
+   if (!documentoBusqueda || !nuevoIdentificado || !nuevoCorregido || !nuevoTipoA || !nuevoTipoB || !nuevoKaizen || !nuevoAda || !nuevoAdt || !nuevoLup) {
+    console.log('Faltan datos para continuar.');
+    return;
+  }
+
+  let empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
+
+  console.log('Estado inicial de empleadosRegistrados:', empleados);
+
+  // Ubicar empleado correspondiente
+  const empleado = empleados.find(emp => emp.documento === documentoBusqueda);
+
+  if (!empleado) {
+    console.log('No se encontró un empleado con ese documento.');
+    return;
+  }
+
+  // Actualizar propiedad
+  empleado.identificados = nuevoIdentificado;
+  empleado.corregidos = nuevoCorregido;
+  empleado.tipoA = nuevoTipoA;
+  empleado.tipoB = nuevoTipoB;
+  empleado.kaizen = nuevoKaizen;
+  empleado.adas = nuevoAda;
+  empleado.adt = nuevoAdt;
+  empleado.lup = nuevoLup;
+
+  console.log('Empleado actualizado:', empleado);
+
+  // Guardar cambios
+  localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
+
+  // Verificación final
+  const verificacion = JSON.parse(localStorage.getItem('empleadosRegistrados'));
+  console.log('Estado final en localStorage:', verificacion);
+  console.log('GLOBAL : ', empleadoGlobal)
+}
+
+
+// BOTON REGISTRAR M.A
+document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
+  actualizarIdentificadosMA()
+})
+
+
+function limpiarEmpleadosRegistrados() {
+  localStorage.setItem('empleadosRegistrados', JSON.stringify([]));
+  console.log('empleadosRegistrados se ha vaciado:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
+}
+
+
+
+
+
+function mostrarLocalStorageComoJSON() {
+  const resultado = {};
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const clave = localStorage.key(i);
+    const valor = localStorage.getItem(clave);
+
+    try {
+      // Intentar parsear JSON; si no es JSON, se deja como texto plano
+      resultado[clave] = JSON.parse(valor);
+    } catch {
+      resultado[clave] = valor;
+    }
+  }
+
+  console.log(JSON.stringify(resultado, null, 2));
+}
+
+
+
+
+
+
 
 const info = document.getElementById('info');
 info.textContent = `W:${window.innerWidth} H:${window.innerHeight} DPR:${window.devicePixelRatio}`;
