@@ -266,14 +266,14 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 function alternarVisibilidad(docId) {
-var elementosParaAlternar = document.querySelectorAll('.bot-entre, .video-training,.image-training, .butt-partes, .documentos')
-for (var i = 0; i < elementosParaAlternar.length; i++) {
-if (elementosParaAlternar[i].id === docId) {
-  elementosParaAlternar[i].style.display = "block";
-} else {
-  elementosParaAlternar[i].style.display = "none";
-}
-}
+  var elementosParaAlternar = document.querySelectorAll('.bot-entre, .video-training,.image-training, .butt-partes, .documentos')
+  for (var i = 0; i < elementosParaAlternar.length; i++) {
+  if (elementosParaAlternar[i].id === docId) {
+    elementosParaAlternar[i].style.display = "block";
+  } else {
+    elementosParaAlternar[i].style.display = "none";
+  }
+  }
 
 }
 function mostrarBotMa(id) {

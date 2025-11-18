@@ -2944,7 +2944,7 @@
             <div class="butt-selector"><span class="texto-selectores">Negro</span></div>
             <div class="butt-selector"><span class="texto-selectores">Cian</span></div>
             <div class="butt-selector"><span class="texto-selectores">Magenta</span></div>
-            <div class="butt-selector"><span class="texto-selectores">Azul</span></div>
+            <div class="butt-selector"><span class="texto-selectores">Amarillo</span></div>
             <div class="butt-selector"><span class="texto-selectores">Especial</span></div>
             <div class="butt-selector"><span class="texto-selectores">Barniz</span></div>
           </div>  
@@ -3612,6 +3612,21 @@
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div id="grafico-area" class="dashboard-grid">
       <div class="box box-1"></div>
       <div class="box box-2">En exposicion</div>
@@ -3651,6 +3666,25 @@
       <div class="box box-9"></div>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div id="padre-ingresos" class="special-border">
 
       <div id="ingresos-sistema">
@@ -3662,86 +3696,92 @@
 
           <div class="fila-ingreso">
             <label for="numDoc">Nombre empleado</label>
-            <input type="text" id="numDoc" class="entrada-empleado verGraficos" title="Solo letras y espacios">
+            <input type="text" id="numDoc" class="entrada-empleado storeText" title="Solo letras y espacios">
           </div>
+
           <div class="fila-ingreso">
             <label for="numDoc1">Número documento</label>
-            <input type="text" id="numDoc1" class="entrada-empleado verGraficos">
+            <input type="text" id="numDoc1" class="entrada-empleado storeText">
           </div>
+
           <div class="fila-ingreso">
             <label for="numDoc2">Área corporativa</label>
-            <input type="text" id="numDoc2" list="areas" class="entrada-empleado verGraficos" placeholder="Seleccione un área">
-            <datalist id="areas">
-              <option value="Recursos Humanos"></option>
-              <option value="Finanzas"></option>
-              <option value="Mercadeo"></option>
-              <option value="Ventas"></option>
-              <option value="Producción"></option>
-              <option value="Calidad"></option>
-              <option value="Investigación y Desarrollo"></option>
-              <option value="Logística"></option>
-              <option value="Servicio al Cliente"></option>
-              <option value="Tecnología"></option>
-            </datalist>
+
+            <select id="numDoc2" class="entrada-empleado storeText">
+              <option value="" disabled selected>Seleccione un área</option>
+              <option value="Recursos Humanos">Recursos Humanos</option>
+              <option value="Finanzas">Finanzas</option>
+              <option value="Mercadeo">Mercadeo</option>
+              <option value="Ventas">Ventas</option>
+              <option value="Producción">Producción</option>
+              <option value="Calidad">Calidad</option>
+              <option value="Investigación y Desarrollo">Investigación y Desarrollo</option>
+              <option value="Logística">Logística</option>
+              <option value="Servicio al Cliente">Servicio al Cliente</option>
+              <option value="Tecnología">Tecnología</option>
+            </select>
           </div>
+
           <div class="fila-ingreso">
             <label for="numDoc5">Cargo</label>
-            <input type="text" id="numDoc5" list="cargos" class="entrada-empleado verGraficos" placeholder="Seleccione un cargo">
-            <datalist id="cargos">
-              <option value="Presidente"></option>
-              <option value="Director General"></option>
-              <option value="Gerente de Producción"></option>
-              <option value="Gerente Comercial"></option>
-              <option value="Gerente de Finanzas"></option>
-              <option value="Gerente de Calidad"></option>
-              <option value="Jefe de Preprensa"></option>
-              <option value="Jefe de Impresión Offset"></option>
-              <option value="Jefe de Acabados y Empaque"></option>
-              <option value="Jefe de Mantenimiento"></option>
-              <option value="Supervisor de Producción"></option>
-              <option value="Diseñador Gráfico"></option>
-              <option value="Coordinador de Logística"></option>
-              <option value="Asistente de Compras"></option>
-              <option value="Técnico en Control de Calidad"></option>
-              <option value="Operario de Máquina Offset"></option>
-              <option value="Auxiliar de Máquina"></option>
-              <option value="Operario de Acabados"></option>
-              <option value="Mensajero Interno"></option>
-              <option value="Servicios Generales"></option>
-            </datalist>
-          </div>          
+            <select id="numDoc5" class="entrada-empleado storeText">
+              <option value="" disabled selected>Seleccione un cargo</option>
+              <option value="Presidente">Presidente</option>
+              <option value="Director General">Director General</option>
+              <option value="Gerente de Producción">Gerente de Producción</option>
+              <option value="Gerente Comercial">Gerente Comercial</option>
+              <option value="Gerente de Finanzas">Gerente de Finanzas</option>
+              <option value="Gerente de Calidad">Gerente de Calidad</option>
+              <option value="Jefe de Preprensa">Jefe de Preprensa</option>
+              <option value="Jefe de Impresión Offset">Jefe de Impresión Offset</option>
+              <option value="Jefe de Acabados y Empaque">Jefe de Acabados y Empaque</option>
+              <option value="Jefe de Mantenimiento">Jefe de Mantenimiento</option>
+              <option value="Supervisor de Producción">Supervisor de Producción</option>
+              <option value="Diseñador Gráfico">Diseñador Gráfico</option>
+              <option value="Coordinador de Logística">Coordinador de Logística</option>
+              <option value="Asistente de Compras">Asistente de Compras</option>
+              <option value="Técnico en Control de Calidad">Técnico en Control de Calidad</option>
+              <option value="Operario de Máquina Offset">Operario de Máquina Offset</option>
+              <option value="Auxiliar de Máquina">Auxiliar de Máquina</option>
+              <option value="Operario de Acabados">Operario de Acabados</option>
+              <option value="Mensajero Interno">Mensajero Interno</option>
+              <option value="Servicios Generales">Servicios Generales</option>
+            </select>
+          </div> 
+
           <div class="fila-ingreso">
             <label for="numDoc3">Equipo asignado</label>
-            <input type="text" id="numDoc3" list="equipos" class="entrada-empleado verGraficos" placeholder="Seleccione un recurso">
-            <datalist id="equipos">
-              <option value="Epson SurePress L-6534VW"></option>
-              <option value="Epson SurePress L-6534VW (Orange Ink)"></option>
-              <option value="Epson SurePress L-6534VW (CMYKW+Or)"></option>
-              <option value="Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press"></option>
-              <option value="Ricoh Pro Z75 (Duplex)"></option>
-              <option value="Ricoh Pro Z75 (400 gsm Media Support)"></option>
-              <option value="IBM InfoPrint Production Press"></option>
-              <option value="IBM InfoPrint Color 1000"></option>
-              <option value="IBM InfoColor 70"></option>
-              <option value="Roland Sheetfed 900 Evolution"></option>
-              <option value="Roland Sheetfed DI 106-8-L (LED UV)"></option>
-              <option value="Roland Sheetfed 700 Series (High Performance)"></option>
-              <option value="Heidelberg Speedmaster SX 102"></option>
-              <option value="Heidelberg Speedmaster XL 105"></option>
-              <option value="Heidelberg Speedmaster CX 145"></option>
-              <option value="Rotatek Brava 450 Semi-Rotary/Rotary Offset Press"></option>
-              <option value="Rotatek Universal 850 Web-Offset Press"></option>
-              <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press"></option>
-            </datalist>
+            <select id="numDoc3" class="entrada-empleado storeText">
+              <option value="" disabled selected>Seleccione un recurso</option>
+              <option value="Epson SurePress L-6534VW">Epson SurePress L-6534VW</option>
+              <option value="Epson SurePress L-6534VW (Orange Ink)">Epson SurePress L-6534VW (Orange Ink)</option>
+              <option value="Epson SurePress L-6534VW (CMYKW+Or)">Epson SurePress L-6534VW (CMYKW+Or)</option>
+              <option value="Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press">Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press</option>
+              <option value="Ricoh Pro Z75 (Duplex)">Ricoh Pro Z75 (Duplex)</option>
+              <option value="Ricoh Pro Z75 (400 gsm Media Support)">Ricoh Pro Z75 (400 gsm Media Support)</option>
+              <option value="IBM InfoPrint Production Press">IBM InfoPrint Production Press</option>
+              <option value="IBM InfoPrint Color 1000">IBM InfoPrint Color 1000</option>
+              <option value="IBM InfoColor 70">IBM InfoColor 70</option>
+              <option value="Roland Sheetfed 900 Evolution">Roland Sheetfed 900 Evolution</option>
+              <option value="Roland Sheetfed DI 106-8-L (LED UV)">Roland Sheetfed DI 106-8-L (LED UV)</option>
+              <option value="Roland Sheetfed 700 Series (High Performance)">Roland Sheetfed 700 Series (High Performance)</option>
+              <option value="Heidelberg Speedmaster SX 102">Heidelberg Speedmaster SX 102</option>
+              <option value="Heidelberg Speedmaster XL 105">Heidelberg Speedmaster XL 105</option>
+              <option value="Heidelberg Speedmaster CX 145">Heidelberg Speedmaster CX 145</option>
+              <option value="Rotatek Brava 450 Semi-Rotary/Rotary Offset Press">Rotatek Brava 450 Semi-Rotary/Rotary Offset Press</option>
+              <option value="Rotatek Universal 850 Web-Offset Press">Rotatek Universal 850 Web-Offset Press</option>
+              <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press">Rotatek RK-250 Plus Roll-to-Roll Offset Press</option>
+            </select>
           </div>
+
           <div class="fila-ingreso">
             <label for="numDoc4">Fecha ingreso</label>
-            <input type="text" id="numDoc4" class="entrada-empleado verGraficos" placeholder="DD/MM/YYYY" readonly>
+            <input type="text" id="numDoc4" class="entrada-empleado storeText" placeholder="DD/MM/YYYY" readonly>
           </div>   
 
           <div class="fila-ingreso">
             <label for="numDoc6">Registro fotográfico</label>
-            <input type="text"id="numDoc6"class="entrada-empleado verGraficos" value="" placeholder="Ruta o enlace de la fotografía">
+            <input type="text"id="numDoc6"class="entrada-empleado storeText" value="" placeholder="Ruta o enlace de la fotografía">
             
             <div id="listaFotos" class="oculto"></div>
 
@@ -3775,6 +3815,24 @@
       </div>     
       
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <div id="padre-ingresos-ma" class="special-border">
@@ -3784,110 +3842,60 @@
         <div class="encabezado">
           Registro indicadores M.A
         </div>
-        <div class="columna-izq">
+
+        <div class="columna-izq-ma">
 
           <div class="fila-ingreso">
-            <label for="numDoc">Nombre empleado</label>
-            <input type="text" id="numDoc" class="entrada-empleado verGraficos" title="Solo letras y espacios">
+            <label for="numDoc-ma">Nombre empleado</label>
+            <input type="text" id="numDoc-ma" class="entrada-empleado verGraficos">
           </div>
+
           <div class="fila-ingreso">
-            <label for="numDoc1">Defectos identificados</label>
-            <input type="text" id="numDoc1" class="entrada-empleado verGraficos">
+            <label for="numDoc-ma">Numero documento</label>
+            <input type="text" id="numDoc9-ma" class="entrada-empleado verGraficos">
           </div>
-          <div class="fila-ingreso">
+
+          <div class="fila-ingreso-ma">
+            <label for="numDoc1-ma">Defectos identificados</label>
+            <input type="text" id="numDoc1-ma" class="entrada-empleado verGraficos">
+          </div>
+
+          <div class="fila-ingreso-ma">
             <label for="numDoc2">Defectos corregidos</label>
-
-            <select id="cargo" class="entrada-empleado verGraficos">
-              <option value="" disabled selected>Seleccione un cargo</option>
-              <option>Presidente</option>
-              <option>Director General</option>
-              <option>Gerente de Producción</option>
-              <option>Gerente Comercial</option>
-              <option>Gerente de Finanzas</option>
-              <option>Gerente de Calidad</option>
-              <option>Jefe de Preprensa</option>
-              <option>Jefe de Impresión Offset</option>
-              <option>Jefe de Acabados y Empaque</option>
-              <option>Jefe de Mantenimiento</option>
-              <option>Supervisor de Producción</option>
-              <option>Diseñador Gráfico</option>
-              <option>Coordinador de Logística</option>
-              <option>Asistente de Compras</option>
-              <option>Técnico en Control de Calidad</option>
-              <option>Operario de Máquina Offset</option>
-              <option>Auxiliar de Máquina</option>
-              <option>Operario de Acabados</option>
-              <option>Mensajero Interno</option>
-              <option>Servicios Generales</option>
-            </select>
-
-            
-
+            <input type="text" id="numDoc2-ma" class="entrada-empleado verGraficos">
 
           </div>
-          <div class="fila-ingreso">
+
+          <div class="fila-ingreso-ma">
             <label for="numDoc5">Defectos tipo A</label>
-            <input type="text" id="numDoc5" list="cargos" class="entrada-empleado verGraficos" placeholder="Seleccione un cargo">
-            <datalist id="cargos">
-              <option value="Presidente"></option>
-              <option value="Director General"></option>
-              <option value="Gerente de Producción"></option>
-              <option value="Gerente Comercial"></option>
-              <option value="Gerente de Finanzas"></option>
-              <option value="Gerente de Calidad"></option>
-              <option value="Jefe de Preprensa"></option>
-              <option value="Jefe de Impresión Offset"></option>
-              <option value="Jefe de Acabados y Empaque"></option>
-              <option value="Jefe de Mantenimiento"></option>
-              <option value="Supervisor de Producción"></option>
-              <option value="Diseñador Gráfico"></option>
-              <option value="Coordinador de Logística"></option>
-              <option value="Asistente de Compras"></option>
-              <option value="Técnico en Control de Calidad"></option>
-              <option value="Operario de Máquina Offset"></option>
-              <option value="Auxiliar de Máquina"></option>
-              <option value="Operario de Acabados"></option>
-              <option value="Mensajero Interno"></option>
-              <option value="Servicios Generales"></option>
-            </datalist>
-          </div>          
-          <div class="fila-ingreso">
+            <input type="text" id="numDoc5-ma" list="cargos" class="entrada-empleado verGraficos">
+          </div> 
+
+          <div class="fila-ingreso-ma">
             <label for="numDoc3">Defectos tipo B</label>
-            <input type="text" id="numDoc3" list="equipos" class="entrada-empleado verGraficos" placeholder="Seleccione un recurso">
-            <datalist id="equipos">
-              <option value="Epson SurePress L-6534VW"></option>
-              <option value="Epson SurePress L-6534VW (Orange Ink)"></option>
-              <option value="Epson SurePress L-6534VW (CMYKW+Or)"></option>
-              <option value="Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press"></option>
-              <option value="Ricoh Pro Z75 (Duplex)"></option>
-              <option value="Ricoh Pro Z75 (400 gsm Media Support)"></option>
-              <option value="IBM InfoPrint Production Press"></option>
-              <option value="IBM InfoPrint Color 1000"></option>
-              <option value="IBM InfoColor 70"></option>
-              <option value="Roland Sheetfed 900 Evolution"></option>
-              <option value="Roland Sheetfed DI 106-8-L (LED UV)"></option>
-              <option value="Roland Sheetfed 700 Series (High Performance)"></option>
-              <option value="Heidelberg Speedmaster SX 102"></option>
-              <option value="Heidelberg Speedmaster XL 105"></option>
-              <option value="Heidelberg Speedmaster CX 145"></option>
-              <option value="Rotatek Brava 450 Semi-Rotary/Rotary Offset Press"></option>
-              <option value="Rotatek Universal 850 Web-Offset Press"></option>
-              <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press"></option>
-            </datalist>
+            <input type="text" id="numDoc3-ma" list="equipos" class="entrada-empleado verGraficos">
           </div>
-          <div class="fila-ingreso">
+
+          <div class="fila-ingreso-ma">
             <label for="numDoc4">Kaizen</label>
-            <input type="text" id="numDoc4" class="entrada-empleado verGraficos" placeholder="DD/MM/YYYY" readonly>
+            <input type="text" id="numDoc4-ma" class="entrada-empleado verGraficos">
           </div>   
 
-          <div class="fila-ingreso">
+          <div class="fila-ingreso-ma">
             <label for="numDoc6">Lup</label>
-            <input type="text"id="numDoc6"class="entrada-empleado verGraficos" value="" placeholder="Ruta o enlace de la fotografía">
-            
-            <div id="listaFotos" class="oculto"></div>
-
+            <input type="text"id="numDoc8-ma"class="entrada-empleado verGraficos">
+          </div>
+          
+          <div class="fila-ingreso-ma">
+            <label for="numDoc6">ADA,s</label>
+            <input type="text"id="numDoc7-ma"class="entrada-empleado verGraficos">
+          </div> 
+          
+          <div class="fila-ingreso-ma">
+            <label for="numDoc6">ADT</label>
+            <input type="text"id="numDoc6-ma"class="entrada-empleado verGraficos">
           </div>           
-
+      
         </div>
 
         <div class="columna-centro"> 
@@ -3896,16 +3904,16 @@
             <img src=""  id="empleadoImg" alt=""> 
           </div>
 
-          <label for="numDoc" id="nuevo-ingreso" class="entrada-empleado">Registrar</label>
-          <label for="numDoc" id="limpia-ingreso" class="entrada-empleado">Limpiar campos</label>
-          <label for="numDoc" id="modifica-ingreso" class="entrada-empleado">Modificar</label>
+          <label for="numDoc" id="nuevo-ingreso-ma" class="entrada-empleado">Registrar</label>
+          <label for="numDoc" id="limpia-ingreso-ma" class="entrada-empleado">Limpiar campos</label>
+          <label for="numDoc" id="modifica-ingreso-ma" class="entrada-empleado">Modificar</label>
         </div>
 
         <div class="columna-derecha">
 
           <label for="numDoc">Buscar</label> 
-          <input type="text" id="nomEmpl" class="entrada-empleado"> 
-          <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso">Ir</button>
+          <input type="text" id="nomEmpl-ma" class="entrada-empleado verGraficos"> 
+          <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso-ma">Ir</button>
           <span></span>
           <button class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
           <span class="cierra-graficos entrada-empleado"></span>
@@ -3916,6 +3924,22 @@
       </div>     
       
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3961,9 +3985,8 @@
 
         <div id="contenedor-indicador" class="indicadores">
           <span class="blockout"></span>
-          <div id="led" class="led-indicador"></div>
+          <div id="led-identificados" class="led-indicador"></div>
         </div>
-        
         <div id="contenedor-indicador" class="indicadores">
           <span class="blockout"></span>
           <div id="led-corregidos" class="led-indicador"> </div>
@@ -3982,15 +4005,16 @@
         </div>
         <div id="contenedor-indicador" class="indicadores">
           <span class="blockout"></span>
+          <div id="led-lup" class="led-indicador"> </div>
+        </div>
+
+        <div id="contenedor-indicador" class="indicadores">
+          <span class="blockout"></span>
           <div id="led-adas" class="led-indicador"> </div>
         </div>
         <div id="contenedor-indicador" class="indicadores">
           <span class="blockout"></span>
           <div id="led-adt" class="led-indicador"> </div>
-        </div>
-        <div id="contenedor-indicador" class="indicadores">
-          <span class="blockout"></span>
-          <div id="led-lup" class="led-indicador"> </div>
         </div>
 
         <div></div>
