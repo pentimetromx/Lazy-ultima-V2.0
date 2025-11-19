@@ -1,3 +1,6 @@
+OBJETOS EN LOCAL STORAGE:
+- empleadosRegistrados
+
 1. incrementar tamaño de mínimo a máximo:
 	aparecerElemento("troubleshooting", "grid") - 	en parámetros se pasa el contenedor del elemento y el tipo de display , hay que aplicar la clase (.activo)
 
@@ -18,6 +21,10 @@ function mostrarConstellation(coleccion) {
     });
   });
 }
+
+
+>>>>>>>>>>>>>>>   mostrarConstellation(padres);
+
 
 
 
@@ -43,10 +50,10 @@ function ocultarConstellation(coleccion) {
   });
 }
 
+>>>>>>>>>>>>>>>   ocultarConstellation(padres);
 
  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
-
 3. No esta visible o no existe:
 	const el = document.querySelector('#calendario-mes');
         if (!el || el.offsetParent === null) {
@@ -54,7 +61,6 @@ function ocultarConstellation(coleccion) {
        }else{ ...
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 4. Clicks activar/desactivar:
 
@@ -114,8 +120,23 @@ color: #00FFC6;
 
 
 
+CONSIDERAR SI SE BORRAN:
 
-btnAgregar
+<button id="borrar-temporal" 
+
+function extraerObjetosLocalStorage
+
+
+
+
+
+
+
+
+
+
+ 
+
 
 
 

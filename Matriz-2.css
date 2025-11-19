@@ -4953,6 +4953,7 @@ top: 44%;
   object-position: center;
   display: block;
 }
+.imgEmpleado-ma,
 .imgEmpleado{
   position: relative;
   display:flex;
@@ -4960,12 +4961,13 @@ top: 44%;
   height: 100%;
   gap: 5px;                       
   background: #1a2235;
-  justify-items: center;
+  justify-items: center; 
   align-items: center;
   cursor: pointer;
   border-radius: 12px;
   overflow: hidden;
 }
+.imgEmpleado-ma img,
 .imgEmpleado img{
   width: 100%;
   height: 100%;
@@ -4975,6 +4977,10 @@ top: 44%;
 }
 .imgEmpleado img:not([src]), 
 .imgEmpleado img[src=""] {
+  display: none;
+}
+.imgEmpleado-ma img:not([src]), 
+.imgEmpleado-ma img[src=""] {
   display: none;
 }
 

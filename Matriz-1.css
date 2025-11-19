@@ -7070,7 +7070,7 @@ height:100%;
   width: 90%;
   box-sizing: border-box;
   color: #0e2433;  
-  font-size: 0.7rem;  
+  font-size: 0.6rem;  
 }
 .metricas-empleado {
   position: relative;
@@ -7393,12 +7393,12 @@ background-color: #3FEF9C;
 
 
 .padre-inputs{
-  position: relative;
+  position: absolute;
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  top: 92vh;
+  grid-template-columns: repeat(5, 1fr);
+  top: 60vh;
   height: 5vh;
-  width:30vw;
+  width:22vw;
   z-index: 9999;
 }
 .padre-inputs > button,
