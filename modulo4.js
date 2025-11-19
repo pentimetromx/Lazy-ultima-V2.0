@@ -1828,6 +1828,10 @@ function reubicarVisor(){
 }
 
 function ingresoEmpleado(){  
+  setTimeout(() => {
+    document.querySelector('#nomEmpl').focus();
+  }, 50);
+
   const excluidos = [
     'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
   ];
@@ -1842,9 +1846,14 @@ function ingresoEmpleado(){
   hijo.removeAttribute('style');
 
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
+  limpiarEntradas()
 }
 
 function ingresoEmpleadoMA(){
+  setTimeout(() => {
+    document.querySelector('#nomEmpl-ma').focus();
+  }, 50);
+  
   const excluidos = [
     'buscador','search-form','links-inicialesI','links-iniciales','container01'
   ];
@@ -1862,11 +1871,12 @@ function ingresoEmpleadoMA(){
 
   ["padre-ingresos-ma","ingresos-sistema-ma"].forEach(id => aparecerElemento(id, "grid"));
 
-  inputs.forEach(input => {
+  /* inputs.forEach(input => {
     if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
       input.value = '';
     }
-  });
+  }); */
+ limpiarEntradas()
 }
 
 const inputNombreMA = document.getElementById('numDoc-ma');
@@ -1921,13 +1931,11 @@ document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
   );
 
   const input   = document.getElementById('nomEmpl');
-  /* const inputMA = document.getElementById('nomEmpl-ma'); */
 
   const valor   = input.value.trim();
-  /* const valorMA = inputMA.value.trim(); */
-
+  
   // Validación inicial
-  if (!valor/*  && !valorMA */) {
+  if (!valor) {
     mostrarVentanaMensaje('Debe ingresar un número de documento.', 'padre-ingresos');
     desactivarClick(['.entrada-empleado']);
     ocultarElementos('.ocultos');
@@ -2250,7 +2258,7 @@ function crearControlLed(idContenedor, idInput, totalLeds = 10) {
   construir();
 
   // detectar clic arriba o abajo en el input
-  const input = document.getElementById(idInput);
+  /* const input = document.getElementById(idInput);
   input.addEventListener('click', (e) => {
     const mitad = e.target.clientHeight / 2;
     if (e.offsetY < mitad) {
@@ -2258,16 +2266,16 @@ function crearControlLed(idContenedor, idInput, totalLeds = 10) {
     } else {
       disminuir();
     }
-  });
+  }); */
 }
-crearControlLed('led-identificados', 'inputCantidad', 10);
+/* crearControlLed('led-identificados', 'inputCantidad', 10);
 crearControlLed('led-corregidos', 'inputCorregidos', 10);
 crearControlLed('led-tipo-a', 'inputTipoA', 10);
 crearControlLed('led-tipo-b', 'inputTipoB', 10);
 crearControlLed('led-kaizen', 'inputKaizen', 10);
 crearControlLed('led-adas', 'inputAda', 10);
 crearControlLed('led-adt', 'inputAdt', 10);
-crearControlLed('led-lup', 'inputLups', 10);
+crearControlLed('led-lup', 'inputLups', 10); */
 const contenedoresLineas = document.querySelectorAll('#contenedor-indicador');
 function waitUntilFull(contenedor, blockout, anchoTotal, timeout = 2000) {
   // Espera hasta que blockout.offsetWidth sea ~ anchoTotal (tolerancia 1px)
@@ -2448,84 +2456,89 @@ function   aplicarLeds(valores) {
     
 }
 
+// BTN 'Ir' M.A
 
-function  cargarEmpleadoMA() {
-  const inputBusqueda = document.getElementById('nomEmpl-ma'); // NUMERO DECULA INPUT
+function cargarEmpleadoMA() {
+  const inputBusqueda = document.getElementById('nomEmpl-ma');
   const valorBusqueda = inputBusqueda.value.trim();
 
-  if (!valorBusqueda){
-    console.log('NO HAY VALOR DE BUSQUEDA')
+  if (!valorBusqueda) {
+    console.log('NO HAY VALOR DE BUSQUEDA');
     return;
   }
 
   const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
 
-  // Buscar por documento
+  // Buscar empleado por documento
   const empleado = empleados.find(emp => emp.documento === valorBusqueda);
 
-  if (!empleado){
-    console.log('NO HAY COINCIDENCIA EN LOCAL ALMACEN')
+  if (!empleado) {
+    console.log('NO HAY COINCIDENCIA EN LOCAL ALMACEN');
+    empleadoGlobal = null;        // Limpia global si no hay coincidencia
     return;
-  } 
+  }
+
+  // Guardar en variable global
+  empleadoGlobal = empleado;
 
   // Rellenar inputs destino
-  const inputNombreMA = document.getElementById('numDoc-ma');
-  const inputDocumentoMA = document.getElementById('numDoc9-ma');
+  const inputNombreMA        = document.getElementById('numDoc-ma');
+  const inputDocumentoMA     = document.getElementById('numDoc9-ma');
   const inputIdentificadosMA = document.getElementById('numDoc1-ma');
-  const inputCorregidosMA = document.getElementById('numDoc2-ma');
-  const inputTipoAMA = document.getElementById('numDoc5-ma');
-  const inputTipoBMA = document.getElementById('numDoc3-ma');
-  const inputAdasMA = document.getElementById('numDoc7-ma');
-  const inputAdtMA = document.getElementById('numDoc6-ma');
-  const inputLupMA = document.getElementById('numDoc8-ma');
-  const inputKaizenMA = document.getElementById('numDoc4-ma');
+  const inputCorregidosMA    = document.getElementById('numDoc2-ma');
+  const inputTipoAMA         = document.getElementById('numDoc5-ma');
+  const inputTipoBMA         = document.getElementById('numDoc3-ma');
+  const inputAdasMA          = document.getElementById('numDoc7-ma');
+  const inputAdtMA           = document.getElementById('numDoc6-ma');
+  const inputLupMA           = document.getElementById('numDoc8-ma');
+  const inputKaizenMA        = document.getElementById('numDoc4-ma');
 
-  if (inputNombreMA)       inputNombreMA.value =        empleado.nombre || '';
-  if (inputDocumentoMA)    inputDocumentoMA.value =     empleado.documento || '';
-  if (inputIdentificadosMA)inputIdentificadosMA.value = empleado.identificados || '';
-  if (inputCorregidosMA)   inputCorregidosMA.value =    empleado.corregidos || '';
-  if (inputTipoAMA)        inputTipoAMA.value =         empleado.tipoA || '';
-  if (inputTipoBMA)        inputTipoBMA.value =         empleado.tipoB || '';
-  if (inputAdasMA)         inputAdasMA.value =          empleado.adas || '';
-  if (inputAdtMA)          inputAdtMA.value =           empleado.adt || '';
-  if (inputLupMA)          inputLupMA.value =           empleado.lup || '';
-  if (inputKaizenMA)       inputKaizenMA.value =        empleado.kaizen || '';
+  if (inputNombreMA)         inputNombreMA.value        = empleado.nombre        || '';
+  if (inputDocumentoMA)      inputDocumentoMA.value     = empleado.documento     || '';
+  if (inputIdentificadosMA)  inputIdentificadosMA.value = empleado.identificados || '';
+  if (inputCorregidosMA)     inputCorregidosMA.value    = empleado.corregidos    || '';
+  if (inputTipoAMA)          inputTipoAMA.value         = empleado.tipoA         || '';
+  if (inputTipoBMA)          inputTipoBMA.value         = empleado.tipoB         || '';
+  if (inputAdasMA)           inputAdasMA.value          = empleado.adas          || '';
+  if (inputAdtMA)            inputAdtMA.value           = empleado.adt           || '';
+  if (inputLupMA)            inputLupMA.value           = empleado.lup           || '';
+  if (inputKaizenMA)         inputKaizenMA.value        = empleado.kaizen        || '';
 
-          const imgElemento = document.getElementById('empleadoImg');
+  // Cargar imagen
+  const imgElemento = document.getElementById('empleadoImg-ma');
 
-          if (!empleadoGlobal) {
-            console.warn('empleadoGlobal está vacío o es null');
-          }
+  if (!empleadoGlobal) {
+    console.warn('empleadoGlobal está vacío o es null');
+    return;
+  }
 
-          if (!imgElemento) {
-            console.warn('Elemento #empleadoImg no existe en el DOM');
-          }
+  if (!imgElemento) {
+    console.warn('Elemento #empleadoImg-ma no existe en el DOM');
+    return;
+  }
 
-          if (empleadoGlobal && imgElemento) {
-            console.log('Valor original de imagen:', empleadoGlobal.imagen);
+  console.log('Valor original de imagen:', empleadoGlobal.imagen);
 
-            let rutaImagen = empleadoGlobal.imagen?.trim() || '';
+  let rutaImagen = empleadoGlobal.imagen?.trim() || '';
 
-            if (!rutaImagen) {
-              console.log('No hay ruta en el objeto. Usando silueta.');
-              rutaImagen = './assets/silueta.png';
-            } else if (!rutaImagen.startsWith('./') && !rutaImagen.startsWith('assets/')) {
-              console.log('Ruta sin prefijo. Ajustando:', rutaImagen);
-              rutaImagen = `./assets/${rutaImagen}`;
-            }
+  if (!rutaImagen) {
+    console.log('No hay ruta en el objeto. Usando silueta.');
+    rutaImagen = './assets/silueta.png';
+  } else if (!rutaImagen.startsWith('./') && !rutaImagen.startsWith('assets/')) {
+    console.log('Ruta sin prefijo. Ajustando:', rutaImagen);
+    rutaImagen = `./assets/${rutaImagen}`;
+  }
 
-            console.log('Ruta final que intenta cargar:', rutaImagen);
+  console.log('Ruta final que intenta cargar:', rutaImagen);
 
-            imgElemento.onerror = () => {
-              console.warn('ERROR cargando imagen. Colocando silueta por fallback.');
-              imgElemento.src = './assets/silueta.png';
-            };
+  imgElemento.onerror = () => {
+    console.warn('ERROR cargando imagen. Colocando silueta por fallback.');
+    imgElemento.src = './assets/silueta.png';
+  };
 
-            imgElemento.src = rutaImagen;
-          }
-
-  
+  imgElemento.src = rutaImagen;
 }
+
 
 
 
@@ -2635,7 +2648,7 @@ function mostrarLocalStorageComoJSON() {
 
 
 
-
+  
 
 
 const info = document.getElementById('info');

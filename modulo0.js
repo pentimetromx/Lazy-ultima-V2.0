@@ -1780,11 +1780,30 @@ btnModificar.addEventListener('mouseleave',()=>{
 function limpiarEntradas() {
   const entradas = document.querySelectorAll('.entrada-empleado');
   entradas.forEach(input => input.value = '');
+
+
   const img = document.getElementById('empleadoImg');
-  const contenedor = img.closest('.imgEmpleado');
-  if (!img || !contenedor) return;
-  img.src = '';
-  contenedor.dataset.img = '';  
+  const imgMA = document.getElementById('empleadoImg-ma');
+
+  // Contenedores asociados
+  const contenedor = img?.closest('.imgEmpleado');
+  const contenedorMA = imgMA?.closest('.imgEmpleado-ma');
+
+  // Si no existe ninguno, no hay trabajo que hacer
+  if (!img && !imgMA) return;
+
+  // Reset para el primero
+  if (img && contenedor) {
+    img.src = '';
+    contenedor.dataset.img = '';
+  }
+
+  // Reset para el segundo
+  if (imgMA && contenedorMA) {
+    imgMA.src = '';
+    contenedorMA.dataset.img = '';
+  }
+  
 }
 
 
