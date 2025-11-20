@@ -1964,9 +1964,11 @@ function muestraVidPrisma(eltoHtml) {
   } 
 }
 let ejecutando = false;
-function alternarAyudas() {
-  let imagenAyudas = document.getElementById('imagen-ayudas')
+
+let imagenAyudas = document.getElementById('imagen-ayudas')
   let contenedorElementos = document.getElementById('contenedorElementos')
+
+function alternarAyudas() {
   document.getElementById('segundaLista').style.display='none'
   document.getElementById('ventana-lateral').style.display='none'
   imagenAyudas.classList.remove('pressed');
@@ -1981,13 +1983,23 @@ function alternarAyudas() {
     padreImgs.style.filter=`blur(${blurValue}px)`;
   }, 17);
   setTimeout(() => {
-    contenedorElementos.style.display = 'block';
+    contenedorElementos.style.display = 'grid';
   }, 333);
   setTimeout(() => {
     imagenAyudas.classList.remove('pressed');
     ejecutando = false;
   },500);
 }
+imagenAyudas.addEventListener('mouseleave',()=>{
+  setTimeout(() => {
+  // Solo ocultar si el cursor NO está sobre listaClientes
+  if (!contenedorElementos.matches(':hover')) {
+    contenedorElementos.style.display = 'none';
+    
+  }
+}, 300);
+})
+
 function interfazAvance() {
   if(screenWidth < 500){
     var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','pre-prensa','imgs-prepress','primerCont','conte-ayudas','nicho-videos','contenedor_padre_3','contenedor_padre_2','contenedor_padre'];

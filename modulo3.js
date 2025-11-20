@@ -1,7 +1,7 @@
 document.addEventListener('keydown', function(event) {                
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
-      case 'Z':
+      case 'Z': 
         mostrarLocalStorageComoJSON() 
       break;  
       case 'H':      
@@ -10,14 +10,15 @@ document.addEventListener('keydown', function(event) {
       case 'X':
         console.log('GLOBAL DESDE X : ', empleadoGlobal)
         console.log(JSON.stringify(empleadoGlobal, null, 2));
-
+        Geometria()
+        mostrarVentanaMensaje('ENSAYO MENSAJE !!')
       break;                  
     }
   }
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('abuelo-indicadores');  
+  let contiBoton = document.getElementById('ventana-alerta');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -687,11 +688,13 @@ botonera.forEach(element => {
     element.style.backgroundColor = 'rgb(0,200,255)'; // Color naranja
   });
 });
+
 // Incrementar la posición en Z solo cuando se haga clic en 'interfaz-perfiles'
 document.getElementById('interfaz-perfiles').addEventListener('click', (e) => {
   e.stopPropagation();   
   document.getElementById('interfaz-perfiles').style.zIndex = 30;
 });
+
 // Evitar la propagación del clic en los elementos hijos
 document.querySelectorAll('.cabeza').forEach(element => {
   element.addEventListener('click', (e) => {
@@ -4184,9 +4187,16 @@ function cargarInstanciaDesdeLocalEnObjetoglobal(nombreClave) {
     console.warn(`No se encontró ninguna instancia bajo la clave "${nombreClave}".`);
   }
 }
-document.getElementById('nombreCliente').addEventListener('input', function() {
-  this.value = this.value.toLowerCase(); // convierte a minusculas
+
+document.getElementById('nombreCliente').addEventListener('input', function () {
+  const valor = this.value
+    .toLowerCase()                         // normaliza todo
+    .replace(/\b\w/g, c => c.toUpperCase()); // mayúscula por palabra
+
+  this.value = valor;
 });
+
+
 function vaciarTodoAlmacenObjetos() {
   localStorage.clear(); // Borra todo el contenido de localStorage
   console.log("Todos los objetos han sido eliminados del almacenamiento local.");
@@ -4390,9 +4400,10 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
     mostrarNombresDeObjetos(); 
     setTimeout(() => {
       if (listaClientes && listaClientes.children.length === 0) {
-        alertaCuatro.style.display='flex'
+        mostrarVentanaMensaje('El almacenamiento y la base de datos estan vacíos')
+        /* alertaCuatro.style.display='flex'
         alertaCuatro.style.top = '30vh'       
-        alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos'   
+        alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos' */   
       }
     }, 50);      
 
@@ -4841,13 +4852,16 @@ function detenerAlternarColor(elementoResetear) {
 btnSalir.addEventListener('click', ()=>{ 
   const numeros = document.querySelectorAll('.number'); // Selecciona todos los elementos con la clase .number  
   const algunoConContenido = Array.from(numeros).some(numero => numero.textContent.trim() !== '');
-  if(alertaCuatro.style.display ==='flex'){
+
+  /* if(alertaMSG.style.display ==='flex'){
     desactivarClick(['.butt-perfiles', '.estilo-1','.digit']); 
     return
-  }
+  } */
+
   if (algunoConContenido) {
-    alertaCinco.style.display = 'flex'
-    desactivarClick(['.butt-perfiles', '.estilo-1','.digit','.digito']); 
+    /* alertaCinco.style.display = 'flex' */
+    mostrarVentanaMensaje('Click en ENTRAR para ingesar la informacion')
+    /* desactivarClick(['.butt-perfiles', '.estilo-1','.digit','.digito']); */ 
     alternarColor(btnEntrar)
   }else{
     restablecerClick(['.estilo-1','.digit']);   
@@ -4881,6 +4895,7 @@ const botonClientes = document.querySelector('#clientes')
 buttsJobs.forEach(boton => {
   let panelUno = document.getElementById('panel-uno')
   let panelDos = document.getElementById('panel-dos')  
+  
   boton.addEventListener('click', () => {
     switch(boton.id) {
       case 'clientes':
@@ -4893,6 +4908,7 @@ buttsJobs.forEach(boton => {
         mostrarNombresDeObjetos(); 
         setTimeout(() => {
           if (listaClientes && listaClientes.children.length === 0) {
+            /* mostrarVentanaMensaje('El almacenamiento y la base de datos estan vacíos') */        
             alertaCuatro.style.display='flex'
             alertaCuatro.style.top = '30vh'       
             alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos'   
@@ -4959,12 +4975,13 @@ listaLineas.forEach(linea => {
   });
   
 });
+
 digitos.forEach((elemento) => {
   elemento.addEventListener('click', () => {
     // Desactiva temporalmente los clics en los botones
     digitos.forEach(d => d.style.pointerEvents = 'none');  
 
-    const spans = document.querySelectorAll('.datos-base');
+    const spans = document.querySelectorAll('.datos-base');   
 
     // Verifica el estado de los spans y lanza las alertas correspondientes
     if ([...spans].every(span => span.textContent.trim() === '')) {
@@ -5006,10 +5023,11 @@ digitos.forEach((elemento) => {
 alertaTres.addEventListener('click', ()=> {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
 })
-alertaCuatro.addEventListener('click', ()=> {
+
+/* alertaCuatro.addEventListener('click', ()=> {
   restablecerClick(['.estilo-1','.digit', '.estilo-2','.cont-vacio','jobs','btn-abandonar','base-datos']);
   desactivarClick(['.butt-perfiles'])
-})
+}) */
 
 btnSalir.addEventListener('mouseleave', () => {
   restablecerClick(['.estilo-1','.digit','.digito']);
@@ -5117,7 +5135,7 @@ document.querySelector('#grid-numbers > div:nth-child(11)').addEventListener('cl
   detenerAlternarColor();
 });
 document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
-  alertaCuatro.style.display='none'
+  document.getElementById('ventana-alerta').style.display = 'none';
   document.querySelector('#job-files').style.display = 'none'
   document.querySelector('#contenedor-registro').style.display = 'none'
   calculadora.classList.add('move-calculadora')
@@ -5132,6 +5150,7 @@ document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
     animarSecuenciaPerfiles();
   }, 200); 
 })
+
 document.querySelector('#grid-numbers > div:nth-child(12)').addEventListener('click', () => {
   desactivarClick(['.butt-perfiles','.digit', '.estilo-1','digito']);
 
@@ -5140,15 +5159,16 @@ document.querySelector('#grid-numbers > div:nth-child(12)').addEventListener('cl
   const todosVacios = Array.from(elementos).every(elemento => elemento.textContent.trim() === ''); 
   console.log(document.querySelectorAll('.digito'));
   if (todosVacios) {
-    alertaCuatro.style.display = 'flex'
+    mostrarVentanaMensaje('Ingrese tiraje para este producto ...')
+    /* alertaCuatro.style.display = 'flex'
     alertaCuatro.style.left = '27.4vw'
     alertaCuatro.style.top = '59.5vh'
-    desactivarClick(['.butt-perfiles','.digit', '.estilo-1']);
+    desactivarClick(['.butt-perfiles','.digit', '.estilo-1']); */
   }else{
     document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {  
       elemento.style.display = 'none';
       document.querySelector('#abandonar-perfiles').style.display = 'none'
-      document.querySelector('#alerta-cuatro').style.display='none'
+      /* document.querySelector('#alerta-cuatro').style.display='none' */
 
     }); 
     coleccionNumeros.length = 0;        
@@ -5165,6 +5185,7 @@ document.querySelector('#grid-numbers > div:nth-child(12)').addEventListener('cl
     }, 1700);
   }
 });
+
 function sumarPorcentaje() {
   // Obtener el valor actual del contador (remover el símbolo '%')
   let porcentajeCurrent = parseInt(contadorTinta.textContent.replace('%', ''), 10);
@@ -5609,14 +5630,14 @@ function mostrarNombresDeObjetos() {
   });
   
   // Ocultar elementos cuando el cursor sale completamente del área
-    menuContextual.addEventListener('mouseleave', () => {
-      menuContextual.style.display = 'none';
-    });
+  menuContextual.addEventListener('mouseleave', () => {
+    menuContextual.style.display = 'none';
+  });
 
   
 
   listaClientes.addEventListener('mouseleave', () => {
-    if (alertaCuatro && alertaCuatro.style.display !== 'none') return;  
+    if (alertaMSG && alertaMSG.style.display !== 'none') return;  
     // Si el input existe y está visible, no hacer nada
     if (inputBuscar && inputBuscar.style.display !== 'none') {
       return;
@@ -7137,9 +7158,10 @@ document.getElementById('nombre-Perfil-existe').addEventListener('click', () => 
   mostrarNombresDeObjetos(); 
   setTimeout(() => {
     if (listaClientes && listaClientes.children.length === 0) {
-      alertaCuatro.style.display='flex'
+      mostrarVentanaMensaje('El almacenamiento y la base de datos estan vacíos')
+      /* alertaCuatro.style.display='flex'
       alertaCuatro.style.top = '30vh'       
-      alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos'   
+      alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos'  */  
     }
   }, 50);      
 
@@ -7235,14 +7257,15 @@ function ejecutarFase(opcion) {
       break;
   }
 }
+
 grupoBotsCrear.forEach(bot => {
   bot.addEventListener('mouseleave', () => {
     alertaTres.style.display = 'none';
 
     if (listaClientes.children.length === 0) {
       listaClientes.style.display = 'none';
-      alertaCuatro.style.display = 'none';
-      restablecerClick(['.estilo-1', '.jobs']);
+      alertaMSG.style.display = 'none';
+      /* restablecerClick(['.estilo-1', '.jobs']); */
     } 
 
     if (lineaClientes && lineaClientes.children.length === 0) {
@@ -7260,6 +7283,8 @@ grupoBotsCrear.forEach(bot => {
     }, 300);
   });
 });
-gridDigitos.addEventListener('mouseleave', () => {
-  alertaCuatro.style.display='none'
-} )
+
+
+/* gridDigitos.addEventListener('mouseleave', () => {
+  alertaMSG.style.display='none'
+} ) */

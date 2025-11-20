@@ -144,7 +144,7 @@ color: white;
 #links-ma {
   position: absolute;
   top: 30vh;
-  left: 40vw;
+  left: 41vw;
   width: 13vw;
   height: 33vh;
   font-family: 'GothamRounded', sans-serif; 
@@ -4671,38 +4671,49 @@ input.numero{
 input.numero:focus {
   border-color: blue;
 }
-#padre-circle{
+
+
+#padre-circle {
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  top:33vh;  
-  left: 4vw; 
-  width: 7vw;
-  height:12vh;
+  justify-content: center;   /* centra vertical */
+  align-items: center;       /* centra horizontal */
+  gap: 0.5rem;               /* separación entre circle y el texto */
+  
+  top: 33vh;
+  left: 4vw;
+  width: 3.7vw;
+  height: 6.7vh;
 }
-#circle{
-  position: absolute;
+
+/* Quitar el absolute innecesario */
+#circle {
   display: flex;
   flex-direction: column;
   gap: 5px;
   justify-content: center;
-  width:3vw;
-  height:5vh;
-  left:1.4vw;
+  align-items: center;  
+  width: 100%;
+  height: 100%;
   background-color: rgb(100,100,125);
   border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
+  display: none;  /* si quieres ocultarlo inicialmente */
+}
+
+/* También quitar absolute aquí */
+#padre-circle h6 {
+  top: 120%;
+  font-size: 1.3vw;
+  margin-left: -50%;
   display: none;
 }
-#padre-circle h6{
-  position:absolute;
-  display: flex;
-  font-size:1.3vw;
-  display: none;
-}
+
+
+
+
 #conte-ayudas{
   position: absolute;
   display: flex;
@@ -4710,14 +4721,28 @@ input.numero:focus {
   align-items: center;
   top: 13vh;
   left: 4vw;
-  width:5.9VW;
-  height:15vh;
+  width:3.7vw;
+  height:6.7vh;
   display: none;
+}
+#conte-ayudas img{
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height:100%;
+  border-radius: 100px;
+  cursor: pointer;
+  display: none;
+  transition: all 0.2s ease;
+}
+#conte-ayudas img.pressed{
+  transform: translateY(2px);
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 #conte-ayudas h6{
   position:absolute;
   display: flex;
-  left:0.6vw;
+  margin-left: -20%;
   top:8vh;
   font-size:1.3vw;
   display: none;
@@ -4729,7 +4754,6 @@ input.numero:focus {
   border-radius: 2px;
   background-color: whitesmoke;
   margin: 0.1px 0;
-  left: 13px;
 }
 #ventana-lateral {
   position:absolute;
@@ -4810,7 +4834,7 @@ input.numero:focus {
   width: 0;
   transition: width 0.7s ease;
 }
-#imagen-ayudas{
+/* #imagen-ayudas{
   position: absolute;
   display: flex;
   width: 40px;
@@ -4819,7 +4843,7 @@ input.numero:focus {
   cursor: pointer;
   display: none;
   transition: all 0.2s ease;
-}
+} */
 #imagen-ayudasII{
   position: absolute;
   display: flex;
@@ -4830,10 +4854,10 @@ input.numero:focus {
   display: none;
   transition: all 0.2s ease;
 }
-#imagen-ayudas.pressed{
+/* #imagen-ayudas.pressed{
   transform: translateY(2px);
   box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
-}
+} */
 #imagen-ayudasII.pressed{
   transform: translateY(3px);
   box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -4843,18 +4867,25 @@ input.numero:focus {
   display: grid;
   grid-template-rows: repeat(11, 1fr);
   display: none;
-  top: -67%;  
-  left: 3%;
+  top: -77%;  
+  left: 8%;
   width: 20%;
   height:40%;
+  gap: 4px;
   background-color: rgba(1,1,15,0.7);
   padding: 10px; 
-  gap: 34px;
   border-radius: 3px;
+  border: 1px solid  #7A8B8B;
   cursor: pointer;
   font-family: 'GothamRounded', sans-serif;
   z-index: 3;
 }
+.conte-listado{
+  position: relative;
+  font-size: 1.1vw;
+  color: rgb(255, 255, 177);
+} 
+
 #segundaLista{
   position: relative; 
   margin-left:102%; 
@@ -4865,12 +4896,6 @@ input.numero:focus {
   background-color: rgba(1,1,15,0.7);
   display: none; 
 }
-.conte-listado{
-  position: relative;
-  height: 19px;
-  margin-bottom: 7px;
-  color: rgb(255, 255, 177);
-} 
 .listado{
   position: relative;
   height: 19px;
@@ -7407,4 +7432,70 @@ background-color: #3FEF9C;
   width: 100%;
   height:100%;
 }
+
+/* ////////////////////////////////////////////////////////////////////////////// */
+
+/* Fondo difuminado estilo clásico */
+/* Ventana principal */
+.alerta-ventana {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px); /* desenfoque */
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* CONTENEDOR PRINCIPAL: los hijos dependen de este */
+.alerta-contenido {
+  background: #e4ecff;
+  border: 1px solid #000;
+  width: 22vw;
+  height: 13vh;
+  padding: 1.5vh;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  /* Relieve suave (mitad de intensidad) */
+  box-shadow:
+    2px 2px 0 #555,   /* sombra lateral reducida */
+    3px 3px 0 #777;   /* segunda sombra suave */
+}
+
+/* PÁRRAFO escalar según el padre */
+.alerta-texto {
+  color: #000;
+  font-size: 1.1vw;      /* escala con viewport y padre */
+  width: 100%;           /* depende del padre */
+  text-align: center;
+  flex: 1;               /* ocupa espacio relativo dentro del padre */
+  display: flex;
+  align-items: center;   /* centra vertical */
+  justify-content: center;
+}
+
+/* BOTÓN depende del tamaño del contenedor */
+#alerta-ok {
+  padding: 0.4vh 1vw;   /* relativa al padre */
+  background: #2f6bff;
+  color: #f6f8ff;
+  cursor: pointer;
+  font-size: 0.9vw;     /* escala con padre */
+  align-self: center;   /* asegura posición centrada dentro del padre */
+  border-radius: 3px;
+}
+
+#alerta-ok:hover {
+  background: #2558d6;
+}
+
 
