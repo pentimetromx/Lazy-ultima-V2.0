@@ -1,4 +1,4 @@
-<!DOCTYPE html>   
+ <!DOCTYPE html>   
 <html>
   <head>
     <meta charset="UTF-8">
@@ -1934,7 +1934,7 @@
           <canvas id="MiGrafica9"></canvas>
         </div>   
 
-      </div>
+      </div> 
 
       <div id="contLineas-II">
 
@@ -1970,6 +1970,7 @@
           <img data-src="./assets/gato.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Carlos Mario Sanchez</span> 
         </div>
+
         <div class="cont-userI" id="icon-andres-I">
           <img data-src="./assets/icono1.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Andres Felipe Montoya</span>
@@ -2031,6 +2032,7 @@
       </div>
 
     </div>
+
     <div id="padre-circle">
       <div id="circle" onclick="abrirAyudas()">
         <div class="line"></div>
@@ -2039,10 +2041,12 @@
       </div>    
       <h6 id="options">Opciones</h6>
     </div>
+
     <div id="conte-ayudas">
-      <img data-src="./assets/ayudas.png" class="lazy" id="imagen-ayudas" onclick="alternarAyudas()" onmouseout="ocultarElementos('imagen-ayudas')" alt="">
+      <img data-src="./assets/ayudas.png" class="lazy" id="imagen-ayudas" onclick="alternarAyudas()" alt="">
       <h6 id="ayudas-video">Ayudas</h6>
     </div>
+
     <div class="contenedor" id="contiene-lineas"> 
       <div class="linea"></div>
       <div class="linea1"></div>
@@ -3125,9 +3129,11 @@
       <span class="alerta-vacio cerrar" id="alerta-tres">
         Debe seleccionar un cliente y linea de producto ...
       </span>
-      <span class="alerta-normal cerrar" id="alerta-cuatro">
+
+      <!-- <span class="alerta-normal cerrar" id="alerta-cuatro">
         Ingrese tiraje para este producto ...
-      </span>
+      </span> -->
+
       <span class="alerta-normal cerrar" id="alerta-cinco">
       Click en ENTRAR para ingesar la informacion
       </span>
@@ -3907,7 +3913,7 @@
             <img src=""  id="empleadoImg-ma" alt=""> 
           </div>
 
-          <label for="numDoc" id="nuevo-ingreso-ma" class="entrada-empleado">Registrar</label>
+          <label for="numDoc" id="nuevo-ingreso-ma" class="entrada-empleado">Actualizar</label>
           <label for="numDoc" id="limpia-ingreso-ma" class="entrada-empleado">Limpiar campos</label>
           <label for="numDoc" id="modifica-ingreso-ma" class="entrada-empleado">Modificar</label>
         </div>
@@ -4032,6 +4038,15 @@
         <li>Procesos internos</li>
       </ul>
     </div>
+
+
+    <div id="ventana-alerta" class="alerta-ventana">
+      <div class="alerta-contenido">
+        <p class="alerta-texto" id="alerta-mensaje">Mensaje de alerta aquí...</p> 
+        <button id="alerta-ok">Aceptar</button>
+      </div>
+    </div>
+
 
 
 

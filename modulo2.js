@@ -671,6 +671,7 @@ function updateDinamicoII() {
   chart12II.update();
   actualizarDatosII()
 }
+
 function detenerDinamica(){
   restablecerClick(['.desactivar'])
   var intervalos = [intervaloActualizar, intervaloActualizarII];
@@ -682,6 +683,7 @@ function detenerDinamica(){
     }
   });
 }
+
 function actualizarDatosII() {
   if (intervaloActualizarII) {
     clearInterval(intervaloActualizarII);
@@ -819,6 +821,7 @@ function ocultarIndicaciones(idIndicador) {
   linkList.style.display = "none";
 
 }
+
 function rodillosKaizen(idButton,vidElem) {
   var buttsTerceros = document.getElementsByClassName('butt-mautonomo-planos') 
   var imgsEstudio = document.getElementById('mejoras-kai')
@@ -836,7 +839,7 @@ function rodillosKaizen(idButton,vidElem) {
   }
   switch(idButton){
     case 'btn10':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conti-boton-kaizen','toyota-kaizen']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','toyota-kaizen']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -844,6 +847,7 @@ function rodillosKaizen(idButton,vidElem) {
         }
       } 
       container1.style.display='grid'
+      contiButtRepuest.style.display='grid'
       if(screenWidth < 500){
         for (var i = 0; i < buttsToyota.length; i++) {
           var elemento = document.getElementById(buttsToyota[i])      
@@ -892,7 +896,7 @@ function rodillosKaizen(idButton,vidElem) {
     } 
     break;
     case 'btn11':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conti-boton-planos','conti-boton-kaizen']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-planos','conti-boton-kaizen']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -900,6 +904,7 @@ function rodillosKaizen(idButton,vidElem) {
         }
       } 
       container1.style.display='grid' 
+      contiButtRepuest.style.display='grid'
       ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       for (var i = 0; i < arrayButtsPlanos.length; i++) {                                                                            /// OCULTA TERCEROS BOTONES
         var elemento = document.getElementById(arrayButtsPlanos[i])
@@ -917,7 +922,7 @@ function rodillosKaizen(idButton,vidElem) {
       if (contadorClicks === 1) {
         miBot.innerText = 'ANTES';
         miBot.style.backgroundColor = 'red' 
-        var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conti-boton-kaizen','conti-boton-planos','toyota-kaizen-antes']
+        var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','conti-boton-planos','toyota-kaizen-antes']
         for (var i = 0; i < allContenedores.length; i++) { 
           var elemento = document.getElementById(allContenedores[i])  
           if (elemento) {
@@ -926,10 +931,11 @@ function rodillosKaizen(idButton,vidElem) {
         } 
           aparecerElemento("toyota-kaizen-antes", "flex")
         container1.style.display='grid'
+        contiButtRepuest.style.display='grid'
       } else if (contadorClicks === 2) {
           miBot.innerText = 'DESPUES';
           miBot.style.backgroundColor = 'green' 
-          var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conti-boton-kaizen','conti-boton-planos','kaizenCont','vidElem']  
+          var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','conti-boton-planos','kaizenCont','vidElem']  
           for (var i = 0; i < allContenedores.length; i++) { 
             var elemento = document.getElementById(allContenedores[i])  
             if (elemento) {
@@ -937,6 +943,7 @@ function rodillosKaizen(idButton,vidElem) {
             }
           } 
           container1.style.display='grid'
+          contiButtRepuest.style.display='grid'
           aparecerElemento("kaizenCont", "flex")
           videoKaizen.style.display = 'flex'
           videoKaizen.pause(); // Siempre pausamos antes para evitar conflictos.
@@ -981,7 +988,7 @@ function rodillosKaizen(idButton,vidElem) {
       }       
     break;
     case 'btn13':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','planos-kaizen','conteneMantaut','conti-boton-kaizen','conti-boton','conti-boton-planos']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','planos-kaizen','conteneMantaut','conti-boton-kaizen','conti-boton-planos']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -989,6 +996,7 @@ function rodillosKaizen(idButton,vidElem) {
         }
       }  
       container1.style.display='grid'
+      contiButtRepuest.style.display='grid'
       Array.from(buttsTerceros).forEach(elemento => { 
         var element = document.getElementById(elemento.id)
         if (element) {
@@ -1005,7 +1013,7 @@ function rodillosKaizen(idButton,vidElem) {
       contplanosKaizen.style.display = 'flex'
     break;  
     case 'btn14':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','materiales-kaizen','conteneMantaut','conti-boton-kaizen','conti-boton','conti-boton-planos']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','materiales-kaizen','conteneMantaut','conti-boton-kaizen','conti-boton-planos']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -1013,6 +1021,7 @@ function rodillosKaizen(idButton,vidElem) {
         }
       } 
       container1.style.display='grid' 
+      contiButtRepuest.style.display='grid'
       ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       Array.from(buttsTerceros).forEach(elemento => {                                                                                /// MOSTRAR BOTONES TERCEROS
         var element = document.getElementById(elemento.id) // Aquí asumo que cada elemento tiene un atributo 'id'
@@ -1023,7 +1032,7 @@ function rodillosKaizen(idButton,vidElem) {
       contMateriales.style.display = 'flex'
     break;  
     case 'btn15':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conti-boton-planos','conti-boton-kaizen']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-planos','conti-boton-kaizen']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -1031,6 +1040,7 @@ function rodillosKaizen(idButton,vidElem) {
         }
       } 
       container1.style.display='grid' 
+      contiButtRepuest.style.display='grid'
       ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       Array.from(buttsTerceros).forEach(elemento => {                                                                                /// MOSTRAR BOTONES TERCEROS
         var element = document.getElementById(elemento.id) // Aquí asumo que cada elemento tiene un atributo 'id'
@@ -1040,7 +1050,7 @@ function rodillosKaizen(idButton,vidElem) {
       })
     break;
     case 'btn17':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','conti-boton-kaizen','kaizen-propuestos']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','kaizen-propuestos']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -1049,10 +1059,12 @@ function rodillosKaizen(idButton,vidElem) {
       } 
       aparecerElemento("kaizen-propuestos", "flex")
       container1.style.display='grid'
+      contiButtRepuest.style.display='grid'
     break;       
     default:
   }
-}
+}  
+ 
 function apilarCasos() {
   const casoEstudio = document.getElementById('casos-kaizen');
   const mejoras = document.getElementById('mejoras-kai');

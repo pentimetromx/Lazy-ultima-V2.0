@@ -1937,10 +1937,6 @@ document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
   // Validación inicial
   if (!valor) {
     mostrarVentanaMensaje('Debe ingresar un número de documento.', 'padre-ingresos');
-    desactivarClick(['.entrada-empleado']);
-    ocultarElementos('.ocultos');
-
-    desaparecerElemento('grafico-area');
     restaurarPosicionPadreIngresos();
     flagEmpleado = true;
     return;
@@ -2003,10 +1999,7 @@ document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
     }
 
   } else {
-    desactivarClick(['.entrada-empleado']);
-    mostrarVentanaMensaje('Empleado no encontrado en la BD.', '23vh', '56vw');
-    ocultarElementos('.ocultos')
-
+    mostrarVentanaMensaje('Empleado no encontrado en la BD.');
   }
   empleadoGlobal = empleadoEncontrado
   console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal  )
@@ -2042,17 +2035,13 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
 
   for (const input of inputs) {
     if (!input.value.trim()) {
-      mostrarVentanaMensaje('Hay campos vacíos.');
-      desactivarClick(['.entrada-empleado']);
-      ocultarElementos('.ocultos')
+      mostrarVentanaMensaje('Hay campos sin diligenciar.');
       flagEmpleado = true
       return;
     }
 
     if (!img || !img.src || img.src.trim() === '' || img.src.endsWith('/')) {
       mostrarVentanaMensaje('Debe insertar una imagen.'); 
-      desactivarClick(['.entrada-empleado']);
-      ocultarElementos('.ocultos')
       flagEmpleado = true
       return;
     }
@@ -2060,8 +2049,6 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
   }
   if (!valor.endsWith('.png') && !valor.endsWith('.jpg') && !valor.endsWith('.jpeg')) {
     mostrarVentanaMensaje('El archivo debe ser una imagen .png o .jpg');  
-    desactivarClick(['.entrada-empleado']);
-    ocultarElementos('.ocultos')
     flagEmpleado = true
     return;
   }
@@ -2078,7 +2065,7 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
   requestAnimationFrame(() => grafArea.classList.add('activo'));
 
   setTimeout(() => {
-    ["grafico-area"].forEach(id => aparecerElemento(id, "block"));
+    ["grafico-area"].forEach(id => aparecerElemento(id, "block")); 
     mostrarCalendario('Febrero'); 
 
   }, 5);
@@ -2093,7 +2080,7 @@ function restaurarPosicionPadreIngresos() {
 }
 document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ // boton rojo 
   moverPadreIngresos(61,28)
-   desaparecerElemento('abuelo-indicadores') 
+  desaparecerElemento('abuelo-indicadores') 
  
 })
 function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
@@ -2136,7 +2123,8 @@ function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
   const spanMes = document.querySelector('#mes-area');
   if (spanMes) spanMes.textContent = '';
 }
-function ocultarElementos(selectores) {
+
+/* function ocultarElementos(selectores) {
   const elementos = document.querySelectorAll(selectores);
   if (!elementos.length) return;
 
@@ -2148,7 +2136,8 @@ function ocultarElementos(selectores) {
     }
     el.style.display = 'none';
   });
-}
+} */
+
 function traerElementos(selectores) {
   const elementos = document.querySelectorAll(selectores);
   if (!elementos.length) return;
@@ -2343,17 +2332,25 @@ function mostrar() {
   padreLinks.style.display = 'block';
 }
 function ocultar() {
-  if (!dentro) padreLinks.style.display = 'none';
+  setTimeout(() => {
+    // Solo ocultar si el cursor NO está sobre listaClientes
+    if (!padreLinks.matches(':hover')) {
+      padreLinks.style.display = 'none';
+      restablecerClick(['.estilo-1', '.jobs']);
+    }
+  }, 300);  
 }
 
 btnAreas.addEventListener('click', () => {
   dentro = true;
   mostrar();
 });
+
 btnAreas.addEventListener('mouseleave', () => {
   dentro = false;
   ocultar();
 });
+
 padreLinks.addEventListener('mouseenter', () => {
   dentro = true;
   mostrar();
@@ -2539,16 +2536,11 @@ function cargarEmpleadoMA() {
   imgElemento.src = rutaImagen;
 }
 
-
-
-
-
 // BOTON 'Ir' / M.A 
 document.querySelector('#lbl-ingreso-ma').addEventListener('click',()=>{
   cargarEmpleadoMA()
 })
   
-
 // BOTON REGISTRAR M.A
 function actualizarIdentificadosMA() {
   const docInput   = document.getElementById('numDoc9-ma');
@@ -2561,7 +2553,6 @@ function actualizarIdentificadosMA() {
   const adtInput = document.getElementById('numDoc6-ma');
   const lupInput = document.getElementById('numDoc8-ma');
 
-
   const documentoBusqueda = docInput.value.trim();
   const nuevoIdentificado = identInput.value.trim();
   const nuevoCorregido = corrInput.value.trim();
@@ -2572,8 +2563,7 @@ function actualizarIdentificadosMA() {
   const nuevoAdt = adtInput.value.trim();
   const nuevoLup = lupInput.value.trim();
 
-
-   if (!documentoBusqueda || !nuevoIdentificado || !nuevoCorregido || !nuevoTipoA || !nuevoTipoB || !nuevoKaizen || !nuevoAda || !nuevoAdt || !nuevoLup) {
+  if (!documentoBusqueda || !nuevoIdentificado || !nuevoCorregido || !nuevoTipoA || !nuevoTipoB || !nuevoKaizen || !nuevoAda || !nuevoAdt || !nuevoLup) {
     console.log('Faltan datos para continuar.');
     return;
   }
@@ -2611,21 +2601,15 @@ function actualizarIdentificadosMA() {
   console.log('GLOBAL : ', empleadoGlobal)
 }
 
-
 // BOTON REGISTRAR M.A
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
   actualizarIdentificadosMA()
 })
 
-
 function limpiarEmpleadosRegistrados() {
   localStorage.setItem('empleadosRegistrados', JSON.stringify([]));
   console.log('empleadosRegistrados se ha vaciado:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
 }
-
-
-
-
 
 function mostrarLocalStorageComoJSON() {
   const resultado = {};
@@ -2648,9 +2632,23 @@ function mostrarLocalStorageComoJSON() {
 
 
 
-  
-
 
 const info = document.getElementById('info');
 info.textContent = `W:${window.innerWidth} H:${window.innerHeight} DPR:${window.devicePixelRatio}`;
-  
+
+
+
+        function mostrarVentanaMensaje(texto) {
+          document.getElementById('alerta-mensaje').textContent = texto;
+          document.getElementById('ventana-alerta').style.display = 'flex';
+        }
+
+        document.getElementById('alerta-ok').addEventListener('click', () => {
+          document.getElementById('ventana-alerta').style.display = 'none';
+          const input = document.querySelector('#nomEmpl');
+
+          if (input instanceof HTMLElement) {
+            input.focus();
+          }
+
+        });

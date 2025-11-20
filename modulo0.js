@@ -26,8 +26,10 @@ var contibotsDistriIII = document.getElementById('contenedor-7-VI')
 var contibotsDistriVI = document.getElementById('contenedor-8')
 var btnsIniciales = document.querySelectorAll('.btn-bloque')
 var buttRepuest = document.getElementById('butt-repuestos')
+var contiButtRepuest = document.getElementById('conti-boton')
+
 var buttRepuestI = document.getElementById('butt-repuestos-I')
-var buttRepuestV = document.getElementById('conti-boton-repuestos-III')
+var buttRepuestV = document.getElementById('conti-boton-repuestos-III')  
 var contVideo = document.getElementById('video-entintado')
 var contVideoSmed = document.getElementById('conti-video-bancada')
 var conteBancada = document.getElementById('bancada-torre-II')
@@ -107,6 +109,7 @@ let contadorClicks = 0;
 let container1 = document.getElementById('container01')
 let flagEmpleado = true
 let empleadoGlobal = null;
+let alertaMSG = document.querySelector('#ventana-alerta')
 
 var botIzquierda = document.getElementById('bot-atras')
 var botDerecha = document.getElementById('bot-atras12')
@@ -1657,15 +1660,11 @@ function agregarEmpleado() {
 
   if (!nombre || !documento || !area || !cargo || !equipo || !fecha || !imagen) {
     mostrarVentanaMensaje('Todos los campos son obligatorios.');
-    desactivarClick(['.entrada-empleado']);
-    ocultarElementos('.ocultos');
     return;
   }
 
   if (!valor.endsWith('.png') && !valor.endsWith('.jpg') && !valor.endsWith('.jpeg')) {
     mostrarVentanaMensaje('El archivo debe ser una imagen .png o .jpg');
-    desactivarClick(['.entrada-empleado']);
-    ocultarElementos('.ocultos');
     return;
   }
 
@@ -1673,8 +1672,6 @@ function agregarEmpleado() {
   const existe = empleadosLocal.some(emp => emp.documento === documento);
   if (existe) {
     mostrarVentanaMensaje('Empleado ya existe.');
-    desactivarClick(['.entrada-empleado']);
-    ocultarElementos('.ocultos');
     console.log('Empleados en localStorage:', empleadosLocal);
     return;
   }
@@ -1703,9 +1700,6 @@ function agregarEmpleado() {
 
 
   mostrarVentanaMensaje('Empleado agregado y almacenado correctamente.');
-  desactivarClick(['.entrada-empleado']);
-  ocultarElementos('.ocultos');
-
   console.log('Empleado agregado:', nuevoEmpleado);
   console.log('Empleados en localStorage:', empleadosLocal);
   console.log('GLOBAL:', empleadoGlobal);
