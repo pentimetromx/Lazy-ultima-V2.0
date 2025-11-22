@@ -2058,8 +2058,10 @@
       <div id="linea-1" class="conte-listado">Optimizar parámetros</div>
       <div id="linea-2" class="conte-listado">Análisis de patrones</div>
       <div id="linea-3" class="conte-listado">Reflectividad</div>
+
       <div class="conte-listado" id="ultimoElemento" onclick="muestraMenu()">Aplicaciones
         <span class="arow-direction"></span>
+
         <div id="segundaLista">
           <div id="linea-11" class="listado">Tratamiento 1</div>
           <div id="linea-14" class="listado" onclick="interfazAvance()">Comparación
@@ -2069,7 +2071,9 @@
           <div id="linea-13" class="listado">Análisis de datos</div>
           <div id="linea-15" class="listado">Ajuste de equipo</div>
         </div>
+
       </div>
+      
       <div id="linea-4" class="conte-listado">Datos densitométricos</div>
       <div id="linea-5" class="conte-listado">Técnica densitometrica</div>
       <div id="linea-6" class="conte-listado">Poblemas de medición </div>
@@ -3796,14 +3800,14 @@
         </div>
 
         <div class="columna-centro"> 
-
+    
           <div class="imgEmpleado">
             <img src=""  id="empleadoImg" alt=""> 
           </div>
 
-          <label for="numDoc" id="nuevo-ingreso" class="entrada-empleado">Registrar</label>
-          <label for="numDoc" id="limpia-ingreso" class="entrada-empleado">Limpiar campos</label>
-          <label for="numDoc" id="modifica-ingreso" class="entrada-empleado">Modificar</label>
+          <button id="nuevo-ingreso" class="entrada-empleado">Registrar</button>
+          <button id="limpia-ingreso" class="entrada-empleado">Limpiar campos</button>
+          <button id="modifica-ingreso" class="entrada-empleado">Modificar</button>
         </div>
 
         <div class="columna-derecha">
@@ -3823,6 +3827,7 @@
     </div>
 
     <button id="borrar-temporal" style="cursor: pointer;font-size: 1vw; width: 9vw;height: 4vh;margin-bottom: 30%; position:absolute;left: 5vw;top: 47vh; border-radius: 7px; background-color: brown;color: antiquewhite;" onclick="vaciarEmpleadosEnLocal()">BORRAR TODO</button>
+    <button id="borrar-temporal" style="cursor: pointer;font-size: 1vw; width: 9vw;height: 4vh;margin-bottom: 30%; position:absolute;left: 5vw;top: 55vh; border-radius: 7px; background-color: brown;color: antiquewhite;" onclick="BORRARBORRAR()">OBJETO LOCAL</button>
 
 
 
@@ -3856,12 +3861,12 @@
 
           <div class="fila-ingreso">
             <label for="numDoc-ma">Nombre empleado</label>
-            <input type="text" id="numDoc-ma" class="entrada-empleado verGraficos">
+            <input type="text" id="numDoc-ma" class="entrada-empleado verGraficos" readonly>
           </div>
 
           <div class="fila-ingreso">
-            <label for="numDoc-ma">Numero documento</label>
-            <input type="text" id="numDoc9-ma" class="entrada-empleado verGraficos">
+            <label for="numDoc9-ma">Numero documento</label>
+            <input type="text" id="numDoc9-ma" class="entrada-empleado verGraficos" readonly>
           </div>
 
           <div class="fila-ingreso-ma">
@@ -3913,9 +3918,9 @@
             <img src=""  id="empleadoImg-ma" alt=""> 
           </div>
 
-          <label for="numDoc" id="nuevo-ingreso-ma" class="entrada-empleado">Actualizar</label>
-          <label for="numDoc" id="limpia-ingreso-ma" class="entrada-empleado">Limpiar campos</label>
-          <label for="numDoc" id="modifica-ingreso-ma" class="entrada-empleado">Modificar</label>
+          <button for="numDoc" id="nuevo-ingreso-ma" class="entrada-empleado">Actualizar</button>
+          <button for="numDoc" id="limpia-ingreso-ma" class="entrada-empleado">Limpiar campos</button>
+          <button for="numDoc" id="modifica-ingreso-ma" class="entrada-empleado">Modificar</button>
         </div>
 
         <div class="columna-derecha">
