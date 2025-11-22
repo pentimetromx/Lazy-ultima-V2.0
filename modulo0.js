@@ -1735,6 +1735,7 @@ btnAgregar.addEventListener('mouseleave',()=>{
 })
 
 function vaciarEmpleadosEnLocal() {
+  empleadoGlobal = null
   const empleadosKey = 'empleadosRegistrados';
   localStorage.setItem(empleadosKey, JSON.stringify([]));
   console.log('Lista de empleados vaciada, variable conservada.');
@@ -1760,11 +1761,12 @@ btnLimpiar.addEventListener('mouseleave',()=>{
 })
 
 btnModificar.addEventListener('click', () =>{
+
   if(flagEmpleado === false){
     alternarColor(btnDblFlecha)
     return
   }
-
+  actualizarIdentificadosMA('RR:HH')
 })
 
 btnModificar.addEventListener('mouseleave',()=>{

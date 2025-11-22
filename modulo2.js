@@ -2203,8 +2203,8 @@ searchInput.addEventListener('click' , () =>{
   searchInput.value=''
 })
 searchForm.addEventListener('submit', function (e) {
-  e.preventDefault() // Evita que se envíe el formulario
-  const searchTerm = searchInput.value.toLowerCase() // Obtenemos el término de búsqueda y lo convertimos a minúsculas
+  e.preventDefault()
+  const searchTerm = searchInput.value.toLowerCase()
 
   // ... Tu código de manejo de búsqueda actual ...
   switch (searchTerm) {
@@ -4860,9 +4860,13 @@ subMenu.addEventListener('mouseleave',() =>{
   }
   subMenu.style.display='none'
 })
+
+
 function muestraMenu(){
   document.getElementById('segundaLista').style.display='block'
 }
+  
+
 let intervalEnEjecucion = false;
 
 // CLICK EN LAS GRAFFICAS

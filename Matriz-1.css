@@ -6914,7 +6914,7 @@ height:100%;
   border-radius: 6px;
 }
 
-.columna-centro > label{
+.columna-centro > button{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6933,7 +6933,7 @@ height:100%;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   cursor: pointer;
 }
-.columna-centro > label:hover{
+.columna-centro > button:hover{
   background-color: rgba(150,150,150,0.9);
   box-shadow:
     inset 4px 4px 6px rgba(0,0,0,0.5),
@@ -6943,16 +6943,14 @@ height:100%;
   transform: scale(0.95);
   color: black;
 }
-.columna-centro > label:active {
+.columna-centro > button:active {
   transform: translateY(0);
   box-shadow:
     inset 2px 2px 4px rgba(0, 0, 0, 0.4),
     inset -2px -2px 4px rgba(255, 255, 255, 0.3);
 }
 
-.columna-centro > button{
-  width: 100%;
-}
+
 #modifica-ingreso,
 #nuevo-ingreso{
   width: 32%;
@@ -7094,7 +7092,7 @@ height:100%;
 .fila-ingreso > label{
   width: 90%;
   box-sizing: border-box;
-  color: #0e2433;  
+  color:#2e2e2e;  
   font-size: 0.6rem;  
 }
 .metricas-empleado {

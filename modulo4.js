@@ -1850,9 +1850,9 @@ function ingresoEmpleado(){
 }
 
 function ingresoEmpleadoMA(){
-  setTimeout(() => {
+  /* setTimeout(() => {
     document.querySelector('#nomEmpl-ma').focus();
-  }, 50);
+  }, 50); */
   
   const excluidos = [
     'buscador','search-form','links-inicialesI','links-iniciales','container01'
@@ -1862,7 +1862,7 @@ function ingresoEmpleadoMA(){
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
   });
 
-  const padre = document.getElementById('padre-ingresos-ma');
+  const padre = document.getElementById('padre-ingresos-ma'); 
   const hijo = document.getElementById('ingresos-sistema-ma');
   const inputs = document.querySelectorAll('.verGraficos');
   flagEmpleado = true
@@ -2540,71 +2540,140 @@ function cargarEmpleadoMA() {
 document.querySelector('#lbl-ingreso-ma').addEventListener('click',()=>{
   cargarEmpleadoMA()
 })
-  
-// BOTON REGISTRAR M.A
-function actualizarIdentificadosMA() {
-  const docInput   = document.getElementById('numDoc9-ma');
-  const identInput = document.getElementById('numDoc1-ma');
-  const corrInput = document.getElementById('numDoc2-ma');
-  const tipoaInput = document.getElementById('numDoc5-ma');
-  const tipobInput = document.getElementById('numDoc3-ma');
-  const kaizenInput = document.getElementById('numDoc4-ma');
-  const adaInput = document.getElementById('numDoc7-ma');
-  const adtInput = document.getElementById('numDoc6-ma');
-  const lupInput = document.getElementById('numDoc8-ma');
-
-  const documentoBusqueda = docInput.value.trim();
-  const nuevoIdentificado = identInput.value.trim();
-  const nuevoCorregido = corrInput.value.trim();
-  const nuevoTipoA = tipoaInput.value.trim();
-  const nuevoTipoB = tipobInput.value.trim();
-  const nuevoKaizen = kaizenInput.value.trim();
-  const nuevoAda = adaInput.value.trim();
-  const nuevoAdt = adtInput.value.trim();
-  const nuevoLup = lupInput.value.trim();
-
-  if (!documentoBusqueda || !nuevoIdentificado || !nuevoCorregido || !nuevoTipoA || !nuevoTipoB || !nuevoKaizen || !nuevoAda || !nuevoAdt || !nuevoLup) {
-    console.log('Faltan datos para continuar.');
-    return;
-  }
-
-  let empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
-
-  console.log('Estado inicial de empleadosRegistrados:', empleados);
-
-  // Ubicar empleado correspondiente
-  const empleado = empleados.find(emp => emp.documento === documentoBusqueda);
-
-  if (!empleado) {
-    console.log('No se encontró un empleado con ese documento.');
-    return;
-  }
-
-  // Actualizar propiedad
-  empleado.identificados = nuevoIdentificado;
-  empleado.corregidos = nuevoCorregido;
-  empleado.tipoA = nuevoTipoA;
-  empleado.tipoB = nuevoTipoB;
-  empleado.kaizen = nuevoKaizen;
-  empleado.adas = nuevoAda;
-  empleado.adt = nuevoAdt;
-  empleado.lup = nuevoLup;
-
-  console.log('Empleado actualizado:', empleado);
-
-  // Guardar cambios
-  localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
-
-  // Verificación final
-  const verificacion = JSON.parse(localStorage.getItem('empleadosRegistrados'));
-  console.log('Estado final en localStorage:', verificacion);
-  console.log('GLOBAL : ', empleadoGlobal)
-}
-
 // BOTON REGISTRAR M.A
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
-  actualizarIdentificadosMA()
+  actualizarIdentificadosMA('M.A')
 })
+  
+// BOTON REGISTRAR M.A
+function actualizarIdentificadosMA(sector) {
+  if(sector === 'M.A'){
+    const docInput   = document.getElementById('numDoc9-ma');
+    const identInput = document.getElementById('numDoc1-ma');
+    const corrInput = document.getElementById('numDoc2-ma');
+    const tipoaInput = document.getElementById('numDoc5-ma');
+    const tipobInput = document.getElementById('numDoc3-ma');
+    const kaizenInput = document.getElementById('numDoc4-ma');
+    const adaInput = document.getElementById('numDoc7-ma');
+    const adtInput = document.getElementById('numDoc6-ma');
+    const lupInput = document.getElementById('numDoc8-ma');
+
+    const documentoBusqueda = docInput.value.trim();
+    const nuevoIdentificado = identInput.value.trim();
+    const nuevoCorregido = corrInput.value.trim();
+    const nuevoTipoA = tipoaInput.value.trim();
+    const nuevoTipoB = tipobInput.value.trim();
+    const nuevoKaizen = kaizenInput.value.trim();
+    const nuevoAda = adaInput.value.trim();
+    const nuevoAdt = adtInput.value.trim();
+    const nuevoLup = lupInput.value.trim();
+
+    if (!documentoBusqueda || !nuevoIdentificado || !nuevoCorregido || !nuevoTipoA || !nuevoTipoB || !nuevoKaizen || !nuevoAda || !nuevoAdt || !nuevoLup) {
+      mostrarVentanaMensaje('Faltan datos para continuar.')
+      return;
+    }
+
+    let empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
+
+    console.log('Estado inicial de empleadosRegistrados:', empleados);
+
+    // Ubicar empleado correspondiente
+    const empleado = empleados.find(emp => emp.documento === documentoBusqueda);
+
+    if (!empleado) {
+      console.log('No se encontró un empleado con ese documento.');
+      return;
+    }
+
+    // Actualizar propiedad
+    empleado.identificados = nuevoIdentificado;
+    empleado.corregidos = nuevoCorregido;
+    empleado.tipoA = nuevoTipoA;
+    empleado.tipoB = nuevoTipoB;
+    empleado.kaizen = nuevoKaizen;
+    empleado.adas = nuevoAda;
+    empleado.adt = nuevoAdt;
+    empleado.lup = nuevoLup;
+
+    empleadoGlobal = empleado
+
+    console.log('Empleado actualizado:', empleado);
+    mostrarVentanaMensaje('Empleado actualizado')
+
+    // Guardar cambios
+    localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
+
+    // Verificación final
+    const verificacion = JSON.parse(localStorage.getItem('empleadosRegistrados'));
+    console.log('Estado final en localStorage:', verificacion);
+    console.log('GLOBAL : ', empleadoGlobal)
+  }
+
+  else {
+
+    const nombInput   = document.getElementById('numDoc');
+    const docInput    = document.getElementById('numDoc1');
+    const areaInput   = document.getElementById('numDoc2');
+    const cargoInput  = document.getElementById('numDoc5');
+    const fechaInput  = document.getElementById('numDoc4');
+    const equipoInput = document.getElementById('numDoc3');
+    const fotoInput   = document.getElementById('numDoc6');
+
+    const documentoBusqueda = docInput.value.trim();
+    const nuevoIdentificado = nombInput.value.trim();
+    const nuevoArea         = areaInput.value.trim();
+    const nuevoCargo        = cargoInput.value.trim();
+    const nuevoFecha        = fechaInput.value.trim();
+    const nuevoEquipo       = equipoInput.value.trim();
+    const nuevoFoto         = fotoInput.value.trim();
+
+    // Validación básica
+    if (!documentoBusqueda) {
+      mostrarVentanaMensaje('Falta el documento para ubicar al empleado.');
+      return;
+    }
+
+    // 1. Cargar empleados
+    let empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
+
+    console.log('Estado inicial empleados:', empleados);
+
+    // 2. Buscar empleado por documento
+    const empleado = empleados.find(emp => emp.documento === documentoBusqueda);
+
+    if (!empleado) {
+      mostrarVentanaMensaje('No se encontró un empleado con ese documento.');
+      return;
+    }
+
+    console.log('Empleado encontrado:', empleado);
+
+    // 3. Actualizar propiedades usando lo que hay en los inputs AHORA MISMO
+    empleado.nombre   = nuevoIdentificado;
+    empleado.documento = documentoBusqueda;
+    empleado.area     = nuevoArea;
+    empleado.cargo    = nuevoCargo;
+    empleado.fecha    = nuevoFecha;
+    empleado.equipo   = nuevoEquipo;
+    empleado.imagen   = nuevoFoto;
+
+    // 4. Actualizar variable global
+    empleadoGlobal = { ...empleado };
+
+    console.log('Empleado actualizado:', empleadoGlobal);
+
+    // 5. Guardar en localStorage
+    localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
+
+    const verificacion = JSON.parse(localStorage.getItem('empleadosRegistrados'));
+    console.log('Estado final localStorage:', verificacion);
+
+    mostrarVentanaMensaje('Empleado actualizado correctamente.');
+  }
+  
+
+
+}
 
 function limpiarEmpleadosRegistrados() {
   localStorage.setItem('empleadosRegistrados', JSON.stringify([]));
@@ -2638,17 +2707,22 @@ info.textContent = `W:${window.innerWidth} H:${window.innerHeight} DPR:${window.
 
 
 
-        function mostrarVentanaMensaje(texto) {
-          document.getElementById('alerta-mensaje').textContent = texto;
-          document.getElementById('ventana-alerta').style.display = 'flex';
-        }
+function mostrarVentanaMensaje(texto) {
+  document.getElementById('alerta-mensaje').textContent = texto;
+  document.getElementById('ventana-alerta').style.display = 'flex';
+}
 
-        document.getElementById('alerta-ok').addEventListener('click', () => {
-          document.getElementById('ventana-alerta').style.display = 'none';
-          const input = document.querySelector('#nomEmpl');
+document.getElementById('alerta-ok').addEventListener('click', () => {
+  document.getElementById('ventana-alerta').style.display = 'none';
+  const input = document.querySelector('#nomEmpl');
 
-          if (input instanceof HTMLElement) {
-            input.focus();
-          }
+  if (input instanceof HTMLElement) {
+    input.focus();
+  }
 
-        });
+});
+
+
+function BORRARBORRAR(){
+  console.log('EMPLEADO GLOBAL : ', empleadoGlobal)
+}
