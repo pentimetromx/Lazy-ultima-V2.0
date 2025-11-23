@@ -583,24 +583,26 @@ function resaltarSecuencialDemo() {
 }
 let miCanvas12 = document.getElementById('MiGrafica10').getContext('2d')
 let chart13;
+
 function crearGraficoMes() {
-  const padreGrafica10 = document.querySelector('#padre-grafica4')
-  padreGrafica10.style.display='flex'
+  const padreGrafica10 = document.querySelector('#padre-grafica4');
+  padreGrafica10.style.display = 'flex';
+
   const canvas = document.getElementById('MiGrafica10');
 
-  // 1️⃣ Destruir si ya existe
+  // Destruir gráfico previo (idéntico a función que sí funciona)
   if (chart13) {
     chart13.destroy();
     chart13 = null;
   }
 
-  // 2️⃣ Ocultar/mostrar con transición (opcional)
+  // Ocultar y mostrar con un delay EXACTO igual al gráfico que sí funciona
   canvas.style.display = 'none';
-  setTimeout(() => canvas.style.display = 'block', 100);
+  setTimeout(() => (canvas.style.display = 'block'), 100);
 
   const ctx = canvas.getContext('2d');
 
-  // 3️⃣ Configuración del gráfico
+  // Configuración alineada con la otra función (misma estructura general)
   const configBase = {
     type: 'bar',
     data: {
@@ -608,34 +610,42 @@ function crearGraficoMes() {
       datasets: [
         {
           label: 'Participación en M.A',
+          data: [100, 75, 86, 98],
           backgroundColor: [
             'rgba(30,149,54,1)',
             'rgba(30,149,54,0.7)',
             'rgba(30,149,54,0.5)',
             'rgba(30,149,54,0.3)'
           ],
-          data: [100, 75, 86, 98],
-          barPercentage: 1.24
+          borderWidth: 1
         },
         {
           type: 'line',
           data: [100, 80, 90, 95],
+          barPercentage: 1.24,
           borderColor: 'orange',
           borderWidth: 1,
           pointRadius: 0,
           fill: false,
           tension: 0.2
         }
-      ]   
+      ]
     },
     options: {
-      /* animation: false, */ 
+      responsive: false,            // igual que tu función que sí anima
+      maintainAspectRatio: false,   // igual
+      animation: {
+        duration: 900,              // igual que el correcto
+        easing: 'easeOutQuart'      // igual
+      },
       plugins: {
         legend: { display: false },
-        title: { display: true, text: 'Sesiones M.A Mes', font: { size: 13 } }
+        title: {
+          display: true,
+          text: 'Sesiones M.A Mes',
+          font: { size: 13 }
+        }
       },
-      maintainAspectRatio: false,
-      indexAxis: 'x', // horientacion de barras vertical / horizontales
       scales: {
         x: {
           categoryPercentage: 1,
@@ -644,17 +654,19 @@ function crearGraficoMes() {
         },
         y: {
           grid: { display: false },
-          ticks: { display: false } // sin leyendas verticales
+          ticks: { display: false }
         }
       }
     }
   };
 
-  // 4️⃣ Crear el nuevo gráfico
   chart13 = new Chart(ctx, configBase);
 }
+
+
 let miCanvas13 = document.getElementById('MiGrafica11').getContext('2d')
 let chart14;
+
 function crearGraficoSemana() {
   const padreGrafica11 = document.querySelector('#padre-grafica5')
   padreGrafica11.style.display='flex'
@@ -722,78 +734,92 @@ function crearGraficoSemana() {
   // 4️⃣ Crear el nuevo gráfico
   chart14 = new Chart(ctx, configBase);
 }
+
+
+
+
 let miCanvas14 = document.getElementById('MiGrafica12').getContext('2d')
 let chart15;
+
+
 function crearGraficoParticipacion() {
-  const padreGrafica12 = document.querySelector('#padre-grafica6')
-  padreGrafica12.style.display='flex'
+  const padreGrafica12 = document.querySelector('#padre-grafica6');
+  padreGrafica12.style.display = 'flex';
+
   const canvas = document.getElementById('MiGrafica12');
 
-  // 1️⃣ Destruir si ya existe
+  // Destruir grafico previo
   if (chart15) {
     chart15.destroy();
     chart15 = null;
   }
 
-  // 2️⃣ Ocultar/mostrar con transición (opcional)
+  // Ocultar antes de mostrar
   canvas.style.display = 'none';
-  setTimeout(() => canvas.style.display = 'block', 100);
 
-  const ctx = canvas.getContext('2d');
+  // 1️⃣ MOSTRAR CANVAS DESPUÉS DE UN DELAY
+  setTimeout(() => {
+    canvas.style.display = 'block';
 
-  // 3️⃣ Configuración del gráfico
-  const configLine = {
-    type: 'line',
-    data: {
-      labels: ['Mecanicas', 'Layout','Diseño','Temporales','Fijas','Transicion'],
-      datasets: [
-        {
-          label: 'Participación en M.A',
-          data: [17, 9, 27, 55, 19, 33],
-          borderColor: 'rgb(0,0,255)',
-          backgroundColor: 'rgb(0,255,255)',
-          borderWidth: 1,
-          pointRadius: 2,
-          pointBackgroundColor: 'rgb(0,255,255)',
-          tension: 0.3 // suaviza la línea
-        }
-      ]
-    },
-    options: {
-      maintainAspectRatio: false, 
-      plugins: {
-        legend: { display: false },
-        title: {
-          display: true,
-          text: 'Variacion general',
-          font: { size: 13 },
-          color: 'rgb(111,111,111)'
-        }
-      },
-      scales: {
-        x: {
-          grid: { display: false },
-          ticks: {
-            color: '#fff',
-            font: { size: 7 }
-          }
+    // 2️⃣ ESPERAR A QUE EL BROWSER PINTE EL NUEVO DISPLAY
+    requestAnimationFrame(() => {
+
+      // AHORA SÍ ES SEGURO CREAR EL GRÁFICO
+      const ctx = canvas.getContext('2d');
+
+      const configLine = {
+        type: 'line',
+        data: {
+          labels: ['Mecánicas', 'Layout','Diseño','Temporales','Fijas','Transición'],
+          datasets: [
+            {
+              label: 'Participación en M.A',
+              data: [17, 9, 27, 55, 19, 33],
+              borderColor: 'rgb(0,0,255)',
+              backgroundColor: 'rgb(0,255,255)',
+              borderWidth: 1,
+              pointRadius: 2,
+              pointBackgroundColor: 'rgb(0,255,255)',
+              tension: 0.3
+            }
+          ]
         },
-        y: {
-          grid: { display: false },
-          ticks: {
-            beginAtZero: true,
-            color: '#fff',
-            font: { size: 7 }
+        options: {
+          animation: {
+            duration: 900  // animación visible
+          },
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            title: {
+              display: true,
+              text: 'Variación general',
+              font: { size: 13 },
+              color: 'rgb(111,111,111)'
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { color: '#fff', font: { size: 7 } }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { beginAtZero: true, color: '#fff', font: { size: 7 } }
+            }
           }
         }
-      }
-    }
-  };  
+      };
 
+      chart15 = new Chart(ctx, configLine);
 
-  // 4️⃣ Crear el nuevo gráfico
-  chart15 = new Chart(ctx, configLine);
+    }); // FIN requestAnimationFrame
+  }, 150);
 }
+
+
+
+
 let miCanvas15 = document.getElementById('MiGrafica13').getContext('2d')
 let chart16;
 function crearGraficoApilado() {
@@ -1025,6 +1051,7 @@ function desactivarBlur() {
   document.getElementById('blur-layer').style.display = 'none';
 }
 
+
 function crearGraficoLleno() {
   const padreGrafica11 = document.querySelector('#padre-grafica9');
   const linksMA = document.querySelector('#links-inicialesI');
@@ -1083,7 +1110,6 @@ function crearGraficoLleno() {
           label: 'Total FTE Availability',
           data:[4, 3.5, 3.75, 3.45, 4, 3.9, 4.05, 4.2, 4.45, 4, 3.5, 3.75, 3.45, 4, 3.9, 4.05, 4.2, 4.45, 4.6, 4.9, 4.85, 4.95, 5.05, 4.95, 4.75, 4.5, 5.05, 5.4, 5.5, 5.65, 5.55, 5.75, 5.85, 5.7, 5.9],
           fill: true,
-          /* backgroundColor: 'rgba(22, 0, 222, 0.67)', */
           backgroundColor: 'rgba(42, 18, 163, 0.78)',
           borderColor: 'rgba(0, 255, 0, 0.9)', // color visible del borde
           borderWidth: 1,                      // grosor de la línea
@@ -1246,6 +1272,9 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
   });
   
 });
+
+
+
 const btnDynamic = document.getElementById('dynamic-graphs');
 const btnStatic = document.getElementById('static-graphs');
 
@@ -2208,15 +2237,19 @@ document.addEventListener('click', e => {
     listaFotos.style.display = 'none';
   }
 });
-document.querySelector('#borrarBoton').addEventListener('click', () =>{
+
+
+/* document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
   resultadosMA('interfaz-mtto')
 })
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   activarPantallaCompleta()
   ingresoEmpleadoMA()
-})
-function crearControlLed(idContenedor, idInput, totalLeds = 10) {
+}) */
+
+
+  function crearControlLed(idContenedor, idInput, totalLeds = 10) {
   const contenedor = document.getElementById(idContenedor);
   let leds = [];
   let indice = 0;
