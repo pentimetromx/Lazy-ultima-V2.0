@@ -82,23 +82,21 @@ document.querySelector('#contenedor-botonera button:nth-child(4)').addEventListe
 
   }, 100);
 });
+
+// BOTON INTERFAZ AZUL  
 document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListener('click', () => {
-  var elementosExcluidos = ['']
+  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
       document.querySelector('#formulario-cuenta').style.display = 'grid'
-      /* ["porta-visor"].forEach(id => aparecerElemento(id, "flex")); */
-      /* ["marco-formulario"].forEach(id => aparecerElemento(id, "flex")); */
-
     }
   }
-
-   manejarTransicion('child-move-azul', 'formulario-cuenta', 'marco-formulario',100);
-   resaltarSecuencial();   
+  container1.style.display='grid'
+  manejarTransicion('child-move-azul', 'formulario-cuenta', 'marco-formulario',100);
+  container1.style.display='grid'   
 })
-
 function alternarImagenes() {
   const imgUno = document.getElementById("image-uno");
   const imgDos = document.getElementById("image-tres");
@@ -115,7 +113,6 @@ function alternarImagenes() {
       imgDos.style.opacity = "1"; // Aparece
   }, 100); // Pequeño retraso para asegurar que la transición se active
 }
-
 function aplicarEstiloActivo(spanClicado) {
   const spans = document.querySelectorAll('.etq-frm');
   spans.forEach(span => {
@@ -186,17 +183,33 @@ function reproducirVideoSiExiste(contenedor) {
     video.addEventListener('canplaythrough', reproducirCuandoListo);
   }
 }
+const formularioCuenta = document.getElementById('formulario-cuenta');
+function ocultarTodosExcepto(idVisible) {
+  configIndex.forEach(cfg => {
+    const el = document.getElementById(cfg.id);
+    if (!el) return;
 
-const cont = document.getElementById('formulario-cuenta');
-cont.addEventListener('click', e => {
+    if (cfg.id === idVisible) {
+      // nada aquí; se muestra después
+    } else {
+      el.style.display = 'none';
+      el.removeAttribute('style'); // limpia estilos inline previos si los sets
+      el.style.display = 'none';   // forzamos ocultamiento real
+    }
+  });
+}
+
+// BOTONES AZULES
+formularioCuenta.addEventListener('click', e => {
   const btn = e.target.closest('.etq-frm');
-  if (!btn || !cont.contains(btn)) return;
+  if (!btn || !formularioCuenta.contains(btn)) return;
 
-  const all = Array.from(cont.querySelectorAll('.etq-frm'));
+  const all = Array.from(formularioCuenta.querySelectorAll('.etq-frm'));
   const index = all.indexOf(btn);
-  const cfg = configIndex[index];
-  if (!cfg) return;
 
+  const cfg = configIndex[index];     // ← aquí sí usas el array de objetos
+  if (!cfg) return;
+ 
   ocultarTodos([cfg.id]);
   document.querySelector('#marco-formulario').style.display = 'block';
   document.querySelector('#formulario-cuenta').style.display = 'grid';
@@ -210,6 +223,9 @@ cont.addEventListener('click', e => {
   if (typeof cfg.extra === 'function') cfg.extra();
   aplicarEstiloActivo(e.target);
 });
+
+
+
 // Capturamos los 3 videos
 const video1 = document.querySelector('#corte-ajuste video');
 const video2 = document.querySelector('#corte-oscilacion video');
@@ -315,7 +331,7 @@ const imgsVisorII = [
 let flagImgsVisor = false;
 let flagImgsVisorII = false;
 let actualPosicion = 0;
-function showImage(index, imageArray) {
+function   showImage(index, imageArray) {
   const mainImage = document.getElementById('mainImage');
   mainImage.src = imageArray[index];
 }
@@ -426,7 +442,6 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     break;
   }
 }
-
 function ocultarGranCortina() {
   setTimeout(() => {
     const cortina = document.getElementById('gran-cortina');
@@ -583,11 +598,9 @@ function resaltarSecuencialDemo() {
 }
 let miCanvas12 = document.getElementById('MiGrafica10').getContext('2d')
 let chart13;
-
 function crearGraficoMes() {
   const padreGrafica10 = document.querySelector('#padre-grafica4');
   padreGrafica10.style.display = 'flex';
-
   const canvas = document.getElementById('MiGrafica10');
 
   // Destruir gráfico previo (idéntico a función que sí funciona)
@@ -662,11 +675,8 @@ function crearGraficoMes() {
 
   chart13 = new Chart(ctx, configBase);
 }
-
-
 let miCanvas13 = document.getElementById('MiGrafica11').getContext('2d')
 let chart14;
-
 function crearGraficoSemana() {
   const padreGrafica11 = document.querySelector('#padre-grafica5')
   padreGrafica11.style.display='flex'
@@ -692,6 +702,7 @@ function crearGraficoSemana() {
       datasets: [
         {
           label: 'Cumplimiento semanal',
+          data: [100, 50, 75, 100, 100],
           backgroundColor: [
             'rgba(255,255,0,0.3)',
             'rgba(255,255,0,0.4)',
@@ -699,12 +710,27 @@ function crearGraficoSemana() {
             'rgba(255,255,0,0.6)',
             'rgba(255,255,0,0.7)'
           ],
-          data: [100, 50, 75, 100, 100],
-          barPercentage: 1.24
+          borderWidth: 1
+        },
+        {
+          type: 'line',
+          data: [100, 80, 90, 95],
+          barPercentage: 1.24,
+          borderWidth: 1,
+          pointRadius: 0,
+          fill: false,
+          tension: 0.2
         }
+
       ]
     },
     options: {
+      responsive: false,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 1500,              // igual que el correcto
+        easing: 'easeOutQuart'      // igual
+      },
       plugins: {
         legend: { display: false },
         title: {
@@ -713,10 +739,11 @@ function crearGraficoSemana() {
           font: { size: 13 } 
         }
       },
-      maintainAspectRatio: false,
-      indexAxis: 'y', // horientacion de barras vertical / horizontales
+      indexAxis: 'y',
       scales: {
         x: {
+          min: 0,
+          max: 150,          
           categoryPercentage: 1,
           grid: { display: false },
           ticks: { color: '#fff', font: { size: 7 } }
@@ -731,21 +758,17 @@ function crearGraficoSemana() {
     }
   };
 
-  // 4️⃣ Crear el nuevo gráfico
   chart14 = new Chart(ctx, configBase);
 }
-
-
-
-
 let miCanvas14 = document.getElementById('MiGrafica12').getContext('2d')
 let chart15;
+
+
 
 
 function crearGraficoParticipacion() {
   const padreGrafica12 = document.querySelector('#padre-grafica6');
   padreGrafica12.style.display = 'flex';
-
   const canvas = document.getElementById('MiGrafica12');
 
   // Destruir grafico previo
@@ -754,72 +777,63 @@ function crearGraficoParticipacion() {
     chart15 = null;
   }
 
-  // Ocultar antes de mostrar
   canvas.style.display = 'none';
+  setTimeout(() => canvas.style.display = 'block', 100);
 
-  // 1️⃣ MOSTRAR CANVAS DESPUÉS DE UN DELAY
-  setTimeout(() => {
-    canvas.style.display = 'block';
+  const ctx = canvas.getContext('2d');
 
-    // 2️⃣ ESPERAR A QUE EL BROWSER PINTE EL NUEVO DISPLAY
-    requestAnimationFrame(() => {
-
-      // AHORA SÍ ES SEGURO CREAR EL GRÁFICO
-      const ctx = canvas.getContext('2d');
-
-      const configLine = {
-        type: 'line',
-        data: {
-          labels: ['Mecánicas', 'Layout','Diseño','Temporales','Fijas','Transición'],
-          datasets: [
-            {
-              label: 'Participación en M.A',
-              data: [17, 9, 27, 55, 19, 33],
-              borderColor: 'rgb(0,0,255)',
-              backgroundColor: 'rgb(0,255,255)',
-              borderWidth: 1,
-              pointRadius: 2,
-              pointBackgroundColor: 'rgb(0,255,255)',
-              tension: 0.3
-            }
-          ]
-        },
-        options: {
-          animation: {
-            duration: 900  // animación visible
-          },
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            title: {
-              display: true,
-              text: 'Variación general',
-              font: { size: 13 },
-              color: 'rgb(111,111,111)'
-            }
-          },
-          scales: {
-            x: {
-              grid: { display: false },
-              ticks: { color: '#fff', font: { size: 7 } }
-            },
-            y: {
-              grid: { display: false },
-              ticks: { beginAtZero: true, color: '#fff', font: { size: 7 } }
-            }
-          }
+  const configLine = {
+    type: 'line',
+    data: {
+      labels: ['Mecánicas', 'Layout','Diseño','Temporales','Fijas','Transición'],
+      datasets: [
+        {
+          label: 'Participación en M.A',
+          data: [17, 9, 27, 55, 19, 33],
+          borderColor: 'rgb(0,0,255)',
+          backgroundColor: 'rgb(0,255,255)',
+          borderWidth: 1,
+          pointRadius: 2,
+          pointBackgroundColor: 'rgb(0,255,255)',
+          tension: 0.3
         }
-      };
+      ]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 1500,              // igual que el correcto
+        easing: 'easeOutQuart'      // igual
+      },
+      plugins: {
+        legend: {
+        display: false },
+        title: {
+          display: true,
+          text: 'Variación general',
+          font: { size: 13 },
+          color: 'rgb(111,111,111)'
+        }
+      },
+      scales: {
+        x: {
+          min: 0,
+          max: 150,          
+          grid: { display: false },
+          ticks: { color: '#fff', font: { size: 7 } }
+        },
+        y: {
+          grid: { display: false },
+          ticks: { beginAtZero: true, color: '#fff', font: { size: 7 } }
+        }
+      }
+    }
+  };
 
-      chart15 = new Chart(ctx, configLine);
+  chart15 = new Chart(ctx, configLine);
 
-    }); // FIN requestAnimationFrame
-  }, 150);
 }
-
-
-
-
 let miCanvas15 = document.getElementById('MiGrafica13').getContext('2d')
 let chart16;
 function crearGraficoApilado() {
@@ -833,12 +847,6 @@ function crearGraficoApilado() {
     chart16 = null;
   }
 
-  const oldChart = Chart.getChart(canvas);
-  if (oldChart) {
-    oldChart.destroy();
-  }  
-
-  // 2️⃣ Ocultar/mostrar con transición (opcional)
   canvas.style.display = 'none';
   setTimeout(() => canvas.style.display = 'block', 100);
 
@@ -888,6 +896,10 @@ function crearGraficoApilado() {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      animation: {
+        duration: 1500,              // igual que el correcto
+        easing: 'easeOutQuart'      // igual
+      },
       plugins: {
         title: {
           display: true,
@@ -910,6 +922,8 @@ function crearGraficoApilado() {
       },
       scales: {
         x: {
+          min: 0,
+          max: 150,          
           stacked: true,
           ticks: {
             color: '#fff',
@@ -931,7 +945,6 @@ function crearGraficoApilado() {
               size: 7   // tamaño muy pequeño
             }
           },
-
           grid: { color: '#333' }
         }
       },
@@ -958,9 +971,12 @@ function crearGraficoOperadores() {
     chart17.destroy();
     chart17 = null;
   }
+
   canvas.style.display = 'none';
   setTimeout(() => canvas.style.display = 'block', 100);
+
   const ctx = canvas.getContext('2d');
+
   const configZona = {
     type: 'bar',
     data: {
@@ -975,6 +991,12 @@ function crearGraficoOperadores() {
       ]
     },
     options: {
+      responsive: false,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 1500,              // igual que el correcto
+        easing: 'easeOutQuart'      // igual
+      },
       plugins: {
         legend: { 
         display: false },
@@ -992,7 +1014,6 @@ function crearGraficoOperadores() {
           formatter: value => `${value}`
         }
       },
-      maintainAspectRatio: false,
       indexAxis: 'x',
       scales: {
         x: {
@@ -1019,7 +1040,6 @@ function crearGraficoOperadores() {
   // 4️⃣ Crear el nuevo gráfico
   chart17 = new Chart(ctx, configZona);
 }
-
 let miCanvas17 = document.getElementById('MiGrafica15').getContext('2d')    
 let chart18;
 function obtenerDiasDelMes(nombreMes) {
@@ -1043,15 +1063,12 @@ function obtenerDiasDelMes(nombreMes) {
       return 30; // valor por defecto en caso de error
   }
 }
-
 function activarBlur() {
   document.getElementById('blur-layer').style.display = 'block';
 }
 function desactivarBlur() {
   document.getElementById('blur-layer').style.display = 'none';
 }
-
-
 function crearGraficoLleno() {
   const padreGrafica11 = document.querySelector('#padre-grafica9');
   const linksMA = document.querySelector('#links-inicialesI');
@@ -1161,7 +1178,6 @@ function crearGraficoLleno() {
 
   chart18 = new Chart(ctx, configZona);
 }
-
 const capas = {
   listaMaquinas: document.getElementById('lista-maquinas'),
   tituloCalendar: document.getElementById('titulo-calendar'),
@@ -1170,9 +1186,6 @@ const capas = {
   contSpanSemanas: document.getElementById('cont-span-semanas'),
   meses: document.getElementById('meses'),
 };
-
-
-
 function aplicarZindex(valor = 200) {
   for (const clave in capas) {
     const el = capas[clave];
@@ -1182,13 +1195,11 @@ function aplicarZindex(valor = 200) {
     }
   }
 }
-
 function mostrar(...elementos) {
   elementos.forEach(el => {
     if (el) el.style.display = 'block';
   });
 }
-
 const primerSpan = document.querySelector('.box-7');
 primerSpan.addEventListener('click', () => {
   // Función genérica para quitar blur a varios selectores
@@ -1200,7 +1211,6 @@ primerSpan.addEventListener('click', () => {
   mostrar(linkIni1, linkIni1, buscador);
   padreLinks.style.display='none'
 });
-
 document.querySelectorAll('.span-semana').forEach((span, index) => {
 
   span.addEventListener('click', () => {
@@ -1272,9 +1282,6 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
   });
   
 });
-
-
-
 const btnDynamic = document.getElementById('dynamic-graphs');
 const btnStatic = document.getElementById('static-graphs');
 
@@ -1507,6 +1514,7 @@ teclasInterfaz.forEach(tecla => {
     document.querySelector('.box-2').style.color = '#ff7fbd';
   });
 });
+
 const slider = document.getElementById('miSlider');
 const valor = document.getElementById('sliderValor')
 slider.addEventListener('input', () => {
@@ -1878,11 +1886,7 @@ function ingresoEmpleado(){
   limpiarEntradas()
 }
 
-function ingresoEmpleadoMA(){
-  /* setTimeout(() => {
-    document.querySelector('#nomEmpl-ma').focus();
-  }, 50); */
-  
+function ingresoEmpleadoMA(){  
   const excluidos = [
     'buscador','search-form','links-inicialesI','links-iniciales','container01'
   ];
@@ -1900,11 +1904,6 @@ function ingresoEmpleadoMA(){
 
   ["padre-ingresos-ma","ingresos-sistema-ma"].forEach(id => aparecerElemento(id, "grid"));
 
-  /* inputs.forEach(input => {
-    if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
-      input.value = '';
-    }
-  }); */
  limpiarEntradas()
 }
 
@@ -1975,7 +1974,7 @@ document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
 
   // Buscar usando cualquiera de los dos valores
   const empleadoEncontrado = empleados.find(emp =>
-    emp.documento === valor /* || emp.documento === valorMA */
+    emp.documento === valor
   );
 
   if (empleadoEncontrado) {
@@ -2048,6 +2047,7 @@ btnDblFlecha.addEventListener('click', ()=>{
  }else{
   desaparecerElemento('grafico-area')
   desaparecerElemento('abuelo-indicadores') 
+  desaparecerElemento('padre-desempeños') 
   restaurarPosicionPadreIngresos()    
   flagEmpleado = true
  }
@@ -2081,22 +2081,13 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
     flagEmpleado = true
     return;
   }
-
   eliminarCalendario('.calendario-interfaz');
-  const grafArea = document.querySelector('#grafico-area')
   const padre = document.getElementById('padre-ingresos');
   if (!padre) return;
   const desplazamientoX = padre.offsetWidth * (porcentajeX / 100);
   const desplazamientoY = padre.offsetHeight * (porcentajeY / 100);
-
-  grafArea.style.display = 'block';
-  grafArea.classList.add('modo-ingresos');
-  requestAnimationFrame(() => grafArea.classList.add('activo'));
-
   setTimeout(() => {
-    ["grafico-area"].forEach(id => aparecerElemento(id, "block")); 
-    mostrarCalendario('Febrero'); 
-
+    mostrarCalendario('Febrero');
   }, 5);
   setTimeout(() => {
     padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
@@ -2107,10 +2098,12 @@ function restaurarPosicionPadreIngresos() {
   if (!padre) return;
   padre.style.transform = ''; // elimina el translate aplicado por JS
 }
-document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ // boton rojo 
+// boton rojo 
+document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ 
+  const padre = document.getElementById('padre-ingresos');
+  padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
   moverPadreIngresos(61,28)
-  desaparecerElemento('abuelo-indicadores') 
- 
+  alternarResultados('grafico-area')
 })
 function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
@@ -2152,21 +2145,6 @@ function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
   const spanMes = document.querySelector('#mes-area');
   if (spanMes) spanMes.textContent = '';
 }
-
-/* function ocultarElementos(selectores) {
-  const elementos = document.querySelectorAll(selectores);
-  if (!elementos.length) return;
-
-  elementos.forEach(el => {
-    // Guardar display original si no está guardado
-    if (!el.dataset.displayOriginal) {
-      const estilo = getComputedStyle(el).display;
-      el.dataset.displayOriginal = estilo === 'none' ? 'block' : estilo;
-    }
-    el.style.display = 'none';
-  });
-} */
-
 function traerElementos(selectores) {
   const elementos = document.querySelectorAll(selectores);
   if (!elementos.length) return;
@@ -2209,6 +2187,7 @@ function insertarGrafico(idContenedor, idCanvas) {
   });
 }
 // generar lista para RRHH
+
 rutasFotos.forEach(ruta => {
   const itemFoto = document.createElement('div');
   itemFoto.textContent = ruta;
@@ -2227,6 +2206,8 @@ rutasFotos.forEach(ruta => {
 
   listaFotos.appendChild(itemFoto);
 });
+
+
 // CLICK EN EL INPUT
 inputFoto.addEventListener('click', () => {
   listaFotos.style.display = 'block';
@@ -2239,14 +2220,14 @@ document.addEventListener('click', e => {
 });
 
 
-/* document.querySelector('#borrarBoton').addEventListener('click', () =>{
+document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
   resultadosMA('interfaz-mtto')
 })
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   activarPantallaCompleta()
   ingresoEmpleadoMA()
-}) */
+})
 
 
   function crearControlLed(idContenedor, idInput, totalLeds = 10) {
@@ -2276,28 +2257,8 @@ document.querySelector('#borrarBoton2').addEventListener('click', () =>{
     leds[indice].classList.remove('led-amarillo');
   }
 
-  // construir de una vez
   construir();
-
-  // detectar clic arriba o abajo en el input
-  /* const input = document.getElementById(idInput);
-  input.addEventListener('click', (e) => {
-    const mitad = e.target.clientHeight / 2;
-    if (e.offsetY < mitad) {
-      aumentar();
-    } else {
-      disminuir();
-    }
-  }); */
 }
-/* crearControlLed('led-identificados', 'inputCantidad', 10);
-crearControlLed('led-corregidos', 'inputCorregidos', 10);
-crearControlLed('led-tipo-a', 'inputTipoA', 10);
-crearControlLed('led-tipo-b', 'inputTipoB', 10);
-crearControlLed('led-kaizen', 'inputKaizen', 10);
-crearControlLed('led-adas', 'inputAda', 10);
-crearControlLed('led-adt', 'inputAdt', 10);
-crearControlLed('led-lup', 'inputLups', 10); */
 const contenedoresLineas = document.querySelectorAll('#contenedor-indicador');
 function waitUntilFull(contenedor, blockout, anchoTotal, timeout = 2000) {
   // Espera hasta que blockout.offsetWidth sea ~ anchoTotal (tolerancia 1px)
@@ -2394,22 +2355,24 @@ padreLinks.addEventListener('mouseleave', () => {
 });
 
 primerItem.addEventListener('click', () =>{
-  const padres = document.querySelector('#grafico-area') 
+  const padres = document.querySelector('#grafico-area')  
   padres.style.display = 'block';
     Array.from(padres.querySelectorAll('*')).forEach(hijo => {
     hijo.style.display = '';
     hijo.style.visibility = 'visible';
     hijo.style.opacity = '1';
   });
+  alternarResultados('abuelo-indicadores')
 
-  aparecerElemento("abuelo-indicadores", "grid")     
   setTimeout(() => {
-    desaparecerElemento('grafico-area')  
-  }, 700);
-  setTimeout(() => {
-     aplicarLedsDesdeEmpleado(empleadoGlobal.nombre);
+    aplicarLedsDesdeEmpleado(empleadoGlobal.nombre);
   }, 1300); 
   padreLinks.style.display='none'
+})
+
+segundoItem.addEventListener('click', () =>{
+  padreLinks.style.display='none'
+  alternarResultados('padre-desempeños')
 })
 
 
@@ -2485,9 +2448,6 @@ function   aplicarLeds(valores) {
   });        
     
 }
-
-// BTN 'Ir' M.A
-
 function cargarEmpleadoMA() {
   const inputBusqueda = document.getElementById('nomEmpl-ma');
   const valorBusqueda = inputBusqueda.value.trim();
@@ -2568,17 +2528,12 @@ function cargarEmpleadoMA() {
 
   imgElemento.src = rutaImagen;
 }
-
-// BOTON 'Ir' / M.A 
 document.querySelector('#lbl-ingreso-ma').addEventListener('click',()=>{
   cargarEmpleadoMA()
 })
-// BOTON REGISTRAR M.A
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
   actualizarIdentificadosMA('M.A')
-})
-  
-// BOTON REGISTRAR M.A
+}) 
 function actualizarIdentificadosMA(sector) {
   if(sector === 'M.A'){
     const docInput   = document.getElementById('numDoc9-ma');
@@ -2707,12 +2662,10 @@ function actualizarIdentificadosMA(sector) {
 
 
 }
-
 function limpiarEmpleadosRegistrados() {
   localStorage.setItem('empleadosRegistrados', JSON.stringify([]));
   console.log('empleadosRegistrados se ha vaciado:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
 }
-
 function mostrarLocalStorageComoJSON() {
   const resultado = {};
 
@@ -2730,21 +2683,10 @@ function mostrarLocalStorageComoJSON() {
 
   console.log(JSON.stringify(resultado, null, 2));
 }
-
-
-
-
-
-const info = document.getElementById('info');
-info.textContent = `W:${window.innerWidth} H:${window.innerHeight} DPR:${window.devicePixelRatio}`;
-
-
-
 function mostrarVentanaMensaje(texto) {
   document.getElementById('alerta-mensaje').textContent = texto;
   document.getElementById('ventana-alerta').style.display = 'flex';
 }
-
 document.getElementById('alerta-ok').addEventListener('click', () => {
   document.getElementById('ventana-alerta').style.display = 'none';
   const input = document.querySelector('#nomEmpl');
@@ -2755,7 +2697,340 @@ document.getElementById('alerta-ok').addEventListener('click', () => {
 
 });
 
+let chart20 = null;
+let valorActual = 0;
+let valorObjetivo = 0;
+let animando = false;
+const series = [
+  [0,0,0,0],
+  [15, 15, 10, 16],
+  [22, 16, 12, 21],
+  [20, 17, 15, 30],
+  [27, 15, 25, 33],
+  [20, 15, 31, 35],
+  [40, 16, 32, 39],
+  [40, 19, 25, 35],
+  [45, 20, 33, 27],
+  [48, 27, 30, 41],
+  [50, 25, 45, 52],
+  [53, 17, 40, 44],
+  [60, 30, 36, 50],
+  [66, 33, 29, 38],
+  [70, 44, 49, 50],  
+  [55, 69, 44, 100],
+  [69, 85, 53, 91], 
+  [77, 89, 65, 98], 
+  [88, 92, 71, 75], 
+  [72, 40, 52, 48],
+  [75, 38, 55, 60],
+  [78, 45, 50, 58],
+  [82, 43, 62, 65],
+  [79, 50, 58, 70],
+  [85, 48, 63, 68],
+  [88, 55, 60, 72],
+  [92, 53, 66, 75],
+  [90, 60, 70, 78],
+  [95, 57, 68, 82],
+  [98, 62, 73, 80]
+];
+function crearLeds() {
+  const container = document.getElementById('ledContainer');
+  container.innerHTML = '';
+
+  for (let i = 0; i < 30; i++) {
+    const led = document.createElement('div');
+    led.classList.add('led-graphs');
+    container.appendChild(led);
+  }
+}
+function crearDias() {
+  const container = document.getElementById('daysContainer');
+  container.innerHTML = '';
+
+  for (let i = 1; i <= 30; i++) {
+    const day = document.createElement('div');
+    day.classList.add('day-number');
+    day.textContent = i;
+    container.appendChild(day);
+  }
+}
+function crearGraficoOperacion() {
+  const canvas = document.getElementById('MiGrafica17');
+  const ctx = canvas.getContext('2d');
+
+  const dataInicial = [0,0,0,0];
+
+  chart20 = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Sergio Lopez', 'Noe Alzate', 'Mario Pineda', 'Juan Taborda'],
+      datasets: [
+        {
+          label: 'Participación en M.A',
+          backgroundColor: ['#0B3D91', '#007A7C', '#E57200', '#9B1B30'],
+          data: [...dataInicial],
+          barPercentage: 1,
+          categoryPercentage: 0.95
+        }
+      ]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: false,
+      animation: { duration: 300, easing: 'easeOutQuart' },
+      plugins: {
+        legend: { display: false },
+        datalabels: {
+          color: '#fff',
+          anchor: 'end',
+          align: 'end',
+          font: { weight: 'bold', size: 10 },
+          formatter: v => `${v}`
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: '#fff', font: { size: 7 } }
+        },
+  y: {
+    min: 0,
+    max: 100,
+    ticks: {
+      stepSize: 25,
+      color: '#fff',
+      font: { size: 8 }
+    },
+    grid: {
+      display: true,
+      color: 'rgba(255,255,255,0.2)'
+    }
+  }      }
+    }
+  });
+}
+const sliderGraf = document.getElementById('miSlid');
+const spanValor = document.getElementById('slider-Valor');
+function actualizarDiasYLeds(valor) {
+  const leds = document.querySelectorAll('.led-graphs');
+  const dias = document.querySelectorAll('.day-number');
+
+  leds.forEach((led, index) => {
+    if (index < valor) {
+      led.classList.add('led-on');
+    } else {
+      led.classList.remove('led-on');
+    }
+  });
+
+  dias.forEach((day, index) => {
+    if (index < valor) {
+      day.classList.add('day-on');
+    } else {
+      day.classList.remove('day-on');
+    }
+  });
+}
+crearLeds()
+crearDias()
+crearGraficoOperacion()
+sliderGraf.addEventListener('input', () => {
+  if (!chart20) return;
+
+  const valor = Math.round(Number(sliderGraf.value));
+  spanValor.textContent = valor;
+
+  // Seguridad: si el slider supera las series definidas
+  const index = Math.min(valor, series.length - 1);
+
+  // Actualizar gráfico con la serie correspondiente
+  chart20.data.datasets[0].data = [...series[index]];
+  chart20.update();
+
+  actualizarDiasYLeds(valor);
+});
+function animarTransicion() {
+  if (!animando) return;
+
+  // interpolación: suaviza desplazamiento (0.15 es un buen punto medio)
+  valorActual += (valorObjetivo - valorActual) * 0.15;
+
+  // redondeo visual para leds y gráfico
+  const valorRedondeado = Math.round(valorActual);
+
+  // aplica a gráfico
+  chart20.data.datasets[0].data =
+    chart20.data.datasets[0].data.map(() => valorRedondeado);
+  chart20.update();
+
+  // aplica a leds y días
+  actualizarDiasYLeds(valorRedondeado);
+
+  // condición para terminar la animación
+  if (Math.abs(valorObjetivo - valorActual) < 0.01) {
+    valorActual = valorObjetivo;
+    animando = false;
+    return;
+  }
+  requestAnimationFrame(animarTransicion);
+}
+
+function alternarResultados(selector) {
+  const grafsDesempeño = document.querySelectorAll('.current-graph');
+  grafsDesempeño.forEach(item => {
+    if (item.id === selector) {
+      if(item.id === 'grafico-area'){
+        aparecerElemento('grafico-area', 'block')
+      }else{
+        aparecerElemento(item.id);
+      }
+    } else {
+      desaparecerElemento(item.id);
+    }
+  });
+}
 
 function BORRARBORRAR(){
   console.log('EMPLEADO GLOBAL : ', empleadoGlobal)
 }
+function BORRARBORRARBORRAR(){
+  const empleadosKey = 'empleadosRegistrados';
+  const empleadosLocal = JSON.parse(localStorage.getItem(empleadosKey)) || [];
+  console.log(empleadosLocal);
+
+}
+
+function animarHumanEye() {
+  const eye = document.querySelector('#interfaz-perfiles');
+  if (!eye) return;
+  revertirInterfazPerfiles()
+
+  // valores iniciales (vh)
+  let height = 0.1;
+  let top = 50;
+
+  const targetHeight = 90;
+  const targetTop = 5;
+
+  // "velocidad base" en vh por frame para la parte del top (ajustable)
+  const baseTopSpeed = 1.7;
+
+  function step() {
+    const remainingHeight = targetHeight - height; // >0 si falta crecer
+    const remainingTop = top - targetTop;         // >0 si falta bajar
+
+    // si ambos necesitan moverse, aplicamos dh = 2 * dtop
+    if (remainingTop > 0 && remainingHeight > 0) {
+      // intentamos mover top por baseTopSpeed, pero lo limitamos por lo que quede
+      let dTop = Math.min(baseTopSpeed, remainingTop);
+      let dHeight = dTop * 2;
+
+      // si queremos aumentar más height del que queda, ajustamos ambos proporcionalmente
+      if (dHeight > remainingHeight) {
+        dHeight = remainingHeight;
+        dTop = dHeight / 2; // mantenemos la relación dh = 2 * dtop
+      }
+
+      top -= dTop;
+      height += dHeight;
+    } else if (remainingHeight > 0) {
+      // top ya llegó; seguimos sólo con height hasta target
+      const dHeight = Math.min(baseTopSpeed * 2, remainingHeight);
+      height += dHeight;
+      top = targetTop;
+    } else if (remainingTop > 0) {
+      // height ya llegó pero top no (caso raro); bajar top hasta target
+      const dTop = Math.min(baseTopSpeed, remainingTop);
+      top -= dTop;
+      height = targetHeight;
+    }
+
+    // aplicar estilos (misma frame)
+    eye.style.height = height + 'vh';
+    eye.style.top = top + 'vh';
+
+    // continuar hasta que ambos hayan llegado a su objetivo
+    if (height < targetHeight || top > targetTop) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+function animarHorizontalEye() {
+  const eye = document.querySelector('#interfaz-perfiles');
+  if (!eye) return;
+  revertirInterfazPerfiles()
+
+  let left = 50;     // vw inicial
+  let width = 1;     // vw inicial
+
+  const targetLeft = 1;
+  const targetWidth = 95;
+
+  // velocidad base (reducción del left por frame)
+  const baseX = 1.7;
+
+  function step() {
+    const remainingLeft  = left - targetLeft;     // cuánto falta para llegar a 1
+    const remainingWidth = targetWidth - width;   // cuánto falta para llegar a 95
+
+    if (remainingLeft > 0 && remainingWidth > 0) {
+
+      // queremos mover:
+      // dLeft  = baseX
+      // dWidth = 2 * baseX
+      let dLeft = Math.min(baseX, remainingLeft);
+      let dWidth = dLeft * 2;
+
+      // si dWidth excede el objetivo de width, corregimos ambos
+      if (dWidth > remainingWidth) {
+        dWidth = remainingWidth;
+        dLeft = dWidth / 2;
+      }
+
+      left -= dLeft;
+      width += dWidth;
+    }
+
+    eye.style.left = left + "vw";
+    eye.style.width = width + "vw";
+
+    if (left > targetLeft || width < targetWidth) {
+      requestAnimationFrame(step);
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+function revertirInterfazPerfiles() {
+  const respaldos = document.querySelectorAll('.btn-respaldo');
+  if (!respaldos.length) return;
+
+  // 1. Quitar color de fondo en ambos grupos
+  respaldos.forEach(el => {
+    el.style.backgroundColor = '';
+    el.style.height = '';
+  });
+
+  const root = document.querySelector('#interfaz-perfiles');
+  if (!root) return;
+
+  const propiedades = ['height', 'width', 'top', 'left'];
+
+  const limpiar = (el) => {
+    propiedades.forEach(prop => el.style.removeProperty(prop));
+  };
+
+  // limpiar el elemento raíz
+  limpiar(root);
+
+  // limpiar todos los hijos y nietos
+  const descendants = root.querySelectorAll('*');
+  descendants.forEach(el => limpiar(el));
+}
+
+
+
+const info = document.getElementById('info');
+info.textContent = `W:${window.innerWidth} H:${window.innerHeight} DPR:${window.devicePixelRatio}`;

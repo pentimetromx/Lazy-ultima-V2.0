@@ -1170,23 +1170,37 @@ body{
   z-index:40;
 }
 #interfaz-perfiles{
-  position:relative; 
+  position:relative;
   display: flex;
-  top: 5vh;
-  left: 6.5vw;
-  width: 87vw;
-  height: 90vh;
+  top: 50vh;
+  left: 50vw;
+  width: 1vw;
+  height: 0.5vh;
   border-radius: 20px 20px 0 0;
   background-color: rgb(20,160,253,0.3);  
-  display: none;  
+  display: none;
 }
+.fondo-btn{
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); 
+  top: 9%; 
+  gap: 15px;
+  width:100%;
+  height:4%;
+  z-index: -1;
+}
+
 #botonera-frente{
-  position: absolute; 
+  position: absolute;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  flex-wrap: wrap;
   top: 6%;
-  width:87vw;
-  height: 9%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  contain: size layout;  
 }
 .butt-revertir{
   position: absolute;
@@ -1201,15 +1215,18 @@ body{
   border-radius: 7px 7px 0 0;
 }
 .butt-perfiles{
+  flex: 1 1 auto; 
+  min-width: 0; 
+  min-height: 0;
+  height: 9%;
+  font-size: 2vw;
+
   position: relative;
   display: flex;
   align-items: center; 
   justify-content: center;    
   cursor: pointer;
-  font-size: 1.1vw;
-  top:6%;
-  height: 100%;
-  width: 100%;
+  font-size:1.1vw;
   background-color: rgba(30, 24, 24, 0.3);
   backdrop-filter: blur(8px);  
   box-shadow: inset 0px 0px 5px rgba(20,200,200,0.5);
@@ -1219,16 +1236,6 @@ body{
 .butt-perfiles:hover{
   background-color: rgba(128, 128, 128, 0.1);
   backdrop-filter: blur(7px);
-}
-.fondo-btn{
-  position: absolute;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr); 
-  top: 9%; 
-  gap: 15px;
-  width:87vw;
-  height:4%;
-  z-index: -1;
 }
 .btn-respaldo {
   position: relative;
@@ -1547,8 +1554,8 @@ body{
   font-weight: bold;
   color: rgb(0,255,0);
   font-size: 1.4em;
-  left: 37%;
-  top: 16.3%;
+  left: 85%;
+  top: 7%;
   width: 17%;
   height: 5%;
   z-index: 40;
@@ -2955,9 +2962,6 @@ width: 70%;
 #perfiles-color input::placeholder {
   font-size: 1vw;
 }
-/* #perfiles-color input {
-  background-color: black;
-} */
 #perfiles-color{
   position: absolute;
   display: grid;
@@ -2999,27 +3003,6 @@ width: 70%;
   position: relative;
   left: 2%;
 }
-/* .formulario > *:nth-child(3) {
-  position: relative;
-  display: flex;
-  height: 2.4vh;
-  width: 18.5vw;
-  left: 2%;
-  font-size: 1vw;
-  background-color: black;
-  color: rgb(200,200,200);
-  outline: none;
-} */
-/* .formulario > *:nth-child(4) {
-  position: relative;
-  left: 2%;
-  display: flex;
-  width:94%;
-  font-size: 1rem;
-  background-color: rgb(44,47,44);
-  color: rgb(200,200,200);
-  outline: none;
-} */
 .formulario > *:nth-child(5) {
   position: relative;
   display: grid;
@@ -4077,14 +4060,11 @@ top: 44%;
   justify-content: center;
   align-items: center;
   display: none;
+  top: 10vh;
   left: 1vw;
-  top: 8vh;
-  background-color: rgb(255, 0, 0);
-  box-shadow: 0 0 30px rgba(255, 0, 0, 1),
-              0 0 60px rgba(255, 0, 0, 0.7);
   border-radius: 13px;
   width: 22vw;
-  height: 88vh;
+  height: 77vh;
   transition: background-color 2s ease, box-shadow 2s ease;
 }
 #marco-planetario{
@@ -4127,16 +4107,16 @@ top: 44%;
 #marco-rollers.apagado,
 #marco-planetario.apagado,
 #marco-plana.apagado,
-#marco-variable.apagado,
-#marco-formulario.apagado{
+#marco-variable.apagado{
   background-color: transparent;
   box-shadow: none;
 }
 .formulario-crear-cuenta {
-  position: absolute;
+  position: relative;
   display: grid;
   display: none;
   grid-template-rows: repeat(21, 1fr);
+
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -4153,10 +4133,11 @@ top: 44%;
   width: 100%;
   align-items: center;
   justify-content: flex-start; 
-  font-size: 1vw;
+  font-size: 0.9vw;
   cursor: pointer;
-  border-radius: 7px;
+  border-radius: 4px;
   background-color: #1f3546;
+  transition: background-color 1s ease, box-shadow 1s ease;
 }
 .formulario-crear-cuenta .etq-frm:hover{
   background-color: #00cc88;
@@ -4277,7 +4258,7 @@ top: 44%;
   color: rgb(0,0,55) !important;
 }
 #visor-tools {
-  position: relative;
+  position: absolute;
   display: grid;
   grid-template-columns: 7% 86% 7%;
   align-items: center;
@@ -4341,7 +4322,7 @@ top: 44%;
   display: flex;
   width: 40vw;
   height: 50vh;
-  top: 44vh;
+  top: 41vh;
   left: 59vw;
   gap: 25.5%;
 
@@ -4434,7 +4415,7 @@ top: 44%;
   display: flex;
   width: 54.2vw;
   height: 39vh;
-  top: 34.5vh;
+  top: 31vh;
   left: 1vw;
   gap: 20%;
   
@@ -4517,9 +4498,6 @@ top: 44%;
 .horiz-9-5 { top: 93%; }
 #tendencia-naranja .item-orange,
 #cont-variable .child-section,
-#formulario-cuenta .etq-frm {
-  transition: background-color 1s ease, box-shadow 1s ease;
-}
 #tendencia-naranja .item-orange.activa,
 #cont-variable .child-section.activa,
 #formulario-cuenta .etq-frm.activo {
@@ -4596,10 +4574,10 @@ top: 44%;
   position: fixed;
   inset: 0;
   z-index: 100;
-  display: none; /* visible solo cuando se activa */
+  display: none;
   -webkit-backdrop-filter: blur(15px);
   backdrop-filter: blur(50px);
-  background: rgba(0,0,0,0.15); /* opcional */
+  background: rgba(0,0,0,0.15);
 }
 
 #MiGrafica14 {
@@ -4611,17 +4589,21 @@ top: 44%;
   position: absolute;
   display: block;
   display: none;
-  top: 5vh;
-  left: 20vw;
-  width: 60vw;
-  height: 90vh;
+  top: 15vh;
+  left: 48vw;
+  width: 50vw;
+  height: 60vh;
   background-color: rgb(0,0,15);
   transition: filter 0.3s ease;
   z-index: 200;
 
   transform: scale(0);
   transform-origin: center; 
-  transition: transform 1s ease;
+  transition: transform 1s ease ;
+  overflow: hidden;
+  border: 1px solid rgba(111,111,111,0.5);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+  z-index: 500;
 }
 #grafico-area.modo-ingresos {
   top: 12vh;
@@ -4699,7 +4681,7 @@ top: 44%;
   display: flex;
   top: 15%;
   left: 37.5%;
-  width: 15%;
+  width: 10%;
   height: 20%;
   border-radius: 50%;
   background-color: blue;
@@ -4709,7 +4691,7 @@ top: 44%;
   display: flex;
   top:33% ;
   left: 10%;
-  font-size: 0.8vw;
+  font-size: 0.7vw;
   color: bisque;
 }
 .box-7 {
@@ -4727,7 +4709,7 @@ top: 44%;
   display: flex;
   top: 15%;
   left: 37.5%;
-  width:25%;
+  width:20%;
   height: 35%;
   border-radius: 50%;
   background-color: blue;  
@@ -4737,7 +4719,7 @@ top: 44%;
   display: flex;
   left: 3%;
   top:33% ;
-  font-size: 0.7vw;
+  font-size: 0.55vw;
   color: #ffe4c4;
 
 }
@@ -5076,53 +5058,49 @@ top: 44%;
 }
 
 @media only screen and (max-width: 480px) {
-.boton-e,
-.boton-c {
-  justify-content: flex-start;
-  padding-left: 0.3em;
-  font-size:1.2vw;
-}
-.boton-b{
-  font-size:0.9vw;
-  color: #EAF4FF;
-}
-.boton-d{
-  font-size:1vw;
-  color: #000;
-}
-#toggleVideoButton{
-  font-size: 1.2vw;
-  color: #EAF4FF;
-}
-#container01{
-  width: 40vw;
-  border-radius: 3px;
-  font-size: 0.8vw;
-}
-#container01 > button{
-  border-radius: 4px;
-  font-size: 1.3vw;
-}
-#buscador{
-  width: 20vw;
-  height: 3vh;
-}
-#barras-contenedor{
-  position: absolute;
-  display: flex;
-  width: 32.3vw;
-  height: 50vh;
-  top: 42vh;
-  left: 63.5vw;
-  gap: 25.5%;
-}
-#barras-inicio{
-  top: 30vh;
-}
-
-
-  /* justify-content: flex-start;
-  padding-left: 0.3em; */  
+  .boton-e,
+  .boton-c {
+    justify-content: flex-start;
+    padding-left: 0.3em;
+    font-size:1.2vw;
+  }
+  .boton-b{
+    font-size:0.9vw;
+    color: #EAF4FF;
+  }
+  .boton-d{
+    font-size:1vw;
+    color: #000;
+  }
+  #toggleVideoButton{
+    font-size: 1.2vw;
+    color: #EAF4FF;
+  }
+  #container01{
+    width: 40vw;
+    border-radius: 3px;
+    font-size: 0.8vw;
+  }
+  #container01 > button{
+    border-radius: 4px;
+    font-size: 1.3vw;
+  }
+  #buscador{
+    width: 20vw;
+    height: 3vh;
+  }
+  #barras-contenedor{
+    position: absolute;
+    display: flex;
+    width: 32.3vw;
+    height: 50vh;
+    top: 42vh;
+    left: 63.5vw;
+    gap: 25.5%;
+  }
+  #barras-inicio{
+    top: 30vh;
+  }
 
   #cont-titulo-comercial,  
   #cont-titulo-admin,

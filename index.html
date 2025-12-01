@@ -6,7 +6,7 @@
     <title>Lazy from Program</title>
     <link rel="stylesheet" href="./Matriz-1.css">
     <link rel="stylesheet" href="./Matriz-2.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" href="./Matriz-1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" href="./Matriz-1.css"> 
   </head>
 
   <script></script>
@@ -49,7 +49,7 @@
         <i class="fas fa-caret-down"></i>
       </span>
       
-      <div id="padre-inicio"> <!-- SEGUNDO GRID -->
+      <div id="padre-inicio">
 
         <div id="agrupaOblicuos-XI" class="oblicuos-XI">
           <div id="contFrente-V" class="oblicuosInicio">
@@ -83,9 +83,6 @@
         </div>
 
       </div>
-
-
-
     </div>
 
     <div id="cont-videojuegos" class="juegos-de-video">
@@ -519,6 +516,7 @@
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
     </div> 
+
     <div id="barras-inicio" class="contenedor-barras-inicio">
       <div class="barra-vertical-inicio">
         <div class="horiz-13-1"></div>
@@ -648,6 +646,7 @@
       </div> 
 
     </div>
+
     <div id="barras-contenedor" class="contenedor-barras">      
       <div class="barra-vertical barra-vertical-6">
         <div class="horiz-6-1"></div>
@@ -674,6 +673,7 @@
         <div class="horiz-3-3"></div>
       </div>
     </div>
+
     <div id="container01" class="ocultos" data-display="grid">
       <button id="bot-atras" class="entrada-empleado" onclick="irContenedorAnterior('contPortPlaca')"></button>
       <button id="bot-inicial" class="entrada-empleado" onclick="VolveraInicio()">Panel Inicio</buttonclass=>
@@ -964,6 +964,7 @@
         </div>
       </div>
     </div>
+
     <div id="lubricacion">
       <div class="conti-boton" id="conti-boton-desb"> 
         <button class="butt-mautonomo-desbobina image-trainings hidden" id="btn1" onclick="LubricaDesbobinador('btn1')">REMALINER</button>
@@ -972,21 +973,28 @@
         <button class="butt-mautonomo-desbobina image-trainings hidden" id="btn4" onclick="LubricaDesbobinador('btn4')">TROQUELADORA</button>
         <button class="butt-mautonomo-desbobina image-trainings hidden" id="btn5" onclick="LubricaDesbobinador('btn5')">ENTREGA</button>          
       </div>
+
       <div id="frec-lubrica">  
+
         <div class="hijo1">
           <button id="lub-diario" class="labl-lub" onclick="lubricaDiario('lub-diario','labl1')"></button>
           <span id="labl1" class="labl-lub" style="display: none;">Frecuencia diaria</span>
-        </div><br>
+        </div>
+
         <div class="hijo1">
           <button id="lub-semanal" class="labl-lub" onclick="lubricaDiario('lub-semanal','labl2')"></button>
           <span id="labl2" class="labl-lub" style="display: none;">Frecuencia semanal</span>
-        </div><br>        
+        </div>
+
         <div class="hijo1">
           <button id="lub-mensual" class="labl-lub" onclick="lubricaDiario('lub-mensual','labl3')"></button>
           <span id="labl3" class="labl-lub" style="display: none;">Frecuencia mensual</span>
         </div>
+        
       </div>
+
     </div>
+
     <div id="marco-lubricantes"></div>
     <div id="lubricantes" class="conte-lubrica ventana">
       <div id="child-move"></div>
@@ -1918,6 +1926,7 @@
         <div id="canvasContainer4" class="graphs-lines" onclick="openGraphics('canvasContainer4')">
           <canvas id="MiGrafica4"></canvas> 
         </div> 
+        
         <div id="canvasContainer5" class="graphs-lines" onclick="openGraphics('canvasContainer5')">
           <canvas id="MiGrafica5"></canvas> 
         </div> 
@@ -1970,7 +1979,6 @@
           <img data-src="./assets/gato.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Carlos Mario Sanchez</span> 
         </div>
-
         <div class="cont-userI" id="icon-andres-I">
           <img data-src="./assets/icono1.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Andres Felipe Montoya</span>
@@ -2001,6 +2009,7 @@
 
       
     </div>
+    
     <div id="father-employees" style="position: relative;display:none;">
       <div class="cont-user"  id="icon-carlos">
         <img data-src="./assets/silueta.png" class="lazy icono-user" id="img1" onclick="resultadosEmpleado('icon-carlos','updateCarlos','img1','true')" alt="icono">
@@ -2873,7 +2882,7 @@
           <button id="butt-job-track" class="butt-perfiles">Job Track</button>
           <button id="boton-perfiles" class="butt-perfiles">Crear perfil</button>
           <button id="boton-reseteo" class="butt-perfiles">Reset perfiles</button> 
-          <button id="boton-prensas" class="butt-perfiles">Sala</button> 
+          <button id="boton-prensas" class="butt-perfiles">Salir</button> 
         </div>
 
         <div id="alerta-perfiles" class="alerta-perfiles">
@@ -2950,6 +2959,7 @@
       <div id="perfil-individual" class="perf-individual">
 
         <div id="inerfaz-ajuste-fino">
+          
           <div id="butts-selectores">
             <div class="butt-selector"><span class="texto-selectores">Negro</span></div>
             <div class="butt-selector"><span class="texto-selectores">Cian</span></div>
@@ -3518,15 +3528,19 @@
       <video class="lazy" src="./assets/Desliza plancha.mp4" autoplay muted playsinline></video>
     </div>
     <div id="triada-videos">
+
       <div id="corte-ajuste" class="ajuste-corte">
         <video class="lazy" src="./assets/Oscilacion.mp4" autoplay loop muted playsinline></video>
       </div>
+
       <div id="corte-oscilacion" class="ajuste-corte">
         <video class="lazy" src="./assets/Oscilacion3.mp4" loop></video>
       </div>
+
       <div id="ajuste-corte" class="ajuste-corte">
         <video class="lazy" src="./assets/corte ajuste.mp4" loop></video>
       </div>
+
     </div>
     <div id="video-insolacion">
       <video class="lazy" src="./assets/Insolar punto plancha.mp4" autoplay muted playsinline></video>
@@ -3555,9 +3569,10 @@
     <div id="tinta_segmento">
       <video class="lazy" src="./assets/Segmento tinta.mp4" autoplay loop muted playsinline></video>
     </div>
+
     <div id="marco-formulario">
 
-      <div id="formulario-cuenta" class="formulario-crear-cuenta"> 
+      <div id="formulario-cuenta" class="formulario-crear-cuenta">
         <div id="child-move-azul"></div>
         <h2>Areas de trabajo</h2 > 
         <span class="etq-frm">Perfil cuchillas sheeter</span>
@@ -3565,7 +3580,7 @@
         <span class="etq-frm">Ajuste cuchilla sheeter</span>
         <span class="etq-frm">Comprobacion de ajuste cuchilla</span>
         <span class="etq-frm">Manta en offset</span>
-        <span class="etq-frm">Manta en cilindro</span>    
+        <span class="etq-frm">Manta en cilindro</span>
         <span class="etq-frm">Cotas manta</span>
         <span class="etq-frm">Offset 360</span>
         <span class="etq-frm">Offset estatico</span>
@@ -3582,8 +3597,9 @@
         <span class="etq-frm">Trinquete multi orquilla</span>
         <span class="etq-frm">Trinquete normal</span>
       </div>
+      
+    </div> 
 
-    </div>
     <div id="contenedor-botonera" data-display="grid">
       <button>Barras amarillas</button>
       <button>Sheeter</button>
@@ -3615,6 +3631,7 @@
       <div id="padre-grafica7" class="hijo-graficos">
         <canvas id="MiGrafica13"></canvas> 
       </div>
+      
       <div id="padre-grafica8" class="hijo-graficos">
         <canvas id="MiGrafica14"></canvas> 
       </div> 
@@ -3625,23 +3642,8 @@
 
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div id="grafico-area" class="dashboard-grid">
-      <div class="box box-1"></div>
+    <div id="grafico-area" class="dashboard-grid current-graph">
+      <div class="box box-1"></div>   
       <div class="box box-2">En exposicion</div>
 
       <div class="box box-3">
@@ -3678,25 +3680,6 @@
       <div class="box box-8"></div>
       <div class="box box-9"></div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div id="padre-ingresos" class="special-border">
 
@@ -3920,25 +3903,6 @@
       
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div id="calendario"></div>
     <div id="lista-imagenes"></div>
     <div id="msg-empleado" class="ventana-mensaje">
@@ -3947,7 +3911,7 @@
     </div>
 
 
-    <div id="abuelo-indicadores" class="abuelos" >
+    <div id="abuelo-indicadores" class="abuelos current-graph" >
 
       <div id="columna-item">
         <span>Def. identificados :</span>
@@ -4004,7 +3968,6 @@
 
     </div>
 
-
     <div id="links-ma">      
       <ul id="vinculos-ma" class="estilo-ma">
         <li>Mantenimiento Autonomo</li>
@@ -4016,7 +3979,6 @@
       </ul>
     </div>
 
-
     <div id="ventana-alerta" class="alerta-ventana">
       <div class="alerta-contenido">
         <p class="alerta-texto" id="alerta-mensaje">Mensaje de alerta aquí...</p> 
@@ -4024,23 +3986,40 @@
       </div>
     </div>
 
-   <!-- <div class="padre-inputs">
+    
+    <div id="padre-desempeños" class=" current-graph">
+
+      <div id="father-slider" class="slider-father all">
+
+        <div id="daysContainer" class="days-container"></div>
+
+        <div id="ledContainer" class="led-container"></div>
+
+        <label for="miSlid">
+          Número de medios: <span id="slider-Valor">0</span>
+        </label>
+
+        <input type="range" id="miSlid" min="0" max="30" value="0" step="0.01">
+
+      </div>
+
+      <div id="padre-grafica11" class="graphics-lines all">
+        <canvas id="MiGrafica17"></canvas> 
+      </div> 
+
+    </div>
+    
+   <div class="padre-inputs">
       <input type="number" id="inputAda" min="0" max="10" placeholder="Cantidad (0-10)">
       <input type="number" id="inputAdt" min="0" max="10" placeholder="Cantidad (0-10)">
       <input type="number" id="inputLups" min="0" max="10" placeholder="Cantidad (0-10)">
       <button id="borrarBoton" class="borrar-boton">1</button>
       <button id="borrarBoton2" class="borrar-boton">2</button>
-    </div>   -->  
+    </div>    
 
-
-
-
-    <!-- <button id="borrar-temporal" style="cursor: pointer;font-size: 1vw; width: 9vw;height: 4vh;margin-bottom: 30%; position:absolute;left: 5vw;top: 47vh; border-radius: 7px; background-color: brown;color: antiquewhite;" onclick="vaciarEmpleadosEnLocal()">BORRAR TODO</button>
-    <button id="borrar-temporal" style="cursor: pointer;font-size: 1vw; width: 9vw;height: 4vh;margin-bottom: 30%; position:absolute;left: 5vw;top: 55vh; border-radius: 7px; background-color: brown;color: antiquewhite;" onclick="BORRARBORRAR()">OBJETO LOCAL</button> -->
-
-
-
-
+    <button id="borrar-temporal" style="cursor: pointer;font-size: 1vw; width: 9vw;height: 4vh;margin-bottom: 30%; position:absolute;left: 5vw;top: 47vh; border-radius: 7px;cursor: pointer;z-index: 999; background-color: brown;color: antiquewhite;" onclick="vaciarEmpleadosEnLocal()">BORRAR TODO</button>
+    <button id="borrar-temporal" style="cursor: pointer;font-size: 1vw; width: 9vw;height: 4vh;margin-bottom: 30%; position:absolute;left: 5vw;top: 55vh; border-radius: 7px;cursor: pointer;z-index: 999; background-color: brown;color: antiquewhite;" onclick="BORRARBORRAR()">OBJETO LOCAL</button>
+    <button id="borrar-temporal" style="cursor: pointer;font-size: 1vw; width: 9vw;height: 4vh;margin-bottom: 30%; position:absolute;left: 5vw;top: 63vh; border-radius: 7px;cursor: pointer;z-index: 999; background-color: brown;color: antiquewhite;" onclick="BORRARBORRARBORRAR()">LOCAL STORE</button>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--LIBRERIA DE GRAFICOS-->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>

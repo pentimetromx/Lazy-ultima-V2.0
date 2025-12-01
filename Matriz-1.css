@@ -413,14 +413,14 @@ color: white;
 }
 .boton-e {
   display: flex;
-  align-items: center;  
+  align-items: center; 
+  justify-content: center; 
   width: 80%;
   background: linear-gradient(to bottom, #008b8b, #005f5f);
   font-size:0.7vw;
   color: #fff;
   border-radius: 5px;
   margin-bottom: 0.5vh;
-  text-align: left;
   cursor: pointer;
   transition: background-color 0.4s ease, color 0.4s ease, transform 0.5s;
 }
@@ -857,14 +857,14 @@ color: white;
 }
 .boton-c {
   display: flex;
-  align-items: center;  
+  align-items: center;
+  justify-content: center;
   width: 60%;
   background: linear-gradient(to bottom, #008b8b, #005f5f);
   font-size:0.7vw;
   color: #fff;
   border-radius: 5px;
   margin-bottom: 0.5vh;
-  text-align: left;
   cursor: pointer;
   transition: background-color 0.4s ease, color 0.4s ease, transform 0.5s;
 }
@@ -1349,15 +1349,6 @@ width:447px ;
   width:13%;
   height:33%;
   z-index: 5;
-}
-#frec-lubrica{
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  left:17%;
-  top: 0;
-  z-index: 3;
-  display: none;
 }
 #vidTintero{
   position: absolute;
@@ -2898,6 +2889,7 @@ h6{
   position: relative;
   justify-content: center;
   font-family: "GothamRounded", sans-serif;
+  align-items: center;
   width:100%;
   height:17%;
   font-size:0.6vw;
@@ -2961,15 +2953,24 @@ h6{
 }
 .hijo1{
   position: relative;
-  display: flex;
-  width:22vw;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 25% 75%;
+  width:11vw;
 }
-.hijo1 label{
-  margin-left:1vw;
+#frec-lubrica{
+  position: absolute;
+  display: grid;
+  grid-template-rows: 33% 33% 33%;
+  gap: 25%;
+  left:17%;
+  top: 0;
+  z-index: 3;
+  display: none;
 }
 #frec-lubrica button{
-  width: 27px;
-  height: 27px;
+  width: 50%;
+  height: 130%;
   border-radius: 13px;
   background-color: rgba(217, 255, 0, 1);
   cursor: pointer;
@@ -3828,8 +3829,7 @@ elemento.visible {
 }
 #child-move-naranja,
 #child-move-variable,
-#child-move-II,
-#child-move-azul{
+#child-move-II{
   position: absolute;
   top: 0;
   left: 0;
@@ -7113,6 +7113,8 @@ height:100%;
 .metricas-empleado:hover{
   background: linear-gradient(180deg, #b30000 0%, #3d0000 100%);
 }
+#interfaz-perfiles.activo,
+#padre-desempeños.activo,
 #abuelo-indicadores.activo,
 .contenedor-visor.activo,
 .dashboard-grid.activo,
@@ -7242,7 +7244,6 @@ height:100%;
   display: grid;
   transform: scale(1);
 }
-
 .ventana-mensaje p {
   margin: 0;
   font-size: 1.2vw;
@@ -7283,9 +7284,6 @@ height:100%;
   background: #ddd;
   color: #2f2f2f;
 }
-
-
-
 #abuelo-indicadores{
   position: absolute;
   display: grid;
@@ -7295,7 +7293,7 @@ height:100%;
   top: 12vh;
   left: 46vw;
   width: 53vw;
-  height: 70vh;
+  height: 62vh;
   gap: 3%;
   display: none;
 
@@ -7308,7 +7306,6 @@ height:100%;
   box-shadow: 0 8px 30px rgba(0,0,0,0.55);
   z-index: 500;
 }
-
 /* Capa que aplica el blur detrás del elemento.
    Usamos ambos prefijos para compatibilidad. */
 #abuelo-indicadores::before {
@@ -7324,7 +7321,6 @@ height:100%;
   mix-blend-mode: normal;
   z-index: -1; /* queda detrás del contenido del contenedor */
 }
-
 /* Fallback visual para navegadores sin backdrop-filter:
    deja un fondo semitransparente y un sombreado aceptable */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
@@ -7337,7 +7333,6 @@ height:100%;
     display: none;
   }
 }
-
 #padre-indicadores {
   position: relative;
   top: -8px;
@@ -7367,16 +7362,13 @@ height:100%;
   gap: 1px;
   box-sizing: border-box;
 }
-
 .led-verde {
   background-color: green;
   transform: translateY(-1px);
 }
-
 .led-verdes {
 background-color: #3FEF9C;
 }
-
 #columna-item{
   display: grid;
   width: 100%;
@@ -7390,14 +7382,12 @@ background-color: #3FEF9C;
   align-items: center;
   font-size: 1vw;
 }
-
 .led-celda {
   position: relative;
   width: 100%;
   height: 100%;
   transition: background-color 0.15s ease;  
 }
-
 .led-amarillo {
   background-color: #32ff7e; /* verde neón profesional */
 }
@@ -7413,13 +7403,11 @@ background-color: #3FEF9C;
   z-index: 100;
   pointer-events: none;
 }
-
-
 .padre-inputs{
   position: absolute;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  top: 60vh;
+  top: 68vh;
   height: 5vh;
   width:22vw;
   z-index: 9999;
@@ -7430,11 +7418,7 @@ background-color: #3FEF9C;
   width: 100%;
   height:100%;
 }
-
 /* ////////////////////////////////////////////////////////////////////////////// */
-
-/* Fondo difuminado estilo clásico */
-/* Ventana principal */
 .alerta-ventana {
   position: fixed;
   top: 0;
@@ -7448,8 +7432,6 @@ background-color: #3FEF9C;
   align-items: center;
   z-index: 9999;
 }
-
-/* CONTENEDOR PRINCIPAL: los hijos dependen de este */
 .alerta-contenido {
   background: #e4ecff;
   border: 1px solid #000;
@@ -7468,32 +7450,137 @@ background-color: #3FEF9C;
     2px 2px 0 #555,   /* sombra lateral reducida */
     3px 3px 0 #777;   /* segunda sombra suave */
 }
-
-/* PÁRRAFO escalar según el padre */
 .alerta-texto {
   color: #000;
-  font-size: 1.1vw;      /* escala con viewport y padre */
-  width: 100%;           /* depende del padre */
+  font-size: 1.1vw;
+  width: 100%;
   text-align: center;
-  flex: 1;               /* ocupa espacio relativo dentro del padre */
+  flex: 1;
   display: flex;
-  align-items: center;   /* centra vertical */
+  align-items: center;
   justify-content: center;
 }
-
-/* BOTÓN depende del tamaño del contenedor */
 #alerta-ok {
-  padding: 0.4vh 1vw;   /* relativa al padre */
+  padding: 0.4vh 1vw;
   background: #2f6bff;
   color: #f6f8ff;
   cursor: pointer;
-  font-size: 0.9vw;     /* escala con padre */
-  align-self: center;   /* asegura posición centrada dentro del padre */
+  font-size: 0.9vw;
+  align-self: center;
   border-radius: 3px;
 }
-
 #alerta-ok:hover {
   background: #2558d6;
 }
+
+
+
+#padre-desempeños{
+  position: relative;
+  display:grid;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  grid-template-rows: 35% 65%;
+  top: -48.5vh;
+  left: 48vw;
+  height:60vh;
+  width:50vw;
+  gap: 2%;
+  opacity: 1;
+
+  transform: scale(0);
+  transform-origin: center; 
+  transition: transform 1s ease;
+  overflow: hidden;                /* recorta el blur en los bordes */
+  border: 1px solid rgba(111,111,111,0.5);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+  z-index: 500;
+}
+/* PADRE GRAFICO */
+.graphics-lines {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 5%;
+  width: 110%;
+  height: 100%;
+  opacity: 1;
+  box-sizing: border-box;
+  background-color: rgb(0, 0, 17);
+  border-radius: 5px;
+  cursor: pointer;
+}
+#MiGrafica17 {
+  width: 90%;
+  height: 90%;
+  display: block;
+  margin: 0 auto;
+  position: static;   /* evita desplazamientos inesperados */
+  transition: transform 2.5s ease;
+}
+/* DIAS LEDS INDEXADO */
+.slider-father {
+  position: relative;
+  display: grid;
+  grid-template-rows:15% 35% 25% 25% ;
+  width:100%;
+  height:100%;
+  color: white;
+  font-family: sans-serif;
+  font-size:1vw;
+  align-items: center;
+  justify-items: center;  
+}
+.days-container {
+  position: relative;
+  display: flex;
+  gap: 4px;
+}
+.led-container {
+  position: relative;
+  display: grid;
+  grid-template-columns:repeat(30, 1fr);
+  width: 110%;
+  height: 13%;
+  gap: 1px;
+}
+.day-number {
+  width:100%;
+  text-align: center;
+  font-size: 0.8vw;
+  color: #777;
+  transition: color 0.2s ease;
+}
+.day-on {
+  color: #00c04b;
+}
+.slider-father label{
+  position: relative;
+  color: rgba(188,188,188,0.9);
+  font-size: 1vw;
+}
+.led-graphs {
+  width:100%;
+  height:100%;
+  border-radius: 1px;
+  background-color: #333; /* apagado */
+  transition: background-color 0.2s ease;
+}
+.led-on {
+  background-color: #008f39;
+}
+#miSlid{
+  position: relative;
+  cursor: pointer;
+  width: 30%;
+}
+#slider-Valor {
+  display: inline-block;
+  width: 2.2ch;   /* espacio para 2 dígitos, ajusta si necesitas más */
+  text-align: right;
+}
+
 
 
