@@ -235,7 +235,7 @@ function actualizarDatos() {
         if (array[i] > 100) {
           array[i] = 0;   
         }
-      }      
+      }
       // Actualizar los gráficos
       switch (index) {
         case 0: chart7.data.datasets[0].data = array; chart7.update(); break;
@@ -274,17 +274,20 @@ function updateAna() {
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update();
 }
+
 function updateAnaII() {
+
   setTimeout(function() { graficosAutomaticos('canvasContainer4'); }, 500);
   setTimeout(function() { graficosAutomaticos('canvasContainer7'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer5'); }, 900);
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200);
+  
   var nuevosDatos = [ 0,70,30,70,50,90]
   chart7II.data.datasets[0].data = nuevosDatos;
   chart7II.update()
-  var nuevosDatosI = [ 55,5,95,30,10,10]            
+  var nuevosDatosI = [ 55,5,95,30,10,10]
   chart8II.data.datasets[0].data = nuevosDatosI;
   chart8II.update()
   var nuevosDatosII = [ 30,50,60,77,20,8]        
@@ -300,6 +303,7 @@ function updateAnaII() {
   chart12II.data.datasets[0].data = nuevosDatosV;
   chart12II.update() 
 }
+
 function updateMario() {
   setTimeout(function() { graficosAutomaticos('canvasContainer4'); }, 500);
   setTimeout(function() { graficosAutomaticos('canvasContainer7'); }, 700);
@@ -308,8 +312,10 @@ function updateMario() {
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
   var nuevosDatos = [ 100,20,70,10,80,90]
+  
   chart7.data.datasets[0].data = nuevosDatos;
   chart7.update()
+
   var nuevosDatosI = [ 30,25,90,110,50,77]
   chart8.data.datasets[0].data = nuevosDatosI;
   chart8.update()

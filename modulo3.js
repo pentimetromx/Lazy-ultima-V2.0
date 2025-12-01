@@ -11,14 +11,13 @@ document.addEventListener('keydown', function(event) {
         console.log('GLOBAL DESDE X : ', empleadoGlobal)
         console.log(JSON.stringify(empleadoGlobal, null, 2));
         Geometria()
-        mostrarVentanaMensaje('ENSAYO MENSAJE !!')
       break;                  
     }
   }
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('ventana-alerta');  
+  let contiBoton = document.getElementById('visor-tools');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -2665,7 +2664,6 @@ function renderObjeto() {
 document.getElementById('butt-perfil-tinta').addEventListener('click', () =>{ 
   nombreCliente.style.top=''
   let nombreDatos = document.querySelector('#cliente-nombre')
-  let interfazPerfiles = document.getElementById('perfiles-entintado')
   interfazPerfiles.classList.remove('move-perfiles-entintado')
   desactivarClick(['.butt-perfiles', '.cabeza', '.mod-tinta']); 
   var elementosExcluidos = ['simulador','interfaz-perfiles','perfiles-entintado','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
@@ -2715,6 +2713,7 @@ document.getElementById('butt-perfil').addEventListener('click', () =>{
     primerClickRealizado = true;
   }
 })  
+
 let primerClickRealizado = false;
 document.getElementById('butt-control-tinta').addEventListener('click', () =>{ 
   const colorPerfilador = document.querySelector('#current-Color');   
@@ -2836,7 +2835,7 @@ document.getElementById('butt-control-tinta').addEventListener('click', () =>{
     }, 100);
     colorPerfilador.style.color = color
   }   
-  const contPerfilIndividual = document.getElementById('perfil-individual')  
+  const contPerfilIndividual = document.getElementById('perfil-individual')   
   contPerfilIndividual.classList.remove('move-perfil-individual')
   const displayAjusteFino = document.getElementById('inerfaz-ajuste-fino'); 
   nombreCliente.style.display='flex'
@@ -2852,9 +2851,10 @@ document.getElementById('butt-control-tinta').addEventListener('click', () =>{
     botonesPerfilColor.forEach(elemento => {   
       elemento.style.display = 'block'; 
     });   
-    restablecerClick(['.butt-selector'])      
+    restablecerClick(['.butt-selector'])  
   }, 10);
 })
+
 document.getElementById('butt-job-track').addEventListener('click', () =>{
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
   const conteJobTrack = document.querySelector('#job-files')
@@ -3734,18 +3734,24 @@ document.querySelector('#boton-reseteo').addEventListener('click', () =>{
     alertaPerfiles.style.display = 'flex';
   });
 })
+
+// BOTON SALA
 document.querySelector('#boton-prensas').addEventListener('click', () =>{
-  var elementosExcluidos = ['simulador','buscador','search-form','links-inicialesI','links-iniciales','container01']  
+  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','container01']  
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }
-  document.querySelector('.sections').style.display = 'grid'
+  interfazPerfiles.classList.remove('move-perfiles-entintado')
+
+  document.querySelector('.sections').style.display = 'grid' 
   document.querySelector('#sections-fondo').style.display = 'grid'
   document.querySelector('#contenedor-botonera').style.display = 'grid'
 })
+
+
 document.querySelector('#boton-perfiles').addEventListener('click', () =>{
   var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles', 'boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -4401,9 +4407,6 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
     setTimeout(() => {
       if (listaClientes && listaClientes.children.length === 0) {
         mostrarVentanaMensaje('El almacenamiento y la base de datos estan vacíos')
-        /* alertaCuatro.style.display='flex'
-        alertaCuatro.style.top = '30vh'       
-        alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos' */   
       }
     }, 50);      
 
@@ -4839,9 +4842,6 @@ function detenerAlternarColor(elementoResetear) {
   if (intervalColor) {
     clearInterval(intervalColor);
     intervalColor = null;
-
-    // Limpia completamente estilos inline
-    /* elementoResetear.removeAttribute('style'); */
     elementoResetear.style.background = '';    
 
     console.log('El intervalColor ha sido detenido y el elemento fue reseteado.');
@@ -4852,16 +4852,8 @@ function detenerAlternarColor(elementoResetear) {
 btnSalir.addEventListener('click', ()=>{ 
   const numeros = document.querySelectorAll('.number'); // Selecciona todos los elementos con la clase .number  
   const algunoConContenido = Array.from(numeros).some(numero => numero.textContent.trim() !== '');
-
-  /* if(alertaMSG.style.display ==='flex'){
-    desactivarClick(['.butt-perfiles', '.estilo-1','.digit']); 
-    return
-  } */
-
   if (algunoConContenido) {
-    /* alertaCinco.style.display = 'flex' */
     mostrarVentanaMensaje('Click en ENTRAR para ingesar la informacion')
-    /* desactivarClick(['.butt-perfiles', '.estilo-1','.digit','.digito']); */ 
     alternarColor(btnEntrar)
   }else{
     restablecerClick(['.estilo-1','.digit']);   
@@ -4908,7 +4900,6 @@ buttsJobs.forEach(boton => {
         mostrarNombresDeObjetos(); 
         setTimeout(() => {
           if (listaClientes && listaClientes.children.length === 0) {
-            /* mostrarVentanaMensaje('El almacenamiento y la base de datos estan vacíos') */        
             alertaCuatro.style.display='flex'
             alertaCuatro.style.top = '30vh'       
             alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos'   
@@ -5023,12 +5014,6 @@ digitos.forEach((elemento) => {
 alertaTres.addEventListener('click', ()=> {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
 })
-
-/* alertaCuatro.addEventListener('click', ()=> {
-  restablecerClick(['.estilo-1','.digit', '.estilo-2','.cont-vacio','jobs','btn-abandonar','base-datos']);
-  desactivarClick(['.butt-perfiles'])
-}) */
-
 btnSalir.addEventListener('mouseleave', () => {
   restablecerClick(['.estilo-1','.digit','.digito']);
   detenerAlternarColor(btnEntrar)
@@ -5160,15 +5145,10 @@ document.querySelector('#grid-numbers > div:nth-child(12)').addEventListener('cl
   console.log(document.querySelectorAll('.digito'));
   if (todosVacios) {
     mostrarVentanaMensaje('Ingrese tiraje para este producto ...')
-    /* alertaCuatro.style.display = 'flex'
-    alertaCuatro.style.left = '27.4vw'
-    alertaCuatro.style.top = '59.5vh'
-    desactivarClick(['.butt-perfiles','.digit', '.estilo-1']); */
   }else{
     document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {  
       elemento.style.display = 'none';
       document.querySelector('#abandonar-perfiles').style.display = 'none'
-      /* document.querySelector('#alerta-cuatro').style.display='none' */
 
     }); 
     coleccionNumeros.length = 0;        
@@ -7159,9 +7139,6 @@ document.getElementById('nombre-Perfil-existe').addEventListener('click', () => 
   setTimeout(() => {
     if (listaClientes && listaClientes.children.length === 0) {
       mostrarVentanaMensaje('El almacenamiento y la base de datos estan vacíos')
-      /* alertaCuatro.style.display='flex'
-      alertaCuatro.style.top = '30vh'       
-      alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos'  */  
     }
   }, 50);      
 
@@ -7265,7 +7242,6 @@ grupoBotsCrear.forEach(bot => {
     if (listaClientes.children.length === 0) {
       listaClientes.style.display = 'none';
       alertaMSG.style.display = 'none';
-      /* restablecerClick(['.estilo-1', '.jobs']); */
     } 
 
     if (lineaClientes && lineaClientes.children.length === 0) {
@@ -7283,8 +7259,3 @@ grupoBotsCrear.forEach(bot => {
     }, 300);
   });
 });
-
-
-/* gridDigitos.addEventListener('mouseleave', () => {
-  alertaMSG.style.display='none'
-} ) */
