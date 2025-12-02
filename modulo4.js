@@ -95,7 +95,11 @@ document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListe
   }
   container1.style.display='grid'
   manejarTransicion('child-move-azul', 'formulario-cuenta', 'marco-formulario',100);
-  container1.style.display='grid'   
+  container1.style.display='grid'
+  const cont = document.querySelector('#imagenes-sheeter');
+  cont.style.position = 'absolute';
+  cont.style.top='-1vh'
+
 })
 function alternarImagenes() {
   const imgUno = document.getElementById("image-uno");
@@ -144,7 +148,6 @@ const configIndex = [
       });
       const cont = document.querySelector('#imagenes-sheeter');
       cont.style.position = 'absolute';
-      cont.style.left = '26vw';
     }},
   { id: 'contenedor-sheeter', extra: () => setTimeout(() => mostrarAyudas('visor'), 500) },
   { id: 'video-graduar-sheeter' },
@@ -207,12 +210,19 @@ formularioCuenta.addEventListener('click', e => {
   const all = Array.from(formularioCuenta.querySelectorAll('.etq-frm'));
   const index = all.indexOf(btn);
 
-  const cfg = configIndex[index];     // ← aquí sí usas el array de objetos
-  if (!cfg) return;
+  const cfg = configIndex[index]; 
+  if (!cfg) return;        
  
   ocultarTodos([cfg.id]);
-  document.querySelector('#marco-formulario').style.display = 'block';
+
+  document.querySelector('#marco-formulario').style.display = 'flex';
+  document.querySelector('#marco-formulario').style.top='10vh'
   document.querySelector('#formulario-cuenta').style.display = 'grid';
+  document.querySelector('#buscador').style.display = 'flex';
+  document.querySelector('#search-form').style.displ='flex'
+  container1.style.display='grid'
+  linkIni1.style.display='block'
+  linkIni2.style.display='block'
 
   const contenedor = document.querySelector(`#${cfg.id}`);
   if (contenedor) {
@@ -220,7 +230,7 @@ formularioCuenta.addEventListener('click', e => {
     reproducirVideoSiExiste(contenedor);
   }
 
-  if (typeof cfg.extra === 'function') cfg.extra();
+  if (typeof cfg.extra === 'function') cfg.extra(); 
   aplicarEstiloActivo(e.target);
 });
 
