@@ -3953,8 +3953,8 @@ top: 44%;
   border-radius: 13px;
   top: 15vh;
   left: 32vw;
-  height: 50vh;
-  width: 50vw;
+  height: 40vh;
+  width: 40vw;
 }
 .equal-position{
   top: 16vh;
@@ -4184,6 +4184,7 @@ top: 44%;
   position: relative;
   display: grid;
   display: none;
+  margin-top: 14.4vh;
   grid-template-rows: 1fr 1fr;
   border-radius: 14px;
   padding: 10px;
@@ -4268,7 +4269,7 @@ top: 44%;
   justify-items: center;
   top: 56vh;
   left: 32vw;
-  width: 50vw;
+  width: 40vw;
   height: 44vh;
   background-color: #fff;
   border-radius: 10px;

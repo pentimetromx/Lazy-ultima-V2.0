@@ -7,7 +7,7 @@ const seccionesMap = new Map([
   ['rebobinador', 4]
 ]);  
 function cierraContenedores(elementId, buttonID) {
-  const pantallaInicial = document.getElementById('pantalla-inicial');
+  const pantallaInicial = document.getElementById('pantalla-inicial'); 
 
   // Reiniciar estilos de todos los botones
   document.querySelectorAll('.boton-c').forEach(boton => {

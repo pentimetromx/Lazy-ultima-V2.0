@@ -82,7 +82,6 @@ document.querySelector('#contenedor-botonera button:nth-child(4)').addEventListe
 
   }, 100);
 });
-
 // BOTON INTERFAZ AZUL  
 document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListener('click', () => {
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']
