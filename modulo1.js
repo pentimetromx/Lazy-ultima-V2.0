@@ -1767,22 +1767,32 @@ function manejarTransicion(movilId, destinoId, marcoId, delay) {
     marco.classList.add("apagado");
   }, delay + 1);
 }
+
 document.getElementById('shrinkButton').addEventListener('click', function() {
-  var items = document.querySelectorAll('.item-orange');
+  const items = document.querySelectorAll('.span-extension');
+
   items.forEach(function(item) {
-    var label = item.querySelector('.first-lbl');
-    var initialWidth = item.offsetWidth;
-    var width = initialWidth;
-    var decrement = width / 25;
-    var interval = setInterval(function() {
+
+    // El padre real que contiene .first-lbl
+    const parent = item.closest('.item-naranja');
+    const label = parent.querySelector('.first-lbl');
+
+    const initialWidth = item.offsetWidth;
+    let width = initialWidth;
+    const decrement = width / 25;
+
+    const interval = setInterval(function() {
       width -= decrement;
+
       if (width <= 5) {
         width = 5;
         clearInterval(interval);
+
         setTimeout(function() {
           item.style.width = initialWidth + 'px';
           label.textContent = initialWidth + 'px';
         }, 500);
+
       } else {
         item.style.width = width + 'px';
         label.textContent = Math.round(width) + 'px';
@@ -1790,6 +1800,8 @@ document.getElementById('shrinkButton').addEventListener('click', function() {
     }, 16);
   });
 });
+
+
 function cerrarSecciones(){
   linkList.style.display = "none";
   linkListI.style.display = "none";

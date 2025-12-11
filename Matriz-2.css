@@ -4489,7 +4489,7 @@ top: 44%;
 .horiz-10-4 { top: 71%; }
 .horiz-10-5 { top: 93%; }
 .horiz-9-1, .horiz-9-2, .horiz-9-3, .horiz-9-4, .horiz-9-5{
-  position: absolute;
+  position: absolute;  
   width: 14px;
   height: 3px; 
   background: white;
@@ -4500,10 +4500,10 @@ top: 44%;
 .horiz-9-3 { top: 50%; }
 .horiz-9-4 { top: 71%; }
 .horiz-9-5 { top: 93%; }
-#tendencia-naranja .item-orange,
+.item-naranja .span-extension,
 #cont-variable .child-section,
-#tendencia-naranja .item-orange.activa,
 #cont-variable .child-section.activa,
+.item-naranja .span-extension.activa,
 #formulario-cuenta .etq-frm.activo {
   background-color: rgb(255, 0, 0);
   box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7);
