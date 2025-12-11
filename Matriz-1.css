@@ -2804,6 +2804,44 @@ h6{
   height:57vh;
   width:37vw;
 }
+/* PADRE ULTIMO*/
+.item-naranja {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  flex-direction: row;
+  align-items: center; /* centra verticalmente */
+}
+/* PADRE ULTIMO */
+.item-naranja .second-lbl {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  font-family: "GothamRounded", sans-serif;
+  font-size: 0.9vw;
+  color: whitesmoke;
+  justify-content: flex-end;  
+}
+
+.item-naranja .span-extension {
+  width: 48%;    /* el tamaño que desees */
+  height: 100%;
+  display: flex;
+  background-color: blue;
+  transition: width 0.5s ease;
+}
+
+.item-naranja .first-lbl {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+
 .item-orange{
   position: relative;
   display: flex;
@@ -2831,7 +2869,7 @@ h6{
   justify-content: center; 
   cursor: pointer;
 }
-.item-orange .first-lbl{
+/* .item-orange .first-lbl{
   position: absolute;
   left: 107%;
   top: 50%;
@@ -2840,8 +2878,11 @@ h6{
   font-size: 0.9vw;
   color: whitesmoke;
   transform: translateY(-50%);
-}
-.item-orange .second-lbl{
+} */
+
+/* PRIMER SPAN */
+
+.item-orange .second-lbl{ 
   position: absolute;
   right:107%;
   top: 50%;
@@ -2851,36 +2892,6 @@ h6{
   color: whitesmoke;
   text-align: right;
   transform: translateY(-50%);
-}
-#tendencia-naranja .item-orange:nth-child(1) {
-  width: 48%;
-}
-#tendencia-naranja .item-orange:nth-child(2) {
-  width: 24%;
-}
-#tendencia-naranja .item-orange:nth-child(3) {
-  width: 16.2%;
-}
-#tendencia-naranja .item-orange:nth-child(4) {
-  width:14.4%;
-}
-#tendencia-naranja .item-orange:nth-child(5) {
-  width: 11.4%;
-}
-#tendencia-naranja .item-orange:nth-child(6) {
-  width: 10.2%;
-}
-#tendencia-naranja .item-orange:nth-child(7) {
-  width: 8.7%;
-}
-#tendencia-naranja .item-orange:nth-child(8) {
-  width: 7.8%;
-}
-#tendencia-naranja .item-orange:nth-child(9) {
-  width: 6.9%;
-}
-#tendencia-naranja .item-orange:nth-child(10) {
-  width:6%;
 }
 .butt-mautonomo-freno,
 .butt-mautonomo-desbobina,
@@ -7472,9 +7483,6 @@ background-color: #3FEF9C;
 #alerta-ok:hover {
   background: #2558d6;
 }
-
-
-
 #padre-desempeños{
   position: relative;
   display:grid;
@@ -7507,7 +7515,6 @@ background-color: #3FEF9C;
   justify-items: center; /* centra horizontalmente los hijos */
   align-items: center;   /* centra verticalmente el contenido de cada celda */
 }
-
 .padre-slider label{
   display: block;      /* opcional, por claridad */
   width: 100%;
@@ -7516,8 +7523,6 @@ background-color: #3FEF9C;
   font-size: 1vw;
   box-sizing: border-box;
 }
-
-
 /* PADRE GRAFICO */
 .graphics-lines {
   position: relative;
@@ -7596,6 +7601,61 @@ background-color: #3FEF9C;
   display: inline-block;
   width: 2.2ch;   /* espacio para 2 dígitos, ajusta si necesitas más */
   text-align: right;
+}
+
+
+
+
+
+
+
+#decisiones-estrategicas.panel-estrategico {
+  position: absolute;
+  display: flex;
+  top: 11vh;
+  height: 86vh;
+  left: 4vw;
+  width: 92%;
+  margin: 0 auto;
+  padding: 5vh;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.6;
+}
+.bloque {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 33%;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: #f8f9fb;
+  border-radius: 10px;
+  border-left: 5px solid #0078d4;
+}
+
+.titulo-panel {
+  font-size: 2vw;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #222;
+}
+.subtitulo {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #0a2a43;
+  font-weight: 500;
+}
+.bloque p, .bloque ul {
+  font-size: 1.2vw;
+  margin: 0;
+  color: #333;
+  
+}
+.bloque ul {
+  padding-left: 20px;
 }
 
 

@@ -429,6 +429,12 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
 
   if (visibles.length === 0) return; // No hay elementos visibles, salir.
   const elementId = visibles[0];
+
+  const spans = document.querySelectorAll('.etq-frm');
+  spans.forEach(span => {
+    span.style.backgroundColor = '';
+    span.style.color = '';
+  });
   switch (elementId) {
     case 'cont-titulo-operacion':
       animateScroll('contLineas');
@@ -589,7 +595,7 @@ function resaltarSecuencialVariable() {
   });
 }
 function resaltarSecuencialDemo() {
-  const spans = document.querySelectorAll('#tendencia-naranja .item-orange');
+  const spans = document.querySelectorAll('.item-naranja .item-naranja');
 
   // Opcional: limpiar estado previo
   spans.forEach(s => s.classList.remove('activa'));
@@ -2195,31 +2201,11 @@ function insertarGrafico(idContenedor, idCanvas) {
     }
   });
 }
-// generar lista para RRHH
-
-rutasFotos.forEach(ruta => {
-  const itemFoto = document.createElement('div');
-  itemFoto.textContent = ruta;
-
-  // vista previa al pasar el cursor
-  itemFoto.addEventListener('mouseenter', () => {
-    previewFoto.src = ruta;
-  });
-
-  // seleccionar la ruta
-  itemFoto.addEventListener('click', () => {  
-    inputFoto.value = ruta;
-    previewFoto.src = ruta;
-    listaFotos.style.display = 'none';
-  });
-
-  listaFotos.appendChild(itemFoto);
-});
-
 
 // CLICK EN EL INPUT
 inputFoto.addEventListener('click', () => {
-  listaFotos.style.display = 'block';
+  /* listaFotos.style.display = 'block'; */
+  generarListaFotos()
 });
 // ocultar lista si se hace clic fuera
 document.addEventListener('click', e => {
@@ -2227,6 +2213,29 @@ document.addEventListener('click', e => {
     listaFotos.style.display = 'none';
   }
 });
+function generarListaFotos() {
+  listaFotos.innerHTML = ""; // limpia anterior
+
+  rutasFotos.forEach(ruta => {
+    const itemFoto = document.createElement('div');
+    itemFoto.textContent = ruta;
+
+    itemFoto.addEventListener('mouseenter', () => {
+      previewFoto.src = ruta;
+    });
+
+    itemFoto.addEventListener('click', () => {  
+      inputFoto.value = ruta;
+      previewFoto.src = ruta;
+      listaFotos.style.display = 'none';
+    });
+
+    listaFotos.appendChild(itemFoto);
+  });
+
+  listaFotos.style.display = 'block'; // mostrar solo cuando se genera
+}
+
 
 
 document.querySelector('#borrarBoton').addEventListener('click', () =>{
@@ -3037,6 +3046,18 @@ function revertirInterfazPerfiles() {
   // limpiar todos los hijos y nietos
   const descendants = root.querySelectorAll('*');
   descendants.forEach(el => limpiar(el));
+}
+
+function decisionesEstrategicas(){
+    var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','decisiones-estrategicas']; 
+    for (var i = 0; i < allContenedores.length; i++) { 
+      var elemento = document.getElementById(allContenedores[i]) 
+      if (elemento) {
+        elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
+      }
+    }
+
+
 }
 
 
