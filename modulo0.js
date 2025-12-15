@@ -1797,5 +1797,3 @@ function limpiarEntradas() {
   }
   
 }
-
-

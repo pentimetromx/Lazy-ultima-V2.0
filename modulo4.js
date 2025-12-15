@@ -2852,6 +2852,7 @@ function actualizarDiasYLeds(valor) {
 crearLeds()
 crearDias()
 crearGraficoOperacion()
+
 sliderGraf.addEventListener('input', () => {
   if (!chart20) return;
 
@@ -2867,6 +2868,7 @@ sliderGraf.addEventListener('input', () => {
 
   actualizarDiasYLeds(valor);
 });
+
 function animarTransicion() {
   if (!animando) return;
 
