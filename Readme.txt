@@ -114,17 +114,20 @@ A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspec
 
 
 
-
-COLOR MENTA 
-color: #00FFC6;
-
-
-
 CONSIDERAR SI SE BORRAN:
 
 <button id="borrar-temporal" 
 
-function extraerObjetosLocalStorage
+
+
+
+
+
+
+
+
+
+  
 
 
 
@@ -136,7 +139,6 @@ function extraerObjetosLocalStorage
 
 
  
-
 
 
 
