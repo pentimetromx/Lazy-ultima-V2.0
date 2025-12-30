@@ -643,7 +643,7 @@ function cambiaColorBotones(){
   botones.forEach((boton, index) => {
     setTimeout(() => {
       boton.style.backgroundColor = 'rgb(0,255,0)';
-      boton.style.color = 'black'
+      boton.style.color = '#F2F6F7'
     }, 35 * index + 7);
   });
 }
@@ -4594,9 +4594,8 @@ document.getElementById('titleContainerI').addEventListener('mouseenter', () => 
     }, 400);
   } else {
     padreLinks.style.display = 'block';
-    linkListI.style.display = 'block';   
-    setTimeout(() => {
-    }, 300);
+    linkListI.style.display = 'block';
+    padre.style.display='block'  
   }
 });
 document.getElementById('titleContainer').addEventListener('mouseenter', () => {

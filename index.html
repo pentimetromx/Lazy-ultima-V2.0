@@ -497,7 +497,17 @@
         <li>Administrativo y soporte</li>
         <li onclick="decisionesEstrategicas()">Estrategia</li>
         <li onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">Job track</li>
-        <li onclick="ingresoEmpleado()">Ingreso RRHH</li>
+        <li id="ingreso-padre">
+          Ingresos / Resultados
+          <ul id="links-auxiliar" class="auxiliar-links">
+            <li>Mantenimiento Autonomo</li>
+            <li>Recursos Humanos</li>
+            <li>Resultado individual M.A</li>
+            <li>Job track</li>
+            <li>Ingresos</li>
+          </ul>
+        </li>
+
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
 
@@ -515,8 +525,15 @@
         <li onclick="abrirSeccionPlanas('cont-plana')">Impresion plana</li>
         <li onclick="abrirSeccionCurado('cont-secador')">Curado UV</li>
         <li onclick="abrirSeccionDemo('planetary')">Demostrativo</li>
-        <li onclick="abrirPrepress('pre-prensa')">Teoria del color</li> 
-        <li onclick="abrirDensitometria('densitometria')">Densitometría</li>
+        <li id="ingreso-color">
+          Color
+          <ul id="links-color" class="auxiliar-links">
+            <li>Densitometria</li>
+            <li>Teoria del color</li>
+            <li>Colorimetria</li>
+            <li>Salir</li>
+          </ul>
+        </li> 
         <li onclick="mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales']);">Simulador rotativa RK-300</li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
@@ -1476,12 +1493,16 @@
 
       </div>  
 
-      <div class="planet"><video class="lazy" autoplay loop muted playsinline>
-        <source data-src="./assets/bancada torre.mp4" type="video/mp4">
-      </video></div>
-      <div class="satelite"><video class="lazy" autoplay loop muted playsinline>
-        <source data-src="./assets/bancada torre.mp4" type="video/mp4">
-      </video></div>
+      <div class="planet">
+        <video class="lazy" autoplay loop muted playsinline>
+          <source data-src="./assets/bancada torre.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="satelite">
+        <video class="lazy" autoplay loop muted playsinline>
+          <source data-src="./assets/bancada torre.mp4" type="video/mp4">
+      </video>
+    </div>
     </div>
     <div id="bateria-entintado-II">
 
@@ -1591,14 +1612,18 @@
         <div id="segundoCont" class="contColor">
           <div class='imgTeoria1'><img data-src="./assets/luz6.jpg" class="lazy img-special" alt="pre18"></div>
           <div class='imgTeoria1'><img data-src="./assets/preprensa7.jpg" class="lazy img-special" alt="pre7"></div>
-          <div class='imgTeoria1'><video class="lazy vidTeoria img-special" id="vid01" onclick="muestraVidPrisma('vid04')" autoplay loop muted playsinline>
-            <source data-src="./assets/luz.mp4" type="video/mp4">
-          </video></div>
+          <div class='imgTeoria1'>
+            <video class="lazy vidTeoria img-special" id="vid01" onclick="muestraVidPrisma('vid04')" autoplay loop muted playsinline>
+              <source data-src="./assets/luz.mp4" type="video/mp4">
+            </video>
+          </div>
           <div class='imgTeoria1'><img data-src="./assets/preprensa8.jpg" class="lazy img-special" alt="pre8"></div>
           <div class='imgTeoria1'><img data-src="./assets/preprensa10.jpg" class="lazy img-special" onclick="muestraVidColor('vidColor-II')" alt="pre10"></div>
-          <div class='imgTeoria1'><video class="lazy vidTeoria img-special" id="vid02" onclick="muestraVidPrisma('vid05')" autoplay loop muted playsinline>
-            <source data-src="./assets/luz2.mp4" type="video/mp4">
-          </video></div>
+          <div class='imgTeoria1'>
+            <video class="lazy vidTeoria img-special" id="vid02" onclick="muestraVidPrisma('vid05')" autoplay loop muted playsinline>
+              <source data-src="./assets/luz2.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
         <div id="tercerCont" class="contColor">
           <div class='imgTeoria1'><img data-src="./assets/preprensa6.jpg" class="lazy img-special" alt="pre6"></div>
@@ -1611,9 +1636,11 @@
         <div id="cuartoCont" class="contColor"> 
           <div class='imgTeoria1'><img data-src="./assets/preprensa11.png" class="lazy img-special" alt="pre17"></div>
           <div class='imgTeoria1'><img data-src="./assets/preprensa9.jpg" class="lazy img-special" alt="pre9"></div>
-          <div class='imgTeoria1'><video class="lazy vidTeoria img-special" id="vid03" onclick="muestraVidPrisma('vid06')" autoplay loop muted playsinline>
-            <source data-src="./assets/luz3.mp4" type="video/mp4">
-          </video></div>
+          <div class='imgTeoria1'>
+            <video class="lazy vidTeoria img-special" id="vid03" onclick="muestraVidPrisma('vid06')" autoplay loop muted playsinline>
+              <source data-src="./assets/luz3.mp4" type="video/mp4">
+            </video>
+          </div>
           <div class='imgTeoria1'><img data-src="./assets/luz4.jpg" class="lazy img-special" alt="pre18"></div>
           <div class='imgTeoria1'><img data-src="./assets/luz5.jpg" class="lazy img-special" alt="pre18"></div>
           <div class='imgTeoria1'><img data-src="./assets/preprensa5.jpg" class="lazy img-special" alt="pre5"></div>

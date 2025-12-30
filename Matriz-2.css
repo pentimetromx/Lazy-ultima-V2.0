@@ -1139,7 +1139,7 @@ body{
   transition: transform 0.5s ease;
 }
 #blur-interfaz-perfiles{
-  position:relative;
+  position:absolute;
   display: flex;
   top: 5vh;
   left: 10vw;

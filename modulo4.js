@@ -1920,6 +1920,15 @@ function ingresoEmpleadoMA(){
   ["padre-ingresos-ma","ingresos-sistema-ma"].forEach(id => aparecerElemento(id, "grid"));
 
  limpiarEntradas()
+
+ setTimeout(() => {
+    const input = document.getElementById('nomEmpl-ma');
+    if (input) {
+      input.focus();
+    }
+ }, 500);
+  
+
 }
 
 const inputNombreMA = document.getElementById('numDoc-ma');
@@ -2070,6 +2079,7 @@ btnDblFlecha.addEventListener('click', ()=>{
 
 const inputArchivo = document.getElementById('numDoc6');
 let escala = 1;
+
 // BOTON ROJO
 function moverPadreIngresos(porcentajeX, porcentajeY) {
   flagEmpleado = false
@@ -2108,6 +2118,8 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
     padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
   }, 25);
 }
+
+
 function restaurarPosicionPadreIngresos() {
   const padre = document.getElementById('padre-ingresos');
   if (!padre) return;
@@ -3061,6 +3073,88 @@ function decisionesEstrategicas(){
 
 
 }
+
+const listarI = document.querySelectorAll('#linkListI li');
+const linksAuxiliar = document.getElementById('links-auxiliar');
+const linksPadre = document.querySelector('#linkListI')
+const linksPadreColor = document.querySelector('#linkList')
+const novenoElemento = listarI[8];
+
+if (listarI.length >= 9) {
+
+  novenoElemento.addEventListener('mouseenter', () => {
+    setTimeout(() => {
+      linksAuxiliar.style.display='block'      
+    }, 100);
+  });
+
+  novenoElemento.addEventListener('mouseleave', () => {
+    linksAuxiliar.style.display = 'none';
+  });
+
+}
+
+linksAuxiliar.addEventListener('mouseleave', (e) => {
+  const destino = e.relatedTarget;
+
+  // Si vuelve al noveno elemento, no cerrar
+  if (novenoElemento.contains(destino)) return;
+
+  setTimeout(() => {
+    linksAuxiliar.style.display = 'none';
+  }, 350);
+});
+
+
+
+const listar = document.querySelectorAll('#linkList > li');
+const septimoElemento = listar[6];
+const linksColor = septimoElemento.querySelector('#links-color');
+
+if (!septimoElemento || !linksColor) {
+  throw new Error('Elemento requerido no encontrado');
+}
+
+septimoElemento.addEventListener('mouseenter', () => {
+  linksColor.style.display = 'block';
+  document.querySelector('#simulador').style.display='block'
+});
+
+septimoElemento.addEventListener('mouseleave', () => {
+  linksColor.style.display = 'none';
+});
+
+
+
+hijos.forEach((li, index) => {
+  li.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    if (index === 0) {
+      ingresoEmpleadoMA()
+    }
+    if (index === 1) {
+      ingresoEmpleado()
+    }
+    if (index === 2) {
+      resultadosMA('interfaz-mtto')
+    }
+
+  });
+});
+
+hijosColor.forEach((li, index) => {
+  li.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    if (index === 0) {
+      abrirDensitometria('densitometria')
+    }
+    if (index === 1) {
+      abrirPrepress('pre-prensa')
+    }
+  });
+});
 
 
 

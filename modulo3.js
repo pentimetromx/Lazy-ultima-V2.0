@@ -5,7 +5,7 @@ document.addEventListener('keydown', function(event) {
         mostrarLocalStorageComoJSON() 
       break;  
       case 'H':      
-        vaciarEmpleadosEnLocal()
+        estadoListados()
       break;
       case 'X':
         console.log('GLOBAL DESDE X : ', empleadoGlobal)
@@ -17,7 +17,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('visor-tools');  
+  let contiBoton = document.getElementById('blur-interfaz-perfiles');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
