@@ -4,7 +4,7 @@
     
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
     <title>Lazy from Program</title>
     <link rel="stylesheet" href="./Matriz-1.css">
     <link rel="stylesheet" href="./Matriz-2.css">
@@ -489,25 +489,26 @@
       </div>  
 
       <ul id="linkListI" class="iridescent-element">
+
         <li onclick="ElementosMaII('conteneMantaut')">Mantenimiento Autonomo</li>
         <li>Educación y Entrenamiento</li>
         <li>Salud Seguridad y Ambiente</li>
         <li>Mantenimiento Progresivo</li>
         <li>Mejora Enfocada</li>
         <li>Administrativo y soporte</li>
-        <li onclick="decisionesEstrategicas()">Estrategia</li>
-        <li onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">Job track</li>
+        <li onclick="decisionesEstrategicas()">Estrategia</li> 
+
         <li id="ingreso-padre">
           Ingresos / Resultados
           <ul id="links-auxiliar" class="auxiliar-links">
-            <li>Mantenimiento Autonomo</li>
             <li>Recursos Humanos</li>
+            <li onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">Job track</li> 
+            <li>Mantenimiento Autonomo</li>
             <li>Resultado individual M.A</li>
-            <li>Job track</li>
             <li>Ingresos</li>
           </ul>
         </li>
-
+        
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
 
@@ -525,15 +526,34 @@
         <li onclick="abrirSeccionPlanas('cont-plana')">Impresion plana</li>
         <li onclick="abrirSeccionCurado('cont-secador')">Curado UV</li>
         <li onclick="abrirSeccionDemo('planetary')">Demostrativo</li>
-        <li id="ingreso-color">
+
+
+        <li id="ingreso-color"> 
           Color
-          <ul id="links-color" class="auxiliar-links">
+          <ul id="links-color" class="auxiliar-links">  
             <li>Densitometria</li>
             <li>Teoria del color</li>
-            <li>Colorimetria</li>
+            <li>Espectrofotometria</li>
+            <li>Montaje</li>
+
+            <li class="has-submenu">
+              Colorimetria
+              <ul class="submenu-colorimetria">
+                <li>CMYK</li>
+                <li>RGB</li>
+                <li>CGR|</li>
+                <li>UCR</li>
+                <li>Salir</li>
+              </ul>
+            </li>
+
             <li>Salir</li>
           </ul>
-        </li> 
+        </li>
+
+
+
+
         <li onclick="mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales']);">Simulador rotativa RK-300</li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
@@ -699,7 +719,7 @@
     <div id="container01" class="ocultos" data-display="grid">
       <button id="bot-atras" class="entrada-empleado" onclick="irContenedorAnterior('contPortPlaca')"></button>
       <button id="bot-inicial" class="entrada-empleado" onclick="VolveraInicio()">Panel Inicio</buttonclass=>
-      <button id="iniciar" class="entrada-empleado" onclick="activarPantallaCompleta()">Exit / Full Screen</buttonclass=>
+      <button id="iniciar" class="entrada-empleado" onclick="activarPantallaCompleta()">Full Screen</buttonclass=>
       <button id="bot-atras12" class="entrada-empleado" onclick="irContenedorSiguiente()"></buttonclass=>
     </div>
     <div id="pantalla-tintero">  
@@ -887,8 +907,8 @@
         <button class="butt-mautonomo" onclick="deslizaContenedor('conti-boton-kaizen','kaizen')">KAIZEN</button>
         <button class="butt-mautonomo" onclick="resetBotns('troubleshoot')" style="background-color: red;color: white;">Reset</button>
         <button class="butt-mautonomo" onclick="building()" style="background-color: red;color: white;">Show everything</button>
-        <button class="butt-mautonomo" onclick="resultadosMA('interfaz-mtto')">TRACKING DASHBOARD</button>
-        <button class="butt-mautonomo" onclick="ingresoEmpleadoMA()">REGISTRO</button>               
+        <!-- <button class="butt-mautonomo" onclick="resultadosMA('interfaz-mtto')">TRACKING DASHBOARD</button>
+        <button class="butt-mautonomo" onclick="ingresoEmpleadoMA()">REGISTRO</button> -->               
       </div> 
 
       <div id="troubleshooting" class="contenedor-pariente class-line">
@@ -2560,7 +2580,7 @@
       <li onclick="secuenciaEntrena()">Profundizar</li>
       <li>Ultimo caso</li>
       <li>Ayudas</li>
-      <li onclick="listaEntrenamientosII('archivo')">Volver</li>
+      <li onclick="listaEntrenamientosII('archivo')">Volver</li> 
     </ul>
     <div id="metas-diarias">
       <ol class="listado-actividades">
@@ -2661,7 +2681,7 @@
     
     <div id="contenedor-global" class="special-border"></div>
       <div id="lista-maquinas">
-        <span class="maquina">Rotativa 1<span class="indicador"></span></span>
+        <span class="maquina">Rotativa 1<span class="indicador"></span></span>  
         <span class="maquina">Rotativa 2<span class="indicador"></span></span>
         <span class="maquina">Rotativa 3<span class="indicador"></span></span>
         <span class="maquina">Rotativa 4<span class="indicador"></span></span>
@@ -2675,6 +2695,7 @@
       </div>
       <span id="titulo-calendar" class="titulo-graf-ma"></span>
       <span id="titulo-mes" class="titulo-graf-ma"></span>
+      
       <div id="calendario-mes">
         <div class="semana">
           <div class="dia">1</div>
@@ -2751,8 +2772,8 @@
     <div id="simulador">
 
       <span id="sections-fondo" data-display="grid" class="sections-btn">
-        <span id="spn-blur-8" class="btn-sections"></span><span id="spn-blur-9" class="btn-sections"></span><span id="spn-blur-10" class="btn-sections"></span><span id="spn-blur-11" class="btn-sections"></span>
-        <span id="spn-blur-12" class="btn-sections"></span><span id="spn-blur-13" class="btn-sections"></span><span id="spn-blur-14" class="btn-sections"></span><span id="spn-blur-15" class="btn-sections"></span>
+        <span id="spn-blur-8" class="btn-sections"></span><span id="spn-blur-9" class="btn-sections"></span><span id="spn-blur-10" class="btn-sections"></span>
+        <span id="spn-blur-12" class="btn-sections"></span>
       </span>
 
       <div id="butts-simulador" data-display="grid" class="sections">
@@ -2760,9 +2781,6 @@
         <div class="section" onclick="ocultaElementos('water-background','clock','cronometro','botonera','cronos','container01','links-inicialesI','links-iniciales','buscador','search-form')">Section 2</div> 
         <div class="section" onclick="ocultaElementos('container01','links-inicialesI','links-iniciales','buscador','search-form','control-panel')">Section 4</div>
         <div class="section" onclick="ocultaElementos('container01','links-inicialesI','links-iniciales','buscador','search-form','interfaz-registro')">Section 5</div>
-        <div class="section" onclick="iniciarAnimaciones()">Consola</div>
-        <div class="section" onclick="ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form',)">CMYK</div>
-        <div class="section" onclick="ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form',)">RGBA</div>
       </div>   
       <div class="digital-clock" id="clock">  
         00:00:00
@@ -3717,43 +3735,17 @@
         <span class="etq-frm">Trinquete multi orquilla</span>
         <span class="etq-frm">Trinquete normal</span>
       </div>
-
-      <!-- <div id="formulario-cuenta" class="formulario-crear-cuenta">
-        <div id="child-move-azul"></div>
-        <h2>Areas de trabajo</h2 > 
-        <span class="etq-frm">Perfil cuchillas sheeter</span>
-        <span class="etq-frm" data-id="video-manta-render">Montaje cuchilla sheeter</span>
-        <span class="etq-frm" data-id='video-graduar-sheeter'>Ajuste cuchilla sheeter</span>
-        <span class="etq-frm" data-id='triada-videos'>Comprobacion de ajuste cuchilla</span>
-        <span class="etq-frm" data-id='video-la-manta'>Manta en offset</span>
-        <span class="etq-frm" data-id='video-manta-render'>Manta en cilindro</span>
-        <span class="etq-frm" data-id='video-manta-dos'>Cotas manta</span>
-        <span class="etq-frm" data-id='video-completo'>Offset 360</span>
-        <span class="etq-frm" data-id='video-cadena-offset'>Offset estatico</span>
-        <span class="etq-frm" data-id='video-manta-enrolla'>Manta general</span>
-        <span class="etq-frm" data-id='video-manta-capas'>Manta al detalle</span>
-        <span class="etq-frm" data-id='video-desliza-plancha'>Plancha en cilindro</span>
-        <span class="etq-frm" data-id='video-insolacion'>Plancha estructura</span>
-        <span class="etq-frm" data-id='video-doctor-blade'>Doctor blade segmentada</span>
-        <span class="etq-frm" data-id='tintero-interior'>Tintero interno</span>
-        <span class="etq-frm" data-id='tintero-palanca'>Tintero palancaso</span>
-        <span class="etq-frm" data-id='tinta_segmento'>segmento tinta</span>
-        <span class="etq-frm" data-id='trinquete-rodillo-tintero-v'>Trinquete rodillo isometrico</span>
-        <span class="etq-frm" data-id='trinquete'>Trinquete solo</span>
-        <span class="etq-frm" data-id='trinquete-multi'>Trinquete multi orquilla</span>
-        <span class="etq-frm" data-id='trinquete-rodillo-tintero'>Trinquete normal</span>
-      </div> -->
-
       
     </div> 
+
     <div id="contenedor-botonera" data-display="grid">
       <button>Barras amarillas</button>
       <button>Sheeter</button>
       <button>Tapa lateral</button>
       <button>Cureña</button>
       <button>Interfaz azul</button>
-      <button>Gimnasio en casa</button>
-    </div>    
+    </div>  
+
     <div id="visor-tools" class="image-viewer">
       <button class="nav left" onclick="prevImage()">&#10094;</button>
       <div class="image-container">
@@ -3761,6 +3753,7 @@
       </div>
       <button class="nav right" onclick="nextImage()">&#10095;</button>
     </div>
+
     <div id="abuelo-grafica4">
 
       <div id="padre-grafica4" class="hijo-graficos">
@@ -3786,6 +3779,7 @@
       </div>
 
     </div>
+
     <div id="grafico-area" class="dashboard-grid current-graph">
       <div class="box box-1"></div>   
       <div class="box box-2">En exposicion</div>
@@ -3824,6 +3818,7 @@
       <div class="box box-8"></div>
       <div class="box box-9"></div>
     </div>
+
     <div id="padre-ingresos" class="special-border">
 
       <div id="ingresos-sistema">
@@ -3976,43 +3971,43 @@
 
           <div class="fila-ingreso-ma">
             <label for="numDoc1-ma">Defectos identificados</label>
-            <input type="text" id="numDoc1-ma" class="entrada-empleado verGraficos">
+            <input type="text" id="numDoc1-ma" class="entrada-empleado verGraficos" data-colorable>
           </div>
 
           <div class="fila-ingreso-ma">
             <label for="numDoc2">Defectos corregidos</label>
-            <input type="text" id="numDoc2-ma" class="entrada-empleado verGraficos">
+            <input type="text" id="numDoc2-ma" class="entrada-empleado verGraficos" data-colorable>
 
           </div>
 
           <div class="fila-ingreso-ma">
             <label for="numDoc5">Defectos tipo A</label>
-            <input type="text" id="numDoc5-ma" list="cargos" class="entrada-empleado verGraficos">
+            <input type="text" id="numDoc5-ma" list="cargos" class="entrada-empleado verGraficos" data-colorable>
           </div> 
 
           <div class="fila-ingreso-ma">
             <label for="numDoc3">Defectos tipo B</label>
-            <input type="text" id="numDoc3-ma" list="equipos" class="entrada-empleado verGraficos">
+            <input type="text" id="numDoc3-ma" list="equipos" class="entrada-empleado verGraficos" data-colorable>
           </div>
 
           <div class="fila-ingreso-ma">
             <label for="numDoc4">Kaizen</label>
-            <input type="text" id="numDoc4-ma" class="entrada-empleado verGraficos">
+            <input type="text" id="numDoc4-ma" class="entrada-empleado verGraficos" data-colorable>
           </div>   
 
           <div class="fila-ingreso-ma">
             <label for="numDoc6">Lup</label>
-            <input type="text"id="numDoc8-ma"class="entrada-empleado verGraficos">
+            <input type="text"id="numDoc8-ma"class="entrada-empleado verGraficos" data-colorable>
           </div>
           
           <div class="fila-ingreso-ma">
             <label for="numDoc6">ADA,s</label>
-            <input type="text"id="numDoc7-ma"class="entrada-empleado verGraficos">
+            <input type="text"id="numDoc7-ma"class="entrada-empleado verGraficos" data-colorable>
           </div> 
           
           <div class="fila-ingreso-ma">
             <label for="numDoc6">ADT</label>
-            <input type="text"id="numDoc6-ma"class="entrada-empleado verGraficos">
+            <input type="text"id="numDoc6-ma"class="entrada-empleado verGraficos" data-colorable>
           </div>           
       
         </div>
@@ -4088,21 +4083,22 @@
         </div>
         <div id="contenedor-indicador" class="indicadores">
           <span class="blockout"></span>
-          <div id="led-lup" class="led-indicador"> </div>
-        </div>
-
-        <div id="contenedor-indicador" class="indicadores">
-          <span class="blockout"></span>
           <div id="led-adas" class="led-indicador"> </div>
         </div>
         <div id="contenedor-indicador" class="indicadores">
           <span class="blockout"></span>
           <div id="led-adt" class="led-indicador"> </div>
         </div>
+        <div id="contenedor-indicador" class="indicadores">
+          <span class="blockout"></span>
+          <div id="led-lup" class="led-indicador"> </div>
+        </div>
 
         <div></div>
         <div></div>
-      </div>      
+      </div>   
+    
+
 
     </div>
     <div id="links-ma">      
@@ -4203,16 +4199,9 @@
 
     
    <div class="padre-inputs">
-      <input type="number" id="inputAda" min="0" max="10" placeholder="Cantidad (0-10)">
-      <input type="number" id="inputAdt" min="0" max="10" placeholder="Cantidad (0-10)">
-      <input type="number" id="inputLups" min="0" max="10" placeholder="Cantidad (0-10)">
       <button id="borrarBoton" class="borrar-boton">1</button>
       <button id="borrarBoton2" class="borrar-boton">2</button>
     </div>    
-
-    <button id="borrar-temporal" style="cursor: pointer;font-size: 1vw; width: 9vw;height: 4vh;margin-bottom: 30%; position:absolute;left: 5vw;top: 47vh; border-radius: 7px;cursor: pointer;z-index: 999; background-color: brown;color: antiquewhite;" onclick="vaciarEmpleadosEnLocal()">BORRAR TODO</button>
-    <button id="borrar-temporal" style="cursor: pointer;font-size: 1vw; width: 9vw;height: 4vh;margin-bottom: 30%; position:absolute;left: 5vw;top: 55vh; border-radius: 7px;cursor: pointer;z-index: 999; background-color: brown;color: antiquewhite;" onclick="BORRARBORRAR()">OBJETO LOCAL</button>
-    <button id="borrar-temporal" style="cursor: pointer;font-size: 1vw; width: 9vw;height: 4vh;margin-bottom: 30%; position:absolute;left: 5vw;top: 63vh; border-radius: 7px;cursor: pointer;z-index: 999; background-color: brown;color: antiquewhite;" onclick="BORRARBORRARBORRAR()">LOCAL STORE</button>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--LIBRERIA DE GRAFICOS-->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>

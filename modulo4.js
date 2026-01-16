@@ -614,7 +614,7 @@ function resaltarSecuencialDemo() {
 let miCanvas12 = document.getElementById('MiGrafica10').getContext('2d')
 let chart13;
 function crearGraficoMes() {
-  const padreGrafica10 = document.querySelector('#padre-grafica4');
+  const padreGrafica10 = document.querySelector('#padre-grafica4'); 
   padreGrafica10.style.display = 'flex';
   const canvas = document.getElementById('MiGrafica10');
 
@@ -778,77 +778,6 @@ function crearGraficoSemana() {
 let miCanvas14 = document.getElementById('MiGrafica12').getContext('2d')
 let chart15;
 
-
-
-
-function crearGraficoParticipacion() {
-  const padreGrafica12 = document.querySelector('#padre-grafica6');
-  padreGrafica12.style.display = 'flex';
-  const canvas = document.getElementById('MiGrafica12');
-
-  // Destruir grafico previo
-  if (chart15) {
-    chart15.destroy();
-    chart15 = null;
-  }
-
-  canvas.style.display = 'none';
-  setTimeout(() => canvas.style.display = 'block', 100);
-
-  const ctx = canvas.getContext('2d');
-
-  const configLine = {
-    type: 'line',
-    data: {
-      labels: ['Mecánicas', 'Layout','Diseño','Temporales','Fijas','Transición'],
-      datasets: [
-        {
-          label: 'Participación en M.A',
-          data: [17, 9, 27, 55, 19, 33],
-          borderColor: 'rgb(0,0,255)',
-          backgroundColor: 'rgb(0,255,255)',
-          borderWidth: 1,
-          pointRadius: 2,
-          pointBackgroundColor: 'rgb(0,255,255)',
-          tension: 0.3
-        }
-      ]
-    },
-    options: {
-      responsive: false,
-      maintainAspectRatio: false,
-      animation: {
-        duration: 1500,              // igual que el correcto
-        easing: 'easeOutQuart'      // igual
-      },
-      plugins: {
-        legend: {
-        display: false },
-        title: {
-          display: true,
-          text: 'Variación general',
-          font: { size: 13 },
-          color: 'rgb(111,111,111)'
-        }
-      },
-      scales: {
-        x: {
-          min: 0,
-          max: 150,          
-          grid: { display: false },
-          ticks: { color: '#fff', font: { size: 7 } }
-        },
-        y: {
-          grid: { display: false },
-          ticks: { beginAtZero: true, color: '#fff', font: { size: 7 } }
-        }
-      }
-    }
-  };
-
-  chart15 = new Chart(ctx, configLine);
-
-}
 let miCanvas15 = document.getElementById('MiGrafica13').getContext('2d')
 let chart16;
 function crearGraficoApilado() {
@@ -1057,6 +986,75 @@ function crearGraficoOperadores() {
 }
 let miCanvas17 = document.getElementById('MiGrafica15').getContext('2d')    
 let chart18;
+
+function crearGraficoParticipacion() {
+  const padreGrafica12 = document.querySelector('#padre-grafica6');
+  padreGrafica12.style.display = 'flex';
+  const canvas = document.getElementById('MiGrafica12');
+
+  // Destruir grafico previo
+  if (chart15) {
+    chart15.destroy();
+    chart15 = null;
+  }
+
+  canvas.style.display = 'none';
+  setTimeout(() => canvas.style.display = 'block', 100);
+
+  const ctx = canvas.getContext('2d');
+
+  const configLine = {
+    type: 'line',
+    data: {
+      labels: ['Mecánicas', 'Layout','Diseño','Temporales','Fijas','Transición'],
+      datasets: [
+        {
+          label: 'Participación en M.A',
+          data: [17, 9, 27, 55, 19, 33],
+          borderColor: 'rgb(0,0,255)',
+          backgroundColor: 'rgb(0,255,255)',
+          borderWidth: 1,
+          pointRadius: 2,
+          pointBackgroundColor: 'rgb(0,255,255)',
+          tension: 0.3
+        }
+      ]
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 1500,              // igual que el correcto
+        easing: 'easeOutQuart'      // igual
+      },
+      plugins: {
+        legend: {
+        display: false },
+        title: {
+          display: true,
+          text: 'Variación general',
+          font: { size: 13 },
+          color: 'rgb(111,111,111)'
+        }
+      },
+      scales: {
+        x: {
+          min: 0,
+          max: 150,          
+          grid: { display: false },
+          ticks: { color: '#fff', font: { size: 7 } }
+        },
+        y: {
+          grid: { display: false },
+          ticks: { beginAtZero: true, color: '#fff', font: { size: 7 } }
+        }
+      }
+    }
+  };
+
+  chart15 = new Chart(ctx, configLine);
+
+}
 function obtenerDiasDelMes(nombreMes) {
   switch (nombreMes.toLowerCase()) {
     case 'enero':
@@ -1296,6 +1294,18 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
     }
   });
   
+});
+const mesCalendario = document.getElementById('calendario-mes');
+mesCalendario.addEventListener('click', (e) => {
+  const dia = e.target.closest('.dia');
+  if (!dia || dia.classList.contains('vacio')) return;
+
+  // quitar estado activo a todos
+  mesCalendario.querySelectorAll('.dia.activo')
+    .forEach(d => d.classList.remove('activo'));
+
+  // activar el clicado
+  dia.classList.add('activo');
 });
 const btnDynamic = document.getElementById('dynamic-graphs');
 const btnStatic = document.getElementById('static-graphs');
@@ -1912,7 +1922,7 @@ function ingresoEmpleadoMA(){
 
   const padre = document.getElementById('padre-ingresos-ma'); 
   const hijo = document.getElementById('ingresos-sistema-ma');
-  const inputs = document.querySelectorAll('.verGraficos');
+  /* const inputs = document.querySelectorAll('.verGraficos'); */
   flagEmpleado = true
   padre.removeAttribute('style');
   hijo.removeAttribute('style');
@@ -2560,6 +2570,9 @@ function cargarEmpleadoMA() {
 }
 document.querySelector('#lbl-ingreso-ma').addEventListener('click',()=>{
   cargarEmpleadoMA()
+  setTimeout(() => {
+    aplicarColoresInputs()
+  }, 250);
 })
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
   actualizarIdentificadosMA('M.A')
@@ -2922,16 +2935,6 @@ function alternarResultados(selector) {
   });
 }
 
-function BORRARBORRAR(){
-  console.log('EMPLEADO GLOBAL : ', empleadoGlobal)
-}
-function BORRARBORRARBORRAR(){
-  const empleadosKey = 'empleadosRegistrados';
-  const empleadosLocal = JSON.parse(localStorage.getItem(empleadosKey)) || [];
-  console.log(empleadosLocal);
-
-}
-
 function animarHumanEye() {
   const eye = document.querySelector('#interfaz-perfiles');
   if (!eye) return;
@@ -3078,20 +3081,24 @@ const listarI = document.querySelectorAll('#linkListI li');
 const linksAuxiliar = document.getElementById('links-auxiliar');
 const linksPadre = document.querySelector('#linkListI')
 const linksPadreColor = document.querySelector('#linkList')
-const novenoElemento = listarI[8];
+const novenoElemento = listarI[7];
+let masTiempo = null;
 
 if (listarI.length >= 9) {
 
   novenoElemento.addEventListener('mouseenter', () => {
-    setTimeout(() => {
-      linksAuxiliar.style.display='block'      
-    }, 100);
+    masTiempo = setTimeout(() => {
+      linksAuxiliar.style.display = 'block';
+    }, 250);
   });
 
   novenoElemento.addEventListener('mouseleave', () => {
+    if (masTiempo) {
+      clearTimeout(masTiempo);
+      sobreTmasTiempoiempo = null;
+    }
     linksAuxiliar.style.display = 'none';
   });
-
 }
 
 linksAuxiliar.addEventListener('mouseleave', (e) => {
@@ -3108,20 +3115,49 @@ linksAuxiliar.addEventListener('mouseleave', (e) => {
 
 
 const listar = document.querySelectorAll('#linkList > li');
+const listarDos = document.querySelectorAll('#links-color > li');
+
 const septimoElemento = listar[6];
+const quintoElemento = listarDos[4];
+
 const linksColor = septimoElemento.querySelector('#links-color');
+const linksTec = quintoElemento.querySelector('.submenu-colorimetria'); 
+
 
 if (!septimoElemento || !linksColor) {
   throw new Error('Elemento requerido no encontrado');
 }
+if (!quintoElemento || !linksTec) {
+  throw new Error('Elemento requerido no encontrado');
+}
+
+
+let sobreTiempo = null;
 
 septimoElemento.addEventListener('mouseenter', () => {
-  linksColor.style.display = 'block';
-  document.querySelector('#simulador').style.display='block'
+  sobreTiempo = setTimeout(() => {
+    linksColor.style.display = 'block';
+  }, 250);
+});
+quintoElemento.addEventListener('mouseenter', () => {
+  sobreTiempo = setTimeout(() => {
+    linksTec.style.display = 'block';
+  }, 250);
 });
 
 septimoElemento.addEventListener('mouseleave', () => {
+  if (sobreTiempo) {
+    clearTimeout(sobreTiempo);
+    sobreTiempo = null;
+  }
   linksColor.style.display = 'none';
+});
+quintoElemento.addEventListener('mouseleave', () => {
+  if (sobreTiempo) {
+    clearTimeout(sobreTiempo);
+    sobreTiempo = null;
+  }
+  linksTec.style.display = 'none';
 });
 
 
@@ -3131,12 +3167,12 @@ hijos.forEach((li, index) => {
     e.stopPropagation();
 
     if (index === 0) {
-      ingresoEmpleadoMA()
-    }
-    if (index === 1) {
       ingresoEmpleado()
     }
     if (index === 2) {
+      ingresoEmpleadoMA()
+    }
+    if (index === 3) {
       resultadosMA('interfaz-mtto')
     }
 
@@ -3155,6 +3191,237 @@ hijosColor.forEach((li, index) => {
     }
   });
 });
+
+hijosTec.forEach((li, index) => {
+  li.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    if (index === 0) {
+       ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
+    }
+    if (index === 1) {
+      ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form')
+    }
+  });
+});
+
+/* document.querySelectorAll('.fila-ingreso-ma input').forEach(input => {
+
+  input.addEventListener('input', () => {
+    // eliminar caracteres no numéricos
+    input.value = input.value.replace(/[^0-9]/g, '');
+
+    const valor = Number(input.value);
+
+    input.classList.remove(
+      'rango-rojo',
+      'rango-naranja',
+      'rango-verde'
+    );
+
+    if (input.value === '') return;
+
+    if (valor >= 0 && valor <= 4) {
+      input.classList.add('rango-rojo');
+    } 
+    else if (valor >= 5 && valor <= 7) {
+      input.classList.add('rango-naranja');
+    } 
+    else if (valor >= 8 && valor <= 10) {
+      input.classList.add('rango-verde');
+    }
+  });
+
+}); */
+
+function aplicarColoresInputs() {
+  document
+    .querySelectorAll('input[data-colorable]')
+    .forEach(input => {
+      const value = Number(input.value);
+
+      if (Number.isNaN(value)) {
+        input.style.backgroundColor = '';
+        return;
+      }
+
+      if (value <= 4) {
+        input.style.backgroundColor = '#CC3333';
+        input.style.color = '#FFFFFF';
+      } else if (value >=5 && value <=8) {
+        input.style.backgroundColor = '#F9A536';
+        input.style.color = '#000000';
+      } else {
+        input.style.backgroundColor = '#8CE15B';
+        input.style.color = '#000000';
+      }
+    });
+}
+
+function aplicarColorPorValor(input) {
+  const value = Number(input.value);
+
+  if (Number.isNaN(value)) {
+    input.style.backgroundColor = '';
+    return;
+  }
+
+  let color;
+
+  if (value <= 4) {
+    color = '#CC3333';
+    input.style.color = '#FFFFFF'; 
+  } else if (value <= 8) {
+    color = '#F9A536';
+    input.style.color = '#000000';
+  } else {
+    color = '#8CE15B';
+    input.style.color = '#000000';
+  }
+
+  
+
+  input.style.backgroundColor = color;
+}
+
+document.addEventListener('blur', (e) => {
+  if (e.target.matches('input[data-colorable]')) {
+    aplicarColorPorValor(e.target);
+  }
+}, true);
+
+
+
+
+/* function contarLedsIdentificados() {
+  return document.querySelectorAll(
+    '#led-identificados .led-celda.led-verdes'
+  ).length;
+}
+function contarLedsCorregidos() {
+  return document.querySelectorAll(
+    '#led-corregidos .led-celda.led-verdes'
+  ).length;
+}
+function contarLedsTipoA() {
+  return document.querySelectorAll(
+    '#led-tipo-a .led-celda.led-verdes'
+  ).length;
+}
+function contarLedsTipoB() {
+  return document.querySelectorAll(
+    '#led-tipo-b .led-celda.led-verdes'
+  ).length;
+}
+function contarLedsKaizen() {
+  return document.querySelectorAll(
+    '#led-kaizen .led-celda.led-verdes'
+  ).length;
+}
+function contarLedsAdas() {
+  return document.querySelectorAll(
+    '#led-adas .led-celda.led-verdes'
+  ).length;
+}
+function contarLedsAdt() {
+  return document.querySelectorAll(
+    '#led-adt .led-celda.led-verdes'
+  ).length;
+}
+function contarLedsLup() {
+  return document.querySelectorAll(
+    '#led-lup .led-celda.led-verdes'
+  ).length;
+}
+
+
+function contarLedsSinColorIdentificados() {
+  return Number(10 - contarLedsIdentificados());
+}
+function contarLedsSinColorCorregidos() {
+  return Number(10 - contarLedsCorregidos());
+}
+function contarLedsSinColorTipoA() {
+  return Number(10 - contarLedsTipoA());
+}
+function contarLedsSinColorTipoB() {
+  return Number(10 - contarLedsTipoB());
+}
+function contarLedsSinColorKaizen() {
+  return Number(10 - contarLedsKaizen());
+}
+function contarLedsSinColorAdas() {
+  return Number(10 - contarLedsAdas());
+}
+function contarLedsSinColorAdt() {
+  return Number(10 - contarLedsAdt());
+}
+function contarLedsSinColorLup() {
+  return Number(10 - contarLedsLup());
+}
+
+
+function BORRRRAR(){
+  console.log('Grillas verdes identificados:', contarLedsIdentificados());
+  console.log('Grillas sin color identificados:', contarLedsSinColorIdentificados());
+  console.log('Grillas verdes corregidos:', contarLedsCorregidos());
+  console.log('Grillas sin color corregidos:', contarLedsSinColorCorregidos());
+  console.log('Grillas verdes Tipo A:', contarLedsTipoA());
+  console.log('Grillas sin color Tipo A:', contarLedsSinColorTipoA());
+  console.log('Grillas verdes Tipo B:', contarLedsTipoB());
+  console.log('Grillas sin color Tipo B:', contarLedsSinColorTipoB());
+  console.log('Grillas verdes Kaizen:', contarLedsKaizen());
+  console.log('Grillas sin color Kaizen:', contarLedsSinColorKaizen());
+  console.log('Grillas verdes ADAs:', contarLedsAdas());
+  console.log('Grillas sin color ADAs:', contarLedsSinColorAdas());
+  console.log('Grillas verdes ADT', contarLedsAdt());
+  console.log('Grillas sin color ADT:', contarLedsSinColorAdt());
+  console.log('Grillas verdes LUP', contarLedsLup());
+  console.log('Grillas sin color LUP:', contarLedsSinColorLup());
+
+} */
+
+
+
+
+  const INDICADORES = [
+  'led-identificados',
+  'led-corregidos',
+  'led-tipo-a',
+  'led-tipo-b',
+  'led-kaizen',
+  'led-adas',
+  'led-adt',
+  'led-lup'
+];
+
+function contarLeds(id, total = 10) {
+  const contenedor = document.getElementById(id);
+  if (!contenedor) return { verdes: 0, sinColor: total };
+
+  const verdes = contenedor.querySelectorAll(
+    '.led-celda.led-verdes'
+  ).length;
+
+  return {
+    verdes,
+    sinColor: total - verdes
+  };
+}
+
+function obtenerEstadoLeds() {
+  const estado = {};
+
+  INDICADORES.forEach((id) => {
+    estado[id] = contarLeds(id);
+  });
+
+  return estado;
+}
+
+
+
+
 
 
 

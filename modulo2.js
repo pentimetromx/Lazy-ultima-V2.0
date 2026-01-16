@@ -4422,7 +4422,7 @@ function secondMovement(){
   incrementoHeight(barraII, pantallaII,'intervaloII',15);
   incrementoHeight(barraIII, pantallaIII,'intervaloIII',25);
   incrementoHeight(barraIV, pantallaIV,'intervaloIV',35);
-  incrementoHeight(barraV, pantallaV,'intervaloV',45)  
+  incrementoHeight(barraV, pantallaV,'intervaloV',45)    
   incrementoWidthI()
 }  
 function thirdMovement(){
@@ -4573,6 +4573,7 @@ document.getElementById('butt-sitio').addEventListener('click', () => {
     }
   }
   container1.style.display='grid' 
+    document.getElementById('conti-boton').style.top=''
   document.getElementById('butt-sitio').style.display='none'
   ElementosMaII('conteneMantaut')
 })
@@ -4627,11 +4628,13 @@ function cerrarVentanasII() {
     document.body.style.zoom = "100%";
     container1.style.display = 'grid';
     document.querySelector('#conti-boton').style.display='grid'
+    document.querySelector('#conti-boton').style.top=''
 
     const troubleshooting = document.getElementById('troubleshooting');
     if (troubleshooting) {
       troubleshooting.style.display = 'grid';
       troubleshooting.style.left = '';
+      troubleshooting.style.top = '';
     }
 
     const linksMA = document.getElementById('linksMA');
@@ -5160,7 +5163,7 @@ elementosMes.forEach((mes, index) => {
     mostrarCalendario(mes.textContent.trim());
     setTimeout(mostrarSemanasSecuencialmente, 50);
     aplicarLogicaPorMes(mes.textContent.trim());
-    destruirCharts(); // aquí sí tienen alcance
+    destruirCharts();
     
     document.querySelector('#titulo-mes').textContent = mes.textContent.trim();
     mesGlobal = mes.textContent.trim();

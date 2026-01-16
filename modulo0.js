@@ -182,6 +182,7 @@ const segundoItem = document.querySelector('#vinculos-ma li:nth-child(2)');
 const padre = document.getElementById('ingreso-padre');
 const hijos = document.querySelectorAll('#links-auxiliar li');
 const hijosColor = document.querySelectorAll('#links-color li');
+const hijosTec = document.querySelectorAll('.submenu-colorimetria li');
 
 
 var currentRotation = 0;
@@ -1152,7 +1153,7 @@ function restaurarEstilosPadre(idContenedor) {
 }
 function restablecerPosiciones(claseElto) {
   if (!Array.isArray(claseElto)) {
-    console.error('El parámetro debe ser un array de selectores.'); 
+    console.error('El parámetro debe ser un array de selectores.');
     return;
   }
   claseElto.forEach(selector => {
@@ -1733,13 +1734,6 @@ function mostrarVentanaMensaje(texto) {
 btnAgregar.addEventListener('mouseleave',()=>{
   detenerAlternarColor(btnDblFlecha)
 })
-
-function vaciarEmpleadosEnLocal() {
-  empleadoGlobal = null
-  const empleadosKey = 'empleadosRegistrados';
-  localStorage.setItem(empleadosKey, JSON.stringify([]));
-  console.log('Lista de empleados vaciada, variable conservada.');
-}
 
 btnLimpiar.addEventListener('click', () =>{
   if(flagEmpleado === false){

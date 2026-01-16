@@ -2,7 +2,11 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z': 
-        mostrarLocalStorageComoJSON() 
+        const estadoLeds = obtenerEstadoLeds();
+        Object.entries(estadoLeds).forEach(([id, { verdes, sinColor }]) => {
+          console.log(id, 'verdes:', verdes, 'sin color:', sinColor);
+        });
+     
       break;  
       case 'H':      
         estadoListados()
@@ -7056,6 +7060,7 @@ function renderizaMezclaCMYK() {
 configurarBoton('#boton-seis', '#padre-cmyk', () => resetBotonMezclador('padre-cmyk'));
 configurarBoton('#boton-rgb', '#padre-rgb', () => resetBotonMezclador('padre-rgb'));
 configurarBoton('#boton-cmyk','#padre-cmyk', '')
+
 configurarBoton('#boton-rgb-alternar','#padre-rgb', '') 
 configurarBoton('#boton-rgb-salir','#padre-rgb', '')
 configurarBoton('#boton-cmyk-salir','#padre-cmyk', '')
@@ -7091,7 +7096,7 @@ document.querySelectorAll('.alterna-panel').forEach(btn => {
 document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{ 
   let slidersCMYK = document.querySelector('#container-slider')
 
-  var elementosExcluidos = ['colorCMYK','container-slider','simulador'] 
+  var elementosExcluidos = ['colorCMYK','container-slider','simulador','container01','links-inicialesI','links-iniciales','buscador','search-form'] 
   for (var i = 0; i < allContenedores.length; i++) { 
     var element = document.getElementById(allContenedores[i])
     if (element) {
@@ -7106,7 +7111,7 @@ document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{
 document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
   let slidersRGB = document.querySelector('#padre-controles')
 
-  var elementosExcluidos = ['colorDisplay','padre-controles','simulador'] 
+  var elementosExcluidos = ['colorDisplay','padre-controles','simulador','container01','links-inicialesI','links-iniciales','buscador','search-form'] 
   for (var i = 0; i < allContenedores.length; i++) { 
     var element = document.getElementById(allContenedores[i])  
     if (element) {
