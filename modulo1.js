@@ -642,7 +642,7 @@ function cambiaColorBotones(){
   }, 500);
   botones.forEach((boton, index) => {
     setTimeout(() => {
-      boton.style.backgroundColor = 'rgb(0,255,0)';
+      boton.style.backgroundColor = 'rgba(33,33,33,0.5)';
       boton.style.color = '#F2F6F7'
     }, 35 * index + 7);
   });
@@ -2948,18 +2948,20 @@ function listaEntrenamientosII(btnList) {
     });
     container1.style.display = 'grid';
     document.querySelector('#conti-boton').style.display = 'grid';
+    document.querySelector('#conti-boton').style.top=''
     document.getElementById('troubleshooting').style.display = 'grid';
   };
+
 
   const actualizarBotones = (btnActivo) => {
     contiBtt.forEach(id => {
       const boton = document.getElementById(id);
       if (!boton) return;
-      const activo = id === btnActivo;
-      boton.style.backgroundColor = activo ? '#4CAF50' : '';
-      boton.style.color = activo ? 'white' : 'black';
+      boton.classList.toggle('activo', id === btnActivo);
+      /* boton.style.borderRadius='7px' */
     });
   };
+
 
   switch (btnList) {
     case 'archivo':
@@ -2969,7 +2971,6 @@ function listaEntrenamientosII(btnList) {
       actualizarBotones(btnList);
       if (screenWidth < 500) {  }
       break;
-
     case 'btt2':
     case 'btt3':
     case 'btt4':
@@ -3042,6 +3043,7 @@ function imagenesPasoApaso(id) {
   desactivarClicsPorUnTiempo(500);
 
   const solucionador = document.getElementById('troubleshooting');
+  const botoneras = document.querySelector('#conti-boton')
   const conteLink = document.getElementById('linksMA');
   const botones = document.getElementsByClassName('colorClick');
   const padre1 = document.getElementById('padre-1');
@@ -3058,7 +3060,7 @@ function imagenesPasoApaso(id) {
 
   const pasos = {
     link1: {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'butt-links-II', 'largoImpresion', 'linksMA', 'linkLis', 'imag1', 'contImgEntrenos', 'control-neumatico', 'padre-1'],
+      excluidos: [ 'conteneMantaut', 'butt-links-II', 'largoImpresion', 'linksMA', 'linkLis', 'imag1', 'contImgEntrenos', 'control-neumatico', 'padre-1'],
       scroll: 'control-neumatico',
       accion: () => {
         padre1.style.top = '20vh';
@@ -3068,7 +3070,7 @@ function imagenesPasoApaso(id) {
       }
     },
     link2: {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'linksMA', 'butt-links-II', 'linkLis', 'conteneMantaut', 'largoImpresion', 'contImgEntrenos', 'padre-2', 'imag2', 'pneumatico', 'contImaginario-III'],
+      excluidos: ['linksMA', 'butt-links-II', 'linkLis', 'conteneMantaut', 'largoImpresion', 'contImgEntrenos', 'padre-2', 'imag2', 'pneumatico', 'contImaginario-III'],
       scroll: 'pneumatico',
       accion: () => {
         padre2.style.top = '20vh';
@@ -3078,7 +3080,7 @@ function imagenesPasoApaso(id) {
       }
     },
     contImaginario: {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'contImaginario', 'imag3', 'bailarina'],
+      excluidos: ['largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'contImaginario', 'imag3', 'bailarina'],
       scroll: 'bailarina',
       accion: () => {
         aparecerElemento("contImaginario", "flex");
@@ -3087,7 +3089,7 @@ function imagenesPasoApaso(id) {
       }
     },
     'contImaginario-II': {
-      excluidos: ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'imag4', 'rodillo-infeed', 'contImaginario-II'],
+      excluidos: [ 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'imag4', 'rodillo-infeed', 'contImaginario-II'],
       scroll: 'rodillo-infeed',
       accion: () => {
         padre3.style.top = '20vh';
@@ -3097,7 +3099,7 @@ function imagenesPasoApaso(id) {
       }
     },
     'puesta-punto': {
-      excluidos: ['buscador', 'search-form', 'padre-instrucciones','links-inicialesI', 'links-iniciales', 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'puesta-punto'],
+      excluidos: ['largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'puesta-punto'],
       scroll: 'puesta-punto',
       accion: () => {
         padre3.style.top = '20vh';
@@ -3118,16 +3120,18 @@ function imagenesPasoApaso(id) {
     if (el) el.style.display = paso.excluidos.includes(elId) ? 'flex' : 'none';
   });
 
-  container1.style.display = 'grid';
-  document.querySelector('#conti-boton').style.display = 'grid';
+  /* container1.style.display = 'grid'; */
+  botoneras.style.display = 'grid';
+  botoneras.style.top='14vh'
   solucionador.style.display = 'grid';
   solucionador.style.left = (screenWidth < 500) ? '2px' : '11.5%';
+  solucionador.style.top='15vh'
 
   // Ajuste de posición de enlaces
-  const linksI = document.getElementById('links-inicialesI');
+  /* const linksI = document.getElementById('links-inicialesI');
   const links = document.getElementById('links-iniciales');
   linksI.style.left = (screenWidth < 500) ? '47vw' : '107vw';
-  links.style.left = (screenWidth < 500) ? '47vw' : '127vw';
+  links.style.left = (screenWidth < 500) ? '47vw' : '127vw'; */
 
   // Ejecutar acción específica del paso
   paso.accion();
@@ -4391,6 +4395,7 @@ function mostrarImagenSuperior(imagenClicada) {
     document.querySelector('#canvasContainer7').classList.remove('move-canvas-4');
     document.querySelector('#canvasContainer8').classList.remove('move-canvas-5');
     document.querySelector('#canvasContainer9').classList.remove('move-canvas-6');
+    document.querySelector('#metas-diarias').style.display='none'
     const padreLineas = document.querySelector('#contLineas');
     padreLineas.style.display = 'grid';
     padreLineas.querySelectorAll('*').forEach(hijo => {
@@ -4481,12 +4486,11 @@ function resultadosMA(identificador){
   
   container1.style.display='grid'
 
-  rutasFotos.forEach(ruta => {
+  /* rutasFotos.forEach(ruta => {
     const span = document.createElement('span');
     span.textContent = ruta;
     contenedor.appendChild(span);
-  });
- 
+  }); */
 
   const padre = document.querySelector('.contenedor-visor');
   // elimina todos los estilos en línea del padre y sus hijos

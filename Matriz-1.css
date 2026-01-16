@@ -238,9 +238,10 @@ color: white;
   z-index: 9999;
 }
 #links-color{
-  left:-60%;
-  top: 29.5vh;  
-  width:60%;
+  margin-left: -170%;
+  width: 70%;
+  top: 7%;
+  height:200%;
 }
 .auxiliar-links{
   position: absolute;
@@ -255,7 +256,7 @@ color: white;
   color: #2b2b2b;
 
   left:100%;
-  top:116.3%;
+  top:-3%;
   height:50%;
   width:100%;
   display: none;
@@ -273,7 +274,6 @@ color: white;
 #links-auxiliar{
   font-size:1.3vw;
 }
-
 .iridescent-element{
   position: absolute;
   display: flex;
@@ -315,16 +315,21 @@ color: white;
   width:100%;
   font-size: 1vw;
 }
+.submenu-colorimetria{
+  display: none;
+}
+.submenu-colorimetria li,
 .iridescent-element li {
   padding: 10px;
   font-size:0.6em;
+  color: rgb(55,55,55);
   cursor: pointer;
   background-color: #e0e0e0;
   border-bottom: 2px solid #aaa;
   border-top: 2px solid #fff;
   transition: background-color 0.5s ease, color 0.8s ease;  
 }
-
+.submenu-colorimetria li:hover,
 .iridescent-element li:hover {
   background-color: rgba(6, 31, 223,0.9);
   color: #fff;
@@ -1281,7 +1286,7 @@ width:447px ;
   align-items: center;
   width: 100%;
   height: 100%;
-  overflow: hidden;     /* evita que se vea desbordado */
+  overflow: hidden;  
   border: 1px solid rgba(155,155,155,0.2);
   border-radius: 5px;
 }
@@ -1328,16 +1333,6 @@ width:447px ;
   margin: 10px;
   transition: transform 2.5s ease;
 }
-/* #MiGrafica15,
-#MiGrafica14,
-#MiGrafica13,
-#MiGrafica12,
-#MiGrafica11,
-#MiGrafica10{
-  transition: transform 2.5s ease;
-  width: 50%;
-  height: 90%;
-} */
 #cont-links {
   position: absolute;
   display: flex;
@@ -2640,6 +2635,8 @@ h6{
 }
 #troubleshooting .miBoton{
   font-size:0.8vw;
+  color: black;
+  transition: all 0.2s ease;  
 }
 .contenedor-pariente {
   position: absolute;
@@ -2665,10 +2662,17 @@ h6{
   color: rgb(0,0,33);
   font-size:0.6em;
   cursor: pointer; 
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
 }
 .miBoton:hover {
-  background-color: #FFBF00;
+  background-color: rgba(33,33,33,0.5);
+  color: white;
+  border: 1px solid rgba(200,200,200,0.5);
+  border-radius: 7px;
+  transform: scale(0.9);  
+}
+.miBoton.activo {
+  background-color: rgb(90, 95, 102);
   color: white;
 }
 .inpt-class{
@@ -3498,9 +3502,6 @@ elemento.visible {
   overflow: hidden;
 }
 
-
-
-
 #descripcion-I{
   position:relative;
   display: flex;
@@ -3541,10 +3542,6 @@ elemento.visible {
   transition: transform 1.6s ease;
   display: none;
 }
-
-
-
-
 
 #cont-titulo-calidad,
 #cont-titulo-comercial,
@@ -3809,7 +3806,7 @@ elemento.visible {
   display: grid;
   grid-template-rows: repeat(11, 1fr);
   place-items: center;  
-  top:5vh;
+  top:4vh;
   left:1vw;
   width:15vw;
   height:60vh;
@@ -4728,8 +4725,6 @@ input.numero{
 input.numero:focus {
   border-color: blue;
 }
-
-
 #padre-circle {
   position: absolute;
   display: flex;
@@ -4743,7 +4738,6 @@ input.numero:focus {
   width: 3.7vw;
   height: 6.7vh;
 }
-
 /* Quitar el absolute innecesario */
 #circle {
   display: flex;
@@ -4759,7 +4753,6 @@ input.numero:focus {
   overflow: hidden;
   display: none;  /* si quieres ocultarlo inicialmente */
 }
-
 /* También quitar absolute aquí */
 #padre-circle h6 {
   top: 120%;
@@ -4767,10 +4760,6 @@ input.numero:focus {
   margin-left: -50%;
   display: none;
 }
-
-
-
-
 #conte-ayudas{
   position: absolute;
   display: flex;
@@ -6712,7 +6701,7 @@ height:100%;
 }
 #cont-span-semanas .span-semana:hover{
   background-color: rgb(40, 180, 110);
-  color: black;
+  color: black !important;
 }
 .titulo-graf-ma{
   transition: transform 1s ease, filter 0.5s ease;
@@ -6762,7 +6751,14 @@ height:100%;
   display: flex;
   transform: scale(1); /* tamaño normal definido por CSS */
 }
-
+.semana {
+  position: relative;
+  display:flex;
+  flex-direction: row;
+  gap: 5px;
+  height:100%;
+  width: 100%;
+}  
 .dia {
   position:relative;
   display: flex;
@@ -6780,7 +6776,17 @@ height:100%;
 
   background-color: rgba(255, 255, 255, 0.05);
   transition: background-color 0.3s ease, color 0.3s ease;
-}  
+} 
+.dia:hover{
+  background-color: rgb(40, 180, 110);
+  color: rgb(40, 0, 0);
+}
+.dia.activo {
+  background-color: rgb(40, 180, 110);
+  color: rgb(40, 0, 0);
+}
+
+
 
 #metas-diarias{
   position:absolute;
@@ -6808,14 +6814,6 @@ height:100%;
   color: rgb(177,255,255);
   margin-right:6px;
 }
-.semana {
-  position: relative;
-  display:flex;
-  flex-direction: row;
-  gap: 5px;
-  height:100%;
-  width: 100%;
-}  
 .vacio {
   background-color: #f0f0f085;
   border: none;
@@ -6888,10 +6886,6 @@ height:100%;
   left:100vw;
   transition: transform 0.5s ease;
 }
-.dia:hover{
-  background-color: rgb(40, 180, 110);
-  color: rgb(40, 0, 0);
-}
 .tarea {
   margin-bottom: 5px;
 }
@@ -6946,7 +6940,7 @@ height:100%;
 .columna-izq-ma{
   display: grid;
   grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
- 
+  padding-left: 10px;
 }
 .columna-centro{
   position: relative;
@@ -7019,21 +7013,13 @@ height:100%;
 #lbl-ingreso:hover,
 .fila-ingreso {
   display: flex;
+  left: 10%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
   gap: 10%;
 } 
-.fila-ingreso-ma{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items:flex-start;
-  height: 100%;
-  padding-left: 8px;
-  gap: 5%;
-}
 .columna-derecha {
   position: relative;
   top: 5%;
@@ -7082,9 +7068,6 @@ height:100%;
   background-image: url();
   font-size: 0.9vw;
 }
-
-
-
 #lbl-ingreso-ma,
 #lbl-ingreso{
   position: relative;
@@ -7108,7 +7091,6 @@ height:100%;
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 
 }
-
 .columna-derecha > input{
   width: 100%;
   height:100%;
@@ -7134,6 +7116,18 @@ height:100%;
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
 }
+
+.fila-ingreso-ma{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;   /* alineación horizontal a la derecha */
+  align-items:center;
+  height: 100%;
+  width: 95%;
+  padding-left: 8px;
+  gap: 5%;
+}
+
 .fila-ingreso-ma > input{
   width: 30%;
   height:50%;
@@ -7141,19 +7135,40 @@ height:100%;
   box-sizing: border-box;
   border: none;
   outline: none;  
-  background-color: rgb(0,0,50);
+  /* background-color: rgb(0,0,50); */
   color: #52E3F6;
   padding: 0.2rem 0.6rem;
   border-radius: 4px;
+  text-align:center;
 }
 .columna-derecha > label,
 .fila-ingreso-ma > label,
 .fila-ingreso > label{
   width: 90%;
   box-sizing: border-box;
-  color:#2e2e2e;  
-  font-size: 0.6rem;  
+  color:rgb(33,33,33);  
+  font-size: 0.6rem; 
 }
+.fila-ingreso-ma > label{
+  text-align: right; 
+}
+
+.rango-rojo{
+  background-color: rgb(120, 0, 0);
+  color: #fff;
+}
+
+.rango-naranja{
+  background-color: rgb(255, 130, 0);
+  color: #000;
+}
+
+.rango-verde{
+  background-color: rgb(0, 120, 60);
+  color: #fff;
+}
+
+
 .metricas-empleado {
   position: relative;
   display: block;
@@ -7187,7 +7202,6 @@ height:100%;
   display: flex;
   transform: scale(1); 
 }
-
 #contenedor-global {
   position: relative;
   display: block;
@@ -7274,9 +7288,6 @@ height:100%;
 .columna-derecha {
   min-height: 0;
 }
-.columna-izq-ma{
-  padding-left: 10px;
-}
 .ventana-mensaje{
   position: absolute;
   display: grid;
@@ -7323,7 +7334,7 @@ height:100%;
 }
 #listaFotos {
   position: absolute;
-  margin-left: -5vw;
+  margin-left:2vw;
   border-radius: 7px;
   background-color: rgba(0, 0, 20, 0.5);
   border: 1px solid #ccc;
@@ -7333,16 +7344,30 @@ height:100%;
   overflow-y: auto;
   display: none;
   z-index: 10;
+  box-sizing: border-box;
 }
-#listaFotos div {
-  padding: 5px;
+ #listaFotos > div {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   cursor: pointer;
-  font-family: monospace;
+  white-space: nowrap;
 }
+
 #listaFotos div:hover {
   background: #ddd;
   color: #2f2f2f;
 }
+
+#listaFotos::-webkit-scrollbar {
+  width: 18px;
+}
+
+#listaFotos::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.4);
+  border-radius: 4px;
+}
+
+
 #abuelo-indicadores{
   position: absolute;
   display: grid;
@@ -7650,13 +7675,6 @@ background-color: #3FEF9C;
   width: 2.2ch;   /* espacio para 2 dígitos, ajusta si necesitas más */
   text-align: right;
 }
-
-
-
-
-
-
-
 #decisiones-estrategicas.panel-estrategico {
   position: absolute;
   display: flex;
@@ -7705,6 +7723,3 @@ background-color: #3FEF9C;
 .bloque ul {
   padding-left: 20px;
 }
-
-
-
