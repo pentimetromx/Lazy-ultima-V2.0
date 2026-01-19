@@ -233,12 +233,12 @@ function muestraRodillo (vidElem, imgCont){
   }
 }
 function muestraHumedad(){
-var contImgsIsopropil = document.getElementById('imgsIsopropil')
-const pict = contImgsIsopropil.getElementsByTagName('img') 
-contImgsIsopropil.style.display = 'flex'
-for (let i = 0; i < pict.length; i++) {
-pict[i].style.display = 'block'
-}
+  var contImgsIsopropil = document.getElementById('imgsIsopropil')
+  const pict = contImgsIsopropil.getElementsByTagName('img') 
+  contImgsIsopropil.style.display = 'flex'
+  for (let i = 0; i < pict.length; i++) {
+  pict[i].style.display = 'block'
+  }
 }
 async function applyImageEffects(selector) {
   const imageElements = document.querySelectorAll(selector);

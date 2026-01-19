@@ -1056,14 +1056,16 @@ function rodillosKaizen(idButton,vidElem) {
       })
     break;
     case 'btn17':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','kaizen-propuestos']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
       } 
-      aparecerElemento("kaizen-propuestos", "flex")
+      /* aparecerElemento("kaizen-propuestos", "flex") */
+      document.querySelector('#kaizen-propuestos').style.display='grid'
+      document.querySelector('#kaizen-propuestos').style.height='50vh'
       container1.style.display='grid'
       contiButtRepuest.style.display='grid'
     break;       
@@ -1097,10 +1099,10 @@ function apilarCasos() {
   caso3.style.transform = 'translateY(0)';
 
   setTimeout(() => {
-    caso2.style.transform = 'translateY(100px)';
+    caso2.style.transform = 'translateY(110%)';
   }, 200);
   setTimeout(() => {
-    caso3.style.transform = 'translateY(200px)';
+    caso3.style.transform = 'translateY(220%)';
   }, 200);
 }
 function transicionImagenes() {
@@ -5028,7 +5030,7 @@ function mostrarSecuencialmente() {
     padreElementos.style.top = '40vh'
     padreElementos.style.left = '23vw'
   }else{
-    padreElementos.style.left = '41vw';
+    padreElementos.style.left = '43vw';
   }
 
   elementos.forEach((li, index) => {

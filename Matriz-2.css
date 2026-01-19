@@ -2783,7 +2783,6 @@ width: 70%;
   font-weight: bold;
 }
 
-
 .seis-alerta{
   position: fixed;
   display: grid;
@@ -4562,8 +4561,6 @@ top: 44%;
   pointer-events: none;
 }
 
-
-
 .titulo-graf-ma.blur,
 #cont-span-semanas.blur,
 #meses.blur,
@@ -4876,7 +4873,7 @@ top: 44%;
   display: flex;
   width: 50vw;
   height: 59vh;
-  left: 25vw;;
+  left: 25vw;
   background: rgba(20, 30, 50, 0.85);
   padding: 20px;
   border-radius: 12px;
@@ -4974,7 +4971,6 @@ top: 44%;
   display: none;
 }
 
-
 .navegacion {
   position: relative;
   display: flex;
@@ -5000,7 +4996,6 @@ top: 44%;
   font-size: 1.7vw;
   transition: background 0.2s;
 }
-
 
 .navegacion button:hover {
   background: #3a4c70;
@@ -9413,5 +9408,3 @@ top: 44%;
     pointer-events: none;
   }
 }
-
-
