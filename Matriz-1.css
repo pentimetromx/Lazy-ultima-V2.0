@@ -410,7 +410,6 @@ color: white;
   cursor: pointer;
 }
 
-
 #img-logo{
  position: relative;
  left:-318px;
@@ -1258,7 +1257,6 @@ width:447px ;
   height:65%;
   border-radius: 15px;
 }
-
 
 .graphs-lines {
   display: flex;
@@ -2462,7 +2460,6 @@ header {
   transform: scale(1); /* tamaño normal definido por CSS */
 }
 
-
 #padre-instrucciones {
   position: absolute;
   display: flex;
@@ -2481,7 +2478,6 @@ header {
   transition: transform 1s ease; /* animación de 1000ms */
 
 }
-
 
 #contImaginario{
   position:absolute;
@@ -2517,7 +2513,6 @@ header {
   height:30%;
   gap: 22px;
 }
-
 
 .conte-disco {
   flex: 1;
@@ -2882,7 +2877,6 @@ h6{
   align-items: center;
   color: white;
 }
-
 
 .item-orange{
   position: relative;
@@ -3284,7 +3278,6 @@ elemento.visible {
   color: blue;
 }
 
-
 #porta-imagen {
   position: absolute;
   display:grid;
@@ -3319,7 +3312,6 @@ elemento.visible {
   color: white;
   align-self: center;
 }
-
 
 .contenedor-vertical{
   position:absolute;
@@ -3426,17 +3418,6 @@ elemento.visible {
   transition: transform 0.1s; 
 }
 
-
-
-
-
-
-
-
-
-
-
-
 #cont-titulo{
   position: absolute;
   display:grid;
@@ -3476,9 +3457,6 @@ elemento.visible {
   color: white; 
   margin-bottom: 10px;  
 }
-
-
-
 
 #padre-inicio{
   position: relative;
@@ -4602,43 +4580,41 @@ h4{
   animation: aumentarTamano 1s infinite alternate;
   display: none;
 }
+
+
+
 #kaizen-propuestos{
   position:absolute;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows:repeat(2, 1fr);
   width:69vw;
-  height:70vh;
+  height:50vh;
   left: 29vw;
-  top:22.5vh;
+  top:10vh;
   gap: 4px;
-
-  transition: transform 0.5s ease; /* 501 ms */
   z-index: 2;
-  display: none; /* inicialmente oculto */
-  transform: scale(0); /* inicia reducido */
-  transform-origin: center; /* crece desde el centro */   
+  display: none;
 }
-#kaizen-propuestos.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
-
-.row {
-  flex: 1; 
-  display: flex; 
+.row{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
   gap: 4px;
+  height: 100%;
+  width: 100%;
 }
 .cell {
   flex: 1;
-  display: flex;
-  flex-direction: column; 
+  display: grid;
+  grid-template-rows: 15% 85%;
+  width: 100%;
+  height: 100%;
   border-radius: 19px;
   border: solid 2px orange;
   position: relative;
 }
-.label {
+.cell .label {
   width: 100%;
-  height: 20%; 
+  height: 100%; 
   background-color:rgb(0, 0, 17);
   font-family: 'GothamRounded', sans-serif;
   font-size: 1.3vw;
@@ -4651,10 +4627,15 @@ h4{
 }
 .cell img {
   width: 100%; 
-  height: 80%;
+  height: 100%;
   border-radius:0 0 19px 19px;
-  object-fit: fill;
+  object-fit:cover;
 }
+
+
+
+
+
 .aumentar{ 
   cursor: pointer;
 }
@@ -5648,31 +5629,29 @@ input.numero:focus {
   transform: translateX(77vw)     
 }
 .move-canvas-1{
-  transform: translateX(-3vh) translateY(-14vh);
+  transform: translate(-5%, -51%);
   transition: transform 1.6s ease;
 }
 .move-canvas-2{
-  transform: translateX(-51vh) translateY(-14vh);
+  transform: translate(-113%, -51%);
   transition: transform 1.6s ease;
 }
 .move-canvas-3{
-  transform: translateX(-100vh) translateY(-14vh);
+  transform: translate(-213%, -51%);
   transition: transform 1.6s ease;
 }
 .move-canvas-4{
-  transform: translateX(-3vh) translateY(-46.4vh);
+  transform: translate(-5%, -164%);
   transition: transform 1.6s ease;
 }
 .move-canvas-5{
-  transform: translateX(-51vh) translateY(-46.4vh);
+  transform: translate(-113%, -164%);
   transition: transform 1.6s ease;
 }
 .move-canvas-6{
-  transform: translateX(-100vh) translateY(-46.4vh);
+  transform: translate(-213%, -164%);
   transition: transform 1.6s ease;
 }
-
-
 
  #first_half {
   position: relative;
@@ -6786,20 +6765,29 @@ height:100%;
   color: rgb(40, 0, 0);
 }
 
-
-
 #metas-diarias{
   position:absolute;
   display: flex;
   display: none;
+  flex-direction: column;
   font-family: "Oswald";
   color: yellow;
   font-size: 0.7em;    
   left:42vw;
-  top:22vh;
-  width: 97vw;
-  height: 60vh;
+  top:24vh;
+  width: 29vw;
+  height: 50vh;
   transition: transform 0.5s ease;
+  z-index: 50;
+}
+#metas-diarias .listado-actividades {
+  flex: 1;
+  overflow-y: auto;
+  margin: 0;
+  padding-left: 1.2em;
+  scrollbar-width: auto;
+  scrollbar-color: rgb(177,255,255) rgb(0,0,17);
+  cursor: pointer;
 }
 #metas-diarias li {
   opacity: 0;
@@ -7001,7 +6989,6 @@ height:100%;
     inset -2px -2px 4px rgba(255, 255, 255, 0.3);
 }
 
-
 #modifica-ingreso,
 #nuevo-ingreso{
   width: 32%;
@@ -7167,7 +7154,6 @@ height:100%;
   background-color: rgb(0, 120, 60);
   color: #fff;
 }
-
 
 .metricas-empleado {
   position: relative;
@@ -7366,7 +7352,6 @@ height:100%;
   background-color: rgba(255,255,255,0.4);
   border-radius: 4px;
 }
-
 
 #abuelo-indicadores{
   position: absolute;
@@ -7684,7 +7669,7 @@ background-color: #3FEF9C;
   width: 92%;
   margin: 0 auto;
   padding: 5vh;
-  background: #ffffff;
+  background: rgb(133,133,147);
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   font-family: "Segoe UI", Arial, sans-serif;
@@ -7697,7 +7682,7 @@ background-color: #3FEF9C;
   width: 33%;
   margin-bottom: 24px;
   padding: 20px;
-  background: #f8f9fb;
+  background-color: rgba(33,33,47,0.5);
   border-radius: 10px;
   border-left: 5px solid #0078d4;
 }
@@ -7717,8 +7702,7 @@ background-color: #3FEF9C;
 .bloque p, .bloque ul {
   font-size: 1.2vw;
   margin: 0;
-  color: #333;
-  
+   
 }
 .bloque ul {
   padding-left: 20px;

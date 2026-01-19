@@ -9,7 +9,7 @@ document.addEventListener('keydown', function(event) {
      
       break;  
       case 'H':      
-        estadoListados()
+        aplicarNormalizacionDeColores()
       break;
       case 'X':
         console.log('GLOBAL DESDE X : ', empleadoGlobal)

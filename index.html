@@ -976,35 +976,39 @@
         <source data-src="./assets/kaizen vid.mp4" type="video/mp4">
       </video>
     </div>
+
     <div id="kaizen-propuestos">
+
       <div class="row">
         <div class="cell">
           <div class="label">Salva manos en maquina colectora</div>
-          <img data-src="./assets/kaizen colectora.jpg" class="lazy" alt="colectora">
+          <img data-src="./assets/kaizen colectora.jpg" class="lazy kaizen-img" alt="colectora">
         </div>
         <div class="cell">
           <div class="label">Mejora en linea de ensamble</div>
-          <img data-src="./assets/kaizen fresa.jpg" class="lazy" alt="colectora">
+          <img data-src="./assets/kaizen fresa.jpg" class="lazy kaizen-img" alt="colectora">
         </div>
         <div class="cell">
           <div class="label">Bodega estanteria lijera</div>
-          <img data-src="./assets/kaizen estante.jpg" class="lazy" alt="colectora">
+          <img data-src="./assets/kaizen estante.jpg" class="lazy kaizen-img" alt="colectora">
         </div>
-      </div>      
+      </div>   
+
       <div class="row">
         <div class="cell">
           <div class="label">Metodologia 5S</div>
-          <img data-src="./assets/kaizen 5S.jpg" class="lazy" alt="colector">
+          <img data-src="./assets/kaizen 5S.jpg" class="lazy kaizen-img" alt="colector">
         </div>
         <div class="cell">
           <div class="label">Lean manufacturing</div>
-          <img data-src="./assets/kaizen lean.jpg" class="lazy" alt="colector">
+          <img data-src="./assets/kaizen lean.jpg" class="lazy kaizen-img" alt="colector">
         </div>
         <div class="cell">
           <div class="label">Filosofia kaizen japones</div>
-          <img data-src="./assets/kaizen japones.jpg" class="lazy" alt="colecta">
+          <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
         </div>
       </div>
+
     </div>
 
     <div id="lubricacion">
@@ -2004,8 +2008,7 @@
 
         <div id="canvasContainer4" class="graphs-lines" onclick="openGraphics('canvasContainer4')">
           <canvas id="MiGrafica4"></canvas> 
-        </div> 
-        
+        </div>         
         <div id="canvasContainer5" class="graphs-lines" onclick="openGraphics('canvasContainer5')">
           <canvas id="MiGrafica5"></canvas> 
         </div> 
@@ -2582,6 +2585,7 @@
       <li>Ayudas</li>
       <li onclick="listaEntrenamientosII('archivo')">Volver</li> 
     </ul>
+
     <div id="metas-diarias">
       <ol class="listado-actividades">
         <li><span class="indice">1.</span> Establece objetivos claros y alcanzables para cada día.</li>
@@ -2617,6 +2621,7 @@
         <li><span class="indice">31.</span> Recuerda que cada día es una nueva oportunidad para mejorar.</li>
       </ol>
     </div>
+    
     <div id="contenedor-2" class="calendar-container">
       <h2 class="month-title">March</h2>
       
@@ -3994,11 +3999,6 @@
             <label for="numDoc4">Kaizen</label>
             <input type="text" id="numDoc4-ma" class="entrada-empleado verGraficos" data-colorable>
           </div>   
-
-          <div class="fila-ingreso-ma">
-            <label for="numDoc6">Lup</label>
-            <input type="text"id="numDoc8-ma"class="entrada-empleado verGraficos" data-colorable>
-          </div>
           
           <div class="fila-ingreso-ma">
             <label for="numDoc6">ADA,s</label>
@@ -4008,7 +4008,12 @@
           <div class="fila-ingreso-ma">
             <label for="numDoc6">ADT</label>
             <input type="text"id="numDoc6-ma"class="entrada-empleado verGraficos" data-colorable>
-          </div>           
+          </div>
+          
+          <div class="fila-ingreso-ma">
+            <label for="numDoc6">Lup</label>
+            <input type="text"id="numDoc8-ma"class="entrada-empleado verGraficos" data-colorable>
+          </div>          
       
         </div>
 
@@ -4044,6 +4049,7 @@
       <p>Perfil creado y almacenado</p>
       <button id="cerrarVentana">Cerrar</button>
     </div>
+
     <div id="abuelo-indicadores" class="abuelos current-graph" >
 
       <div id="columna-item">
@@ -4143,10 +4149,11 @@
       </div>
 
     </div>
-
-
+    
     <div id="decisiones-estrategicas" class="panel-estrategico">
-       <h3 class="titulo-panel">Decisiones Estratégicas Basadas en Datos</h3>
+
+      <h3 class="titulo-panel">Decisiones Estratégicas Basadas en Datos</h3>
+
       <section class="bloque">
         <h3 class="subtitulo">Situación Actual</h3>
         <p>
@@ -4196,13 +4203,10 @@
       
     </div>
 
-
-    
    <div class="padre-inputs">
       <button id="borrarBoton" class="borrar-boton">1</button>
       <button id="borrarBoton2" class="borrar-boton">2</button>
     </div>    
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--LIBRERIA DE GRAFICOS-->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>

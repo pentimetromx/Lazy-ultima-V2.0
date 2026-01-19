@@ -1869,6 +1869,7 @@ visor.addEventListener('click', (e) => {
 function reubicarVisor(){
   document.querySelector('#conte-secundario').style.display='flex'
   document.querySelector('.visor').style.width='100%'
+  document.querySelector('#porta-imagen').style.marginTop='3vh'
   const padreRgb = document.querySelector('.contenedor-visor')
   const visorImg = document.querySelector('.visor-imagen')
   padreRgb.style.display = 'flex';
@@ -1877,7 +1878,7 @@ function reubicarVisor(){
   padreRgb.style.justifyContent = 'center';
   padreRgb.style.width='15vw'
   padreRgb.style.height='50vh'
-  padreRgb.style.marginTop = '80px';
+  padreRgb.style.marginTop = '90px';
   padreRgb.style.left='1vw'
   padreRgb.style.border='1px solid #1e90ff'
   visorImg.style.width='100%'
@@ -2266,11 +2267,11 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
 })
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   activarPantallaCompleta()
-  ingresoEmpleadoMA()
+    deslizaContenedor('conti-boton-kaizen','kaizen')
 })
 
 
-  function crearControlLed(idContenedor, idInput, totalLeds = 10) {
+/* function crearControlLed(idContenedor, idInput, totalLeds = 10) {
   const contenedor = document.getElementById(idContenedor);
   let leds = [];
   let indice = 0;
@@ -2298,7 +2299,7 @@ document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   }
 
   construir();
-}
+} */
 const contenedoresLineas = document.querySelectorAll('#contenedor-indicador');
 function waitUntilFull(contenedor, blockout, anchoTotal, timeout = 2000) {
   // Espera hasta que blockout.offsetWidth sea ~ anchoTotal (tolerancia 1px)
@@ -2405,8 +2406,11 @@ primerItem.addEventListener('click', () =>{
   alternarResultados('abuelo-indicadores')
 
   setTimeout(() => {
-    aplicarLedsDesdeEmpleado(empleadoGlobal.nombre);
-  }, 1300); 
+    aplicarLedsDesdeEmpleado(empleadoGlobal.documento);
+  }, 1300);
+  setTimeout(() => {
+    aplicarNormalizacionDeColores()
+  }, 2200); 
   padreLinks.style.display='none'
 })
 
@@ -2414,7 +2418,6 @@ segundoItem.addEventListener('click', () =>{
   padreLinks.style.display='none'
   alternarResultados('padre-desempeños')
 })
-
 
 function aplicarLedsDesdeEmpleado(empleadoGlobal) {
   // 1. Cargar la colección completa
@@ -2425,7 +2428,7 @@ function aplicarLedsDesdeEmpleado(empleadoGlobal) {
   }
 
   // 2. Buscar el empleado seleccionado por nombre
-  const empleado = almacen.find(e => e.nombre === empleadoGlobal);
+  const empleado = almacen.find(e => e.documento === empleadoGlobal);
   if (!empleado) {
     console.error(`No se encontró un empleado con nombre: ${empleadoGlobal}`);
     return;
@@ -2450,8 +2453,7 @@ function aplicarLedsDesdeEmpleado(empleadoGlobal) {
   aplicarLeds(valores);
 }
 
-
-function   aplicarLeds(valores) {
+function aplicarLeds(valores) {
   const ids = [
     'led-identificados',
     'led-corregidos',
@@ -3205,35 +3207,7 @@ hijosTec.forEach((li, index) => {
   });
 });
 
-/* document.querySelectorAll('.fila-ingreso-ma input').forEach(input => {
-
-  input.addEventListener('input', () => {
-    // eliminar caracteres no numéricos
-    input.value = input.value.replace(/[^0-9]/g, '');
-
-    const valor = Number(input.value);
-
-    input.classList.remove(
-      'rango-rojo',
-      'rango-naranja',
-      'rango-verde'
-    );
-
-    if (input.value === '') return;
-
-    if (valor >= 0 && valor <= 4) {
-      input.classList.add('rango-rojo');
-    } 
-    else if (valor >= 5 && valor <= 7) {
-      input.classList.add('rango-naranja');
-    } 
-    else if (valor >= 8 && valor <= 10) {
-      input.classList.add('rango-verde');
-    }
-  });
-
-}); */
-
+//*********************************************************************************************************************** */
 function aplicarColoresInputs() {
   document
     .querySelectorAll('input[data-colorable]')
@@ -3290,101 +3264,7 @@ document.addEventListener('blur', (e) => {
   }
 }, true);
 
-
-
-
-/* function contarLedsIdentificados() {
-  return document.querySelectorAll(
-    '#led-identificados .led-celda.led-verdes'
-  ).length;
-}
-function contarLedsCorregidos() {
-  return document.querySelectorAll(
-    '#led-corregidos .led-celda.led-verdes'
-  ).length;
-}
-function contarLedsTipoA() {
-  return document.querySelectorAll(
-    '#led-tipo-a .led-celda.led-verdes'
-  ).length;
-}
-function contarLedsTipoB() {
-  return document.querySelectorAll(
-    '#led-tipo-b .led-celda.led-verdes'
-  ).length;
-}
-function contarLedsKaizen() {
-  return document.querySelectorAll(
-    '#led-kaizen .led-celda.led-verdes'
-  ).length;
-}
-function contarLedsAdas() {
-  return document.querySelectorAll(
-    '#led-adas .led-celda.led-verdes'
-  ).length;
-}
-function contarLedsAdt() {
-  return document.querySelectorAll(
-    '#led-adt .led-celda.led-verdes'
-  ).length;
-}
-function contarLedsLup() {
-  return document.querySelectorAll(
-    '#led-lup .led-celda.led-verdes'
-  ).length;
-}
-
-
-function contarLedsSinColorIdentificados() {
-  return Number(10 - contarLedsIdentificados());
-}
-function contarLedsSinColorCorregidos() {
-  return Number(10 - contarLedsCorregidos());
-}
-function contarLedsSinColorTipoA() {
-  return Number(10 - contarLedsTipoA());
-}
-function contarLedsSinColorTipoB() {
-  return Number(10 - contarLedsTipoB());
-}
-function contarLedsSinColorKaizen() {
-  return Number(10 - contarLedsKaizen());
-}
-function contarLedsSinColorAdas() {
-  return Number(10 - contarLedsAdas());
-}
-function contarLedsSinColorAdt() {
-  return Number(10 - contarLedsAdt());
-}
-function contarLedsSinColorLup() {
-  return Number(10 - contarLedsLup());
-}
-
-
-function BORRRRAR(){
-  console.log('Grillas verdes identificados:', contarLedsIdentificados());
-  console.log('Grillas sin color identificados:', contarLedsSinColorIdentificados());
-  console.log('Grillas verdes corregidos:', contarLedsCorregidos());
-  console.log('Grillas sin color corregidos:', contarLedsSinColorCorregidos());
-  console.log('Grillas verdes Tipo A:', contarLedsTipoA());
-  console.log('Grillas sin color Tipo A:', contarLedsSinColorTipoA());
-  console.log('Grillas verdes Tipo B:', contarLedsTipoB());
-  console.log('Grillas sin color Tipo B:', contarLedsSinColorTipoB());
-  console.log('Grillas verdes Kaizen:', contarLedsKaizen());
-  console.log('Grillas sin color Kaizen:', contarLedsSinColorKaizen());
-  console.log('Grillas verdes ADAs:', contarLedsAdas());
-  console.log('Grillas sin color ADAs:', contarLedsSinColorAdas());
-  console.log('Grillas verdes ADT', contarLedsAdt());
-  console.log('Grillas sin color ADT:', contarLedsSinColorAdt());
-  console.log('Grillas verdes LUP', contarLedsLup());
-  console.log('Grillas sin color LUP:', contarLedsSinColorLup());
-
-} */
-
-
-
-
-  const INDICADORES = [
+const INDICADORES = [
   'led-identificados',
   'led-corregidos',
   'led-tipo-a',
@@ -3418,6 +3298,55 @@ function obtenerEstadoLeds() {
 
   return estado;
 }
+//*********************************************************************************************************************** */
+
+const estadoIndicadores = {};
+
+function actualizarEstadoIndicadores() {
+  INDICADORES.forEach((id) => {
+    const { verdes } = contarLeds(id);
+    estadoIndicadores[id] = verdes;
+  });
+}
+
+function colorPorCantidadVerdes(verdes) {
+  if (verdes <= 4) return 'red';
+  if (verdes <= 7) return 'orange';
+  return 'green';
+}
+
+function normalizarColorCeldas() {
+  Object.entries(estadoIndicadores).forEach(([id, verdes]) => {
+    const contenedor = document.getElementById(id);
+    if (!contenedor) return;
+
+    const colorFinal = colorPorCantidadVerdes(verdes);
+
+    contenedor
+      .querySelectorAll('.led-celda.led-verdes')
+      .forEach((celda) => {
+        celda.style.backgroundColor = colorFinal;
+      });
+  });
+}
+
+function aplicarNormalizacionDeColores() {
+  actualizarEstadoIndicadores();
+  normalizarColorCeldas();
+}
+//*********************************************************************************************************************** */
+
+
+
+const imagenesKaizen = document.querySelectorAll('.kaizen-img');
+const celdasKaizen = document.querySelectorAll('.cell');
+
+
+
+
+
+
+
 
 
 
