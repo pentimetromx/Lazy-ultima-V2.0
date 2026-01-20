@@ -1068,7 +1068,7 @@ function rodillosKaizen(idButton,vidElem) {
       } 
       /* aparecerElemento("kaizen-propuestos", "flex") */
       document.querySelector('#kaizen-propuestos').style.display='grid'
-      document.querySelector('#kaizen-propuestos').style.height='50vh'
+      /* document.querySelector('#kaizen-propuestos').style.height='50vh' */
       container1.style.display='grid'
       contiButtRepuest.style.display='grid'
     break;       
