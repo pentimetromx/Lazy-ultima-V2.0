@@ -221,12 +221,12 @@ function cerrarAyudas(){
   let video = document.getElementById('prisma-vid-II');
   video.style.left = '';  
 }
-var nuevosDatos = [0, 70, 30, 70, 50, 90];
-var nuevosDatosI = [55, 5, 95, 30, 10, 10];
-var nuevosDatosII = [30, 50, 60, 77, 20, 8]; 
-var nuevosDatosIII = [5, 17, 8, 30, 44, 10];
-var nuevosDatosIIII = [11, 50, 20, 80, 10, 100];
-var nuevosDatosV = [5, 17, 33, 45, 51, 57, 67, 99];
+var nuevosDatos = [0, 40, 50, 60, 70, 80];
+var nuevosDatosI = [5, 25, 35, 50, 65, 80];
+var nuevosDatosII = [30, 35, 40, 45, 50, 55]; 
+var nuevosDatosIII = [5, 8, 11, 14, 17, 20];
+var nuevosDatosIIII = [11, 18, 25, 32, 39, 46];
+var nuevosDatosV = [5, 14, 23, 32, 43, 54, 65, 76];
 function actualizarDatos() {
   intervaloActualizar = setInterval(function() {
     [nuevosDatos, nuevosDatosI, nuevosDatosII, nuevosDatosIII, nuevosDatosIIII, nuevosDatosV].forEach(function(array, index) {
@@ -618,6 +618,7 @@ function updateCarlosII() {
   chart12II.data.datasets[0].data = nuevosDatosV
   chart12II.update()  
 }
+
 function updateDinamico() {
   desactivarClick(['.desactivar'])
   if(turnBlock === false){
@@ -628,26 +629,28 @@ function updateDinamico() {
     setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
     setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
   }
-  var nuevosDatos = [0,70,30,70,50,90];
+  var nuevosDatos = [0,30,40,50,60,70];
   chart7.data.datasets[0].data = nuevosDatos;
   chart7.update();  
-  var nuevosDatosI = [55,5,95,30,10,10];
+  var nuevosDatosI = [5,20,35,50,65,80];
   chart8.data.datasets[0].data = nuevosDatosI;
   chart8.update();  
-  var nuevosDatosII = [30,50,60,77,20,8];
+  var nuevosDatosII = [15,20,25,30,35,40];
   chart9.data.datasets[0].data = nuevosDatosII;
   chart9.update();  
-  var nuevosDatosIII = [5,17,8,30,44,10];
+  var nuevosDatosIII = [3,6,9,12,15,18];
   chart10.data.datasets[0].data = nuevosDatosIII;
   chart10.update();  
-  var nuevosDatosIIII = [11,50,20,80,10,100];
+  var nuevosDatosIIII = [7,14,21,28,35,42];
   chart11.data.datasets[0].data = nuevosDatosIIII;
   chart11.update();  
-  var nuevosDatosV = [5,17,33,45,51,57,67,99];           
+  var nuevosDatosV = [9,18,27,36,45,54];           
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update();
   actualizarDatos()
 }
+
+
 function updateDinamicoII() {
   if(turnBlock === false){
     setTimeout(function() { graficosAutomaticos('canvasContainer4-II'); }, 500);

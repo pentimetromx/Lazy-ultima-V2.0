@@ -6785,10 +6785,25 @@ height:100%;
   overflow-y: auto;
   margin: 0;
   padding-left: 1.2em;
-  scrollbar-width: auto;
-  scrollbar-color: rgb(177,255,255) rgb(0,0,17);
   cursor: pointer;
 }
+
+
+#metas-diarias .listado-actividades::-webkit-scrollbar {
+  width: 22px;
+}
+
+#metas-diarias .listado-actividades::-webkit-scrollbar-track {
+  background: gray;
+}
+
+#metas-diarias .listado-actividades::-webkit-scrollbar-thumb {
+  background-color: rgb(177,255,255);
+  border-radius:3px;
+}
+
+
+
 #metas-diarias li {
   opacity: 0;
   color: #FFFFFFB3;
