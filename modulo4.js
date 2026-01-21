@@ -3030,8 +3030,8 @@ function animarHorizontalEye() {
       width += dWidth;
     }
 
-    eye.style.left = left + "vw";
-    eye.style.width = width + "vw";
+    eye.style.left = `${left}%`;
+    eye.style.width = `${width}%`;
 
     if (left > targetLeft || width < targetWidth) {
       requestAnimationFrame(step);
