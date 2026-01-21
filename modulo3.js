@@ -6888,72 +6888,89 @@ function detenerParpadeo() {
   parpadeoActivo.el.style.backgroundColor = parpadeoActivo.colorOriginal;
   parpadeoActivo = null;
 }
-function crearPerfilColor() { // crear nuevo desde boton blanco
-  
-  let contRGB = document.querySelector('#padre-rgb');
-  let contCYMK = document.querySelector('#padre-cmyk');
 
-  let primerImputRGB = document.querySelector('#input-r');
-  let segundoImputRGB = document.querySelector('#input-g');
-  let tercerImputRGB = document.querySelector('#input-b');
-  let cuartoImputRGB = document.querySelector('#input-w');
 
-  let primerImputCMYK = document.querySelector('#input-c');
-  let segundoImputCMYK = document.querySelector('#input-m');
-  let tercerImputCMYK = document.querySelector('#input-y');
-  let cuartoImputCMYK = document.querySelector('#input-k');
-  let quintoImputCMYK = document.querySelector('#input-a');
 
-  // Capturar el valor del input
-  let inputNombre = document.getElementById('nombre-Perfil').value.trim();
-  if (inputNombre === '') {
-    parpadearElemento("nombre-Perfil");
+
+function crearPerfilColor() { // crear nuevo desde botón blanco
+  const contRGB  = document.querySelector('#padre-rgb');
+  const contCYMK = document.querySelector('#padre-cmyk');
+
+  const primerImputRGB  = document.querySelector('#input-r');
+  const segundoImputRGB = document.querySelector('#input-g');
+  const tercerImputRGB  = document.querySelector('#input-b');
+  const cuartoImputRGB  = document.querySelector('#input-w');
+
+  const primerImputCMYK  = document.querySelector('#input-c');
+  const segundoImputCMYK = document.querySelector('#input-m');
+  const tercerImputCMYK  = document.querySelector('#input-y');
+  const cuartoImputCMYK  = document.querySelector('#input-k');
+  const quintoImputCMYK  = document.querySelector('#input-a');
+
+  // Capturar nombre del perfil
+  let inputNombre = document
+    .getElementById('nombre-Perfil')
+    .value
+    .trim();
+
+  if (!inputNombre) {
+    parpadearElemento('nombre-Perfil');
     mostrarVentanaEmergente('Por favor, ingrese un nombre válido');
     return;
   }
 
-  // Capitalizar la primera letra de cada palabra
+  // Determinar prefijo según contenedor visible
+  let prefijo = '';
+
+  if (contRGB && contRGB.style.display === 'grid') {
+    prefijo = 'RGB - ';
+  } else if (contCYMK && contCYMK.style.display === 'grid') {
+    prefijo = 'CMYK - ';
+  }
+
+  // Evitar duplicar prefijo
+  if (prefijo && !inputNombre.startsWith(prefijo)) {
+    inputNombre = prefijo + inputNombre;
+  }
+
+  // Capitalizar al final
   inputNombre = capitalizarTexto(inputNombre);
-  
+
   // Validar si el perfil ya existe
   if (almacenObjetos[inputNombre]) {
     mostrarVentanaEmergente('Ya existe un perfil con este nombre');
     return;
   }
 
-  // Crear una nueva instancia de la clase objetoColores
+  // Crear nueva instancia
   const nuevoObjeto = new objetoColores();
-  
-  // Almacenar el objeto en `almacenObjetos`
-  almacenObjetos[inputNombre] = nuevoObjeto;
 
-  // Guardar el nombre recién creado en `nombreProvisional`
+  // Almacenar en el almacén global
+  almacenObjetos[inputNombre] = nuevoObjeto;
   objetoGlobal = inputNombre;
 
-  // Verificar si el objeto se creó correctamente
   if (!almacenObjetos[objetoGlobal]) {
-    console.error("Error: No se pudo encontrar el perfil en almacenObjetos.");
+    console.error('Error: No se pudo encontrar el perfil en almacenObjetos.');
     return;
   }
 
-  console.log('almacenObjetos[nombreProvisional]', almacenObjetos[objetoGlobal])
-
-  // Asignar valores a la propiedad correspondiente en `almacenObjetos`
-  if (contRGB.style.display === 'grid') {
-    almacenObjetos[objetoGlobal].RGBA.R = parseInt(primerImputRGB.value) || 0;
-    almacenObjetos[objetoGlobal].RGBA.G = parseInt(segundoImputRGB.value) || 0;
-    almacenObjetos[objetoGlobal].RGBA.B = parseInt(tercerImputRGB.value) || 0;
-    almacenObjetos[objetoGlobal].RGBA.A = parseInt(cuartoImputRGB.value) || 0;
-  }
-  if (contCYMK.style.display === 'grid') {
-    almacenObjetos[objetoGlobal].CMYK.C = parseInt(primerImputCMYK.value) || 0;
-    almacenObjetos[objetoGlobal].CMYK.M = parseInt(segundoImputCMYK.value) || 0;
-    almacenObjetos[objetoGlobal].CMYK.Y = parseInt(tercerImputCMYK.value) || 0;
-    almacenObjetos[objetoGlobal].CMYK.K = parseInt(cuartoImputCMYK.value) || 0;
-    almacenObjetos[objetoGlobal].CMYK.A = parseInt(quintoImputCMYK.value) || 0;
+  // Asignar valores según el contenedor activo
+  if (contRGB && contRGB.style.display === 'grid') {
+    almacenObjetos[objetoGlobal].RGBA.R = parseInt(primerImputRGB.value, 10) || 0;
+    almacenObjetos[objetoGlobal].RGBA.G = parseInt(segundoImputRGB.value, 10) || 0;
+    almacenObjetos[objetoGlobal].RGBA.B = parseInt(tercerImputRGB.value, 10) || 0;
+    almacenObjetos[objetoGlobal].RGBA.A = parseInt(cuartoImputRGB.value, 10) || 0;
   }
 
-  // Ordenar `almacenObjetos` alfabéticamente
+  if (contCYMK && contCYMK.style.display === 'grid') {
+    almacenObjetos[objetoGlobal].CMYK.C = parseInt(primerImputCMYK.value, 10) || 0;
+    almacenObjetos[objetoGlobal].CMYK.M = parseInt(segundoImputCMYK.value, 10) || 0;
+    almacenObjetos[objetoGlobal].CMYK.Y = parseInt(tercerImputCMYK.value, 10) || 0;
+    almacenObjetos[objetoGlobal].CMYK.K = parseInt(cuartoImputCMYK.value, 10) || 0;
+    almacenObjetos[objetoGlobal].CMYK.A = parseInt(quintoImputCMYK.value, 10) || 0;
+  }
+
+  // Ordenar almacenObjetos alfabéticamente
   const almacenObjetosOrdenado = Object.keys(almacenObjetos)
     .sort()
     .reduce((obj, key) => {
@@ -6961,20 +6978,25 @@ function crearPerfilColor() { // crear nuevo desde boton blanco
       return obj;
     }, {});
 
-  // Guardar en localStorage
-  localStorage.setItem('almacenObjetos', JSON.stringify(almacenObjetosOrdenado));
+  // Persistir en localStorage
+  localStorage.setItem(
+    'almacenObjetos',
+    JSON.stringify(almacenObjetosOrdenado)
+  );
 
-  // Mostrar mensaje de éxito
+  // Feedback visual
   mostrarVentanaEmergente('Perfil creado y almacenado');
 
-  // Limpiar el input
+  // Limpiar input
   document.getElementById('nombre-Perfil').value = '';
 
-  console.log('ALMACEN GLOBAL ACTUALIZADO:', almacenObjetosOrdenado);
-  console.log('NOMBRE PROVISIONAL GUARDADO:', objetoGlobal);
+  // Refrescar estado
   traerAlmacenObjetos();
-
 }
+
+
+
+
 function colorRenderizado(){
   let padreLuz = document.querySelector('#padre-rgb')
   let padrePigmento = document.querySelector('#padre-cmyk')
