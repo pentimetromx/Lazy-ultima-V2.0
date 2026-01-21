@@ -259,7 +259,7 @@ async function applyImageEffects(selector) {
   // 🔄 Animar desplazamiento vertical escalonado
   for (let i = 1; i < imageElements.length; i++) {
     await delay(100);
-    imageElements[i].style.transform = `translateY(${i * 95}px)`;
+    imageElements[i].style.transform = `translateY(${i * 110}%)`;
   }
 }
 // Helper para delay
@@ -2965,8 +2965,7 @@ function listaEntrenamientosII(btnList) {
 
   switch (btnList) {
     case 'archivo':
-      mostrarElementos(['buscador','search-form','conteneMantaut','links-inicialesI',
-                        'links-iniciales','largoImpresion','contImgEntrenos','linksMA','linkLis']);
+      mostrarElementos(['buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos','linksMA','linkLis']);
       aparecerElemento("linksMA", "flex");
       actualizarBotones(btnList);
       if (screenWidth < 500) {  }
