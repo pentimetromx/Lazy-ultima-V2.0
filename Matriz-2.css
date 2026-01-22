@@ -1170,7 +1170,9 @@ body{
   z-index:40;
 }
 #interfaz-perfiles{
-  position:relative;
+  position:absolute;
+  box-sizing: border-box;
+  
   display: flex;
   top: 50vh;
   left: 50vw;
@@ -4893,7 +4895,7 @@ top: 44%;
   gap: 5%;
   top: 1%;
   height: 95%;
-  width: 50%;
+  width: 50%;  
   align-content: center;
 }
 .visor > span{

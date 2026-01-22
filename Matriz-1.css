@@ -346,8 +346,8 @@ color: white;
   position:relative;
   display: flex;
   flex-direction:row;
-  left:1vw;
-  top: 1vh;
+  left:2vw;
+  top: 3vh;
   width: 20%;
   height: 6%;
   background-color: #333333;
@@ -370,16 +370,14 @@ color: white;
   left: 0;
   top: 0;
   width: 100%;
-  height: 50%;
+  height: 100%;
 }
 #search-form img {
   position: relative;
   display: flex;
-  cursor: pointer;
-  top: -7px;
   left:63%;
   width:11%;
-  height:62%;
+  height:90%;
   object-fit:fill;
   border-radius: 3px;
 }
@@ -4591,6 +4589,7 @@ h4{
   top: 17vh;
   gap: 6px;
   z-index: 2;
+  display: none;
 
 }
 /* HIJOS */
@@ -7597,6 +7596,14 @@ background-color: #3FEF9C;
   font-size: 1vw;
   box-sizing: border-box;
 }
+
+#miSlid{
+  position: relative;
+  cursor: pointer;
+  width: 50%;
+  height: 100%;
+}
+
 /* PADRE GRAFICO */
 .graphics-lines {
   position: relative;
@@ -7624,8 +7631,9 @@ background-color: #3FEF9C;
 .slider-father {
   position: relative;
   display: grid;
+  left:-5%;
   grid-template-rows:50% 50%;
-  width:100%;
+  width:110%;
   height:100%;
   color: white;
   font-family: sans-serif;
@@ -7636,13 +7644,14 @@ background-color: #3FEF9C;
 .days-container {
   position: relative;
   display: flex;
+  width: 100%;
   gap: 4px;
 }
 .led-container {
   position: relative;
   display: grid;
   grid-template-columns:repeat(30, 1fr);
-  width: 110%;
+  width: 100%;
   height: 13%;
   gap: 1px;
 }
@@ -7651,11 +7660,20 @@ background-color: #3FEF9C;
   text-align: center;
   font-size: 0.8vw;
   color: #777;
-  transition: color 0.2s ease;
+  transition: transform 150ms ease, color 0.2s ease;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: center;
 }
+
 .day-on {
   color: #00c04b;
+  transform: scale(1.5);
+  font-weight: 700;
 }
+
 .led-graphs {
   width:100%;
   height:100%;
@@ -7665,15 +7683,11 @@ background-color: #3FEF9C;
 }
 .led-on {
   background-color: #008f39;
-}
-#miSlid{
-  position: relative;
-  cursor: pointer;
-  width: 50%;
+  transform: scale(1.5);
 }
 #slider-Valor {
   display: inline-block;
-  width: 2.2ch;   /* espacio para 2 dígitos, ajusta si necesitas más */
+  width: 2.2ch; 
   text-align: right;
 }
 #decisiones-estrategicas.panel-estrategico {
@@ -7690,6 +7704,7 @@ background-color: #3FEF9C;
   box-shadow: 0 8px 25px rgba(0,0,0,0.08);
   font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
+  display: none;
 }
 .bloque {
   position: relative;

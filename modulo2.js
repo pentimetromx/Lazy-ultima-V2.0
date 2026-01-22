@@ -619,7 +619,13 @@ function updateCarlosII() {
   chart12II.update()  
 }
 
-function updateDinamico() {
+/******************************************************************************************************************************************************** */
+let dinamicaActiva = false;
+let timeoutsDinamica = [];
+
+
+
+/* function updateDinamico() {
   desactivarClick(['.desactivar'])
   if(turnBlock === false){
     setTimeout(function() { graficosAutomaticos('canvasContainer4'); }, 500);
@@ -648,40 +654,102 @@ function updateDinamico() {
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update();
   actualizarDatos()
-}
+} */
 
+
+
+function updateDinamico() {
+  dinamicaActiva = true;
+  desactivarClick(['.desactivar']);
+
+  timeoutsDinamica.forEach(id => clearTimeout(id));
+  timeoutsDinamica.length = 0;
+
+  if (turnBlock === false) {
+    [
+      ['canvasContainer4', 500],
+      ['canvasContainer7', 700],
+      ['canvasContainer5', 900],
+      ['canvasContainer6', 1100],
+      ['canvasContainer8', 700],
+      ['canvasContainer9', 1200],
+    ].forEach(([id, delay]) => {
+      const t = setTimeout(() => {
+        if (!dinamicaActiva) return;
+        graficosAutomaticos(id);
+      }, delay);
+      timeoutsDinamica.push(t);
+    });
+  }
+
+  if (!dinamicaActiva) return;
+
+  chart7.data.datasets[0].data = [0,30,40,50,60,70];
+  chart7.update();
+
+  chart8.data.datasets[0].data = [5,20,35,50,65,80];
+  chart8.update();
+
+  chart9.data.datasets[0].data = [15,20,25,30,35,40];
+  chart9.update();
+
+  chart10.data.datasets[0].data = [3,6,9,12,15,18];
+  chart10.update();
+
+  chart11.data.datasets[0].data = [7,14,21,28,35,42];
+  chart11.update();
+
+  chart12.data.datasets[0].data = [9,18,27,36,45,54];
+  chart12.update();
+
+  actualizarDatos();
+}
+  
 
 function updateDinamicoII() {
-  if(turnBlock === false){
-    setTimeout(function() { graficosAutomaticos('canvasContainer4-II'); }, 500);
-    setTimeout(function() { graficosAutomaticos('canvasContainer7-II'); }, 700);
-    setTimeout(function() { graficosAutomaticos('canvasContainer5-II'); }, 900);
-    setTimeout(function() { graficosAutomaticos('canvasContainer6-II'); }, 1100);
-    setTimeout(function() { graficosAutomaticos('canvasContainer8-II'); }, 700);
-    setTimeout(function() { graficosAutomaticos('canvasContainer9-II'); }, 1200); 
+  if (!dinamicaActiva) return;
+
+  if (turnBlock === false) {
+    [
+      ['canvasContainer4-II', 500],
+      ['canvasContainer7-II', 700],
+      ['canvasContainer5-II', 900],
+      ['canvasContainer6-II', 1100],
+      ['canvasContainer8-II', 700],
+      ['canvasContainer9-II', 1200],
+    ].forEach(([id, delay]) => {
+      const t = setTimeout(() => {
+        if (!dinamicaActiva) return;
+        graficosAutomaticos(id);
+      }, delay);
+      timeoutsDinamica.push(t);
+    });
   }
-  var nuevosDatos = [0,70,30,70,50,90];
-  chart7II.data.datasets[0].data = nuevosDatos; 
-  chart7II.update();    
-  var nuevosDatosI = [55,5,95,30,10,10];
-  chart8II.data.datasets[0].data = nuevosDatosI;
-  chart8II.update();  
-  var nuevosDatosII = [30,50,60,77,20,8];
-  chart9II.data.datasets[0].data = nuevosDatosII;
-  chart9II.update();  
-  var nuevosDatosIII = [5,17,8,30,44,10];  
-  chart10II.data.datasets[0].data = nuevosDatosIII;
-  chart10II.update();  
-  var nuevosDatosIIII = [11,50,20,80,10,100];
-  chart11II.data.datasets[0].data = nuevosDatosIIII;
-  chart11II.update();  
-  var nuevosDatosV = [5,17,33,45,51,57,67,99];           
-  chart12II.data.datasets[0].data = nuevosDatosV;
+
+  chart7II.data.datasets[0].data = [0,70,30,70,50,90];
+  chart7II.update();
+
+  chart8II.data.datasets[0].data = [55,5,95,30,10,10];
+  chart8II.update();
+
+  chart9II.data.datasets[0].data = [30,50,60,77,20,8];
+  chart9II.update();
+
+  chart10II.data.datasets[0].data = [5,17,8,30,44,10];
+  chart10II.update();
+
+  chart11II.data.datasets[0].data = [11,50,20,80,10,100];
+  chart11II.update();
+
+  chart12II.data.datasets[0].data = [5,17,33,45,51,57,67,99];
   chart12II.update();
-  actualizarDatosII()
+
+  actualizarDatosII();
 }
 
-function detenerDinamica(){
+
+
+/* function detenerDinamica(){
   restablecerClick(['.desactivar'])
   var intervalos = [intervaloActualizar, intervaloActualizarII];
   intervalos.forEach(function(intervalo, index) {
@@ -691,7 +759,30 @@ function detenerDinamica(){
       if (index === 1) intervaloActualizarII = null;
     }
   });
+} */
+
+
+  
+function detenerDinamica() {
+  dinamicaActiva = false;
+
+  restablecerClick(['.desactivar']);
+
+  [intervaloActualizar, intervaloActualizarII].forEach((intervalo, index) => {
+    if (intervalo) {
+      clearInterval(intervalo);
+      if (index === 0) intervaloActualizar = null;
+      if (index === 1) intervaloActualizarII = null;
+    }
+  });
+
+  timeoutsDinamica.forEach(id => clearTimeout(id));
+  timeoutsDinamica.length = 0;
 }
+
+
+
+/******************************************************************************************************************************************************** */
 
 function actualizarDatosII() {
   if (intervaloActualizarII) {
