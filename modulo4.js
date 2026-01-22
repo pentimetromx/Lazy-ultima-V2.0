@@ -2788,6 +2788,7 @@ function crearLeds() {
     container.appendChild(led);
   }
 }
+
 function crearDias() {
   const container = document.getElementById('daysContainer');
   container.innerHTML = '';
@@ -2799,6 +2800,7 @@ function crearDias() {
     container.appendChild(day);
   }
 }
+
 function crearGraficoOperacion() {
   const canvas = document.getElementById('MiGrafica17');
   const ctx = canvas.getContext('2d');
@@ -2856,26 +2858,26 @@ function crearGraficoOperacion() {
 }
 const sliderGraf = document.getElementById('miSlid');
 const spanValor = document.getElementById('slider-Valor');
+
+
 function actualizarDiasYLeds(valor) {
   const leds = document.querySelectorAll('.led-graphs');
   const dias = document.querySelectorAll('.day-number');
 
+  const currentIndex = valor - 1;
+
   leds.forEach((led, index) => {
-    if (index < valor) {
-      led.classList.add('led-on');
-    } else {
-      led.classList.remove('led-on');
-    }
+    led.classList.toggle('led-on', index === currentIndex);
   });
 
   dias.forEach((day, index) => {
-    if (index < valor) {
-      day.classList.add('day-on');
-    } else {
-      day.classList.remove('day-on');
-    }
+    day.classList.toggle('day-on', index === currentIndex);
   });
 }
+
+
+
+
 crearLeds()
 crearDias()
 crearGraficoOperacion()
@@ -2994,6 +2996,7 @@ function animarHumanEye() {
 
   requestAnimationFrame(step);
 }
+
 function animarHorizontalEye() {
   const eye = document.querySelector('#interfaz-perfiles');
   if (!eye) return;
@@ -3040,6 +3043,7 @@ function animarHorizontalEye() {
 
   requestAnimationFrame(step);
 }
+
 function revertirInterfazPerfiles() {
   const respaldos = document.querySelectorAll('.btn-respaldo');
   if (!respaldos.length) return;

@@ -1385,6 +1385,7 @@ function iniciarAnimaciones(){
   document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {
      elemento.style.display = 'block';
   })
+  
   setTimeout(() => {
     aparecerElemento("interfaz-perfiles", "flex")
     animarHorizontalEye() 
