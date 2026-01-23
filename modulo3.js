@@ -213,6 +213,7 @@ let almacenObjetos = JSON.parse(localStorage.getItem('almacenObjetos')) || {};
 let objetoGlobal = null
 let nombreProvisional = null
 let objetoGlobalColor = null
+
 function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14){
   var elementosExcluidos = [id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14]  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -235,14 +236,17 @@ function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13
     break;
     case 'colorCMYK':
       const almacenCmyk = document.querySelector('#padre-cmyk')
-      mostrarElementoProgressivo(almacenCmyk);     
+      mostrarElementoProgressivo(almacenCmyk);
+    
     break;
     case 'colorDisplay':
       const almacenRgb = document.querySelector('#padre-rgb')
-      mostrarElementoProgressivo(almacenRgb);     
+      mostrarElementoProgressivo(almacenRgb);  
+          
     break;
   }  
 }
+
 function updateDigitalClock() {   
   const now = new Date();
   let hours = now.getHours();

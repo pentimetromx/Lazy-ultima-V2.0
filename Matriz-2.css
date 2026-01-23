@@ -243,7 +243,7 @@ body{
 #segunda-pantalla{
   position:absolute;
   display: flex;
-  top: 12vh;
+  top: 25vh;
   left: 17vw;
   width: 47vw;
   height: 67vh;
