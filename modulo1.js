@@ -1870,6 +1870,7 @@ function abrirPrepress(elementId) {
     console.log(idsArray);
   }
 }
+
 function abrirDensitometria(elementId){
   var contieneLinks = document.getElementById('linkList')
   var elementosExcluidos = ['buscador','search-form','densitometria','links-inicialesI','links-iniciales','imgs-densito','contDensito','conte-botDensito','segundoContDensito','tercerContDensito','cuartoContDensito','linkList']         
@@ -1913,6 +1914,7 @@ function abrirDensitometria(elementId){
     console.log(idsArray);
   }
 }
+
 function muestraVidPrisma(eltoHtml) {
   clickHabilitado = true
   acumuladorVideos.pop()
