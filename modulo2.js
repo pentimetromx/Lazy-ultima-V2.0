@@ -932,6 +932,7 @@ function rodillosKaizen(idButton,vidElem) {
   var contBotKaizen = document.getElementById('conti-boton-kaizen')
   var conPlanos = document.getElementById('planos-kaizen')
   var bton12 = document.getElementById('btn12')
+  fichaTecnica.style.zIndex=''
   if (bton12 !== null) {
     bton12.style.backgroundColor = '' 
     bton12.style.color = ''
@@ -1150,6 +1151,16 @@ function rodillosKaizen(idButton,vidElem) {
       })
     break;
     case 'btn17':
+      const cells = document.querySelectorAll('#kaizen-propuestos .cell');
+
+      cells.forEach(cell => {
+        cell.classList.remove(...MOVE_CLASSES, 'oculta');
+        cell.style.display = '';      // vuelve al CSS original
+        cell.style.transform = '';    // seguridad extra
+        cell.style.opacity = '';
+        cell.style.pointerEvents = '';
+      });
+
       var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
@@ -1157,9 +1168,7 @@ function rodillosKaizen(idButton,vidElem) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
       } 
-      /* aparecerElemento("kaizen-propuestos", "flex") */
       document.querySelector('#kaizen-propuestos').style.display='grid'
-      /* document.querySelector('#kaizen-propuestos').style.height='50vh' */
       container1.style.display='grid'
       contiButtRepuest.style.display='grid'
     break;       
@@ -5170,8 +5179,9 @@ function cargarDatos() {
 }
 function   nextPrime() { alert("NextPrime función"); }
 function alternateFunction() { alert("Alternate función"); }
+
 function mostrarCalendario(mesSeleccionado) {
-  const diasDelMes = diasPorMes[mesSeleccionado];
+  const diasDelMes = diasPorMes[mesSeleccionado]; 
   calendarioMes.innerHTML = "";
 
   let semana = document.createElement("div");
@@ -5259,6 +5269,9 @@ elementosMes.forEach((mes, index) => {
     mostrarCalendario(mes.textContent.trim());
     setTimeout(mostrarSemanasSecuencialmente, 50);
     aplicarLogicaPorMes(mes.textContent.trim());
+    setTimeout(() => {
+      aparecerElemento('contenedor-1','grid');       
+    }, 500);
     destruirCharts();
     
     document.querySelector('#titulo-mes').textContent = mes.textContent.trim();

@@ -1919,6 +1919,17 @@ body{
   transform: translateX(-12vw);
   transition: transform 1.4s ease-in-out, opacity 0.8s ease-in-out;
 }
+.move-kaizen-1,
+.move-kaizen-2,
+.move-kaizen {
+  transform: translateX(204%);
+}
+.move-kaizen-5,
+.move-kaizen-4,
+.move-kaizen-3 {
+  transform: translateX(46vw) translateY(-102%);
+}
+
 #ctrl-gral-agua{
   top: 37%;
   transition: transform 0.6s ease;
@@ -3769,11 +3780,21 @@ top: 44%;
   position: absolute;
   display: none;
   background-color: rgba(130,125,133,0.1);
+  border:1px solid;
   border-radius: 13px;
-  top: 23vh;
-  left: 20vh;
-  width: 36vw;
-  height: 50vh;
+  top: 42vh;
+  left: 40vh;
+  width: 31.5vw;
+  height: 29vh;
+
+  transition: transform 0.5s ease; /* 501 ms */
+  z-index: 2;
+  display: none; /* inicialmente oculto */
+  transform: scale(0); /* inicia reducido */
+  transform-origin: center; /* crece desde el centro */     
+}
+.sup-level > :nth-child(3){
+  width: 90%;
 }
 .title {
   color: rgba(255,255,255,0.85);
@@ -3783,9 +3804,6 @@ top: 44%;
   display: flex;
   align-items: center;
   padding-left: 10px;
-}
-.sup-level > :nth-child(3){
-  width: 90%;
 }
 .sub-title{
   left: 71%;
@@ -5124,6 +5142,22 @@ top: 44%;
   transition: background-color 0.5s ease, color 0.8s ease;  
 
 }
+
+
+.treemap-wrapper {
+  position: absolute;
+  top: 72vh;
+  left: 30vw;
+  width: 25vw;
+  height: 25vh;
+  display: block;
+}
+
+#treemap {
+  display: block;
+}
+
+
 
 
 @media only screen and (max-width: 480px) {
