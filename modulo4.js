@@ -3391,22 +3391,23 @@ function aplicarEstilo(elemento, estilos) {
 
 
 const CATEGORY_COLORS = {
-  A: '#2ecc71',
-  B: '#e67e22',
-  C: '#e84393',
-  D: '#7f8c8d',
-  E: '#f1c40f',
-  F: '#3498db'
+  A: '#DB76FF',
+  B: '#0087F5',
+  C: '#0A2DA8',
+  D: '#FF5F7F',
+  /* E: '#f1c40f',
+  F: '#3498db' */
 };
 
 const treeData = [
-  { category: 'A', value: 27 },
-  { category: 'B', value: 10 },
-  { category: 'C', value: 15 },
-  { category: 'D', value: 10 },
-  { category: 'E', value: 25 },
-  { category: 'F', value: 13 }
+  { category: 'A', value: 29 },
+  { category: 'B', value: 15 },
+  { category: 'C', value: 33 },
+  { category: 'D', value: 23 },
+  /* { category: 'E', value: 25 },
+  { category: 'F', value: 13 } */
 ];
+
 
 new Chart(document.getElementById('treemap'), {
   type: 'treemap',
@@ -3415,9 +3416,11 @@ new Chart(document.getElementById('treemap'), {
       tree: treeData,
       key: 'value',
       groups: ['category'],
-      spacing: 2,
-      borderWidth: 2,
-      borderColor: '#fff',
+
+      spacing: 0,
+      borderWidth: 0.5,
+      borderColor: '#ffffff',
+
       backgroundColor: ctx => {
         if (!ctx.raw) return '#ffffff';
         return CATEGORY_COLORS[ctx.raw.g] || '#ffffff';
@@ -3432,5 +3435,6 @@ new Chart(document.getElementById('treemap'), {
     }
   }
 });
+
 
 
