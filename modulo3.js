@@ -12,8 +12,6 @@ document.addEventListener('keydown', function(event) {
         aplicarNormalizacionDeColores()
       break;
       case 'X':
-        console.log('GLOBAL DESDE X : ', empleadoGlobal)
-        console.log(JSON.stringify(empleadoGlobal, null, 2));
         Geometria()
       break;                  
     }
@@ -21,7 +19,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('blur-interfaz-perfiles');  
+  let contiBoton = document.getElementById('tree-map');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -4215,6 +4213,7 @@ function vaciarTodoAlmacenObjetos() {
   localStorage.clear(); // Borra todo el contenido de localStorage
   console.log("Todos los objetos han sido eliminados del almacenamiento local.");
 }
+
 document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   // Capturar el valor del input
   let inputNombre = document.getElementById('nombreCliente').value.trim();
@@ -4269,6 +4268,7 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   }
   restablecerClick(['.butt-perfiles', '.jobs'])
 });
+
 // Función para capitalizar la primera letra de cada palabra
 function capitalizarTexto(texto) {
   return texto.replace(/\b\w/g, char => char.toUpperCase());

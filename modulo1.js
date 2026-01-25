@@ -4276,7 +4276,7 @@ function ubicaPerfil(idEmpleado) {
   }
 }
 let llamadaEjecutada = false;
-var intervaloActualizarII = null; 
+var intervaloActualizarII = null;  
 var intervaloActualizar = null;
 let intervaloProgreso = null;
 
@@ -4298,6 +4298,7 @@ function resultadosMaquina(){
   ["lista-maquinas", "meses", "calendario-mes", "cont-span-semanas", "titulo-calendar", "titulo-mes", "contenedor-global"].forEach(id => aparecerElemento(id, "grid"));
   destruirCharts()
 }
+
 document.querySelectorAll('.maquina').forEach((maquina, index) => {
   const rotativas = ['ROTATIVA 1','ROTATIVA 2','ROTATIVA 3','ROTATIVA 4'];
   maquina.addEventListener('click', () => {
@@ -4673,4 +4674,5 @@ document.getElementById('links-iniciales').addEventListener('mouseleave', () =>{
   }
   document.getElementById('linkList').style.display='none'
 })
+
 

@@ -16,11 +16,7 @@ function mostrarTodos() {
     }
   }
 }
-document.querySelector('#contenedor-botonera button:nth-child(1)').addEventListener('click', () =>{
-  mostrarElementos(['butts-simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
-  document.querySelector('#contenedor-1').style.display = 'grid'
-  document.querySelector('.calendar-container').style.display = 'grid'
-})
+
 document.querySelector('#contenedor-botonera button:nth-child(2)').addEventListener('click', () => {
   mostrarElementos(['contenedor-sheeter','butts-simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
   const contenedor = document.querySelector('#contenedor-sheeter')
@@ -481,11 +477,13 @@ function resaltarDiaSeleccionado(diaClicado) {
   diaClicado.style.backgroundColor = '#00cc88';
   diaClicado.style.color = 'black';
 }
+
 document.querySelectorAll('.day-cell').forEach(dia => {
   dia.addEventListener('click', () => {
     resaltarDiaSeleccionado(dia);
   });
 });
+
 function actualizarAlturaBarra(contenedorPadre, nuevaAltura) {
   // Verifica si el contenedor tiene un hijo con la clase .bar
   const barra = contenedorPadre.querySelector('.bar');
@@ -503,7 +501,7 @@ const cuartoContenedor = document.querySelectorAll('.bar-container')[3];
 const quintoContenedor = document.querySelectorAll('.bar-container')[4];
 const sextoContenedor = document.querySelectorAll('.bar-container')[5];
 const septimoContenedor = document.querySelectorAll('.bar-container')[6];
-const diasMes = document.querySelectorAll('.day-cell');
+const diasMes = document.querySelectorAll('.dia');
 const datosPorDia = {
   1: ['75%', '55%', '35%', '87%', '90%', '22%', '67%'],
   2: ['37%', '82%', '77%', '22%', '5%', '88%', '97%'],
@@ -546,6 +544,7 @@ const contenedores = [
   sextoContenedor,
   septimoContenedor
 ];
+
 diasMes.forEach(dia => {
   dia.addEventListener('click', () => {
     const numeroDia = parseInt(dia.textContent.trim());
@@ -1224,6 +1223,7 @@ primerSpan.addEventListener('click', () => {
   mostrar(linkIni1, linkIni1, buscador);
   padreLinks.style.display='none'
 });
+
 document.querySelectorAll('.span-semana').forEach((span, index) => {
 
   span.addEventListener('click', () => {
@@ -1295,9 +1295,11 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
   });
   
 });
+
 const mesCalendario = document.getElementById('calendario-mes');
 mesCalendario.addEventListener('click', (e) => {
   const dia = e.target.closest('.dia');
+  
   if (!dia || dia.classList.contains('vacio')) return;
 
   // quitar estado activo a todos
@@ -1307,6 +1309,7 @@ mesCalendario.addEventListener('click', (e) => {
   // activar el clicado
   dia.classList.add('activo');
 });
+
 const btnDynamic = document.getElementById('dynamic-graphs');
 const btnStatic = document.getElementById('static-graphs');
 
@@ -2231,6 +2234,7 @@ inputFoto.addEventListener('click', () => {
   generarListaFotos()
 });
 // ocultar lista si se hace clic fuera
+
 document.addEventListener('click', e => {
   if (!listaFotos.contains(e.target) && e.target !== inputFoto) {
     listaFotos.style.display = 'none';
@@ -3341,22 +3345,92 @@ function aplicarNormalizacionDeColores() {
 //*********************************************************************************************************************** */
 
 
+const MOVE_CLASSES = [
+  'move-kaizen',
+  'move-kaizen-1',
+  'move-kaizen-2',
+  'move-kaizen-3',
+  'move-kaizen-4',
+  'move-kaizen-5'
+];
+imgsKaizen.addEventListener('click', (e) => {
+  const cellSeleccionada = e.target.closest('.cell');
+  if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;  
+  document.querySelector('#fichas-tecnicas').style.display='flex'
 
-const imagenesKaizen = document.querySelectorAll('.kaizen-img');
-const celdasKaizen = document.querySelectorAll('.cell');
+  const index = Number(cellSeleccionada.dataset.index);
+  const cells = imgsKaizen.querySelectorAll('.cell');
+
+  cells.forEach(cell => {
+    cell.classList.remove(...MOVE_CLASSES, 'oculta');
+  });
+
+  cellSeleccionada.classList.add(MOVE_CLASSES[index]);
+
+  cells.forEach(cell => {
+    if (cell !== cellSeleccionada) {
+      cell.classList.add('oculta');
+      cell.style.display='none'
+    }
+  });
+  setTimeout(() => {
+    fichaTecnica.style.zIndex = '100';
+  }, 1200);
+});
+function aplicarEstilo(elemento, estilos) {
+  if (!elemento) return;
+  Object.assign(elemento.style, {
+    position: 'absolute',
+    ...estilos
+  });
+}
 
 
 
 
 
 
+const CATEGORY_COLORS = {
+  A: '#2ecc71',
+  B: '#e67e22',
+  C: '#e84393',
+  D: '#7f8c8d',
+  E: '#f1c40f',
+  F: '#3498db'
+};
+
+const treeData = [
+  { category: 'A', value: 27 },
+  { category: 'B', value: 10 },
+  { category: 'C', value: 15 },
+  { category: 'D', value: 10 },
+  { category: 'E', value: 25 },
+  { category: 'F', value: 13 }
+];
+
+new Chart(document.getElementById('treemap'), {
+  type: 'treemap',
+  data: {
+    datasets: [{
+      tree: treeData,
+      key: 'value',
+      groups: ['category'],
+      spacing: 2,
+      borderWidth: 2,
+      borderColor: '#fff',
+      backgroundColor: ctx => {
+        if (!ctx.raw) return '#ffffff';
+        return CATEGORY_COLORS[ctx.raw.g] || '#ffffff';
+      }
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false }
+    }
+  }
+});
 
 
-
-
-
-
-
-
-const info = document.getElementById('info');
-info.textContent = `W:${window.innerWidth} H:${window.innerHeight} DPR:${window.devicePixelRatio}`;
