@@ -5146,15 +5146,18 @@ top: 44%;
 
 .treemap-wrapper {
   position: absolute;
+  display: block;
   top: 72vh;
   left: 30vw;
-  width: 21vw;
+  width: 27vw;
   height: 25vh;
-  display: block;
+  display: none;
 }
 
 #treemap {
   display: block;
+  width: 100%;
+  height: 100%;
 }
 
 

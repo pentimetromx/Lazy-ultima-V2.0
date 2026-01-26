@@ -5270,7 +5270,8 @@ elementosMes.forEach((mes, index) => {
     setTimeout(mostrarSemanasSecuencialmente, 50);
     aplicarLogicaPorMes(mes.textContent.trim());
     setTimeout(() => {
-      aparecerElemento('contenedor-1','grid');       
+      aparecerElemento('contenedor-1','grid'); 
+      document.querySelector('#tree-map').style.display='block'      
     }, 500);
     destruirCharts();
     

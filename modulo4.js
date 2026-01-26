@@ -3390,24 +3390,30 @@ function aplicarEstilo(elemento, estilos) {
 
 
 
+// Registro del plugin (una sola vez, antes de crear el chart)
+
+
+
 const CATEGORY_COLORS = {
   A: '#DB76FF',
   B: '#0087F5',
   C: '#0A2DA8',
-  D: '#FF5F7F',
-  /* E: '#f1c40f',
-  F: '#3498db' */
+  D: '#FF5F7F'
 };
 
 const treeData = [
   { category: 'A', value: 29 },
   { category: 'B', value: 15 },
   { category: 'C', value: 33 },
-  { category: 'D', value: 23 },
-  /* { category: 'E', value: 25 },
-  { category: 'F', value: 13 } */
+  { category: 'D', value: 23 }
 ];
 
+const CATEGORY_LABELS = {
+  A: 'Objetivos',
+  B: 'Engagement',
+  C: 'Bloqueos',
+  D: 'Desarrollo'
+};
 
 new Chart(document.getElementById('treemap'), {
   type: 'treemap',
@@ -3422,8 +3428,22 @@ new Chart(document.getElementById('treemap'), {
       borderColor: '#ffffff',
 
       backgroundColor: ctx => {
-        if (!ctx.raw) return '#ffffff';
-        return CATEGORY_COLORS[ctx.raw.g] || '#ffffff';
+        const item = ctx.raw;
+        if (!item) return '#ffffff';
+        return CATEGORY_COLORS[item.g];
+      },
+
+      // ✅ LABELS NATIVOS DEL TREEMAP
+      labels: {
+        display: true,
+        formatter: ctx => CATEGORY_LABELS[ctx.raw.g] || '',
+        color: 'rgba(255,255,255,0.85)', // blanco mate
+        font: {
+          size: 10,
+          weight: '500'
+        },
+        align: 'end',
+        position: 'top'
       }
     }]
   },
@@ -3431,10 +3451,9 @@ new Chart(document.getElementById('treemap'), {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { display: false }
+      legend: {
+        display: false
+      }
     }
   }
 });
-
-
-
