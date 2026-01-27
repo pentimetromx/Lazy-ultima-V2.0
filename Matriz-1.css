@@ -1283,6 +1283,7 @@ width:447px ;
   border: 1px solid rgba(155,155,155,0.2);
   border-radius: 5px;
 }
+
 #MiGrafica15,
 #MiGrafica14,
 #MiGrafica13,
@@ -7191,6 +7192,7 @@ height:100%;
 .metricas-empleado:hover{
   background: linear-gradient(180deg, #b30000 0%, #3d0000 100%);
 }
+#abuelo-grafica12.activo,
 #interfaz-perfiles.activo,
 #padre-desempeños.activo,
 #abuelo-indicadores.activo,
@@ -7205,6 +7207,38 @@ height:100%;
 #titulo-calendar.activo {
   display: flex;
   transform: scale(1); 
+}
+#abuelo-grafica12{
+  transform: scale(0);
+  transform-origin: center; 
+  transition: transform 1s ease;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+  z-index: 500;  
+}
+.grafico-treemap {
+  position: absolute;
+  display: grid;
+  grid-template-rows: 15% 70% 15%;
+  place-items: center;  
+  top: 14%;
+  left: 48%;
+
+  width: 50%;
+  height: 61%;
+  overflow: hidden;  
+  border: 1px solid rgba(155,155,155,0.2);
+  border-radius: 5px;
+  display: none;
+}
+#padre-grafica12{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  height: 90%;
+  overflow: hidden;  
+  border: 1px solid rgba(155,155,155,0.2);
+  border-radius: 5px;
 }
 #contenedor-global {
   position: relative;
@@ -7644,12 +7678,39 @@ background-color: #3FEF9C;
   align-items: center;
   justify-items: center;  
 }
+.slider-treemap{
+  position: relative;
+  display: grid;
+  left:-5%;
+  grid-template-rows:50% 50%;
+  width:110%;
+  height:100%;
+  color: white;
+  font-family: sans-serif;
+  font-size:1vw;
+  align-items: center;
+  justify-items: center;  
+}
+#slider-treemap{
+  position: relative;
+  display: grid;
+  grid-template-rows:50% 50%;
+  width:100%;
+  height:100%;
+  color: white;
+  font-family: sans-serif;
+  font-size:1vw;
+  align-items: center;
+  justify-items: center;  
+}
+.days-tree-map,
 .days-container {
   position: relative;
   display: flex;
   width: 100%;
   gap: 4px;
 }
+.led-tree-map,
 .led-container {
   position: relative;
   display: grid;

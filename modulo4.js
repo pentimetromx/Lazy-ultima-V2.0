@@ -1516,6 +1516,68 @@ function crearGraficoAreas() {
   );
   }
 }
+
+
+
+let chart21 = null;
+
+function crearGraficoTreeMap() {
+  const ctx = document.getElementById('MiGrafica20').getContext('2d');
+
+  if (chart21) {
+    chart21.destroy();
+  }
+
+  chart21 = new Chart(ctx, {
+    type: 'treemap',
+    data: {
+      datasets: [{
+        tree: treeData,
+        key: 'value',
+        groups: ['category'],
+        spacing: 0,
+        borderWidth: 0.5,
+        borderColor: '#ffffff',
+
+        backgroundColor: ctx => {
+          const item = ctx.raw;
+          return item ? CATEGORY_COLORS[item.g] : '#ffffff';
+        },
+
+        labels: {
+          display: true,
+          formatter: ctx => CATEGORY_LABELS[ctx.raw.g] || '',
+          color: 'rgba(255,255,255,0.85)',
+          font: { size: 10, weight: '500' },
+          align: 'center',
+          position: 'top'
+        }
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Cambiar datos sin repintar completo
 function cambiarFuente(indice) {
   crearGraficoAreas()
@@ -2145,6 +2207,7 @@ document.querySelector('.metricas-empleado').addEventListener('click', ()=>{
   padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
   moverPadreIngresos(61,28)
   alternarResultados('grafico-area')
+  /* crearGraficoTreeMap() */
 })
 function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
@@ -2422,6 +2485,12 @@ segundoItem.addEventListener('click', () =>{
   padreLinks.style.display='none'
   alternarResultados('padre-desempeños')
 })
+tercerItem.addEventListener('click', () =>{
+  padreLinks.style.display='none'
+  alternarResultados('abuelo-grafica12')
+  crearGraficoTreeMap()
+})
+
 
 function aplicarLedsDesdeEmpleado(empleadoGlobal) {
   // 1. Cargar la colección completa
@@ -2934,11 +3003,15 @@ function alternarResultados(selector) {
     if (item.id === selector) {
       if(item.id === 'grafico-area'){
         aparecerElemento('grafico-area', 'block')
-      }else{
+      }
+      if(item.id === 'abuelo-grafica12'){
+        aparecerElemento('abuelo-grafica12', 'grid')
+      }
+      else{
         aparecerElemento(item.id);
       }
     } else {
-      desaparecerElemento(item.id);
+        desaparecerElemento(item.id);
     }
   });
 }
@@ -3398,24 +3471,27 @@ const CATEGORY_COLORS = {
   A: '#DB76FF',
   B: '#0087F5',
   C: '#0A2DA8',
-  D: '#FF5F7F'
+  D: '#FF5F7F',
+  E: '#00B8A9'
 };
 
 const treeData = [
-  { category: 'A', value: 29 },
+  { category: 'A', value: 7 },
   { category: 'B', value: 15 },
-  { category: 'C', value: 33 },
-  { category: 'D', value: 23 }
+  { category: 'C', value: 40 },
+  { category: 'D', value: 13 },
+  { category: 'E', value: 13 }
 ];
 
 const CATEGORY_LABELS = {
   A: 'Objetivos',
-  B: 'Engagement',
-  C: 'Bloqueos',
-  D: 'Desarrollo'
+  B: 'Liderazgo',
+  C: 'Engagement',
+  D: 'Desarrollo',
+  E: 'Cumplimiento'
 };
 
-new Chart(document.getElementById('treemap'), {
+/* new Chart(document.getElementById('treemap'), {
   type: 'treemap',
   data: {
     datasets: [{
@@ -3456,4 +3532,4 @@ new Chart(document.getElementById('treemap'), {
       }
     }
   }
-});
+}); */

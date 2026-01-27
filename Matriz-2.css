@@ -6,7 +6,7 @@
 }
 @font-face{   
   font-family: "Digital";
-  src:url(./fonts/DS-DIGIT.TTF),
+  src:url(./fonts/DS-DIGIT.TTF), 
 } 
 
 html,
@@ -4664,7 +4664,7 @@ top: 44%;
   height: 43%
 }
 .box-4 {
-  position: absolute !important;
+  position: absolute;
   top: 15.6%;
   left: 27%;
   width: 72%;
@@ -4759,13 +4759,15 @@ top: 44%;
   width: 35%;
   height: 3%;
 }
+#MiGrafica20,
 #MiGrafica16{
   position:relative;
   display: flex;
   width: 99%;
   height: 100%;
-  margin: 10px;
+  z-index: 1000;
 }
+
 .calendario-interfaz{
   position: relative;
   display: grid;
@@ -5152,6 +5154,15 @@ top: 44%;
   width: 27vw;
   height: 25vh;
   display: none;
+
+  transform: scale(0);
+  transform-origin: center; 
+  transition: transform 1s ease;
+  overflow: hidden;                /* recorta el blur en los bordes */
+  background: rgba(10, 12, 20, 0.30); /* color base semitransparente */
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+  z-index: 500;
 }
 
 #treemap {

@@ -13,13 +13,24 @@ document.addEventListener('keydown', function(event) {
       break;
       case 'X':
         Geometria()
+
+          ingresoEmpleado()
+          setTimeout(() => {
+            document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ 
+              const padre = document.getElementById('padre-ingresos');
+              padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
+              moverPadreIngresos(61,28)
+              alternarResultados('grafico-area')
+            })
+          }, 1000);
+
       break;                  
     }
   }
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('tree-map');  
+  let contiBoton = document.getElementById('padre-grafica12');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -44,7 +55,7 @@ function Geometria() {
   console.log("Z-Index:", zIndexValue);  
   console.log("Is Visible:", isVisible);
   
-  var contiBotonI = document.getElementById('boton-reseteo') 
+  var contiBotonI = document.getElementById('MiGrafica20') 
   var rect = contiBotonI.getBoundingClientRect();
   var topPosition = rect.top;
   var leftPosition = rect.left;
