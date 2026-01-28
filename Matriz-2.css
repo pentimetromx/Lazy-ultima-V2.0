@@ -4773,10 +4773,10 @@ top: 44%;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(6, 1fr);
-  top: 19%;
-  left: 12%;
-  height: 65%;
-  width: 10vw;
+  top: -179%;
+  left: 1%;
+  height: 120%;
+  width: 100%;
   gap: 1px;
 }
 .child-calendar{
@@ -4846,7 +4846,7 @@ top: 44%;
 .slider-container label{
   position: relative;
   color: rgba(188,188,188,0.9);
-  font-size: 1vw;
+  font-size: 0.9vw;
   left: 3%;
 }
 #sliderValor{

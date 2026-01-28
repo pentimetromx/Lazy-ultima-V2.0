@@ -1408,7 +1408,7 @@ document.querySelector('.box-6').addEventListener('click', () => {
   setTimeout(() => {
     resetChart();
     resetCalendarStyles();
-  }, 1050);
+  }, 350);
 });
 const offset = 0;
 const fuentesDeDatos = [
@@ -2488,7 +2488,9 @@ segundoItem.addEventListener('click', () =>{
 tercerItem.addEventListener('click', () =>{
   padreLinks.style.display='none'
   alternarResultados('abuelo-grafica12')
-  crearGraficoTreeMap()
+  setTimeout(() => {
+    crearGraficoTreeMap()
+  }, 350);
 })
 
 
@@ -2816,7 +2818,7 @@ document.getElementById('alerta-ok').addEventListener('click', () => {
 });
 
 let chart20 = null;
-let valorActual = 0;
+let valorActual = 0; 
 let valorObjetivo = 0;
 let animando = false;
 const series = [
@@ -2851,24 +2853,31 @@ const series = [
   [95, 57, 68, 82],
   [98, 62, 73, 80]
 ];
-function crearLeds() {
-  const container = document.getElementById('ledContainer');
+function crearLeds(contenedorLeds) {
+  const container = document.getElementById(contenedorLeds);
   container.innerHTML = '';
 
   for (let i = 0; i < 30; i++) {
     const led = document.createElement('div');
-    led.classList.add('led-graphs');
+    if(contenedorLeds === 'ledContainer'){
+      led.classList.add('led-graphs');
+    }else{
+      led.classList.add('led-treemap');
+    } 
+    
     container.appendChild(led);
   }
 }
 
-function crearDias() {
-  const container = document.getElementById('daysContainer');
+function crearDias(contenedorDias) {
+  const container = document.getElementById(contenedorDias);
   container.innerHTML = '';
 
   for (let i = 1; i <= 30; i++) {
     const day = document.createElement('div');
-    day.classList.add('day-number');
+    if(contenedorDias === 'daysContainer')day.classList.add('day-number');
+    if(contenedorDias === 'dias-grafico')day.classList.add('day-treemap');
+
     day.textContent = i;
     container.appendChild(day);
   }
@@ -2929,9 +2938,29 @@ function crearGraficoOperacion() {
     }
   });
 }
-const sliderGraf = document.getElementById('miSlid');
-const spanValor = document.getElementById('slider-Valor');
 
+//INPUTS DESLIZADORES
+const sliderTree = document.getElementById('slidTree');
+const sliderGraf = document.getElementById('miSlid');
+
+//ETIQUETAS PARA ELVALOR
+const spanValor = document.getElementById('slider-Valor');
+const spanValorTree = document.getElementById('slider-map');
+
+function actualizarDiasYLedsTreeMap(valor) {
+  const leds = document.querySelectorAll('.led-treemap');
+  const dias = document.querySelectorAll('.day-treemap');
+
+  const currentIndex = valor - 1;
+
+  leds.forEach((led, index) => {
+    led.classList.toggle('led-on', index === currentIndex);
+  });
+
+  dias.forEach((day, index) => {
+    day.classList.toggle('day-on', index === currentIndex);
+  });
+}
 
 function actualizarDiasYLeds(valor) {
   const leds = document.querySelectorAll('.led-graphs');
@@ -2949,11 +2978,31 @@ function actualizarDiasYLeds(valor) {
 }
 
 
+// GRAFICO TREEMAP
+crearLeds('leds-grafico')
+crearDias('dias-grafico')
+
+// GRAFICO BARRAS
+crearLeds('ledContainer')
+crearDias('daysContainer')
+crearGraficoOperacion()   
 
 
-crearLeds()
-crearDias()
-crearGraficoOperacion()
+sliderTree.addEventListener('input', () => {
+  if (!chart21) return;
+
+  const valor = Math.round(Number(sliderTree.value));
+  spanValorTree.textContent = valor;
+
+  // Seguridad: si el slider supera las series definidas
+  const index = Math.min(valor, series.length - 1);
+
+  // Actualizar gráfico con la serie correspondiente
+  chart21.data.datasets[0].data = [...series[index]];
+  chart21.update();
+
+  actualizarDiasYLedsTreeMap(valor);
+});
 
 sliderGraf.addEventListener('input', () => {
   if (!chart20) return;
@@ -3490,46 +3539,3 @@ const CATEGORY_LABELS = {
   D: 'Desarrollo',
   E: 'Cumplimiento'
 };
-
-/* new Chart(document.getElementById('treemap'), {
-  type: 'treemap',
-  data: {
-    datasets: [{
-      tree: treeData,
-      key: 'value',
-      groups: ['category'],
-
-      spacing: 0,
-      borderWidth: 0.5,
-      borderColor: '#ffffff',
-
-      backgroundColor: ctx => {
-        const item = ctx.raw;
-        if (!item) return '#ffffff';
-        return CATEGORY_COLORS[item.g];
-      },
-
-      // ✅ LABELS NATIVOS DEL TREEMAP
-      labels: {
-        display: true,
-        formatter: ctx => CATEGORY_LABELS[ctx.raw.g] || '',
-        color: 'rgba(255,255,255,0.85)', // blanco mate
-        font: {
-          size: 10,
-          weight: '500'
-        },
-        align: 'end',
-        position: 'top'
-      }
-    }]
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false
-      }
-    }
-  }
-}); */
