@@ -3805,14 +3805,10 @@
       </div>
 
       <div class="box box-4">
-
         <span></span>
         <div id="padre-grafica10" class="hijo-graficos">
           <canvas id="MiGrafica16"></canvas> 
         </div> 
-
-        
-
       </div>
 
       <div class="box box-5">
@@ -3830,23 +3826,54 @@
       <div class="box box-9"></div>
     </div>
 
-    <div id="abuelo-grafica12" class="grafico-treemap current-graph">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="abuelo-grafica12" class="current-graph">
 
       <div class="slider-treemap all">
 
-        <div class="days-tree-map"></div>
+        <div id="dias-grafico"  class="days-container"></div>
 
-        <div class="led-tree-map"></div>
+        <div id="leds-grafico" class="led-container"></div>
 
 
       </div>
-
 
       <div id="padre-grafica12">
         <canvas id="MiGrafica20"></canvas> 
       </div> 
 
+      <div class="slider-map">
+
+        <label for="slidTree">
+          Número de medios: <span id="slider-map">0</span>
+        </label>
+
+        <input type="range" id="slidTree" min="0" max="30" value="0" step="0.01">
+
+      </div>      
+
     </div>
+
+
 
 
 
@@ -4148,6 +4175,15 @@
         <button id="alerta-ok">Aceptar</button>
       </div>
     </div>
+
+
+
+
+
+
+
+
+
     <div id="padre-desempeños" class="current-graph">
 
       <div id="father-slider" class="slider-father all">
@@ -4174,6 +4210,21 @@
       </div>
 
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div id="fichas-tecnicas" class="ficha-tecnica">
       <form class="ficha-grid">

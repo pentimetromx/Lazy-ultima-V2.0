@@ -7209,11 +7209,26 @@ height:100%;
   transform: scale(1); 
 }
 #abuelo-grafica12{
+  position: absolute;
+  display:grid;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  grid-template-rows: 14% 66% 17%;
+  top:13.5vh;
+  left: 48vw;
+  height:60vh;
+  width:50vw;
+  gap: 2%;
+  opacity: 1;
+
   transform: scale(0);
   transform-origin: center; 
   transition: transform 1s ease;
+  overflow: hidden;                /* recorta el blur en los bordes */
+  border: 1px solid rgba(111,111,111,0.5);
   box-shadow: 0 8px 30px rgba(0,0,0,0.55);
-  z-index: 500;  
+  z-index: 500;
 }
 .grafico-treemap {
   position: absolute;
@@ -7615,6 +7630,7 @@ background-color: #3FEF9C;
   box-shadow: 0 8px 30px rgba(0,0,0,0.55);
   z-index: 500;
 }
+.slider-map,
 .padre-slider{
   position: relative;
   display: grid;
@@ -7625,6 +7641,7 @@ background-color: #3FEF9C;
   justify-items: center; /* centra horizontalmente los hijos */
   align-items: center;   /* centra verticalmente el contenido de cada celda */
 }
+.slider-map label,
 .padre-slider label{
   display: block;      /* opcional, por claridad */
   width: 100%;
@@ -7633,11 +7650,11 @@ background-color: #3FEF9C;
   font-size: 1vw;
   box-sizing: border-box;
 }
-
+#slidTree,
 #miSlid{
   position: relative;
   cursor: pointer;
-  width: 50%;
+  width: 100%;
   height: 100%;
 }
 
@@ -7719,6 +7736,7 @@ background-color: #3FEF9C;
   height: 13%;
   gap: 1px;
 }
+.day-treemap,
 .day-number {
   width:100%;
   text-align: center;
@@ -7737,7 +7755,7 @@ background-color: #3FEF9C;
   transform: scale(1.5);
   font-weight: 700;
 }
-
+.led-treemap,
 .led-graphs {
   width:100%;
   height:100%;
@@ -7749,6 +7767,7 @@ background-color: #3FEF9C;
   background-color: #008f39;
   transform: scale(1.5);
 }
+#slider-map,
 #slider-Valor {
   display: inline-block;
   width: 2.2ch; 
