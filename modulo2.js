@@ -4993,6 +4993,7 @@ function openGraphics(elementId){
     turnBlock = true
   }
   desactivarClick(['.graphs-lines'])
+
   if(screenWidth > 500){
     var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos']
     for (var i = 0; i < allContenedores.length; i++) { 
@@ -5124,6 +5125,76 @@ function openGraphics(elementId){
     }, 500);
   }
 }
+
+const contLineas = document.querySelector('#contLineas');
+
+const MOVE_ELEMENT = [
+  
+  'move-canvas-1',
+  'move-canvas-2',
+  'move-canvas-3',
+  'move-canvas-4',
+  'move-canvas-5',
+  'move-canvas-6'
+];
+
+const graficos = [...contLineas.querySelectorAll('.graphs-lines')];
+
+graficos.forEach((grafico, index) => {
+  grafico.dataset.index = index;
+});
+
+
+
+contLineas.addEventListener('click', (e) => {
+  const graficoSeleccionado = e.target.closest('.graphs-lines');
+  if (!graficoSeleccionado || !contLineas.contains(graficoSeleccionado)) return;
+
+  const botonesFlotantes = document.querySelector('#conte-butts-graphs')
+  const imagenSola = document.querySelector('#porta-imagen')
+
+  if(turnBlock === false){
+    turnBlock = true
+  }
+  desactivarClick(['.graphs-lines'])
+    botonesFlotantes.style.display='grid'
+    container1.style.display='grid'
+    imagenSola.style.display='grid'
+    imagenSola.style.zIndex = 75
+    restaurarPosicion(["conte-butts-graphs"]);   
+    desactivarClicsPorUnTiempo(1500)
+
+  setTimeout(() => {   
+    if(turnGraphic === false){
+      turnGraphic = true
+      moverElementos(["conte-butts-graphs"], 27, -7);
+    }
+  }, 500);    
+
+  const index = Number(graficoSeleccionado.dataset.index);
+
+  // 1. Ocultar TODOS (canvas-safe)
+  graficos.forEach(grafico => {
+    grafico.style.display = 'none';
+    grafico.classList.remove(...MOVE_ELEMENT);
+  });
+
+  // 2. Mostrar solo el seleccionado
+  graficoSeleccionado.style.display = 'block';
+
+  // 3. Aplicar movimiento
+  graficoSeleccionado.classList.add(MOVE_ELEMENT[index]);
+
+});
+
+
+
+
+
+
+
+
+
 
 function mostrarSecuencialmente() {
   const padreElementos = document.getElementById('metas-diarias')
