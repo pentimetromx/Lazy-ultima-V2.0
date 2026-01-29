@@ -1519,64 +1519,6 @@ function crearGraficoAreas() {
 
 
 
-let chart21 = null;
-
-function crearGraficoTreeMap() {
-  const ctx = document.getElementById('MiGrafica20').getContext('2d');
-
-  if (chart21) {
-    chart21.destroy();
-  }
-
-  chart21 = new Chart(ctx, {
-    type: 'treemap',
-    data: {
-      datasets: [{
-        tree: treeData,
-        key: 'value',
-        groups: ['category'],
-        spacing: 0,
-        borderWidth: 0.5,
-        borderColor: '#ffffff',
-
-        backgroundColor: ctx => {
-          const item = ctx.raw;
-          return item ? CATEGORY_COLORS[item.g] : '#ffffff';
-        },
-
-        labels: {
-          display: true,
-          formatter: ctx => CATEGORY_LABELS[ctx.raw.g] || '',
-          color: 'rgba(255,255,255,0.85)',
-          font: { size: 10, weight: '500' },
-          align: 'center',
-          position: 'top'
-        }
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false }
-      }
-    }
-  });
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Cambiar datos sin repintar completo
 function cambiarFuente(indice) {
@@ -2147,6 +2089,7 @@ btnDblFlecha.addEventListener('click', ()=>{
  }else{
   desaparecerElemento('grafico-area')
   desaparecerElemento('abuelo-indicadores') 
+  desaparecerElemento('abuelo-grafica12')
   desaparecerElemento('padre-desempeños') 
   restaurarPosicionPadreIngresos()    
   flagEmpleado = true
@@ -2335,6 +2278,7 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   activarPantallaCompleta()
     deslizaContenedor('conti-boton-kaizen','kaizen')
+    resultadosMA('interfaz-mtto')
 })
 
 
@@ -2883,6 +2827,181 @@ function crearDias(contenedorDias) {
   }
 }
 
+//INPUTS DESLIZADORES
+const sliderTree = document.getElementById('slidTree');
+const sliderGraf = document.getElementById('miSlid');
+
+//ETIQUETAS PARA ELVALOR
+const spanValor = document.getElementById('slider-Valor');
+const spanValorTree = document.getElementById('slider-map');
+
+function actualizarDiasYLedsTreeMap(valor) {
+  const leds = document.querySelectorAll('.led-treemap');
+  const dias = document.querySelectorAll('.day-treemap');
+
+  const currentIndex = valor - 1;
+
+  leds.forEach((led, index) => {
+    led.classList.toggle('led-on', index === currentIndex);
+  });
+
+  dias.forEach((day, index) => {
+    day.classList.toggle('day-on', index === currentIndex);
+  });
+}
+
+function actualizarDiasYLeds(valor) {
+  const leds = document.querySelectorAll('.led-graphs');
+  const dias = document.querySelectorAll('.day-number');
+
+  const currentIndex = valor - 1;
+
+  leds.forEach((led, index) => {
+    led.classList.toggle('led-on', index === currentIndex);
+  });
+
+  dias.forEach((day, index) => {
+    day.classList.toggle('day-on', index === currentIndex);
+  });
+}
+
+
+// GRAFICO TREEMAP
+crearLeds('leds-grafico')
+crearDias('dias-grafico')
+
+// GRAFICO BARRAS
+crearLeds('ledContainer')
+crearDias('daysContainer')
+crearGraficoOperacion()   
+
+
+sliderTree.addEventListener('input', () => {
+  if (!chart21) return;
+
+  const valor = Math.floor(Number(sliderTree.value));
+  spanValorTree.textContent = valor;
+
+  actualizarTreeMapPorSlider(valor);
+  actualizarDiasYLedsTreeMap(valor);
+});
+
+let chart21 = null;
+
+function crearGraficoTreeMap() {
+  const ctx = document.getElementById('MiGrafica20').getContext('2d');
+
+  if (chart21) {
+    chart21.destroy();
+  }
+
+  chart21 = new Chart(ctx, {
+    type: 'treemap',
+    data: {
+      datasets: [{
+        tree: treeData,
+        key: 'value',
+        groups: ['category'],
+        spacing: 0,
+        borderWidth: 0.5,
+        borderColor: '#ffffff',
+
+        backgroundColor: ctx => {
+          const item = ctx.raw;
+          return item ? CATEGORY_COLORS[item.g] : '#ffffff';
+        },
+
+        labels: {
+          display: true,
+          formatter: ctx => CATEGORY_LABELS[ctx.raw.g] || '',
+          color: 'rgba(255,255,255,0.85)',
+          font: { size: 10, weight: '500' },
+          align: 'center',
+          position: 'top'
+        }
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+}
+
+function actualizarTreeMapPorSlider(valor){
+  const index = Math.min(valor, series.length - 1);
+
+  const nuevaData = treeData.map((item, i) => ({
+    ...item,
+    value: series[index][i] ?? 0
+  }));
+
+  chart21.data.datasets[0].tree = nuevaData;
+  chart21.update();
+}
+
+
+function crearGraficoTreeMap() {
+  const ctx = document.getElementById('MiGrafica20').getContext('2d');
+
+  if (chart21) {
+    chart21.destroy();
+  }
+
+  chart21 = new Chart(ctx, {
+    type: 'treemap',
+    data: {
+      datasets: [{
+        tree: treeData,
+        key: 'value',
+        groups: ['category'],
+        spacing: 0,
+        borderWidth: 0.5,
+        borderColor: '#ffffff',
+
+        backgroundColor: ctx => {
+          const item = ctx.raw;
+          return item ? CATEGORY_COLORS[item.g] : '#ffffff';
+        },
+
+        labels: {
+          display: true,
+          formatter: ctx => CATEGORY_LABELS[ctx.raw.g] || '',
+          color: 'rgba(255,255,255,0.85)',
+          font: { size: 10, weight: '500' },
+          align: 'center',
+          position: 'top'
+        }
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+}
+
+sliderGraf.addEventListener('input', () => {
+  if (!chart20) return;
+
+  const valor = Math.round(Number(sliderGraf.value));
+  spanValor.textContent = valor;
+
+  // Seguridad: si el slider supera las series definidas
+  const index = Math.min(valor, series.length - 1);
+
+  // Actualizar gráfico con la serie correspondiente
+  chart20.data.datasets[0].data = [...series[index]];
+  chart20.update();
+
+  actualizarDiasYLeds(valor);
+});
 function crearGraficoOperacion() {
   const canvas = document.getElementById('MiGrafica17');
   const ctx = canvas.getContext('2d');
@@ -2938,87 +3057,6 @@ function crearGraficoOperacion() {
     }
   });
 }
-
-//INPUTS DESLIZADORES
-const sliderTree = document.getElementById('slidTree');
-const sliderGraf = document.getElementById('miSlid');
-
-//ETIQUETAS PARA ELVALOR
-const spanValor = document.getElementById('slider-Valor');
-const spanValorTree = document.getElementById('slider-map');
-
-function actualizarDiasYLedsTreeMap(valor) {
-  const leds = document.querySelectorAll('.led-treemap');
-  const dias = document.querySelectorAll('.day-treemap');
-
-  const currentIndex = valor - 1;
-
-  leds.forEach((led, index) => {
-    led.classList.toggle('led-on', index === currentIndex);
-  });
-
-  dias.forEach((day, index) => {
-    day.classList.toggle('day-on', index === currentIndex);
-  });
-}
-
-function actualizarDiasYLeds(valor) {
-  const leds = document.querySelectorAll('.led-graphs');
-  const dias = document.querySelectorAll('.day-number');
-
-  const currentIndex = valor - 1;
-
-  leds.forEach((led, index) => {
-    led.classList.toggle('led-on', index === currentIndex);
-  });
-
-  dias.forEach((day, index) => {
-    day.classList.toggle('day-on', index === currentIndex);
-  });
-}
-
-
-// GRAFICO TREEMAP
-crearLeds('leds-grafico')
-crearDias('dias-grafico')
-
-// GRAFICO BARRAS
-crearLeds('ledContainer')
-crearDias('daysContainer')
-crearGraficoOperacion()   
-
-
-sliderTree.addEventListener('input', () => {
-  if (!chart21) return;
-
-  const valor = Math.round(Number(sliderTree.value));
-  spanValorTree.textContent = valor;
-
-  // Seguridad: si el slider supera las series definidas
-  const index = Math.min(valor, series.length - 1);
-
-  // Actualizar gráfico con la serie correspondiente
-  chart21.data.datasets[0].data = [...series[index]];
-  chart21.update();
-
-  actualizarDiasYLedsTreeMap(valor);
-});
-
-sliderGraf.addEventListener('input', () => {
-  if (!chart20) return;
-
-  const valor = Math.round(Number(sliderGraf.value));
-  spanValor.textContent = valor;
-
-  // Seguridad: si el slider supera las series definidas
-  const index = Math.min(valor, series.length - 1);
-
-  // Actualizar gráfico con la serie correspondiente
-  chart20.data.datasets[0].data = [...series[index]];
-  chart20.update();
-
-  actualizarDiasYLeds(valor);
-});
 
 function animarTransicion() {
   if (!animando) return;
@@ -3300,7 +3338,7 @@ hijos.forEach((li, index) => {
 
     if (index === 0) {
       ingresoEmpleado()
-    }
+    }  
     if (index === 2) {
       ingresoEmpleadoMA()
     }
@@ -3475,10 +3513,12 @@ const MOVE_CLASSES = [
   'move-kaizen-4',
   'move-kaizen-5'
 ];
+
 imgsKaizen.addEventListener('click', (e) => {
   const cellSeleccionada = e.target.closest('.cell');
-  if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;  
-  document.querySelector('#fichas-tecnicas').style.display='flex'
+  if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;
+
+  aparecerElemento("fichas-tecnicas", "flex")  
 
   const index = Number(cellSeleccionada.dataset.index);
   const cells = imgsKaizen.querySelectorAll('.cell');
@@ -3492,13 +3532,14 @@ imgsKaizen.addEventListener('click', (e) => {
   cells.forEach(cell => {
     if (cell !== cellSeleccionada) {
       cell.classList.add('oculta');
-      cell.style.display='none'
     }
   });
+
   setTimeout(() => {
     fichaTecnica.style.zIndex = '100';
-  }, 1200);
+  }, 800);
 });
+
 function aplicarEstilo(elemento, estilos) {
   if (!elemento) return;
   Object.assign(elemento.style, {
@@ -3506,14 +3547,6 @@ function aplicarEstilo(elemento, estilos) {
     ...estilos
   });
 }
-
-
-
-
-
-
-// Registro del plugin (una sola vez, antes de crear el chart)
-
 
 
 const CATEGORY_COLORS = {

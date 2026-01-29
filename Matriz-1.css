@@ -237,6 +237,7 @@ color: white;
   font-family: sans-serif;
   z-index: 9999;
 }
+#links-registro,
 #links-color{
   margin-left: -170%;
   width: 70%;
@@ -244,6 +245,7 @@ color: white;
   height:200%;
   font-size:1.6em;
 }
+.auxiliar-registro,
 .auxiliar-links{
   position: absolute;
   display: flex;
@@ -265,6 +267,7 @@ color: white;
   padding: 0;
   margin: 0;
 }
+.auxiliar-registro li,
 #links-color li,
 .auxiliar-links li{
   padding:5px;
@@ -1263,7 +1266,8 @@ width:447px ;
   width: 100%;
   height: 100%;
   cursor: pointer;
-  transition: opacity 1.5s ease, left 1.5s ease, top 1.5s ease, transform 1.6s ease;
+  transform: translate3d(0, 0, 0);
+  transition: transform 1.6s ease, opacity 1.5s ease;
 }
 
 /* debe ir después de la regla .graphs-lines */
@@ -4580,7 +4584,6 @@ h4{
 }
 
 
-/* PADRE */
 #kaizen-propuestos{
   position: absolute;
   display: grid;
@@ -4594,7 +4597,6 @@ h4{
   display: none;
 
 }
-/* HIJOS */
 .row{
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columnas */
@@ -4603,22 +4605,20 @@ h4{
   gap: 6px;
   min-height: 0;
 }
-/* NIETOS */
-
 .cell{
   display: grid;
-  grid-template-rows: 15% 85%;
+  grid-template-rows: 15% 85%; 
   width: 100%;
   height: 100%;
   border-radius: 18px;
   border: 2px solid orange;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 1.6s ease, opacity 0.4s ease
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease;
+  will-change: transform, opacity;
 }
-
-
-/* ETIQUETA */
 .cell .label{
   width: 100%;
   height: 100%;
@@ -4630,12 +4630,38 @@ h4{
   align-items: center;
   justify-content: center;
 }
-/* IMAGEN */
 .cell img{
   width: 100%;
   height: 100%;
   display: block;
 }
+
+.move-kaizen{
+  transform: translate3d(204%, 0, 0);
+}
+.move-kaizen-1{
+  transform: translate3d(204%, 0, 0);
+}
+.move-kaizen-2{
+  transform: translate3d(204%, 0, 0);
+}
+
+.move-kaizen-3{
+  transform: translate3d(204%, -100%, 0);
+}
+.move-kaizen-4{
+  transform: translate3d(204%, -100%, 0);
+}
+.move-kaizen-5{
+  transform: translate3d(204%, -100%, 0);
+}
+.oculta{
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+  transform: scale(0.96);
+}
+
 
 
 
@@ -5633,28 +5659,28 @@ input.numero:focus {
   transform: translateX(77vw)     
 }
 .move-canvas-1{
-  transform: translate(-5%, -51%);
-  transition: transform 1.6s ease;
+  transform: translate3d(0, -50%, 0);
+  transition: transform 0.9s ease;
 }
 .move-canvas-2{
-  transform: translate(-113%, -51%);
-  transition: transform 1.6s ease;
+  transform: translate3d(0, -50%, 0);
+  transition: transform 0.9s ease;
 }
 .move-canvas-3{
-  transform: translate(-213%, -51%);
-  transition: transform 1.6s ease;
+  transform: translate3d(0, -50%, 0);
+  transition: transform 0.9s ease;
 }
 .move-canvas-4{
-  transform: translate(-5%, -164%);
-  transition: transform 1.6s ease;
+  transform: translate3d(0, -50%, 0);
+  transition: transform 0.9s ease;
 }
 .move-canvas-5{
-  transform: translate(-113%, -164%);
-  transition: transform 1.6s ease;
+  transform: translate3d(0, -50%, 0);
+  transition: transform 0.9s ease;
 }
 .move-canvas-6{
-  transform: translate(-213%, -164%);
-  transition: transform 1.6s ease;
+  transform: translate3d(0, -50%, 0);
+  transition: transform 0.9s ease;
 }
 
  #first_half {
@@ -7760,7 +7786,7 @@ background-color: #3FEF9C;
   width:100%;
   height:100%;
   border-radius: 1px;
-  background-color: #333; /* apagado */
+  background-color: #333;
   transition: background-color 0.2s ease;
 }
 .led-on {
@@ -7772,6 +7798,7 @@ background-color: #3FEF9C;
   display: inline-block;
   width: 2.2ch; 
   text-align: right;
+  color: #00c04b;
 }
 #decisiones-estrategicas.panel-estrategico {
   position: absolute;
@@ -7821,11 +7848,6 @@ background-color: #3FEF9C;
 .bloque ul {
   padding-left: 20px;
 }
-
-
-
-
-
 .ficha-tecnica {
   position: absolute;
   display: flex;
@@ -7838,9 +7860,18 @@ background-color: #3FEF9C;
   border-radius: 8px;
   align-items: center;
   color: #f9fafb; /* alto contraste */
-  display:none;
-}
 
+  transition: transform 0.5s ease;
+  z-index: 2;
+  display: none;
+  transform: scale(0);
+  transform-origin: center; 
+
+}
+.ficha-tecnica.activo {
+  display: flex;
+  transform: scale(1); 
+}
 .ficha-grid {
   width: 100%;
   height: 100%;

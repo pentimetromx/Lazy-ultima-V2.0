@@ -521,7 +521,18 @@
       
       <ul id="linkList" class="iridescent-element">
         <li onclick="mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])">Impresion rotativa / flexográfica</li>   
-        <li onclick="iniciarAnimaciones()">Simulador impresion</li>
+        <li onclick="iniciarAnimaciones()">
+          Simulador impresion
+
+            <ul id="links-registro" class="auxiliar-registro">  
+              <li>Correccion</li>
+              <li>Ajuste plancha</li>
+              <li>Ajuste pinza</li>
+              <li>Alineacion cilindros</li>
+            </ul>
+
+        
+        </li>
         <li onclick="abrirSeccionVariable('cont-variable')">Impresion variable</li>
         <li onclick="abrirSeccionPlanas('cont-plana')">Impresion plana</li>
         <li onclick="abrirSeccionCurado('cont-secador')">Curado UV</li>
@@ -2007,22 +2018,22 @@
 
       <div id="contLineas">
 
-        <div id="canvasContainer4" class="graphs-lines" onclick="openGraphics('canvasContainer4')">
+        <div id="canvasContainer4" class="graphs-lines">
           <canvas id="MiGrafica4"></canvas> 
         </div>         
-        <div id="canvasContainer5" class="graphs-lines" onclick="openGraphics('canvasContainer5')">
+        <div id="canvasContainer5" class="graphs-lines">
           <canvas id="MiGrafica5"></canvas> 
         </div> 
-        <div id="canvasContainer6" class="graphs-lines" onclick="openGraphics('canvasContainer6')">
+        <div id="canvasContainer6" class="graphs-lines">
           <canvas id="MiGrafica6"></canvas> 
         </div>          
-        <div id="canvasContainer7" class="graphs-lines" onclick="openGraphics('canvasContainer7')">
+        <div id="canvasContainer7" class="graphs-lines">
           <canvas id="MiGrafica7"></canvas> 
         </div>
-        <div id="canvasContainer8" class="graphs-lines" onclick="openGraphics('canvasContainer8')">
+        <div id="canvasContainer8" class="graphs-lines">
           <canvas id="MiGrafica8"></canvas> 
         </div>
-        <div id="canvasContainer9" class="graphs-lines" onclick="openGraphics('canvasContainer9')">
+        <div id="canvasContainer9" class="graphs-lines">
           <canvas id="MiGrafica9"></canvas>
         </div>   
 
@@ -2775,7 +2786,7 @@
         <div class="mes">Diciembre</div>
       </div>
     </div>
-    <div id="simulador">
+    <div id="simulador">  
 
       <span id="sections-fondo" data-display="grid" class="sections-btn">
         <span id="spn-blur-8" class="btn-sections"></span><span id="spn-blur-9" class="btn-sections"></span><span id="spn-blur-10" class="btn-sections"></span>
@@ -3862,13 +3873,10 @@
       </div> 
 
       <div class="slider-map">
-
         <label for="slidTree">
           Número de medios: <span id="slider-map">0</span>
         </label>
-
-        <input type="range" id="slidTree" min="0" max="30" value="0" step="0.01">
-
+        <input id="slidTree" type="range" min="1" max="30" step="1">
       </div>      
 
     </div>
