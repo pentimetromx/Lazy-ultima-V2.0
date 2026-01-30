@@ -5126,7 +5126,6 @@ function openGraphics(elementId){
   }
 }
 
-const contLineas = document.querySelector('#contLineas');
 
 const MOVE_ELEMENT = [
   
@@ -5138,53 +5137,54 @@ const MOVE_ELEMENT = [
   'move-canvas-6'
 ];
 
+const contLineas = document.querySelector('#contLineas');
 const graficos = [...contLineas.querySelectorAll('.graphs-lines')];
 
 graficos.forEach((grafico, index) => {
   grafico.dataset.index = index;
 });
 
-
-
 contLineas.addEventListener('click', (e) => {
   const graficoSeleccionado = e.target.closest('.graphs-lines');
   if (!graficoSeleccionado || !contLineas.contains(graficoSeleccionado)) return;
 
-  const botonesFlotantes = document.querySelector('#conte-butts-graphs')
-  const imagenSola = document.querySelector('#porta-imagen')
+const botonesFlotantes = document.querySelector('#conte-butts-graphs')
+const imagenSola = document.querySelector('#porta-imagen')
 
-  if(turnBlock === false){
-    turnBlock = true
-  }
-  desactivarClick(['.graphs-lines'])
-    botonesFlotantes.style.display='grid'
-    container1.style.display='grid'
-    imagenSola.style.display='grid'
-    imagenSola.style.zIndex = 75
-    restaurarPosicion(["conte-butts-graphs"]);   
-    desactivarClicsPorUnTiempo(1500)
+if(turnBlock === false){
+  turnBlock = true
+}
 
   setTimeout(() => {   
     if(turnGraphic === false){
       turnGraphic = true
       moverElementos(["conte-butts-graphs"], 27, -7);
     }
-  }, 500);    
+  }, 500); 
 
   const index = Number(graficoSeleccionado.dataset.index);
 
-  // 1. Ocultar TODOS (canvas-safe)
-  graficos.forEach(grafico => {
-    grafico.style.display = 'none';
+  graficos.forEach((grafico, i) => {
+    const esActivo = grafico === graficoSeleccionado;
+
+    // limpiar clases de movimiento
     grafico.classList.remove(...MOVE_ELEMENT);
+
+    // marcar estado lógico
+    grafico.classList.toggle('oculto', !esActivo);
+
+    // visibilidad real (canvas incluido)
+    const opacity = esActivo ? '1' : '0';
+    grafico.style.opacity = opacity;
+
+    const canvas = grafico.querySelector('canvas');
+    if (canvas) canvas.style.opacity = opacity;
+
+    // aplicar movimiento solo al activo
+    if (esActivo) {
+      grafico.classList.add(MOVE_ELEMENT[index]);
+    }
   });
-
-  // 2. Mostrar solo el seleccionado
-  graficoSeleccionado.style.display = 'block';
-
-  // 3. Aplicar movimiento
-  graficoSeleccionado.classList.add(MOVE_ELEMENT[index]);
-
 });
 
 
