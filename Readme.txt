@@ -127,6 +127,71 @@ CONSIDERAR SI SE BORRAN:
 
 
 
+
+
+
+const MOVE_ELEMENT = [
+  
+  'move-canvas-1',
+  'move-canvas-2',
+  'move-canvas-3',
+  'move-canvas-4',
+  'move-canvas-5',
+  'move-canvas-6'
+];
+
+const contLineas = document.querySelector('#contLineas');
+const graficos = [...contLineas.querySelectorAll('.graphs-lines')];
+
+
+const botonesFlotantes = document.querySelector('#conte-butts-graphs')
+const imagenSola = document.querySelector('#porta-imagen')
+
+if(turnBlock === false){
+  turnBlock = true
+}
+
+
+
+graficos.forEach((grafico, index) => {
+  grafico.dataset.index = index;
+});
+
+contLineas.addEventListener('click', (e) => {
+  const graficoSeleccionado = e.target.closest('.graphs-lines');
+  if (!graficoSeleccionado || !contLineas.contains(graficoSeleccionado)) return;
+
+  const index = Number(graficoSeleccionado.dataset.index);
+
+  graficos.forEach((grafico, i) => {
+    const esActivo = grafico === graficoSeleccionado;
+
+    // limpiar clases de movimiento
+    grafico.classList.remove(...MOVE_ELEMENT);
+
+    // marcar estado lógico
+    grafico.classList.toggle('oculto', !esActivo);
+
+    // visibilidad real (canvas incluido)
+    const opacity = esActivo ? '1' : '0';
+    grafico.style.opacity = opacity;
+
+    const canvas = grafico.querySelector('canvas');
+    if (canvas) canvas.style.opacity = opacity;
+
+    // aplicar movimiento solo al activo
+    if (esActivo) {
+      grafico.classList.add(MOVE_ELEMENT[index]);
+    }
+  });
+});
+
+
+
+
+
+
+
   
 
 
