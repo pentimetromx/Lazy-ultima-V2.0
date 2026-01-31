@@ -625,39 +625,6 @@ let timeoutsDinamica = [];
 
 
 
-/* function updateDinamico() {
-  desactivarClick(['.desactivar'])
-  if(turnBlock === false){
-    setTimeout(function() { graficosAutomaticos('canvasContainer4'); }, 500);
-    setTimeout(function() { graficosAutomaticos('canvasContainer7'); }, 700);
-    setTimeout(function() { graficosAutomaticos('canvasContainer5'); }, 900);
-    setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
-    setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
-    setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  }
-  var nuevosDatos = [0,30,40,50,60,70];
-  chart7.data.datasets[0].data = nuevosDatos;
-  chart7.update();  
-  var nuevosDatosI = [5,20,35,50,65,80];
-  chart8.data.datasets[0].data = nuevosDatosI;
-  chart8.update();  
-  var nuevosDatosII = [15,20,25,30,35,40];
-  chart9.data.datasets[0].data = nuevosDatosII;
-  chart9.update();  
-  var nuevosDatosIII = [3,6,9,12,15,18];
-  chart10.data.datasets[0].data = nuevosDatosIII;
-  chart10.update();  
-  var nuevosDatosIIII = [7,14,21,28,35,42];
-  chart11.data.datasets[0].data = nuevosDatosIIII;
-  chart11.update();  
-  var nuevosDatosV = [9,18,27,36,45,54];           
-  chart12.data.datasets[0].data = nuevosDatosV;
-  chart12.update();
-  actualizarDatos()
-} */
-
-
-
 function updateDinamico() {
   dinamicaActiva = true;
   desactivarClick(['.desactivar']);
@@ -1151,26 +1118,34 @@ function rodillosKaizen(idButton,vidElem) {
       })
     break;
     case 'btn17':
-      const cells = document.querySelectorAll('#kaizen-propuestos .cell');
-
-      cells.forEach(cell => {
-        cell.classList.remove(...MOVE_CLASSES, 'oculta');
-        cell.style.display = '';      // vuelve al CSS original
-        cell.style.transform = '';    // seguridad extra
-        cell.style.opacity = '';
-        cell.style.pointerEvents = '';
-      });
-
       var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
-      } 
-      document.querySelector('#kaizen-propuestos').style.display='grid'
-      container1.style.display='grid'
-      contiButtRepuest.style.display='grid'
+      };
+      /* desactivarClick(['.cell']); */
+      /* restablecerClick(['.cell']); */
+
+      document.querySelector('#fichas-tecnicas').style.display='flex'
+      document.querySelector('#kaizen-propuestos > .cell:nth-child(1)').classList.remove('move-kaizen');
+      document.querySelector('#kaizen-propuestos > .cell:nth-child(2)').classList.remove('move-kaizen-1');
+      document.querySelector('#kaizen-propuestos > .cell:nth-child(3)').classList.remove('move-kaizen-2');
+      document.querySelector('#kaizen-propuestos > .cell:nth-child(4)').classList.remove('move-kaizen-3');
+      document.querySelector('#kaizen-propuestos > .cell:nth-child(5)').classList.remove('move-kaizen-4');
+      document.querySelector('#kaizen-propuestos > .cell:nth-child(6)').classList.remove('move-kaizen-5');
+
+      desaparecerElemento('fichas-tecnicas')
+      
+      const padreLineas = document.querySelector('#kaizen-propuestos');
+      padreLineas.style.display = 'grid';
+      padreLineas.querySelectorAll('*').forEach(hijo => {
+        hijo.style.display = '';
+        hijo.style.visibility = 'visible';
+        hijo.style.opacity = '1';
+      });
+
     break;       
     default:
   }
@@ -5148,12 +5123,12 @@ contLineas.addEventListener('click', (e) => {
   const graficoSeleccionado = e.target.closest('.graphs-lines');
   if (!graficoSeleccionado || !contLineas.contains(graficoSeleccionado)) return;
 
-const botonesFlotantes = document.querySelector('#conte-butts-graphs')
-const imagenSola = document.querySelector('#porta-imagen')
+  const botonesFlotantes = document.querySelector('#conte-butts-graphs')
+  const imagenSola = document.querySelector('#porta-imagen')
 
-if(turnBlock === false){
-  turnBlock = true
-}
+  if(turnBlock === false){
+    turnBlock = true
+  }
 
   setTimeout(() => {   
     if(turnGraphic === false){
@@ -5186,15 +5161,6 @@ if(turnBlock === false){
     }
   });
 });
-
-
-
-
-
-
-
-
-
 
 function mostrarSecuencialmente() {
   const padreElementos = document.getElementById('metas-diarias')

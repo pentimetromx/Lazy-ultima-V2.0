@@ -521,25 +521,21 @@
       
       <ul id="linkList" class="iridescent-element">
         <li onclick="mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])">Impresion rotativa / flexográfica</li>   
-        <li onclick="iniciarAnimaciones()">
-          Simulador impresion
-
-            <ul id="links-registro" class="auxiliar-registro">  
-              <li>Correccion</li>
-              <li>Ajuste plancha</li>
-              <li>Ajuste pinza</li>
-              <li>Alineacion cilindros</li>
-            </ul>
-
         
+        <li id="simulador-impresion">Simulador impresion
+          <ul id="links-registro" class="auxiliar-registro">
+            <li>Correccion</li>
+            <li>Ajuste plancha</li>
+            <li>Ajuste pinza</li>
+            <li>Alineacion cilindros</li>
+          </ul>
         </li>
+
         <li onclick="abrirSeccionVariable('cont-variable')">Impresion variable</li>
         <li onclick="abrirSeccionPlanas('cont-plana')">Impresion plana</li>
         <li onclick="abrirSeccionCurado('cont-secador')">Curado UV</li>
         <li onclick="abrirSeccionDemo('planetary')">Demostrativo</li>
-
-        <li id="ingreso-color"> 
-          Color
+        <li id="ingreso-color">Color
           <ul id="links-color" class="auxiliar-links">  
             <li>Densitometria</li>
             <li>Teoria del color</li>
@@ -560,13 +556,10 @@
             <li>Salir</li>
           </ul>
         </li>
-
-
-
-
         <li onclick="mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales']);">Simulador rotativa RK-300</li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
+
     </div> 
 
     <div id="barras-inicio" class="contenedor-barras-inicio">
@@ -989,36 +982,32 @@
       </video>
     </div>
 
+
     <div id="kaizen-propuestos">
 
-      <div class="row">
-        <div class="cell" data-index="0">
-          <div class="label">Salva manos en maquina colectora</div>
-          <img data-src="./assets/kaizen colectora.jpg" class="lazy kaizen-img" alt="colectora">
-        </div>
-        <div class="cell" data-index="1">
-          <div class="label">Mejora en linea de ensamble</div>
-          <img data-src="./assets/kaizen fresa.jpg" class="lazy kaizen-img" alt="colectora">
-        </div>
-        <div class="cell" data-index="2">
-          <div class="label">Bodega estanteria lijera</div>
-          <img data-src="./assets/kaizen estante.jpg" class="lazy kaizen-img" alt="colectora">
-        </div>
-      </div>   
-
-      <div class="row">
-        <div class="cell" data-index="3">
-          <div class="label">Metodologia 5S</div>
-          <img data-src="./assets/kaizen 5S.jpg" class="lazy kaizen-img" alt="colector">
-        </div>
-        <div class="cell" data-index="4">
-          <div class="label">Lean manufacturing</div>
-          <img data-src="./assets/kaizen lean.jpg" class="lazy kaizen-img" alt="colector">
-        </div>
-        <div class="cell" data-index="5">
-          <div class="label">Filosofia kaizen japones</div>
-          <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
-        </div>
+      <div class="cell" data-index="0">
+        <div class="label">Salva manos en maquina colectora</div>
+        <img data-src="./assets/kaizen colectora.jpg" class="lazy kaizen-img" alt="colectora">
+      </div>
+      <div class="cell" data-index="1">
+        <div class="label">Mejora en linea de ensamble</div>
+        <img data-src="./assets/kaizen fresa.jpg" class="lazy kaizen-img" alt="colectora">
+      </div>
+      <div class="cell" data-index="2">
+        <div class="label">Bodega estanteria lijera</div>
+        <img data-src="./assets/kaizen estante.jpg" class="lazy kaizen-img" alt="colectora">
+      </div>
+      <div class="cell" data-index="3">
+        <div class="label">Metodologia 5S</div>
+        <img data-src="./assets/kaizen 5S.jpg" class="lazy kaizen-img" alt="colector">
+      </div>
+      <div class="cell" data-index="4">
+        <div class="label">Lean manufacturing</div>
+        <img data-src="./assets/kaizen lean.jpg" class="lazy kaizen-img" alt="colector">
+      </div>
+      <div class="cell" data-index="5">
+        <div class="label">Filosofia kaizen japones</div>
+        <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
 
     </div>
@@ -2066,7 +2055,6 @@
         </div>  
 
       </div>
-      
       <div class="contenedor-vertical" id="contenedor-vertical">
 
         <div class="cont-userI" id="icon-carlos-I">
@@ -2098,10 +2086,6 @@
           <span class="lblNombres">Ana Maria Duarte Pineda</span>
         </div>
       </div>  
-
-
-
-      
     </div>
     
     <div id="father-employees" style="position: relative;display:none;">
