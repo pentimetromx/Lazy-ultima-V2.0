@@ -421,7 +421,7 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     } else {
       elem.style.display = "none";
     }
-  });
+  }); 
 
   if (visibles.length === 0) return; // No hay elementos visibles, salir.
   const elementId = visibles[0];
@@ -431,7 +431,7 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     span.style.backgroundColor = '';
     span.style.color = '';
   });
-  switch (elementId) {
+  /* switch (elementId) {
     case 'cont-titulo-operacion':
       animateScroll('contLineas');
       actualizarIdsArray(elementId);
@@ -451,7 +451,7 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     default:
       activarPantallaCompleta();
     break;
-  }
+  } */
 }
 function ocultarGranCortina() {
   setTimeout(() => {
@@ -1819,7 +1819,6 @@ nextBtn.addEventListener('click', () => {
 });
 
 // CLICK EN IMAGEN EN SOLITARIO INICIAL
-
 visor.addEventListener('click', (e) => {
   const padreEmpleados = document.querySelector('#father-employees');
   const padreImagenes = document.querySelector('.contenedor-visor'); 
@@ -2275,10 +2274,11 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
   resultadosMA('interfaz-mtto')
 })
+
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   activarPantallaCompleta()
     deslizaContenedor('conti-boton-kaizen','kaizen')
-    resultadosMA('interfaz-mtto')
+    rodillosKaizen('btn17','')
 })
 
 
@@ -2429,6 +2429,7 @@ segundoItem.addEventListener('click', () =>{
   padreLinks.style.display='none'
   alternarResultados('padre-desempeños')
 })
+
 tercerItem.addEventListener('click', () =>{
   padreLinks.style.display='none'
   alternarResultados('abuelo-grafica12')
@@ -3287,23 +3288,47 @@ linksAuxiliar.addEventListener('mouseleave', (e) => {
 const listar = document.querySelectorAll('#linkList > li');
 const listarDos = document.querySelectorAll('#links-color > li');
 
+const simulador = document.getElementById('simulador-impresion');
+const linksRegistro = document.getElementById('links-registro');
+const linksRgbaCmyk = document.getElementById('links-registro');
+
+const segundoElemento = listar[1]
 const septimoElemento = listar[6];
 const quintoElemento = listarDos[4];
 
 const linksColor = septimoElemento.querySelector('#links-color');
 const linksTec = quintoElemento.querySelector('.submenu-colorimetria'); 
+let sobreTiempo = null;
 
-
+simulador.addEventListener('click', (e) => {
+  // solo se ejecuta si el click fue directamente en el li padre
+  if (e.target !== simulador) return;
+  iniciarAnimaciones();
+});
+if (!segundoElemento || !linksRgbaCmyk || !linksRegistro) {
+  throw new Error('Elemento requerido no encontrado');
+}
+linksRegistro.addEventListener('click', (e) => {
+  e.stopPropagation();
+});
+segundoElemento.addEventListener('mouseenter', () => {
+  sobreTiempo = setTimeout(() => {
+    linksRgbaCmyk.style.display = 'block';
+  }, 250);
+});
+segundoElemento.addEventListener('mouseleave', () => {
+  if (sobreTiempo) {
+    clearTimeout(sobreTiempo);
+    sobreTiempo = null;
+  }
+  linksRgbaCmyk.style.display = 'none';
+});
 if (!septimoElemento || !linksColor) {
   throw new Error('Elemento requerido no encontrado');
 }
 if (!quintoElemento || !linksTec) {
   throw new Error('Elemento requerido no encontrado');
 }
-
-
-let sobreTiempo = null;
-
 septimoElemento.addEventListener('mouseenter', () => {
   sobreTiempo = setTimeout(() => {
     linksColor.style.display = 'block';
@@ -3314,7 +3339,6 @@ quintoElemento.addEventListener('mouseenter', () => {
     linksTec.style.display = 'block';
   }, 250);
 });
-
 septimoElemento.addEventListener('mouseleave', () => {
   if (sobreTiempo) {
     clearTimeout(sobreTiempo);
@@ -3329,9 +3353,6 @@ quintoElemento.addEventListener('mouseleave', () => {
   }
   linksTec.style.display = 'none';
 });
-
-
-
 hijos.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3348,7 +3369,6 @@ hijos.forEach((li, index) => {
 
   });
 });
-
 hijosColor.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3361,7 +3381,6 @@ hijosColor.forEach((li, index) => {
     }
   });
 });
-
 hijosTec.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3374,7 +3393,10 @@ hijosTec.forEach((li, index) => {
     }
   });
 });
-
+const mostrarRegistro = document.querySelector('#links-registro > li:nth-child(2)')
+mostrarRegistro.addEventListener('click', () =>{
+  mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
+})
 //*********************************************************************************************************************** */
 function aplicarColoresInputs() {
   document
@@ -3514,31 +3536,62 @@ const MOVE_CLASSES = [
   'move-kaizen-5'
 ];
 
+const contKaizen = document.querySelector('#kaizen-propuestos');
+const kaizens = [...contKaizen.querySelectorAll('.cell')];
+
+kaizens.forEach((grafico, index) => {
+  grafico.dataset.index = index;
+});
+
 imgsKaizen.addEventListener('click', (e) => {
   const cellSeleccionada = e.target.closest('.cell');
   if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;
 
-  aparecerElemento("fichas-tecnicas", "flex")  
+  aparecerElemento("fichas-tecnicas", "flex") 
+  desactivarClick(['.cell']); 
+
+  if(turnBlock === false){
+    turnBlock = true
+  }
+
+  setTimeout(() => {   
+    if(turnGraphic === false){
+      turnGraphic = true
+      moverElementos(["conte-butts-graphs"], 27, -7);
+    }
+  }, 500); 
 
   const index = Number(cellSeleccionada.dataset.index);
-  const cells = imgsKaizen.querySelectorAll('.cell');
 
-  cells.forEach(cell => {
-    cell.classList.remove(...MOVE_CLASSES, 'oculta');
-  });
+  kaizens.forEach((grafico, i) => {
+    const esActivo = grafico === cellSeleccionada;
 
-  cellSeleccionada.classList.add(MOVE_CLASSES[index]);
+    // limpiar clases de movimiento
+    grafico.classList.remove(...MOVE_ELEMENT);
 
-  cells.forEach(cell => {
-    if (cell !== cellSeleccionada) {
-      cell.classList.add('oculta');
+    // marcar estado lógico
+    grafico.classList.toggle('oculto', !esActivo);
+
+    // visibilidad real (canvas incluido)
+    const opacity = esActivo ? '1' : '0';
+    grafico.style.opacity = opacity;
+
+    // aplicar movimiento solo al activo
+    if (esActivo) {
+      grafico.classList.add(MOVE_CLASSES[index]);
     }
-  });
+  });  
 
   setTimeout(() => {
     fichaTecnica.style.zIndex = '100';
   }, 800);
+  setTimeout(() => {
+    restablecerClick(['.cell']);    
+  }, 2500);
 });
+
+//*********************************************************************************************************************** */
+
 
 function aplicarEstilo(elemento, estilos) {
   if (!elemento) return;

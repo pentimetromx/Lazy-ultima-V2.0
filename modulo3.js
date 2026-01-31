@@ -5396,12 +5396,11 @@ function desactivarClickTemporalmente(classElements, duracion) {
     }, duracion);
   });
 }
-function restablecerClick(classElements) { 
+/* function restablecerClick(classElements) { 
   if (!Array.isArray(classElements)) {
     console.error('El parámetro debe ser un array de selectores.');
     return;
   }
-
   classElements.forEach(selector => {
     const botones = document.querySelectorAll(selector);
     botones.forEach(boton => {
@@ -5409,7 +5408,7 @@ function restablecerClick(classElements) {
       boton.style.opacity = '1'; // Restaura la apariencia
     });
   });
-}  
+} */  
 function bloquearClick(event) {
   if (event.currentTarget.dataset.clickDisabled === 'true') {
     event.stopPropagation();

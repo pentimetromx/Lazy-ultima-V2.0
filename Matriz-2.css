@@ -5083,23 +5083,35 @@ top: 44%;
   position: relative;
   padding-right: 20px; /* espacio para la flecha */
 }
+#links-registro > li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height:5vh;
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+#linkList > li:nth-child(2)::after,
+#links-registro > li:nth-child(2)::after,
 .has-submenu::after,
-#links-registro::after,
 #ingreso-color::after,
 #ingreso-padre::after {
   content: '';
   position: absolute;
   right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+
   width: 0;
   height: 0;
+
   border-left: 6px solid rgb(0,0,255);
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  transition-delay: 0.3s;  
 }
-#links-registro:hover::after,
+#linkList > li:nth-child(2):hover::after,
+#links-registro > li:nth-child(2):hover::after,
 .has-submenu:hover::after,
 #ingreso-color:hover::after,
 #ingreso-padre:hover::after {
