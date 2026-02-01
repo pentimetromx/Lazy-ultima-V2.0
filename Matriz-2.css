@@ -2935,7 +2935,11 @@ width: 70%;
   border: 1px solid rgba(199,199,199,0.8);
   transition: opacity 1s ease;
   opacity: 1;
-}    
+}
+#alerta-perfiles:hover{
+  color:rgb(220,40,40);           
+  font-weight: bold;  
+}
 #cancelar-eliminar,              
 #aceptar-eliminar{
   position: relative;
@@ -2957,10 +2961,8 @@ width: 70%;
   background-color: #66ff66;
   color: rgb(0,0,20);
 }
-#alerta-perfiles:hover{
-  color:rgb(220,40,40);           
-  font-weight: bold;  
-}
+
+
 #perfiles-color input::placeholder {
   font-size: 1vw;
 }

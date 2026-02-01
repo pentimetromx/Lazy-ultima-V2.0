@@ -431,7 +431,7 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     span.style.backgroundColor = '';
     span.style.color = '';
   });
-  /* switch (elementId) {
+  switch (elementId) {
     case 'cont-titulo-operacion':
       animateScroll('contLineas');
       actualizarIdsArray(elementId);
@@ -451,7 +451,7 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     default:
       activarPantallaCompleta();
     break;
-  } */
+  }
 }
 function ocultarGranCortina() {
   setTimeout(() => {
@@ -2597,6 +2597,8 @@ document.querySelector('#lbl-ingreso-ma').addEventListener('click',()=>{
   }, 250);
 })
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
+  mostrarVentanaMensaje('texto')
+  
   actualizarIdentificadosMA('M.A')
 }) 
 function actualizarIdentificadosMA(sector) {
@@ -2750,10 +2752,10 @@ function mostrarLocalStorageComoJSON() {
 }
 function mostrarVentanaMensaje(texto) {
   document.getElementById('alerta-mensaje').textContent = texto;
-  document.getElementById('ventana-alerta').style.display = 'flex';
+  alertaMSG.style.display = 'flex';
 }
 document.getElementById('alerta-ok').addEventListener('click', () => {
-  document.getElementById('ventana-alerta').style.display = 'none';
+  alertaMSG.style.display = 'none';
   const input = document.querySelector('#nomEmpl');
 
   if (input instanceof HTMLElement) {
@@ -3288,7 +3290,8 @@ linksAuxiliar.addEventListener('mouseleave', (e) => {
 const listar = document.querySelectorAll('#linkList > li');
 const listarDos = document.querySelectorAll('#links-color > li');
 
-const simulador = document.getElementById('simulador-impresion');
+const simulador = document.querySelector('#links-registro li:first-child');
+
 const linksRegistro = document.getElementById('links-registro');
 const linksRgbaCmyk = document.getElementById('links-registro');
 
@@ -3305,6 +3308,7 @@ simulador.addEventListener('click', (e) => {
   if (e.target !== simulador) return;
   iniciarAnimaciones();
 });
+
 if (!segundoElemento || !linksRgbaCmyk || !linksRegistro) {
   throw new Error('Elemento requerido no encontrado');
 }
@@ -3544,10 +3548,11 @@ kaizens.forEach((grafico, index) => {
 });
 
 imgsKaizen.addEventListener('click', (e) => {
+  imgsKaizen.style.zIndex = '100';
   const cellSeleccionada = e.target.closest('.cell');
   if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;
 
-  aparecerElemento("fichas-tecnicas", "flex") 
+  aparecerElemento("fichas-tecnicas", "flex")  
   desactivarClick(['.cell']); 
 
   if(turnBlock === false){
@@ -3557,7 +3562,7 @@ imgsKaizen.addEventListener('click', (e) => {
   setTimeout(() => {   
     if(turnGraphic === false){
       turnGraphic = true
-      moverElementos(["conte-butts-graphs"], 27, -7);
+      /* moverElementos(["conte-butts-graphs"], 27, -7); */
     }
   }, 500); 
 
@@ -3582,9 +3587,9 @@ imgsKaizen.addEventListener('click', (e) => {
     }
   });  
 
-  setTimeout(() => {
+  /* setTimeout(() => {
     fichaTecnica.style.zIndex = '100';
-  }, 800);
+  }, 800); */
   setTimeout(() => {
     restablecerClick(['.cell']);    
   }, 2500);

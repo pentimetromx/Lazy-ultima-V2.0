@@ -1139,8 +1139,6 @@ function restaurarPosicion(idsElementos) {
   turnGraphic = false;
 }
 
-
-
 function restaurarEstilosPadre(idContenedor) {
   let contenedor = document.getElementById(idContenedor);
 
@@ -1799,4 +1797,40 @@ function limpiarEntradas() {
     contenedorMA.dataset.img = '';
   }
   
+}
+
+
+const accionesPorPadre = {
+  contenedor: () => {
+    console.log('logica muy extensa para contenedor');
+  },
+  flexografia: () => {
+    console.log('logica muy extensa para flexografia');
+  },
+  lithografia: () => {
+    console.log('logica muy extensa para lithografia');
+  }
+};
+
+function saltarAlerta(texto, padre) {
+  const modal = document.querySelector('#padre-evento');
+  const mensaje = document.querySelector('#mensaje-alerta');
+  const aceptar = document.querySelector('#aceptar-evento');
+  const cancelar = document.querySelector('#denegar-evento');
+
+  mensaje.textContent = texto;
+  modal.style.display = 'flex';
+
+  const cerrar = () => {
+    modal.style.display = 'none';
+    aceptar.onclick = null;
+    cancelar.onclick = null;
+  };
+
+  aceptar.onclick = () => {
+    accionesPorPadre[padre]?.();
+    cerrar();
+  };
+
+  cancelar.onclick = cerrar;
 }
