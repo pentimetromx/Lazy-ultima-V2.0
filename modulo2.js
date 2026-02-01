@@ -623,10 +623,11 @@ function updateCarlosII() {
 let dinamicaActiva = false;
 let timeoutsDinamica = [];
 
-
-
 function updateDinamico() {
+  if (dinamicaActiva) return;
+
   dinamicaActiva = true;
+
   desactivarClick(['.desactivar']);
 
   timeoutsDinamica.forEach(id => clearTimeout(id));
@@ -672,7 +673,6 @@ function updateDinamico() {
   actualizarDatos();
 }
   
-
 function updateDinamicoII() {
   if (!dinamicaActiva) return;
 
@@ -713,41 +713,21 @@ function updateDinamicoII() {
 
   actualizarDatosII();
 }
-
-
-
-/* function detenerDinamica(){
-  restablecerClick(['.desactivar'])
-  var intervalos = [intervaloActualizar, intervaloActualizarII];
-  intervalos.forEach(function(intervalo, index) {
-    if (intervalo) {
-      clearInterval(intervalo);
-      if (index === 0) intervaloActualizar = null;
-      if (index === 1) intervaloActualizarII = null;
-    }
-  });
-} */
-
-
   
 function detenerDinamica() {
   dinamicaActiva = false;
 
-  restablecerClick(['.desactivar']);
+  clearInterval(intervaloActualizar);
+  clearInterval(intervaloActualizarII);
 
-  [intervaloActualizar, intervaloActualizarII].forEach((intervalo, index) => {
-    if (intervalo) {
-      clearInterval(intervalo);
-      if (index === 0) intervaloActualizar = null;
-      if (index === 1) intervaloActualizarII = null;
-    }
-  });
+  intervaloActualizar = null;
+  intervaloActualizarII = null;
 
-  timeoutsDinamica.forEach(id => clearTimeout(id));
+  timeoutsDinamica.forEach(clearTimeout);
   timeoutsDinamica.length = 0;
+
+  restablecerClick(['.desactivar']);
 }
-
-
 
 /******************************************************************************************************************************************************** */
 
@@ -5133,11 +5113,13 @@ contLineas.addEventListener('click', (e) => {
   setTimeout(() => {   
     if(turnGraphic === false){
       turnGraphic = true
-      moverElementos(["conte-butts-graphs"], 27, -7);
+      moverElementos(["conte-butts-graphs"], 27, -3.5);
     }
   }, 500); 
 
   const index = Number(graficoSeleccionado.dataset.index);
+
+  if(index === 5)mostrarSecuencialmente()
 
   graficos.forEach((grafico, i) => {
     const esActivo = grafico === graficoSeleccionado;
@@ -5169,8 +5151,6 @@ function mostrarSecuencialmente() {
   if(screenWidth < 500){
     padreElementos.style.top = '40vh'
     padreElementos.style.left = '23vw'
-  }else{
-    padreElementos.style.left = '43vw';
   }
 
   elementos.forEach((li, index) => {

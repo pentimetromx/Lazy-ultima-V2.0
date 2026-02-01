@@ -9,20 +9,11 @@ document.addEventListener('keydown', function(event) {
      
       break;  
       case 'H':      
-        aplicarNormalizacionDeColores()
+        saltarAlerta('CLICK PARA TRUE','contenedor')
       break;
       case 'X':
-        Geometria()
-
-          ingresoEmpleado()
-          setTimeout(() => {
-            document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ 
-              const padre = document.getElementById('padre-ingresos');
-              padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
-              moverPadreIngresos(61,28)
-              alternarResultados('grafico-area')
-            })
-          }, 1000);
+        /* Geometria() */
+        saltarAlerta('CLICK PARA FALSE','flexografia')
 
       break;                  
     }
@@ -3768,7 +3759,6 @@ document.querySelector('#boton-prensas').addEventListener('click', () =>{
   document.querySelector('#contenedor-botonera').style.display = 'grid'
 })
 
-
 document.querySelector('#boton-perfiles').addEventListener('click', () =>{
   var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles', 'boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -3818,6 +3808,7 @@ document.querySelector('#aceptar-eliminar').addEventListener('click', () =>{
   });
   restablecerClick(['.butt-perfiles'])
 })
+
 document.querySelector('#cancelar-eliminar').addEventListener('click', () =>{
   const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
 
@@ -3835,12 +3826,12 @@ document.querySelector('#cancelar-eliminar').addEventListener('click', () =>{
           elemento.style.display = 'block';
         });
       }
-    
-
+  
     }, 1000);
   });
   restablecerClick(['.butt-perfiles'])
 })
+
 function traerObjetoAmarillo() {
   try {
     // Recuperar el objeto almacenado en localStorage
@@ -5139,7 +5130,7 @@ document.querySelector('#grid-numbers > div:nth-child(11)').addEventListener('cl
   detenerAlternarColor();
 });
 document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
-  document.getElementById('ventana-alerta').style.display = 'none';
+  alertaMSG.style.display = 'none';
   document.querySelector('#job-files').style.display = 'none'
   document.querySelector('#contenedor-registro').style.display = 'none'
   calculadora.classList.add('move-calculadora')
