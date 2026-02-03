@@ -2005,7 +2005,8 @@ document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
   
   // Validación inicial
   if (!valor) {
-    mostrarVentanaMensaje('Debe ingresar un número de documento.', 'padre-ingresos');
+    /* mostrarVentanaMensaje('Debe ingresar un número de documento.', 'padre-ingresos'); */
+    saltarAlerta('Debe ingresar un número de documento.', 'recursoDocumento')
     restaurarPosicionPadreIngresos();
     flagEmpleado = true;
     return;
@@ -2068,7 +2069,8 @@ document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
     }
 
   } else {
-    mostrarVentanaMensaje('Empleado no encontrado en la BD.');
+    /* mostrarVentanaMensaje('Empleado no encontrado en la BD.'); */
+    saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn')
   }
   empleadoGlobal = empleadoEncontrado
   console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal  )
@@ -2590,15 +2592,25 @@ function cargarEmpleadoMA() {
 
   imgElemento.src = rutaImagen;
 }
-document.querySelector('#lbl-ingreso-ma').addEventListener('click',()=>{
-  cargarEmpleadoMA()
+document.querySelector('#lbl-ingreso-ma').addEventListener('click', () => {
+  const inputEmpleado = document.querySelector('#nomEmpl-ma');
+
+  // Normaliza el valor (evita espacios)
+  if (!inputEmpleado || inputEmpleado.value.trim() === '') {
+    // opcional: feedback visual
+    inputEmpleado?.focus();
+    saltarAlerta('Ingrese numero de documento', 'autonomoIngreso')
+    return; // ⛔ corta TODA la lógica
+  }
+
+  cargarEmpleadoMA();
+
   setTimeout(() => {
-    aplicarColoresInputs()
+    aplicarColoresInputs();
   }, 250);
-})
+});
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
-  mostrarVentanaMensaje('texto')
-  
+  /* saltarAlerta('Confirmar cambios', 'recursosConfirmar') */
   actualizarIdentificadosMA('M.A')
 }) 
 function actualizarIdentificadosMA(sector) {
@@ -2624,7 +2636,8 @@ function actualizarIdentificadosMA(sector) {
     const nuevoLup = lupInput.value.trim();
 
     if (!documentoBusqueda || !nuevoIdentificado || !nuevoCorregido || !nuevoTipoA || !nuevoTipoB || !nuevoKaizen || !nuevoAda || !nuevoAdt || !nuevoLup) {
-      mostrarVentanaMensaje('Faltan datos para continuar.')
+      /* mostrarVentanaMensaje('Faltan datos para continuar.') */
+      saltarAlerta('Faltan datos para continuar.', 'recursoFaltante')
       return;
     }
 
@@ -2653,7 +2666,7 @@ function actualizarIdentificadosMA(sector) {
     empleadoGlobal = empleado
 
     console.log('Empleado actualizado:', empleado);
-    mostrarVentanaMensaje('Empleado actualizado')
+    saltarAlerta('Empleado actualizado','recursosActualizar')
 
     // Guardar cambios
     localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
@@ -3000,7 +3013,7 @@ sliderGraf.addEventListener('input', () => {
   const index = Math.min(valor, series.length - 1);
 
   // Actualizar gráfico con la serie correspondiente
-  chart20.data.datasets[0].data = [...series[index]];
+  chart20.data.datasets[1].data = [...series[index]];
   chart20.update();
 
   actualizarDiasYLeds(valor);
@@ -3101,7 +3114,7 @@ function alternarResultados(selector) {
         aparecerElemento(item.id);
       }
     } else {
-        desaparecerElemento(item.id);
+      desaparecerElemento(item.id);
     }
   });
 }
@@ -3596,8 +3609,6 @@ imgsKaizen.addEventListener('click', (e) => {
 });
 
 //*********************************************************************************************************************** */
-
-
 function aplicarEstilo(elemento, estilos) {
   if (!elemento) return;
   Object.assign(elemento.style, {
@@ -3605,8 +3616,6 @@ function aplicarEstilo(elemento, estilos) {
     ...estilos
   });
 }
-
-
 const CATEGORY_COLORS = {
   A: '#DB76FF',
   B: '#0087F5',
@@ -3614,7 +3623,6 @@ const CATEGORY_COLORS = {
   D: '#FF5F7F',
   E: '#00B8A9'
 };
-
 const treeData = [
   { category: 'A', value: 7 },
   { category: 'B', value: 15 },
@@ -3622,7 +3630,6 @@ const treeData = [
   { category: 'D', value: 13 },
   { category: 'E', value: 13 }
 ];
-
 const CATEGORY_LABELS = {
   A: 'Objetivos',
   B: 'Liderazgo',

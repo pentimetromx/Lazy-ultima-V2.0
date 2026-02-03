@@ -121,96 +121,89 @@ CONSIDERAR SI SE BORRAN:
 
 
 
+document.querySelector('#boton-reseteo').addEventListener('click', () =>{
+  var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }
+  container1.style.display = 'none'
+  desactivarClick(['.butt-perfiles']); 
+  saltarAlerta('Esta acción elimina definitivamente los perfiles guardados','contenedor')
 
-
-
-
-
-
-
-
-
-const MOVE_ELEMENT = [
   
-  'move-canvas-1',
-  'move-canvas-2',
-  'move-canvas-3',
-  'move-canvas-4',
-  'move-canvas-5',
-  'move-canvas-6'
-];
-
-const contLineas = document.querySelector('#contLineas');
-const graficos = [...contLineas.querySelectorAll('.graphs-lines')];
+})
 
 
-const botonesFlotantes = document.querySelector('#conte-butts-graphs')
-const imagenSola = document.querySelector('#porta-imagen')
 
-if(turnBlock === false){
-  turnBlock = true
+
+function saltarAlerta(texto, padre) {
+  const modal = document.querySelector('#padre-evento');
+  const mensaje = document.querySelector('#mensaje-alerta');
+  const aceptar = document.querySelector('#aceptar-evento');
+  const cancelar = document.querySelector('#denegar-evento');
+
+  mensaje.textContent = texto;
+  modal.style.display = 'flex';
+  globalAlerta = padre
+
+  const cerrar = () => {
+    modal.style.display = 'none';
+    aceptar.onclick = null;
+    cancelar.onclick = null;
+  };
+
+  aceptar.onclick = () => {
+    accionesPorPadre[padre]?.();
+    cerrar();
+  };
+
+  cancelar.onclick = cerrar;
 }
 
 
 
-graficos.forEach((grafico, index) => {
-  grafico.dataset.index = index;
-});
 
-contLineas.addEventListener('click', (e) => {
-  const graficoSeleccionado = e.target.closest('.graphs-lines');
-  if (!graficoSeleccionado || !contLineas.contains(graficoSeleccionado)) return;
+document.querySelector('#aceptar-eliminar').addEventListener('click', () =>{
+  const contenedor = document.getElementById('botonera-fondo');
+  const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');  
 
-  const index = Number(graficoSeleccionado.dataset.index);
-
-  graficos.forEach((grafico, i) => {
-    const esActivo = grafico === graficoSeleccionado;
-
-    // limpiar clases de movimiento
-    grafico.classList.remove(...MOVE_ELEMENT);
-
-    // marcar estado lógico
-    grafico.classList.toggle('oculto', !esActivo);
-
-    // visibilidad real (canvas incluido)
-    const opacity = esActivo ? '1' : '0';
-    grafico.style.opacity = opacity;
-
-    const canvas = grafico.querySelector('canvas');
-    if (canvas) canvas.style.opacity = opacity;
-
-    // aplicar movimiento solo al activo
-    if (esActivo) {
-      grafico.classList.add(MOVE_ELEMENT[index]);
-    }
+  vaciarObjeto()
+  vaciarAlmacenObjetos()
+  const colecciones = document.querySelectorAll('.lineas-tinta, .lineas-solucion, .leds, .led, .led-general, .clase-dos');
+  colecciones.forEach((elemento) => {
+    elemento.style.backgroundColor = '';
   });
-});
+  alertasPerfiles.forEach(alertaPerfiles => {
+    alertaPerfiles.style.opacity = '0'; // Desvanece el elemento
+    setTimeout(() => {
+      alertaPerfiles.style.display = 'none';
+      document.querySelector('#cliente-nombre').textContent = ''
+      botonesPerfilColor.forEach(elemento => {  
+        elemento.style.display = 'block';
+      });
+      botonesPerfilColor.forEach(elemento => {
+        elemento.style.display = 'block';
+      });      
+      if (contenedor) {
+        contenedor.querySelectorAll('*').forEach(elemento => {
+          elemento.style.display = 'block';
+        });
+      }
+
+      objetoGlobal = {}
+    }, 1000);
+  });
+  restablecerClick(['.butt-perfiles'])
+})
 
 
 
 
+226500
+5800
+40000
 
-
-
-  
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
+180700

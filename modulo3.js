@@ -13,8 +13,7 @@ document.addEventListener('keydown', function(event) {
       break;
       case 'X':
         /* Geometria() */
-        saltarAlerta('CLICK PARA FALSE','flexografia')
-
+        console.log(alertaGlobal)
       break;                  
     }
   }
@@ -3727,6 +3726,7 @@ function vaciarObjetosPerfiles() {
 
 }
 document.querySelector('#boton-reseteo').addEventListener('click', () =>{
+  alertaGlobal='boton-reseteo'
   var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
@@ -3736,11 +3736,7 @@ document.querySelector('#boton-reseteo').addEventListener('click', () =>{
   }
   container1.style.display = 'none'
   desactivarClick(['.butt-perfiles']); 
-  const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
-  alertasPerfiles.forEach(alertaPerfiles => {
-    alertaPerfiles.style.opacity = '1';
-    alertaPerfiles.style.display = 'flex';
-  });
+  saltarAlerta('Esta acción elimina definitivamente los perfiles guardados ', 'reseteo') 
 })
 
 // BOTON SALA
@@ -3776,7 +3772,8 @@ document.querySelector('#boton-perfiles').addEventListener('click', () =>{
     document.getElementById('nombreCliente').value = ''
   }, 20);
 })  
-document.querySelector('#aceptar-eliminar').addEventListener('click', () =>{
+
+/* document.querySelector('#aceptar-eliminar').addEventListener('click', () =>{
   const contenedor = document.getElementById('botonera-fondo');
   const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');  
 
@@ -3807,9 +3804,9 @@ document.querySelector('#aceptar-eliminar').addEventListener('click', () =>{
     }, 1000);
   });
   restablecerClick(['.butt-perfiles'])
-})
+}) */
 
-document.querySelector('#cancelar-eliminar').addEventListener('click', () =>{
+/* document.querySelector('#cancelar-eliminar').addEventListener('click', () =>{
   const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
 
   alertasPerfiles.forEach(alertaPerfiles => {
@@ -3830,7 +3827,7 @@ document.querySelector('#cancelar-eliminar').addEventListener('click', () =>{
     }, 1000);
   });
   restablecerClick(['.butt-perfiles'])
-})
+}) */
 
 function traerObjetoAmarillo() {
   try {
@@ -4220,13 +4217,14 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   // Capturar el valor del input
   let inputNombre = document.getElementById('nombreCliente').value.trim();
   if (inputNombre === '') {
-    mostrarVentanaEmergente('Por favor, ingrese un nombre válido');
+    saltarAlerta('Por favor, ingrese un nombre válido', 'perfilador');
     return;
   }
   // Capitalizar la primera letra de cada palabra
   inputNombre = capitalizarTexto(inputNombre);
   if (almacenObjetos[inputNombre]) {
-    mostrarVentanaEmergente('Ya existe un perfil con este nombre');
+    saltarAlerta('Ya existe un perfil con este nombre', 'perfilExiste');
+    /* mostrarVentanaEmergente('Ya existe un perfil con este nombre'); */
     return;
   }
   // Crear una nueva instancia de la clase objetoColores
@@ -4250,7 +4248,8 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   console.log("Objeto almacenado en la variable global:", objetoGlobal);
   console.log(almacenObjetos);
   // Mostrar mensaje de éxito
-  mostrarVentanaEmergente('Perfil creado y almacenado');
+  /* mostrarVentanaEmergente('Perfil creado y almacenado'); */
+  saltarAlerta('Perfil creado y almacenado','perfilAgregado')
   // Limpiar el input
   document.getElementById('nombreCliente').value = '';
   // Recuperar y mostrar el almacén desde localStorage

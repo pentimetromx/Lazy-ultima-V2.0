@@ -212,8 +212,8 @@ let miCanvas10II = document.getElementById('MiGrafica8-II').getContext('2d')
 let miCanvas11 = document.getElementById('MiGrafica9').getContext('2d');
 let miCanvas11II = document.getElementById('MiGrafica9-II').getContext('2d')
 let miCanvas20 = document.getElementById('MiGrafica20').getContext('2d')
-
 let interfazPerfiles = document.getElementById('perfiles-entintado')
+let alertaGlobal=null;
 
 var botones = document.querySelectorAll('.butt-mautonomo')
 var arrayButtsIniciales = ['bot-atras','bot-inicial','iniciar','bot-atras12']
@@ -1671,19 +1671,22 @@ function agregarEmpleado() {
   const valor = inputArchivo.value.trim().toLowerCase();
 
   if (!nombre || !documento || !area || !cargo || !equipo || !fecha || !imagen) {
-    mostrarVentanaMensaje('Todos los campos son obligatorios.');
+    /* mostrarVentanaMensaje('Todos los campos son obligatorios.'); */
+    saltarAlerta('Todos los campos son obligatorios.', 'recursoNuevo')
     return;
   }
 
   if (!valor.endsWith('.png') && !valor.endsWith('.jpg') && !valor.endsWith('.jpeg')) {
-    mostrarVentanaMensaje('El archivo debe ser una imagen .png o .jpg');
+    /* mostrarVentanaMensaje('El archivo debe ser una imagen .png o .jpg'); */
+    saltarAlerta('El archivo debe ser una imagen .png o .jpg', 'recursoImagen')
     return;
   }
 
   // 4. Verificar existencia en localStorage, NO en variable global
   const existe = empleadosLocal.some(emp => emp.documento === documento);
   if (existe) {
-    mostrarVentanaMensaje('Empleado ya existe.');
+    /* mostrarVentanaMensaje('Empleado ya existe.'); */
+    saltarAlerta('Empleado ya existe.', 'recursoExistente')
     console.log('Empleados en localStorage:', empleadosLocal);
     return;
   }
@@ -1711,7 +1714,8 @@ function agregarEmpleado() {
   }
 
 
-  mostrarVentanaMensaje('Empleado agregado y almacenado correctamente.');
+  /* mostrarVentanaMensaje('Empleado agregado y almacenado correctamente.'); */
+  saltarAlerta('Empleado agregado y almacenado correctamente.', 'recursoNuevo')
   console.log('Empleado agregado:', nuevoEmpleado);
   console.log('Empleados en localStorage:', empleadosLocal);
   console.log('GLOBAL:', empleadoGlobal);
@@ -1800,37 +1804,242 @@ function limpiarEntradas() {
 }
 
 
-const accionesPorPadre = {
+const accionesAceptar = {
   contenedor: () => {
     console.log('logica muy extensa para contenedor');
+    alert()
   },
   flexografia: () => {
     console.log('logica muy extensa para flexografia');
+    alert()    
   },
   lithografia: () => {
-    console.log('logica muy extensa para lithografia');
-  }
+    console.log('logica muy extensa para lithografia');            
+    alert()    
+  },
+  reseteo: () => {
+    const contenedor = document.getElementById('botonera-fondo');
+    const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');  
+
+    vaciarObjeto()
+    vaciarAlmacenObjetos()
+    const colecciones = document.querySelectorAll('.lineas-tinta, .lineas-solucion, .leds, .led, .led-general, .clase-dos');
+    colecciones.forEach((elemento) => {
+      elemento.style.backgroundColor = '';
+    });
+    alertasPerfiles.forEach(alertaPerfiles => {
+      alertaPerfiles.style.opacity = '0'; // Desvanece el elemento
+      setTimeout(() => {
+        alertaPerfiles.style.display = 'none';
+        document.querySelector('#cliente-nombre').textContent = ''
+        botonesPerfilColor.forEach(elemento => {  
+          elemento.style.display = 'block';
+        });
+        botonesPerfilColor.forEach(elemento => {
+          elemento.style.display = 'block';
+        });      
+        if (contenedor) {
+          contenedor.querySelectorAll('*').forEach(elemento => {
+            elemento.style.display = 'block';
+          });
+        }
+
+        objetoGlobal = {}
+      }, 1000);
+    });
+    restablecerClick(['.butt-perfiles'])   
+  },
+  perfilador: () => {
+    ocultarElemento('#padre-evento')
+    ocultarElemento('.contenido-alerta')        
+  },
+  perfilAgregado: () => {
+    ocultarElemento('#padre-evento')
+    ocultarElemento('.contenido-alerta')
+  }, 
+  recursodoc: () => {
+    const input = document.querySelector('#nomEmpl'); 
+    input.value=''
+    input.focus();
+  },  
+  recursoDocumento: () => {
+    const input = document.querySelector('#nomEmpl');
+    input.value=''
+    input.focus();
+  }, 
+  recursoNn: () => {
+    const input = document.querySelector('#nomEmpl');    
+    input.value=''
+    input.focus();
+  }, 
+  recursoNuevo: () => {
+    const input = document.querySelector('#nomEmpl');
+    input.value=''
+    input.focus();
+  },
+  recursosConfirmar: () => {
+    return
+  },  
+
+};  
+
+const accionesCancelar = {
+  contenedor: () => {
+    console.log('logica muy extensa para contenedor');
+    alert()
+  },
+  flexografia: () => {
+    console.log('logica muy extensa para flexografia');
+    alert()    
+  },
+  lithografia: () => {
+    console.log('logica muy extensa para lithografia');            
+    alert()    
+  },
+  reseteo: () => {
+    const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
+
+    alertasPerfiles.forEach(alertaPerfiles => {
+      alertaPerfiles.style.opacity = '0';
+      setTimeout(() => {
+        alertaPerfiles.style.display = 'block'; 
+        botonesPerfilColor.forEach(elemento => {           
+          elemento.style.display = 'block';
+        });
+        
+        const contenedor = document.getElementById('botonera-fondo');
+        if (contenedor) {
+          contenedor.querySelectorAll('*').forEach(elemento => {
+            elemento.style.display = 'block';
+          });
+        }
+    
+      }, 1000);
+    });
+    restablecerClick(['.butt-perfiles'])
+
+  },
+  perfilador: () => {
+  },
 };
+
 
 function saltarAlerta(texto, padre) {
   const modal = document.querySelector('#padre-evento');
   const mensaje = document.querySelector('#mensaje-alerta');
   const aceptar = document.querySelector('#aceptar-evento');
-  const cancelar = document.querySelector('#denegar-evento');
+  const cancelar = document.querySelector('#denegar-evento'); 
+
+
+  mostrarElemento('#padre-evento');
+  mostrarElemento('.contenido-alerta');
+
+  modal.classList.remove('reseteo');
+  cancelar.style.display = '';
+  aceptar.style.color = '';
+  cancelar.style.color = '';
+  modal.style.backgroundColor = '';
+
+  aceptar.onmouseenter =
+  aceptar.onmouseleave =
+  cancelar.onmouseenter =
+  cancelar.onmouseleave = null;
+
 
   mensaje.textContent = texto;
   modal.style.display = 'flex';
+  alertaGlobal = padre;
+
+  aceptar.style.color = '';
+  cancelar.style.color = '';
+  cancelar.style.display = '';
+  modal.style.backgroundColor=''
+
+  aceptar.onmouseenter = null;
+  aceptar.onmouseleave = null;
+  cancelar.onmouseenter = null;
+  cancelar.onmouseleave = null;
+  
+
+  if (alertaGlobal === 'contenedor') {
+    cancelar.style.display = 'none';
+
+    aceptar.onmouseenter = () => {
+      aceptar.style.color = 'red';
+    };
+    aceptar.onmouseleave = () => {
+      aceptar.style.color = '';
+    };
+    modal.style.backgroundColor='blue'
+  }
+
+  if (alertaGlobal === 'flexografia') {
+    cancelar.onmouseenter = () => {
+      cancelar.style.color = 'red';
+    };
+    cancelar.onmouseleave = () => {
+      cancelar.style.color = '';
+    };
+  }
+
+  if (alertaGlobal === 'reseteo') {
+    modal.classList.add('reseteo');
+  } else {
+    modal.classList.remove('reseteo');
+  }
+  if (alertaGlobal === 'perfilador') {
+    cancelar.style.display='none'
+  }
+  if (alertaGlobal === 'perfilExiste') {
+    cancelar.style.display='none'
+  }
+  if (alertaGlobal === 'perfilAgregado') { 
+    cancelar.style.display='none'
+  }
+  if (alertaGlobal === 'recursosActualizar') {  
+    cancelar.style.display='none'
+  } 
+  if (alertaGlobal === 'recursoFaltante') {        
+    cancelar.style.display='none'
+  }   
+  if (alertaGlobal === 'autonomoIngreso') {   
+    cancelar.style.display='none'
+  } 
+  if (alertaGlobal === 'recursoDocumento') {   
+    cancelar.style.display='none'
+  } 
+  if (alertaGlobal === 'recursoNn') {   
+    cancelar.style.display='none'
+  } 
+  if (alertaGlobal === 'recursoNuevo') {        
+    cancelar.style.display='none'
+  }   
+  if (alertaGlobal === 'recursoImagen') {    
+    cancelar.style.display='none'
+  }  
+  if (alertaGlobal === 'recursoExistente') {     
+    cancelar.style.display='none'
+  }    
+  if (alertaGlobal === 'recursoNuevo') {   
+    cancelar.style.display='none'
+  }    
 
   const cerrar = () => {
-    modal.style.display = 'none';
+    accionesCancelar[padre]?.();
     aceptar.onclick = null;
     cancelar.onclick = null;
+
+    ocultarElemento('.contenido-alerta');          
+    ocultarElemento('#padre-evento');
   };
 
+
   aceptar.onclick = () => {
-    accionesPorPadre[padre]?.();
+    accionesAceptar[padre]?.();
     cerrar();
   };
 
   cancelar.onclick = cerrar;
 }
+
+
