@@ -1389,7 +1389,7 @@ function iniciarAnimaciones(){
   setTimeout(() => {
     aparecerElemento("interfaz-perfiles", "flex")
     animarHorizontalEye() 
-    document.querySelector('#alerta-perfiles').style.display='none'
+    document.querySelector('#padre-evento').style.display='none'
   }, 200);
   setTimeout(() => {
     animarHumanEye()
