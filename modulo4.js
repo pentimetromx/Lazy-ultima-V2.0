@@ -1896,7 +1896,7 @@ function reubicarVisor(){
 
 }
 
-function ingresoEmpleado(){  
+/* function ingresoEmpleado(){  
   setTimeout(() => {
     document.querySelector('#nomEmpl').focus();
   }, 50);
@@ -1916,7 +1916,40 @@ function ingresoEmpleado(){
 
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
   limpiarEntradas()
+} */
+
+function ingresoEmpleado() {
+
+  const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+
+  if (isDesktop) {
+    setTimeout(() => {
+      const input = document.getElementById('nomEmpl');
+      if (input) input.focus();
+    }, 50);
+  }
+
+  const excluidos = [
+    'ingresos-sistema',
+    'buscador',
+    'search-form',
+    'links-inicialesI',
+    'links-iniciales',
+    'container01'
+  ];
+
+  allContenedores.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
+  });
+
+  flagEmpleado = true;
+
+  ['padre-ingresos', 'ingresos-sistema'].forEach(id => aparecerElemento(id, 'grid'));
+
+  limpiarEntradas();
 }
+
 
 function ingresoEmpleadoMA(){  
   const excluidos = [
@@ -3013,7 +3046,7 @@ sliderGraf.addEventListener('input', () => {
   const index = Math.min(valor, series.length - 1);
 
   // Actualizar gráfico con la serie correspondiente
-  chart20.data.datasets[1].data = [...series[index]];
+  chart20.data.datasets[0].data = [...series[index]];
   chart20.update();
 
   actualizarDiasYLeds(valor);
@@ -3370,6 +3403,7 @@ quintoElemento.addEventListener('mouseleave', () => {
   }
   linksTec.style.display = 'none';
 });
+
 hijos.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3386,6 +3420,7 @@ hijos.forEach((li, index) => {
 
   });
 });
+
 hijosColor.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
