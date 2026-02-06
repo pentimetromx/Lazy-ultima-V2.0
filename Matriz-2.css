@@ -812,6 +812,7 @@ body{
   border: 2px solid black;
   filter: blur(55px);
   overflow: hidden;
+  display: none;
 }
 .celda{
   position: absolute;
@@ -3765,28 +3766,6 @@ top: 44%;
 }
 .flech-rgb > div:nth-child(4){
   background-color:rgba(233,255,165,0.15);
-}
-.sup-level {
-  display: grid;
-  grid-template-rows: 7% 86% 7%;
-  position: absolute;
-  display: none;
-  background-color: rgba(130,125,133,0.1);
-  border:1px solid;
-  border-radius: 13px;
-  top: 42vh;
-  left: 40vh;
-  width: 31.5vw;
-  height: 29vh;
-
-  transition: transform 0.5s ease; /* 501 ms */
-  z-index: 2;
-  display: none; /* inicialmente oculto */
-  transform: scale(0); /* inicia reducido */
-  transform-origin: center; /* crece desde el centro */     
-}
-.sup-level > :nth-child(3){
-  width: 90%;
 }
 .title {
   color: rgba(255,255,255,0.85);
@@ -9146,12 +9125,8 @@ top: 44%;
     display: none;
   }
   #general{
-    position:absolute;
-    display: flex;
-    top:27vh;
-    left: 1vw;
-    height: 70vh;
-    width: 98vw;
+    height: 100vh;
+    width: 100vw;
     display:block;
   } 
   #canvasContainer3{

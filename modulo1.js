@@ -2548,13 +2548,7 @@ function irContenedorSiguiente() {
     idsArrayEliminados=[]
       return;
   }
-  var previousElementID = idsArrayEliminados[idsArrayEliminados.length - 1];
-  for (var i = 0; i < allContenedores.length; i++) {
-    var elemento = document.getElementById(allContenedores[i])
-    if (elemento) {
-      elemento.style.display = 'none'
-    }
-  }
+  var previousElementID = idsArrayEliminados[idsArrayEliminados.length - 2];
   switch (previousElementID ) {  
     case "cont-titulo":
     location.reload()
@@ -4288,6 +4282,7 @@ function resultadosMaquina(){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }
+  
   ['.maquina', '.mes', '.indicador','.span-semana'].forEach(selector => {
     document.querySelectorAll(selector).forEach(el => el.removeAttribute('style'));
   });
@@ -4297,6 +4292,7 @@ function resultadosMaquina(){
 
   ["lista-maquinas", "meses", "calendario-mes", "cont-span-semanas", "titulo-calendar", "titulo-mes", "contenedor-global"].forEach(id => aparecerElemento(id, "grid"));
   destruirCharts()
+  container1.style.display='grid'
 }
 
 document.querySelectorAll('.maquina').forEach((maquina, index) => {

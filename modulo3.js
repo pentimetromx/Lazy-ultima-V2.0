@@ -221,8 +221,6 @@ function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'  
     }
   }
-  document.querySelector('.sections').style.display = 'grid'
-  document.querySelector('.sections-btn').style.display = 'grid'
   document.querySelector('#simulador').style.display = 'flex'
   container1.style.display = 'grid'
   let displayTraining = document.getElementById('component1')  
@@ -3755,6 +3753,7 @@ document.querySelector('#boton-prensas').addEventListener('click', () =>{
   document.querySelector('#contenedor-botonera').style.display = 'grid'
 })
 
+// CREACION DE PERFILES
 document.querySelector('#boton-perfiles').addEventListener('click', () =>{
   var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles', 'boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -3768,7 +3767,10 @@ document.querySelector('#boton-perfiles').addEventListener('click', () =>{
   restablecerClick(['.butt-revierte'])
   setTimeout(() => {
     moverFormulario()
+
+  if (esDesktop) {
     document.getElementById('nombreCliente').focus();
+  }     
     document.getElementById('nombreCliente').value = ''
   }, 20);
 })  
@@ -4215,7 +4217,7 @@ function vaciarTodoAlmacenObjetos() {
 
 document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   // Capturar el valor del input
-  let inputNombre = document.getElementById('nombreCliente').value.trim();
+  let inputNombre = inputPerfil.value.trim();
   if (inputNombre === '') {
     saltarAlerta('Por favor, ingrese un nombre válido', 'perfilador');
     return;
@@ -4267,7 +4269,7 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   } else {
     console.log("No se encontraron objetos almacenados en el localStorage.");
   }
-  restablecerClick(['.butt-perfiles', '.jobs'])
+  /* restablecerClick(['.butt-perfiles', '.jobs']) */
 });
 
 // Función para capitalizar la primera letra de cada palabra
@@ -4356,8 +4358,6 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
   let conteRGB = document.querySelector('#padre-rgb');
   const mensajeEmergente = document.getElementById('mensajeEmergente');
   const conteJobTrack = document.querySelector('#job-files');
-  const inputCreacion = document.querySelector('#nombre-Perfil')
-  const inputBusqueda = document.querySelector('#nombre-Perfil-existe')
   conteJobTrack.classList.remove('move-job-track')
 
   if (mensajeEmergente.textContent === 'Perfil creado y almacenado') {
@@ -4367,7 +4367,7 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
     // Verificar si alguno de los dos contenedores tiene display "grid"
     let cmykVisible = window.getComputedStyle(conteCMYK).display === 'grid';
     let rgbVisible = window.getComputedStyle(conteRGB).display === 'grid';
-    inputCreacion.focus()
+    buscaNombre.focus()
 
 
     if (!cmykVisible && !rgbVisible) { 
@@ -4398,14 +4398,18 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
     document.getElementById('nombreCliente').focus();
     document.getElementById('nombreCliente').value = '';
     detenerParpadeo() 
-    inputCreacion.focus()
+    if (esDesktop) {
+      buscaNombre.focus()
+    }    
   }
   if (mensajeEmergente.textContent === 'Cargue la base de datos antes de generar el perfil de color') {
     document.getElementById('ventanaEmergente').classList.add('oculta');
-    inputBusqueda.focus()
+    if (esDesktop) {
+      creaNombre.focus()
+    }
     detenerParpadeo() 
-    document.querySelector('#nombre-Perfil').value = ''
-    document.querySelector('#nombre-Perfil-existe').value = ''
+    buscaNombre.value = ''
+    creaNombre.value = ''
 
     botonesPerfilColor.forEach(elemento => {   
       elemento.style.display = 'block';   
@@ -4826,35 +4830,58 @@ botonesPerfilColor.forEach(boton => {
   });
 });
 
-let intervalColor;
+const intervalosColor = new Map();
 
-function alternarColor(elementoAlternar) {
-  // Si ya existe un intervalo, lo cancelamos primero
-  clearInterval(intervalColor);
 
-  // Aplicamos color inicial
-  elementoAlternar.style.backgroundColor = 'rgb(0, 255, 0)';
+function alternarColor(el1, el2) {
+  detenerTodosLosColores(); // ← CLAVE
 
-  // Reiniciamos el intervalo
-  intervalColor = setInterval(() => {
-    elementoAlternar.style.backgroundColor =
-      elementoAlternar.style.backgroundColor === 'rgb(0, 255, 0)'
-        ? 'transparent'
-        : 'rgb(0, 255, 0)';
-  }, 100);
+  [el1, el2].forEach(el => {
+    if (!el) return;
+
+    el.style.backgroundColor = 'rgb(0, 255, 0)';
+
+    const intervalo = setInterval(() => {
+      el.style.backgroundColor =
+        el.style.backgroundColor === 'rgb(0, 255, 0)'
+          ? 'transparent'
+          : 'rgb(0, 255, 0)';
+    }, 100);
+
+    intervalosColor.set(el, intervalo);
+  });
+
   setTimeout(() => {
-    detenerAlternarColor(elementoAlternar)      
-  }, 1500);
+    detenerAlternarColor(el1, el2);
+  }, 5000);
 }
 
-function detenerAlternarColor(elementoResetear) {
-  if (intervalColor) {
-    clearInterval(intervalColor);
-    intervalColor = null;
-    elementoResetear.style.background = '';    
+function detenerAlternarColor(...elementos) {
+  elementos.forEach(el => {
+    if (!intervalosColor.has(el)) return;
 
-    console.log('El intervalColor ha sido detenido y el elemento fue reseteado.');
+    clearInterval(intervalosColor.get(el));
+    intervalosColor.delete(el);
+    el.style.backgroundColor = '';
+  });
+}
+
+function detenerAlternarColor(...elementos) {
+  elementos.forEach(el => {
+    if (!intervalosColor.has(el)) return;
+
+    clearInterval(intervalosColor.get(el));
+    intervalosColor.delete(el);
+    el.style.backgroundColor = '';
+  });
+}
+
+function detenerTodosLosColores() {
+  for (const [el, intervalo] of intervalosColor) {
+    clearInterval(intervalo);
+    el.style.backgroundColor = '';
   }
+  intervalosColor.clear();
 }
 
 
@@ -4862,10 +4889,12 @@ btnSalir.addEventListener('click', ()=>{
   const numeros = document.querySelectorAll('.number'); // Selecciona todos los elementos con la clase .number  
   const algunoConContenido = Array.from(numeros).some(numero => numero.textContent.trim() !== '');
   if (algunoConContenido) {
-    mostrarVentanaMensaje('Click en ENTRAR para ingesar la informacion')
-    alternarColor(btnEntrar)
+    /* mostrarVentanaMensaje('Click en ENTRAR para ingesar la informacion') */
+    saltarAlerta('Click en ENTRAR para ingesar la informacion','salirCalcula')
+    /* alternarColor('entrar-cantidad') */
+    parpadearElemento('entrar-cantidad');
   }else{
-    restablecerClick(['.estilo-1','.digit']);   
+    /* restablecerClick(['.estilo-1','.digit']);  */  
     const calculadora = document.getElementById('calculadora') 
     calculadora.classList.add('move-calculadora')
   }
@@ -4900,6 +4929,7 @@ buttsJobs.forEach(boton => {
   boton.addEventListener('click', () => {
     switch(boton.id) {
       case 'clientes':
+        irAconsola.style.display='none'
         let listaClientes = document.querySelector('#lista-clientes')
         listaClientes.removeAttribute('style');      
         listaClientes.style.top='43vh'
@@ -4916,6 +4946,7 @@ buttsJobs.forEach(boton => {
       }, 50);      
       break;
       case 'lineas':
+        irAconsola.style.display='none'
         let lineaClientes = document.querySelector('#lista-lineas')
         lineaClientes.style.top='57vh'
         lineaClientes.style.height = '39vh'
@@ -4931,6 +4962,7 @@ buttsJobs.forEach(boton => {
         }
       break;
       case 'tirajes':
+        irAconsola.style.display='none'
         desactivarClick(['.butt-perfiles', '.estilo-1']);
         restablecerClick(['.digito'])
         if(panelUno.textContent === '' || panelDos.textContent === ''){  
@@ -5507,8 +5539,7 @@ function mostrarNombresDeObjetos() {
         const panelUno = document.getElementById('panel-uno'); // INPUT DE CLIENTES
         const perfilador = document.querySelector('#perfiles-color')
 
-        const panelPerfil = document.getElementById('nombre-Perfil-existe');
-        panelPerfil.value = nombreCapitalizado;         
+        creaNombre.value = nombreCapitalizado;         
 
         const nombreCliente = document.querySelector('.nombre-cliente');
         nombreCliente.textContent = nombreCapitalizado;
@@ -6069,7 +6100,7 @@ function mostrarElemento(selectores) {
     }
   }, intervalo);
 }
-function iniciaAnimaciones() {
+/* function iniciaAnimaciones() {
   var elementosExcluidos = ['simulador','interfaz-perfiles','perfiles-entintado','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','bot-revertir'] 
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i])  
@@ -6081,7 +6112,7 @@ function iniciaAnimaciones() {
   document.querySelector('#contiene-lineas').style.display = 'none'
   animarColorSecuencia();
   animarSecuenciaPerfiles();
-}
+} */
 document.querySelectorAll('.section').forEach((btn, index) => {
   btn.addEventListener('mouseover', () => {
     let buttBlur = document.querySelectorAll('.btn-sections')[index]
@@ -6357,9 +6388,6 @@ document.getElementById("reset-btn-rgb").addEventListener("click", () => {
   resetBotonMezclador('padre-rgb') 
 });
 document.getElementById("reset-btn-cmyk").addEventListener("click", () => {
-  const padreRgb = document.querySelector('#padre-rgb')
-  const padreCmyk = document.querySelector('#padre-cmyk')
-
   const inputs = document.querySelectorAll('#control-cmyk-inpt input[type="number"]');
   inputs.forEach(input => input.value = 0);
   resetBotonMezclador('padre-cmyk') 
@@ -6835,18 +6863,20 @@ function secuenciaAparicion(canal) {
   if (!controlColor || getComputedStyle(controlColor).display !== "none") {
     return; 
   }
-  let inputPerfil = document.querySelector('#nombre-Perfil');
-  let inputPerfilExiste = document.querySelector('#nombre-Perfil-existe');
   const perfilesRgb = document.querySelector('#perfiles-color')
   mostrarElementoProgressivo(perfilesRgb)
   setTimeout(() => {
-    if (inputPerfil) {  
-      inputPerfil.value = '';                     
-      inputPerfil.focus();
-      inputPerfilExiste.value = ''
-    }    
+    if (!buscaNombre) return;
 
+    buscaNombre.value = '';
+    creaNombre.value = '';
+
+    if (esDesktop) {
+      buscaNombre.focus();
+    }
   }, 100);
+  
+  
   switch(canal){
     case 'rgb':
       const ids = ['boton-rgb', 'boton-rgb-alternar', 'boton-rgb-salir','lab-rgb','lab-alternar','lab-salir-rgb'];
@@ -6864,30 +6894,36 @@ function secuenciaAparicion(canal) {
     break
   }
 }
-document.querySelector('#nombre-Perfil').addEventListener('click', () => {
-  document.querySelector('#nombre-Perfil-existe').value = ''
+buscaNombre.addEventListener('click', () => {
+  creaNombre.value = ''
   listaClientes.style.display = 'none'
 })
+
 let parpadeoActivo = null; // referencia global
+
+
 function parpadearElemento(id) {
+  detenerParpadeo(); // ← fuerza limpieza previa
+
   const el = document.getElementById(id);
   if (!el) return;
-
-  // si ya está parpadeando, no crear otro intervalo
-  if (parpadeoActivo) return;
 
   const colorOriginal = el.style.backgroundColor;
   let activo = false;
 
   const intervalo = setInterval(() => {
-    el.style.backgroundColor = activo ? colorOriginal : "orange";
+    el.style.backgroundColor = activo ? colorOriginal : 'orange';
     activo = !activo;
   }, 100);
 
   parpadeoActivo = { intervalo, el, colorOriginal };
 }
+
+
+
 function detenerParpadeo() {
   if (!parpadeoActivo) return;
+
   clearInterval(parpadeoActivo.intervalo);
   parpadeoActivo.el.style.backgroundColor = parpadeoActivo.colorOriginal;
   parpadeoActivo = null;
@@ -6895,7 +6931,7 @@ function detenerParpadeo() {
 
 
 
-
+// BOTON BLANCO RGB
 function crearPerfilColor() { // crear nuevo desde botón blanco
   const contRGB  = document.querySelector('#padre-rgb');
   const contCYMK = document.querySelector('#padre-cmyk');
@@ -6912,14 +6948,12 @@ function crearPerfilColor() { // crear nuevo desde botón blanco
   const quintoImputCMYK  = document.querySelector('#input-a');
 
   // Capturar nombre del perfil
-  let inputNombre = document
-    .getElementById('nombre-Perfil')
-    .value
-    .trim();
+  let inputNombre = document.getElementById('nombre-Perfil').value.trim();
 
   if (!inputNombre) {
     parpadearElemento('nombre-Perfil');
-    mostrarVentanaEmergente('Por favor, ingrese un nombre válido');
+    /* mostrarVentanaEmergente('Por favor, ingrese un nombre válido'); */
+    saltarAlerta('Por favor, ingrese un nombre válido','vacioRgb')
     return;
   }
 
@@ -7149,12 +7183,14 @@ document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
   aparecerElemento('padre-rgb','grid')
   actualizarIdsArray('padre-rgb');
 })
+
 document.querySelector('#save-tecnology').addEventListener('click', ()=>{
   crearPerfilColor()
 })
-document.getElementById('nombre-Perfil-existe').addEventListener('click', () => {
+
+creaNombre.addEventListener('click', () => {
   document.querySelector('#nombre-Perfil').value = ''
-  document.querySelector('#nombre-Perfil-existe').value = ''
+  creaNombre.value = ''
 
   botonesPerfilColor.forEach(elemento => {   
     elemento.style.display = 'block';   
@@ -7181,19 +7217,14 @@ function configurarOcultarLista() {
     clearTimeout(temporizador);
   });
 }
-// Llamada de inicialización
+
+// BOTON VERDE RGB
 configurarOcultarLista();
 function pintarColor() {
-  const inputPerfil = document.getElementById('nombre-Perfil-existe');
-  if (!inputPerfil.value.trim()) {
-    const ventana = document.getElementById('ventanaEmergente');
-    const mensaje = document.getElementById('mensajeEmergente');
-    if (ventana && mensaje) {
-      parpadearElemento("nombre-Perfil-existe");
-      mensaje.textContent = "Cargue la base de datos antes de generar el perfil de color";
-      ventana.classList.remove('oculta'); 
-    }
-
+  
+  if (!creaNombre.value.trim()) {
+      parpadearElemento("nombre-perfil-existe");
+      saltarAlerta('Cargue la base de datos antes de generar el perfil de color','vacioCmyk')
     if (tecnologyCMYK) {
       resetBotonMezclador('padre-cmyk');
     }
