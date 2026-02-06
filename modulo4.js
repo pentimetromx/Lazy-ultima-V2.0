@@ -431,7 +431,7 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     span.style.backgroundColor = '';
     span.style.color = '';
   });
-  switch (elementId) {
+  switch (elementId) {   
     case 'cont-titulo-operacion':
       animateScroll('contLineas');
       actualizarIdsArray(elementId);
@@ -448,6 +448,9 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
       firstClick = true;
       actualizarIdsArray(elementId);
     break;
+    case 'butts-simulador':
+      container1.style.display='grid'
+    break;    
     default:
       activarPantallaCompleta();
     break;
@@ -1241,7 +1244,8 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
     .some(el => getComputedStyle(el).backgroundColor === azul);
 
     if (!hayMesActivo || !hayMaquinaActiva){
-      alert('Seleccione Maquina y Mes')
+      alternarColor(firstMachine)
+      saltarAlerta('Seleccione una Maquina y el Mes', 'lanzaGrafos')
       return;
     }  // corta la ejecución
 
@@ -1896,9 +1900,11 @@ function reubicarVisor(){
 
 }
 
-/* function ingresoEmpleado(){  
+function ingresoEmpleado(){  
   setTimeout(() => {
-    document.querySelector('#nomEmpl').focus();
+    if (esDesktop) {
+    inputRRHH.focus();
+  } 
   }, 50);
 
   const excluidos = [
@@ -1916,40 +1922,7 @@ function reubicarVisor(){
 
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
   limpiarEntradas()
-} */
-
-function ingresoEmpleado() {
-
-  const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
-
-  if (isDesktop) {
-    setTimeout(() => {
-      const input = document.getElementById('nomEmpl');
-      if (input) input.focus();
-    }, 50);
-  }
-
-  const excluidos = [
-    'ingresos-sistema',
-    'buscador',
-    'search-form',
-    'links-inicialesI',
-    'links-iniciales',
-    'container01'
-  ];
-
-  allContenedores.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
-  });
-
-  flagEmpleado = true;
-
-  ['padre-ingresos', 'ingresos-sistema'].forEach(id => aparecerElemento(id, 'grid'));
-
-  limpiarEntradas();
 }
-
 
 function ingresoEmpleadoMA(){  
   const excluidos = [
@@ -1972,17 +1945,13 @@ function ingresoEmpleadoMA(){
  limpiarEntradas()
 
  setTimeout(() => {
-    const input = document.getElementById('nomEmpl-ma');
-    if (input) {
-      input.focus();
-    }
+    if (esDesktop) {
+      inputMA.focus();
+    } 
  }, 500);
   
 
 }
-
-const inputNombreMA = document.getElementById('numDoc-ma');
-const inputNombre   = document.getElementById('numDoc');
 
 // Lógica reutilizable
 function limpiarYCapitalizar(e) {
@@ -2021,7 +1990,7 @@ soloNumerosInputs.forEach(input => {
   if (input) input.addEventListener('input', permitirSoloNumeros);
 });
 
-document.getElementById('nomEmpl').addEventListener('input', (e) => {
+inputRRHH.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
 });
 
@@ -2032,14 +2001,13 @@ document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
     JSON.parse(localStorage.getItem('empleadosRegistrados'))
   );
 
-  const input   = document.getElementById('nomEmpl');
-
-  const valor   = input.value.trim();
+  const valor = inputRRHH.value.trim();
   
   // Validación inicial
   if (!valor) {
     /* mostrarVentanaMensaje('Debe ingresar un número de documento.', 'padre-ingresos'); */
     saltarAlerta('Debe ingresar un número de documento.', 'recursoDocumento')
+    parpadearElemento('nomEmpl');
     restaurarPosicionPadreIngresos();
     flagEmpleado = true;
     return;
@@ -2125,7 +2093,8 @@ btnDblFlecha.addEventListener('click', ()=>{
   desaparecerElemento('abuelo-indicadores') 
   desaparecerElemento('abuelo-grafica12')
   desaparecerElemento('padre-desempeños') 
-  restaurarPosicionPadreIngresos()    
+  restaurarPosicionPadreIngresos() 
+  detenerAlternarColor(btnDblFlecha,btnAgregar,btnLimpiar,btnModificar)
   flagEmpleado = true
  }
 })
@@ -2142,7 +2111,9 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
 
   for (const input of inputs) {
     if (!input.value.trim()) {
-      mostrarVentanaMensaje('Hay campos sin diligenciar.');
+      /* mostrarVentanaMensaje('Hay campos sin diligenciar.'); */
+      parpadearElemento('nomEmpl');
+      saltarAlerta('Hay campos sin diligenciar.', 'moverRrhh')
       flagEmpleado = true
       return;
     }
@@ -2178,14 +2149,18 @@ function restaurarPosicionPadreIngresos() {
   if (!padre) return;
   padre.style.transform = ''; // elimina el translate aplicado por JS
 }
+
 // boton rojo 
 document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ 
+  console.log('BANDERA : ', flagEmpleado)
   const padre = document.getElementById('padre-ingresos');
   padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
   moverPadreIngresos(61,28)
-  alternarResultados('grafico-area')
-  /* crearGraficoTreeMap() */
+  if (inputRRHH.value !== ''){
+    alternarResultados('grafico-area')
+  }
 })
+
 function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
   if (!contenedor) return;
@@ -2423,9 +2398,16 @@ function ocultar() {
 }
 
 btnAreas.addEventListener('click', () => {
-  dentro = true;
-  mostrar();
+  if (inputNombre.value === '') {
+    parpadearElemento('nomEmpl');
+    saltarAlerta('Debe ingresar un numero de documento', 'detieneArea');
+  } else {
+    dentro = true;
+    mostrar();
+  }
 });
+
+
 
 btnAreas.addEventListener('mouseleave', () => {
   dentro = false;
@@ -2626,26 +2608,30 @@ function cargarEmpleadoMA() {
   imgElemento.src = rutaImagen;
 }
 document.querySelector('#lbl-ingreso-ma').addEventListener('click', () => {
-  const inputEmpleado = document.querySelector('#nomEmpl-ma');
-
   // Normaliza el valor (evita espacios)
-  if (!inputEmpleado || inputEmpleado.value.trim() === '') {
-    // opcional: feedback visual
-    inputEmpleado?.focus();
+  if (!inputMA || inputMA.value.trim() === '') {
     saltarAlerta('Ingrese numero de documento', 'autonomoIngreso')
+    parpadearElemento('nomEmpl-ma');
     return; // ⛔ corta TODA la lógica
   }
 
-  cargarEmpleadoMA();
+  cargarEmpleadoMA(); 
 
   setTimeout(() => {
     aplicarColoresInputs();
   }, 250);
 });
+
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
-  /* saltarAlerta('Confirmar cambios', 'recursosConfirmar') */
-  actualizarIdentificadosMA('M.A')
+  if (inputNombreMA.value !== '') {
+    saltarAlerta('Confirmar cambios', 'recursosConfirmar')
+  }else{
+    saltarAlerta('Ingrese numero de documento', 'mantenimientoID')
+    parpadearElemento('nomEmpl-ma');
+  }
+  
 }) 
+
 function actualizarIdentificadosMA(sector) {
   if(sector === 'M.A'){
     const docInput   = document.getElementById('numDoc9-ma');
@@ -2669,7 +2655,6 @@ function actualizarIdentificadosMA(sector) {
     const nuevoLup = lupInput.value.trim();
 
     if (!documentoBusqueda || !nuevoIdentificado || !nuevoCorregido || !nuevoTipoA || !nuevoTipoB || !nuevoKaizen || !nuevoAda || !nuevoAdt || !nuevoLup) {
-      /* mostrarVentanaMensaje('Faltan datos para continuar.') */
       saltarAlerta('Faltan datos para continuar.', 'recursoFaltante')
       return;
     }
@@ -2730,7 +2715,8 @@ function actualizarIdentificadosMA(sector) {
 
     // Validación básica
     if (!documentoBusqueda) {
-      mostrarVentanaMensaje('Falta el documento para ubicar al empleado.');
+      parpadearElemento('nomEmpl');
+      saltarAlerta('Ingrese documento del empleado.', 'recursoNuevo')
       return;
     }
 
@@ -2768,13 +2754,13 @@ function actualizarIdentificadosMA(sector) {
 
     const verificacion = JSON.parse(localStorage.getItem('empleadosRegistrados'));
     console.log('Estado final localStorage:', verificacion);
-
-    mostrarVentanaMensaje('Empleado actualizado correctamente.');
+    saltarAlerta('Empleado actualizado correctamente.','actualizado')
   }
   
 
 
 }
+
 function limpiarEmpleadosRegistrados() {
   localStorage.setItem('empleadosRegistrados', JSON.stringify([]));
   console.log('empleadosRegistrados se ha vaciado:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
@@ -2802,10 +2788,8 @@ function mostrarVentanaMensaje(texto) {
 }
 document.getElementById('alerta-ok').addEventListener('click', () => {
   alertaMSG.style.display = 'none';
-  const input = document.querySelector('#nomEmpl');
-
-  if (input instanceof HTMLElement) {
-    input.focus();
+  if (inputRRHH instanceof HTMLElement) {
+    inputRRHH.focus();
   }
 
 });
@@ -3285,13 +3269,13 @@ function revertirInterfazPerfiles() {
 }
 
 function decisionesEstrategicas(){
-    var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','decisiones-estrategicas']; 
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var elemento = document.getElementById(allContenedores[i]) 
-      if (elemento) {
-        elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-      }
+  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','decisiones-estrategicas']; 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var elemento = document.getElementById(allContenedores[i]) 
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
     }
+  }
 
 
 }
@@ -3350,6 +3334,7 @@ const linksTec = quintoElemento.querySelector('.submenu-colorimetria');
 let sobreTiempo = null;
 
 simulador.addEventListener('click', (e) => {
+  restablecerClick(['.butt-perfiles']);
   // solo se ejecuta si el click fue directamente en el li padre
   if (e.target !== simulador) return;
   iniciarAnimaciones();
@@ -3403,7 +3388,6 @@ quintoElemento.addEventListener('mouseleave', () => {
   }
   linksTec.style.display = 'none';
 });
-
 hijos.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3420,7 +3404,6 @@ hijos.forEach((li, index) => {
 
   });
 });
-
 hijosColor.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3433,6 +3416,7 @@ hijosColor.forEach((li, index) => {
     }
   });
 });
+
 hijosTec.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3445,6 +3429,7 @@ hijosTec.forEach((li, index) => {
     }
   });
 });
+
 const mostrarRegistro = document.querySelector('#links-registro > li:nth-child(2)')
 mostrarRegistro.addEventListener('click', () =>{
   mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])

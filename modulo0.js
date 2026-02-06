@@ -170,23 +170,40 @@ const btnAreas = document.querySelector('.columna-derecha button:nth-child(7)')
 var padreImgs = document.getElementById('imgs-prepress')
 const padreLinks = document.querySelector('#links-ma')
 const btnDblFlecha = document.querySelector('.columna-derecha button:nth-child(6)')
-const btnAgregar = document.querySelector('#nuevo-ingreso');
-const btnEntrar = document.querySelector('#grid-numbers > div:nth-child(12)')  
+const firstMachine = document.querySelector('#lista-maquinas span:nth-child(1)')
+const btnEntrar = document.querySelector('#entrar-cantidad')  
 const btnSalir = document.querySelector('#conte-butts-calculadora > div:nth-child(1)') 
-const btnLimpiar = document.querySelector('#limpia-ingreso')
 const btnLimpiarMA = document.querySelector('#limpia-ingreso-ma')
+let inputPerfil = document.getElementById('nombreCliente')
+
 const btnModificar = document.querySelector('#modifica-ingreso')
+const btnLimpiar = document.querySelector('#limpia-ingreso')
+const btnAgregar = document.querySelector('#nuevo-ingreso');
+
+
 const primerItem = document.querySelector('#vinculos-ma li:first-child');
 const segundoItem = document.querySelector('#vinculos-ma li:nth-child(2)');
 const tercerItem = document.querySelector('#vinculos-ma li:nth-child(3)');
-
-
 const padre = document.getElementById('ingreso-padre');
 const hijos = document.querySelectorAll('#links-auxiliar li');
 const hijosColor = document.querySelectorAll('#links-color li');
 const hijosTec = document.querySelectorAll('.submenu-colorimetria li');
 const imgsKaizen = document.querySelector('#kaizen-propuestos');
 const fichaTecnica = document.querySelector('.ficha-tecnica');
+const inputRRHH = document.querySelector('#nomEmpl'); 
+const inputMA = document.querySelector('#nomEmpl-ma'); 
+const inputNombreMA = document.getElementById('numDoc-ma');
+const inputNombre   = document.getElementById('numDoc');
+const mediaDesktop = window.matchMedia('(pointer: fine)');
+const creaNombre = document.querySelector('#nombre-perfil-existe'); 
+const buscaNombre = document.querySelector('#nombre-Perfil'); 
+
+
+let esDesktop = mediaDesktop.matches;
+mediaDesktop.addEventListener('change', e => {
+  esDesktop = e.matches;
+});
+
 
 
 var currentRotation = 0;
@@ -1640,7 +1657,7 @@ class Empleado {
 // BTN 'Registrar'
 function agregarEmpleado() {
   if (flagEmpleado === false) {
-    alternarColor(btnDblFlecha);
+    alternarColor(btnDblFlecha,btnAgregar);
     return;
   }
 
@@ -1672,13 +1689,15 @@ function agregarEmpleado() {
 
   if (!nombre || !documento || !area || !cargo || !equipo || !fecha || !imagen) {
     /* mostrarVentanaMensaje('Todos los campos son obligatorios.'); */
-    saltarAlerta('Todos los campos son obligatorios.', 'recursoNuevo')
-    return;
+    parpadearElemento('nomEmpl');
+    saltarAlerta('Ingrese documento del empleado.', 'recursoNuevo')
+    return; 
   }
 
   if (!valor.endsWith('.png') && !valor.endsWith('.jpg') && !valor.endsWith('.jpeg')) {
     /* mostrarVentanaMensaje('El archivo debe ser una imagen .png o .jpg'); */
-    saltarAlerta('El archivo debe ser una imagen .png o .jpg', 'recursoImagen')
+    parpadearElemento('nomEmpl');
+    saltarAlerta('Ingrese documento del empleado.', 'recursoNuevo')
     return;
   }
 
@@ -1723,7 +1742,7 @@ function agregarEmpleado() {
 }
 
 // ---------- EVENTO ----------
-btnAgregar.addEventListener('click', agregarEmpleado);
+
 
 // helper para mostrar mensaje usando tu función si existe
 function mostrarVentanaMensaje(texto) {
@@ -1737,18 +1756,6 @@ function mostrarVentanaMensaje(texto) {
   }
   if (p) p.textContent = texto;
 }
-
-btnAgregar.addEventListener('mouseleave',()=>{
-  detenerAlternarColor(btnDblFlecha)
-})
-
-btnLimpiar.addEventListener('click', () =>{
-  if(flagEmpleado === false){
-    alternarColor(btnDblFlecha)
-    return
-  }
-  limpiarEntradas()
-})
 btnLimpiarMA.addEventListener('click', () =>{
   if(flagEmpleado === false){
     alternarColor(btnDblFlecha)
@@ -1757,24 +1764,31 @@ btnLimpiarMA.addEventListener('click', () =>{
   limpiarEntradas()
 })
 
-btnLimpiar.addEventListener('mouseleave',()=>{
-  detenerAlternarColor(btnDblFlecha)
-})
 
 btnModificar.addEventListener('click', () =>{
 
   if(flagEmpleado === false){
-    alternarColor(btnDblFlecha)
+    alternarColor(btnDblFlecha,btnModificar)
     return
   }
   actualizarIdentificadosMA('RR:HH')
 })
-
-btnModificar.addEventListener('mouseleave',()=>{
-  detenerAlternarColor(btnDblFlecha)
+btnLimpiar.addEventListener('click', () =>{
+  if(flagEmpleado === false){
+    alternarColor(btnDblFlecha,btnLimpiar)
+    return
+  }
+  limpiarEntradas()
 })
+btnAgregar.addEventListener('click', agregarEmpleado);
+
+
+
+
+
 
 function limpiarEntradas() {
+
   const entradas = document.querySelectorAll('.entrada-empleado');
   entradas.forEach(input => input.value = '');
 
@@ -1800,9 +1814,13 @@ function limpiarEntradas() {
     imgMA.src = '';
     contenedorMA.dataset.img = '';
   }
-  
+  if (esDesktop) {
+    inputMA.focus();
+  }     
+
 }
 
+/********************************************************************************************************************************************************** */
 
 const accionesAceptar = {
   contenedor: () => {
@@ -1849,39 +1867,149 @@ const accionesAceptar = {
     });
     restablecerClick(['.butt-perfiles'])   
   },
-  perfilador: () => {
-    ocultarElemento('#padre-evento')
-    ocultarElemento('.contenido-alerta')        
-  },
   perfilAgregado: () => {
-    ocultarElemento('#padre-evento')
-    ocultarElemento('.contenido-alerta')
+    setTimeout(() => {
+      if (esDesktop) {
+        inputPerfil.value=''
+        inputPerfil.focus();
+      }     
+    }, 750);    
   }, 
   recursodoc: () => {
-    const input = document.querySelector('#nomEmpl'); 
-    input.value=''
-    input.focus();
+    inputRRHH.value=''
+    inputRRHH.focus();
   },  
   recursoDocumento: () => {
-    const input = document.querySelector('#nomEmpl');
-    input.value=''
-    input.focus();
+    inputRRHH.value=''
+    setTimeout(() => {
+      detenerParpadeo();
+      if (esDesktop) {
+        inputRRHH.focus();
+      }     
+    }, 750);
+
   }, 
   recursoNn: () => {
-    const input = document.querySelector('#nomEmpl');    
-    input.value=''
-    input.focus();
+    inputRRHH.value=''
+    inputRRHH.focus();
   }, 
   recursoNuevo: () => {
-    const input = document.querySelector('#nomEmpl');
-    input.value=''
-    input.focus();
+    inputRRHH.value=''
+    setTimeout(() => {
+      detenerParpadeo();
+      if (esDesktop) {
+        inputRRHH.focus();
+      }     
+    }, 750);  
   },
   recursosConfirmar: () => {
-    return
+    actualizarIdentificadosMA('M.A'); 
+    aplicarColoresInputs();
+    return {
+      siguienteAlerta: {
+        texto: 'Empleado actualizado',
+        tipo: 'recursosActualizar'
+      }
+    };
+  },
+  lanzaGrafos: () => {
+    parpadearElemento('maquina','mes')
+  },
+  detieneArea: () => {
+    setTimeout(() => {
+      detenerParpadeo();
+      if (esDesktop) {
+        inputRRHH.focus();
+      }     
+    }, 750);
+  },
+  autonomoIngreso: () => {
+    setTimeout(() => {
+      if (esDesktop) {
+        inputMA.focus();
+      }     
+      detenerParpadeo();
+    }, 750);
+  },
+  mantenimientoID: () => {
+    if (esDesktop) {
+      inputMA.focus();
+    }     
+  },
+  sinDocumento: () => {
+    if (esDesktop) {
+      inputRRHH.focus();
+    }     
+  },
+  moverRrhh: () => {
+    setTimeout(() => {
+      detenerParpadeo();
+      if (esDesktop) {
+        inputRRHH.focus();
+      }     
+    }, 750);   
+  },
+  actualizado: () => {
+    inputRRHH.value=''
+    setTimeout(() => {
+      detenerParpadeo();
+      if (esDesktop) {
+        inputRRHH.focus();
+      }     
+    }, 750);  
+  },
+  mantenimientoID: () => {
+    setTimeout(() => {
+      detenerParpadeo();
+      if (esDesktop) {
+        inputMA.focus();
+      }     
+    }, 750);  
+  },
+  perfilador: () => {
+    setTimeout(() => {
+      if (esDesktop) {
+        inputPerfil.focus();
+      }     
+    }, 750);  
+  },
+  perfilExiste: () => {
+    setTimeout(() => {
+      if (esDesktop) {
+        inputPerfil.value=''
+        inputPerfil.focus();
+      }     
+    }, 750);  
+  },
+  salirCalcula: () => {
+    setTimeout(() => {
+      if (esDesktop) {
+        inputPerfil.value=''
+        inputPerfil.focus();
+      }     
+    }, 750);  
+  },
+  vacioCmyk: () => {
+    if (esDesktop) {
+      creaNombre.focus();
+    }     
+    setTimeout(() => {
+      detenerParpadeo()
+    }, 750);  
   },  
+  vacioRgb: () => {
+    if (esDesktop) {
+      creaNombre.focus();
+    }     
+    setTimeout(() => {
+      detenerParpadeo()
+    }, 750);  
+  },
 
-};  
+
+
+};
+
 
 const accionesCancelar = {
   contenedor: () => {
@@ -1919,8 +2047,12 @@ const accionesCancelar = {
     restablecerClick(['.butt-perfiles'])
 
   },
-  perfilador: () => {
-  },
+  recursosConfirmar: () => {
+    cargarEmpleadoMA();
+  setTimeout(() => {
+    aplicarColoresInputs();
+  }, 250);    
+  }  
 };
 
 
@@ -1972,7 +2104,6 @@ function saltarAlerta(texto, padre) {
     };
     modal.style.backgroundColor='blue'
   }
-
   if (alertaGlobal === 'flexografia') {
     cancelar.onmouseenter = () => {
       cancelar.style.color = 'red';
@@ -1981,7 +2112,6 @@ function saltarAlerta(texto, padre) {
       cancelar.style.color = '';
     };
   }
-
   if (alertaGlobal === 'reseteo') {
     modal.classList.add('reseteo');
   } else {
@@ -2022,8 +2152,34 @@ function saltarAlerta(texto, padre) {
   }    
   if (alertaGlobal === 'recursoNuevo') {   
     cancelar.style.display='none'
-  }    
-
+  }  
+  if (alertaGlobal === 'moverRrhh') {   
+    cancelar.style.display='none'
+  }
+  if (alertaGlobal === 'mantenimientoID') {   
+    cancelar.style.display='none'
+  }  
+  if (alertaGlobal === 'lanzaGrafos') {   
+    cancelar.style.display='none'
+  } 
+  if (alertaGlobal === 'detieneArea') {   
+    cancelar.style.display='none'
+  }
+  if (alertaGlobal === 'sinDocumento') {   
+    cancelar.style.display='none'
+  } 
+  if (alertaGlobal === 'actualizado') {   
+    cancelar.style.display='none'
+  } 
+  if (alertaGlobal === 'salirCalcula') {   
+    cancelar.style.display='none'
+  } 
+  if (alertaGlobal === 'vacioCmyk') {   
+    cancelar.style.display='none'
+  }
+  if (alertaGlobal === 'vacioRgb') {   
+    cancelar.style.display='none'
+  }  
   const cerrar = () => {
     accionesCancelar[padre]?.();
     aceptar.onclick = null;
@@ -2033,13 +2189,20 @@ function saltarAlerta(texto, padre) {
     ocultarElemento('#padre-evento');
   };
 
-
   aceptar.onclick = () => {
-    accionesAceptar[padre]?.();
+    const resultado = accionesAceptar[padre]?.();
+
+    if (resultado?.siguienteAlerta) {
+      // NO cerrar, solo reconfigurar el modal
+      saltarAlerta(resultado.siguienteAlerta.texto, resultado.siguienteAlerta.tipo);
+      return;
+    }
+
     cerrar();
   };
 
   cancelar.onclick = cerrar;
 }
 
+/********************************************************************************************************************************************************** */
 

@@ -116,94 +116,20 @@ A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspec
 
 CONSIDERAR SI SE BORRAN:
 
-<button id="borrar-temporal" 
+btnDblFlecha
+
+parpadearElemento('nomEmpl');
+
+detenerParpadeo()
+
+  if (esDesktop) {
+    inputMA.focus();
+  }     
 
 
+alternarColor(btnDblFlecha,btnLimpiar)  COLORES VERDES 
+
+detenerAlternarColor(btnDblFlecha)
 
 
-document.querySelector('#boton-reseteo').addEventListener('click', () =>{
-  var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
-  for (var i = 0; i < allContenedores.length; i++) {
-    var elemento = document.getElementById(allContenedores[i])  
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-    }
-  }
-  container1.style.display = 'none'
-  desactivarClick(['.butt-perfiles']); 
-  saltarAlerta('Esta acción elimina definitivamente los perfiles guardados','contenedor')
-
-  
-})
-
-
-
-
-function saltarAlerta(texto, padre) {
-  const modal = document.querySelector('#padre-evento');
-  const mensaje = document.querySelector('#mensaje-alerta');
-  const aceptar = document.querySelector('#aceptar-evento');
-  const cancelar = document.querySelector('#denegar-evento');
-
-  mensaje.textContent = texto;
-  modal.style.display = 'flex';
-  globalAlerta = padre
-
-  const cerrar = () => {
-    modal.style.display = 'none';
-    aceptar.onclick = null;
-    cancelar.onclick = null;
-  };
-
-  aceptar.onclick = () => {
-    accionesPorPadre[padre]?.();
-    cerrar();
-  };
-
-  cancelar.onclick = cerrar;
-}
-
-
-
-
-document.querySelector('#aceptar-eliminar').addEventListener('click', () =>{
-  const contenedor = document.getElementById('botonera-fondo');
-  const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');  
-
-  vaciarObjeto()
-  vaciarAlmacenObjetos()
-  const colecciones = document.querySelectorAll('.lineas-tinta, .lineas-solucion, .leds, .led, .led-general, .clase-dos');
-  colecciones.forEach((elemento) => {
-    elemento.style.backgroundColor = '';
-  });
-  alertasPerfiles.forEach(alertaPerfiles => {
-    alertaPerfiles.style.opacity = '0'; // Desvanece el elemento
-    setTimeout(() => {
-      alertaPerfiles.style.display = 'none';
-      document.querySelector('#cliente-nombre').textContent = ''
-      botonesPerfilColor.forEach(elemento => {  
-        elemento.style.display = 'block';
-      });
-      botonesPerfilColor.forEach(elemento => {
-        elemento.style.display = 'block';
-      });      
-      if (contenedor) {
-        contenedor.querySelectorAll('*').forEach(elemento => {
-          elemento.style.display = 'block';
-        });
-      }
-
-      objetoGlobal = {}
-    }, 1000);
-  });
-  restablecerClick(['.butt-perfiles'])
-})
-
-
-
-
-226500
-5800
-40000
-
-180700
+salirCalcula
