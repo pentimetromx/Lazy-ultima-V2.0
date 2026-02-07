@@ -6134,61 +6134,61 @@ document.querySelectorAll('.section').forEach((btn, index) => {
 let values = { C: 0, M: 0, Y: 0, K: 0, A: 0, R: 0, G: 0, B: 0, W:0 };
 let red = 0, green = 0, blue = 0; 
 // ejecuta la función de inicialización de los sliders (initSliderCYK) para cada canal de color
-  
+
+
 function initSliderCMYK(trackId, spanId, channel) {
   const track = document.getElementById(trackId);
   const thumb = track.querySelector(".slider-thumb-cmyk");
   const span = document.getElementById(spanId);
-  let isDragging = false;
 
-  const startDrag = (e) => {
-    e.preventDefault();
-    isDragging = true;
-    document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseup", stopDrag);
-    document.addEventListener("touchmove", onMove, { passive: false });
-    document.addEventListener("touchend", stopDrag);
-  };
+  let dragging = false;
 
-  const onMove = (e) => {
-    if (!isDragging) return;
-
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  const updateFromClientY = (clientY) => {
     const rect = track.getBoundingClientRect();
-    const offsetY = rect.bottom - clientY;
-    const porcentaje = Math.round(
-      Math.max(0, Math.min(100, (offsetY / rect.height) * 100))
+    const offset = rect.bottom - clientY;
+
+    const porcentaje = Math.max(
+      0,
+      Math.min(100, (offset / rect.height) * 100)
     );
 
-    thumb.style.bottom = `${(porcentaje / 100) * (rect.height - thumb.offsetHeight)}px`;
+    const pos =
+      (porcentaje / 100) * (rect.height - thumb.offsetHeight);
+
+    thumb.style.bottom = `${pos}px`;
     track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
 
-    values[channel] = porcentaje;
+    values[channel] = Math.round(porcentaje);
+    if (span) span.textContent = `${values[channel]}%`;
+
     updateColorCMYK(channel);
-    if (span) span.textContent = `${porcentaje}%`;
   };
 
-  const stopDrag = () => {
-    isDragging = false;
-    document.removeEventListener("mousemove", onMove);
-    document.removeEventListener("mouseup", stopDrag);
-    document.removeEventListener("touchmove", onMove);
-    document.removeEventListener("touchend", stopDrag);
+  const start = (e) => {
+    e.preventDefault();
+    dragging = true;
+    thumb.setPointerCapture(e.pointerId);
+    updateFromClientY(e.clientY);
   };
 
-  thumb.addEventListener("mousedown", startDrag);
-  thumb.addEventListener("touchstart", startDrag, { passive: false });
+  const move = (e) => {
+    if (!dragging) return;
+    updateFromClientY(e.clientY);
+  };
+
+  const end = () => {
+    dragging = false;
+  };
+
+  // Thumb
+  thumb.addEventListener("pointerdown", start);
+  thumb.addEventListener("pointermove", move);
+  thumb.addEventListener("pointerup", end);
+  thumb.addEventListener("pointercancel", end);
+
+  // Track (permite tocar cualquier punto)
+  track.addEventListener("pointerdown", start);
 }
-
-
-
-
-
-
-
-
-
-
 
 // Convierte los valores CMYKW a RGB y actualiza el color en 'colorBox' y los valores en labels e inputs.
 function updateColorCMYK(channel) { // CMYK
@@ -6269,57 +6269,50 @@ function initSliderRGB(trackId, spanId, channel) {
   const track = document.getElementById(trackId);
   const thumb = track.querySelector(".slider-thumb-rgb");
   const span = document.getElementById(spanId);
-  let isDragging = false;
 
-  const startDrag = (e) => {
-    e.preventDefault();
-    isDragging = true;
+  let dragging = false;
 
-    document.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseup", stopDrag);
-    document.addEventListener("touchmove", onMove, { passive: false });
-    document.addEventListener("touchend", stopDrag);
-  };
-
-  const onMove = (e) => {
-    e.preventDefault(); // crucial en móviles
-    if (!isDragging) return;
-
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  const updateFromClientY = (clientY) => {
     const rect = track.getBoundingClientRect();
-    const offsetY = rect.bottom - clientY;
-    const porcentaje = Math.max(0, Math.min(100, (offsetY / rect.height) * 100));
-    const newValue = (porcentaje / 100) * (rect.height - thumb.offsetHeight);
+    const offset = rect.bottom - clientY;
 
-    thumb.style.bottom = `${newValue}px`;
+    const porcentaje = Math.max(0, Math.min(100, (offset / rect.height) * 100));
+    const pos = (porcentaje / 100) * (rect.height - thumb.offsetHeight);
+
+    thumb.style.bottom = `${pos}px`;
     track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
 
     values[channel] = Math.round((porcentaje / 100) * 255);
-    if (span) span.textContent = values[channel];
+    span.textContent = values[channel];
 
     updateColorRGB();
   };
 
-  const stopDrag = () => {
-    isDragging = false;
-    document.removeEventListener("mousemove", onMove);
-    document.removeEventListener("mouseup", stopDrag);
-    document.removeEventListener("touchmove", onMove);
-    document.removeEventListener("touchend", stopDrag);
+  const start = (e) => {
+    e.preventDefault();
+    dragging = true;
+    thumb.setPointerCapture(e.pointerId);
+    updateFromClientY(e.clientY);
   };
 
-  thumb.addEventListener("mousedown", startDrag);
-  thumb.addEventListener("touchstart", startDrag, { passive: false });
+  const move = (e) => {
+    if (!dragging) return;
+    updateFromClientY(e.clientY);
+  };
 
-  // Recomendado: asegurar que el thumb acepte interacciones táctiles
-  thumb.style.touchAction = "none";
-  thumb.style.cursor = "pointer";
+  const end = () => {
+    dragging = false;
+  };
+
+  // Thumb
+  thumb.addEventListener("pointerdown", start);
+  thumb.addEventListener("pointermove", move);
+  thumb.addEventListener("pointerup", end);
+  thumb.addEventListener("pointercancel", end);
+
+  // Track (mejora UX: tocar cualquier punto del track)
+  track.addEventListener("pointerdown", start);
 }
-
-
-
-
-
 
 function updateColorRGB() {
   let rgba = `rgba(${values.R}, ${values.G}, ${values.B}, ${values.W / 255})`;
