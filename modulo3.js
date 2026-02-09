@@ -12,15 +12,19 @@ document.addEventListener('keydown', function(event) {
         saltarAlerta('CLICK PARA TRUE','contenedor')
       break;
       case 'X':
-        /* Geometria() */
+        Geometria()
         console.log(alertaGlobal)
+        calculadora.classList.remove('move-calculadora-1')
+        calculadora.classList.remove('move-calculadora')
+        document.querySelector('#simulador').style.display='flex'
+
       break;                  
     }
   }
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('padre-grafica12');  
+  let contiBoton = document.getElementById('calculadora');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -2860,6 +2864,8 @@ document.getElementById('butt-control-tinta').addEventListener('click', () =>{
   }, 10);
 })
 
+let calculadoraSimulador = false
+
 document.getElementById('butt-job-track').addEventListener('click', () =>{
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
   const conteJobTrack = document.querySelector('#job-files')
@@ -4912,7 +4918,6 @@ const buttSelector = document.querySelectorAll('.butt-selector')
 const buttSuma = document.querySelectorAll('.linea-control')
 const buttResta = document.querySelectorAll('.resta')
 const buttsClientes = document.querySelectorAll('.estilo-1');
-const calculadora = document.getElementById('calculadora')
 const alertaTres = document.getElementById('alerta-tres')
 const alertaCuatro = document.getElementById('alerta-cuatro')  
 const alertaCinco = document.getElementById('alerta-cinco')
@@ -4926,7 +4931,12 @@ buttsJobs.forEach(boton => {
   let panelUno = document.getElementById('panel-uno')
   let panelDos = document.getElementById('panel-dos')  
   
+
+  //CALCULADORA SIMULADOR
   boton.addEventListener('click', () => {
+    restablecerEstilos('calculadora');
+    
+
     switch(boton.id) {
       case 'clientes':
         irAconsola.style.display='none'
@@ -4962,24 +4972,30 @@ buttsJobs.forEach(boton => {
         }
       break;
       case 'tirajes':
-        irAconsola.style.display='none'
-        desactivarClick(['.butt-perfiles', '.estilo-1']);
-        restablecerClick(['.digito'])
-        if(panelUno.textContent === '' || panelDos.textContent === ''){  
-          alertaTres.style.display = 'flex';
-        }else{          
-          calculadora.classList.remove('move-calculadora')
-          calculadora.classList.remove('move-calculadora-1')
-          setTimeout(() => {
-            document.querySelector('#grid-numbers').style.display = 'grid'
-            calculadora.classList.add('move-calculadora-1') 
-          }, 100);
+        restablecerEstilos('calculadora');
+
+        calculadoraSimulador=false
+        if(!calculadoraSimulador){
+          irAconsola.style.display='none'
+          desactivarClick(['.butt-perfiles', '.estilo-1']);
+          restablecerClick(['.digito'])
+          if(panelUno.textContent === '' || panelDos.textContent === ''){  
+            alertaTres.style.display = 'flex';
+          }else{          
+            calculadora.classList.remove('move-calculadora')
+            calculadora.classList.remove('move-calculadora-1')
+            setTimeout(() => {
+              document.querySelector('#grid-numbers').style.display = 'grid'
+              calculadora.classList.add('move-calculadora-1') 
+            }, 100);
+          }
+          coleccionNumeros.length = 0;
+          actualizarDisplay(); 
         }
-        coleccionNumeros.length = 0;
-        actualizarDisplay(); 
       break;  
     } 
   });
+
 });
 function actualizarDisplay() {
   document.querySelectorAll('#resultado-calculadora .number, #display-cantidad .cantidad-display').forEach(elemento => elemento.textContent = '');
@@ -5010,46 +5026,52 @@ listaLineas.forEach(linea => {
 
 digitos.forEach((elemento) => {
   elemento.addEventListener('click', () => {
-    // Desactiva temporalmente los clics en los botones
-    digitos.forEach(d => d.style.pointerEvents = 'none');  
+    if(!calculadoraSimulador){
+      // Desactiva temporalmente los clics en los botones
+      digitos.forEach(d => d.style.pointerEvents = 'none');  
 
-    const spans = document.querySelectorAll('.datos-base');   
+      const spans = document.querySelectorAll('.datos-base');   
 
-    // Verifica el estado de los spans y lanza las alertas correspondientes
-    if ([...spans].every(span => span.textContent.trim() === '')) {
-      alertaTres.style.display = 'flex';
-      desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
-    } else if (spans[0].textContent.trim() === '') {
-      document.getElementById('alerta-uno').style.display = 'flex';
-      desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
-    } else if (spans[1].textContent.trim() === '') {
-      document.getElementById('alerta-dos').style.display = 'flex';
-      desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
-    } else {
-      const numero = parseInt(elemento.textContent); // Convertir el contenido del botón a número
-      if (!isNaN(numero)) { // Solo agregar si es un número válido      
-        // Verificar si el array ya tiene 10 elementos
-        if (coleccionNumeros.length >= 10) {
-          // Reactiva los clics y termina la ejecución si ya hay 10 elementos
-          digitos.forEach(d => d.style.pointerEvents = 'auto');
-          return;
-        }
-        coleccionNumeros.push(numero); // Agregar el nuevo número
-        // Limpiar ambos conjuntos de spans antes de mostrar los números actualizados
-        spansNumeros.forEach(span => span.textContent = '');
-        spansCantidades.forEach(span => span.textContent = '');
-        // Mover los números del array a los spans de derecha a izquierda
-        for (let i = 0; i < coleccionNumeros.length; i++) {
-          spansNumeros[spansNumeros.length - coleccionNumeros.length + i].textContent = coleccionNumeros[i];
-          spansCantidades[spansCantidades.length - coleccionNumeros.length + i].textContent = coleccionNumeros[i];
+      // Verifica el estado de los spans y lanza las alertas correspondientes
+      if ([...spans].every(span => span.textContent.trim() === '')) {
+        alertaTres.style.display = 'flex';
+        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+      } else if (spans[0].textContent.trim() === '') {
+        document.getElementById('alerta-uno').style.display = 'flex';
+        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+      } else if (spans[1].textContent.trim() === '') {
+        document.getElementById('alerta-dos').style.display = 'flex';
+        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+      } else {
+        const numero = parseInt(elemento.textContent); // Convertir el contenido del botón a número
+        if (!isNaN(numero)) { // Solo agregar si es un número válido      
+          // Verificar si el array ya tiene 10 elementos
+          if (coleccionNumeros.length >= 10) {
+            // Reactiva los clics y termina la ejecución si ya hay 10 elementos
+            digitos.forEach(d => d.style.pointerEvents = 'auto');
+            return;
+          }
+          coleccionNumeros.push(numero); // Agregar el nuevo número
+          // Limpiar ambos conjuntos de spans antes de mostrar los números actualizados
+          spansNumeros.forEach(span => span.textContent = '');
+          spansCantidades.forEach(span => span.textContent = '');
+          // Mover los números del array a los spans de derecha a izquierda
+          for (let i = 0; i < coleccionNumeros.length; i++) {
+            spansNumeros[spansNumeros.length - coleccionNumeros.length + i].textContent = coleccionNumeros[i];
+            spansCantidades[spansCantidades.length - coleccionNumeros.length + i].textContent = coleccionNumeros[i];
+          }
         }
       }
+
+      // Reactivar los clics después del evento
+      setTimeout(() => {
+        digitos.forEach(d => d.style.pointerEvents = 'auto');  
+      }, 200);
+
+    }else{
+      alert('CALCULADORA SIMULADOR = TRUE')
     }
 
-    // Reactivar los clics después del evento
-    setTimeout(() => {
-      digitos.forEach(d => d.style.pointerEvents = 'auto');  
-    }, 200);
   });
 });
 alertaTres.addEventListener('click', ()=> {

@@ -1925,6 +1925,7 @@ function ingresoEmpleado(){
 }
 
 function ingresoEmpleadoMA(){  
+  calculadoraSimulador=true
   const excluidos = [
     'buscador','search-form','links-inicialesI','links-iniciales','container01'
   ];
@@ -1939,42 +1940,34 @@ function ingresoEmpleadoMA(){
   flagEmpleado = true
   padre.removeAttribute('style');
   hijo.removeAttribute('style');
-
   ["padre-ingresos-ma","ingresos-sistema-ma"].forEach(id => aparecerElemento(id, "grid"));
 
  limpiarEntradas()
 
- setTimeout(() => {
+
+
+ /* setTimeout(() => {
     if (esDesktop) {
+      alert()
+
       inputMA.focus();
+      document.querySelector('#simulador').style.display='flex'
+      calculadora.classList.remove('move-calculadora-1')
+      calculadora.classList.remove('move-calculadora')
+
     } 
- }, 500);
-  
-
+ }, 500); */  
 }
 
-// Lógica reutilizable
-function limpiarYCapitalizar(e) {
-  let valor = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+ 
 
-  valor = valor
-    .toLowerCase()
-    .replace(/\b\w/g, letra => letra.toUpperCase());
 
-  e.target.value = valor;
-}
 
-// Aplicarlo a ambos inputs
-[inputNombre, inputNombreMA].forEach(input => {
-  if (input) input.addEventListener('input', limpiarYCapitalizar);
-});
-function permitirSoloNumeros(e) {
-  e.target.value = e.target.value.replace(/[^0-9]/g, '');
-}
 
+
+/*********************************************************************************************************************************************** */
 const soloNumerosInputs = [
   document.getElementById('numDoc1'),          
-  document.getElementById('numDoc9-ma'),
   document.getElementById('numDoc1-ma'),
   document.getElementById('numDoc2-ma'),
   document.getElementById('numDoc5-ma'),
@@ -1985,15 +1978,117 @@ const soloNumerosInputs = [
   document.getElementById('numDoc6-ma'),
   document.getElementById('nomEmpl-ma')
 ];
+// Lógica reutilizable
+function limpiarYCapitalizar(e) {
+  let valor = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+
+  valor = valor
+    .toLowerCase()
+    .replace(/\b\w/g, letra => letra.toUpperCase());
+
+  e.target.value = valor;
+}
+// Aplicarlo a ambos inputs
+[inputNombre, inputNombreMA].forEach(input => {
+  if (input) input.addEventListener('input', limpiarYCapitalizar);
+});
+function permitirSoloNumeros(e) {
+  e.target.value = e.target.value.replace(/[^0-9]/g, '');
+}
 
 soloNumerosInputs.forEach(input => {
   if (input) input.addEventListener('input', permitirSoloNumeros);
+
 });
+
+/*********************************************************************************************************************************************** */
+
+
+
+const simuladorGraf = document.getElementById('simulador');
+
+const restablecerEstilos = el => {
+  const nodo = typeof el === 'string'
+    ? document.getElementById(el)
+    : el;
+
+  if (!nodo) return;
+
+  nodo.removeAttribute('style');
+};
+
+const reUbicarElemento = (
+  el,
+  { display, left, width, top, height, parentSelector }
+) => {
+  const nodo = typeof el === 'string'
+    ? document.getElementById(el)
+    : el;
+
+  if (!nodo) return;
+
+  if (parentSelector) {
+    const padre = document.querySelector(parentSelector);
+    if (padre) padre.style.display = 'block';
+  }
+
+  Object.assign(nodo.style, {
+    display,
+    left,
+    width,
+    top,
+    height
+  });
+};
+
+const configCalculadora = {
+  display: 'grid',
+  left: '45%',
+  width: '25%',
+  top: '38%',
+  height: '30%',
+  parentSelector: '#simulador'
+};
+
+const contenedorIngresosMA = document.getElementById('padre-ingresos-ma');
+const soloNumerosSet = new Set(soloNumerosInputs);
+contenedorIngresosMA.addEventListener('focusin', e => {
+  
+  const target = e.target;
+
+  if (target.tagName !== 'INPUT') return;
+
+  if (!soloNumerosSet.has(target)) return;
+  if(!esDesktop){
+    calculadora.classList.remove('move-calculadora-1')
+    calculadora.classList.remove('move-calculadora')
+    restablecerEstilos('calculadora');
+    reUbicarElemento('calculadora', {
+      display: 'grid',
+      left: '45%',
+      width: '25%',
+      top: '38%',
+      height: '30%',
+      parentSelector: '#simulador'
+    });
+
+  }
+});
+
+
+
+
+
+
+
+
+  
+
+
 
 inputRRHH.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
 });
-
 // BTN 'Ir' RRHH
 document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
   console.log(
@@ -2077,14 +2172,12 @@ document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
   console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal  )
 
 }) 
-
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
   traerElementos('.ocultos')
   document.querySelector('#container01').style.display='grid'
   restablecerClick(['.entrada-empleado']);
   document.querySelector('.ventana-mensaje').style.display='none'
 })
-
 btnDblFlecha.addEventListener('click', ()=>{
  if(flagEmpleado === true){
   return
@@ -2098,10 +2191,8 @@ btnDblFlecha.addEventListener('click', ()=>{
   flagEmpleado = true
  }
 })
-
 const inputArchivo = document.getElementById('numDoc6');
 let escala = 1;
-
 // BOTON ROJO
 function moverPadreIngresos(porcentajeX, porcentajeY) {
   flagEmpleado = false
@@ -2142,14 +2233,11 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
     padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
   }, 25);
 }
-
-
 function restaurarPosicionPadreIngresos() {
   const padre = document.getElementById('padre-ingresos');
   if (!padre) return;
   padre.style.transform = ''; // elimina el translate aplicado por JS
 }
-
 // boton rojo 
 document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ 
   console.log('BANDERA : ', flagEmpleado)
@@ -2287,8 +2375,10 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
 
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   activarPantallaCompleta()
-    deslizaContenedor('conti-boton-kaizen','kaizen')
-    rodillosKaizen('btn17','')
+  deslizaContenedor('conti-boton-kaizen','kaizen')
+  rodillosKaizen('btn17','')
+  ingresoEmpleadoMA()
+
 })
 
 
@@ -3320,8 +3410,6 @@ linksAuxiliar.addEventListener('mouseleave', (e) => {
 const listar = document.querySelectorAll('#linkList > li');
 const listarDos = document.querySelectorAll('#links-color > li');
 
-const simulador = document.querySelector('#links-registro li:first-child');
-
 const linksRegistro = document.getElementById('links-registro');
 const linksRgbaCmyk = document.getElementById('links-registro');
 
@@ -3334,6 +3422,7 @@ const linksTec = quintoElemento.querySelector('.submenu-colorimetria');
 let sobreTiempo = null;
 
 simulador.addEventListener('click', (e) => {
+  document.querySelector('#calculadora').style.display='none'
   restablecerClick(['.butt-perfiles']);
   // solo se ejecuta si el click fue directamente en el li padre
   if (e.target !== simulador) return;
@@ -3388,6 +3477,8 @@ quintoElemento.addEventListener('mouseleave', () => {
   }
   linksTec.style.display = 'none';
 });
+
+// LI autonomo tercer hijo
 hijos.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3396,7 +3487,7 @@ hijos.forEach((li, index) => {
       ingresoEmpleado()
     }  
     if (index === 2) {
-      ingresoEmpleadoMA()
+        ingresoEmpleadoMA()
     }
     if (index === 3) {
       resultadosMA('interfaz-mtto')

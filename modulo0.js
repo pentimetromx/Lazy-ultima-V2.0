@@ -194,11 +194,12 @@ const inputRRHH = document.querySelector('#nomEmpl');
 const inputMA = document.querySelector('#nomEmpl-ma'); 
 const inputNombreMA = document.getElementById('numDoc-ma');
 const inputNombre   = document.getElementById('numDoc');
-const mediaDesktop = window.matchMedia('(pointer: fine)');
 const creaNombre = document.querySelector('#nombre-perfil-existe'); 
 const buscaNombre = document.querySelector('#nombre-Perfil'); 
+const simulador = document.querySelector('#links-registro li:first-child');
+const calculadora = document.getElementById('calculadora')
 
-
+const mediaDesktop = window.matchMedia('(pointer: fine)');
 let esDesktop = mediaDesktop.matches;
 mediaDesktop.addEventListener('change', e => {
   esDesktop = e.matches;
