@@ -2060,6 +2060,8 @@ contenedorIngresosMA.addEventListener('focusin', e => {
 
   if (!soloNumerosSet.has(target)) return;
   if(!esDesktop){
+    e.target.blur();
+    
     calculadora.classList.remove('move-calculadora-1')
     calculadora.classList.remove('move-calculadora')
     restablecerEstilos('calculadora');
