@@ -114,22 +114,82 @@ A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspec
 
 
 
-CONSIDERAR SI SE BORRAN:
 
-btnDblFlecha
 
-parpadearElemento('nomEmpl');
 
-detenerParpadeo()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let calculadoraSimulador = false
 
   if (esDesktop) {
-    inputMA.focus();
-  }     
+    inputRRHH.focus();
+  } 
 
 
-alternarColor(btnDblFlecha,btnLimpiar)  COLORES VERDES 
+setTimeout(() => {
+    if (esDesktop) {
+      alert()
 
-detenerAlternarColor(btnDblFlecha)
+      inputMA.focus();
+      document.querySelector('#simulador').style.display='flex'
+      calculadora.classList.remove('move-calculadora-1')
+      calculadora.classList.remove('move-calculadora')
+
+    } 
+ }, 500);
 
 
-salirCalcula
+
+
+
+
+/* const isTouchDevice =
+  window.matchMedia('(pointer: coarse)').matches
+
+const inputsMA = document.querySelectorAll('.entrada-empleado');
+
+inputsMA.forEach(input => {
+  if (isTouchDevice) {
+    // 📱 MODO TÁCTIL
+    input.setAttribute('readonly', true);
+    input.setAttribute('inputmode', 'none');
+
+    input.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      e.target.blur();
+      mostrarCalculadora(e.target);
+    });
+
+  } else {
+    // 🖥️ MODO DESKTOP
+    input.removeAttribute('readonly');
+    input.removeAttribute('inputmode');
+  }
+}) */;
+
+
+MODULO 4 2047
+
+restablecerEstilos('calculadora');
+
+
+

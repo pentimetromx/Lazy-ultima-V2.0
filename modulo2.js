@@ -3022,16 +3022,6 @@ function transicionElementosV(){
   contImageneSmed.classList.add('move-images-IV')
   buttRepuestV.classList.add('move-repuest-IV')
 }
-function restablecerEstilos(elemento) {
-  // Eliminar estilos en línea
-  elemento.removeAttribute('style');
-
-  // Asegurarse de que no haya clases que apliquen estilos no deseados
-  elemento.className = '';
-
-  // Agregar la clase que define el lugar desde CSS
-  elemento.classList.add('clase-contenedor-7');  // Ajusta el nombre de la clase según tu caso
-}
 function volverApre(){
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','pre-prensa','imgs-prepress','primerCont','vidCicodelia']  
   for (var i = 0; i < allContenedores.length; i++) { 
