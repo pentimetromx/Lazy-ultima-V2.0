@@ -89,7 +89,6 @@ document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListe
     }
   }
   container1.style.display='grid'
-  document.querySelector('#contenedor-botonera').style.display='grid'
   manejarTransicion('child-move-azul', 'formulario-cuenta', 'marco-formulario',100);
   container1.style.display='grid'
   const cont = document.querySelector('#imagenes-sheeter');
@@ -1245,7 +1244,7 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
     .some(el => getComputedStyle(el).backgroundColor === azul);
 
     if (!hayMesActivo || !hayMaquinaActiva){
-      alternarColor(firstMachine,firstMes)
+      alternarColor(firstMachine)
       saltarAlerta('Seleccione una Maquina y el Mes', 'lanzaGrafos')
       return;
     }  // corta la ejecución
@@ -1993,7 +1992,6 @@ function limpiarYCapitalizar(e) {
 [inputNombre, inputNombreMA].forEach(input => {
   if (input) input.addEventListener('input', limpiarYCapitalizar);
 });
-
 function permitirSoloNumeros(e) {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
 }
@@ -2186,7 +2184,6 @@ btnDblFlecha.addEventListener('click', ()=>{
  if(flagEmpleado === true){
   return
  }else{
-  alertaFlecha.style.display='none'
   desaparecerElemento('grafico-area')
   desaparecerElemento('abuelo-indicadores') 
   desaparecerElemento('abuelo-grafica12')
@@ -3371,7 +3368,8 @@ function decisionesEstrategicas(){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
     }
   }
-  container1.style.display='grid'
+
+
 }
 
 const listarI = document.querySelectorAll('#linkListI li');
@@ -3752,14 +3750,3 @@ const CATEGORY_LABELS = {
   D: 'Desarrollo',
   E: 'Cumplimiento'
 };
-
-function mostrarAlertaEnElemento(mensaje, top, left) {
-  const alerta = document.getElementById('alerta-ui');
-  const texto = alerta.querySelector('.texto');
-
-  texto.textContent = mensaje;
-  alerta.style.display='block'
-
-  alerta.style.top = typeof top === 'number' ? `${top}px` : top;
-  alerta.style.left = typeof left === 'number' ? `${left}px` : left;
-}

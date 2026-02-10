@@ -21,7 +21,7 @@
       <form id="search-form">
         <input type="text" id="search-input" placeholder="Buscar..."> 
         <datalist id="suggestions"></datalist>                                             
-        <img data-src="./assets/lupa.jpg" class="busqueda lazy" alt="Buscar">    
+        <img data-src="./assets/lupa.jpg" class="busqueda lazy" alt="Buscar">   
       </form>
     </header>
     <div id="gran-cortina"></div>   
@@ -556,7 +556,7 @@
             <li>Salir</li>
           </ul>
         </li>
-        <li onclick="mostrarElementos(['butts-simulador','sections-fondo','contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales']);">Simulador rotativa RK-300</li>
+        <li onclick="mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales']);">Simulador rotativa RK-300</li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
 
@@ -4247,91 +4247,51 @@
 
       <h3 class="titulo-panel">Decisiones Estratégicas Basadas en Datos</h3>
 
-
       <section class="bloque">
         <h3 class="subtitulo">Situación Actual</h3>
+        <p>
+          Decisiones estratégicas basadas en evidencia:
+          En los últimos años, las empresas con mejor desempeño han migrado de decisiones apoyadas en percepciones subjetivas a decisiones guiadas por datos reales. Esto se debe a que los juicios individuales, incluso de jefes con experiencia, pueden variar según criterios personales, sesgos y situaciones del momento.
 
-        <div class="contenido-scroll">
+          Comparativo:
+          - Enfoque subjetivo:
+            • Dependencia de apreciaciones individuales.
+            • Variabilidad entre jefes inmediatos e indirectos.  
+            • Dificultad para justificar decisiones ante gerencia o auditoría.
+            • Riesgo de favoritismos o percepciones incompletas.
+            • Falta de trazabilidad en el historial de desempeño.
 
-          <ul>
-            <li>
-              <strong>Decisiones estratégicas basadas en evidencia:</strong>
-              <p>
-                En los últimos años, las empresas con mejor desempeño han migrado de decisiones
-                apoyadas en percepciones subjetivas a decisiones guiadas por datos reales. Esto
-                ocurre porque los juicios individuales, incluso de jefes con experiencia, pueden
-                variar según criterios personales, sesgos y situaciones del momento.
-              </p>
-            </li>
+          - Enfoque basado en datos:
+            • Indicadores consistentes, medibles y comparables.
+            • Gráficos que muestran esquemas, tendencias y comportamientos reales.
+            • Visión clara de desempeño operativo, productividad y confiabilidad.
+            • Decisiones justificadas con evidencia verificable.
+            • Capacidad de detectar patrones, problemas recurrentes y oportunidades.
 
-            <li>
-              <strong>Enfoque subjetivo:</strong>
-              <ul>
-                <li>Dependencia de apreciaciones individuales.</li>
-                <li>Variabilidad entre jefes inmediatos e indirectos.</li>
-                <li>Dificultad para justificar decisiones ante gerencia o auditoría.</li>
-                <li>Riesgo de favoritismos o percepciones incompletas.</li>
-                <li>Falta de trazabilidad en el historial de desempeño.</li>
-              </ul>
-            </li>
+          Beneficio para la gerencia:
+          Cuando las decisiones se sustentan con datos, la empresa reduce riesgos de error, mejora la asignación de recursos y fortalece la credibilidad de los procesos internos. Los datos permiten anticipar desviaciones antes de que se conviertan en fallas, garantizando un control más sólido sobre el desempeño del personal operativo.
 
-            <li>
-              <strong>Enfoque basado en datos:</strong>
-              <ul>
-                <li>Indicadores consistentes, medibles y comparables.</li>
-                <li>Gráficos que muestran esquemas, tendencias y comportamientos reales.</li>
-                <li>Visión clara de desempeño operativo, productividad y confiabilidad.</li>
-                <li>Decisiones justificadas con evidencia verificable.</li>
-                <li>Capacidad de detectar patrones, problemas recurrentes y oportunidades.</li>
-              </ul>
-            </li>
-
-            <li>
-              <strong>Beneficio para la gerencia:</strong>
-              <p>
-                Cuando las decisiones se sustentan con datos, la empresa reduce riesgos de error,
-                mejora la asignación de recursos y fortalece la credibilidad de los procesos
-                internos. Los datos permiten anticipar desviaciones antes de que se conviertan
-                en fallas.
-              </p>
-            </li>
-
-            <li>
-              <strong>Conclusión:</strong>
-              <p>
-                Migrar del criterio subjetivo al análisis basado en datos moderniza la gestión
-                y mejora la precisión, la transparencia y la competitividad de la empresa.
-              </p>
-            </li>
-          </ul>
-
-        </div>
-
-
-
+          Conclusión:
+          Migrar del criterio subjetivo al análisis basado en datos no solo moderniza la gestión, sino que también mejora la precisión, la transparencia y la competitividad de la empresa.
+        </p>
       </section>
-
 
       <section class="bloque">
         <h3 class="subtitulo">Problemas del Enfoque Subjetivo</h3>
-
         <ul>
           <li>Inconsistencia en evaluaciones.</li>
           <li>Decisiones sesgadas.</li>
           <li>Dificultad para medir desempeño real.</li>
         </ul>
-
       </section>
 
       <section class="bloque">
         <h3 class="subtitulo">Ventajas del Enfoque Basado en Datos</h3>
-
         <ul>
           <li>Tendencias claras y medibles.</li>
           <li>Predicción de riesgos.</li>
           <li>Justificación transparente ante la gerencia.</li>
         </ul>
-
       </section>
       
     </div>
@@ -4354,12 +4314,6 @@
       </div>
 
     </div>
-
-    <div id="alerta-ui">
-      <span class="texto"></span>
-      <span class="flecha"></span>
-    </div>
-
  
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
