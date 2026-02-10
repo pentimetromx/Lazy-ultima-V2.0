@@ -7942,17 +7942,14 @@ background-color: #3FEF9C;
 }
 .bloque {
   position: relative;
-  
+  display: block;
   height: 100%;
   width: 33%;
   margin-bottom: 24px;
-  padding: 5px;
+  padding: 20px;
   background-color: rgba(33,33,47,0.5);
   border-radius: 10px;
   border-left: 5px solid #0078d4;
-  
-  display: flex;
-  flex-direction: column;
 }
 
 .titulo-panel {
@@ -7964,19 +7961,11 @@ background-color: #3FEF9C;
 .subtitulo {
   font-size: 20px;
   margin-bottom: 10px;
-  color: #2F80ED;
+  color: #0a2a43;
   font-weight: 500;
-
-  flex-shrink: 0;
-}
-.contenido-scroll {
-  width: 100%;
-  overflow-y: auto;
-  padding-right: 8px; /* evita que el scroll tape texto */
 }
 .bloque p, .bloque ul {
   font-size: 1.2vw;
-  color: #f7f7f8;
   margin: 0;
    
 }

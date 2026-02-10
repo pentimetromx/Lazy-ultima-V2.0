@@ -9,9 +9,7 @@ document.addEventListener('keydown', function(event) {
      
       break;  
       case 'H':      
-        mostrarAlertaEnElemento('Ingrese a la zona de edicion','31%','36.5%');
-
-
+        saltarAlerta('CLICK PARA TRUE','contenedor')
       break;
       case 'X':
         Geometria()
@@ -172,10 +170,10 @@ function desactivarClicEnElementos(...elementos) {
     }
   });
 } 
-function reactivarClicEnElementos(...elementos) {
+function reactivarClicEnElementos(...elementos) {   
   elementos.forEach(coleccion => {
     coleccion.forEach(elemento => {   
-    elemento.style.pointerEvents = 'auto';
+      elemento.style.pointerEvents = 'auto';
     });
   });
 }
@@ -4861,8 +4859,7 @@ function alternarColor(el1, el2) {
 
   setTimeout(() => {
     detenerAlternarColor(el1, el2);
-    alertaFlecha.style.display='none'
-  }, 2000);
+  }, 5000);
 }
 
 function detenerAlternarColor(...elementos) {
@@ -4936,7 +4933,7 @@ buttsJobs.forEach(boton => {
   
 
   //CALCULADORA SIMULADOR
-  boton.addEventListener('click', () => {  
+  boton.addEventListener('click', () => {
     restablecerEstilos('calculadora');
     
 
