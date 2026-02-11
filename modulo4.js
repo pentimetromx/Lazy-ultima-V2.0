@@ -1933,10 +1933,12 @@ function ingresoEmpleadoMA(){
     const el = document.getElementById(id);
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
   });
-
+  const inputs = document.querySelectorAll('.verGraficos');
   const padre = document.getElementById('padre-ingresos-ma'); 
   const hijo = document.getElementById('ingresos-sistema-ma');
-  /* const inputs = document.querySelectorAll('.verGraficos'); */
+  inputs.forEach(input => {
+    input.style.backgroundColor = '';
+  });
   flagEmpleado = true
   padre.removeAttribute('style');
   hijo.removeAttribute('style');
@@ -1944,26 +1946,22 @@ function ingresoEmpleadoMA(){
 
  limpiarEntradas()
 
-
-
- /* setTimeout(() => {
+  setTimeout(() => {
     if (esDesktop) {
-      alert()
-
       inputMA.focus();
-      document.querySelector('#simulador').style.display='flex'
+    } else{
+      inputs.forEach(input => {
+        if (input.tagName === 'INPUT') {
+          input.readOnly = true;
+        }
+      });
+
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
 
-    } 
- }, 500); */  
+    }
+ }, 500);  
 }
-
- 
-
-
-
-
 
 /*********************************************************************************************************************************************** */
 const soloNumerosInputs = [
@@ -2050,6 +2048,7 @@ const configCalculadora = {
   parentSelector: '#simulador'
 };
 
+// FOCO/CLICK EN INPUTS M.A
 const contenedorIngresosMA = document.getElementById('padre-ingresos-ma');
 const soloNumerosSet = new Set(soloNumerosInputs);
 contenedorIngresosMA.addEventListener('focusin', e => {
@@ -2067,26 +2066,15 @@ contenedorIngresosMA.addEventListener('focusin', e => {
     restablecerEstilos('calculadora');
     reUbicarElemento('calculadora', {
       display: 'grid',
-      left: '45%',
+      left: '73.5%',
       width: '25%',
-      top: '38%',
+      top: '40%',
       height: '30%',
       parentSelector: '#simulador'
     });
 
   }
 });
-
-
-
-
-
-
-
-
-  
-
-
 
 inputRRHH.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
@@ -2368,8 +2356,6 @@ function generarListaFotos() {
   listaFotos.style.display = 'block'; // mostrar solo cuando se genera
 }
 
-
-
 document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
   resultadosMA('interfaz-mtto')
@@ -2382,7 +2368,6 @@ document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   ingresoEmpleadoMA()
 
 })
-
 
 /* function crearControlLed(idContenedor, idInput, totalLeds = 10) {
   const contenedor = document.getElementById(idContenedor);
@@ -2499,8 +2484,6 @@ btnAreas.addEventListener('click', () => {
   }
 });
 
-
-
 btnAreas.addEventListener('mouseleave', () => {
   dentro = false;
   ocultar();
@@ -2546,7 +2529,6 @@ tercerItem.addEventListener('click', () =>{
     crearGraficoTreeMap()
   }, 350);
 })
-
 
 function aplicarLedsDesdeEmpleado(empleadoGlobal) {
   // 1. Cargar la colección completa
@@ -2990,7 +2972,6 @@ function actualizarDiasYLeds(valor) {
   });
 }
 
-
 // GRAFICO TREEMAP
 crearLeds('leds-grafico')
 crearDias('dias-grafico')
@@ -2999,7 +2980,6 @@ crearDias('dias-grafico')
 crearLeds('ledContainer')
 crearDias('daysContainer')
 crearGraficoOperacion()   
-
 
 sliderTree.addEventListener('input', () => {
   if (!chart21) return;
@@ -3067,7 +3047,6 @@ function actualizarTreeMapPorSlider(valor){
   chart21.data.datasets[0].tree = nuevaData;
   chart21.update();
 }
-
 
 function crearGraficoTreeMap() {
   const ctx = document.getElementById('MiGrafica20').getContext('2d');
@@ -3407,8 +3386,6 @@ linksAuxiliar.addEventListener('mouseleave', (e) => {
   }, 350);
 });
 
-
-
 const listar = document.querySelectorAll('#linkList > li');
 const listarDos = document.querySelectorAll('#links-color > li');
 
@@ -3532,24 +3509,24 @@ function aplicarColoresInputs() {
   document
     .querySelectorAll('input[data-colorable]')
     .forEach(input => {
-      const value = Number(input.value);
+    const value = Number(input.value);
 
-      if (Number.isNaN(value)) {
-        input.style.backgroundColor = '';
-        return;
-      }
+    if (Number.isNaN(value)) {
+      input.style.backgroundColor = '';
+      return;
+    }
 
-      if (value <= 4) {
-        input.style.backgroundColor = '#CC3333';
-        input.style.color = '#FFFFFF';
-      } else if (value >=5 && value <=8) {
-        input.style.backgroundColor = '#F9A536';
-        input.style.color = '#000000';
-      } else {
-        input.style.backgroundColor = '#8CE15B';
-        input.style.color = '#000000';
-      }
-    });
+    if (value <= 4) {
+      input.style.backgroundColor = '#CC3333';
+      input.style.color = '#FFFFFF';
+    } else if (value >=5 && value <=8) {
+      input.style.backgroundColor = '#F9A536';
+      input.style.color = '#000000';
+    } else {
+      input.style.backgroundColor = '#8CE15B';
+      input.style.color = '#000000';
+    }
+  });
 }
 
 function aplicarColorPorValor(input) {
@@ -3656,7 +3633,6 @@ function aplicarNormalizacionDeColores() {
 }
 //*********************************************************************************************************************** */
 
-
 const MOVE_CLASSES = [
   'move-kaizen',
   'move-kaizen-1',
@@ -3750,3 +3726,133 @@ const CATEGORY_LABELS = {
   D: 'Desarrollo',
   E: 'Cumplimiento'
 };
+
+function mostrarAlertaEnElemento(mensaje, top, left) {
+  const alerta = document.getElementById('alerta-ui');
+  const texto = alerta.querySelector('.texto');
+
+  texto.textContent = mensaje;
+  alerta.hidden = false;
+
+  alerta.style.top = typeof top === 'number' ? `${top}px` : top;
+  alerta.style.left = typeof left === 'number' ? `${left}px` : left;
+}
+
+mostrarAlertaEnElemento({mensaje: 'Ingrese solo valores numéricos',top: '70%',left: '40%'});
+
+function habilitarArrastre(elemento) {
+  const handle = elemento.querySelector('.drag-handle');
+  if (!handle) return;
+
+  let dragging = false;
+  let startX = 0, startY = 0;
+  let currentX = 0, currentY = 0;
+
+  handle.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    dragging = true;
+    elemento.classList.add('dragging');
+
+    startX = e.clientX - currentX;
+    startY = e.clientY - currentY;
+
+    handle.setPointerCapture(e.pointerId);
+  });
+
+  handle.addEventListener('pointermove', e => {
+    if (!dragging) return;
+
+    currentX = e.clientX - startX;
+    currentY = e.clientY - startY;
+
+    elemento.style.transform =
+      `translate3d(${currentX}px, ${currentY}px, 0)`;
+  });
+
+  handle.addEventListener('pointerup', e => {
+    dragging = false;
+    elemento.classList.remove('dragging');
+    handle.releasePointerCapture(e.pointerId);
+  });
+
+  handle.addEventListener('pointercancel', () => {
+    dragging = false;
+    elemento.classList.remove('dragging');
+  });
+}
+
+const gridNumbers = document.getElementById('grid-numbers');
+
+
+if (!esDesktop) {
+  activarLogicaMobile();
+}
+if (!esDesktop) {
+  habilitarArrastre(calculadora);
+}
+
+
+let inputActivo = null;
+
+function onFocusIn(e) {
+  if (e.target.matches('.columna-izq-ma input, .columna-derecha input')) {
+    inputActivo = e.target;
+  }
+}
+
+function onGridClick(e) {
+  
+  const boton = e.target;
+
+  if (!boton.classList.contains('grid-item')) return;
+  if (!inputActivo) return;
+
+  const valor = boton.textContent.trim();
+  inputActivo.value += valor;
+}
+
+function activarLogicaMobile() {
+  document.addEventListener('focusin', onFocusIn);
+  gridNumbers.addEventListener('click', onGridClick);
+}
+
+function desactivarLogicaMobile() {
+  document.removeEventListener('focusin', onFocusIn);
+  gridNumbers.removeEventListener('click', onGridClick);
+  inputActivo = null;
+}
+
+mediaDesktop.addEventListener('change', e => {
+  esDesktop = e.matches;
+
+  if (!esDesktop) {
+    activarLogicaMobile();
+  } else {
+    desactivarLogicaMobile();
+  }
+});
+
+
+
+
+/* document.addEventListener('focusin', (e) => {
+  if (e.target.matches('.columna-izq-ma input, .columna-derecha input')) {
+    inputActivo = e.target;
+  }
+});
+
+
+const gridNumbers = document.getElementById('grid-numbers');
+
+gridNumbers.addEventListener('click', e => {
+  const boton = e.target;
+
+  if (!boton.classList.contains('grid-item')) return;
+  if (!inputActivo) return;
+
+  const valor = boton.textContent.trim();
+
+  inputActivo.value += valor;
+});
+ */
+

@@ -3167,8 +3167,10 @@
         </div>
       </div>
 
+
+
       <div id="calculadora">
-        <div></div>
+        <div class="drag-handle" aria-hidden="true"></div>
         <div id="tirada">
           <div class="digito">
             <div id="resultado-calculadora">
@@ -3206,6 +3208,8 @@
           <div class="butts-calculadora"></div>   
         </div>    
       </div>
+
+
 
       <div id="lista-clientes" class="listado-clientes"></div>  
       
@@ -4014,53 +4018,53 @@
 
           <div class="fila-ingreso">
             <label for="numDoc-ma">Nombre empleado</label>
-            <input type="text" readonly id="numDoc-ma" class="entrada-empleado verGraficos">
+            <input type="text"  id="numDoc-ma" class="entrada-empleado verGraficos">
           </div>
 
           <div class="fila-ingreso">
             <label for="numDoc9-ma">Numero documento</label>
-            <input type="text" readonly id="numDoc9-ma" class="entrada-empleado verGraficos">
+            <input type="text"  id="numDoc9-ma" class="entrada-empleado verGraficos">
           </div>
 
           <div class="fila-ingreso-ma">
             <label for="numDoc1-ma">Defectos identificados</label>
-            <input type="text" readonly id="numDoc1-ma" class="entrada-empleado verGraficos" data-colorable>
+            <input type="text" id="numDoc1-ma" class="entrada-empleado verGraficos  limpiarInput" data-colorable>
           </div>
 
           <div class="fila-ingreso-ma">
             <label for="numDoc2">Defectos corregidos</label>
-            <input type="text" readonly id="numDoc2-ma" class="entrada-empleado verGraficos" data-colorable>
+            <input type="text"  id="numDoc2-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable>
 
           </div>
 
           <div class="fila-ingreso-ma">
             <label for="numDoc5">Defectos tipo A</label>
-            <input type="text" readonly id="numDoc5-ma" list="cargos" class="entrada-empleado verGraficos" data-colorable>
+            <input type="text"  id="numDoc5-ma" list="cargos" class="entrada-empleado verGraficos limpiarInput" data-colorable>
           </div> 
 
           <div class="fila-ingreso-ma">
             <label for="numDoc3">Defectos tipo B</label>
-            <input type="text" readonly id="numDoc3-ma" list="equipos" class="entrada-empleado verGraficos" data-colorable>
+            <input type="text"  id="numDoc3-ma" list="equipos" class="entrada-empleado verGraficos limpiarInput" data-colorable>
           </div>
 
           <div class="fila-ingreso-ma">
             <label for="numDoc4">Kaizen</label>
-            <input type="text" readonly id="numDoc4-ma" class="entrada-empleado verGraficos" data-colorable>
+            <input type="text"  id="numDoc4-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable>
           </div>   
           
           <div class="fila-ingreso-ma">
             <label for="numDoc6">ADA,s</label>
-            <input type="text" readonly id="numDoc7-ma"class="entrada-empleado verGraficos" data-colorable>
+            <input type="text"  id="numDoc7-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable>
           </div> 
           
           <div class="fila-ingreso-ma">
             <label for="numDoc6">ADT</label>
-            <input type="text" readonly id="numDoc6-ma"class="entrada-empleado verGraficos" data-colorable>
+            <input type="text"  id="numDoc6-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable>
           </div>
           
           <div class="fila-ingreso-ma">
             <label for="numDoc6">Lup</label>
-            <input type="text" readonly id="numDoc8-ma"class="entrada-empleado verGraficos" data-colorable>
+            <input type="text"  id="numDoc8-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable>
           </div>          
       
         </div>
@@ -4078,7 +4082,7 @@
         <div class="columna-derecha">
 
           <label for="numDoc">Buscar</label> 
-          <input type="text" id="nomEmpl-ma" class="entrada-empleado verGraficos"> 
+          <input type="text" id="nomEmpl-ma" class="entrada-empleado"> 
           <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso-ma">Ir</button>
           <span></span>
           <button class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
@@ -4314,6 +4318,12 @@
       </div>
 
     </div>
+
+    <div id="alerta-ui">
+      <span class="texto"></span>
+      <span class="flecha"></span>
+    </div>
+
  
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>

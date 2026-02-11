@@ -2,23 +2,32 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z': 
-        const estadoLeds = obtenerEstadoLeds();
-        Object.entries(estadoLeds).forEach(([id, { verdes, sinColor }]) => {
-          console.log(id, 'verdes:', verdes, 'sin color:', sinColor);
+        const inputMA = document.querySelectorAll('.verGraficos');
+
+        inputMA.forEach(input => {
+          if (input.tagName === 'INPUT') {
+            input.readOnly = false;
+            input.removeAttribute('readonly');
+          }
         });
-     
+
       break;  
       case 'H':      
-        saltarAlerta('CLICK PARA TRUE','contenedor')
+        mostrarAlertaEnElemento({
+          mensaje: 'Ingrese solo valores numéricos',
+          top: '70%',
+          left: '40%'
+        });
       break;
       case 'X':
         Geometria()
-        console.log(alertaGlobal)
-        calculadora.classList.remove('move-calculadora-1')
-        calculadora.classList.remove('move-calculadora')
-        document.querySelector('#simulador').style.display='flex'
+        const inputs = document.querySelectorAll('.entrada-empleado');
 
-      break;                  
+        inputs.forEach(input => {
+          input.style.backgroundColor = '';
+        });
+
+        break;                  
     }
   }
 });   
@@ -5024,7 +5033,7 @@ listaLineas.forEach(linea => {
   
 });
 
-digitos.forEach((elemento) => {
+/* digitos.forEach((elemento) => {
   elemento.addEventListener('click', () => {
     if(!calculadoraSimulador){
       // Desactiva temporalmente los clics en los botones
@@ -5069,11 +5078,12 @@ digitos.forEach((elemento) => {
       }, 200);
 
     }else{
-      alert('CALCULADORA SIMULADOR = TRUE')
+    
     }
 
   });
-});
+}); */
+
 alertaTres.addEventListener('click', ()=> {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
 })
