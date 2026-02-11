@@ -199,13 +199,13 @@ const buscaNombre = document.querySelector('#nombre-Perfil');
 const simulador = document.querySelector('#links-registro li:first-child');
 const calculadora = document.getElementById('calculadora')
 
-const mediaDesktop = window.matchMedia('(pointer: fine)');
+const mediaDesktop = window.matchMedia('(pointer: fine) and (min-width: 1025px)');
+
 let esDesktop = mediaDesktop.matches;
+
 mediaDesktop.addEventListener('change', e => {
   esDesktop = e.matches;
 });
-
-
 
 var currentRotation = 0;
 var currentZoom = 0;

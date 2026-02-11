@@ -1413,15 +1413,19 @@ body{
   height: 60vh;
   border-radius: 10px;
   z-index: 40;
-  /* display: none; */
+
+  position: fixed;
+  touch-action: none;
+  will-change: transform;  
 }
+
+
+
 #calculadora > div:first-child {
   width: 100%;
   height: 100%;
   background-color: antiquewhite;
 }
-
-
 #tirada {
   display: grid;
   grid-template-rows: 20% 80%;
@@ -1434,7 +1438,6 @@ body{
   align-self: center;
   justify-self: center;
 }
-
 #conte-butts-calculadora {
   display: grid;
   grid-template-columns: 30% 70%;
@@ -5152,11 +5155,9 @@ top: 44%;
 #ingreso-padre:hover::after {
   border-left-color: #ffffff;
 }
-
 .has-submenu{
   position: relative;
 }
-
 .submenu-colorimetria{
   position: absolute;
   top: -7%;
@@ -5170,7 +5171,6 @@ top: 44%;
   list-style: none;
   display: none;
 }
-
 .submenu-colorimetria li{
   list-style: none;
   padding: 10px;
@@ -5183,8 +5183,6 @@ top: 44%;
   transition: background-color 0.5s ease, color 0.8s ease;  
 
 }
-
-
 .treemap-wrapper {
   position: absolute;
   display: block;
@@ -5203,12 +5201,37 @@ top: 44%;
   box-shadow: 0 8px 30px rgba(0,0,0,0.55);
   z-index: 500;
 }
-
 #treemap {
   display: block;
   width: 100%;
   height: 100%;
 }
+
+
+#alerta-ui {
+  position: absolute;
+  background: #f7f7f8;   /* blanco suave, no puro */
+  color: #4a4a4a;        /* gris oscuro legible, no negro */
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  z-index: 9999;
+  max-width: 240px;
+}
+#alerta-ui .flecha {
+  position: absolute;
+  bottom: -29px;
+  left: 16px;
+
+  width: 0;
+  height: 0;
+
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 30px solid #f7f7f8; /* mismo fondo del tooltip */
+}
+
+
 
 
 
@@ -9515,3 +9538,15 @@ top: 44%;
     pointer-events: none;
   }
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #calculadora {
+    touch-action: none;
+    cursor: grab;
+  }
+
+  #calculadora.dragging {
+    cursor: grabbing;
+  }
+}
+
