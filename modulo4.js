@@ -15,7 +15,7 @@ function mostrarTodos() {
       elemento.style.display = 'flex'
     }
   }
-}
+}  
 
 document.querySelector('#contenedor-botonera button:nth-child(2)').addEventListener('click', () => {
   mostrarElementos(['contenedor-sheeter','butts-simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
@@ -1947,9 +1947,7 @@ function ingresoEmpleadoMA(){
  limpiarEntradas()
 
   setTimeout(() => {
-    if (esDesktop) {
-      inputMA.focus();
-    } else{
+    if (!esDesktop) {
       inputs.forEach(input => {
         if (input.tagName === 'INPUT') {
           input.readOnly = true;
@@ -1960,7 +1958,10 @@ function ingresoEmpleadoMA(){
       calculadora.classList.remove('move-calculadora')
 
     }
- }, 500);  
+ }, 500); 
+ 
+  inputMA.focus();
+
 }
 
 /*********************************************************************************************************************************************** */
@@ -2681,6 +2682,7 @@ function cargarEmpleadoMA() {
 
   imgElemento.src = rutaImagen;
 }
+
 document.querySelector('#lbl-ingreso-ma').addEventListener('click', () => {
   // Normaliza el valor (evita espacios)
   if (!inputMA || inputMA.value.trim() === '') {
@@ -3527,6 +3529,9 @@ function aplicarColoresInputs() {
       input.style.color = '#000000';
     }
   });
+  setTimeout(() => {
+    if(inputMA)inputMA.style=''
+  }, 350);
 }
 
 function aplicarColorPorValor(input) {
@@ -3740,6 +3745,8 @@ function mostrarAlertaEnElemento(mensaje, top, left) {
 
 mostrarAlertaEnElemento({mensaje: 'Ingrese solo valores numéricos',top: '70%',left: '40%'});
 
+// INICIA LOGICA PARA CALCULADORA EN TACTILES /************************************************************************************************* */
+
 function habilitarArrastre(elemento) {
   const handle = elemento.querySelector('.drag-handle');
   if (!handle) return;
@@ -3781,13 +3788,11 @@ function habilitarArrastre(elemento) {
   });
 }
 
-const gridNumbers = document.getElementById('grid-numbers');
-
 
 if (!esDesktop) {
   activarLogicaMobile();
 }
-if (!esDesktop) {
+if (!esDesktop) { 
   habilitarArrastre(calculadora);
 }
 
@@ -3801,6 +3806,8 @@ function onFocusIn(e) {
 }
 
 function onGridClick(e) {
+  if(inputActivo.id!=='nomEmpl-ma') inputActivo.value=''
+
   
   const boton = e.target;
 
@@ -3834,25 +3841,47 @@ mediaDesktop.addEventListener('change', e => {
 
 
 
+// Orden lógico deseado (independiente del DOM)
+const ordenInputs = [
+  'nomEmpl-ma',
+  'numDoc1-ma',
+  'numDoc2-ma',
+  'numDoc5-ma',
+  'numDoc3-ma',
+  'numDoc4-ma',
+  'numDoc7-ma',
+  'numDoc6-ma',
+  'numDoc8-ma'
+];
 
-/* document.addEventListener('focusin', (e) => {
-  if (e.target.matches('.columna-izq-ma input, .columna-derecha input')) {
-    inputActivo = e.target;
+let indiceFoco = 0;
+
+/* ===============================
+   Sincronizar índice con foco real
+   =============================== */
+
+document.addEventListener('focusin', (e) => {
+  const index = ordenInputs.indexOf(e.target.id);
+  if (index !== -1) {
+    indiceFoco = index;
   }
 });
 
+/* ===============================
+   Función para avanzar foco
+   =============================== */
 
-const gridNumbers = document.getElementById('grid-numbers');
+function avanzarFoco() {
+  indiceFoco++;
 
-gridNumbers.addEventListener('click', e => {
-  const boton = e.target;
+  // Si quieres ciclo continuo:
+  if (indiceFoco >= ordenInputs.length) {
+    indiceFoco = 0;
+  }
 
-  if (!boton.classList.contains('grid-item')) return;
-  if (!inputActivo) return;
-
-  const valor = boton.textContent.trim();
-
-  inputActivo.value += valor;
-});
- */
+  const siguienteInput = document.getElementById(ordenInputs[indiceFoco]);
+  siguienteInput?.focus();
+  alternarColor(siguienteInput)
+}  
+  
 

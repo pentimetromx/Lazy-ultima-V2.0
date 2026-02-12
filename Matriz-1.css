@@ -8038,3 +8038,8 @@ background-color: #3FEF9C;
   background-color: orange;
   gap: 6px;
 }
+
+
+.input-activo {
+  background-color: #fff3b0; /* amarillo suave profesional */
+}
