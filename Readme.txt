@@ -100,13 +100,6 @@ function restablecerClick(classElements) {
 
 
 
-
-
-
-
-
-
-
 4. PROMPT PARA GEMINI:
 
 A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspect ratio. Two individuals are shown from the waist up, one with their arm around the other, looking relaxed and natural. Behind them are plain white curtains. The image exhibits a subtle blur and diffused light as if captured by a flash in a dimly lit space. The overall look should replicate the authentic, slightly faded and light-streaked appearance of a vintage Polaroid, capturing a simple, unposed moment.
@@ -118,6 +111,39 @@ A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspec
 
 
 
+let inputActivo = null; INPUTS VERTICALES
+
+function onGridClick(e) CLICKS DE CALCULADORA EN TACTILES
+
+ingresoEmpleadoMA()
+
+digitos.forEach((elemento
+
+3:5219 btnEntrar.addEventListener('click', (
+
+4:3510 aplicarColoresInputs() COLORES INPUTS VERTICALES
+
+4:3872 avanzarFoco()   
+
+
+
+            <input type="text" id="nomEmpl-ma" class="entrada-empleado"> 
+
+            <input type="text" id="numDoc1-ma" class="entrada-empleado verGraficos  limpiarInput" data-colorable>
+
+            <input type="text"  id="numDoc2-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable>
+
+            <input type="text"  id="numDoc5-ma" list="cargos" class="entrada-empleado verGraficos limpiarInput" data-colorable>
+
+            <input type="text"  id="numDoc3-ma" list="equipos" class="entrada-empleado verGraficos limpiarInput" data-colorable>
+
+            <input type="text"  id="numDoc4-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable>
+
+            <input type="text"  id="numDoc7-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable>
+
+            <input type="text"  id="numDoc6-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable>
+
+            <input type="text"  id="numDoc8-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable>
 
 
 
@@ -135,61 +161,6 @@ A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspec
 
 
 
-
-
-
-let calculadoraSimulador = false
-
-  if (esDesktop) {
-    inputRRHH.focus();
-  } 
-
-
-setTimeout(() => {
-    if (esDesktop) {
-      alert()
-
-      inputMA.focus();
-      document.querySelector('#simulador').style.display='flex'
-      calculadora.classList.remove('move-calculadora-1')
-      calculadora.classList.remove('move-calculadora')
-
-    } 
- }, 500);
-
-
-
-
-
-
-/* const isTouchDevice =
-  window.matchMedia('(pointer: coarse)').matches
-
-const inputsMA = document.querySelectorAll('.entrada-empleado');
-
-inputsMA.forEach(input => {
-  if (isTouchDevice) {
-    // 📱 MODO TÁCTIL
-    input.setAttribute('readonly', true);
-    input.setAttribute('inputmode', 'none');
-
-    input.addEventListener('pointerdown', (e) => {
-      e.preventDefault();
-      e.target.blur();
-      mostrarCalculadora(e.target);
-    });
-
-  } else {
-    // 🖥️ MODO DESKTOP
-    input.removeAttribute('readonly');
-    input.removeAttribute('inputmode');
-  }
-}) */;
-
-
-MODULO 4 2047
-
-restablecerEstilos('calculadora');
 
 
 

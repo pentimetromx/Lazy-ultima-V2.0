@@ -6,6 +6,7 @@ const seccionesMap = new Map([
   ['unidProceso', 3],
   ['rebobinador', 4]
 ]);  
+
 function cierraContenedores(elementId, buttonID) {
   const pantallaInicial = document.getElementById('pantalla-inicial'); 
 

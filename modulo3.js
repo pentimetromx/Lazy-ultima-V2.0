@@ -5033,8 +5033,12 @@ listaLineas.forEach(linea => {
   
 });
 
-/* digitos.forEach((elemento) => {
+// BOTONES E LA CALCULADORA
+
+digitos.forEach((elemento) => {
   elemento.addEventListener('click', () => {
+    console.log('ESTADO DE CALCULADORA : ', calculadoraSimulador)
+
     if(!calculadoraSimulador){
       // Desactiva temporalmente los clics en los botones
       digitos.forEach(d => d.style.pointerEvents = 'none');  
@@ -5078,11 +5082,12 @@ listaLineas.forEach(linea => {
       }, 200);
 
     }else{
-    
+      console.log('CALCULADORA SIMULADOR = TRUE')
     }
 
   });
-}); */
+});
+
 
 alertaTres.addEventListener('click', ()=> {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
@@ -5209,34 +5214,44 @@ document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
   }, 200); 
 })
 
-document.querySelector('#grid-numbers > div:nth-child(12)').addEventListener('click', () => {
-  desactivarClick(['.butt-perfiles','.digit', '.estilo-1','digito']);
+// ENTER DE LA CALCULADORA
 
-  detenerAlternarColor()
-  const elementos = document.querySelectorAll('.number');
-  const todosVacios = Array.from(elementos).every(elemento => elemento.textContent.trim() === ''); 
-  console.log(document.querySelectorAll('.digito'));
-  if (todosVacios) {
-    mostrarVentanaMensaje('Ingrese tiraje para este producto ...')
+btnEntrar.addEventListener('click', () => {
+
+  if(!calculadoraSimulador){
+    desactivarClick(['.butt-perfiles','.digit', '.estilo-1','digito']);
+    detenerAlternarColor()
+    const elementos = document.querySelectorAll('.number');
+    const todosVacios = Array.from(elementos).every(elemento => elemento.textContent.trim() === ''); 
+    console.log(document.querySelectorAll('.digito'));
+    if (todosVacios) {
+      mostrarVentanaMensaje('Ingrese tiraje para este producto ...')
+    }else{
+      document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {  
+        elemento.style.display = 'none';
+        document.querySelector('#abandonar-perfiles').style.display = 'none'
+
+      }); 
+      coleccionNumeros.length = 0;        
+      document.querySelectorAll('#resultado-calculadora .number').forEach(elemento => elemento.textContent = '');
+      calculadora.classList.add('move-calculadora')
+      setTimeout(() => {
+        mostrarBarraProgres(67, 100);         
+      }, 500);
+      setTimeout(() => {
+        irAconsola.style.display='block'
+      }, 1600); 
+      setTimeout(() => {
+        desactivarClick(['.butt-perfiles']) 
+      }, 1700);
+    }
   }else{
-    document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {  
-      elemento.style.display = 'none';
-      document.querySelector('#abandonar-perfiles').style.display = 'none'
-
-    }); 
-    coleccionNumeros.length = 0;        
-    document.querySelectorAll('#resultado-calculadora .number').forEach(elemento => elemento.textContent = '');
-    calculadora.classList.add('move-calculadora')
-    setTimeout(() => {
-      mostrarBarraProgres(67, 100);         
-    }, 500);
-    setTimeout(() => {
-      irAconsola.style.display='block'
-    }, 1600); 
-    setTimeout(() => {
-      desactivarClick(['.butt-perfiles']) 
-    }, 1700);
+    console.log('ESOACIO PARA CODIGO EN TACTILES')
+    if(!esDesktop)avanzarFoco();
+    aplicarColoresInputs()
   }
+  
+
 });
 
 function sumarPorcentaje() {
