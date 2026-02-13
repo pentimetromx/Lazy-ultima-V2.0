@@ -113,11 +113,11 @@ A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspec
 
 let inputActivo = null; INPUTS VERTICALES
 
-function onGridClick(e) CLICKS DE CALCULADORA EN TACTILES
+4:3808 function onGridClick(e) CLICKS DE CALCULADORA EN TACTILES
 
-ingresoEmpleadoMA()
+4:1927 function ingresoEmpleadoMA()
 
-digitos.forEach((elemento
+3:5030 digitos.forEach((elemento
 
 3:5219 btnEntrar.addEventListener('click', (
 
@@ -127,40 +127,21 @@ digitos.forEach((elemento
 
 
 
-            <input type="text" id="nomEmpl-ma" class="entrada-empleado"> 
-
-            <input type="text" id="numDoc1-ma" class="entrada-empleado verGraficos  limpiarInput" data-colorable>
-
-            <input type="text"  id="numDoc2-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable>
-
-            <input type="text"  id="numDoc5-ma" list="cargos" class="entrada-empleado verGraficos limpiarInput" data-colorable>
-
-            <input type="text"  id="numDoc3-ma" list="equipos" class="entrada-empleado verGraficos limpiarInput" data-colorable>
-
-            <input type="text"  id="numDoc4-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable>
-
-            <input type="text"  id="numDoc7-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable>
-
-            <input type="text"  id="numDoc6-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable>
-
-            <input type="text"  id="numDoc8-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  if(!esdesktop){
+    calculadora.classList.remove('move-calculadora-1')
+    calculadora.classList.remove('move-calculadora')
+    restablecerEstilos('calculadora');
+    reUbicarElemento('calculadora', {
+      display: 'grid',
+      left: '73.5%',
+      width: '25%',
+      top: '40%',
+      height: '30%',
+      parentSelector: '#simulador'
+    });
+  }
+  alert()

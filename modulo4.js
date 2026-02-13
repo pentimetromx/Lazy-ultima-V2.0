@@ -1956,6 +1956,16 @@ function ingresoEmpleadoMA(){
 
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
+      restablecerEstilos('calculadora');
+      reUbicarElemento('calculadora', {
+        display: 'grid',
+        left: '73.5%',
+        width: '25%',
+        top: '40%',
+        height: '30%',
+        parentSelector: '#simulador'
+      });
+
 
     }
  }, 500); 
@@ -2062,7 +2072,7 @@ contenedorIngresosMA.addEventListener('focusin', e => {
   if(!esDesktop){
     e.target.blur();
     
-    calculadora.classList.remove('move-calculadora-1')
+/*     calculadora.classList.remove('move-calculadora-1')
     calculadora.classList.remove('move-calculadora')
     restablecerEstilos('calculadora');
     reUbicarElemento('calculadora', {
@@ -2073,7 +2083,7 @@ contenedorIngresosMA.addEventListener('focusin', e => {
       height: '30%',
       parentSelector: '#simulador'
     });
-
+ */
   }
 });
 
@@ -3851,8 +3861,10 @@ const ordenInputs = [
   'numDoc4-ma',
   'numDoc7-ma',
   'numDoc6-ma',
-  'numDoc8-ma'
+  'numDoc8-ma',
+  'nuevo-ingreso-ma'
 ];
+
 
 let indiceFoco = 0;
 
