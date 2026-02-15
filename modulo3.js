@@ -12,12 +12,12 @@ document.addEventListener('keydown', function(event) {
         });
 
       break;  
-      case 'H':      
-        mostrarAlertaEnElemento({
-          mensaje: 'Ingrese solo valores numéricos',
-          top: '70%',
-          left: '40%'
-        });
+      case 'H':  
+      const inputMAs = document.querySelector('#nomEmpl-ma'); 
+
+      setTimeout(() => {
+        inputMAs.focus()
+      }, 350);
       break;
       case 'X':
         Geometria()
@@ -5246,9 +5246,9 @@ btnEntrar.addEventListener('click', () => {
       }, 1700);
     }
   }else{
-    console.log('ESOACIO PARA CODIGO EN TACTILES')
+    console.log('ESPACIO PARA CODIGO EN TACTILES')
     if(!esDesktop)avanzarFoco();
-    aplicarColoresInputs()
+    /* aplicarColoresInputs() */
   }
   
 

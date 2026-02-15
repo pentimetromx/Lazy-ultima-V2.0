@@ -1922,6 +1922,7 @@ function ingresoEmpleado(){
 
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
   limpiarEntradas()
+   inputRRHH.focus();
 }
 
 function ingresoEmpleadoMA(){  
@@ -1970,8 +1971,9 @@ function ingresoEmpleadoMA(){
     }
  }, 500); 
  
-  inputMA.focus();
-
+ setTimeout(() => {
+  inputMA.focus();  
+ }, 350);
 }
 
 /*********************************************************************************************************************************************** */
@@ -2685,7 +2687,7 @@ function cargarEmpleadoMA() {
 
   console.log('Ruta final que intenta cargar:', rutaImagen);
 
-  imgElemento.onerror = () => {
+  imgElemento.onerror = () => { 
     console.warn('ERROR cargando imagen. Colocando silueta por fallback.');
     imgElemento.src = './assets/silueta.png';
   };
@@ -3801,11 +3803,8 @@ function habilitarArrastre(elemento) {
 
 if (!esDesktop) {
   activarLogicaMobile();
-}
-if (!esDesktop) { 
   habilitarArrastre(calculadora);
 }
-
 
 let inputActivo = null;
 
@@ -3828,15 +3827,19 @@ function onGridClick(e) {
   inputActivo.value += valor;
 }
 
+
 function activarLogicaMobile() {
   document.addEventListener('focusin', onFocusIn);
   gridNumbers.addEventListener('click', onGridClick);
 }
 
+
 function desactivarLogicaMobile() {
   document.removeEventListener('focusin', onFocusIn);
   gridNumbers.removeEventListener('click', onGridClick);
   inputActivo = null;
+
+  habilitarArrastre(calculadora);  
 }
 
 mediaDesktop.addEventListener('change', e => {
@@ -3893,7 +3896,7 @@ function avanzarFoco() {
 
   const siguienteInput = document.getElementById(ordenInputs[indiceFoco]);
   siguienteInput?.focus();
-  alternarColor(siguienteInput)
+  /* alternarColor(siguienteInput) */
 }  
   
 
