@@ -1784,6 +1784,7 @@ btnModificar.addEventListener('click', () =>{
   }
   actualizarIdentificadosMA('RR:HH')
 })
+
 btnLimpiar.addEventListener('click', () =>{
   if(flagEmpleado === false){
     alternarColor(btnDblFlecha,btnLimpiar)
@@ -1791,6 +1792,7 @@ btnLimpiar.addEventListener('click', () =>{
   }
   limpiarEntradas()
 })
+
 btnAgregar.addEventListener('click', agregarEmpleado);
 
 
@@ -1824,11 +1826,9 @@ function limpiarEntradas() {
   if (imgMA && contenedorMA) {
     imgMA.src = '';
     contenedorMA.dataset.img = '';
-  }
-  if (esDesktop) {
-    inputMA.focus();
-  }     
-
+  }   
+  if(inputMA)inputMA.focus()
+  if(inputRRHH)inputRRHH.focus() 
 }
 
 /********************************************************************************************************************************************************** */

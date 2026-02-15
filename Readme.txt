@@ -117,6 +117,8 @@ let inputActivo = null; INPUTS VERTICALES
 
 4:1927 function ingresoEmpleadoMA()
 
+4:1903 function ingresoEmpleado()
+
 3:5030 digitos.forEach((elemento
 
 3:5219 btnEntrar.addEventListener('click', (
@@ -126,6 +128,9 @@ let inputActivo = null; INPUTS VERTICALES
 4:3872 avanzarFoco()   
 
 
+  setTimeout(() => {
+    inputMA?.focus(); 
+  }, 300);
 
 
 
