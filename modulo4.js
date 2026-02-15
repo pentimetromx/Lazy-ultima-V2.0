@@ -1902,9 +1902,7 @@ function reubicarVisor(){
 
 function ingresoEmpleado(){  
   setTimeout(() => {
-    if (esDesktop) {
     inputRRHH.focus();
-  } 
   }, 50);
 
   const excluidos = [
@@ -2003,6 +2001,7 @@ function limpiarYCapitalizar(e) {
 [inputNombre, inputNombreMA].forEach(input => {
   if (input) input.addEventListener('input', limpiarYCapitalizar);
 });
+
 function permitirSoloNumeros(e) {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
 }
@@ -2064,15 +2063,14 @@ const configCalculadora = {
 // FOCO/CLICK EN INPUTS M.A
 const contenedorIngresosMA = document.getElementById('padre-ingresos-ma');
 const soloNumerosSet = new Set(soloNumerosInputs);
+
 contenedorIngresosMA.addEventListener('focusin', e => {
-  
   const target = e.target;
 
   if (target.tagName !== 'INPUT') return;
 
   if (!soloNumerosSet.has(target)) return;
   if(!esDesktop){
-    e.target.blur();
     
 /*     calculadora.classList.remove('move-calculadora-1')
     calculadora.classList.remove('move-calculadora')
