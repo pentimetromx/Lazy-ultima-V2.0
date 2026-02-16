@@ -1901,7 +1901,7 @@ function reubicarVisor(){
 }
 
 function ingresoEmpleado(){  
-
+  calculadoraSimulador=true
   const excluidos = [
     'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
   ];
@@ -1920,11 +1920,6 @@ function ingresoEmpleado(){
 
   setTimeout(() => {
     if (!esDesktop) {
-      inputs.forEach(input => {
-        if (input.tagName === 'INPUT') {
-          input.readOnly = true;
-        }
-      });
 
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
@@ -1960,8 +1955,7 @@ function ingresoEmpleadoMA(){
   padre.removeAttribute('style');
   hijo.removeAttribute('style');
   ["padre-ingresos-ma","ingresos-sistema-ma"].forEach(id => aparecerElemento(id, "grid"));
-
- limpiarEntradas()
+  limpiarEntradas()
 
   setTimeout(() => {
     if (!esDesktop) {
