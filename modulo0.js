@@ -1826,9 +1826,12 @@ function limpiarEntradas() {
   if (imgMA && contenedorMA) {
     imgMA.src = '';
     contenedorMA.dataset.img = '';
-  }   
-  if(inputMA)inputMA.focus()
-  if(inputRRHH)inputRRHH.focus() 
+  }
+  
+  setTimeout(() => {
+    if(inputMA)inputMA.focus()
+    if(inputRRHH)inputRRHH.focus()
+  }, 350);
 }
 
 /********************************************************************************************************************************************************** */
