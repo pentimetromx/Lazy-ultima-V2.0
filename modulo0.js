@@ -2016,7 +2016,13 @@ const accionesAceptar = {
       detenerParpadeo()
     }, 750);  
   },
-
+  sinID: () => {
+    setTimeout(() => {
+      inputMA.value=''
+      inputMA.focus()
+      inputMA.style.color='white'           
+    }, 250);  
+  },
 
 
 };
@@ -2088,7 +2094,6 @@ function saltarAlerta(texto, padre) {
   cancelar.onmouseenter =
   cancelar.onmouseleave = null;
 
-
   mensaje.textContent = texto;
   modal.style.display = 'flex';
   alertaGlobal = padre;
@@ -2148,7 +2153,11 @@ function saltarAlerta(texto, padre) {
   } 
   if (alertaGlobal === 'recursoDocumento') {   
     cancelar.style.display='none'
+  }
+  if (alertaGlobal === 'sinID') {   
+    cancelar.style.display='none'
   } 
+
   if (alertaGlobal === 'recursoNn') {   
     cancelar.style.display='none'
   } 

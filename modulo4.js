@@ -1991,9 +1991,7 @@ const soloNumerosInputs = [
 function limpiarYCapitalizar(e) {
   let valor = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
 
-  valor = valor
-    .toLowerCase()
-    .replace(/\b\w/g, letra => letra.toUpperCase());
+  valor = valor.toLowerCase().replace(/\b\w/g, letra => letra.toUpperCase());
 
   e.target.value = valor;
 }
@@ -2008,12 +2006,9 @@ function permitirSoloNumeros(e) {
 
 soloNumerosInputs.forEach(input => {
   if (input) input.addEventListener('input', permitirSoloNumeros);
-
 });
 
 /*********************************************************************************************************************************************** */
-
-
 
 const simuladorGraf = document.getElementById('simulador');
 
@@ -2072,7 +2067,7 @@ contenedorIngresosMA.addEventListener('focusin', e => {
   if (!soloNumerosSet.has(target)) return;
   if(!esDesktop){
     
-/*     calculadora.classList.remove('move-calculadora-1')
+  /*calculadora.classList.remove('move-calculadora-1')
     calculadora.classList.remove('move-calculadora')
     restablecerEstilos('calculadora');
     reUbicarElemento('calculadora', {
@@ -2173,6 +2168,9 @@ document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
   console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal  )
 
 }) 
+document.querySelector('#recarga').addEventListener('click',()=>{
+  ingresoEmpleado()
+})
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
   traerElementos('.ocultos')
   document.querySelector('#container01').style.display='grid'
@@ -3486,6 +3484,7 @@ hijos.forEach((li, index) => {
 
   });
 });
+
 hijosColor.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3813,13 +3812,13 @@ function onFocusIn(e) {
 }
 
 function onGridClick(e) {
-  if(inputActivo.id!=='nomEmpl-ma') inputActivo.value=''
-
+  /* if(inputActivo.id!=='nomEmpl-ma') inputActivo.value='' */
   
   const boton = e.target;
 
   if (!boton.classList.contains('grid-item')) return;
   if (!inputActivo) return;
+  if(inputActivo.id !=='nomEmpl-ma')inputActivo.value=''
 
   const valor = boton.textContent.trim();
   inputActivo.value += valor;
@@ -3835,9 +3834,7 @@ function activarLogicaMobile() {
 function desactivarLogicaMobile() {
   document.removeEventListener('focusin', onFocusIn);
   gridNumbers.removeEventListener('click', onGridClick);
-  inputActivo = null;
-
-  habilitarArrastre(calculadora);  
+  inputActivo = null; 
 }
 
 mediaDesktop.addEventListener('change', e => {
@@ -3891,10 +3888,18 @@ function avanzarFoco() {
   if (indiceFoco >= ordenInputs.length) {
     indiceFoco = 0;
   }
+  if(inputNombreMA.value === ''){
+    saltarAlerta('No ha ingresado el empleado','sinID')
+  }
 
   const siguienteInput = document.getElementById(ordenInputs[indiceFoco]);
   siguienteInput?.focus();
-  /* alternarColor(siguienteInput) */
+  if(siguienteInput.id==='nuevo-ingreso-ma'){
+    return
+  }else{
+    siguienteInput.style.backgroundColor='black'
+    siguienteInput.style.color='white'
+  }
 }  
   
 
