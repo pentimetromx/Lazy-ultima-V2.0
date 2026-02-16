@@ -1901,9 +1901,9 @@ function reubicarVisor(){
 }
 
 function ingresoEmpleado(){  
-  setTimeout(() => {
+  /* setTimeout(() => {
     inputRRHH.focus();
-  }, 50);
+  }, 50); */
 
   const excluidos = [
     'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
@@ -1920,7 +1920,7 @@ function ingresoEmpleado(){
 
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
   limpiarEntradas()
-   inputRRHH.focus();
+   /* inputRRHH.focus(); */
 }
 
 function ingresoEmpleadoMA(){  
@@ -1968,7 +1968,7 @@ function ingresoEmpleadoMA(){
     }
     inputMA.focus();    
   }, 350); 
- }
+}
 
 /*********************************************************************************************************************************************** */
 const soloNumerosInputs = [
