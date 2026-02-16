@@ -1943,7 +1943,7 @@ function ingresoEmpleadoMA(){
   hijo.removeAttribute('style');
   ["padre-ingresos-ma","ingresos-sistema-ma"].forEach(id => aparecerElemento(id, "grid"));
 
- limpiarEntradas()
+  limpiarEntradas()
 
   setTimeout(() => {
     if (!esDesktop) {
@@ -1952,21 +1952,11 @@ function ingresoEmpleadoMA(){
           input.readOnly = true;
         }
       });
-
-      calculadora.classList.remove('move-calculadora-1')
-      calculadora.classList.remove('move-calculadora')
-      restablecerEstilos('calculadora');
-      reUbicarElemento('calculadora', {
-        display: 'grid',
-        left: '73.5%',
-        width: '25%',
-        top: '40%',
-        height: '30%',
-        parentSelector: '#simulador'
-      });
-
     }
- }, 500); 
+
+    inputMA.focus();
+  }, 350);
+
  
  /* setTimeout(() => {
   inputMA.focus();  
