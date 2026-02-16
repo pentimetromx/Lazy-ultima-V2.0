@@ -1901,9 +1901,6 @@ function reubicarVisor(){
 }
 
 function ingresoEmpleado(){  
-  /* setTimeout(() => {
-    inputRRHH.focus();
-  }, 50); */
 
   const excluidos = [
     'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
@@ -1920,7 +1917,28 @@ function ingresoEmpleado(){
 
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
   limpiarEntradas()
-   /* inputRRHH.focus(); */
+
+  setTimeout(() => {
+    if (!esDesktop) {
+      inputs.forEach(input => {
+        if (input.tagName === 'INPUT') {
+          input.readOnly = true;
+        }
+      });
+
+      calculadora.classList.remove('move-calculadora-1')
+      calculadora.classList.remove('move-calculadora')
+      restablecerEstilos('calculadora');
+      reUbicarElemento('calculadora', {
+        display: 'grid',
+        left: '73.5%',
+        width: '25%',
+        top: '40%',
+        height: '30%',
+        parentSelector: '#simulador'
+      });
+    }    
+  }, 350);  
 }
 
 function ingresoEmpleadoMA(){  
@@ -1964,9 +1982,7 @@ function ingresoEmpleadoMA(){
         height: '30%',
         parentSelector: '#simulador'
       });
-
-    }
-    inputMA.focus();    
+    }    
   }, 350); 
 }
 
