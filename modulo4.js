@@ -3823,14 +3823,12 @@ function onFocusIn(e) {
   }
 }
 
-function onGridClick(e) {
-  /* if(inputActivo.id!=='nomEmpl-ma') inputActivo.value='' */
-  
+function onGridClick(e) {  
   const boton = e.target;
 
   if (!boton.classList.contains('grid-item')) return;
   if (!inputActivo) return;
-  if(inputActivo.id !=='nomEmpl-ma')inputActivo.value=''
+  if(inputActivo.id !=='nomEmpl-ma' && inputActivo.id !=='nomEmpl')inputActivo.value=''
 
   const valor = boton.textContent.trim();
   inputActivo.value += valor;
