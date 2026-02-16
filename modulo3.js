@@ -13,11 +13,7 @@ document.addEventListener('keydown', function(event) {
 
       break;  
       case 'H':  
-      const inputMAs = document.querySelector('#nomEmpl-ma'); 
-
-      setTimeout(() => {
-        inputMAs.focus()
-      }, 350);
+        inputRRHH.focus();
       break;
       case 'X':
         Geometria()
