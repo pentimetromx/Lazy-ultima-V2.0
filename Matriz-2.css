@@ -1542,6 +1542,7 @@ body{
 }
 .eraser{
   cursor: pointer;
+  font-size: 0.5em;
 }
 #display-cantidad{
   position: relative;

@@ -4905,7 +4905,6 @@ btnSalir.addEventListener('click', ()=>{
     /* alternarColor('entrar-cantidad') */
     parpadearElemento('entrar-cantidad');
   }else{
-    /* restablecerClick(['.estilo-1','.digit']);  */  
     const calculadora = document.getElementById('calculadora') 
     calculadora.classList.add('move-calculadora')
   }
@@ -5213,6 +5212,7 @@ document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
 // ENTER DE LA CALCULADORA
 
 btnEntrar.addEventListener('click', () => {
+  detenerParpadeo()
 
   if(!calculadoraSimulador){
     desactivarClick(['.butt-perfiles','.digit', '.estilo-1','digito']);
@@ -5244,7 +5244,6 @@ btnEntrar.addEventListener('click', () => {
   }else{
     console.log('ESPACIO PARA CODIGO EN TACTILES')
     if(!esDesktop)avanzarFoco();
-    /* aplicarColoresInputs() */
   }
   
 
