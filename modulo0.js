@@ -1762,6 +1762,28 @@ function mostrarVentanaMensaje(texto) {
 
 btnLimpiarMA.addEventListener('click', () =>{
 
+  const img = document.getElementById('empleadoImg');
+  const imgMA = document.getElementById('empleadoImg-ma');
+
+  const contenedor = img?.closest('.imgEmpleado');
+  const contenedorMA = imgMA?.closest('.imgEmpleado-ma');
+
+  // Si no existe ninguno, no hay trabajo que hacer
+  if (!img && !imgMA) return;
+
+  // Reset para el primero
+  if (img && contenedor) {
+    img.src = '';
+    contenedor.dataset.img = '';
+  }
+
+  // Reset para el segundo
+  if (imgMA && contenedorMA) {
+    imgMA.src = '';
+    contenedorMA.dataset.img = '';
+  }
+
+
   const inputs = document.querySelectorAll('.verGraficos');
   inputs.forEach(input => {
     input.style.backgroundColor = '';
