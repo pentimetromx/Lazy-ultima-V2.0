@@ -2087,93 +2087,11 @@ contenedorIngresosMA.addEventListener('focusin', e => {
  */
   }
 });
-
 inputRRHH.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
 });
-// BTN 'Ir' RRHH
-document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
-  console.log(
-    'Contenido de localStorage empleadosRegistrados:',
-    JSON.parse(localStorage.getItem('empleadosRegistrados'))
-  );
-
-  const valor = inputRRHH.value.trim();
-  
-  // Validación inicial
-  if (!valor) {
-    /* mostrarVentanaMensaje('Debe ingresar un número de documento.', 'padre-ingresos'); */
-    saltarAlerta('Debe ingresar un número de documento.', 'recursoDocumento')
-    parpadearElemento('nomEmpl');
-    restaurarPosicionPadreIngresos();
-    flagEmpleado = true;
-    return;
-  }
-
-  const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
-
-  // Buscar usando cualquiera de los dos valores
-  const empleadoEncontrado = empleados.find(emp =>
-    emp.documento === valor
-  );
-
-  if (empleadoEncontrado) {
-    console.log('Empleado encontrado:');
-    console.log(`Nombre: ${empleadoEncontrado.nombre}`);
-    console.log(`Documento: ${empleadoEncontrado.documento}`);
-    console.log(`Área: ${empleadoEncontrado.area}`);
-    console.log(`Cargo: ${empleadoEncontrado.cargo}`);
-    console.log(`Equipo: ${empleadoEncontrado.equipo}`);
-    console.log(`Fecha ingreso: ${empleadoEncontrado.fecha}`);
-    console.log(`Imagen: ${empleadoEncontrado.imagen}`);
-    console.log(`Identificados: ${empleadoEncontrado.identificados}`);
-    console.log(`Corregidos: ${empleadoEncontrado.corregidos}`);
-    console.log(`Tipo A: ${empleadoEncontrado.tipoA}`);
-    console.log(`Tipo B: ${empleadoEncontrado.tipoB}`);
-    console.log(`Kaizen: ${empleadoEncontrado.kaizen}`);
-    console.log(`ADA.s: ${empleadoEncontrado.adas}`);
-    console.log(`ADT: ${empleadoEncontrado.adt}`);
-    console.log(`Lup: ${empleadoEncontrado.lup}`);
 
 
-    document.getElementById('numDoc').value = empleadoEncontrado.nombre;
-    document.getElementById('numDoc1').value = empleadoEncontrado.documento;
-    document.getElementById('numDoc2').value = empleadoEncontrado.area;
-    document.getElementById('numDoc3').value = empleadoEncontrado.equipo;
-    document.getElementById('numDoc4').value = empleadoEncontrado.fecha;
-    document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
-    document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
-
-    document.getElementById('numDoc-ma').value = empleadoEncontrado.nombre;
-    document.getElementById('numDoc9-ma').value = empleadoEncontrado.documento;
-    document.getElementById('numDoc1-ma').value = empleadoEncontrado.identificados;
-    document.getElementById('numDoc2-ma').value = empleadoEncontrado.corregidos;
-    document.getElementById('numDoc5-ma').value = empleadoEncontrado.tipoA;
-    document.getElementById('numDoc3-ma').value = empleadoEncontrado.tipoB;
-    document.getElementById('numDoc4-ma').value = empleadoEncontrado.kaizen;
-    document.getElementById('numDoc8-ma').value = empleadoEncontrado.lup;
-    document.getElementById('numDoc7-ma').value = empleadoEncontrado.adas;
-    document.getElementById('numDoc6-ma').value = empleadoEncontrado.adt;  
-
-    const imgElemento = document.getElementById('empleadoImg');
-    if (imgElemento) {
-      let rutaImagen = empleadoEncontrado.imagen?.trim() || '';
-      if (!rutaImagen) {
-        rutaImagen = './assets/silueta.png';
-      } else if (!rutaImagen.startsWith('./') && !rutaImagen.startsWith('assets/')) {
-        rutaImagen = `./assets/${rutaImagen}`;
-      }
-      imgElemento.src = rutaImagen;
-    }
-
-  } else {
-    /* mostrarVentanaMensaje('Empleado no encontrado en la BD.'); */
-    saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn')
-  }
-  empleadoGlobal = empleadoEncontrado
-  console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal  )
-
-}) 
 document.querySelector('#recarga').addEventListener('click', ingresoEmpleado);
 document.querySelector('#recargaMA').addEventListener('click', ingresoEmpleadoMA);
 
@@ -2689,28 +2607,132 @@ function cargarEmpleadoMA() {
 
   console.log('Ruta final que intenta cargar:', rutaImagen);
 
-  imgElemento.onerror = () => { 
+  /* imgElemento.onerror = () => { 
     console.warn('ERROR cargando imagen. Colocando silueta por fallback.');
     imgElemento.src = './assets/silueta.png';
-  };
-
+  }; */
   imgElemento.src = rutaImagen;
 }
 
-document.querySelector('#lbl-ingreso-ma').addEventListener('click', () => {
-  // Normaliza el valor (evita espacios)
-  if (!inputMA || inputMA.value.trim() === '') {
-    saltarAlerta('Ingrese numero de documento', 'autonomoIngreso')
-    parpadearElemento('nomEmpl-ma');
-    return; // ⛔ corta TODA la lógica
-  }
+document.querySelector('#lbl-ingreso-ma').addEventListener('click', infoEmpleadoPorSector('mantAutonomo'));
+document.querySelector('#lbl-ingreso').addEventListener('click', infoEmpleadoPorSector('recursoHumano'));
 
-  cargarEmpleadoMA(); 
+function infoEmpleadoPorSector(infoSector) {
+  return function () {
+    switch (infoSector) {
+      case 'mantAutonomo': {
+        if (!inputMA || inputMA.value.trim() === '') {
+          saltarAlerta('Ingrese numero de documento', 'autonomoIngreso');
+          parpadearElemento('nomEmpl-ma');
+          return;
+        }
 
-  setTimeout(() => {
-    aplicarColoresInputs();
-  }, 250);
-});
+        const valor = inputMA.value.trim();
+        const empleados = JSON.parse(
+          localStorage.getItem('empleadosRegistrados')
+        ) || [];
+
+        const empleadoEncontrado = empleados.find(
+          emp => emp.documento === valor
+        );
+
+        if (!empleadoEncontrado) {
+          saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn');
+          return;
+        }
+
+        cargarEmpleadoMA();
+        setTimeout(aplicarColoresInputs, 250);
+        break;
+      }
+      case 'recursoHumano': {
+        
+        console.log(
+          'Contenido de localStorage empleadosRegistrados:',
+          JSON.parse(localStorage.getItem('empleadosRegistrados'))
+        );
+
+        const valor = inputRRHH.value.trim();
+        
+        // Validación inicial
+        if (!valor) {
+          /* mostrarVentanaMensaje('Debe ingresar un número de documento.', 'padre-ingresos'); */
+          saltarAlerta('Debe ingresar un número de documento.', 'recursoDocumento')
+          parpadearElemento('nomEmpl');
+          restaurarPosicionPadreIngresos();
+          flagEmpleado = true;
+          return;
+        }
+
+        const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
+
+        // Buscar usando cualquiera de los dos valores
+        const empleadoEncontrado = empleados.find(emp =>
+          emp.documento === valor
+        );
+
+        if (empleadoEncontrado) {
+          console.log('Empleado encontrado:');
+          console.log(`Nombre: ${empleadoEncontrado.nombre}`);
+          console.log(`Documento: ${empleadoEncontrado.documento}`);
+          console.log(`Área: ${empleadoEncontrado.area}`);
+          console.log(`Cargo: ${empleadoEncontrado.cargo}`);
+          console.log(`Equipo: ${empleadoEncontrado.equipo}`);
+          console.log(`Fecha ingreso: ${empleadoEncontrado.fecha}`);
+          console.log(`Imagen: ${empleadoEncontrado.imagen}`);
+          console.log(`Identificados: ${empleadoEncontrado.identificados}`);
+          console.log(`Corregidos: ${empleadoEncontrado.corregidos}`);
+          console.log(`Tipo A: ${empleadoEncontrado.tipoA}`);
+          console.log(`Tipo B: ${empleadoEncontrado.tipoB}`);
+          console.log(`Kaizen: ${empleadoEncontrado.kaizen}`);
+          console.log(`ADA.s: ${empleadoEncontrado.adas}`);
+          console.log(`ADT: ${empleadoEncontrado.adt}`);
+          console.log(`Lup: ${empleadoEncontrado.lup}`);
+
+
+          document.getElementById('numDoc').value = empleadoEncontrado.nombre;
+          document.getElementById('numDoc1').value = empleadoEncontrado.documento;
+          document.getElementById('numDoc2').value = empleadoEncontrado.area;
+          document.getElementById('numDoc3').value = empleadoEncontrado.equipo;
+          document.getElementById('numDoc4').value = empleadoEncontrado.fecha;
+          document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
+          document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
+
+          document.getElementById('numDoc-ma').value = empleadoEncontrado.nombre;
+          document.getElementById('numDoc9-ma').value = empleadoEncontrado.documento;
+          document.getElementById('numDoc1-ma').value = empleadoEncontrado.identificados;
+          document.getElementById('numDoc2-ma').value = empleadoEncontrado.corregidos;
+          document.getElementById('numDoc5-ma').value = empleadoEncontrado.tipoA;
+          document.getElementById('numDoc3-ma').value = empleadoEncontrado.tipoB;
+          document.getElementById('numDoc4-ma').value = empleadoEncontrado.kaizen;
+          document.getElementById('numDoc8-ma').value = empleadoEncontrado.lup;
+          document.getElementById('numDoc7-ma').value = empleadoEncontrado.adas;
+          document.getElementById('numDoc6-ma').value = empleadoEncontrado.adt;  
+
+          const imgElemento = document.getElementById('empleadoImg');
+          if (imgElemento) {
+            let rutaImagen = empleadoEncontrado.imagen?.trim() || '';
+            if (!rutaImagen) {
+              rutaImagen = './assets/silueta.png';
+            } else if (!rutaImagen.startsWith('./') && !rutaImagen.startsWith('assets/')) {
+              rutaImagen = `./assets/${rutaImagen}`;
+            }
+            imgElemento.src = rutaImagen;
+          }
+
+        } else {
+          /* mostrarVentanaMensaje('Empleado no encontrado en la BD.'); */
+          saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn')
+        }
+        empleadoGlobal = empleadoEncontrado
+        console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal  )
+        
+        break;
+      }
+
+    }
+  };
+}
 
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
   if (inputNombreMA.value !== '') {
