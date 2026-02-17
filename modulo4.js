@@ -1926,9 +1926,9 @@ function ingresoEmpleado(){
       restablecerEstilos('calculadora');
       reUbicarElemento('calculadora', {
         display: 'grid',
-        left: '73.5%',
+        left: '44%',
         width: '25%',
-        top: '40%',
+        top: '65%',
         height: '30%',
         parentSelector: '#simulador'
       });
@@ -1970,9 +1970,9 @@ function ingresoEmpleadoMA(){
       restablecerEstilos('calculadora');
       reUbicarElemento('calculadora', {
         display: 'grid',
-        left: '73.5%',
+        left: '44%',
         width: '25%',
-        top: '40%',
+        top: '65%',
         height: '30%',
         parentSelector: '#simulador'
       });
@@ -2174,9 +2174,9 @@ document.querySelector('#lbl-ingreso').addEventListener('click',()=>{
   console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal  )
 
 }) 
-document.querySelector('#recarga').addEventListener('click',()=>{
-  ingresoEmpleado()
-})
+document.querySelector('#recarga').addEventListener('click', ingresoEmpleado);
+document.querySelector('#recargaMA').addEventListener('click', ingresoEmpleadoMA);
+
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
   traerElementos('.ocultos')
   document.querySelector('#container01').style.display='grid'
