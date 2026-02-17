@@ -1923,7 +1923,7 @@ function ingresoEmpleado(){
     if (!esDesktop) {
       /* inputs.forEach(input => {
         if (input.tagName === 'INPUT') {
-          input.readOnly = true;
+          input.readOnly = true; 
         }
       }); */      
 
