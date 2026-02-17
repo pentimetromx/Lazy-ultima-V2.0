@@ -5207,8 +5207,6 @@ top: 44%;
   width: 100%;
   height: 100%;
 }
-
-
 #alerta-ui {
   position: absolute;
   background: #f7f7f8;   /* blanco suave, no puro */
@@ -5233,7 +5231,102 @@ top: 44%;
 }
 
 
+:root {
+  --keyboard-width: 70vw;
+  --keyboard-height: 40vh;
 
+  --key-bg: #f7f7f7;       /* blanco mate */
+  --key-shadow: rgba(0, 0, 0, 0.12);
+  --key-text: #6f6f6f;     /* gris suave con contraste */
+}
+
+#keyboard-wrapper {
+  position: absolute; /* o fixed si ya lo usas así */
+  left: var(--keyboard-left, 15vw);
+  top: var(--keyboard-top, 20vh);
+  width: var(--keyboard-width);
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#virtual-keyboard {
+  
+  width: var(--keyboard-width);
+  height: var(--keyboard-height);
+
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  border-radius: 8px;
+  gap: 1.2vh;
+
+  padding: 1.5vh;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+.keyboard-row {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1vh;
+}
+
+.key {
+  background: var(--key-bg);
+  color: var(--key-text);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: clamp(1rem, 2.2vh, 1.6rem);
+  font-family: system-ui, sans-serif;
+
+  border-radius: 0.6vh;
+  box-shadow:
+    0 0.3vh 0.6vh var(--key-shadow),
+    inset 0 -0.2vh 0.3vh rgba(0, 0, 0, 0.05);
+
+  cursor: pointer;
+  user-select: none;
+
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.key:active {
+  transform: translateY(0.15vh);
+  box-shadow:
+    0 0.15vh 0.3vh var(--key-shadow),
+    inset 0 -0.1vh 0.2vh rgba(0, 0, 0, 0.05);
+}
+
+#close-keyboard-btn {
+  margin-top: 1.2vh;
+  padding: 0.9vh 2.4vh;
+
+  background: #2f5d9f;        /* azul profesional */
+  color: #ffffff;
+
+  border: none;
+  border-radius: 0.6vh;
+  font-size: clamp(0.9rem, 1.8vh, 1.2rem);
+  font-family: system-ui, sans-serif;
+
+  cursor: pointer;
+  box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
+  transition: background 0.15s ease, transform 0.08s ease;
+}
+
+#close-keyboard-btn:hover {
+  background: #244a7f;
+}
+
+#close-keyboard-btn:active {
+  transform: translateY(0.15vh);
+}
+  
 
 
 

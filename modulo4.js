@@ -1919,6 +1919,8 @@ function ingresoEmpleado(){
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
   limpiarEntradas()
 
+  keyboardWrapper.style.display='flex'
+
   setTimeout(() => {
     if (!esDesktop) {
       /* inputs.forEach(input => {
@@ -3774,7 +3776,6 @@ const CATEGORY_LABELS = {
   D: 'Desarrollo',
   E: 'Cumplimiento'
 };
-
 function mostrarAlertaEnElemento(mensaje, top, left) {
   const alerta = document.getElementById('alerta-ui');
   const texto = alerta.querySelector('.texto');
@@ -3785,11 +3786,8 @@ function mostrarAlertaEnElemento(mensaje, top, left) {
   alerta.style.top = typeof top === 'number' ? `${top}px` : top;
   alerta.style.left = typeof left === 'number' ? `${left}px` : left;
 }
-
 mostrarAlertaEnElemento({mensaje: 'Ingrese solo valores numéricos',top: '70%',left: '40%'});
-
 // INICIA LOGICA PARA CALCULADORA EN TACTILES /************************************************************************************************* */
-
 function habilitarArrastre(elemento) {
   const handle = elemento.querySelector('.drag-handle');
   if (!handle) return;
@@ -3830,21 +3828,16 @@ function habilitarArrastre(elemento) {
     elemento.classList.remove('dragging');
   });
 }
-
-
 if (!esDesktop) {
   activarLogicaMobile();
   habilitarArrastre(calculadora);
 }
-
 let inputActivo = null;
-
 function onFocusIn(e) {
   if (e.target.matches('.columna-izq-ma input, .columna-derecha input')) {
     inputActivo = e.target;
   }
 }
-
 function onGridClick(e) {  
   const boton = e.target;
 
@@ -3855,20 +3848,15 @@ function onGridClick(e) {
   const valor = boton.textContent.trim();
   inputActivo.value += valor;
 }
-
-
 function activarLogicaMobile() {
   document.addEventListener('focusin', onFocusIn);
   gridNumbers.addEventListener('click', onGridClick);
 }
-
-
 function desactivarLogicaMobile() {
   document.removeEventListener('focusin', onFocusIn);
   gridNumbers.removeEventListener('click', onGridClick);
   inputActivo = null; 
 }
-
 mediaDesktop.addEventListener('change', e => {
   esDesktop = e.matches;
 
@@ -3878,9 +3866,6 @@ mediaDesktop.addEventListener('change', e => {
     desactivarLogicaMobile();
   }
 });
-
-
-
 // Orden lógico deseado (independiente del DOM)
 const ordenInputs = [
   'nomEmpl-ma',
@@ -3894,10 +3879,7 @@ const ordenInputs = [
   'numDoc8-ma',
   'nuevo-ingreso-ma'
 ];
-
-
 let indiceFoco = 0;
-
 /* ===============================
    Sincronizar índice con foco real
    =============================== */
@@ -3933,5 +3915,44 @@ function avanzarFoco() {
     siguienteInput.style.color='white'
   }
 }  
-  
+/*************************************************************************************************************************************************************** */
 
+const keyboardLayout = [
+  ['Q','W','E','R','T','Y','U','I','O','P'],
+  ['A','S','D','F','G','H','J','K','L','Ñ'],
+  ['Z','X','C','V','B','N','M']
+];
+
+const keyboard = document.getElementById('virtual-keyboard');
+
+function createKeyboard(layout) {
+  keyboard.innerHTML = '';
+
+  layout.forEach(rowLetters => {
+    const row = document.createElement('div');
+    row.className = 'keyboard-row';
+
+    row.style.gridTemplateColumns = `repeat(${rowLetters.length}, 1fr)`;
+
+    rowLetters.forEach(letter => {
+      const key = document.createElement('div');
+      key.className = 'key';
+      key.textContent = letter;
+
+      key.addEventListener('click', () => {
+        console.log(letter);
+        // aquí puedes emitir eventos o escribir en un input
+      });
+
+      row.appendChild(key);
+    });
+
+    keyboard.appendChild(row);
+  });
+}
+
+createKeyboard(keyboardLayout);
+
+const keyboardWrapper = document.getElementById('keyboard-wrapper');
+const closeKeyboardBtn = document.getElementById('close-keyboard-btn');
+closeKeyboardBtn.addEventListener('click',()=>{keyboardWrapper.style.display='none'})
