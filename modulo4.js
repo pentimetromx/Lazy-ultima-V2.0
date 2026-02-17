@@ -7,7 +7,7 @@ function ocultarTodos(elementosVisibles = []) {
       elemento.style.display = elementosVisibles.includes(id) ? 'flex' : 'none';
     }
   }
-}
+}  
 function mostrarTodos() {
   for (let i = 0; i < allContenedores.length; i++) {
     const elemento = document.getElementById(allContenedores[i])
@@ -1909,6 +1909,7 @@ function ingresoEmpleado(){
     const el = document.getElementById(id);
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
   });
+  const inputs = document.querySelectorAll('.verGraficos');
   const padre = document.getElementById('padre-ingresos');
   const hijo = document.getElementById('ingresos-sistema');
   flagEmpleado = true
@@ -1920,6 +1921,11 @@ function ingresoEmpleado(){
 
   setTimeout(() => {
     if (!esDesktop) {
+      inputs.forEach(input => {
+        if (input.tagName === 'INPUT') {
+          input.readOnly = true;
+        }
+      });      
 
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
