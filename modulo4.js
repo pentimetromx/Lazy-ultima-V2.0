@@ -1965,11 +1965,11 @@ function ingresoEmpleadoMA(){
 
   setTimeout(() => {
     if (!esDesktop) {
-      inputs.forEach(input => {
+      /* inputs.forEach(input => {
         if (input.tagName === 'INPUT') {
           input.readOnly = true;
         }
-      });
+      }); */
 
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
