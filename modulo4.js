@@ -3922,9 +3922,10 @@ inputNombre.addEventListener('focusin',()=>{
 const keyboardLayout = [
   ['q','w','e','r','t','y','u','i','o','p'],
   ['a','s','d','f','g','h','j','k','l','ñ'],
-  ['z','x','c','v','b','n','m'],
+  ['z','x','c','v','b','n','m','backspace'],
   ['space']
 ];
+
 
 const keyboard = document.getElementById('virtual-keyboard');
 
@@ -3941,46 +3942,117 @@ function createKeyboard(layout) {
     const row = document.createElement('div');
     row.className = 'keyboard-row';
 
+
     rowLetters.forEach(letter => {
       const key = document.createElement('button');
       key.type = 'button';
       key.className = 'key';
 
-      key.textContent = letter === 'space' ? '␣' : letter;
+      key.textContent =
+        letter === 'space' ? '␣' :
+        letter === 'backspace' ? '⌫' :
+        letter;
 
       key.addEventListener('click', () => {
         if (!lastFocusedInput) return;
 
-        const start = lastFocusedInput.selectionStart;
-        const end = lastFocusedInput.selectionEnd;
-        const value = lastFocusedInput.value;
+        const input = lastFocusedInput;
+        const start = input.selectionStart;
+        const end = input.selectionEnd;
+        const value = input.value;
 
-        let char;
+        /* ⬅️ BACKSPACE */
+        if (letter === 'backspace') {
+          if (start === end && start > 0) {
+            input.value =
+              value.slice(0, start - 1) + value.slice(end);
+            input.selectionStart =
+            input.selectionEnd = start - 1;
+          } else {
+            input.value =
+              value.slice(0, start) + value.slice(end);
+            input.selectionStart =
+            input.selectionEnd = start;
+          }
 
-        if (letter === 'space') {
-          char = ' ';
-        } else {
-          // ⬇️ lógica de mayúscula después de espacio
-          const prevChar = value[start - 1];
-          const shouldUppercase = start === 0 || prevChar === ' ';
-          char = shouldUppercase ? letter.toUpperCase() : letter;
+          input.focus();
+          return;
         }
 
-        lastFocusedInput.value =
+        /* ␣ ESPACIO */
+        if (letter === 'space') {
+          input.value =
+            value.slice(0, start) + ' ' + value.slice(end);
+
+          input.selectionStart =
+          input.selectionEnd = start + 1;
+
+          input.focus();
+          return;
+        }
+
+        /* 🔠 LETRAS con mayúscula automática */
+        const prevChar = value[start - 1];
+        const shouldUppercase = start === 0 || prevChar === ' ';
+        const char = shouldUppercase
+          ? letter.toUpperCase()
+          : letter;
+
+        input.value =
           value.slice(0, start) + char + value.slice(end);
 
-        lastFocusedInput.selectionStart =
-        lastFocusedInput.selectionEnd = start + char.length;
+        input.selectionStart =
+        input.selectionEnd = start + 1;
 
-        lastFocusedInput.focus();
+        input.focus();
       });
 
       row.appendChild(key);
     });
 
+    
+
+
     keyboard.appendChild(row);
   });
 }
+
+function handleKeyPress(letter) {
+  if (!lastFocusedInput) return;
+
+  const input = lastFocusedInput;
+  const start = input.selectionStart;
+  const end = input.selectionEnd;
+  const value = input.value;
+
+  // BACKSPACE
+  if (letter === '⌫') {
+    if (start === end && start > 0) {
+      input.value =
+        value.slice(0, start - 1) + value.slice(end);
+      input.selectionStart =
+      input.selectionEnd = start - 1;
+    } else {
+      input.value =
+        value.slice(0, start) + value.slice(end);
+      input.selectionStart =
+      input.selectionEnd = start;
+    }
+
+    input.focus();
+    return;
+  }
+
+  // LETRAS / ESPACIO
+  input.value =
+    value.slice(0, start) + letter + value.slice(end);
+
+  input.selectionStart =
+  input.selectionEnd = start + 1;
+
+  input.focus();
+}
+
 
 createKeyboard(keyboardLayout);
 
