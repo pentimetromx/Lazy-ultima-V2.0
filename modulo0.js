@@ -1692,8 +1692,8 @@ function agregarEmpleado() {
 
   if (!nombre || !documento || !area || !cargo || !equipo || !fecha || !imagen) {
     /* mostrarVentanaMensaje('Todos los campos son obligatorios.'); */
-    parpadearElemento('nomEmpl');
-    saltarAlerta('Ingrese documento del empleado.', 'recursoNuevo')
+    parpadearElemento('numDoc');
+    saltarAlerta('Ingrese nombre del empleado y complete los campos.', 'recursoNuevo')
     return; 
   }
 
