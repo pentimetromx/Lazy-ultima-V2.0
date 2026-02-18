@@ -200,7 +200,6 @@ const simulador = document.querySelector('#links-registro li:first-child');
 const calculadora = document.getElementById('calculadora')
 const gridNumbers = document.getElementById('grid-numbers');
 
-
 const mediaDesktop = window.matchMedia('(pointer: fine) and (min-width: 1025px)');
 
 let esDesktop = mediaDesktop.matches;
@@ -233,6 +232,7 @@ let miCanvas11 = document.getElementById('MiGrafica9').getContext('2d');
 let miCanvas11II = document.getElementById('MiGrafica9-II').getContext('2d')
 let miCanvas20 = document.getElementById('MiGrafica20').getContext('2d')
 let interfazPerfiles = document.getElementById('perfiles-entintado')
+let lastFocusedInput = null;
 let alertaGlobal=null;
 
 var botones = document.querySelectorAll('.butt-mautonomo')
@@ -1816,10 +1816,6 @@ btnLimpiar.addEventListener('click', () =>{
 })
 
 btnAgregar.addEventListener('click', agregarEmpleado);
-
-
-
-
 
 
 function limpiarEntradas() {
