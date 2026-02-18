@@ -3917,13 +3917,22 @@ function avanzarFoco() {
 inputNombre.addEventListener('focusin',()=>{
   keyboardWrapper.style.display='flex'
 })
+
+
 const keyboardLayout = [
-  ['Q','W','E','R','T','Y','U','I','O','P'],
-  ['A','S','D','F','G','H','J','K','L','Ñ'],
-  ['Z','X','C','V','B','N','M']
+  ['q','w','e','r','t','y','u','i','o','p'],
+  ['a','s','d','f','g','h','j','k','l','ñ'],
+  ['z','x','c','v','b','n','m'],
+  ['space']
 ];
 
 const keyboard = document.getElementById('virtual-keyboard');
+
+document.addEventListener('focusin', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+    lastFocusedInput = e.target;
+  }
+});
 
 function createKeyboard(layout) {
   keyboard.innerHTML = '';
@@ -3932,16 +3941,38 @@ function createKeyboard(layout) {
     const row = document.createElement('div');
     row.className = 'keyboard-row';
 
-    row.style.gridTemplateColumns = `repeat(${rowLetters.length}, 1fr)`;
-
     rowLetters.forEach(letter => {
-      const key = document.createElement('div');
+      const key = document.createElement('button');
+      key.type = 'button';
       key.className = 'key';
-      key.textContent = letter;
+
+      key.textContent = letter === 'space' ? '␣' : letter;
 
       key.addEventListener('click', () => {
-        console.log(letter);
-        // aquí puedes emitir eventos o escribir en un input
+        if (!lastFocusedInput) return;
+
+        const start = lastFocusedInput.selectionStart;
+        const end = lastFocusedInput.selectionEnd;
+        const value = lastFocusedInput.value;
+
+        let char;
+
+        if (letter === 'space') {
+          char = ' ';
+        } else {
+          // ⬇️ lógica de mayúscula después de espacio
+          const prevChar = value[start - 1];
+          const shouldUppercase = start === 0 || prevChar === ' ';
+          char = shouldUppercase ? letter.toUpperCase() : letter;
+        }
+
+        lastFocusedInput.value =
+          value.slice(0, start) + char + value.slice(end);
+
+        lastFocusedInput.selectionStart =
+        lastFocusedInput.selectionEnd = start + char.length;
+
+        lastFocusedInput.focus();
       });
 
       row.appendChild(key);
@@ -3953,6 +3984,14 @@ function createKeyboard(layout) {
 
 createKeyboard(keyboardLayout);
 
+
 const keyboardWrapper = document.getElementById('keyboard-wrapper');
 const closeKeyboardBtn = document.getElementById('close-keyboard-btn');
 closeKeyboardBtn.addEventListener('click',()=>{keyboardWrapper.style.display='none'})
+
+document.addEventListener('focusin', e => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+    lastFocusedInput = e.target;
+  }
+});
+
