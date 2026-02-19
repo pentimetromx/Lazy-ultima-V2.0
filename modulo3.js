@@ -5032,6 +5032,7 @@ listaLineas.forEach(linea => {
 
 digitos.forEach((elemento) => {
   elemento.addEventListener('click', () => {
+    e.stopPropagation();    
     console.log('ESTADO DE CALCULADORA : ', calculadoraSimulador)
 
     if(!calculadoraSimulador){
