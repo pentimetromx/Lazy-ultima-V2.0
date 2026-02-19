@@ -2297,7 +2297,7 @@ function generarListaFotos() {
 
 document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
-  resultadosMA('interfaz-mtto')
+  ingresoEmpleado()
 })
 
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
@@ -3942,17 +3942,22 @@ function createKeyboard(layout) {
     const row = document.createElement('div');
     row.className = 'keyboard-row';
 
-
     rowLetters.forEach(letter => {
       const key = document.createElement('button');
       key.type = 'button';
       key.className = 'key';
 
-      key.textContent =
-        letter === 'space' ? '␣' :
-        letter === 'backspace' ? '⌫' :
-        letter;
+      /* ===== RENDER (una sola vez) ===== */
+      if (letter === 'space') {
+        key.classList.add('key-space');
+        key.innerHTML = '<div class="space-bar"></div>';
+      } else if (letter === 'backspace') {
+        key.textContent = '⌫';
+      } else {
+        key.textContent = letter;
+      }
 
+      /* ===== LÓGICA DE CLICK ===== */
       key.addEventListener('click', () => {
         if (!lastFocusedInput) return;
 
@@ -3961,7 +3966,7 @@ function createKeyboard(layout) {
         const end = input.selectionEnd;
         const value = input.value;
 
-        /* ⬅️ BACKSPACE */
+        // BACKSPACE
         if (letter === 'backspace') {
           if (start === end && start > 0) {
             input.value =
@@ -3974,24 +3979,21 @@ function createKeyboard(layout) {
             input.selectionStart =
             input.selectionEnd = start;
           }
-
           input.focus();
           return;
         }
 
-        /* ␣ ESPACIO */
+        // SPACE
         if (letter === 'space') {
           input.value =
             value.slice(0, start) + ' ' + value.slice(end);
-
           input.selectionStart =
           input.selectionEnd = start + 1;
-
           input.focus();
           return;
         }
 
-        /* 🔠 LETRAS con mayúscula automática */
+        // LETRAS con mayúscula automática
         const prevChar = value[start - 1];
         const shouldUppercase = start === 0 || prevChar === ' ';
         const char = shouldUppercase
@@ -4000,22 +4002,18 @@ function createKeyboard(layout) {
 
         input.value =
           value.slice(0, start) + char + value.slice(end);
-
         input.selectionStart =
         input.selectionEnd = start + 1;
-
         input.focus();
       });
 
       row.appendChild(key);
     });
 
-    
-
-
     keyboard.appendChild(row);
   });
 }
+
 
 function handleKeyPress(letter) {
   if (!lastFocusedInput) return;
