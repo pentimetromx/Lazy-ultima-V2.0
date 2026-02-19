@@ -7099,7 +7099,7 @@ height:100%;
 .fila-ingreso > input{
   width: 90%;
   height:50%;
-  font-size: 0.8vw;
+  font-size: clamp(10px, 0.8vw, 18px);
   box-sizing: border-box;
   border: none;
   outline: none;  
