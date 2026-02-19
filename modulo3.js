@@ -5028,7 +5028,7 @@ listaLineas.forEach(linea => {
   
 });
 
-// BOTONES E LA CALCULADORA
+// BOTONES DE LA CALCULADORA
 
 digitos.forEach((elemento) => {
   elemento.addEventListener('click', () => {
@@ -5077,7 +5077,22 @@ digitos.forEach((elemento) => {
       }, 200);
 
     }else{
-      console.log('CALCULADORA SIMULADOR = TRUE')
+      if (!lastFocusedInput) return;
+
+      const input = lastFocusedInput;
+      const numero = elemento.textContent;
+
+      const start = input.selectionStart;
+      const end = input.selectionEnd;
+      const value = input.value;
+
+      input.value =
+        value.slice(0, start) + numero + value.slice(end);
+
+      input.selectionStart =
+      input.selectionEnd = start + numero.length;
+
+      input.focus();
     }
 
   });

@@ -247,6 +247,12 @@ idsArrayEliminados.push('cont-titulo')
 const IDSARRAYCICODELIA = ['first_half','cortina','second_half','nicho_spans','wall_street_II','equalizer','padre','patern']
 const masterKey = [4];
 
+document.querySelectorAll('input, textarea').forEach(input => {
+  input.addEventListener('focus', () => {
+    lastFocusedInput = input;
+  });
+})
+
 document.addEventListener("DOMContentLoaded", () => {
   // Inicializar sliders CMYK
   initSliderCMYK("slid-cian", "c-span-", "C");
