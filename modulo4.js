@@ -1921,11 +1921,11 @@ function ingresoEmpleado(){
 
   setTimeout(() => {
     if (!esDesktop) {
-      /* inputs.forEach(input => {
+      inputs.forEach(input => {
         if (input.tagName === 'INPUT') {
           input.readOnly = true; 
         }
-      }); */      
+      });      
 
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
@@ -1938,6 +1938,12 @@ function ingresoEmpleado(){
         height: '30%',
         parentSelector: '#simulador'
       });
+    } else{
+      inputs.forEach(input => {
+        if (input.tagName === 'INPUT' && input.id !== 'numDoc' && input.id !== 'numDoc1') {
+          input.readOnly = false;
+        }
+      });      
     }    
   }, 350);  
 }
