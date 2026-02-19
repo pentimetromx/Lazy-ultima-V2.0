@@ -5031,7 +5031,7 @@ listaLineas.forEach(linea => {
 // BOTONES DE LA CALCULADORA
 
 digitos.forEach((elemento) => {
-  elemento.addEventListener('click', () => {
+  elemento.addEventListener('click', (e) => {
     e.stopPropagation();    
     console.log('ESTADO DE CALCULADORA : ', calculadoraSimulador)
 
