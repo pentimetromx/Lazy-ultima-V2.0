@@ -5242,7 +5242,7 @@ top: 44%;
 
 #keyboard-wrapper {
   position: absolute; /* o fixed si ya lo usas así */
-  left: var(--keyboard-left, 95vw);
+  left: var(--keyboard-left, 71vw);
   top: var(--keyboard-top, 45vh);
   width: var(--keyboard-width);
   z-index: 1000;
