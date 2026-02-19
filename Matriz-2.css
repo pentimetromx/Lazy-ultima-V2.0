@@ -1503,7 +1503,8 @@ body{
   align-items: center;
   background: #444;
   color: rgb(0, 255, 0);
-  font-size: 0.9em;
+  /* font-size: 0.9em; */
+  font-size: clamp(14px, 1vw, 18px);  
   font-family: 'Digital';
   cursor: pointer;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.4);
