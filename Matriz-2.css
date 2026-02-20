@@ -5243,7 +5243,7 @@ top: 44%;
 
 #keyboard-wrapper {
   position: absolute; /* o fixed si ya lo usas así */
-  left: var(--keyboard-left, 71vw);
+  left: var(--keyboard-left, 83vw);
   top: var(--keyboard-top, 62vh);
   width: var(--keyboard-width);
   z-index: 1000;
@@ -6553,7 +6553,6 @@ top: 44%;
   }
   .iridescent-element li {
     padding: 10px;
-    font-size:0.7em;
     cursor: pointer;
     background-color: #e0e0e0;
     border-bottom: 2px solid #aaa;

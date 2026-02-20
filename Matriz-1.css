@@ -347,7 +347,8 @@ color: white;
 
 .iridescent-element li {
   padding: 10px;
-  font-size:0.6em;
+  /* font-size:0.6em; */
+  font-size: clamp(10px, 0.8vw, 18px);  
   color: rgb(55,55,55);
   cursor: pointer;
   background-color: #e0e0e0;
