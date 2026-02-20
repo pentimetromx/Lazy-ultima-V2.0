@@ -5348,7 +5348,7 @@ top: 44%;
 
 
 
-@media only screen and (max-width: 480px) {
+@media (max-width: 480px) {
   .boton-e,
   .boton-c {
     justify-content: flex-start;
@@ -9664,10 +9664,17 @@ top: 44%;
     font-size: 13px;
   }
   #titleContainer p,
-    #titleContainerI p{
+  #titleContainerI p{
     font-size:20px;
   }
 
-
 }
+
+  /* MEDIA QUERY PARA MINITABLET DE EMILIA */
+  @media (min-width: 980px) and (max-width: 1040px) {
+    #titleContainer p,
+    #titleContainerI p{
+      font-size:13px;
+    } 
+  }
 
