@@ -7074,7 +7074,7 @@ function crearPerfilColor() { // crear nuevo desde botón blanco
   );
 
   // Feedback visual
-  /* mostrarVentanaEmergente('Perfil creado y almacenado'); */
+  mostrarVentanaEmergente('Perfil creado y almacenado');
 
   // Limpiar input
   document.getElementById('nombre-Perfil').value = '';
