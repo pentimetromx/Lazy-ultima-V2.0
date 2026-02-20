@@ -6544,6 +6544,7 @@ top: 44%;
     position: absolute;
     display: flex;
     top: 0;
+    font-size:13px;
   }
   #textToColor{
     position: relative;
@@ -9663,6 +9664,11 @@ top: 44%;
   .fila-ingreso > label{
     font-size: 13px;
   }
+    #titleContainer p,
+  #titleContainerI p{
+    font-size:15px;
+  }
+
 
 }
 
