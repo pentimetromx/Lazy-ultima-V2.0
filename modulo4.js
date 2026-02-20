@@ -4084,10 +4084,11 @@ document.addEventListener('focusin', e => {
 
 
 
-if (window.innerWidth >= 768 && window.innerWidth <= 1024) {
-  console.log('Viewport tipo tablet');
+const info = document.getElementById('viewportInfo');
+
+function mostrarViewport() {
+  info.textContent = `Viewport: ${window.innerWidth} x ${window.innerHeight}`;
 }
 
-if (window.innerWidth > 1200) {
-  console.log('Viewport desktop');
-}
+mostrarViewport();
+window.addEventListener('resize', mostrarViewport);
