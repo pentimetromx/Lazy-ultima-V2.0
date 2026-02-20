@@ -1543,7 +1543,8 @@ body{
 }
 .eraser{
   cursor: pointer;
-  font-size: 0.5em;
+  /* font-size: 0.5em; */
+  font-size: clamp(14px, 0.8vw, 18px);
 }
 #display-cantidad{
   position: relative;
@@ -3156,7 +3157,8 @@ width: 70%;
 #formulario-perfiles span,
 .formulario span{
   position: relative;
-  font-size: 1.1vw;
+  /* font-size: 1.1vw; */
+  font-size: clamp(15px, 0.8vw, 18px); 
   color: rgb(0,0,77);
 }
 #btn-execute{
@@ -6541,7 +6543,6 @@ top: 44%;
   #titleContainerI p{
     position: absolute;
     display: flex;
-    font-size: 3vw;
     top: 0;
   }
   #textToColor{
@@ -9648,7 +9649,7 @@ top: 44%;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1281px) {
   #calculadora {
     touch-action: none;
     cursor: grab;
@@ -9657,5 +9658,11 @@ top: 44%;
   #calculadora.dragging {
     cursor: grabbing;
   }
+  .columna-derecha > label,
+  .fila-ingreso-ma > label,
+  .fila-ingreso > label{
+    font-size: 13px;
+  }
+
 }
 
