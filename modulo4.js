@@ -2019,17 +2019,26 @@ function limpiarYCapitalizar(e) {
 
   e.target.value = valor;
 }
+
 // Aplicarlo a ambos inputs
 [inputNombre, inputNombreMA].forEach(input => {
   if (input) input.addEventListener('input', limpiarYCapitalizar);
 });
 
+
 function permitirSoloNumeros(e) {
-  e.target.value = e.target.value.replace(/[^0-9]/g, '');
+  const input = e.target;
+
+  input.value = input.value.replace(/\D/g, '');
+
+  if (input.value.length > 1 && !input.hasAttribute('data-multi')) {
+    input.value = input.value.slice(-1);
+  }
 }
 
+
 soloNumerosInputs.forEach(input => {
-  if (input) input.addEventListener('input', permitirSoloNumeros);
+  if (input) input.addEventListener('focusin', permitirSoloNumeros);
 });
 
 /*********************************************************************************************************************************************** */
@@ -2105,6 +2114,15 @@ contenedorIngresosMA.addEventListener('focusin', e => {
  */
   }
 });
+
+document.querySelectorAll('.fila-ingreso-ma > input').forEach(input => {
+  input.addEventListener('input', () => {
+    if (input.value.length > 1) {
+      input.value = input.value.slice(0, 1);
+    }
+  });
+});
+
 inputRRHH.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
 });
@@ -4076,19 +4094,3 @@ document.addEventListener('focusin', e => {
     lastFocusedInput = e.target;
   }
 });
-
-
-
-
-
-
-
-
-const info = document.getElementById('viewportInfo');
-
-function mostrarViewport() {
-  info.textContent = `Viewport: ${window.innerWidth} x ${window.innerHeight}`;
-}
-
-mostrarViewport();
-window.addEventListener('resize', mostrarViewport);

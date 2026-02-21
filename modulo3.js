@@ -2,26 +2,19 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z': 
-        const inputMA = document.querySelectorAll('.verGraficos');
+        const inputMA = document.querySelector('#keyboard-wrapper');
 
-        inputMA.forEach(input => {
-          if (input.tagName === 'INPUT') {
-            input.readOnly = false;
-            input.removeAttribute('readonly');
-          }
-        });
-
+        inputMA.style.display='flex'
       break;  
       case 'H':  
         inputRRHH.focus();
       break;
       case 'X':
         Geometria()
-        const inputs = document.querySelectorAll('.entrada-empleado');
+        const inputMAk = document.querySelector('#keyboard-wrapper');
 
-        inputs.forEach(input => {
-          input.style.backgroundColor = '';
-        });
+        inputMAk.style.display='none'
+
 
         break;                  
     }
@@ -5089,6 +5082,7 @@ digitos.forEach((elemento) => {
 
       input.value =
         value.slice(0, start) + numero + value.slice(end);
+        /* permitirSoloNumeros({ target: input }); */
 
       input.selectionStart =
       input.selectionEnd = start + numero.length;
@@ -6969,9 +6963,6 @@ function parpadearElemento(id) {
 
   parpadeoActivo = { intervalo, el, colorOriginal };
 }
-
-
-
 function detenerParpadeo() {
   if (!parpadeoActivo) return;
 

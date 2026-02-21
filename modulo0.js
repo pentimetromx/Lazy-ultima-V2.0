@@ -2020,6 +2020,7 @@ const accionesAceptar = {
     }, 750);  
   },
   salirCalcula: () => {
+    detenerParpadeo()
     setTimeout(() => {
       if (esDesktop) {
         inputPerfil.value=''

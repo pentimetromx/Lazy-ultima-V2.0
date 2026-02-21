@@ -5245,14 +5245,15 @@ top: 44%;
 
 #keyboard-wrapper {
   position: absolute; /* o fixed si ya lo usas así */
-  left: var(--keyboard-left, 83vw);
-  top: var(--keyboard-top, 62vh);
+  left: var(--keyboard-left, 3vw);
+  top: var(--keyboard-top, 57vh);
   width: var(--keyboard-width);
   z-index: 1000;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+  display: none;
 }
 
 #virtual-keyboard {
@@ -9649,7 +9650,8 @@ top: 44%;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+  /* MEDIA QUERY PARA TABLET MAMA*/
+@media (min-width: 1200px) and (max-width: 1366px) {
   #calculadora {
     touch-action: none;
     cursor: grab;
