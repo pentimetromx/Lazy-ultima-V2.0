@@ -7643,10 +7643,11 @@ background-color: #3FEF9C;
 .padre-inputs{
   position: absolute;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  gap: 3%;
+  grid-template-rows: repeat(5, 1fr);
   top: 15vh;
-  height: 5vh;
-  width:22vw;
+  height: 35vh;
+  width:10vw;
   z-index: 9999;
 }
 .padre-inputs > button,

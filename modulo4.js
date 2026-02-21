@@ -1932,12 +1932,13 @@ function ingresoEmpleado(){
       restablecerEstilos('calculadora');
       reUbicarElemento('calculadora', {
         display: 'grid',
-        left: '44%',
+        left: '73.5%',
         width: '25%',
-        top: '65%',
+        top: '40%',
         height: '30%',
         parentSelector: '#simulador'
       });
+
     } else{
       inputs.forEach(input => {
         if (input.tagName === 'INPUT' && input.id !== 'numDoc' && input.id !== 'numDoc1') {
@@ -1976,18 +1977,19 @@ function ingresoEmpleadoMA(){
           input.readOnly = true;
         }
       });
-
+    
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
       restablecerEstilos('calculadora');
       reUbicarElemento('calculadora', {
         display: 'grid',
-        left: '44%',
+        left: '73.5%',
         width: '25%',
-        top: '65%',
+        top: '40%',
         height: '30%',
         parentSelector: '#simulador'
       });
+
     } else{
       inputs.forEach(input => {
         if (input.tagName === 'INPUT' && input.id !== 'numDoc-ma' && input.id !== 'numDoc9-ma') {
@@ -2098,21 +2100,6 @@ contenedorIngresosMA.addEventListener('focusin', e => {
   if (target.tagName !== 'INPUT') return;
 
   if (!soloNumerosSet.has(target)) return;
-  if(!esDesktop){
-    
-  /*calculadora.classList.remove('move-calculadora-1')
-    calculadora.classList.remove('move-calculadora')
-    restablecerEstilos('calculadora');
-    reUbicarElemento('calculadora', {
-      display: 'grid',
-      left: '73.5%',
-      width: '25%',
-      top: '40%',
-      height: '30%',
-      parentSelector: '#simulador'
-    });
- */
-  }
 });
 
 document.querySelectorAll('.fila-ingreso-ma > input').forEach(input => {
@@ -2336,6 +2323,21 @@ document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   rodillosKaizen('btn17','')
   ingresoEmpleadoMA()
 
+})
+let calca = false
+document.querySelector('#borrarBoton3').addEventListener('click', () =>{
+  const inputMA = document.querySelector('#keyboard-wrapper');
+  if(!calca){
+    inputMA.style.display='flex'
+    document.querySelector('#borrarBoton3').style.backgroundColor='orange'
+    calca=true
+    return
+  }
+  if(calca){
+    inputMA.style.display='none'
+     document.querySelector('#borrarBoton3').style.backgroundColor='green'
+    calca=false
+  }
 })
 
 /* function crearControlLed(idContenedor, idInput, totalLeds = 10) {
