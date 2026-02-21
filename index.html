@@ -513,7 +513,7 @@
       </ul>
 
     </div>
-
+  
     <div class="links-iniciales ocultos" id="links-iniciales">
       <div id="titleContainer">
         <p id="textToColor">Entrenamientos <span>&#9660;</span></p>
@@ -521,7 +521,6 @@
       
       <ul id="linkList" class="iridescent-element">
         <li onclick="mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])">Impresion rotativa / flexográfica</li>   
-        
         <li id="simulador-impresion">Impresion offset
           <ul id="links-registro" class="auxiliar-registro">
             <li>Simulador</li>
@@ -530,7 +529,6 @@
             <li>Alineacion cilindros</li>
           </ul>
         </li>
-
         <li onclick="abrirSeccionVariable('cont-variable')">Impresion variable</li>
         <li onclick="abrirSeccionPlanas('cont-plana')">Impresion plana</li>
         <li onclick="abrirSeccionCurado('cont-secador')">Curado UV</li>
@@ -1424,22 +1422,31 @@
     <div id="marco-plana" class="marco"></div>
     <div id="abuelo-variable">
       <div id="child-move-variable"></div>
+
+
       <div id="padre-variable">
-        <div id="cont-variable">
+
+        <div id="cont-variable">          
           <img data-src="./assets/IBM 4000.jpg" class="lazy child-section aumentar" alt="IBM4000">
           <video class="lazy child-section" autoplay loop muted playsinline controls>
             <source data-src="./assets/info-I.mp4" type="video/mp4">
           </video>
+
           <img data-src="./assets/IBM 5000.jpg" class="lazy child-section aumentar" alt="IBM4000">
           <video class="lazy child-section" autoplay loop muted playsinline controls>
             <source data-src="./assets/info-II.mp4" type="video/mp4">
           </video>
+
           <img data-src="./assets/info print.jpg" class="lazy child-section aumentar" alt="IBM4000">
           <video class="lazy child-section" autoplay loop muted playsinline controls>
             <source data-src="./assets/info-III.mp4" type="video/mp4">
           </video>
+          
         </div>
+
       </div>
+
+
     </div>
     <div id="abuelo-plana">
       <div id="child-move-plana"></div>
@@ -2702,6 +2709,7 @@
       </div>
       <span id="titulo-calendar" class="titulo-graf-ma"></span>
       <span id="titulo-mes" class="titulo-graf-ma"></span>  
+
       <div id="calendario-mes">
         <div class="semana">
           <div class="dia">1</div>
@@ -2749,6 +2757,8 @@
           <div class="dia vacio"></div>
         </div>
       </div>
+
+
       <div id="cont-span-semanas">
         <span class="span-semana">Graficar</span>
         <span class="span-semana">Mes</span>
