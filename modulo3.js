@@ -6939,9 +6939,11 @@ function secuenciaAparicion(canal) {
     break
   }
 }
+
 buscaNombre.addEventListener('click', () => {
   creaNombre.value = ''
   listaClientes.style.display = 'none'
+  keyboardWrapper.style.display='flex'
 })
 
 let parpadeoActivo = null; // referencia global

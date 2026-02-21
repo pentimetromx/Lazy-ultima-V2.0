@@ -199,6 +199,7 @@ const buscaNombre = document.querySelector('#nombre-Perfil');
 const simulador = document.querySelector('#links-registro li:first-child');
 const calculadora = document.getElementById('calculadora')
 const gridNumbers = document.getElementById('grid-numbers');
+const keyboardWrapper = document.getElementById('keyboard-wrapper');
 
 const mediaDesktop = window.matchMedia('(pointer: fine) and (min-width: 1025px)');
 

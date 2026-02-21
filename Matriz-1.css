@@ -7971,6 +7971,7 @@ background-color: #3FEF9C;
   background-color: rgba(33,33,47,0.5);
   border-radius: 10px;
   border-left: 5px solid #0078d4;
+  overflow-y: auto;
 }
 
 .titulo-panel {
@@ -7988,7 +7989,6 @@ background-color: #3FEF9C;
 .bloque p, .bloque ul {
   font-size: 1.2vw;
   margin: 0;
-   
 }
 .bloque ul {
   padding-left: 20px;
@@ -8007,15 +8007,11 @@ background-color: #3FEF9C;
   color: #f9fafb; /* alto contraste */
 
   transition: transform 0.5s ease;
-  z-index: 2;
+  z-index:2002;
   display: none;
   transform: scale(0);
   transform-origin: center; 
 
-}
-.ficha-tecnica.activo {
-  display: flex;
-  transform: scale(1); 
 }
 .ficha-grid {
   width: 100%;
