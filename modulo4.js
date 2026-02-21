@@ -4084,8 +4084,6 @@ function handleKeyPress(letter) {
 
 createKeyboard(keyboardLayout);
 
-
-const keyboardWrapper = document.getElementById('keyboard-wrapper');
 const closeKeyboardBtn = document.getElementById('close-keyboard-btn');
 closeKeyboardBtn.addEventListener('click',()=>{keyboardWrapper.style.display='none'})
 
