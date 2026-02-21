@@ -2312,11 +2312,13 @@ function generarListaFotos() {
   listaFotos.style.display = 'block'; // mostrar solo cuando se genera
 }
 
+
+/**************************************************************************************************************** */
+
 document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
   ingresoEmpleado()
 })
-
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   activarPantallaCompleta()
   deslizaContenedor('conti-boton-kaizen','kaizen')
@@ -2324,21 +2326,17 @@ document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   ingresoEmpleadoMA()
 
 })
-let calca = false
-document.querySelector('#borrarBoton3').addEventListener('click', () =>{
-  const inputMA = document.querySelector('#keyboard-wrapper');
-  if(!calca){
-    inputMA.style.display='flex'
-    document.querySelector('#borrarBoton3').style.backgroundColor='orange'
-    calca=true
-    return
-  }
-  if(calca){
-    inputMA.style.display='none'
-     document.querySelector('#borrarBoton3').style.backgroundColor='green'
-    calca=false
-  }
-})
+const botoni = document.querySelector('#borrarBoton3');
+const wrapper = document.querySelector('#keyboard-wrapper');
+botoni.addEventListener('click', () => {
+  const visible = wrapper.style.display === 'flex';
+
+  wrapper.style.display = visible ? 'none' : 'flex';
+  botoni.style.backgroundColor = visible ? 'green' : 'orange';
+});
+
+/******************************************************************************************************************** */
+
 
 /* function crearControlLed(idContenedor, idInput, totalLeds = 10) {
   const contenedor = document.getElementById(idContenedor);

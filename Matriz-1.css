@@ -347,8 +347,7 @@ color: white;
 
 .iridescent-element li {
   padding: 10px;
-  /* font-size:0.6em; */
-  font-size: clamp(12px, 0.8vw, 18px);  
+  /* font-size:'2vw'; */ 
   color: rgb(55,55,55);
   cursor: pointer;
   background-color: #e0e0e0;
@@ -2075,6 +2074,11 @@ width:447px ;
   left: 0%;
   margin-top:-6%;
 } 
+#linkListI li,
+#linkList li{
+  font-size: 5px;
+  font-size: clamp(9px, 0.9vw, 16px);
+}
 .linksTraining {
   list-style: decimal;
   border-radius: 13px;
@@ -7138,8 +7142,8 @@ height:100%;
   width: 90%;
   box-sizing: border-box;
   color:rgb(33,33,33);  
-  /* font-size: clamp(11px, 0.4vw, 18px); */
-  font-size: 10px;
+  font-size: clamp(11px, 0.4rem, 18px);
+  /* font-size: 10px; */
 }
 .fila-ingreso-ma > label{
   text-align: right; 
