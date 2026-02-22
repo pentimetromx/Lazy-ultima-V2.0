@@ -2,18 +2,16 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z': 
-        const inputMA = document.querySelector('#keyboard-wrapper');
+        showKeyboard()
 
-        inputMA.style.display='flex'
+  
       break;  
       case 'H':  
         inputRRHH.focus();
       break;
       case 'X':
         Geometria()
-        const inputMAk = document.querySelector('#keyboard-wrapper');
-
-        inputMAk.style.display='none'
+        hideKeyboard()
 
 
         break;                  
