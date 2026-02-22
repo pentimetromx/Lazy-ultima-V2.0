@@ -2026,6 +2026,12 @@ function limpiarYCapitalizar(e) {
 [inputNombre, inputNombreMA].forEach(input => {
   if (input) input.addEventListener('input', limpiarYCapitalizar);
 });
+inputNombreMA.addEventListener('focusin',() =>{
+  if(!esDesktop) showKeyboard()
+})
+inputNombreMA.addEventListener('blur', () => {
+  if(!esDesktop) hideKeyboard()
+});
 
 
 function permitirSoloNumeros(e) {
@@ -3947,24 +3953,18 @@ function avanzarFoco() {
 inputNombre.addEventListener('focusin',()=>{
   keyboardWrapper.style.display='flex'
 })
-
-
 const keyboardLayout = [
   ['q','w','e','r','t','y','u','i','o','p'],
   ['a','s','d','f','g','h','j','k','l','ñ'],
   ['z','x','c','v','b','n','m','backspace'],
   ['space']
 ];
-
-
 const keyboard = document.getElementById('virtual-keyboard');
-
 document.addEventListener('focusin', e => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
     lastFocusedInput = e.target;
   }
 });
-
 function createKeyboard(layout) {
   keyboard.innerHTML = '';
 
@@ -4043,8 +4043,6 @@ function createKeyboard(layout) {
     keyboard.appendChild(row);
   });
 }
-
-
 function handleKeyPress(letter) {
   if (!lastFocusedInput) return;
 
@@ -4081,7 +4079,6 @@ function handleKeyPress(letter) {
   input.focus();
 }
 
-
 createKeyboard(keyboardLayout);
 
 const closeKeyboardBtn = document.getElementById('close-keyboard-btn');
@@ -4092,3 +4089,15 @@ document.addEventListener('focusin', e => {
     lastFocusedInput = e.target;
   }
 });
+
+
+
+const tclVirtual = document.getElementById('keyboard-wrapper');
+
+function showKeyboard() {
+  tclVirtual.classList.add('is-visible');
+}
+
+function hideKeyboard() {
+  tclVirtual.classList.remove('is-visible');
+}

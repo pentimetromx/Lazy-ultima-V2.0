@@ -5243,18 +5243,26 @@ top: 44%;
   --key-text: #6f6f6f;     /* gris suave con contraste */
 }
 
+
 #keyboard-wrapper {
-  position: absolute; /* o fixed si ya lo usas así */
-  left: var(--keyboard-left, 3vw);
-  top: var(--keyboard-top, 57vh);
+  position: fixed;
+  left: var(--keyboard-left, 15vw);
+  top: var(--keyboard-top, 48vh);
   width: var(--keyboard-width);
   z-index: 1000;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  display: none;
+
+  /* Estado oculto */
+  transform: translateY(100vh);
+  transition: transform 0.4s ease;
 }
+#keyboard-wrapper.is-visible {
+  transform: translateY(0);
+}
+
 
 #virtual-keyboard {
   width: var(--keyboard-width);
