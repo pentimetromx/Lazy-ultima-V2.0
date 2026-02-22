@@ -2026,10 +2026,10 @@ function limpiarYCapitalizar(e) {
 [inputNombre, inputNombreMA].forEach(input => {
   if (input) input.addEventListener('input', limpiarYCapitalizar);
 });
-inputNombreMA.addEventListener('focusin',() =>{
+inputNombre.addEventListener('focusin',() =>{
   if(!esDesktop) showKeyboard()
 })
-inputNombreMA.addEventListener('blur', () => {
+inputNombre.addEventListener('blur', () => {
   if(!esDesktop) hideKeyboard()
 });
 
