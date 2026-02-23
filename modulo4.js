@@ -2332,13 +2332,24 @@ document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   ingresoEmpleadoMA()
 
 })
-const botoni = document.querySelector('#borrarBoton3');
-const wrapper = document.querySelector('#keyboard-wrapper');
-botoni.addEventListener('click', () => {
-  const visible = wrapper.style.display === 'flex';
 
-  wrapper.style.display = visible ? 'none' : 'flex';
-  botoni.style.backgroundColor = visible ? 'green' : 'orange';
+const botoni = document.querySelector('#borrarBoton3');
+const wrapper = document.querySelector('#calculadora');
+
+botoni.addEventListener('click', () => {
+  const visible = getComputedStyle(wrapper).display !== 'none';
+
+  if (!visible) {
+    // elimina TODOS los estilos en línea antes de mostrar
+    wrapper.removeAttribute('style');
+    wrapper.style.display = 'grid';
+    wrapper.style.left='10vw'
+    botoni.style.backgroundColor = 'orange';
+  } else {
+    wrapper.style.display = 'none';
+    botoni.style.backgroundColor = 'green'
+
+  }
 });
 
 /******************************************************************************************************************** */
