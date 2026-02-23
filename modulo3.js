@@ -11,10 +11,7 @@ document.addEventListener('keydown', function(event) {
       break;
       case 'X':
         Geometria()
-        hideKeyboard()
-
-
-        break;                  
+      break;                  
     }
   }
 });   
