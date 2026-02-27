@@ -2124,6 +2124,10 @@ inputRRHH.addEventListener('input', (e) => {
 inputRRHH.addEventListener('click',() =>{
   if(!esDesktop) ubicaCalculadoraSegunContexto()
 })
+inputDocumentoEmpleado.addEventListener('click',() =>{
+  if(!esDesktop) ubicaCalculadoraSegunContexto()
+})
+
 
 
 inputMA.addEventListener('input', (e) => {
