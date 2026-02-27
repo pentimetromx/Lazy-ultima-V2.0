@@ -9666,6 +9666,16 @@ top: 44%;
     cursor: grab;
   }
 
+  .move-calculadora-up{
+    transform: translateY(-51vh);
+    transition: transform 0.4s ease;
+  }
+  .move-calculadora-down{
+    transform: translateY(51vh);
+    transition: transform 0.4s ease;
+  }
+  
+
   #calculadora.dragging {
     cursor: grabbing;
   }

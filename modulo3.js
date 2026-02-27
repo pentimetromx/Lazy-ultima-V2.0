@@ -7,10 +7,10 @@ document.addEventListener('keydown', function(event) {
   
       break;  
       case 'H':  
-        inputRRHH.focus();
+        Geometria()
       break;
       case 'X':
-        Geometria()
+        ubicaCalculadoraSegunContexto()
       break;                  
     }
   }
@@ -691,9 +691,9 @@ botonera.forEach(element => {
 });
 
 // Incrementar la posición en Z solo cuando se haga clic en 'interfaz-perfiles'
-document.getElementById('interfaz-perfiles').addEventListener('click', (e) => {
+interfazColor.addEventListener('click', (e) => {
   e.stopPropagation();   
-  document.getElementById('interfaz-perfiles').style.zIndex = 30;
+  interfazColor.style.zIndex = 30;
 });
 
 // Evitar la propagación del clic en los elementos hijos
@@ -2703,11 +2703,10 @@ document.getElementById('butt-perfil').addEventListener('click', () =>{
   } )
   container1.style.display = 'none'
   const displayAjusteFino = document.getElementById('inerfaz-ajuste-fino');
-  let interfazAjuste = document.getElementById('interfaz-perfiles');
-  interfazAjuste.style.zIndex = '';
-  interfazAjuste.style.display = 'flex';
-  interfazAjuste.style.position = 'absolute';
-  interfazAjuste.style.top = '5vh';
+  interfazColor.style.zIndex = '';
+  interfazColor.style.display = 'flex';
+  interfazColor.style.position = 'absolute';
+  interfazColor.style.top = '5vh';
   if (!primerClickRealizado) {
     displayAjusteFino.style.display = 'flex';
     displayAjusteFino.style.top = '33vh'
@@ -4581,8 +4580,7 @@ function aplicarColorLeds(informacionBotones, color) {
   });
 }
 document.querySelector('#cont-modificadores span:nth-child(1)').addEventListener('click', () =>{
-  let blurPerfiles = document.getElementById('blur-interfaz-perfiles') 
-  blurPerfiles.style.display='none'
+  interfazColor.style.display='none'
   resetPerfiles()
   desactivarEventos()
 })
@@ -4927,6 +4925,7 @@ buttsJobs.forEach(boton => {
   //CALCULADORA SIMULADOR
   boton.addEventListener('click', () => {
     restablecerEstilos('calculadora');
+    calculadora.classList.remove('subir');
     
 
     switch(boton.id) {
@@ -4965,6 +4964,8 @@ buttsJobs.forEach(boton => {
       break;
       case 'tirajes':
         restablecerEstilos('calculadora');
+        calculadora.classList.remove('move-calculadora-up')
+        calculadora.classList.remove('move-calculadora-down')
 
         calculadoraSimulador=false
         if(!calculadoraSimulador){
@@ -6147,19 +6148,6 @@ function mostrarElemento(selectores) {
     }
   }, intervalo);
 }
-/* function iniciaAnimaciones() {
-  var elementosExcluidos = ['simulador','interfaz-perfiles','perfiles-entintado','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','bot-revertir'] 
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-    }
-  }
-  container1.style.display = 'none'
-  document.querySelector('#contiene-lineas').style.display = 'none'
-  animarColorSecuencia();
-  animarSecuenciaPerfiles();
-} */
 document.querySelectorAll('.section').forEach((btn, index) => {
   btn.addEventListener('mouseover', () => {
     let buttBlur = document.querySelectorAll('.btn-sections')[index]
