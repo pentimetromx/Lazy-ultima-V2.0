@@ -204,6 +204,7 @@ const interfazColor = document.querySelector('#interfaz-perfiles')
 const mediaDesktop = window.matchMedia('(pointer: fine) and (min-width: 1025px)');
 const interfazRRHH = document.querySelector('#padre-ingresos')
 const interfazMA = document.querySelector('#padre-ingresos-ma')
+const inputDocumentoEmpleado = document.querySelector('#numDoc1')
 
 let esDesktop = mediaDesktop.matches;
 
