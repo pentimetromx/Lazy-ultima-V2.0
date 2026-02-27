@@ -4038,16 +4038,24 @@ function createKeyboard(layout) {
       }
 
       /* ===== LÓGICA DE CLICK ===== */
-      key.addEventListener('click', () => {
+      const DELETE_INITIAL_DELAY = 400;
+      const DELETE_REPEAT_RATE = 60;
+
+      let deleteTimeout = null;
+      let deleteInterval = null;
+
+      key.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+
         if (!lastFocusedInput) return;
 
         const input = lastFocusedInput;
-        const start = input.selectionStart;
-        const end = input.selectionEnd;
-        const value = input.value;
 
-        // BACKSPACE
-        if (letter === 'backspace') {
+        const deleteCharacter = () => {
+          const start = input.selectionStart;
+          const end = input.selectionEnd;
+          const value = input.value;
+
           if (start === end && start > 0) {
             input.value =
               value.slice(0, start - 1) + value.slice(end);
@@ -4059,33 +4067,67 @@ function createKeyboard(layout) {
             input.selectionStart =
             input.selectionEnd = start;
           }
+
           input.focus();
+        };
+
+        const startPos = input.selectionStart;
+        const endPos = input.selectionEnd;
+        const value = input.value;
+
+        // BACKSPACE
+        if (letter === 'backspace') {
+
+          // primer borrado inmediato
+          deleteCharacter();
+
+          // repetición progresiva
+          deleteTimeout = setTimeout(() => {
+            deleteInterval = setInterval(
+              deleteCharacter,
+              DELETE_REPEAT_RATE
+            );
+          }, DELETE_INITIAL_DELAY);
+
           return;
         }
 
         // SPACE
         if (letter === 'space') {
           input.value =
-            value.slice(0, start) + ' ' + value.slice(end);
+            value.slice(0, startPos) + ' ' + value.slice(endPos);
           input.selectionStart =
-          input.selectionEnd = start + 1;
+          input.selectionEnd = startPos + 1;
           input.focus();
           return;
         }
 
         // LETRAS con mayúscula automática
-        const prevChar = value[start - 1];
-        const shouldUppercase = start === 0 || prevChar === ' ';
+        const prevChar = value[startPos - 1];
+        const shouldUppercase =
+          startPos === 0 || prevChar === ' ';
         const char = shouldUppercase
           ? letter.toUpperCase()
           : letter;
 
         input.value =
-          value.slice(0, start) + char + value.slice(end);
+          value.slice(0, startPos) + char + value.slice(endPos);
         input.selectionStart =
-        input.selectionEnd = start + 1;
+        input.selectionEnd = startPos + 1;
         input.focus();
       });
+
+      // detener repetición
+      const stopDeleting = () => {
+        clearTimeout(deleteTimeout);
+        clearInterval(deleteInterval);
+        deleteTimeout = null;
+        deleteInterval = null;
+      };
+
+      key.addEventListener('touchend', stopDeleting);
+      key.addEventListener('touchcancel', stopDeleting);
+      
 
       row.appendChild(key);
     });
