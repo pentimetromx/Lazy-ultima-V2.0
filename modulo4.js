@@ -2121,9 +2121,9 @@ inputRRHH.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
   if(!esDesktop)ubicaCalculadoraSegunContexto()
 });
-inputRRHH.addEventListener('click', (e) => {
-  if(!esDesktop)ubicaCalculadoraSegunContexto()
-});
+inputRRHH.addEventListener('click',() =>{
+  if(!esDesktop) ubicaCalculadoraSegunContexto()
+})
 
 
 inputMA.addEventListener('input', (e) => {
