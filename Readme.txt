@@ -1,3 +1,10 @@
+“Respóndeme solo con la causa directa y la corrección mínima.
+No enumeres opciones, no des contexto adicional.”
+
+“Dime solo por qué falla y la línea exacta que debo cambiar.”
+
+“Una sola causa + una sola solución. Nada más.”
+
 OBJETOS EN LOCAL STORAGE:
 - empleadosRegistrados
 
@@ -110,7 +117,6 @@ A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspec
 
 
 
-
 let inputActivo = null; INPUTS VERTICALES
 
 4:3808 function onGridClick(e) CLICKS DE CALCULADORA EN TACTILES
@@ -125,28 +131,22 @@ let inputActivo = null; INPUTS VERTICALES
 
 4:3510 aplicarColoresInputs() COLORES INPUTS VERTICALES
 
-4:3872 avanzarFoco()   
-
-
-  setTimeout(() => {
-    inputMA?.focus(); 
-  }, 300);
+4:3872 avanzarFoco() 
 
 
 
+const inputMA = document.querySelector('#nomEmpl-ma'); 
+  
+
+TERMINAMOS EN modulo 4:2138
 
 
-  if(!esdesktop){
-    calculadora.classList.remove('move-calculadora-1')
-    calculadora.classList.remove('move-calculadora')
-    restablecerEstilos('calculadora');
-    reUbicarElemento('calculadora', {
-      display: 'grid',
-      left: '73.5%',
-      width: '25%',
-      top: '40%',
-      height: '30%',
-      parentSelector: '#simulador'
-    });
-  }
-  alert()
+
+
+
+
+
+
+
+
+

@@ -1910,12 +1910,11 @@ function ingresoEmpleado(){
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
   });
   const inputs = document.querySelectorAll('.verGraficos');
-  const padre = document.getElementById('padre-ingresos');
   const hijo = document.getElementById('ingresos-sistema');
-  flagEmpleado = true
-  padre.removeAttribute('style');
-  hijo.removeAttribute('style');
 
+  flagEmpleado = true
+  interfazRRHH.removeAttribute('style');
+  hijo.removeAttribute('style');  
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
   limpiarEntradas()
 
@@ -1929,13 +1928,14 @@ function ingresoEmpleado(){
 
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
-      restablecerEstilos('calculadora');
+      calculadora.classList.remove('move-calculadora-up')
+
       reUbicarElemento('calculadora', {
         display: 'grid',
-        left: '73.5%',
-        width: '25%',
-        top: '40%',
-        height: '30%',
+        left: '40vw',
+        width: '40vw',
+        top: '102vh',
+        height: '45vh',
         parentSelector: '#simulador'
       });
 
@@ -1959,13 +1959,13 @@ function ingresoEmpleadoMA(){
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
   });
   const inputs = document.querySelectorAll('.verGraficos');
-  const padre = document.getElementById('padre-ingresos-ma'); 
   const hijo = document.getElementById('ingresos-sistema-ma');
   inputs.forEach(input => {
     input.style.backgroundColor = '';
   });
+
   flagEmpleado = true
-  padre.removeAttribute('style');
+  interfazMA.removeAttribute('style');
   hijo.removeAttribute('style');
   ["padre-ingresos-ma","ingresos-sistema-ma"].forEach(id => aparecerElemento(id, "grid"));
   limpiarEntradas()
@@ -1980,13 +1980,14 @@ function ingresoEmpleadoMA(){
     
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
-      restablecerEstilos('calculadora');
+      calculadora.classList.remove('move-calculadora-up')
+
       reUbicarElemento('calculadora', {
         display: 'grid',
-        left: '73.5%',
-        width: '25%',
-        top: '40%',
-        height: '30%',
+        left: '40vw',
+        width: '40vw',
+        top: '102vh',
+        height: '45vh',
         parentSelector: '#simulador'
       });
 
@@ -2026,6 +2027,7 @@ function limpiarYCapitalizar(e) {
 [inputNombre, inputNombreMA].forEach(input => {
   if (input) input.addEventListener('input', limpiarYCapitalizar);
 });
+
 inputNombre.addEventListener('focusin',() =>{
   if(!esDesktop) showKeyboard()
 })
@@ -2097,10 +2099,9 @@ const configCalculadora = {
 };
 
 // FOCO/CLICK EN INPUTS M.A
-const contenedorIngresosMA = document.getElementById('padre-ingresos-ma');
 const soloNumerosSet = new Set(soloNumerosInputs);
 
-contenedorIngresosMA.addEventListener('focusin', e => {
+interfazMA.addEventListener('focusin', e => {
   const target = e.target;
 
   if (target.tagName !== 'INPUT') return;
@@ -2118,7 +2119,34 @@ document.querySelectorAll('.fila-ingreso-ma > input').forEach(input => {
 
 inputRRHH.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
+  if(!esDesktop)ubicaCalculadoraSegunContexto()
 });
+inputRRHH.addEventListener('click', (e) => {
+  if(!esDesktop)ubicaCalculadoraSegunContexto()
+});
+
+
+inputMA.addEventListener('input', (e) => {
+  e.target.value = e.target.value.replace(/[^0-9]/g, '');
+  ubicaCalculadoraSegunContexto()
+});
+
+inputMA.addEventListener('click', (e) => {
+  ubicaCalculadoraSegunContexto()
+});
+
+document.addEventListener('pointerdown', (e) => {
+  if (esDesktop) return;
+
+  const clickDentroCalculadora = calculadora.contains(e.target);
+  const clickEnInput = inputMA.contains(e.target);
+
+  if (!clickDentroCalculadora && !clickEnInput) {
+    hideCalculator();
+  }
+});
+
+
 
 
 document.querySelector('#recarga').addEventListener('click', ingresoEmpleado);
@@ -2588,8 +2616,7 @@ function aplicarLeds(valores) {
     
 }
 function cargarEmpleadoMA() {
-  const inputBusqueda = document.getElementById('nomEmpl-ma');
-  const valorBusqueda = inputBusqueda.value.trim();
+  const valorBusqueda = inputMA.value.trim();
 
   if (!valorBusqueda) {
     console.log('NO HAY VALOR DE BUSQUEDA');
@@ -2674,28 +2701,34 @@ function infoEmpleadoPorSector(infoSector) {
   return function () {
     switch (infoSector) {
       case 'mantAutonomo': {
+
         if (!inputMA || inputMA.value.trim() === '') {
           saltarAlerta('Ingrese numero de documento', 'autonomoIngreso');
           parpadearElemento('nomEmpl-ma');
           return;
+        }else{
+          calculadora.classList.remove('move-calculadora-up')
+
+          const valor = inputMA.value.trim();
+          const empleados = JSON.parse(
+            localStorage.getItem('empleadosRegistrados')
+          ) || [];
+
+          const empleadoEncontrado = empleados.find(
+            emp => emp.documento === valor
+          );
+
+          if (!empleadoEncontrado) {
+            saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn');
+            return;
+          }
+
+          cargarEmpleadoMA();
+          setTimeout(aplicarColoresInputs, 250);
+
+
         }
 
-        const valor = inputMA.value.trim();
-        const empleados = JSON.parse(
-          localStorage.getItem('empleadosRegistrados')
-        ) || [];
-
-        const empleadoEncontrado = empleados.find(
-          emp => emp.documento === valor
-        );
-
-        if (!empleadoEncontrado) {
-          saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn');
-          return;
-        }
-
-        cargarEmpleadoMA();
-        setTimeout(aplicarColoresInputs, 250);
         break;
       }
       case 'recursoHumano': {
@@ -2715,76 +2748,81 @@ function infoEmpleadoPorSector(infoSector) {
           restaurarPosicionPadreIngresos();
           flagEmpleado = true;
           return;
-        }
+        }else{
+          calculadora.classList.remove('move-calculadora-up')
+          const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
 
-        const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
+          // Buscar usando cualquiera de los dos valores
+          const empleadoEncontrado = empleados.find(emp =>
+            emp.documento === valor
+          );
 
-        // Buscar usando cualquiera de los dos valores
-        const empleadoEncontrado = empleados.find(emp =>
-          emp.documento === valor
-        );
-
-        if (empleadoEncontrado) {
-          console.log('Empleado encontrado:');
-          console.log(`Nombre: ${empleadoEncontrado.nombre}`);
-          console.log(`Documento: ${empleadoEncontrado.documento}`);
-          console.log(`Área: ${empleadoEncontrado.area}`);
-          console.log(`Cargo: ${empleadoEncontrado.cargo}`);
-          console.log(`Equipo: ${empleadoEncontrado.equipo}`);
-          console.log(`Fecha ingreso: ${empleadoEncontrado.fecha}`);
-          console.log(`Imagen: ${empleadoEncontrado.imagen}`);
-          console.log(`Identificados: ${empleadoEncontrado.identificados}`);
-          console.log(`Corregidos: ${empleadoEncontrado.corregidos}`);
-          console.log(`Tipo A: ${empleadoEncontrado.tipoA}`);
-          console.log(`Tipo B: ${empleadoEncontrado.tipoB}`);
-          console.log(`Kaizen: ${empleadoEncontrado.kaizen}`);
-          console.log(`ADA.s: ${empleadoEncontrado.adas}`);
-          console.log(`ADT: ${empleadoEncontrado.adt}`);
-          console.log(`Lup: ${empleadoEncontrado.lup}`);
+          if (empleadoEncontrado) {
+            console.log('Empleado encontrado:');
+            console.log(`Nombre: ${empleadoEncontrado.nombre}`);
+            console.log(`Documento: ${empleadoEncontrado.documento}`);
+            console.log(`Área: ${empleadoEncontrado.area}`);
+            console.log(`Cargo: ${empleadoEncontrado.cargo}`);
+            console.log(`Equipo: ${empleadoEncontrado.equipo}`);
+            console.log(`Fecha ingreso: ${empleadoEncontrado.fecha}`);
+            console.log(`Imagen: ${empleadoEncontrado.imagen}`);
+            console.log(`Identificados: ${empleadoEncontrado.identificados}`);
+            console.log(`Corregidos: ${empleadoEncontrado.corregidos}`);
+            console.log(`Tipo A: ${empleadoEncontrado.tipoA}`);
+            console.log(`Tipo B: ${empleadoEncontrado.tipoB}`);
+            console.log(`Kaizen: ${empleadoEncontrado.kaizen}`);
+            console.log(`ADA.s: ${empleadoEncontrado.adas}`);
+            console.log(`ADT: ${empleadoEncontrado.adt}`);
+            console.log(`Lup: ${empleadoEncontrado.lup}`);
 
 
-          document.getElementById('numDoc').value = empleadoEncontrado.nombre;
-          document.getElementById('numDoc1').value = empleadoEncontrado.documento;
-          document.getElementById('numDoc2').value = empleadoEncontrado.area;
-          document.getElementById('numDoc3').value = empleadoEncontrado.equipo;
-          document.getElementById('numDoc4').value = empleadoEncontrado.fecha;
-          document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
-          document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
+            document.getElementById('numDoc').value = empleadoEncontrado.nombre;
+            document.getElementById('numDoc1').value = empleadoEncontrado.documento;
+            document.getElementById('numDoc2').value = empleadoEncontrado.area;
+            document.getElementById('numDoc3').value = empleadoEncontrado.equipo;
+            document.getElementById('numDoc4').value = empleadoEncontrado.fecha;
+            document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
+            document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
 
-          document.getElementById('numDoc-ma').value = empleadoEncontrado.nombre;
-          document.getElementById('numDoc9-ma').value = empleadoEncontrado.documento;
-          document.getElementById('numDoc1-ma').value = empleadoEncontrado.identificados;
-          document.getElementById('numDoc2-ma').value = empleadoEncontrado.corregidos;
-          document.getElementById('numDoc5-ma').value = empleadoEncontrado.tipoA;
-          document.getElementById('numDoc3-ma').value = empleadoEncontrado.tipoB;
-          document.getElementById('numDoc4-ma').value = empleadoEncontrado.kaizen;
-          document.getElementById('numDoc8-ma').value = empleadoEncontrado.lup;
-          document.getElementById('numDoc7-ma').value = empleadoEncontrado.adas;
-          document.getElementById('numDoc6-ma').value = empleadoEncontrado.adt;  
+            document.getElementById('numDoc-ma').value = empleadoEncontrado.nombre;
+            document.getElementById('numDoc9-ma').value = empleadoEncontrado.documento;
+            document.getElementById('numDoc1-ma').value = empleadoEncontrado.identificados;
+            document.getElementById('numDoc2-ma').value = empleadoEncontrado.corregidos;
+            document.getElementById('numDoc5-ma').value = empleadoEncontrado.tipoA;
+            document.getElementById('numDoc3-ma').value = empleadoEncontrado.tipoB;
+            document.getElementById('numDoc4-ma').value = empleadoEncontrado.kaizen;
+            document.getElementById('numDoc8-ma').value = empleadoEncontrado.lup;
+            document.getElementById('numDoc7-ma').value = empleadoEncontrado.adas;
+            document.getElementById('numDoc6-ma').value = empleadoEncontrado.adt;  
 
-          const imgElemento = document.getElementById('empleadoImg');
-          if (imgElemento) {
-            let rutaImagen = empleadoEncontrado.imagen?.trim() || '';
-            if (!rutaImagen) {
-              rutaImagen = './assets/silueta.png';
-            } else if (!rutaImagen.startsWith('./') && !rutaImagen.startsWith('assets/')) {
-              rutaImagen = `./assets/${rutaImagen}`;
+            const imgElemento = document.getElementById('empleadoImg');
+            if (imgElemento) {
+              let rutaImagen = empleadoEncontrado.imagen?.trim() || '';
+              if (!rutaImagen) {
+                rutaImagen = './assets/silueta.png';
+              } else if (!rutaImagen.startsWith('./') && !rutaImagen.startsWith('assets/')) {
+                rutaImagen = `./assets/${rutaImagen}`;
+              }
+              imgElemento.src = rutaImagen;
             }
-            imgElemento.src = rutaImagen;
+
+          } else {
+            /* mostrarVentanaMensaje('Empleado no encontrado en la BD.'); */
+            saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn')
           }
-
-        } else {
-          /* mostrarVentanaMensaje('Empleado no encontrado en la BD.'); */
-          saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn')
+          empleadoGlobal = empleadoEncontrado
+          console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal  )
+          
+          break;
         }
-        empleadoGlobal = empleadoEncontrado
-        console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal  )
-        
-        break;
-      }
 
-    }
-  };
+      }
+    };
+
+
+
+        }
+
 }
 
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
@@ -3299,8 +3337,7 @@ function alternarResultados(selector) {
 }
 
 function animarHumanEye() {
-  const eye = document.querySelector('#interfaz-perfiles');
-  if (!eye) return;
+  if (!interfazColor) return;
   revertirInterfazPerfiles()
 
   // valores iniciales (vh)
@@ -3344,8 +3381,8 @@ function animarHumanEye() {
     }
 
     // aplicar estilos (misma frame)
-    eye.style.height = height + 'vh';
-    eye.style.top = top + 'vh';
+    interfazColor.style.height = height + 'vh';
+    interfazColor.style.top = top + 'vh';
 
     // continuar hasta que ambos hayan llegado a su objetivo
     if (height < targetHeight || top > targetTop) {
@@ -3357,8 +3394,7 @@ function animarHumanEye() {
 }
 
 function animarHorizontalEye() {
-  const eye = document.querySelector('#interfaz-perfiles');
-  if (!eye) return;
+  if (!interfazColor) return;
   revertirInterfazPerfiles()
 
   let left = 50;     // vw inicial
@@ -3392,8 +3428,8 @@ function animarHorizontalEye() {
       width += dWidth;
     }
 
-    eye.style.left = `${left}%`;
-    eye.style.width = `${width}%`;
+    interfazColor.style.left = `${left}%`;
+    interfazColor.style.width = `${width}%`;
 
     if (left > targetLeft || width < targetWidth) {
       requestAnimationFrame(step);
@@ -3413,8 +3449,7 @@ function revertirInterfazPerfiles() {
     el.style.height = '';
   });
 
-  const root = document.querySelector('#interfaz-perfiles');
-  if (!root) return;
+  if (!interfazColor) return;
 
   const propiedades = ['height', 'width', 'top', 'left'];
 
@@ -3423,10 +3458,10 @@ function revertirInterfazPerfiles() {
   };
 
   // limpiar el elemento raíz
-  limpiar(root);
+  limpiar(interfazColor);
 
   // limpiar todos los hijos y nietos
-  const descendants = root.querySelectorAll('*');
+  const descendants = interfazColor.querySelectorAll('*');
   descendants.forEach(el => limpiar(el));
 }
 
@@ -4089,26 +4124,56 @@ function handleKeyPress(letter) {
 
   input.focus();
 }
-
 createKeyboard(keyboardLayout);
-
 const closeKeyboardBtn = document.getElementById('close-keyboard-btn');
 closeKeyboardBtn.addEventListener('click',()=>{keyboardWrapper.style.display='none'})
-
 document.addEventListener('focusin', e => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
     lastFocusedInput = e.target;
   }
 });
-
-
-
 const tclVirtual = document.getElementById('keyboard-wrapper');
-
 function showKeyboard() {
   tclVirtual.classList.add('is-visible');
 }
-
 function hideKeyboard() {
   tclVirtual.classList.remove('is-visible');
+}
+function hideCalculator() {
+  calculadora.classList.add('move-calculadora-down');
+}
+
+function ubicaCalculadoraSegunContexto(){
+  restablecerEstilos('calculadora');
+  calculadora.classList.remove('move-calculadora')
+  calculadora.classList.remove('move-calculadora-1')
+  calculadora.classList.remove('move-calculadora-up');
+  calculadora.classList.remove('move-calculadora-down');
+
+
+  if(!esDesktop && interfazRRHH.style.display==='grid'){
+    simulador.style.display='flex'
+    calculadora.classList.remove('move-calculadora-1')
+    calculadora.style.display='grid'
+    calculadora.style.left='40vw'
+    calculadora.style.top='102vh' 
+    calculadora.style.height='45vh'
+    calculadora.style.width='40vw'
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up');
+    }, 100);
+  }
+
+  if(!esDesktop && interfazMA.style.display==='grid'){
+    simulador.style.display='flex'
+    calculadora.classList.remove('move-calculadora-1')
+    calculadora.style.display='grid'
+    calculadora.style.left='40vw'
+    calculadora.style.top='102vh' 
+    calculadora.style.height='45vh'
+    calculadora.style.width='40vw'
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up');
+    }, 100);
+  }
 }

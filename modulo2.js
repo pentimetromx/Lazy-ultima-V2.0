@@ -221,16 +221,16 @@ function cerrarAyudas(){
   let video = document.getElementById('prisma-vid-II');
   video.style.left = '';  
 }
-var nuevosDatos = [0, 40, 50, 60, 70, 80];
-var nuevosDatosI = [5, 25, 35, 50, 65, 80];
-var nuevosDatosII = [30, 35, 40, 45, 50, 55]; 
-var nuevosDatosIII = [5, 8, 11, 14, 17, 20];
-var nuevosDatosIIII = [11, 18, 25, 32, 39, 46];
-var nuevosDatosV = [5, 14, 23, 32, 43, 54, 65, 76];
+let nuevosDatos = [0, 40, 50, 60, 70, 80];
+let nuevosDatosI = [5, 25, 35, 50, 65, 80];
+let nuevosDatosII = [30, 35, 40, 45, 50, 55]; 
+let nuevosDatosIII = [5, 8, 11, 14, 17, 20];
+let nuevosDatosIIII = [11, 18, 25, 32, 39, 46];
+let nuevosDatosV = [5, 14, 23, 32, 43, 54, 65, 76];
 function actualizarDatos() {
   intervaloActualizar = setInterval(function() {
     [nuevosDatos, nuevosDatosI, nuevosDatosII, nuevosDatosIII, nuevosDatosIIII, nuevosDatosV].forEach(function(array, index) {
-      for (var i = 0; i < array.length; i++) {
+      for (let i = 0; i < array.length; i++) {
         array[i] += 17;
         if (array[i] > 100) {
           array[i] = 0;   
@@ -255,22 +255,22 @@ function updateAna() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [0,70,30,70,50,90];
+  let nuevosDatos = [0,70,30,70,50,90];
   chart7.data.datasets[0].data = nuevosDatos;
   chart7.update();  
-  var nuevosDatosI = [55,5,95,30,10,10];
+  let nuevosDatosI = [55,5,95,30,10,10];
   chart8.data.datasets[0].data = nuevosDatosI;
   chart8.update();  
-  var nuevosDatosII = [30,50,60,77,20,8];
+  let nuevosDatosII = [30,50,60,77,20,8];
   chart9.data.datasets[0].data = nuevosDatosII;
   chart9.update();  
-  var nuevosDatosIII = [5,17,8,30,44,10];
+  let nuevosDatosIII = [5,17,8,30,44,10];
   chart10.data.datasets[0].data = nuevosDatosIII;
   chart10.update();  
-  var nuevosDatosIIII = [11,50,20,80,10,100];
+  let nuevosDatosIIII = [11,50,20,80,10,100];
   chart11.data.datasets[0].data = nuevosDatosIIII;
   chart11.update();  
-  var nuevosDatosV = [5,17,33,45,51,57,67,99];           
+  let nuevosDatosV = [5,17,33,45,51,57,67,99];           
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update();
 }
@@ -284,22 +284,22 @@ function updateAnaII() {
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200);
   
-  var nuevosDatos = [ 0,70,30,70,50,90]
+  let nuevosDatos = [ 0,70,30,70,50,90]
   chart7II.data.datasets[0].data = nuevosDatos;
   chart7II.update()
-  var nuevosDatosI = [ 55,5,95,30,10,10]
+  let nuevosDatosI = [ 55,5,95,30,10,10]
   chart8II.data.datasets[0].data = nuevosDatosI;
   chart8II.update()
-  var nuevosDatosII = [ 30,50,60,77,20,8]        
+  let nuevosDatosII = [ 30,50,60,77,20,8]        
   chart9II.data.datasets[0].data = nuevosDatosII;
   chart9II.update() 
-  var nuevosDatosIII = [ 5,17,8,30,44,10]
+  let nuevosDatosIII = [ 5,17,8,30,44,10]
   chart10II.data.datasets[0].data = nuevosDatosIII;
   chart10II.update()
-  var nuevosDatosIIII = [ 11,50,20,80,10,100]
+  let nuevosDatosIIII = [ 11,50,20,80,10,100]
   chart11II.data.datasets[0].data = nuevosDatosIIII; 
   chart11II.update() 
-  var nuevosDatosV = [ 5,17,33,45,51,57,67,99]
+  let nuevosDatosV = [ 5,17,33,45,51,57,67,99]
   chart12II.data.datasets[0].data = nuevosDatosV;
   chart12II.update() 
 }
@@ -311,24 +311,24 @@ function updateMario() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 100,20,70,10,80,90]
+  let nuevosDatos = [ 100,20,70,10,80,90]
   
   chart7.data.datasets[0].data = nuevosDatos;
   chart7.update()
 
-  var nuevosDatosI = [ 30,25,90,110,50,77]
+  let nuevosDatosI = [ 30,25,90,110,50,77]
   chart8.data.datasets[0].data = nuevosDatosI;
   chart8.update()
-  var nuevosDatosII = [ 100,90,10,30,70,10]
+  let nuevosDatosII = [ 100,90,10,30,70,10]
   chart9.data.datasets[0].data = nuevosDatosII;
   chart9.update() 
-  var nuevosDatosIII = [ 99,11,70,47,17,80]
+  let nuevosDatosIII = [ 99,11,70,47,17,80]
   chart10.data.datasets[0].data = nuevosDatosIII;
   chart10.update()
-  var nuevosDatosIIII = [ 10,80,50,20,90,40]
+  let nuevosDatosIIII = [ 10,80,50,20,90,40]
   chart11.data.datasets[0].data = nuevosDatosIIII;
   chart11.update() 
-  var nuevosDatosV = [ 55,67,73,70,65,80,80,91]
+  let nuevosDatosV = [ 55,67,73,70,65,80,80,91]
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update() 
 }
@@ -339,22 +339,22 @@ function updateMarioII() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 100,20,70,10,80,90]
+  let nuevosDatos = [ 100,20,70,10,80,90]
   chart7II.data.datasets[0].data = nuevosDatos;
   chart7II.update()
-  var nuevosDatosI = [ 30,25,90,110,50,77]
+  let nuevosDatosI = [ 30,25,90,110,50,77]
   chart8II.data.datasets[0].data = nuevosDatosI;
   chart8II.update()
-  var nuevosDatosII = [ 100,90,10,30,70,10]
+  let nuevosDatosII = [ 100,90,10,30,70,10]
   chart9II.data.datasets[0].data = nuevosDatosII;
   chart9II.update() 
-  var nuevosDatosIII = [ 99,11,70,47,17,80]
+  let nuevosDatosIII = [ 99,11,70,47,17,80]
   chart10II.data.datasets[0].data = nuevosDatosIII;
   chart10II.update()
-  var nuevosDatosIIII = [ 10,80,50,20,90,40]
+  let nuevosDatosIIII = [ 10,80,50,20,90,40]
   chart11II.data.datasets[0].data = nuevosDatosIIII;
   chart11II.update() 
-  var nuevosDatosV = [ 55,67,73,70,65,80,80,91]
+  let nuevosDatosV = [ 55,67,73,70,65,80,80,91]
   chart12II.data.datasets[0].data = nuevosDatosV;
   chart12II.update() 
 }
@@ -365,22 +365,22 @@ function updateSandra() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 33,20,100,50,80,10]
+  let nuevosDatos = [ 33,20,100,50,80,10]
   chart7.data.datasets[0].data = nuevosDatos;
   chart7.update()
-  var nuevosDatosI = [ 30,75,20,100,50,17]
+  let nuevosDatosI = [ 30,75,20,100,50,17]
   chart8.data.datasets[0].data = nuevosDatosI;
   chart8.update()
-  var nuevosDatosII = [ 33,50,30,90,100,5]
+  let nuevosDatosII = [ 33,50,30,90,100,5]
   chart9.data.datasets[0].data = nuevosDatosII;
   chart9.update() 
-  var nuevosDatosIII = [ 9,5,70,97,37,60]
+  let nuevosDatosIII = [ 9,5,70,97,37,60]
   chart10.data.datasets[0].data = nuevosDatosIII;
   chart10.update()
-  var nuevosDatosIIII = [ 30,40,250,600,45,800]
+  let nuevosDatosIIII = [ 30,40,250,600,45,800]
   chart11.data.datasets[0].data = nuevosDatosIIII;
   chart11.update() 
-  var nuevosDatosV = [ 50,37,33,17,51,77,67,70]
+  let nuevosDatosV = [ 50,37,33,17,51,77,67,70]
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update()  
 }
@@ -391,22 +391,22 @@ function updateSandraII() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 33,20,100,50,80,10]
+  let nuevosDatos = [ 33,20,100,50,80,10]
   chart7II.data.datasets[0].data = nuevosDatos;
   chart7II.update()
-  var nuevosDatosI = [ 30,75,20,100,50,17]
+  let nuevosDatosI = [ 30,75,20,100,50,17]
   chart8II.data.datasets[0].data = nuevosDatosI;
   chart8II.update()
-  var nuevosDatosII = [ 33,50,30,90,100,5]
+  let nuevosDatosII = [ 33,50,30,90,100,5]
   chart9II.data.datasets[0].data = nuevosDatosII;
   chart9II.update() 
-  var nuevosDatosIII = [ 9,5,70,97,37,60]
+  let nuevosDatosIII = [ 9,5,70,97,37,60]
   chart10II.data.datasets[0].data = nuevosDatosIII;
   chart10II.update()
-  var nuevosDatosIIII = [ 30,40,250,600,45,800]
+  let nuevosDatosIIII = [ 30,40,250,600,45,800]
   chart11II.data.datasets[0].data = nuevosDatosIIII;
   chart11II.update() 
-  var nuevosDatosV = [ 50,37,33,17,51,77,67,70]
+  let nuevosDatosV = [ 50,37,33,17,51,77,67,70]
   chart12II.data.datasets[0].data = nuevosDatosV;
   chart12II.update()  
 }
@@ -417,22 +417,22 @@ function updateJesus() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 10,100,10,20,50,90]
+  let nuevosDatos = [ 10,100,10,20,50,90]
   chart7.data.datasets[0].data = nuevosDatos;
   chart7.update()  
-  var nuevosDatosI = [ 100,50,10,100,50,17]
+  let nuevosDatosI = [ 100,50,10,100,50,17]
   chart8.data.datasets[0].data = nuevosDatosI;
   chart8.update()
-  var nuevosDatosII = [ 10,100,50,30,10,90]
+  let nuevosDatosII = [ 10,100,50,30,10,90]
   chart9.data.datasets[0].data = nuevosDatosII;
   chart9.update() 
-  var nuevosDatosIII = [ 9,90,70,47,87,10]
+  let nuevosDatosIII = [ 9,90,70,47,87,10]
   chart10.data.datasets[0].data = nuevosDatosIII;
   chart10.update()
-  var nuevosDatosIIII = [ 100,8,50,70,30,10]
+  let nuevosDatosIIII = [ 100,8,50,70,30,10]
   chart11.data.datasets[0].data = nuevosDatosIIII;
   chart11.update()
-  var nuevosDatosV = [ 33,37,33,77,45,77,80,87]  
+  let nuevosDatosV = [ 33,37,33,77,45,77,80,87]  
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update()   
 }
@@ -443,22 +443,22 @@ function updateJesusII() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 10,100,10,20,50,90]
+  let nuevosDatos = [ 10,100,10,20,50,90]
   chart7II.data.datasets[0].data = nuevosDatos;
   chart7II.update()  
-  var nuevosDatosI = [ 100,50,10,100,50,17]
+  let nuevosDatosI = [ 100,50,10,100,50,17]
   chart8II.data.datasets[0].data = nuevosDatosI;
   chart8II.update()
-  var nuevosDatosII = [ 10,100,50,30,10,90]
+  let nuevosDatosII = [ 10,100,50,30,10,90]
   chart9II.data.datasets[0].data = nuevosDatosII;
   chart9II.update() 
-  var nuevosDatosIII = [ 9,90,70,47,87,10]
+  let nuevosDatosIII = [ 9,90,70,47,87,10]
   chart10II.data.datasets[0].data = nuevosDatosIII;
   chart10II.update()
-  var nuevosDatosIIII = [ 100,8,50,70,30,10]
+  let nuevosDatosIIII = [ 100,8,50,70,30,10]
   chart11II.data.datasets[0].data = nuevosDatosIIII;
   chart11II.update()
-  var nuevosDatosV = [ 33,37,33,77,45,77,80,87]
+  let nuevosDatosV = [ 33,37,33,77,45,77,80,87]
   chart12II.data.datasets[0].data = nuevosDatosV;
   chart12II.update()   
 }
@@ -469,22 +469,22 @@ function updateJorge() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 10,20,50,10,10,5]
+  let nuevosDatos = [ 10,20,50,10,10,5]
   chart7.data.datasets[0].data = nuevosDatos;
   chart7.update()
-  var nuevosDatosI = [ 77,33,44,66,55,17]
+  let nuevosDatosI = [ 77,33,44,66,55,17]
   chart8.data.datasets[0].data = nuevosDatosI;
   chart8.update()
-  var nuevosDatosII = [ 50,5,5,10,100,77]
+  let nuevosDatosII = [ 50,5,5,10,100,77]
   chart9.data.datasets[0].data = nuevosDatosII;
   chart9.update() 
-  var nuevosDatosIII = [ 55,17,77,100,47,7]
+  let nuevosDatosIII = [ 55,17,77,100,47,7]
   chart10.data.datasets[0].data = nuevosDatosIII;
   chart10.update()
-  var nuevosDatosIIII = [ 44,99,17,77,10,5]
+  let nuevosDatosIIII = [ 44,99,17,77,10,5]
   chart11.data.datasets[0].data = nuevosDatosIIII;
   chart11.update() 
-  var nuevosDatosV = [ 100,37,55,77,77,77,81,99]
+  let nuevosDatosV = [ 100,37,55,77,77,77,81,99]
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update()  
 }
@@ -495,22 +495,22 @@ function updateJorgeII() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 10,20,50,10,10,5]
+  let nuevosDatos = [ 10,20,50,10,10,5]
   chart7II.data.datasets[0].data = nuevosDatos;
   chart7II.update()
-  var nuevosDatosI = [ 77,33,44,66,55,17]
+  let nuevosDatosI = [ 77,33,44,66,55,17]
   chart8II.data.datasets[0].data = nuevosDatosI;
   chart8II.update()
-  var nuevosDatosII = [ 50,5,5,10,100,77]
+  let nuevosDatosII = [ 50,5,5,10,100,77]
   chart9II.data.datasets[0].data = nuevosDatosII;
   chart9II.update() 
-  var nuevosDatosIII = [ 55,17,77,100,47,7]
+  let nuevosDatosIII = [ 55,17,77,100,47,7]
   chart10II.data.datasets[0].data = nuevosDatosIII;
   chart10II.update()
-  var nuevosDatosIIII = [ 44,99,17,77,10,5]
+  let nuevosDatosIIII = [ 44,99,17,77,10,5]
   chart11II.data.datasets[0].data = nuevosDatosIIII;
   chart11II.update() 
-  var nuevosDatosV = [ 100,37,55,77,77,77,81,99]
+  let nuevosDatosV = [ 100,37,55,77,77,77,81,99]
   chart12II.data.datasets[0].data = nuevosDatosV;
   chart12II.update()  
 }
@@ -521,22 +521,22 @@ function updateAndres() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 0,20,10,0,0,5]
+  let nuevosDatos = [ 0,20,10,0,0,5]
   chart7.data.datasets[0].data = nuevosDatos;
   chart7.update()
-  var nuevosDatosI = [ 7,3,4,6,5,7]
+  let nuevosDatosI = [ 7,3,4,6,5,7]
   chart8.data.datasets[0].data = nuevosDatosI;
   chart8.update()
-  var nuevosDatosII = [ 5,15,55,10,100,77]
+  let nuevosDatosII = [ 5,15,55,10,100,77]
   chart9.data.datasets[0].data = nuevosDatosII;
   chart9.update() 
-  var nuevosDatosIII = [ 0,17,37,50,97,27]
+  let nuevosDatosIII = [ 0,17,37,50,97,27]
   chart10.data.datasets[0].data = nuevosDatosIII;
   chart10.update()
-  var nuevosDatosIIII = [ 5,29,17,47,3,19]
+  let nuevosDatosIIII = [ 5,29,17,47,3,19]
   chart11.data.datasets[0].data = nuevosDatosIIII;
   chart11.update()
-  var nuevosDatosV = [ 77,37,55,41,33,77,50,60]
+  let nuevosDatosV = [ 77,37,55,41,33,77,50,60]
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update()  
 }
@@ -547,22 +547,22 @@ function updateAndresII() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 0,20,10,0,0,5]
+  let nuevosDatos = [ 0,20,10,0,0,5]
   chart7II.data.datasets[0].data = nuevosDatos;
   chart7II.update()
-  var nuevosDatosI = [ 7,3,4,6,5,7]
+  let nuevosDatosI = [ 7,3,4,6,5,7]
   chart8II.data.datasets[0].data = nuevosDatosI;
   chart8II.update()
-  var nuevosDatosII = [ 5,15,55,10,100,77]
+  let nuevosDatosII = [ 5,15,55,10,100,77]
   chart9II.data.datasets[0].data = nuevosDatosII;
   chart9II.update() 
-  var nuevosDatosIII = [ 0,17,37,50,97,27]
+  let nuevosDatosIII = [ 0,17,37,50,97,27]
   chart10II.data.datasets[0].data = nuevosDatosIII;
   chart10II.update()
-  var nuevosDatosIIII = [ 5,29,17,47,3,19]
+  let nuevosDatosIIII = [ 5,29,17,47,3,19]
   chart11II.data.datasets[0].data = nuevosDatosIIII;
   chart11II.update()
-  var nuevosDatosV = [ 77,37,55,41,33,77,50,60]
+  let nuevosDatosV = [ 77,37,55,41,33,77,50,60]
   chart12II.data.datasets[0].data = nuevosDatosV;
   chart12II.update()  
 }
@@ -573,22 +573,22 @@ function updateCarlos() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 17,99,44,0,7,5]
+  let nuevosDatos = [ 17,99,44,0,7,5]
   chart7.data.datasets[0].data = nuevosDatos;
   chart7.update()
-  var nuevosDatosI = [ 27,33,84,6,15,97]
+  let nuevosDatosI = [ 27,33,84,6,15,97]
   chart8.data.datasets[0].data = nuevosDatosI;
   chart8.update()
-  var nuevosDatosII = [ 15,5,55,90,100,17]
+  let nuevosDatosII = [ 15,5,55,90,100,17]
   chart9.data.datasets[0].data = nuevosDatosII;
   chart9.update() 
-  var nuevosDatosIII = [ 20,97,27,80,7,77]
+  let nuevosDatosIII = [ 20,97,27,80,7,77]
   chart10.data.datasets[0].data = nuevosDatosIII;
   chart10.update()
-  var nuevosDatosIIII = [ 50,91,17,77,33,89]
+  let nuevosDatosIIII = [ 50,91,17,77,33,89]
   chart11.data.datasets[0].data = nuevosDatosIIII
   chart11.update() 
-  var nuevosDatosV = [ 17,37,22,30,5,60,77,80]
+  let nuevosDatosV = [ 17,37,22,30,5,60,77,80]
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update()  
 }
@@ -599,22 +599,22 @@ function updateCarlosII() {
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
-  var nuevosDatos = [ 17,99,44,0,7,5]
+  let nuevosDatos = [ 17,99,44,0,7,5]
   chart7II.data.datasets[0].data = nuevosDatos
   chart7II.update()
-  var nuevosDatosI = [ 27,33,84,6,15,97]
+  let nuevosDatosI = [ 27,33,84,6,15,97]
   chart8II.data.datasets[0].data = nuevosDatosI
   chart8II.update()
-  var nuevosDatosII = [ 15,5,55,90,100,17]
+  let nuevosDatosII = [ 15,5,55,90,100,17]
   chart9II.data.datasets[0].data = nuevosDatosII
   chart9II.update() 
-  var nuevosDatosIII = [ 20,97,27,80,7,77]
+  let nuevosDatosIII = [ 20,97,27,80,7,77]
   chart10II.data.datasets[0].data = nuevosDatosIII;
   chart10II.update()
-  var nuevosDatosIIII = [ 50,91,17,77,33,89]  
+  let nuevosDatosIIII = [ 50,91,17,77,33,89]  
   chart11II.data.datasets[0].data = nuevosDatosIIII; 
   chart11II.update() 
-  var nuevosDatosV = [ 17,37,22,30,5,60,77,80]
+  let nuevosDatosV = [ 17,37,22,30,5,60,77,80]
   chart12II.data.datasets[0].data = nuevosDatosV
   chart12II.update()  
 }
@@ -739,7 +739,7 @@ function actualizarDatosII() {
 
   intervaloActualizarII = setInterval(function() {
     [nuevosDatos, nuevosDatosI, nuevosDatosII, nuevosDatosIII, nuevosDatosIIII, nuevosDatosV].forEach(function(array, index) {
-      for (var i = 0; i < array.length; i++) {
+      for (let i = 0; i < array.length; i++) {
         array[i] += 17;
         if (array[i] > 100) {
           array[i] = 0;   
@@ -758,9 +758,9 @@ function actualizarDatosII() {
   }, 1000);
 }
 function deslizaMosaicoII(idElement) {
-  var contLinkMant = document.getElementById('linksMA')
-  var elementoAnterior = null;
-  var elementoActual = null;
+  let contLinkMant = document.getElementById('linksMA')
+  let elementoAnterior = null;
+  let elementoActual = null;
 
   if (contLinkMant !== null && contImgEntrenos !== null) {
     contLinkMant.style.display = 'none'
@@ -770,17 +770,17 @@ function deslizaMosaicoII(idElement) {
   if (!arrayPosicionnador.includes(idElement)) {
     arrayPosicionnador.push(idElement)
   }
-  var contenedor = document.getElementById(idElement)  
+  let contenedor = document.getElementById(idElement)  
   contenedor.style.display = 'flex'
   contenedor.style.left = '257px'
-  var inicio = 1100;
-  var velocidad = 500;
-  var duracion = Math.abs(destino - inicio) / velocidad * 100;
-  var inicioTiempo = null;
+  let inicio = 1100;
+  let velocidad = 500;
+  let duracion = Math.abs(destino - inicio) / velocidad * 100;
+  let inicioTiempo = null;
   function animar(tiempo) {
     if (!inicioTiempo) inicioTiempo = tiempo;
-    var progreso = (tiempo - inicioTiempo) / duracion;
-    var izquierda = inicio + progreso * (destino - inicio)
+    let progreso = (tiempo - inicioTiempo) / duracion;
+    let izquierda = inicio + progreso * (destino - inicio)
     if (progreso < 1) {
       contenedor.style.left = izquierda + 'px'
       requestAnimationFrame(animar)
@@ -790,14 +790,14 @@ function deslizaMosaicoII(idElement) {
   }
   requestAnimationFrame(animar)
 
-  for (var i = 1; i < arrayPosicionnador.length; i++) {
-    var elementoActual = document.getElementById(arrayPosicionnador[i])
-    var elementoAnterior = document.getElementById(arrayPosicionnador[i - 1])
+  for (let i = 1; i < arrayPosicionnador.length; i++) {
+    let elementoActual = document.getElementById(arrayPosicionnador[i])
+    let elementoAnterior = document.getElementById(arrayPosicionnador[i - 1])
 
     if (elementoActual && elementoAnterior) {
-      var estiloAnterior = window.getComputedStyle(elementoAnterior)
-      var posicionAnterior = parseFloat(estiloAnterior.getPropertyValue('left'))
-      var anchoAnterior = parseFloat(estiloAnterior.getPropertyValue('width'))
+      let estiloAnterior = window.getComputedStyle(elementoAnterior)
+      let posicionAnterior = parseFloat(estiloAnterior.getPropertyValue('left'))
+      let anchoAnterior = parseFloat(estiloAnterior.getPropertyValue('width'))
 
       destino = posicionAnterior + anchoAnterior;
     }
@@ -805,11 +805,11 @@ function deslizaMosaicoII(idElement) {
 
 }
 function ampliaIndicaciones(index) {
-  var botonConico = document.getElementById('bot-indicacionesII')
-  var indicEjeI = document.getElementById('indicaciones-conico')
-  var indicEje = document.getElementById('indicaciones-eje') 
-  var conico = document.getElementById('conico')
-  var eje = document.getElementById('eje')
+  let botonConico = document.getElementById('bot-indicacionesII')
+  let indicEjeI = document.getElementById('indicaciones-conico')
+  let indicEje = document.getElementById('indicaciones-eje') 
+  let conico = document.getElementById('conico')
+  let eje = document.getElementById('eje')
 
   switch (index) {
     case 'eje':
@@ -842,10 +842,10 @@ function ampliaIndicaciones(index) {
   }
 }
 function ocultarIndicaciones(idIndicador) {
-  var indicEjeI = document.getElementById('indicaciones-conico')
-  var indicEje = document.getElementById('indicaciones-eje')
-  var conico = document.getElementById('conico')
-  var eje = document.getElementById('eje')
+  let indicEjeI = document.getElementById('indicaciones-conico')
+  let indicEje = document.getElementById('indicaciones-eje')
+  let conico = document.getElementById('conico')
+  let eje = document.getElementById('eje')
 
   switch(idIndicador) {
     case 'eje':
@@ -870,15 +870,16 @@ function ocultarIndicaciones(idIndicador) {
 }
 
 function rodillosKaizen(idButton,vidElem) {
-  var buttsTerceros = document.getElementsByClassName('butt-mautonomo-planos') 
-  var imgsEstudio = document.getElementById('mejoras-kai')
-  var contMateriales = document.getElementById('materiales-kaizen')
-  var contplanosKaizen = document.getElementById('planos-kaizen')
-  var videoKaizen = document.getElementById('videoElem')
-  var imgsPlanos = document.getElementsByClassName('imgs-Planos')
-  var contBotKaizen = document.getElementById('conti-boton-kaizen')
-  var conPlanos = document.getElementById('planos-kaizen')
-  var bton12 = document.getElementById('btn12')
+  let buttsTerceros = document.getElementsByClassName('butt-mautonomo-planos') 
+  let imgsEstudio = document.getElementById('mejoras-kai')
+  let contMateriales = document.getElementById('materiales-kaizen')
+  let contplanosKaizen = document.getElementById('planos-kaizen')
+  let elementosExcluidos; 
+  let videoKaizen = document.getElementById('videoElem')
+  let imgsPlanos = document.getElementsByClassName('imgs-Planos')
+  let contBotKaizen = document.getElementById('conti-boton-kaizen')
+  let conPlanos = document.getElementById('planos-kaizen')
+  let bton12 = document.getElementById('btn12')
   fichaTecnica.style.zIndex=''
   if (bton12 !== null) {
     bton12.style.backgroundColor = '' 
@@ -887,9 +888,9 @@ function rodillosKaizen(idButton,vidElem) {
   }
   switch(idButton){
     case 'btn10':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','toyota-kaizen']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i])  
+      elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','toyota-kaizen']  
+      for (let i = 0; i < allContenedores.length; i++) { 
+        let elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
@@ -897,9 +898,9 @@ function rodillosKaizen(idButton,vidElem) {
       container1.style.display='grid'
       contiButtRepuest.style.display='grid'
       if(screenWidth < 500){
-        for (var i = 0; i < buttsToyota.length; i++) {
-          var elemento = document.getElementById(buttsToyota[i])      
-          var estiloDisplay = window.getComputedStyle(elemento).getPropertyValue('display')
+        for (let i = 0; i < buttsToyota.length; i++) {
+          let elemento = document.getElementById(buttsToyota[i])      
+          let estiloDisplay = window.getComputedStyle(elemento).getPropertyValue('display')
           elemento.style.display = 'none'
         }
         imgsEstudio.classList.remove('move-casos')        
@@ -926,11 +927,11 @@ function rodillosKaizen(idButton,vidElem) {
           }, 1910);  
         });
       } else{               
-      for (var i = 0; i < buttsToyota.length; i++) {
-        var elemento = document.getElementById(buttsToyota[i])      
+      for (let i = 0; i < buttsToyota.length; i++) {
+        let elemento = document.getElementById(buttsToyota[i])      
         if (elemento) {
           // Accede a la propiedad 'display' utilizando window.getComputedStyle
-          var estiloDisplay = window.getComputedStyle(elemento).getPropertyValue('display')       
+          let estiloDisplay = window.getComputedStyle(elemento).getPropertyValue('display')       
           // Verifica si la propiedad 'display' es 'none' y cámbiala a 'flex' si es necesario
           if (estiloDisplay === 'none') {
             elemento.style.display = 'flex'
@@ -944,9 +945,9 @@ function rodillosKaizen(idButton,vidElem) {
     } 
     break;
     case 'btn11':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-planos','conti-boton-kaizen']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i])  
+      elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-planos','conti-boton-kaizen']  
+      for (let i = 0; i < allContenedores.length; i++) { 
+        let elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
@@ -954,25 +955,25 @@ function rodillosKaizen(idButton,vidElem) {
       container1.style.display='grid' 
       contiButtRepuest.style.display='grid'
       ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      for (var i = 0; i < arrayButtsPlanos.length; i++) {                                                                            /// OCULTA TERCEROS BOTONES
-        var elemento = document.getElementById(arrayButtsPlanos[i])
+      for (let i = 0; i < arrayButtsPlanos.length; i++) {                                                                            /// OCULTA TERCEROS BOTONES
+        let elemento = document.getElementById(arrayButtsPlanos[i])
         if (elemento) {
           elemento.style.display = 'none'
         }
       }
     break; 
     case 'btn12':
-      var miBot = document.getElementById('btn12')
-      var videoKaizen = document.getElementById('vidElem')
-      var contBotKaizen = document.getElementById('conti-boton-kaizen')            
+      let miBot = document.getElementById('btn12')
+      let videoKaizen = document.getElementById('vidElem')
+      let contBotKaizen = document.getElementById('conti-boton-kaizen')            
       contadorClicks++;
       console.log(contadorClicks)
       if (contadorClicks === 1) {
         miBot.innerText = 'ANTES';
         miBot.style.backgroundColor = 'red' 
-        var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','conti-boton-planos','toyota-kaizen-antes']
-        for (var i = 0; i < allContenedores.length; i++) { 
-          var elemento = document.getElementById(allContenedores[i])  
+        let elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','conti-boton-planos','toyota-kaizen-antes']
+        for (let i = 0; i < allContenedores.length; i++) { 
+          let elemento = document.getElementById(allContenedores[i])  
           if (elemento) {
             elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
           }
@@ -983,9 +984,9 @@ function rodillosKaizen(idButton,vidElem) {
       } else if (contadorClicks === 2) {
           miBot.innerText = 'DESPUES';
           miBot.style.backgroundColor = 'green' 
-          var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','conti-boton-planos','kaizenCont','vidElem']  
-          for (var i = 0; i < allContenedores.length; i++) { 
-            var elemento = document.getElementById(allContenedores[i])  
+          let elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','conti-boton-planos','kaizenCont','vidElem']  
+          for (let i = 0; i < allContenedores.length; i++) { 
+            let elemento = document.getElementById(allContenedores[i])  
             if (elemento) {
               elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
             }
@@ -1020,8 +1021,8 @@ function rodillosKaizen(idButton,vidElem) {
             document.getElementById('conti-boton-kaizen').style.display='flex'
           }
         }
-      for (var i = 0; i < buttsTerceros.length; i++) {
-        var boton = buttsTerceros[i]
+      for (let i = 0; i < buttsTerceros.length; i++) {
+        let boton = buttsTerceros[i]
         setTimeout(function(currentBoton) { 
           return function() {
             currentBoton.style.display = 'block'
@@ -1036,9 +1037,9 @@ function rodillosKaizen(idButton,vidElem) {
       }       
     break;
     case 'btn13':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','planos-kaizen','conteneMantaut','conti-boton-kaizen','conti-boton-planos']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i])  
+      elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','planos-kaizen','conteneMantaut','conti-boton-kaizen','conti-boton-planos']  
+      for (let i = 0; i < allContenedores.length; i++) { 
+        let elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
@@ -1046,14 +1047,14 @@ function rodillosKaizen(idButton,vidElem) {
       container1.style.display='grid'
       contiButtRepuest.style.display='grid'
       Array.from(buttsTerceros).forEach(elemento => { 
-        var element = document.getElementById(elemento.id)
+        let element = document.getElementById(elemento.id)
         if (element) {
           element.style.display = 'inline-block'
         }
       })
       conPlanos.style.display = 'flex'
-      for(var i = 0; i < imgsPlanos.length; i ++ ){
-        var elto = imgsPlanos[i]
+      for(let i = 0; i < imgsPlanos.length; i ++ ){
+        let elto = imgsPlanos[i]
         if(elto){
           elto.style.display = 'flex'
         }
@@ -1061,9 +1062,9 @@ function rodillosKaizen(idButton,vidElem) {
       contplanosKaizen.style.display = 'flex'
     break;  
     case 'btn14':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','materiales-kaizen','conteneMantaut','conti-boton-kaizen','conti-boton-planos']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i])  
+      elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','materiales-kaizen','conteneMantaut','conti-boton-kaizen','conti-boton-planos']  
+      for (let i = 0; i < allContenedores.length; i++) { 
+        let elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
@@ -1072,7 +1073,7 @@ function rodillosKaizen(idButton,vidElem) {
       contiButtRepuest.style.display='grid'
       ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       Array.from(buttsTerceros).forEach(elemento => {                                                                                /// MOSTRAR BOTONES TERCEROS
-        var element = document.getElementById(elemento.id) // Aquí asumo que cada elemento tiene un atributo 'id'
+        let element = document.getElementById(elemento.id) // Aquí asumo que cada elemento tiene un atributo 'id'
         if (element) {
           element.style.display = 'inline-block'
         }
@@ -1080,9 +1081,9 @@ function rodillosKaizen(idButton,vidElem) {
       contMateriales.style.display = 'flex'
     break;  
     case 'btn15':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-planos','conti-boton-kaizen']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i])  
+      elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-planos','conti-boton-kaizen']  
+      for (let i = 0; i < allContenedores.length; i++) { 
+        let elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
@@ -1091,16 +1092,16 @@ function rodillosKaizen(idButton,vidElem) {
       contiButtRepuest.style.display='grid'
       ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       Array.from(buttsTerceros).forEach(elemento => {                                                                                /// MOSTRAR BOTONES TERCEROS
-        var element = document.getElementById(elemento.id) // Aquí asumo que cada elemento tiene un atributo 'id'
+        let element = document.getElementById(elemento.id) // Aquí asumo que cada elemento tiene un atributo 'id'
         if (element) {
           element.style.display = 'inline-block'
         }
       })
     break;
     case 'btn17':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen']  
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i])  
+      elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen']  
+      for (let i = 0; i < allContenedores.length; i++) { 
+        let elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
@@ -1164,13 +1165,13 @@ function apilarCasos() {
   }, 200);
 }
 function transicionImagenes() {
-  var casoEstudio = document.getElementById('casos-kaizen')
-  var index = 0;
+  let casoEstudio = document.getElementById('casos-kaizen')
+  let index = 0;
   casoEstudio.style.display = 'none'
 
     function ocultarSiguienteImagen() {
-        var imageId = buttsToyota[index]
-        var image = document.getElementById(imageId)
+        let imageId = buttsToyota[index]
+        let image = document.getElementById(imageId)
         if (image) {
           image.style.display = 'none'
         }
@@ -1178,7 +1179,7 @@ function transicionImagenes() {
         if (index < buttsToyota.length) {
           setTimeout(ocultarSiguienteImagen, 150)
         } else {
-          var imgToyota = document.getElementById('toyota7')   
+          let imgToyota = document.getElementById('toyota7')   
           imgToyota.style.display = 'flex'
         }
     }
@@ -1201,12 +1202,12 @@ function mostrarBotonConRetardo(index) {
   }
 }
 function showButtonsKaizenRetraso() {
-  var contiButtsKaizen = document.getElementById('conti-boton-kaizen')
+  let contiButtsKaizen = document.getElementById('conti-boton-kaizen')
   contiButtsKaizen.style.display = 'flex'
   function mostrarConRetraso(i) {
     if (i < arrayButtsKaizen.length) {
-      var botonId = arrayButtsKaizen[i]
-      var boton = document.getElementById(botonId)
+      let botonId = arrayButtsKaizen[i]
+      let boton = document.getElementById(botonId)
 
       if (boton) {
         boton.style.display = 'inline-block'
@@ -1221,12 +1222,12 @@ function showButtonsKaizenRetraso() {
   mostrarConRetraso(0) // Comienza desde el primer botón
 }
 function hideButtonsKaizenRetraso() {
-  var contiButtsKaizen = document.getElementById('conti-boton-kaizen')
+  let contiButtsKaizen = document.getElementById('conti-boton-kaizen')
   contiButtsKaizen.style.display = 'flex'
   function mostrarConRetraso(i) {
     if (i < arrayButtsKaizen.length) {
-      var botonId = arrayButtsKaizen[i]
-      var boton = document.getElementById(botonId)
+      let botonId = arrayButtsKaizen[i]
+      let boton = document.getElementById(botonId)
 
       if (boton) {
         boton.style.display = 'none'
@@ -1244,12 +1245,12 @@ function hideButtonsKaizenRetraso() {
   mostrarConRetraso(0) // Comienza desde el primer botón
 }
 function showButtonsPlanosRetraso() {
-  var contiButtsPlanos = document.getElementById('conti-boton-planos')
+  let contiButtsPlanos = document.getElementById('conti-boton-planos')
   contiButtsPlanos.style.display = 'flex'
   function mostrarConRetraso(i) {
     if (i < arrayButtsPlanos.length) {
-      var botonId = arrayButtsPlanos[i]
-      var boton = document.getElementById(botonId)
+      let botonId = arrayButtsPlanos[i]
+      let boton = document.getElementById(botonId)
 
       if (boton) {
         boton.style.display = 'inline-block' // o 'inline-block' según tus necesidades
@@ -1263,9 +1264,9 @@ function showButtonsPlanosRetraso() {
   mostrarConRetraso(0) // Comienza desde el primer botón
 }
 function tamaño100(){
-  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','troubleshooting','linksMA','linkLis']  
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
+  let elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton','troubleshooting','linksMA','linkLis']  
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
@@ -1301,7 +1302,7 @@ imagenesAumentar.forEach(image => {
   })
 })
 botones.forEach(function(boton) {
-var id = boton.getAttribute('id')
+let id = boton.getAttribute('id')
 alternarVisibilidad(id)
 }) 
 images.forEach(image => {
@@ -1347,7 +1348,7 @@ images.forEach((image, index) => {
     }, 400) 
   })
 })
-var chart = new Chart(miCanvas, {
+let chart = new Chart(miCanvas, {
     type: 'bar',    
     data: {
         labels: ['TROUBLESHOOTING', 'DEFECTOS TIPO 1', 'DEFECTOS TIPO 2', 'ADT', 'FUA', 'LUP'],
@@ -1393,7 +1394,7 @@ var chart = new Chart(miCanvas, {
       }
     }
 })
-var chart3 = new Chart(miCanvas2, {
+let chart3 = new Chart(miCanvas2, {
     type: 'bar',
     data: {
         labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
@@ -1440,7 +1441,7 @@ var chart3 = new Chart(miCanvas2, {
         }
     }
 })
-var chart4 = new Chart(miCanvas3, {
+let chart4 = new Chart(miCanvas3, {
     type: 'line',
     data: {
         labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
@@ -1487,7 +1488,7 @@ var chart4 = new Chart(miCanvas3, {
         }
     }
 })
-var chart5 = new Chart(miCanvas4, {
+let chart5 = new Chart(miCanvas4, {
   type: 'pie',
   data: {
       labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
@@ -1535,7 +1536,7 @@ var chart5 = new Chart(miCanvas4, {
     }
   }
 })
-var chart6 = new Chart(miCanvas5, {
+let chart6 = new Chart(miCanvas5, {
   type: 'bar',
   data: {
       labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
@@ -1584,7 +1585,7 @@ var chart6 = new Chart(miCanvas5, {
   }
 })
 
-var chart7 = new Chart(miCanvas6, { 
+let chart7 = new Chart(miCanvas6, { 
   type: 'bar',
   data: {
     labels: ['IDENTIFICADOS', 'CORREGIDOS', 'TIPO 1', 'TIPO 2'],
@@ -1641,7 +1642,7 @@ var chart7 = new Chart(miCanvas6, {
   }
 })
 
-var chart7II = new Chart(miCanvas6II, { 
+let chart7II = new Chart(miCanvas6II, { 
   type: 'bar',
   data: {
     labels: ['DEFECTOS IDENTIFICADOS', 'DEFECTOS CORREGIDOS', 'TIPO 1', 'TIPO 2'],
@@ -1706,7 +1707,7 @@ var chart7II = new Chart(miCanvas6II, {
   }
 });
 
-var chart8 = new Chart(miCanvas7, {
+let chart8 = new Chart(miCanvas7, {
   type: 'bar',
   data: {
     labels: ['Propuestas', 'Ejecutadas','Entrenadas'],
@@ -1763,7 +1764,7 @@ var chart8 = new Chart(miCanvas7, {
   }
 })
 
-var chart8II = new Chart(miCanvas7II, {
+let chart8II = new Chart(miCanvas7II, {
   type: 'bar',
   data: {
     labels: ['Propuestas', 'Ejecutadas','Entrenadas'],
@@ -1816,7 +1817,7 @@ var chart8II = new Chart(miCanvas7II, {
     }
   }
 })
-var chart9 = new Chart(miCanvas8, {
+let chart9 = new Chart(miCanvas8, {
   type: 'line',
   data: {
     labels: ['Mecanicas', 'Layout','Diseño','Temporales','Fijas','Transicion'],
@@ -1874,7 +1875,7 @@ var chart9 = new Chart(miCanvas8, {
     }
   }
 })
-var chart9II = new Chart(miCanvas8II, {
+let chart9II = new Chart(miCanvas8II, {
   type: 'line',
   data: {
     labels: ['Mecanicas', 'Layout','Diseño','Temporales','Fijas','Transicion'],
@@ -1929,7 +1930,7 @@ var chart9II = new Chart(miCanvas8II, {
     }
   }
 })
-var chart10 = new Chart(miCanvas9, {
+let chart10 = new Chart(miCanvas9, {
   type: 'doughnut',
   data: {
     labels: ['Mecanicas', 'Layout','Diseño','Temporales','Fijas'],
@@ -1985,7 +1986,7 @@ var chart10 = new Chart(miCanvas9, {
     }
   }
 })
-var chart10II = new Chart(miCanvas9II, {
+let chart10II = new Chart(miCanvas9II, {
   type: 'doughnut',
   data: {
     labels: ['Mecanicas', 'Layout','Diseño','Temporales','Fijas'],
@@ -2040,7 +2041,7 @@ var chart10II = new Chart(miCanvas9II, {
     }
   }
 })
-var chart11 = new Chart(miCanvas10, {
+let chart11 = new Chart(miCanvas10, {
   type: 'pie',
   data: {
     labels: ['LUP', 'DEF 1','DEF 2','ADA','ADT'],
@@ -2096,7 +2097,7 @@ var chart11 = new Chart(miCanvas10, {
     }
   }
 })
-var chart11II = new Chart(miCanvas10II, {
+let chart11II = new Chart(miCanvas10II, {
   type: 'pie',
   data: {
     labels: ['LUP', 'DEF 1','DEF 2','ADA','ADT'],
@@ -2149,7 +2150,7 @@ var chart11II = new Chart(miCanvas10II, {
     }
   }
 })
-var chart12 = new Chart(miCanvas11, {
+let chart12 = new Chart(miCanvas11, {
   type: 'line',
   data: {
     labels: ['S1','S2','S3','S4','S5','S6','S7','S8'],
@@ -2206,7 +2207,7 @@ var chart12 = new Chart(miCanvas11, {
     }
   }
 });
-var chart12II = new Chart(miCanvas11II, {
+let chart12II = new Chart(miCanvas11II, {
   type: 'line',
   data: {
     labels: ['S1','S2','S3','S4','S5','S6','S7','S8'],
@@ -2308,8 +2309,8 @@ searchForm.addEventListener('submit', function (e) {
     break;  
     case 'plancha':  
     case 'porta plancha': 
-      for (var i = 0; i < allContenedores.length; i++) {
-        var elemento = document.getElementById(allContenedores[i])
+      for (let i = 0; i < allContenedores.length; i++) {
+        let elemento = document.getElementById(allContenedores[i])
         if (elemento) {
           elemento.style.display = 'none'
         }
@@ -2326,8 +2327,8 @@ searchForm.addEventListener('submit', function (e) {
     case 'mantilla': 
     case 'manta':      
     case 'porta mantilla': 
-    for (var i = 0; i < allContenedores.length; i++) {
-      var elemento = document.getElementById(allContenedores[i])
+    for (let i = 0; i < allContenedores.length; i++) {
+      let elemento = document.getElementById(allContenedores[i])
       if (elemento) {
         elemento.style.display = 'none'
       }
@@ -2337,8 +2338,8 @@ searchForm.addEventListener('submit', function (e) {
     case 'contra':      
     case 'contraPresion':
     case 'impresorImg':
-      for (var i = 0; i < allContenedores.length; i++) {
-        var elemento = document.getElementById(allContenedores[i])
+      for (let i = 0; i < allContenedores.length; i++) {
+        let elemento = document.getElementById(allContenedores[i])
         if (elemento) {
           elemento.style.display = 'none'
         }
@@ -2347,8 +2348,8 @@ searchForm.addEventListener('submit', function (e) {
     break;
     case 'empleados':
     case 'resultados':
-      for (var i = 0; i < allContenedores.length; i++) {
-        var elemento = document.getElementById(allContenedores[i])
+      for (let i = 0; i < allContenedores.length; i++) {
+        let elemento = document.getElementById(allContenedores[i])
         if (elemento) {
           elemento.style.display = 'none'
         }
@@ -2379,7 +2380,7 @@ canvasElements4.forEach(input => {
     toggleFullScreen(input)
   })
 })
-var colorClickLinks = document.querySelectorAll('.colorClick')
+let colorClickLinks = document.querySelectorAll('.colorClick')
   colorClickLinks.forEach(function (link) {
     link.addEventListener('click', function (event) {
       event.preventDefault()
@@ -2428,21 +2429,22 @@ function animateScroll(elementId) {
     console.error(`Element with ID ${elementId} not found.`);
   }
 }
-var canvas = document.getElementById("sinusoidalCanvas");         
-var ctx = canvas.getContext("2d");
+
+let canvas = document.getElementById("sinusoidalCanvas");         
+let ctx = canvas.getContext("2d");
 ctx.strokeStyle = "rgb(0, 255, 0)"; // Verde
 ctx.lineWidth = 1;
 drawSinusoidalI();
 function drawSinusoidalI() {
   // Ajusta la escala de la onda y el desplazamiento
-  var amplitude = 50; // Altura máxima de la onda
-  var frequency = 0.05; // Frecuencia de la onda
-  var phase = 0; // Desplazamiento horizontal
+  let amplitude = 50; // Altura máxima de la onda
+  let frequency = 0.05; // Frecuencia de la onda
+  let phase = 0; // Desplazamiento horizontal
   // Comienza el trazado de la onda
   ctx.beginPath();
-  for (var x = 0; x < canvas.width; x++) {
+  for (let x = 0; x < canvas.width; x++) {
   // Calcula el valor y de la onda en función de x
-  var y = amplitude * Math.sin(frequency * x + phase);
+  let y = amplitude * Math.sin(frequency * x + phase);
   // Dibuja un segmento de la onda
   ctx.lineTo(x, canvas.height / 2 - y);
   }
@@ -2460,7 +2462,7 @@ function drawHorizontalAxisI() {
   ctx.lineTo(canvas.width, canvas.height / 2);
   ctx.stroke();
   // Dibuja las marcas y etiquetas en el eje horizontal
-  for (var x = 0; x <= canvas.width; x += 50) {
+  for (let x = 0; x <= canvas.width; x += 50) {
   ctx.beginPath();
   ctx.moveTo(x, canvas.height / 2 - 5);
   ctx.lineTo(x, canvas.height / 2 + 5);
@@ -2476,7 +2478,7 @@ function drawVerticalAxis() {
   ctx.lineTo(canvas.width / 2, canvas.height);
   ctx.stroke();
   // Dibuja las marcas y etiquetas en el eje vertical
-  for (var y = 0; y <= canvas.height; y += 50) {
+  for (let y = 0; y <= canvas.height; y += 50) {
   ctx.beginPath();
   ctx.moveTo(canvas.width / 2 - 5, y);
   ctx.lineTo(canvas.width / 2 + 5, y);
@@ -2485,8 +2487,8 @@ function drawVerticalAxis() {
   ctx.fillText(canvas.height / 2 - y, canvas.width / 2 - 30, y + 5);
   }
 }
-var canvasI = document.getElementById("diagonalCanvas");
-var dcx = canvasI.getContext("2d");
+let canvasI = document.getElementById("diagonalCanvas");
+let dcx = canvasI.getContext("2d");
 dcx.strokeStyle = "rgb(0,255,0)"; // Azul
 dcx.lineWidth = 1;
 drawDiagonalLine();
@@ -2512,7 +2514,7 @@ function drawHorizontalAxisII() {
   dcx.lineTo(canvasI.width, canvasI.height / 2);
   dcx.stroke();
   // Dibuja las marcas y etiquetas en el eje horizontal
-  for (var x = 0; x <= canvasI.width; x += 50) {
+  for (let x = 0; x <= canvasI.width; x += 50) {
   dcx.beginPath();
   dcx.moveTo(x, canvasI.height / 2 - 5);
   dcx.lineTo(x, canvasI.height / 2 + 5);
@@ -2528,7 +2530,7 @@ function drawVerticalAxisII() {
   dcx.lineTo(canvasI.width / 2, canvasI.height);
   dcx.stroke();
   // Dibuja las marcas y etiquetas en el eje vertical
-  for (var y = 0; y <= canvasI.height; y += 50) {
+  for (let y = 0; y <= canvasI.height; y += 50) {
   dcx.beginPath();
   dcx.moveTo(canvasI.width / 2 - 5, y);
   dcx.lineTo(canvasI.width / 2 + 5, y);
@@ -2537,8 +2539,8 @@ function drawVerticalAxisII() {
   dcx.fillText(canvasI.height / 2 - y, canvasI.width / 2 - 30, y + 5);
   }
 }
-var canvasII = document.getElementById("dualSinusoidalCanvas");
-var cdsc = canvasII.getContext("2d");
+let canvasII = document.getElementById("dualSinusoidalCanvas");
+let cdsc = canvasII.getContext("2d");
 cdsc.strokeStyle = "rgb(0, 255, 0)"; // Verde
 cdsc.lineWidth = 1;
 drawSinusoidalDoubleI(50, 0.05, 0);
@@ -2549,9 +2551,9 @@ drawGridI(4, 7);
 function drawSinusoidalDoubleI(amplitude, frequency, phase) {
   // Comienza el trazado de la onda
   cdsc.beginPath();
-  for (var x = 0; x < canvasII.width; x++) {
+  for (let x = 0; x < canvasII.width; x++) {
   // Calcula el valor y de la onda en función de x
-  var y = amplitude * Math.sin(frequency * x + phase);
+  let y = amplitude * Math.sin(frequency * x + phase);
   // Dibuja un segmento de la onda
   cdsc.lineTo(x, canvasII.height / 2 - y);
   }
@@ -2563,40 +2565,40 @@ function drawGridI(horizontalLinesI, verticalLinesI) {
   cdsc.strokeStyle = "rgb(0,255,0)"; // Gris
   cdsc.lineWidth = 1;
   // Dibuja líneas horizontales
-  for (var i = 1; i < horizontalLinesI; i++) {
-  var y = (i / horizontalLinesI) * canvasII.height;
+  for (let i = 1; i < horizontalLinesI; i++) {
+  let y = (i / horizontalLinesI) * canvasII.height;
   cdsc.beginPath();
   cdsc.moveTo(0, y);
   cdsc.lineTo(canvasII.width, y);
   cdsc.stroke();
   }
   // Dibuja líneas verticales
-  for (var j = 1; j < verticalLinesI; j++) {
-  var x = (j / verticalLinesI) * canvasII.width;
+  for (let j = 1; j < verticalLinesI; j++) {
+  let x = (j / verticalLinesI) * canvasII.width;
   cdsc.beginPath();
   cdsc.moveTo(x, 0);
   cdsc.lineTo(x, canvasII.height);
   cdsc.stroke();
   }
 }        
-var canvas = document.getElementById("tripleSinusoidalCanvas");
-var ctx = canvas.getContext("2d");
-ctx.strokeStyle = "rgb(255, 125, 0)"; // Verde
-ctx.lineWidth = 1;
+let canvasTriple = document.getElementById("tripleSinusoidalCanvas");
+let ctxx = canvasTriple.getContext("2d");
+ctxx.strokeStyle = "rgb(255, 125, 0)"; // Verde
+ctxx.lineWidth = 1;
 drawSinusoidalDouble(50, 0.05, 0);
-ctx.strokeStyle = "rgb(255, 0, 255)"; // Amarillo
-ctx.lineWidth = 1;
+ctxx.strokeStyle = "rgb(255, 0, 255)"; // Amarillo
+ctxx.lineWidth = 1;
 drawSinusoidalDouble(60, 0.05, Math.PI / 2); // Parámetros diferentes para la segunda onda
-ctx.strokeStyle = "rgb(255, 255, 0)"; // Azul
-ctx.lineWidth = 1;
+ctxx.strokeStyle = "rgb(255, 255, 0)"; // Azul
+ctxx.lineWidth = 1;
 drawSinusoidal(40, 0.1, Math.PI); // Parámetros diferentes para la tercera onda
 drawGrid(4, 7);
 function drawSinusoidal(amplitude, frequency, phase) {
 // Comienza el trazado de la onda
 ctx.beginPath();
-for (var x = 0; x < canvas.width; x++) {
+for (let x = 0; x < canvas.width; x++) {
 // Calcula el valor y de la onda en función de x
-var y = amplitude * Math.sin(frequency * x + phase);
+let y = amplitude * Math.sin(frequency * x + phase);
 // Dibuja un segmento de la onda
 ctx.lineTo(x, canvas.height / 2 - y);
 }
@@ -2606,9 +2608,9 @@ ctx.stroke();
 function drawSinusoidalDouble(amplitude, frequency, phase) {
   // Comienza el trazado de la onda
   ctx.beginPath();
-  for (var x = 0; x < canvas.width; x++) {
+  for (let x = 0; x < canvas.width; x++) {
   // Calcula el valor y de la onda en función de x
-  var y = amplitude * Math.sin(frequency * x + phase);
+  let y = amplitude * Math.sin(frequency * x + phase);
   // Dibuja un segmento de la onda
   ctx.lineTo(x, canvas.height / 2 - y);
   }
@@ -2620,36 +2622,35 @@ function drawGrid(horizontalLines, verticalLines) {
   ctx.strokeStyle = "rgb(150, 150, 150)"; // Gris
   ctx.lineWidth = 1;
   // Dibuja líneas horizontales
-  for (var i = 1; i < horizontalLines; i++) {
-  var y = (i / horizontalLines) * canvas.height;
+  for (let i = 1; i < horizontalLines; i++) {
+  let y = (i / horizontalLines) * canvas.height;
   ctx.beginPath();
   ctx.moveTo(0, y);
   ctx.lineTo(canvas.width, y);
   ctx.stroke();
   }
   // Dibuja líneas verticales
-  for (var j = 1; j < verticalLines; j++) {
-  var x = (j / verticalLines) * canvas.width;
+  for (let j = 1; j < verticalLines; j++) {
+  let x = (j / verticalLines) * canvas.width;
   ctx.beginPath();
   ctx.moveTo(x, 0);
   ctx.lineTo(x, canvas.height);
   ctx.stroke(); 
   }
 }
-var intervalId;
 function iniciarEventos() {
-  var contSinusoidales = document.getElementById('contMetrics')
-  var contCicodelicos = document.getElementById('botonesContainer')   
-  var colores = ['verde', 'rojo', 'amarillo', 'azul', 'violeta','magenta','gris','verdesat','cyan','purpura','anaranjado'] 
+  let contSinusoidales = document.getElementById('contMetrics')
+  let contCicodelicos = document.getElementById('botonesContainer')   
+  let colores = ['verde', 'rojo', 'amarillo', 'azul', 'violeta','magenta','gris','verdesat','cyan','purpura','anaranjado'] 
   // Inicia cada botón con un índice de inicio diferente
-  var botones = document.querySelectorAll('#botonesContainer .botoneras')
+  let botones = document.querySelectorAll('#botonesContainer .botoneras')
   botones.forEach(function (boton, index) {
     boton.dataset.indiceInicio = index;
   });
   function cambiarColor() {
     botones.forEach(function (boton) {
-      var indiceInicio = parseInt(boton.dataset.indiceInicio)
-      var indiceColor = (indiceInicio + 1) % colores.length
+      let indiceInicio = parseInt(boton.dataset.indiceInicio)
+      let indiceColor = (indiceInicio + 1) % colores.length
 
       // Cambia la clase de color del botón
       boton.classList.remove(...colores);
@@ -2667,23 +2668,22 @@ function iniciarEventos() {
 }
 function detenerEventos() {
   clearInterval(intervalId);
-  var contCicodelicos = document.getElementById('botonesContainer')  
+  let contCicodelicos = document.getElementById('botonesContainer')  
   contCicodelicos.style.left = '555px'
 }
 function iniciarTransito() {
-  var boton = document.getElementById("buttSolitario");
-  var stopFlag = false;
-  var anchoPantalla = window.innerWidth;
-  var altoPantalla = window.innerHeight - 37;
-  var duracion = 1000;
+  let boton = document.getElementById("buttSolitario");
+  let stopFlag = false;
+  let anchoPantalla = window.innerWidth;
+  let altoPantalla = window.innerHeight - 37;
+  let duracion = 1000;
 
   // 1. Array de colores
-  var colores = ['verde', 'rojo', 'amarillo', 'azul', 'violeta', 'magenta', 'gris', 'verdesat', 'cyan', 'purpura', 'anaranjado'];
+  let colores = ['verde', 'rojo', 'amarillo', 'azul', 'violeta', 'magenta', 'gris', 'verdesat', 'cyan', 'purpura', 'anaranjado'];
   // 2. Elemento del botón
-  var boton = document.getElementById("buttSolitario");
   // 3. Función para cambiar el color del botón con un intervalo
   function cambiarColorConIntervalo() {
-    var i = 0;
+    let i = 0;
     setInterval(function () {
       // Cambiar el color del botón
       boton.style.backgroundColor = colores[i];      
@@ -2756,10 +2756,10 @@ function detenerMovimiento() {
   stopFlag = true;
   clearTimeout(timeoutId);
 }
-var botonSolitario = document.getElementById('buttSolitario');
-var botonSeguidor = document.getElementById('boton2');
+let botonSolitario = document.getElementById('buttSolitario');
+let botonSeguidor = document.getElementById('boton2');
 const buttons = document.querySelectorAll('.buttons')  
-var contButtsAround = document.getElementById('button-container')
+let contButtsAround = document.getElementById('button-container')
 function moverBoton(boton, index) {
   const valoresLeft = ['-52px', '-104px', '-156px', '-208px', '-260px', '-312px', '-364px', '-416px', '-468px', '-520px', '-572px', '-624px', '-676px', '-728px', '-780px', '-832px', '-884px', '-936px', '-988px', '-1040px', '-1092px', '-1144px', '-1196px', '-1248px', '-1300px', '-1352px', '-1404px', '-1456px', '-1508px', '-1560px', '-1612px', '-1664px', '-1716px', '-1768px', '-1820px', '-1872px', '-1924px', '-1976px', '-2028px', '-2080px', '-2132px', '-2184px', '-2236px', '-2288px', '-2340px', '-2392px', '-2444px', '-2496px', '-2548px', '-2600px', '-2652px', '-2704px', '-2756px', '-2808px', '-2860px', '-2912px', '-2964px', '-3016px', '-3068px', '-3120px', '-3172px', '-3224px', '-3276px', '-3328px', '-3380px', '-3432px', '-3484px', '-3536px', '-3588px']
 
@@ -2993,7 +2993,7 @@ function transicionElementos() {
   contibotsDistri.classList.add('move-up')
   contVideo.classList.add('move-up-left')
 }
-var contOblicuosInicio = document.getElementById('cont-titulo')
+let contOblicuosInicio = document.getElementById('cont-titulo')
 function transitoInicio(){
   contOblicuosInicio.style.animation = "giro-y 1s linear";
   contOblicuosInicio.classList.add('move-images-IV');
@@ -3023,9 +3023,9 @@ function transicionElementosV(){
   buttRepuestV.classList.add('move-repuest-IV')
 }
 function volverApre(){
-  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','pre-prensa','imgs-prepress','primerCont','vidCicodelia']  
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
+  let elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','pre-prensa','imgs-prepress','primerCont','vidCicodelia']  
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
@@ -3106,7 +3106,7 @@ let degreesAmount = 0
 let zoomAmount = 100
 let blurAmount = 0
 let brightnessAmount = 1   
-var intervalId = null
+let intervalId = null
 let intervalId2 = null
 let intervalId3 = null
 let intervalId4 = null
@@ -3116,7 +3116,7 @@ let intervalId7 = null
 buttonLeft.addEventListener('mousedown', () => {
   if (!clickHabilitado) return; 
   intervalId = setInterval(() => {
-    var tituloElement = document.getElementById("titulo");
+    let tituloElement = document.getElementById("titulo");
     let currentLeft = parseFloat(window.getComputedStyle(button).left)        
     let newLeft = currentLeft + 2
     if(newLeft <= 2){
@@ -3379,9 +3379,9 @@ function mostrarInterfaz() {
   display.style.zIndex = '3'
 }
 function eliminarEstilosInline(elemento) {
-  var estilosAplicados = window.getComputedStyle(elemento)
-  for (var i = 0; i < estilosAplicados.length; i++) {
-    var propiedad = estilosAplicados[i];
+  let estilosAplicados = window.getComputedStyle(elemento)
+  for (let i = 0; i < estilosAplicados.length; i++) {
+    let propiedad = estilosAplicados[i];
     elemento.style[propiedad] = ""
   }
 }
@@ -3424,12 +3424,12 @@ function animateVideoWidthII(eltoHtml) {
 }
 function moveCursorToEnd(input) {
   // Obtener la longitud del texto en el input
-  var textLength = input.value.length;
+  let textLength = input.value.length;
   // Mover el cursor al final del input
   input.setSelectionRange(textLength, textLength); 
 } 
 function trasladarOblicuos(){
-  var contOblicuosXI = document.getElementById('agrupaOblicuos-XI');
+  let contOblicuosXI = document.getElementById('agrupaOblicuos-XI');
   contOblicuosXI.classList.add('move-oblicuos');
   console.log('se AGREGO la clase')
 }
@@ -3501,8 +3501,8 @@ function changeColorRedAndBack() {
   });
 }
 function dañarLogo() {
-  var imagenAyudas = document.getElementById('imagen-ayudas')
-  var imagenAyudasII = document.getElementById('imagen-ayudasII')
+  let imagenAyudas = document.getElementById('imagen-ayudas')
+  let imagenAyudasII = document.getElementById('imagen-ayudasII')
 
   imagenAyudas.style.display = 'none'
   setTimeout(() => {  
@@ -3516,7 +3516,7 @@ function dañarLogo() {
 }
 let ocultarTimer = null; 
 let isMouseOver = false;
-var conteElementos = document.getElementById('contenedorElementos');
+let conteElementos = document.getElementById('contenedorElementos');
 conteElementos.addEventListener('mouseover', () => {
   isMouseOver = true;
 });
@@ -3613,9 +3613,9 @@ const INTERVALOSHORIZONTALES = {
   intervaloXLVIII: null,
 }
 function barraInteligente() {
-  var elementosExcluidos = ['first_half','buscador','search-form','conteneMantaut','conti-boton','links-inicialesI','links-iniciales']  
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
+  let elementosExcluidos = ['first_half','buscador','search-form','conteneMantaut','conti-boton','links-inicialesI','links-iniciales']  
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
@@ -3791,7 +3791,7 @@ function reduccionHeightXV() {
 }
 function incrementoWidth() {
   imgWallStreetI.style.display = 'flex'
-  stopWidth === true
+  stopWidth = true
   INTERVALOS.intervaloXXXII = setInterval(() => {
     let currentWidth = parseFloat(window.getComputedStyle(imgWallStreetI).width) / parseFloat(window.getComputedStyle(imgWallStreetI.parentElement).width) * 100;
     imgWallStreetI.style.width = (currentWidth + 1) + '%';
@@ -3830,7 +3830,7 @@ function incrementoHeight(barra, pantalla, intervaloVariable, intervaloTiempo) {
       }
       if(barra.id === 'iniciador_5'){
         reduccionHeight(barraV, pantallaV,'intervaloV',30);
-    }
+      }
     } 
   }, intervaloTiempo);
 }
@@ -4081,7 +4081,7 @@ function incrementarBlur() {
   }, 100);
 }
 function eliminarBlur() {
-  var elementsWithBlur = [
+  let elementsWithBlur = [
     document.getElementById('first_half'),
     document.getElementById('cortina'),
     document.getElementById('second_half'),
@@ -4396,10 +4396,10 @@ function showMetrics(){
 }   
 function firstMovement(){
   stopWidth = false
-  var slider1 = document.getElementById('first_half')
-  var estilosAplicados = window.getComputedStyle(slider1)
-  for (var i = 0; i < estilosAplicados.length; i++) {
-    var propiedad = estilosAplicados[i];
+  let slider1 = document.getElementById('first_half')
+  let estilosAplicados = window.getComputedStyle(slider1)
+  for (let i = 0; i < estilosAplicados.length; i++) {
+    let propiedad = estilosAplicados[i];
     slider1.style[propiedad] = ""; // Establecer el estilo en una cadena vacía
   }
 
@@ -4412,17 +4412,17 @@ function firstMovement(){
   incrementoHeightXV()
 }
 function secondMovement(){
-  var padre = document.getElementById('nicho_spans');    
+  let padre = document.getElementById('nicho_spans');    
   if (padre) {
     padre.style.display = 'none';
-      var hijos = padre.children;
-    for (var i = 0; i < hijos.length; i++) {
+      let hijos = padre.children;
+    for (let i = 0; i < hijos.length; i++) {
       hijos[i].style.display = 'none';
     }
   }
-  var elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales']  
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
+  let elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales']  
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
@@ -4476,10 +4476,10 @@ function secondMovement(){
   incrementoWidthI()
 }  
 function thirdMovement(){
-  var slider1 = document.getElementById('wall_street_II')
-  var estilosAplicados = window.getComputedStyle(slider1)
-  for (var i = 0; i < estilosAplicados.length; i++) {
-    var propiedad = estilosAplicados[i];
+  let slider1 = document.getElementById('wall_street_II')
+  let estilosAplicados = window.getComputedStyle(slider1)
+  for (let i = 0; i < estilosAplicados.length; i++) {
+    let propiedad = estilosAplicados[i];
     slider1.style[propiedad] = ""; // Establecer el estilo en una cadena vacía
   }
 
@@ -4499,55 +4499,55 @@ function thirdMovement(){
   incrementoHeightVII()
 }
 function fourthMovement(){
-  var elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','wall_street_II','equalizer','buscador','search-form','cortina','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
+  let elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','wall_street_II','equalizer','buscador','search-form','cortina','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }
   container1.style.display='grid'
-  var padre = document.getElementById('equalizer');    
+  let padre = document.getElementById('equalizer');    
   if (padre) {
     padre.style = ''
-      var hijos = padre.children;
-    for (var i = 0; i < hijos.length; i++) {
+      let hijos = padre.children;
+    for (let i = 0; i < hijos.length; i++) {
       hijos[i].style = ''
     }
   }
   changeColorToGreen()
 }
 function fifthMovement(){
-  var elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','wall_street_II','equalizer','padre','buscador','search-form','cortina','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
+  let elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','wall_street_II','equalizer','padre','buscador','search-form','cortina','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }
   container1.style.display='grid'
-  var slider1 = document.getElementById('padre')
-  var estilosAplicados = window.getComputedStyle(slider1)
-  for (var i = 0; i < estilosAplicados.length; i++) {
-    var propiedad = estilosAplicados[i];
+  let slider1 = document.getElementById('padre')
+  let estilosAplicados = window.getComputedStyle(slider1)
+  for (let i = 0; i < estilosAplicados.length; i++) {
+    let propiedad = estilosAplicados[i];
     slider1.style[propiedad] = ""; // Establecer el estilo en una cadena vacía
   }
   inicioTracker()
 }
 function sixthMovement(){
-  var elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','wall_street_II','equalizer','padre','patern','buscador','search-form','cortina','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
+  let elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','wall_street_II','equalizer','padre','patern','buscador','search-form','cortina','conteneMantaut','conti-boton','links-inicialesI','links-iniciales'];
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }
   container1.style.display='grid'
-  var padre = document.getElementById('patern');    
+  let padre = document.getElementById('patern');    
   if (padre) {
     padre.style = ''
-      var hijos = padre.children;
-    for (var i = 0; i < hijos.length; i++) {
+      let hijos = padre.children;
+    for (let i = 0; i < hijos.length; i++) {
       hijos[i].style = ''
     }
   }
@@ -4615,9 +4615,9 @@ function moveElement(element, parent,frame) {
   }, speed * 2);
 }
 document.getElementById('butt-sitio').addEventListener('click', () => {
-  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
+  let elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
@@ -4696,14 +4696,14 @@ function cerrarVentanasII() {
 function cerrarPilares(){
   linkListI.style.display='none'
   linkList.style.display='none'
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i]);
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i]);
     if (elemento) {
       elemento.style.filter = '';
     }
   }
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i]);
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i]);
     if (elemento) {
       elemento.style.filter = '';
     }
@@ -4827,15 +4827,15 @@ function reponerEstilos(){
   document.getElementById('month-display').classList.remove('move-month')
   if(document.getElementById('dia')){document.getElementById('dia').style.display='none'}
 
-  var intervalos = [intervaloActualizar, intervaloActualizarII];
+  let intervalos = [intervaloActualizar, intervaloActualizarII];
   intervalos.forEach(function(intervalo) {
     if (intervalo) {
       clearInterval(intervalo);
     }
   });
   
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i]);
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i]);
     if (elemento) {
       elemento.style.filter = '';
     }
@@ -4882,8 +4882,8 @@ document.addEventListener('touchstart', (event) => {
   }
   let vinculos = document.getElementById('contenedorElementos')
   if(vinculos.style.display !== 'block'){
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var elemento = document.getElementById(allContenedores[i]) 
+    for (let i = 0; i < allContenedores.length; i++) { 
+      let elemento = document.getElementById(allContenedores[i]) 
       if (elemento) {
         elemento.style.filter = 'none';
       }
@@ -4902,8 +4902,8 @@ const elementosPrePren = document.querySelectorAll('#contenedorElementos .conte-
 let listadoPrePrensa = document.getElementById('contenedorElementos')
 listadoPrePrensa.addEventListener('mouseleave',() =>{
   listadoPrePrensa.style.display='none'
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i]);  
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i]);  
     if (elemento) {
       elemento.style.removeProperty('filter');
     }
@@ -4911,8 +4911,8 @@ listadoPrePrensa.addEventListener('mouseleave',() =>{
 })
 let subMenu = document.getElementById('segundaLista')
 subMenu.addEventListener('mouseleave',() =>{
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i]);  
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i]);  
     if (elemento) {
       elemento.style.removeProperty('filter');
     }
@@ -4940,9 +4940,9 @@ function openGraphics(elementId){
   desactivarClick(['.graphs-lines'])
 
   if(screenWidth > 500){
-    var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos']
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var elemento = document.getElementById(allContenedores[i])
+    let elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos']
+    for (let i = 0; i < allContenedores.length; i++) { 
+      let elemento = document.getElementById(allContenedores[i])
       if (elemento) {
         elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
       }   
