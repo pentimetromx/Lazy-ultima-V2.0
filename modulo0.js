@@ -205,6 +205,7 @@ const mediaDesktop = window.matchMedia('(pointer: fine) and (min-width: 1025px)'
 const interfazRRHH = document.querySelector('#padre-ingresos')
 const interfazMA = document.querySelector('#padre-ingresos-ma')
 const inputDocumentoEmpleado = document.querySelector('#numDoc1')
+const entradas = document.querySelectorAll('.entrada-empleado');
 
 let esDesktop = mediaDesktop.matches;
 
@@ -1830,7 +1831,6 @@ btnAgregar.addEventListener('click', agregarEmpleado);
 
 function limpiarEntradas() {
 
-  const entradas = document.querySelectorAll('.entrada-empleado');
   entradas.forEach(input => input.value = '');
 
 

@@ -1984,7 +1984,7 @@ function ingresoEmpleadoMA(){
 
       reUbicarElemento('calculadora', {
         display: 'grid',
-        left: '40vw',
+        left: '44vw',
         width: '40vw',
         top: '102vh',
         height: '45vh',
@@ -2136,8 +2136,9 @@ inputMA.addEventListener('input', (e) => {
 });
 
 inputMA.addEventListener('click', (e) => {
-  ubicaCalculadoraSegunContexto()
+  if(!esDesktop){ubicaCalculadoraSegunContexto()}
 });
+
 
 document.addEventListener('pointerdown', (e) => {
   if (esDesktop) return;
@@ -2145,7 +2146,11 @@ document.addEventListener('pointerdown', (e) => {
   const clickDentroCalculadora = calculadora.contains(e.target);
   const clickEnInput = inputMA.contains(e.target);
 
-  if (!clickDentroCalculadora && !clickEnInput) {
+  const clickEnItemsMA = [...entradas].some(el =>
+    el.contains(e.target)
+  );
+
+  if (!clickDentroCalculadora && !clickEnInput && !clickEnItemsMA) {
     hideCalculator();
   }
 });
@@ -4216,7 +4221,7 @@ function ubicaCalculadoraSegunContexto(){
     simulador.style.display='flex'
     calculadora.classList.remove('move-calculadora-1')
     calculadora.style.display='grid'
-    calculadora.style.left='40vw'
+    calculadora.style.left='44vw'
     calculadora.style.top='102vh' 
     calculadora.style.height='45vh'
     calculadora.style.width='40vw'
