@@ -206,6 +206,7 @@ const interfazRRHH = document.querySelector('#padre-ingresos')
 const interfazMA = document.querySelector('#padre-ingresos-ma')
 const inputDocumentoEmpleado = document.querySelector('#numDoc1')
 const entradas = document.querySelectorAll('.entrada-empleado');
+const botonBorrar = document.querySelector('#grid-numbers > div:nth-child(11)');
 
 let esDesktop = mediaDesktop.matches;
 
