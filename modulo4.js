@@ -2140,12 +2140,16 @@ inputMA.addEventListener('click', (e) => {
 });
 
 
+
+
+const contextoActivo = () =>[interfazRRHH, interfazMA].some(el => el && el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0);
+
 document.addEventListener('pointerdown', (e) => {
   if (esDesktop) return;
+  if (!contextoActivo()) return;
 
   const clickDentroCalculadora = calculadora.contains(e.target);
   const clickEnInput = inputMA.contains(e.target);
-
   const clickEnItemsMA = [...entradas].some(el =>
     el.contains(e.target)
   );
@@ -2154,7 +2158,6 @@ document.addEventListener('pointerdown', (e) => {
     hideCalculator();
   }
 });
-
 
 
 
@@ -3876,51 +3879,7 @@ function mostrarAlertaEnElemento(mensaje, top, left) {
   alerta.style.left = typeof left === 'number' ? `${left}px` : left;
 }
 mostrarAlertaEnElemento({mensaje: 'Ingrese solo valores numéricos',top: '70%',left: '40%'});
-// INICIA LOGICA PARA CALCULADORA EN TACTILES /************************************************************************************************* */
-function habilitarArrastre(elemento) {
-  const handle = elemento.querySelector('.drag-handle');
-  if (!handle) return;
 
-  let dragging = false;
-  let startX = 0, startY = 0;
-  let currentX = 0, currentY = 0;
-
-  handle.addEventListener('pointerdown', e => {
-    e.preventDefault();
-    dragging = true;
-    elemento.classList.add('dragging');
-
-    startX = e.clientX - currentX;
-    startY = e.clientY - currentY;
-
-    handle.setPointerCapture(e.pointerId);
-  });
-
-  handle.addEventListener('pointermove', e => {
-    if (!dragging) return;
-
-    currentX = e.clientX - startX;
-    currentY = e.clientY - startY;
-
-    elemento.style.transform =
-      `translate3d(${currentX}px, ${currentY}px, 0)`;
-  });
-
-  handle.addEventListener('pointerup', e => {
-    dragging = false;
-    elemento.classList.remove('dragging');
-    handle.releasePointerCapture(e.pointerId);
-  });
-
-  handle.addEventListener('pointercancel', () => {
-    dragging = false;
-    elemento.classList.remove('dragging');
-  });
-}
-if (!esDesktop) {
-  activarLogicaMobile();
-  habilitarArrastre(calculadora);
-}
 let inputActivo = null;
 function onFocusIn(e) {
   if (e.target.matches('.columna-izq-ma input, .columna-derecha input')) {
@@ -4059,24 +4018,20 @@ function createKeyboard(layout) {
         const input = lastFocusedInput;
 
         const deleteCharacter = () => {
-          const start = input.selectionStart;
-          const end = input.selectionEnd;
           const value = input.value;
 
-          if (start === end && start > 0) {
-            input.value =
-              value.slice(0, start - 1) + value.slice(end);
-            input.selectionStart =
-            input.selectionEnd = start - 1;
-          } else {
-            input.value =
-              value.slice(0, start) + value.slice(end);
-            input.selectionStart =
-            input.selectionEnd = start;
-          }
+          if (!value.length) return;
+
+          // elimina siempre el último carácter
+          input.value = value.slice(0, -1);
+
+          // coloca el cursor al final
+          const newLength = input.value.length;
+          input.selectionStart = input.selectionEnd = newLength;
 
           input.focus();
         };
+        
 
         const startPos = input.selectionStart;
         const endPos = input.selectionEnd;

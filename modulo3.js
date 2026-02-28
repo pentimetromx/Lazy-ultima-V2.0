@@ -10,7 +10,7 @@ document.addEventListener('keydown', function(event) {
         Geometria()
       break;
       case 'X':
-        ubicaCalculadoraSegunContexto()
+
       break;                  
     }
   }

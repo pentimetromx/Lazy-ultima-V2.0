@@ -9673,21 +9673,7 @@ top: 44%;
   #calculadora {
     touch-action: none;
     cursor: grab;
-  }
-
-  /* .move-calculadora-up{
-    transform: translateY(-51vh);
-    transition: transform 0.4s ease;
-  }
-  .move-calculadora-down{
-    transform: translateY(51vh);
-    transition: transform 0.4s ease;
-  } */
-  
-
-  #calculadora.dragging {
-    cursor: grabbing;
-  }
+  }  
   .columna-derecha > label,
   .fila-ingreso-ma > label,
   .fila-ingreso > label{
