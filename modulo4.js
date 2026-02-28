@@ -3922,6 +3922,7 @@ function onFocusIn(e) {
     inputActivo = e.target;
   }
 }
+
 function onGridClick(e) {  
   const boton = e.target;
 
@@ -3932,6 +3933,7 @@ function onGridClick(e) {
   const valor = boton.textContent.trim();
   inputActivo.value += valor;
 }
+
 function activarLogicaMobile() {
   document.addEventListener('focusin', onFocusIn);
   gridNumbers.addEventListener('click', onGridClick);

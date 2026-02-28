@@ -186,7 +186,6 @@ const buttsControl = document.querySelectorAll('.div-ctrl')
 const grupoBotsCrear = document.querySelectorAll('.jobs')
 const buttsColores = document.querySelectorAll('.cabeza')  
 const irAconsola = document.querySelector('#ir-consola')
-const gridDigitos = document.querySelector('#grid-numbers')
 const verdeAgua = 'rgb(127, 255, 212)'
 const rojo = 'rgba(255, 0, 0, 0.63)'
 const especial = 'rgb(255,130,0)' 
@@ -4978,7 +4977,7 @@ buttsJobs.forEach(boton => {
             calculadora.classList.remove('move-calculadora')
             calculadora.classList.remove('move-calculadora-1')
             setTimeout(() => {
-              document.querySelector('#grid-numbers').style.display = 'grid'
+              gridNumbers.style.display = 'grid'
               calculadora.classList.add('move-calculadora-1') 
             }, 100);
           }
@@ -5018,7 +5017,6 @@ listaLineas.forEach(linea => {
 });
 
 // BOTONES DE LA CALCULADORA
-
 digitos.forEach((elemento) => {
   elemento.addEventListener('click', (e) => {
     e.stopPropagation();    
@@ -5066,7 +5064,7 @@ digitos.forEach((elemento) => {
         digitos.forEach(d => d.style.pointerEvents = 'auto');  
       }, 200);
 
-    }else{
+    }else{ // CALCULADORA ESPECIAL
       if (!lastFocusedInput) return;
 
       const input = lastFocusedInput;
@@ -5193,11 +5191,71 @@ alertaNormal.forEach((alerta) => {
     reactivarClicEnElementos(digitos, buttsClientes);
   });
 });
-document.querySelector('#grid-numbers > div:nth-child(11)').addEventListener('click', () => {
+
+// BOTON BORRAR CALCULADORA
+
+const DELETE_INITIAL_DELAY = 400;
+const DELETE_REPEAT_RATE = 70;
+
+let deleteTimeout = null;
+let deleteInterval = null;
+
+const botonBorrar = document.querySelector(
+  '#grid-numbers > div:nth-child(11)'
+);
+
+botonBorrar.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+
   coleccionNumeros.length = 0;
-  actualizarDisplay();  
+  actualizarDisplay();
   detenerAlternarColor();
+
+  if (!esDesktop) {
+
+    // Define aquí el elemento REAL que quieres modificar
+    const target = lastFocusedInput; 
+    // o document.querySelector('#miDisplay');
+
+    if (!target) return;
+
+    const deleteFirstCharacter = () => {
+      const value = target.value ?? target.textContent ?? '';
+
+      if (!value.length) return;
+
+      const newValue = value.slice(1);
+
+      if ('value' in target) {
+        target.value = newValue;
+      } else {
+        target.textContent = newValue;
+      }
+    };
+
+    // borrado inmediato
+    deleteFirstCharacter();
+
+    // repetición progresiva
+    deleteTimeout = setTimeout(() => {
+      deleteInterval = setInterval(
+        deleteFirstCharacter,
+        DELETE_REPEAT_RATE
+      );
+    }, DELETE_INITIAL_DELAY);
+  }
 });
+
+const stopDeleting = () => {
+  clearTimeout(deleteTimeout);
+  clearInterval(deleteInterval);
+  deleteTimeout = null;
+  deleteInterval = null;
+};
+
+botonBorrar.addEventListener('touchend', stopDeleting);
+botonBorrar.addEventListener('touchcancel', stopDeleting);
+
 document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
   alertaMSG.style.display = 'none';
   document.querySelector('#job-files').style.display = 'none'
