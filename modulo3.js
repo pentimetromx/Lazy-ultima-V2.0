@@ -370,17 +370,20 @@ setInterval(updateDigitalClock, 1000);
 updateDigitalClock(); // Llamar inmediatamente para mostrar la hora al cargar
 const contenedorPadre = document.getElementById('clock');
 const tableta = document.getElementById('water-background');
-let isDragging = false; // Indica si el elemento está siendo arrastrado
+
+/* let isDragging = false;
 let isDraggingI = false;
-let offsetX, offsetY; // Desplazamiento del ratón al hacer clic en el contenedor 
-// Evento para iniciar el arrastre
+let offsetX, offsetY; 
+
+
 contenedorPadre.addEventListener('mousedown', (e) => {
   e.preventDefault(); // Prevenir comportamiento predeterminado de arrastre
   isDragging = true; // El elemento empieza a ser arrastrado
   offsetX = e.clientX - contenedorPadre.offsetLeft; // Distancia del clic desde el borde izquierdo del contenedor
   offsetY = e.clientY - contenedorPadre.offsetTop; // Distancia del clic desde el borde superior del contenedor
   contenedorPadre.style.cursor = 'grabbing'; // Cambia el cursor a "grabbing" durante el arrastre
-});
+}) */;
+
 let contenedorPanel = document.getElementById('segunda-pantalla');
 let enArrastre = false;
 let offsetXX, offsetYY;
@@ -408,7 +411,8 @@ document.addEventListener('mouseup', () => {
   enArrastre = false; // Dejar de arrastrar
   contenedorPanel.style.cursor = 'grab'; // Cambia el cursor a "grab" cuando se suelta
 });
-tableta.addEventListener('mousedown', (e) => {
+
+/* tableta.addEventListener('mousedown', (e) => {
   e.preventDefault(); // Prevenir comportamiento predeterminado de arrastre
   isDraggingI = true; // El elemento empieza a ser arrastrado
   offsetX = e.clientX - tableta.offsetLeft; // Distancia del clic desde el borde izquierdo del contenedor
@@ -434,14 +438,16 @@ document.addEventListener('mousemove', (e) => {
     tableta.style.top = `${newTop}px`;
   }
 
-});
+}); */
+
 // Evento para finalizar el arrastre
-document.addEventListener('mouseup', () => {
+/* document.addEventListener('mouseup', () => {
   isDragging = false; // El arrastre ha 
   isDraggingI = false;
   contenedorPadre.style.cursor = 'grab'; // Regresa el cursor a "grab"
   tableta.style.cursor = 'grab';
-});
+}); */
+
 function resetearElementos() {
   const elementos = [
     document.getElementById('miRectangulo'),
@@ -6674,7 +6680,8 @@ function initDrag(elemento) {
     });
   });
 }
-initDrag(document.getElementById("padre-rgb"));
+
+/* initDrag(document.getElementById("padre-rgb"));
 initDrag(document.getElementById("padre-cmyk"));
 initResize(
   document.querySelector("#padre-rgb"),
@@ -6683,7 +6690,7 @@ initResize(
 initResize(
   document.querySelector("#padre-cmyk"),
   document.querySelector(".esquina-cmyk")
-);
+); */
 function cmykFlotante() { // botones rojos
   var elementosExcluidos = ['colorCMYK','container-slider','simulador','boton-perfiles','boton-reseteo'] 
   for (var i = 0; i < allContenedores.length; i++) { 
