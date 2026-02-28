@@ -5200,28 +5200,38 @@ const DELETE_REPEAT_RATE = 70;
 let deleteTimeout = null;
 let deleteInterval = null;
 
-const botonBorrar = document.querySelector(
-  '#grid-numbers > div:nth-child(11)'
-);
-
-botonBorrar.addEventListener('touchstart', (e) => {
-  e.preventDefault();
-
+const limpiarBase = () => {
   coleccionNumeros.length = 0;
   actualizarDisplay();
   detenerAlternarColor();
+};
 
-  if (!esDesktop) {
+const stopDeleting = () => {
+  clearTimeout(deleteTimeout);
+  clearInterval(deleteInterval);
+  deleteTimeout = null;
+  deleteInterval = null;
+};
 
-    // Define aquí el elemento REAL que quieres modificar
-    const target = lastFocusedInput; 
-    // o document.querySelector('#miDisplay');
+if (esDesktop) {
+  botonBorrar.addEventListener('click', (e) => {
+    e.preventDefault();
+    limpiarBase();
+  });
+}
 
+if (!esDesktop) {
+
+  botonBorrar.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+
+    limpiarBase();
+
+    const target = lastFocusedInput;
     if (!target) return;
 
     const deleteFirstCharacter = () => {
       const value = target.value ?? target.textContent ?? '';
-
       if (!value.length) return;
 
       const newValue = value.slice(1);
@@ -5243,15 +5253,11 @@ botonBorrar.addEventListener('touchstart', (e) => {
         DELETE_REPEAT_RATE
       );
     }, DELETE_INITIAL_DELAY);
-  }
-});
+  });
 
-const stopDeleting = () => {
-  clearTimeout(deleteTimeout);
-  clearInterval(deleteInterval);
-  deleteTimeout = null;
-  deleteInterval = null;
-};
+  botonBorrar.addEventListener('touchend', stopDeleting);
+  botonBorrar.addEventListener('touchcancel', stopDeleting);
+}
 
 botonBorrar.addEventListener('touchend', stopDeleting);
 botonBorrar.addEventListener('touchcancel', stopDeleting);
