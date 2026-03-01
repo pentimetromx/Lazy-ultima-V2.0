@@ -3434,11 +3434,9 @@
 
       <div id="perfiles-color" class="formulario">
         <span id="span-crear">Administrador perfiles</span>
-        <span id="span-nombres">Nombre perfil / color</span>
-  
+        <span id="span-nombres">Nombre perfil / color</span>  
         <input type="text" id="nombre-Perfil" inputmode="none" class="entrada-empleado storeText verGraficos" placeholder="Crear perfil">
         <input type="text" id="nombre-perfil-existe" placeholder="Buscar Perfil" readonly>
-
         <div class="btns-crear">
 
           <span class="mandos-color">Guardar:</span>
@@ -3455,13 +3453,10 @@
           <div class="mandos-color"></div>
 
         </div>
-
         <div class="btn-sale botones">
           <button id="btn-salir-perfiles">Salir</button>
         </div>
-
-      </div>
-      
+      </div>      
       <div id="control-panel-rgb" class="panel-color">
 
         <span class="clase-ordenadora">Composición del color</span>
@@ -3479,32 +3474,27 @@
         <span class="clase-ordenadora">A :</span>
         <input type="number" id="input-w" class="clase-ordenadora" min="0" max="255" value=""> 
 
-      </div>
-    
-      <div id="control-panel-cmyk" class="panel-color">
-  
+      </div>    
+      <div id="control-panel-cmyk" class="panel-color">  
         <span>Composición del color</span>
         <span class="etq-control">C :</span>
 
-        <input type="number" id="input-c" min="0" max="100" value="0">
+        <input type="text" id="input-c" inputmode="numeric" autocomplete="off" value="0">
 
         <button id="animate-btn-cmyk">Actualizar color</button>
         <span class="etq-control">M :</span>
-        <input type="number" id="input-m"  min="0" max="100" value="0"> 
+        <input type="text" id="input-m" inputmode="numeric" autocomplete="off" value="0"> 
         <button id="reset-btn-cmyk">Reset</button>
         <span class="etq-control">Y :</span>
-        <input type="number" id="input-y"  min="0" max="100" value="0">
+        <input type="text" id="input-y" inputmode="numeric" autocomplete="off" value="0">
         <button id="exit-cmyk" class="alterna-panel">Salir</button>
         <span class="etq-control">K :</span>
-        <input type="number" id="input-k"  min="0" max="100" value="0"> 
+        <input type="text" id="input-k" inputmode="numeric" autocomplete="off" value="0"> 
         <span></span>
         <span class="etq-control">W :</span>
-        <input type="number" id="input-a"  min="0" max="100" value="0">
-
-      </div>
-      
+        <input type="text" id="input-a" inputmode="numeric" autocomplete="off" value="0">
+      </div>      
     </div>
-
     <div id="contenedor-1" class="sup-level">
       <div class="title">LEVEL <div class="sub-title">Week</div></div>
       <div class="container">
@@ -3518,7 +3508,6 @@
       </div>  
       <div class="litle-title">Service</div>
     </div>
-
     <div id="contenedor-2" class="calendar-container">
       <h2 class="month-title">March</h2>
       
@@ -3979,12 +3968,10 @@
               <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press">Rotatek RK-250 Plus Roll-to-Roll Offset Press</option>
             </select>
           </div>
-
           <div class="fila-ingreso">
             <label for="numDoc4">Fecha ingreso</label>
             <input type="text" id="numDoc4" class="entrada-empleado storeText" placeholder="DD/MM/YYYY" readonly>
           </div>   
-
           <div class="fila-ingreso">
             <label for="numDoc6">Registro fotográfico</label>
             <input type="text"id="numDoc6"class="entrada-empleado storeText" value="" placeholder="Ruta o enlace de la fotografía" readonly>
@@ -3992,9 +3979,7 @@
             <div id="listaFotos" class="oculto"></div>
 
           </div>           
-
         </div>
-
         <div class="columna-centro"> 
     
           <div class="imgEmpleado">
@@ -4005,33 +3990,24 @@
           <button id="limpia-ingreso" class="entrada-empleado">Limpiar campos</button>
           <button id="modifica-ingreso" class="entrada-empleado">Modificar</button>
         </div>
-
         <div class="columna-derecha">
-          
-          <label for="numDoc">Buscar</label> 
-          <input id="nomEmpl" inputmode="none" class="entrada-empleado verGraficos"> 
-          <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso">Ir</button>
+          <label for="numDoc">Buscar</label> <!-- /////////////////// -->
 
+          <input id="nomEmpl" inputmode="none" class="entrada-empleado verGraficos"> 
+         
+          <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso">Ir</button>
           <button id="recarga" class="cierra-graficos"></button>
-          
           <button class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
           <button class="cierra-graficos entrada-empleado"></button>
           <button class="cierra-graficos">Areas</button>
-
         </div>
-
-      </div>     
-      
+      </div>      
     </div>
-
     <div id="padre-ingresos-ma" class="special-border"> 
-
       <div id="ingresos-sistema-ma">
-
         <div class="encabezado">
           Registro indicadores M.A
         </div>
-
         <div class="columna-izq-ma">
 
           <div class="fila-ingreso">

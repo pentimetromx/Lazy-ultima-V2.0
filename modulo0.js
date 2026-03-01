@@ -209,6 +209,7 @@ const entradas = document.querySelectorAll('.entrada-empleado');
 const botonBorrar = document.querySelector('#grid-numbers > div:nth-child(11)');
 const panelRGB = document.querySelector('#control-panel-rgb');
 const panelCMYK = document.querySelector('#control-panel-cmyk');
+const panelControlCMYK =  document.querySelector('#control-panel-cmyk')
 
 let esDesktop = mediaDesktop.matches;
 

@@ -5023,7 +5023,7 @@ listaLineas.forEach(linea => {
 });
 
 // BOTONES DE LA CALCULADORA
-digitos.forEach((elemento) => {
+/* digitos.forEach((elemento) => {
   elemento.addEventListener('click', (e) => {
     e.stopPropagation();    
     console.log('ESTADO DE CALCULADORA : ', calculadoraSimulador)
@@ -5082,7 +5082,6 @@ digitos.forEach((elemento) => {
 
       input.value =
         value.slice(0, start) + numero + value.slice(end);
-        /* permitirSoloNumeros({ target: input }); */
 
       input.selectionStart =
       input.selectionEnd = start + numero.length;
@@ -5091,8 +5090,91 @@ digitos.forEach((elemento) => {
     }
 
   });
-});
+}); */
 
+digitos.forEach((elemento) => {
+  elemento.addEventListener('click', (e) => {
+    e.stopPropagation();
+    console.log('ESTADO DE CALCULADORA : ', calculadoraSimulador);
+
+    if (!calculadoraSimulador) {
+
+      digitos.forEach(d => d.style.pointerEvents = 'none');
+
+      const spans = document.querySelectorAll('.datos-base');
+
+      if ([...spans].every(span => span.textContent.trim() === '')) {
+        alertaTres.style.display = 'flex';
+        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+      } else if (spans[0].textContent.trim() === '') {
+        document.getElementById('alerta-uno').style.display = 'flex';
+        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+      } else if (spans[1].textContent.trim() === '') {
+        document.getElementById('alerta-dos').style.display = 'flex';
+        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+      } else {
+
+        const numero = parseInt(elemento.textContent);
+
+        if (!isNaN(numero)) {
+
+          if (coleccionNumeros.length >= 10) {
+            digitos.forEach(d => d.style.pointerEvents = 'auto');
+            return;
+          }
+
+          coleccionNumeros.push(numero);
+
+          spansNumeros.forEach(span => span.textContent = '');
+          spansCantidades.forEach(span => span.textContent = '');
+
+          for (let i = 0; i < coleccionNumeros.length; i++) {
+            spansNumeros[spansNumeros.length - coleccionNumeros.length + i].textContent = coleccionNumeros[i];
+            spansCantidades[spansCantidades.length - coleccionNumeros.length + i].textContent = coleccionNumeros[i];
+          }
+        }
+      }
+
+      setTimeout(() => {
+        digitos.forEach(d => d.style.pointerEvents = 'auto');
+      }, 200);
+
+    } else {
+
+      if (!lastFocusedInput) return;
+
+      const input = lastFocusedInput;
+      const numero = elemento.textContent;
+
+      const start = input.selectionStart;
+      const end = input.selectionEnd;
+      const value = input.value;
+
+      input.value =
+        value.slice(0, start) + numero + value.slice(end);
+
+      input.selectionStart =
+      input.selectionEnd = start + numero.length;
+
+      if (!esDesktop && panelControlCMYK.style.display === 'grid') {
+
+        const clamp = (val, min, max) =>
+          Math.min(max, Math.max(min, val));
+
+        input.value = input.value.replace(/\D/g, '');
+
+        if (input.value !== '') {
+          const min = Number(input.min) || 0;
+          const max = Number(input.max) || 100;
+          input.value = clamp(parseInt(input.value, 10), min, max);
+        }
+
+      }
+
+      input.focus();
+    }
+  });
+});
 
 alertaTres.addEventListener('click', ()=> {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
