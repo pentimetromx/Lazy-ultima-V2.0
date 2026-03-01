@@ -2126,26 +2126,51 @@ document.querySelectorAll('.fila-ingreso-ma > input').forEach(input => {
 
 inputRRHH.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
-  if(!esDesktop)ubicaCalculadoraSegunContexto()
+  if(!esDesktop) ubicaCalculadoraSegunContexto()
 });
 inputRRHH.addEventListener('click',() =>{
   if(!esDesktop) ubicaCalculadoraSegunContexto()
 })
+
 inputDocumentoEmpleado.addEventListener('click',() =>{
   if(!esDesktop) ubicaCalculadoraSegunContexto()
 })
-
-
-
 inputMA.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
   ubicaCalculadoraSegunContexto()
 });
-
 inputMA.addEventListener('click', (e) => {
   if(!esDesktop){ubicaCalculadoraSegunContexto()}
 });
 
+
+const inputsCMYK = document.querySelectorAll('.panel-color > input');
+
+const soloNumeros = (value) => value.replace(/\D/g, '');
+
+inputsCMYK.forEach(input => {
+
+  input.addEventListener('click', (e) => {
+    const target = e.target;
+
+    target.value = soloNumeros(target.value);
+
+    if (!esDesktop) {
+      ubicaCalculadoraSegunContexto();
+    }
+  });
+
+  input.addEventListener('input', (e) => {
+    const target = e.target;
+
+    target.value = soloNumeros(target.value);
+
+    if (!esDesktop) {
+      ubicaCalculadoraSegunContexto();
+    }
+  });
+
+});
 
 
 
@@ -4191,4 +4216,17 @@ function ubicaCalculadoraSegunContexto(){
       calculadora.classList.add('move-calculadora-up');
     }, 100);
   }
+  if(!esDesktop && panelControlCMYK.style.display==='grid'){
+    simulador.style.display='flex'
+    calculadora.classList.remove('move-calculadora-1')
+    calculadora.style.display='grid'
+    calculadora.style.left='36vw'
+    calculadora.style.top='102vh' 
+    calculadora.style.height='45vh'
+    calculadora.style.width='40vw'
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up');
+    }, 100);
+  }
+
 }
