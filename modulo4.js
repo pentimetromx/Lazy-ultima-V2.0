@@ -4224,6 +4224,7 @@ function ubicaCalculadoraSegunContexto(){
     calculadora.style.top='102vh' 
     calculadora.style.height='45vh'
     calculadora.style.width='40vw'
+    calculadora.zindex=100
     setTimeout(() => {
       calculadora.classList.add('move-calculadora-up');
     }, 100);
