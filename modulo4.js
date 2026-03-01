@@ -2151,6 +2151,9 @@ const soloNumeros = (value) => value.replace(/\D/g, '');
 inputsCMYK.forEach(input => {
 
   input.addEventListener('click', (e) => {
+  
+    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+
     const target = e.target;
 
     target.value = soloNumeros(target.value);
