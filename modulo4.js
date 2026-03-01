@@ -2035,6 +2035,13 @@ inputNombre.addEventListener('blur', () => {
   if(!esDesktop) hideKeyboard()
 });
 
+buscaNombre.addEventListener('focusin',() =>{
+  if(!esDesktop) showKeyboard()
+})
+buscaNombre.addEventListener('blur', () => {
+  if(!esDesktop) hideKeyboard()
+});
+
 
 function permitirSoloNumeros(e) {
   const input = e.target;
