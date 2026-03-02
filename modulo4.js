@@ -3965,6 +3965,31 @@ const ordenInputs = [
   'nuevo-ingreso-ma'
 ];
 let indiceFoco = 0;
+// SOLO TACTILES
+function avanzarFoco() {
+  indiceFoco++;
+
+  if(interfazMA.style.display==='grid'){
+    // Si quieres ciclo continuo:
+    if (indiceFoco >= ordenInputs.length) {
+      indiceFoco = 0;
+    }
+    if(inputNombreMA.value === ''){
+      saltarAlerta('No ha ingresado el empleado','sinID')
+    }
+    const siguienteInput = document.getElementById(ordenInputs[indiceFoco]);
+    siguienteInput?.focus();
+    if(siguienteInput.id==='nuevo-ingreso-ma'){
+      return
+    }else{
+      siguienteInput.style.backgroundColor='black'
+      siguienteInput.style.color='white'
+    }    
+  }
+
+
+}  
+
 /* ===============================
    Sincronizar índice con foco real
    =============================== */
@@ -3976,31 +4001,6 @@ document.addEventListener('focusin', (e) => {
   }
 });
 
-/* ===============================
-   Función para avanzar foco
-   =============================== */
-
-function avanzarFoco() {
-  indiceFoco++;
-
-  // Si quieres ciclo continuo:
-  if (indiceFoco >= ordenInputs.length) {
-    indiceFoco = 0;
-  }
-  if(inputNombreMA.value === ''){
-    saltarAlerta('No ha ingresado el empleado','sinID')
-  }
-
-  const siguienteInput = document.getElementById(ordenInputs[indiceFoco]);
-  siguienteInput?.focus();
-  if(siguienteInput.id==='nuevo-ingreso-ma'){
-    return
-  }else{
-    siguienteInput.style.backgroundColor='black'
-    siguienteInput.style.color='white'
-  }
-}  
-/*************************************************************************************************************************************************************** */
 inputNombre.addEventListener('focusin',()=>{
   keyboardWrapper.style.display='flex'
 })

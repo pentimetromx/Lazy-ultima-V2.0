@@ -5084,17 +5084,21 @@ digitos.forEach((elemento) => {
       input.selectionStart =
       input.selectionEnd = start + numero.length; 
 
-      const clamp = (val, min, max) =>
-        Math.min(max, Math.max(min, val));
+      if(input.id !=='nomEmpl' && input.id !=='nomEmpl-ma'){
+        const clamp = (val, min, max) =>
+          Math.min(max, Math.max(min, val));
 
-      input.value = input.value.replace(/\D/g, '');
+        input.value = input.value.replace(/\D/g, '');
 
-      if (input.value !== '') {
-        const min = Number(input.min) || 0;
-        const max = Number(input.max) || 100;
-        input.value = clamp(parseInt(input.value, 10), min, max);
+        if (input.value !== '') {
+          const min = Number(input.min) || 0;
+          const max = Number(input.max) || 100;
+          input.value = clamp(parseInt(input.value, 10), min, max);
+        }
+        input.focus();
+
       }
-      input.focus();
+
     }
   });
 });
@@ -5299,7 +5303,7 @@ btnEntrar.addEventListener('click', () => {
     desactivarClick(['.butt-perfiles','.digit', '.estilo-1','digito']);
     detenerAlternarColor()
     const elementos = document.querySelectorAll('.number');
-    const todosVacios = Array.from(elementos).every(elemento => elemento.textContent.trim() === ''); 
+    const todosVacios = Array.from(elementos).every(elemento => elemento.textContent.trim() === '');  
     console.log(document.querySelectorAll('.digito'));
     if (todosVacios) {
       mostrarVentanaMensaje('Ingrese tiraje para este producto ...')
