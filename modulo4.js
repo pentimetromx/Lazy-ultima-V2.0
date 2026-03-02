@@ -2144,7 +2144,7 @@ inputMA.addEventListener('click', (e) => {
 });
 
 
-const inputsColorGeneral = document.querySelectorAll('.panel-color > input');
+/* const inputsColorGeneral = document.querySelectorAll('.panel-color > input');
 
 const soloNumeros = (value) => value.replace(/\D/g, '');
 
@@ -2154,6 +2154,50 @@ inputsColorGeneral.forEach(input => {
   
     e.target.value = e.target.value.replace(/[^0-9]/g, '');
 
+    const target = e.target;
+
+    target.value = soloNumeros(target.value);
+
+    if (!esDesktop) {
+      ubicaCalculadoraSegunContexto();
+    }
+  });
+
+  input.addEventListener('input', (e) => {
+    const target = e.target;
+
+    target.value = soloNumeros(target.value);
+
+    if (!esDesktop) {
+      ubicaCalculadoraSegunContexto();
+    }
+  });
+
+}); */
+
+const inputsColorGeneral = document.querySelectorAll('.panel-color > input');
+
+const soloNumeros = (value) => value.replace(/\D/g, '');
+
+// NUEVO: detecta si el dispositivo es táctil
+const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+inputsColorGeneral.forEach(input => {
+
+  // NUEVO: en táctiles evita que se abra el teclado nativo
+  if (esTactil) {
+    input.setAttribute('readonly', true);
+  }
+
+  // NUEVO: al intentar enfocar en táctil, fuerza blur y abre tu calculadora
+  input.addEventListener('focus', (e) => {
+    if (esTactil) {
+      e.target.blur(); // evita teclado nativo
+      if (!esDesktop) ubicaCalculadoraSegunContexto();
+    }
+  });
+
+  input.addEventListener('click', (e) => {
     const target = e.target;
 
     target.value = soloNumeros(target.value);
