@@ -5084,7 +5084,7 @@ digitos.forEach((elemento) => {
       input.selectionStart =
       input.selectionEnd = start + numero.length; 
 
-      if(input.id !=='nomEmpl' && input.id !=='nomEmpl-ma'){
+      if(input.id !=='nomEmpl' && input.id !=='nomEmpl-ma' && input.id !=='numDoc1'){
         const clamp = (val, min, max) =>
           Math.min(max, Math.max(min, val));
 
