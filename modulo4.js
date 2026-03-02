@@ -2144,11 +2144,11 @@ inputMA.addEventListener('click', (e) => {
 });
 
 
-const inputsCMYK = document.querySelectorAll('.panel-color > input');
+const inputsColorGeneral = document.querySelectorAll('.panel-color > input');
 
 const soloNumeros = (value) => value.replace(/\D/g, '');
 
-inputsCMYK.forEach(input => {
+inputsColorGeneral.forEach(input => {
 
   input.addEventListener('click', (e) => {
   
@@ -4185,7 +4185,6 @@ function hideKeyboard() {
 function hideCalculator() {
   calculadora.classList.add('move-calculadora-down');
 }
-
 function ubicaCalculadoraSegunContexto(){
   restablecerEstilos('calculadora');
   calculadora.classList.remove('move-calculadora')
@@ -4206,7 +4205,6 @@ function ubicaCalculadoraSegunContexto(){
       calculadora.classList.add('move-calculadora-up');
     }, 100);
   }
-
   if(!esDesktop && interfazMA.style.display==='grid'){
     simulador.style.display='flex'
     calculadora.classList.remove('move-calculadora-1')
@@ -4232,5 +4230,47 @@ function ubicaCalculadoraSegunContexto(){
       calculadora.classList.add('move-calculadora-up');
     }, 100);
   }
+  if(!esDesktop && panelControlRGB.style.display==='grid'){
+    simulador.style.display='flex'
+    calculadora.classList.remove('move-calculadora-1')
+    calculadora.style.display='grid'
+    calculadora.style.left='36vw'
+    calculadora.style.top='102vh' 
+    calculadora.style.height='45vh'
+    calculadora.style.width='40vw'
+    calculadora.zindex=100
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up');
+    }, 100);
+  }  
 
 }
+
+const clamp = (val, min, max) =>
+  Math.min(max, Math.max(min, val));
+
+const normalizarInput = (input) => {
+  input.value = input.value.replace(/\D/g, '');
+  if (input.value === '') return;
+
+  const min = Number(input.min) || 0;
+  const max = Number(input.max) || 255;
+
+  input.value = clamp(parseInt(input.value, 10), min, max);
+};
+
+document.addEventListener('input', (e) => {
+  if (!e.target.matches('.panel-color > input')) return;
+
+  normalizarInput(e.target);
+
+  if (!esDesktop) {
+    ubicaCalculadoraSegunContexto();
+  }
+});
+
+document.addEventListener('blur', (e) => {
+  if (!e.target.matches('.panel-color > input')) return;
+
+  normalizarInput(e.target);
+}, true);
