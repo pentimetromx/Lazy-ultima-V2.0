@@ -135,16 +135,14 @@ let inputActivo = null; INPUTS VERTICALES
 
 
 
-const inputMA = document.querySelector('#nomEmpl-ma'); 
-  
 
-TERMINAMOS EN modulo 4:2138
+panelControlRGB
 
 
 
 
 
-
+MODULO4  3970
 
 
 
