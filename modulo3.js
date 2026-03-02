@@ -10,7 +10,7 @@ document.addEventListener('keydown', function(event) {
         Geometria()
       break;
       case 'X':
-
+        console.log(document.querySelectorAll('.panel-color > input'));
       break;                  
     }
   }
@@ -5023,81 +5023,12 @@ listaLineas.forEach(linea => {
 });
 
 // BOTONES DE LA CALCULADORA
-/* digitos.forEach((elemento) => {
-  elemento.addEventListener('click', (e) => {
-    e.stopPropagation();    
-    console.log('ESTADO DE CALCULADORA : ', calculadoraSimulador)
 
-    if(!calculadoraSimulador){
-      // Desactiva temporalmente los clics en los botones
-      digitos.forEach(d => d.style.pointerEvents = 'none');  
-
-      const spans = document.querySelectorAll('.datos-base');   
-
-      // Verifica el estado de los spans y lanza las alertas correspondientes
-      if ([...spans].every(span => span.textContent.trim() === '')) {
-        alertaTres.style.display = 'flex';
-        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
-      } else if (spans[0].textContent.trim() === '') {
-        document.getElementById('alerta-uno').style.display = 'flex';
-        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
-      } else if (spans[1].textContent.trim() === '') {
-        document.getElementById('alerta-dos').style.display = 'flex';
-        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
-      } else {
-        const numero = parseInt(elemento.textContent); // Convertir el contenido del botón a número
-        if (!isNaN(numero)) { // Solo agregar si es un número válido      
-          // Verificar si el array ya tiene 10 elementos
-          if (coleccionNumeros.length >= 10) {
-            // Reactiva los clics y termina la ejecución si ya hay 10 elementos
-            digitos.forEach(d => d.style.pointerEvents = 'auto');
-            return;
-          }
-          coleccionNumeros.push(numero); // Agregar el nuevo número
-          // Limpiar ambos conjuntos de spans antes de mostrar los números actualizados
-          spansNumeros.forEach(span => span.textContent = '');
-          spansCantidades.forEach(span => span.textContent = '');
-          // Mover los números del array a los spans de derecha a izquierda
-          for (let i = 0; i < coleccionNumeros.length; i++) {
-            spansNumeros[spansNumeros.length - coleccionNumeros.length + i].textContent = coleccionNumeros[i];
-            spansCantidades[spansCantidades.length - coleccionNumeros.length + i].textContent = coleccionNumeros[i];
-          }
-        }
-      }
-
-      // Reactivar los clics después del evento
-      setTimeout(() => {
-        digitos.forEach(d => d.style.pointerEvents = 'auto');  
-      }, 200);
-
-    }else{ // CALCULADORA ESPECIAL
-      if (!lastFocusedInput) return;
-
-      const input = lastFocusedInput;
-      const numero = elemento.textContent;
-
-      const start = input.selectionStart;
-      const end = input.selectionEnd;
-      const value = input.value;
-
-      input.value =
-        value.slice(0, start) + numero + value.slice(end);
-
-      input.selectionStart =
-      input.selectionEnd = start + numero.length;
-
-      input.focus();
-    }
-
-  });
-}); */
-
-digitos.forEach((elemento) => {
+digitos.forEach((elemento) => { 
   elemento.addEventListener('click', (e) => {
     e.stopPropagation();
-    console.log('ESTADO DE CALCULADORA : ', calculadoraSimulador);
 
-    if (!calculadoraSimulador) {
+    if (!calculadoraSimulador) {  // CALCULADORA NORMAL
 
       digitos.forEach(d => d.style.pointerEvents = 'none');
 
@@ -5139,10 +5070,8 @@ digitos.forEach((elemento) => {
         digitos.forEach(d => d.style.pointerEvents = 'auto');
       }, 200);
 
-    } else {
-
+    } else { // CALCULADORA ESPECIAL
       if (!lastFocusedInput) return;
-
       const input = lastFocusedInput;
       const numero = elemento.textContent;
 
@@ -5150,27 +5079,21 @@ digitos.forEach((elemento) => {
       const end = input.selectionEnd;
       const value = input.value;
 
-      input.value =
-        value.slice(0, start) + numero + value.slice(end);
+      input.value = value.slice(0, start) + numero + value.slice(end);
 
       input.selectionStart =
-      input.selectionEnd = start + numero.length;
+      input.selectionEnd = start + numero.length; 
 
-      if (!esDesktop && panelControlCMYK.style.display === 'grid') {
+      const clamp = (val, min, max) =>
+        Math.min(max, Math.max(min, val));
 
-        const clamp = (val, min, max) =>
-          Math.min(max, Math.max(min, val));
+      input.value = input.value.replace(/\D/g, '');
 
-        input.value = input.value.replace(/\D/g, '');
-
-        if (input.value !== '') {
-          const min = Number(input.min) || 0;
-          const max = Number(input.max) || 100;
-          input.value = clamp(parseInt(input.value, 10), min, max);
-        }
-
+      if (input.value !== '') {
+        const min = Number(input.min) || 0;
+        const max = Number(input.max) || 100;
+        input.value = clamp(parseInt(input.value, 10), min, max);
       }
-
       input.focus();
     }
   });
@@ -5400,7 +5323,7 @@ btnEntrar.addEventListener('click', () => {
       }, 1700);
     }
   }else{
-    console.log('ESPACIO PARA CODIGO EN TACTILES')
+    console.log('ESPACIO PARA CODIGO EN TACTILES')  
     if(!esDesktop)avanzarFoco();
   }
   
@@ -6516,7 +6439,7 @@ function updateColorRGB() {
   document.getElementById("input-w").value = values.W;
 }
 
-const clamp = (value, min, max) =>
+/* const clamp = (value, min, max) =>
   Math.min(max, Math.max(min, value));
 
 panelRGB
@@ -6539,7 +6462,7 @@ panelRGB
     });
 });
 
-panelCMYK
+panelControlCMYK
   .querySelectorAll('input[type="number"]')
   .forEach(input => {
     input.addEventListener('input', () => {
@@ -6557,7 +6480,7 @@ panelCMYK
 
       input.value = clamp(value, min, max);
     });
-});  
+}); */  
 
 function animarSlidersRGB(sliderConfigs, duracion = 1000) {
   let startTime = null;
@@ -7367,7 +7290,7 @@ function alternarOcultarBotones() {
 document.querySelectorAll('.alterna-panel').forEach(btn => {
   btn.addEventListener('click', () => {
     if(btn.id === 'exit-cmyk'){
-      ocultarElementoProgressivo(panelCmyk)
+      ocultarElementoProgressivo(panelControlCMYK)
     }
     if(btn.id === 'exit-rgb'){
       ocultarElementoProgressivo(panelRgb)

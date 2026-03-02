@@ -3456,44 +3456,48 @@
         <div class="btn-sale botones">
           <button id="btn-salir-perfiles">Salir</button>
         </div>
-      </div>      
+      </div>  
+      
+      
       <div id="control-panel-rgb" class="panel-color">
 
         <span class="clase-ordenadora">Composición del color</span>
         <span class="clase-ordenadora">R :</span>
 
-        <input type="number" id="input-r" class="clase-ordenadora" min="0" max="255" value="">
+        <input id="input-r" type="text" inputmode="numeric" autocomplete="off" min="0" max="255">
 
         <button id="animate-btn" class="clase-ordenadora">Actualizar color</button>
         <span class="clase-ordenadora">G :</span>
-        <input type="number" id="input-g" class="clase-ordenadora" min="0" max="255" value="">
+        <input id="input-g" type="text" inputmode="numeric" autocomplete="off" min="0" max="255">
         <button id="reset-btn-rgb" class="clase-ordenadora">Reset</button>
         <span class="clase-ordenadora">B :</span>
-        <input type="number" id="input-b" class="clase-ordenadora" min="0" max="255" value="">
+        <input id="input-b" type="text" inputmode="numeric" autocomplete="off" min="0" max="255">
         <button id="exit-rgb" class="alterna-panel clase-ordenadora">Salir</button>
         <span class="clase-ordenadora">A :</span>
-        <input type="number" id="input-w" class="clase-ordenadora" min="0" max="255" value=""> 
+        <input id="input-w" type="text" inputmode="numeric" autocomplete="off" min="0" max="255">
 
       </div>    
       <div id="control-panel-cmyk" class="panel-color">  
         <span>Composición del color</span>
         <span class="etq-control">C :</span>
 
-        <input type="number" id="input-c" min="0" max="100" readonly value="0">
+        <input id="input-c" type="text" inputmode="numeric" autocomplete="off" min="0" max="100">
 
         <button id="animate-btn-cmyk">Actualizar color</button>
         <span class="etq-control">M :</span>
-        <input type="number" id="input-m"  min="0" max="100" value="0"> 
+        <input id="input-m" type="text" inputmode="numeric" autocomplete="off" min="0" max="100">
         <button id="reset-btn-cmyk">Reset</button>
         <span class="etq-control">Y :</span>
-        <input type="number" id="input-y"  min="0" max="100" value="0">
+        <input id="input-y" type="text" inputmode="numeric" autocomplete="off" min="0" max="100">
         <button id="exit-cmyk" class="alterna-panel">Salir</button>
         <span class="etq-control">K :</span>
-        <input type="number" id="input-k"  min="0" max="100" value="0"> 
+        <input id="input-k" type="text" inputmode="numeric" autocomplete="off" min="0" max="100">
         <span></span>
         <span class="etq-control">W :</span>
-        <input type="number" id="input-a"  min="0" max="100" value="0">
-      </div>      
+        <input id="input-a" type="text" inputmode="numeric" autocomplete="off" min="0" max="100">
+      </div>  
+      
+      
     </div>
     <div id="contenedor-1" class="sup-level">
       <div class="title">LEVEL <div class="sub-title">Week</div></div>
@@ -4330,6 +4334,7 @@
       <button id="borrarBoton" class="borrar-boton">RRHH</button>
       <button id="borrarBoton2" class="borrar-boton">MA</button>
       <button id="borrarBoton3" class="borrar-boton">CALCULADORA</button>
+      <button id="borrarBoton4" class="borrar-boton" onclick="BORRARR()">SIMULADOR</button>
     </div>   
 
     <div id="padre-evento">
