@@ -1739,15 +1739,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  campoBusqueda.addEventListener('focusin',() =>{
-  if(!esDesktop) showKeyboard()
-})
+ /*  campoBusqueda.addEventListener('focusin',() =>{
+    if(!esDesktop) showKeyboard()
+  })
   campoBusqueda.addEventListener('blur',() =>{
     if(!esDesktop){
       campoBusqueda.setAttribute('readonly', true);
       hideKeyboard()
     } 
-  })
+  }) */
+
+  const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  // 1️⃣ Configuración inicial
+  if (!esDesktop && esTactil) {
+    campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
+  }
+
+  // 2️⃣ Mostrar teclado virtual al intentar enfocar
+  campoBusqueda.addEventListener('focusin', (e) => {
+    if (!esDesktop && esTactil) {
+      e.target.blur();          // bloquea teclado nativo
+      showKeyboard();           // muestra tu teclado
+    }
+  });
+
+  // 3️⃣ Cerrar teclado cuando se hace click fuera
+  document.addEventListener('pointerdown', (e) => {
+    if (esDesktop) return;
+
+    const clickDentroInput = campoBusqueda.contains(e.target);
+    const clickDentroTeclado = document
+      .getElementById('keyboard-wrapper') // ← reemplaza por el id real
+      ?.contains(e.target);
+
+    if (!clickDentroInput && !clickDentroTeclado) {
+      hideKeyboard();
+    }
+  });
+
+
+
+
   // --- funciones auxiliares ---
 
   // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
