@@ -10,7 +10,7 @@ document.addEventListener('keydown', function(event) {
         Geometria()
       break;
       case 'X':
-        console.log(document.querySelectorAll('.panel-color > input'));
+        hideCalculator();
       break;                  
     }
   }
@@ -5095,7 +5095,6 @@ digitos.forEach((elemento) => {
           const max = Number(input.max) || 100;
           input.value = clamp(parseInt(input.value, 10), min, max);
         }
-        input.focus();
 
       }
 

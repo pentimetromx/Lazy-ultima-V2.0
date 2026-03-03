@@ -136,13 +136,9 @@ let inputActivo = null; INPUTS VERTICALES
 
 
 
-panelControlRGB
 
 
-
-
-
-MODULO4  3970
+MODULO 4 : 2185
 
 
 
