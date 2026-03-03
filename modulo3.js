@@ -3778,62 +3778,6 @@ document.querySelector('#boton-perfiles').addEventListener('click', () =>{
   }, 20);
 })  
 
-/* document.querySelector('#aceptar-eliminar').addEventListener('click', () =>{
-  const contenedor = document.getElementById('botonera-fondo');
-  const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');  
-
-  vaciarObjeto()
-  vaciarAlmacenObjetos()
-  const colecciones = document.querySelectorAll('.lineas-tinta, .lineas-solucion, .leds, .led, .led-general, .clase-dos');
-  colecciones.forEach((elemento) => {
-    elemento.style.backgroundColor = '';
-  });
-  alertasPerfiles.forEach(alertaPerfiles => {
-    alertaPerfiles.style.opacity = '0'; // Desvanece el elemento
-    setTimeout(() => {
-      alertaPerfiles.style.display = 'none';
-      document.querySelector('#cliente-nombre').textContent = ''
-      botonesPerfilColor.forEach(elemento => {  
-        elemento.style.display = 'block';
-      });
-      botonesPerfilColor.forEach(elemento => {
-        elemento.style.display = 'block';
-      });      
-      if (contenedor) {
-        contenedor.querySelectorAll('*').forEach(elemento => {
-          elemento.style.display = 'block';
-        });
-      }
-
-      objetoGlobal = {}
-    }, 1000);
-  });
-  restablecerClick(['.butt-perfiles'])
-}) */
-
-/* document.querySelector('#cancelar-eliminar').addEventListener('click', () =>{
-  const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
-
-  alertasPerfiles.forEach(alertaPerfiles => {
-    alertaPerfiles.style.opacity = '0'; // Desvanece el elemento
-    setTimeout(() => {
-      alertaPerfiles.style.display = 'block'; 
-      botonesPerfilColor.forEach(elemento => {           
-        elemento.style.display = 'block';
-      });
-      
-      const contenedor = document.getElementById('botonera-fondo');
-      if (contenedor) {
-        contenedor.querySelectorAll('*').forEach(elemento => {
-          elemento.style.display = 'block';
-        });
-      }
-  
-    }, 1000);
-  });
-  restablecerClick(['.butt-perfiles'])
-}) */
-
 function traerObjetoAmarillo() {
   try {
     // Recuperar el objeto almacenado en localStorage
@@ -5241,7 +5185,6 @@ if (esDesktop) {
 }
 
 if (!esDesktop) {
-
   botonBorrar.addEventListener('touchstart', (e) => {
     e.preventDefault();
 
@@ -5277,6 +5220,7 @@ if (!esDesktop) {
 
   botonBorrar.addEventListener('touchend', stopDeleting);
   botonBorrar.addEventListener('touchcancel', stopDeleting);
+  inputPerfil.setAttribute('readonly', true);
 }
 
 botonBorrar.addEventListener('touchend', stopDeleting);
