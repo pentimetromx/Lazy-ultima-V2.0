@@ -5,6 +5,11 @@ No enumeres opciones, no des contexto adicional.”
 
 “Una sola causa + una sola solución. Nada más.”
 
+
+actualizarIdsArray('padre-cmyk');
+
+
+
 OBJETOS EN LOCAL STORAGE:
 - empleadosRegistrados
 
@@ -121,13 +126,15 @@ let inputActivo = null; INPUTS VERTICALES
 
 4:3808 function onGridClick(e) CLICKS DE CALCULADORA EN TACTILES
 
+document.addEventListener('pointerdown'  ====> CLICK FUERA PARA OCULTAR
+
 4:1927 function ingresoEmpleadoMA()
 
 4:1903 function ingresoEmpleado()
 
 3:5030 digitos.forEach((elemento
 
-3:5219 btnEntrar.addEventListener('click', (
+3:5298 btnEntrar.addEventListener('click', (
 
 4:3510 aplicarColoresInputs() COLORES INPUTS VERTICALES
 
@@ -138,7 +145,12 @@ let inputActivo = null; INPUTS VERTICALES
 
 
 
-MODULO 4 : 2185
+inputPerfil.addEventListener('focusin',() =>{
+  if(!esDesktop) showKeyboard()
+})
+inputPerfil.addEventListener('blur', () => {
+  if(!esDesktop) hideKeyboard()
+});
 
 
 

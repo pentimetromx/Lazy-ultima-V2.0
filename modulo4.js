@@ -1752,11 +1752,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
   // 1️⃣ Configuración inicial
-  if (!esDesktop && esTactil) {
-    campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
-  }
 
-  // 2️⃣ Mostrar teclado virtual al intentar enfocar
+
+  /* // 2️⃣ Mostrar teclado virtual al intentar enfocar
   campoBusqueda.addEventListener('focusin', (e) => {
     if (!esDesktop && esTactil) {
       e.target.blur();          // bloquea teclado nativo
@@ -1769,13 +1767,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (esDesktop) return;
 
     const clickDentroInput = campoBusqueda.contains(e.target);
-    const clickDentroTeclado = document
-      .getElementById('keyboard-wrapper') // ← reemplaza por el id real
-      ?.contains(e.target);
+    const clickDentroTeclado = keyboardWrapper?.contains(e.target);
 
     if (!clickDentroInput && !clickDentroTeclado) {
       hideKeyboard();
     }
+  }); */
+  
+  if (!esDesktop && esTactil) {
+    campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
+  }
+  campoBusqueda.addEventListener('focusin',() =>{
+    if(!esDesktop) showKeyboard()
+  })
+  campoBusqueda.addEventListener('blur', () => {
+    if(!esDesktop) hideKeyboard()
   });
 
 
@@ -2181,6 +2187,8 @@ inputMA.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
   ubicaCalculadoraSegunContexto()
 });
+
+//nomEmpl-ma
 inputMA.addEventListener('click', (e) => {
   if(!esDesktop){ubicaCalculadoraSegunContexto()}
 });
@@ -4079,12 +4087,18 @@ function avanzarFoco() {
       saltarAlerta('No ha ingresado el empleado','sinID')
     }
     const siguienteInput = document.getElementById(ordenInputs[indiceFoco]);
+    siguienteInput.value=''
     siguienteInput?.focus();
+
+    parpadearElemento(siguienteInput.id)
+
     if(siguienteInput.id==='nuevo-ingreso-ma'){
       return
     }else{
-      siguienteInput.style.backgroundColor='black'
-      siguienteInput.style.color='white'
+      /* siguienteInput.style.backgroundColor='black'
+      siguienteInput.style.color='white' */
+
+
     }    
   }
 
