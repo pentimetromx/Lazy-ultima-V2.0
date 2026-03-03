@@ -191,8 +191,6 @@ function deslizaContenedor(identificador, idButton) {
   }
 }
 
-
-
 function resetearBarras(){
   let ensayos = document.querySelectorAll('.first_table .barras .horizontales');
   ensayos.forEach(ensayo => {

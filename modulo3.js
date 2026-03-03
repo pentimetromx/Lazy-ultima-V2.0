@@ -3772,9 +3772,9 @@ document.querySelector('#boton-perfiles').addEventListener('click', () =>{
     moverFormulario()
 
   if (esDesktop) {
-    document.getElementById('nombreCliente').focus();
+    inputPerfil.focus();
   }     
-    document.getElementById('nombreCliente').value = ''
+    inputPerfil.value = ''
   }, 20);
 })  
 
@@ -4204,12 +4204,18 @@ function cargarInstanciaDesdeLocalEnObjetoglobal(nombreClave) {
   }
 }
 
-document.getElementById('nombreCliente').addEventListener('input', function () {
+inputPerfil.addEventListener('input', function () {
   const valor = this.value
     .toLowerCase()                         // normaliza todo
     .replace(/\b\w/g, c => c.toUpperCase()); // mayúscula por palabra
 
   this.value = valor;
+});
+inputPerfil.addEventListener('focusin',() =>{
+  if(!esDesktop) showKeyboard()
+})
+inputPerfil.addEventListener('blur', () => {
+  if(!esDesktop) hideKeyboard()
 });
 
 
@@ -4256,7 +4262,7 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   /* mostrarVentanaEmergente('Perfil creado y almacenado'); */
   saltarAlerta('Perfil creado y almacenado','perfilAgregado')
   // Limpiar el input
-  document.getElementById('nombreCliente').value = '';
+  inputPerfil.value = '';
   // Recuperar y mostrar el almacén desde localStorage
   const almacenJSON = localStorage.getItem('almacenObjetos');
   if (almacenJSON) {
@@ -4377,7 +4383,7 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
       conteJobTrack.classList.add('move-job-track'); 
     }
 
-    document.getElementById('nombreCliente').value = '';
+    inputPerfil.value = '';
     document.querySelectorAll('.datos-base').forEach((elemento) => {
       elemento.textContent = '';
     });
@@ -4391,15 +4397,15 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
 
     setTimeout(() => {
       mostrarElemento('.files-job');
-      document.getElementById('nombreCliente').focus();
-      document.getElementById('nombreCliente').value = '';
+      inputPerfil.focus();
+      inputPerfil.value = '';
     }, 700);
     
   }
   if (mensajeEmergente.textContent === 'Por favor, ingrese un nombre válido') {
     document.getElementById('ventanaEmergente').classList.add('oculta');
-    document.getElementById('nombreCliente').focus();
-    document.getElementById('nombreCliente').value = '';
+    inputPerfil.focus();
+    inputPerfil.value = '';
     detenerParpadeo() 
     if (esDesktop) {
       buscaNombre.focus()
@@ -5169,8 +5175,8 @@ document.querySelector('#perfil-crear').addEventListener('click', () => {
   }, 50);
   setTimeout(() => {
     moverFormulario()
-    document.getElementById('nombreCliente').focus();
-    document.getElementById('nombreCliente').value = ''
+    inputPerfil.focus();
+    inputPerfil.value = ''
   }, 200);   
 })
 const alertasVacios = document.querySelectorAll('.alerta-vacio');
@@ -5329,8 +5335,6 @@ btnEntrar.addEventListener('click', () => {
     console.log('ESPACIO PARA CODIGO EN TACTILES')  
     if(!esDesktop)avanzarFoco();
   }
-  
-
 });
 
 function sumarPorcentaje() {
@@ -7300,6 +7304,7 @@ document.querySelectorAll('.alterna-panel').forEach(btn => {
     }
   });
 });
+
 document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{ 
   let slidersCMYK = document.querySelector('#container-slider')
 

@@ -1412,7 +1412,7 @@ body{
   width: 50vw;
   height: 60vh;
   border-radius: 10px;
-  z-index: 40;
+  z-index: 300;
 
   position: fixed;
   touch-action: none;
