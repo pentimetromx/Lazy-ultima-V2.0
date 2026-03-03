@@ -2198,12 +2198,14 @@ inputsColorGeneral.forEach(input => {
   });
 
   input.addEventListener('click', (e) => {
+
     const target = e.target;
 
     target.value = soloNumeros(target.value);
 
     if (!esDesktop) {
       ubicaCalculadoraSegunContexto();
+      calculadora.zindex=220
     }
   });
 
@@ -2217,27 +2219,40 @@ inputsColorGeneral.forEach(input => {
     }
   });
 
+
+  input.addEventListener('blur', (e) => {
+    const related = e.relatedTarget;
+
+    // Si el foco pasa a un elemento dentro de la calculadora, no ocultar
+    if (related && related.closest('#calculadora')) return;
+
+    const target = e.target;
+    target.value = soloNumeros(target.value);
+
+    if (!esDesktop) {
+      hideCalculator();
+    }
+  });  
+
 });
 
 
-
-const contextoActivo = () =>[interfazRRHH, interfazMA].some(el => el && el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0);
+const slidersCMYK = document.querySelector('#padre-cmyk')
+const slidersRGB = document.querySelector('#padre-rgb')
+const contextoActivo = () =>[interfazRRHH, interfazMA,slidersCMYK,slidersRGB].some(el => el && el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0);
 
 document.addEventListener('pointerdown', (e) => {
   if (esDesktop) return;
   if (!contextoActivo()) return;
 
   const clickDentroCalculadora = calculadora.contains(e.target);
-  const clickEnInput = inputMA.contains(e.target);
-  const clickEnItemsMA = [...entradas].some(el =>
-    el.contains(e.target)
-  );
+  const clickEnItemsMA = [...entradas].some(el => el.contains(e.target));
+  const clickEnInputColor = e.target.closest('.panel-color > input');
 
-  if (!clickDentroCalculadora && !clickEnInput && !clickEnItemsMA) {
+  if (!clickDentroCalculadora && !clickEnItemsMA && !clickEnInputColor) {
     hideCalculator();
   }
 });
-
 
 
 document.querySelector('#recarga').addEventListener('click', ingresoEmpleado);
