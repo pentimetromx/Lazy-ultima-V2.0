@@ -1743,8 +1743,11 @@ document.addEventListener('DOMContentLoaded', () => {
   if(!esDesktop) showKeyboard()
 })
   campoBusqueda.addEventListener('blur',() =>{
-  if(!esDesktop) hideKeyboard()
-})
+    if(!esDesktop){
+      campoBusqueda.setAttribute('readonly', true);
+      hideKeyboard()
+    } 
+  })
   // --- funciones auxiliares ---
 
   // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
