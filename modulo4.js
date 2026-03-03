@@ -1739,6 +1739,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  campoBusqueda.addEventListener('focusin',() =>{
+  if(!esDesktop) showKeyboard()
+})
+  campoBusqueda.addEventListener('blur',() =>{
+  if(!esDesktop) hideKeyboard()
+})
   // --- funciones auxiliares ---
 
   // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
