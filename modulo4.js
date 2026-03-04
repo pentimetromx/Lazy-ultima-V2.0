@@ -4109,18 +4109,19 @@ function avanzarFoco() {
 
   if (panelControlCMYK.style.display === 'grid') {
 
-  if (indiceFoco >= ordenInputsCMYK.length) {
-    indiceFoco = 0;
+    if (indiceFoco >= ordenInputsCMYK.length) {
+      indiceFoco = 0;
+    }
+
+    const siguienteInput = document.getElementById(ordenInputsCMYK[indiceFoco]);
+
+    if (!siguienteInput) return; // ← protección obligatoria
+
+    siguienteInput.focus();
+    siguienteInput.value=0
+    parpadearElemento(siguienteInput.id,150,2500);
+
   }
-
-  const siguienteInput = document.getElementById(ordenInputsCMYK[indiceFoco]);
-
-  if (!siguienteInput) return; // ← protección obligatoria
-
-  siguienteInput.focus();
-  siguienteInput.value=0
-  parpadearElemento(siguienteInput.id);
-}
 }  
 
 /* ===============================

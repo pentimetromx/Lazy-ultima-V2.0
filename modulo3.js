@@ -4844,7 +4844,7 @@ btnSalir.addEventListener('click', ()=>{
     /* mostrarVentanaMensaje('Click en ENTRAR para ingesar la informacion') */
     saltarAlerta('Click en ENTRAR para ingesar la informacion','salirCalcula')
     /* alternarColor('entrar-cantidad') */
-    parpadearElemento('entrar-cantidad');
+    parpadearElemento('entrar-cantidad', 150, 2500);
   }else{
     const calculadora = document.getElementById('calculadora') 
     calculadora.classList.add('move-calculadora')
@@ -6999,17 +6999,57 @@ buscaNombre.addEventListener('click', () => {
   keyboardWrapper.style.display='flex'
 })
 
-let parpadeoActivo = null; // referencia global
 
+let parpadeoActivo = null;
 
-  function detenerParpadeo() {
+function parpadearElemento(id,intervaloMs = 200, duracionMs = null) {
+  detenerParpadeo();
+
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const colorOriginal = getComputedStyle(el).backgroundColor;
+  let alternar = false;
+
+  const intervalo = setInterval(() => {
+    el.style.backgroundColor = alternar
+      ? colorOriginal
+      : 'rgba(0,255,255,0.44)';
+
+    alternar = !alternar;
+  }, intervaloMs);
+
+  let timeout = null;
+
+  // Si se define duración total
+  if (typeof duracionMs === 'number') {
+    timeout = setTimeout(() => {
+      detenerParpadeo();
+    }, duracionMs);
+  }
+
+  parpadeoActivo = {
+    el,
+    intervalo,
+    timeout,
+    colorOriginal
+  };
+}
+
+function detenerParpadeo() {
   if (!parpadeoActivo) return;
 
   clearInterval(parpadeoActivo.intervalo);
-  parpadeoActivo.el.style.backgroundColor = parpadeoActivo.colorOriginal;
+
+  if (parpadeoActivo.timeout) {
+    clearTimeout(parpadeoActivo.timeout);
+  }
+
+  parpadeoActivo.el.style.backgroundColor =
+    parpadeoActivo.colorOriginal;
+
   parpadeoActivo = null;
 }
-
 
 
 // BOTON BLANCO RGB
