@@ -10,7 +10,7 @@ document.addEventListener('keydown', function(event) {
         Geometria()
       break;
       case 'X':
-        hideCalculator();
+        ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
       break;                  
     }
   }
@@ -5276,7 +5276,6 @@ btnEntrar.addEventListener('click', () => {
       }, 1700);
     }
   }else{
-    console.log('ESPACIO PARA CODIGO EN TACTILES')  
     if(!esDesktop)avanzarFoco();
   }
 });
@@ -7003,23 +7002,7 @@ buscaNombre.addEventListener('click', () => {
 let parpadeoActivo = null; // referencia global
 
 
-function parpadearElemento(id) {
-  detenerParpadeo(); // ← fuerza limpieza previa
-
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  const colorOriginal = el.style.backgroundColor;
-  let activo = false;
-
-  const intervalo = setInterval(() => {
-    el.style.backgroundColor = activo ? colorOriginal : 'orange';
-    activo = !activo;
-  }, 100);
-
-  parpadeoActivo = { intervalo, el, colorOriginal };
-}
-function detenerParpadeo() {
+  function detenerParpadeo() {
   if (!parpadeoActivo) return;
 
   clearInterval(parpadeoActivo.intervalo);

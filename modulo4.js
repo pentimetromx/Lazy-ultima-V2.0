@@ -1773,7 +1773,7 @@ document.addEventListener('DOMContentLoaded', () => {
       hideKeyboard();
     }
   }); */
-  
+
   if (!esDesktop && esTactil) {
     campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
   }
@@ -4061,6 +4061,15 @@ mediaDesktop.addEventListener('change', e => {
   }
 });
 // Orden lógico deseado (independiente del DOM)
+const ordenInputsCMYK = [
+
+  'animate-btn-cmyk',
+  'input-c',
+  'input-m',
+  'input-y',
+  'input-k',
+  'input-a'
+];
 const ordenInputs = [
   'nomEmpl-ma',
   'numDoc1-ma',
@@ -4073,7 +4082,7 @@ const ordenInputs = [
   'numDoc8-ma',
   'nuevo-ingreso-ma'
 ];
-let indiceFoco = 0;
+let indiceFoco = 0;  
 // SOLO TACTILES
 function avanzarFoco() {
   indiceFoco++;
@@ -4094,15 +4103,24 @@ function avanzarFoco() {
 
     if(siguienteInput.id==='nuevo-ingreso-ma'){
       return
-    }else{
-      /* siguienteInput.style.backgroundColor='black'
-      siguienteInput.style.color='white' */
-
-
-    }    
+    }
   }
 
 
+  if (panelControlCMYK.style.display === 'grid') {
+
+  if (indiceFoco >= ordenInputsCMYK.length) {
+    indiceFoco = 0;
+  }
+
+  const siguienteInput = document.getElementById(ordenInputsCMYK[indiceFoco]);
+
+  if (!siguienteInput) return; // ← protección obligatoria
+
+  siguienteInput.focus();
+  siguienteInput.value=0
+  parpadearElemento(siguienteInput.id);
+}
 }  
 
 /* ===============================
@@ -4298,7 +4316,8 @@ function hideKeyboard() {
   tclVirtual.classList.remove('is-visible');
 }
 function hideCalculator() {
-  calculadora.classList.add('move-calculadora-down');
+  calculadora.classList.add('move-calculadora-down');  
+  detenerParpadeo()
 }
 function ubicaCalculadoraSegunContexto(){
   restablecerEstilos('calculadora');
