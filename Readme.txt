@@ -134,7 +134,7 @@ document.addEventListener('pointerdown'  ====> CLICK FUERA PARA OCULTAR
 
 3:5030 digitos.forEach((elemento
 
-3:5298 btnEntrar.addEventListener('click', (
+3:5248 btnEntrar.addEventListener('click', (
 
 4:3510 aplicarColoresInputs() COLORES INPUTS VERTICALES
 
@@ -152,6 +152,8 @@ inputPerfil.addEventListener('blur', () => {
   if(!esDesktop) hideKeyboard()
 });
 
+
+function avanzarFoco()
 
 
 
