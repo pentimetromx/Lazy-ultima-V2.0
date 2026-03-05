@@ -5019,22 +5019,27 @@ digitos.forEach((elemento) => {
       setTimeout(() => {
         digitos.forEach(d => d.style.pointerEvents = 'auto');
       }, 200);
-
     } else { // CALCULADORA ESPECIAL
+
       if (!lastFocusedInput) return;
+
       const input = lastFocusedInput;
       const numero = elemento.textContent;
 
-      const start = input.selectionStart;
-      const end = input.selectionEnd;
-      const value = input.value;
+      // mover cursor al final
+      const end = input.value.length;
 
-      input.value = value.slice(0, start) + numero + value.slice(end);
+      input.selectionStart = end;
+      input.selectionEnd = end;
 
-      input.selectionStart =
-      input.selectionEnd = start + numero.length; 
+      // insertar carácter al final
+      input.value = input.value + numero;
 
-      if(input.id !=='nomEmpl' && input.id !=='nomEmpl-ma' && input.id !=='numDoc1'){
+      // mantener cursor al final
+      input.selectionStart = input.selectionEnd = input.value.length;
+
+      if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
+
         const clamp = (val, min, max) =>
           Math.min(max, Math.max(min, val));
 
@@ -5047,8 +5052,10 @@ digitos.forEach((elemento) => {
         }
 
       }
-
     }
+
+
+      
   });
 });
 

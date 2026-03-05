@@ -132,9 +132,9 @@ document.addEventListener('pointerdown'  ====> CLICK FUERA PARA OCULTAR
 
 4:1903 function ingresoEmpleado()
 
-3:5030 digitos.forEach((elemento
+3:4977 digitos.forEach((elemento
 
-3:5248 btnEntrar.addEventListener('click', (
+3:5253 btnEntrar.addEventListener('click', (
 
 4:3510 aplicarColoresInputs() COLORES INPUTS VERTICALES
 
