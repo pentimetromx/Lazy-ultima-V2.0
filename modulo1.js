@@ -3384,7 +3384,8 @@ function LubricaDesbobinador(idButt) {
       alternarButtsFreno(idButt)
     break;
     case 'btn60':
-      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','abuelo-grilla','freno','cont-arriba-freno','conti-boton-freno','desbobinadorId','padre-lubrica','pantalla-inicial']  
+      var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','abuelo-grilla','freno','cont-arriba-freno',
+        'conti-boton-freno','desbobinadorId','padre-lubrica','pantalla-inicial','abuelo-grilla-freno']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -3393,7 +3394,7 @@ function LubricaDesbobinador(idButt) {
       }
       container1.style.display='grid'
       alternarButtsFreno(idButt)
-      manejarTransicion('child-move-II', 'abuelo-grilla','marco-freno',1000);
+      /* manejarTransicion('child-move-II', 'abuelo-grilla','marco-freno',1000); */
       if(screenWidth < 500){
         let boton = document.getElementById('butt-links-II')
         boton.style .display='flex'

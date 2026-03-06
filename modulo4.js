@@ -4384,32 +4384,36 @@ document.addEventListener('blur', (e) => {
 
 /* ***************************************************************************************************************************************** */
 //Bloque para aplicar clase que agranda imagen en primer click , segundo click normaliza tamaño
-function activarGrid(grid) {
 
-  grid.addEventListener('click', (e) => {
+function activarGrid(grid){
+
+  grid.addEventListener('click', (e)=>{
 
     const item = e.target.closest('.expand');
-    if (!item) return;
+    if(!item) return;
 
-    const activo = grid.querySelector('.grilla-entintado-imgs-row');
+    const activo = grid.querySelector('.expand-activo');
 
-    if (activo && item === activo) {
-      activo.classList.remove('grilla-entintado-imgs-row');
+    if(activo && activo === item){
+      item.classList.remove('expand-activo');
       grid.classList.remove('modo-unico');
       return;
     }
 
-    if (activo) {
-      activo.classList.remove('grilla-entintado-imgs-row');
+    if(activo){
+      activo.classList.remove('expand-activo');
     }
 
-    item.classList.add('grilla-entintado-imgs-row');
+    item.classList.add('expand-activo');
     grid.classList.add('modo-unico');
 
   });
 
 }
+
 activarGrid(document.getElementById('grilla-entintado'));
 activarGrid(document.getElementById('grilla-corta-entintado'));
+activarGrid(document.getElementById('grilla-frena'));
+
 
 /* ***************************************************************************************************************************************** */

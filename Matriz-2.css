@@ -6230,10 +6230,6 @@ top: 44%;
     font-size: 2vw;
     margin-bottom: 1vh;
   }
-  #abuelo-grilla{
-    position: absolute;
-    display: flex;
-  }
   .grilla-freno{
     top: 37vh;
     left:-11vw;  
