@@ -2539,36 +2539,6 @@ botoni.addEventListener('click', () => {
 
 /******************************************************************************************************************** */
 
-
-/* function crearControlLed(idContenedor, idInput, totalLeds = 10) {
-  const contenedor = document.getElementById(idContenedor);
-  let leds = [];
-  let indice = 0;
-
-  function construir() {
-    contenedor.innerHTML = '';
-    for (let i = 0; i < totalLeds; i++) {
-      const celda = document.createElement('div');
-      celda.classList.add('led-celda');
-      contenedor.appendChild(celda);
-    }
-    leds = [...contenedor.querySelectorAll('.led-celda')];
-  }
-
-  function aumentar() {
-    if (indice >= totalLeds) return;
-    leds[indice].classList.add('led-amarillo');
-    indice++;
-  }
-
-  function disminuir() {
-    if (indice <= 0) return;
-    indice--;
-    leds[indice].classList.remove('led-amarillo');
-  }
-
-  construir();
-} */
 const contenedoresLineas = document.querySelectorAll('#contenedor-indicador');
 function waitUntilFull(contenedor, blockout, anchoTotal, timeout = 2000) {
   // Espera hasta que blockout.offsetWidth sea ~ anchoTotal (tolerancia 1px)
@@ -4411,27 +4381,35 @@ document.addEventListener('blur', (e) => {
   normalizarInput(e.target);
 }, true);
 
-grid.addEventListener('click', (e) => {
 
-  const item = e.target.closest('.imgs-row');
-  if (!item) return;
+/* ***************************************************************************************************************************************** */
+//Bloque para aplicar clase que agranda imagen en primer click , segundo click normaliza tamaño
+function activarGrid(grid) {
 
-  const activo = grid.querySelector('.grilla-entintado-imgs-row');
+  grid.addEventListener('click', (e) => {
 
-  // Si ya está expandido y se hace click sobre él → restaurar grid
-  if (activo && item === activo) {
-    activo.classList.remove('grilla-entintado-imgs-row');
-    grid.classList.remove('modo-unico');
-    return;
-  }
+    const item = e.target.closest('.expand');
+    if (!item) return;
 
-  // Quitar expansión previa si existía
-  if (activo) {
-    activo.classList.remove('grilla-entintado-imgs-row');
-  }
+    const activo = grid.querySelector('.grilla-entintado-imgs-row');
 
-  // Expandir el elemento clicado
-  item.classList.add('grilla-entintado-imgs-row');
-  grid.classList.add('modo-unico');
+    if (activo && item === activo) {
+      activo.classList.remove('grilla-entintado-imgs-row');
+      grid.classList.remove('modo-unico');
+      return;
+    }
 
-});
+    if (activo) {
+      activo.classList.remove('grilla-entintado-imgs-row');
+    }
+
+    item.classList.add('grilla-entintado-imgs-row');
+    grid.classList.add('modo-unico');
+
+  });
+
+}
+activarGrid(document.getElementById('grilla-entintado'));
+activarGrid(document.getElementById('grilla-corta-entintado'));
+
+/* ***************************************************************************************************************************************** */

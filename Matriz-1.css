@@ -897,7 +897,8 @@ color: white;
   grid-column: 1 / -1;
   grid-row: 1 / -1;
 }
-#grilla-entintado.modo-unico .imgs-row:not(.grilla-entintado-imgs-row){
+#grilla-corta-entintado.modo-unico .expand:not(.grilla-entintado-imgs-row),
+#grilla-entintado.modo-unico .expand:not(.grilla-entintado-imgs-row){
   display: none;
 }
 
@@ -4721,11 +4722,6 @@ h4{
   display: none;
   transform: scale(0.96);
 }
-
-
-
-
-
 .aumentar{ 
   cursor: pointer;
 }
