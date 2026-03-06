@@ -897,11 +897,16 @@ color: white;
   grid-column: 1 / -1;
   grid-row: 1 / -1;
 }
-#grilla-corta-entintado.modo-unico .expand:not(.grilla-entintado-imgs-row),
-#grilla-entintado.modo-unico .expand:not(.grilla-entintado-imgs-row){
+
+.expand-activo{
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+}
+#grilla-frena.modo-unico .expand:not(.expand-activo),
+#grilla-corta-entintado.modo-unico .expand:not(.expand-activo),
+#grilla-entintado.modo-unico .expand:not(.expand-activo){
   display: none;
 }
-
 
 
 .imgs-row img{
@@ -3125,6 +3130,7 @@ h6{
   height: 100%;
   object-fit:cover;
   border-radius: 11px;
+  cursor: pointer;
 }
 #balineras{
   display: flex;
@@ -3857,10 +3863,6 @@ elemento.visible {
   height:50%;
   margin-bottom: 20px;
 }
-#abuelo-grilla{
-  position:absolute;
-  display: flex;
-}
 .grilla-freno{
   top: 0;
   left:54%;
@@ -3907,18 +3909,7 @@ elemento.visible {
   border-radius: 17px;  
   object-fit: fill;
 }
-#child-move-II{
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 60px;
-  height: 60px;
-  background-color: rgb(255, 0, 0);
-  box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7);
-  border-radius:50%;
-  z-index: -1;
-  transition: background-color 1s ease, box-shadow 1s ease;
-}
+
 #second-floor{
   position: absolute;
   display: flex;
@@ -6322,10 +6313,10 @@ input.numero:focus {
   display: flex;
   background-color: rgb(0,0,17);
   border-radius: 20px;
-  left:0;
-  top:0;
-  width:100%;
-  height:100%;                
+  left:54%;
+  top: 1.30%;
+  width: 42%;
+  height: 63%;              
 }
 #titulo-lubrica{
   position: absolute;
@@ -6392,16 +6383,16 @@ input.numero:focus {
 .rodillo-durezas{
   border-radius:20px;
 }
-.grilla-frena-hijo{
+#grilla-frena{
   position: absolute;
   display: grid;
+  grid-template-columns:32% 32% 32%;
+  grid-template-rows: repeat(3, 1fr);
+  z-index:10;
   top:1%;
   left:1%;
   width: 98%;
   height:98%;
-  display: grid;
-  grid-template-columns:32% 32% 32%;
-  grid-template-rows: repeat(3, 1fr);
   gap: 10px;
   box-sizing: border-box;
   border-radius: 11px;
@@ -7637,7 +7628,7 @@ background-color: #3FEF9C;
   display: grid;
   gap: 3%;
   grid-template-rows: repeat(5, 1fr);
-  top: 15vh;
+  top: 57vh;
   height: 35vh;
   width:10vw;
   z-index: 9999;
