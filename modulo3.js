@@ -10,7 +10,13 @@ document.addEventListener('keydown', function(event) {
         Geometria()
       break;
       case 'X':
-        ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
+        const grid = document.getElementById('grilla-entintado');
+        const first = grid.querySelector('.imgs-row:first-child');
+
+        first.classList.add('grilla-entintado-imgs-row');
+        grid.classList.add('modo-unico');        
+      
+      
       break;                  
     }
   }
