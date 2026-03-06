@@ -4410,3 +4410,28 @@ document.addEventListener('blur', (e) => {
 
   normalizarInput(e.target);
 }, true);
+
+grid.addEventListener('click', (e) => {
+
+  const item = e.target.closest('.imgs-row');
+  if (!item) return;
+
+  const activo = grid.querySelector('.grilla-entintado-imgs-row');
+
+  // Si ya está expandido y se hace click sobre él → restaurar grid
+  if (activo && item === activo) {
+    activo.classList.remove('grilla-entintado-imgs-row');
+    grid.classList.remove('modo-unico');
+    return;
+  }
+
+  // Quitar expansión previa si existía
+  if (activo) {
+    activo.classList.remove('grilla-entintado-imgs-row');
+  }
+
+  // Expandir el elemento clicado
+  item.classList.add('grilla-entintado-imgs-row');
+  grid.classList.add('modo-unico');
+
+});
