@@ -4143,7 +4143,6 @@ top: 44%;
 #marco-lubricantes.apagado,
 #marco-lubrica.apagado,
 #marco-repuestos.apagado,
-#marco-rodillos.apagado,
 #marco-planetario.apagado{
   background-color: transparent;
   box-shadow: none;
@@ -7390,17 +7389,6 @@ top: 44%;
     height: 100vh;
     top: 13%;
     left: 2.5%;
-    display: none;
-  }
-  #abuelo-entintadores{
-    position: relative;
-    display:flex;
-    left: 2vw;
-    top: 18vh;
-    height:52vh;
-    width: 88vw;
-    border-radius: 15px;
-    background-color: RGB(0,0,10);
     display: none;
   }
   #padre-entintadores,
