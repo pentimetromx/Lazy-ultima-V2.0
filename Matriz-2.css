@@ -4082,18 +4082,6 @@ top: 44%;
   display: none;
   flex-direction: column;
 }
-#marco-plana {
-  background-color: rgb(255, 165, 0);
-  box-shadow: 0 0 30px rgba(255, 165, 0, 1),
-              0 0 60px rgba(255, 165, 0, 0.7);
-  transition: background-color 2s ease, box-shadow 2s ease;
-}
-#marco-variable {
-  background-color: rgb(255, 0, 0);
-  box-shadow: 0 0 30px rgba(255, 0, 0, 1),
-              0 0 60px rgba(255, 0, 0, 0.7);
-  transition: background-color 2s ease, box-shadow 2s ease;
-}
 #marco-lubrica{
   position: absolute;
   display: flex;
@@ -4125,8 +4113,6 @@ top: 44%;
   position:absolute;
   display: none;
   flex-direction: column;
-  background-color: rgb(255, 0, 0);
-  box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7);
 
   border-radius: 17px;
   top:31.2vh;
@@ -4158,10 +4144,7 @@ top: 44%;
 #marco-lubrica.apagado,
 #marco-repuestos.apagado,
 #marco-rodillos.apagado,
-#marco-rollers.apagado,
-#marco-planetario.apagado,
-#marco-plana.apagado,
-#marco-variable.apagado{
+#marco-planetario.apagado{
   background-color: transparent;
   box-shadow: none;
 }
@@ -4551,9 +4534,6 @@ top: 44%;
 .horiz-9-3 { top: 50%; }
 .horiz-9-4 { top: 71%; }
 .horiz-9-5 { top: 93%; }
-.item-naranja .span-extension,
-#cont-variable .child-section,
-#cont-variable .child-section.activa,
 .item-naranja .span-extension.activa,
 #formulario-cuenta .etq-frm.activo {
   background-color: rgb(255, 0, 0);
@@ -5772,7 +5752,6 @@ top: 44%;
     border-radius: 20px;
     z-index: 33;
   }
-  #child-move-III,
   #child-move{
     width: 60px;
     height: 60px;
@@ -7413,8 +7392,7 @@ top: 44%;
     left: 2.5%;
     display: none;
   }
-  #abuelo-entintadores,
-  #frame-rollers{
+  #abuelo-entintadores{
     position: relative;
     display:flex;
     left: 2vw;
@@ -7429,10 +7407,10 @@ top: 44%;
   #contImgDistribuidor{
     position: absolute;
     display:flex;
-    left:0;
-    top:0;
-    height:100%;
-    width:100%;
+    left: 2vw;
+    top: 18vh;
+    height:52vh;
+    width: 88vw;
     background-color: RGB(0,0,10);
     border-radius: 15px;
   }

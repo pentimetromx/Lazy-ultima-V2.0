@@ -2269,20 +2269,21 @@ inputsColorGeneral.forEach(input => {
     }
   });
 
-
   input.addEventListener('blur', (e) => {
-    const related = e.relatedTarget;
 
-    // Si el foco pasa a un elemento dentro de la calculadora, no ocultar
-    if (related && related.closest('#calculadora')) return;
+  const next = document.activeElement;
 
-    const target = e.target;
-    target.value = soloNumeros(target.value);
+  // Si el foco quedó dentro de la calculadora no ocultar
+  if (next && next.closest('#calculadora')) return;
 
-    if (!esDesktop) {
-      hideCalculator();
-    }
-  });  
+  const target = e.target;
+  target.value = soloNumeros(target.value);
+
+  if (!esDesktop) {
+    hideCalculator();
+  }
+
+}); 
 
 });
 

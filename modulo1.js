@@ -296,9 +296,8 @@ function showNextGraf() {
 function showRepuesto(elementId) {
   const config = {
     contImgDistribuidor: {
-      excluidos: ['buscador','search-form','links-iniciales','links-inicialesI','frame-rollers'],
-      grid: 'contImgDistribuidor',
-      transicion: ['child-move-III','contImgDistribuidor','marco-rollers',1500]
+      excluidos: ['buscador','search-form','links-iniciales','links-inicialesI','frame-rollers','contImgDistribuidor'],
+      grid: 'grilla-entintado',      
     },
     contImgEntintador: {
       excluidos: ['buscador','search-form','abuelo-entintadores','padre-entintadores','links-iniciales','links-inicialesI'],
@@ -1655,6 +1654,7 @@ function devolverColoresConRetrasoIII() {
     cambiarColorConRetrasoIII(0);
   }, 77);
 }
+
 function abrirSeccionVariable(elementId){
   clearAllIntervals()
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','abuelo-variable','padre-variable'];
@@ -1667,7 +1667,7 @@ function abrirSeccionVariable(elementId){
   }
   container1.style.display='grid'
   document.getElementById('cont-variable').style.display='grid'
-  manejarTransicion('child-move-variable', 'padre-variable', 'marco-variable',1200);
+  /* manejarTransicion('child-move-variable', 'padre-variable', 'marco-variable',1200); */
   setTimeout(() => {
     resaltarSecuencialVariable()
   }, 1100);
@@ -1692,7 +1692,7 @@ function abrirSeccionPlanas(elementId){
   }
   container1.style.display='grid'
   document.getElementById('cont-plana').style.display='grid'
-  manejarTransicion('child-move-plana', 'padre-plana', 'marco-plana',1200);
+  /* manejarTransicion('child-move-plana', 'padre-plana', 'marco-plana',1200); */
   if (typeof elementId !== 'undefined') {
     const index = idsArray.indexOf(elementId);
     if (index !== -1) {
@@ -1733,7 +1733,7 @@ function abrirSeccionDemo(elementId) {
     }
   }
   container1.style.display='grid'
-  manejarTransicion('child-move-naranja', 'tendencia-naranja', 'marco-planetario',1000);
+  /* manejarTransicion('child-move-naranja', 'tendencia-naranja', 'marco-planetario',1000); */
   setTimeout(() => {
     resaltarSecuencialDemo()
   }, 800);
@@ -1792,12 +1792,12 @@ document.getElementById('shrinkButton').addEventListener('click', function() {
 
         setTimeout(function() {
           item.style.width = initialWidth + 'px';
-          label.textContent = initialWidth + 'px';
+          label.textContent = initialWidth/2 + ' %';
         }, 500);
 
       } else {
         item.style.width = width + 'px';
-        label.textContent = Math.round(width) + 'px';
+        label.textContent = Math.round(width) + '%';
       }
     }, 16);
   });
