@@ -4022,8 +4022,15 @@ mediaDesktop.addEventListener('change', e => {
   }
 });
 // Orden lógico deseado (independiente del DOM)
-const ordenInputsCMYK = [
+const ordenInputsRGB = [
+  'animate-btn',
+  'input-r',
+  'input-g',
+  'input-b',
+  'input-w',
+];
 
+const ordenInputsCMYK = [
   'animate-btn-cmyk',
   'input-c',
   'input-m',
@@ -4066,8 +4073,6 @@ function avanzarFoco() {
       return
     }
   }
-
-
   if (panelControlCMYK.style.display === 'grid') {
 
     if (indiceFoco >= ordenInputsCMYK.length) {
@@ -4083,6 +4088,21 @@ function avanzarFoco() {
     parpadearElemento(siguienteInput.id,150,2500);
 
   }
+  if (panelControlRGB.style.display === 'grid') {
+
+    if (indiceFoco >= ordenInputsRGB.length) {
+      indiceFoco = 0;
+    }
+
+    const siguienteInput = document.getElementById(ordenInputsRGB[indiceFoco]);
+
+    if (!siguienteInput) return; // ← protección obligatoria
+
+    siguienteInput.focus();
+    siguienteInput.value=0
+    parpadearElemento(siguienteInput.id,150,2500);
+
+  }  
 }  
 
 /* ===============================

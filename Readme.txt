@@ -153,8 +153,5 @@ inputPerfil.addEventListener('blur', () => {
 });
 
 
-function avanzarFoco()
-
-
 
 

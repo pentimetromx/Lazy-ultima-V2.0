@@ -5025,41 +5025,44 @@ digitos.forEach((elemento) => {
       setTimeout(() => {
         digitos.forEach(d => d.style.pointerEvents = 'auto');
       }, 200);
-    } else { // CALCULADORA ESPECIAL
+    }
+    else { // CALCULADORA ESPECIAL
 
-      if (!lastFocusedInput) return;
+  // evitar que el botón robe el foco del input
+  elemento.addEventListener('mousedown', (e) => e.preventDefault());
 
-      const input = lastFocusedInput;
-      const numero = elemento.textContent;
+  if (!lastFocusedInput) return;
 
-      // mover cursor al final
-      const end = input.value.length;
+  const input = lastFocusedInput;
+  const numero = elemento.textContent;
 
-      input.selectionStart = end;
-      input.selectionEnd = end;
+  // mover cursor al final
+  const end = input.value.length;
 
-      // insertar carácter al final
-      input.value = input.value + numero;
+  input.selectionStart = end;
+  input.selectionEnd = end;
 
-      // mantener cursor al final
-      input.selectionStart = input.selectionEnd = input.value.length;
+  // insertar carácter al final
+  input.value = input.value + numero;
 
-      if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
+  // mantener cursor al final
+  input.selectionStart = input.selectionEnd = input.value.length;
 
-        const clamp = (val, min, max) =>
-          Math.min(max, Math.max(min, val));
+  if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
 
-        input.value = input.value.replace(/\D/g, '');
+    const clamp = (val, min, max) =>
+      Math.min(max, Math.max(min, val));
 
-        if (input.value !== '') {
-          const min = Number(input.min) || 0;
-          const max = Number(input.max) || 100;
-          input.value = clamp(parseInt(input.value, 10), min, max);
-        }
+    input.value = input.value.replace(/\D/g, '');
 
-      }
+    if (input.value !== '') {
+      const min = Number(input.min) || 0;
+      const max = Number(input.max) || 100;
+      input.value = clamp(parseInt(input.value, 10), min, max);
     }
 
+  }
+}
 
       
   });
