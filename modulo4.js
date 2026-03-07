@@ -2331,14 +2331,20 @@ btnDblFlecha.addEventListener('click', ()=>{
 const inputArchivo = document.getElementById('numDoc6');
 let escala = 1;
 // BOTON ROJO
+
+function restaurarPosicionPadreIngresos() {
+  const padre = document.getElementById('padre-ingresos');
+  if (!padre) return;
+  padre.style.transform = ''; // elimina el translate aplicado por JS
+}
 function moverPadreIngresos(porcentajeX, porcentajeY) {
   flagEmpleado = false
-  const inputs = document.querySelectorAll('.storeText');
+  const inputs = document.querySelectorAll('.fila-ingreso.storeText');
   const img = document.querySelector('.imgEmpleado img');
   const valor = inputArchivo.value.trim().toLowerCase();
 
   for (const input of inputs) {
-    if (!input.value.trim()) {
+    if (input.value==='') {
       /* mostrarVentanaMensaje('Hay campos sin diligenciar.'); */
       parpadearElemento('nomEmpl');
       saltarAlerta('Hay campos sin diligenciar.', 'moverRrhh')
@@ -2346,17 +2352,6 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
       return;
     }
 
-    if (!img || !img.src || img.src.trim() === '' || img.src.endsWith('/')) {
-      mostrarVentanaMensaje('Debe insertar una imagen.'); 
-      flagEmpleado = true
-      return;
-    }
-
-  }
-  if (!valor.endsWith('.png') && !valor.endsWith('.jpg') && !valor.endsWith('.jpeg')) {
-    mostrarVentanaMensaje('El archivo debe ser una imagen .png o .jpg');  
-    flagEmpleado = true
-    return;
   }
   eliminarCalendario('.calendario-interfaz');
   const padre = document.getElementById('padre-ingresos');
@@ -2369,11 +2364,6 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
   setTimeout(() => {
     padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
   }, 25);
-}
-function restaurarPosicionPadreIngresos() {
-  const padre = document.getElementById('padre-ingresos');
-  if (!padre) return;
-  padre.style.transform = ''; // elimina el translate aplicado por JS
 }
 // boton rojo 
 document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ 
