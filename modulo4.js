@@ -2339,7 +2339,7 @@ function restaurarPosicionPadreIngresos() {
 }
 function moverPadreIngresos(porcentajeX, porcentajeY) {
   flagEmpleado = false
-  const inputs = document.querySelectorAll('.fila-ingreso.storeText');
+  const inputs = document.querySelectorAll('.fila-ingreso .storeText');
   const img = document.querySelector('.imgEmpleado img');
   const valor = inputArchivo.value.trim().toLowerCase();
 
@@ -2367,6 +2367,18 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
 }
 // boton rojo 
 document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ 
+  const inputs = document.querySelectorAll('.fila-ingreso .storeText');
+  for (const input of inputs) {
+    if (input.value==='') {
+      /* mostrarVentanaMensaje('Hay campos sin diligenciar.'); */
+      parpadearElemento('nomEmpl');
+      saltarAlerta('Hay campos sin diligenciar.', 'moverRrhh')
+      flagEmpleado = true
+      return;
+    }
+
+  }
+
   console.log('BANDERA : ', flagEmpleado)
   const padre = document.getElementById('padre-ingresos');
   padre.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
