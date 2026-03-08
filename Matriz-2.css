@@ -1489,6 +1489,9 @@ body{
   gap: 2px;
   user-select: none;
 }
+#grid-numbers > div:nth-child(11){
+  font-size: 1.5rem;
+}
 .grid-item:active {
   background: rgb(255,45,61);
   color: white;
