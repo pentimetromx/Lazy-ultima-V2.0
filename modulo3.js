@@ -20,7 +20,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('grilla-teñido-hijo');  
+  let contiBoton = document.getElementById('lista-clientes');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -4873,6 +4873,7 @@ const alertaOcho = document.getElementById('alerta-ocho')
 let alertaNueve = document.querySelector('#alerta-nueve')
 const buttsJobs = document.querySelectorAll('.base-datos');
 const botonClientes = document.querySelector('#clientes')
+
 buttsJobs.forEach(boton => {
   let panelUno = document.getElementById('panel-uno')
   let panelDos = document.getElementById('panel-dos')  
@@ -4900,7 +4901,7 @@ buttsJobs.forEach(boton => {
             alertaCuatro.style.top = '30vh'       
             alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos'   
           }
-      }, 50);      
+        }, 50);      
       break;
       case 'lineas':
         irAconsola.style.display='none'
