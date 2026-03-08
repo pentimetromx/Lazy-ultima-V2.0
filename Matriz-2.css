@@ -2772,7 +2772,7 @@ width: 70%;
 }
 .listado-lineas > *:hover,
 .listado-clientes > *:hover{
-  background-color:#66ff66;
+  background-color: #6FCF97;
   color: rgb(0,0,33);
 }
 .alerta-perfil,

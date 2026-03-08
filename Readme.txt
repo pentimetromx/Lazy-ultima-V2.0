@@ -1,3 +1,5 @@
+||
+
 “Respóndeme solo con la causa directa y la corrección mínima.
 No enumeres opciones, no des contexto adicional.”
 
@@ -153,5 +155,5 @@ inputPerfil.addEventListener('blur', () => {
 });
 
 
-
+ESTOY EN 4: 4531
 
