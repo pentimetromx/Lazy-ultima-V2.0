@@ -10,20 +10,17 @@ document.addEventListener('keydown', function(event) {
         Geometria()
       break;
       case 'X':
-        const grid = document.getElementById('grilla-entintado');
-        const first = grid.querySelector('.imgs-row:first-child');
-
-        first.classList.add('grilla-entintado-imgs-row');
-        grid.classList.add('modo-unico');        
-      
-      
+      document.querySelectorAll('.number').forEach(el => {
+        el.textContent = '';
+      });
+  
       break;                  
     }
   }
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('calculadora');  
+  let contiBoton = document.getElementById('grilla-teñido-hijo');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -2871,7 +2868,6 @@ let calculadoraSimulador = false
 
 document.getElementById('butt-job-track').addEventListener('click', () =>{
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
-  const conteJobTrack = document.querySelector('#job-files')
   const padreBotonera = document.querySelector('#botonera-frente')
   padreBotonera.style.display='grid'
   conteJobTrack.classList.remove('move-job-track')
@@ -4316,7 +4312,6 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
   let conteCMYK = document.querySelector('#padre-cmyk');
   let conteRGB = document.querySelector('#padre-rgb');
   const mensajeEmergente = document.getElementById('mensajeEmergente');
-  const conteJobTrack = document.querySelector('#job-files');
   conteJobTrack.classList.remove('move-job-track')
 
   if (mensajeEmergente.textContent === 'Perfil creado y almacenado') {
@@ -4791,7 +4786,7 @@ botonesPerfilColor.forEach(boton => {
 const intervalosColor = new Map();
 
 
-function alternarColor(el1, el2) {
+function alternarColor(el1, el2,espera) {
   detenerTodosLosColores(); // ← CLAVE
 
   [el1, el2].forEach(el => {
@@ -4811,7 +4806,7 @@ function alternarColor(el1, el2) {
 
   setTimeout(() => {
     detenerAlternarColor(el1, el2);
-  }, 5000);
+  }, espera);
 }
 
 function detenerAlternarColor(...elementos) {
@@ -4980,7 +4975,12 @@ listaLineas.forEach(linea => {
 
 // BOTONES DE LA CALCULADORA
 
-digitos.forEach((elemento) => { 
+// BOTONES DE LA CALCULADORA
+
+digitos.forEach((elemento) => {
+
+  elemento.addEventListener('mousedown', (e) => e.preventDefault());
+
   elemento.addEventListener('click', (e) => {
     e.stopPropagation();
 
@@ -4993,12 +4993,15 @@ digitos.forEach((elemento) => {
       if ([...spans].every(span => span.textContent.trim() === '')) {
         alertaTres.style.display = 'flex';
         desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+
       } else if (spans[0].textContent.trim() === '') {
         document.getElementById('alerta-uno').style.display = 'flex';
         desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+
       } else if (spans[1].textContent.trim() === '') {
         document.getElementById('alerta-dos').style.display = 'flex';
         desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+
       } else {
 
         const numero = parseInt(elemento.textContent);
@@ -5016,57 +5019,70 @@ digitos.forEach((elemento) => {
           spansCantidades.forEach(span => span.textContent = '');
 
           for (let i = 0; i < coleccionNumeros.length; i++) {
-            spansNumeros[spansNumeros.length - coleccionNumeros.length + i].textContent = coleccionNumeros[i];
-            spansCantidades[spansCantidades.length - coleccionNumeros.length + i].textContent = coleccionNumeros[i];
+
+            spansNumeros[
+              spansNumeros.length - coleccionNumeros.length + i
+            ].textContent = coleccionNumeros[i];
+
+            spansCantidades[
+              spansCantidades.length - coleccionNumeros.length + i
+            ].textContent = coleccionNumeros[i];
           }
         }
+
       }
 
       setTimeout(() => {
         digitos.forEach(d => d.style.pointerEvents = 'auto');
       }, 200);
-    }
+
+    } 
+
     else { // CALCULADORA ESPECIAL
 
-  // evitar que el botón robe el foco del input
-  elemento.addEventListener('mousedown', (e) => e.preventDefault());
+      if (!lastFocusedInput) return;
 
-  if (!lastFocusedInput) return;
+      const input = lastFocusedInput;
 
-  const input = lastFocusedInput;
-  const numero = elemento.textContent;
+      if (elemento.dataset.action === 'backspace') {
 
-  // mover cursor al final
-  const end = input.value.length;
+        const value = input.value ?? '';
+        if (!value.length) return;
 
-  input.selectionStart = end;
-  input.selectionEnd = end;
+        input.value = value.slice(0, -1);
 
-  // insertar carácter al final
-  input.value = input.value + numero;
+        input.selectionStart = input.selectionEnd = input.value.length;
 
-  // mantener cursor al final
-  input.selectionStart = input.selectionEnd = input.value.length;
+        return; // evitar que continúe la inserción
+      }
+      const numero = elemento.textContent;
+      const end = input.value.length;
+      input.selectionStart = end;
+      input.selectionEnd = end;
+      input.value = input.value + numero;
+      input.selectionStart = input.selectionEnd = input.value.length;
+      if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
 
-  if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
+        const clamp = (val, min, max) =>
+          Math.min(max, Math.max(min, val));
 
-    const clamp = (val, min, max) =>
-      Math.min(max, Math.max(min, val));
+        input.value = input.value.replace(/\D/g, '');
 
-    input.value = input.value.replace(/\D/g, '');
+        if (input.value !== '') {
+          const min = Number(input.min) || 0;
+          const max = Number(input.max) || 100;
+          input.value = clamp(parseInt(input.value, 10), min, max);
+        }
 
-    if (input.value !== '') {
-      const min = Number(input.min) || 0;
-      const max = Number(input.max) || 100;
-      input.value = clamp(parseInt(input.value, 10), min, max);
+      }
+
     }
 
-  }
-}
-
-      
   });
+
 });
+
+
 
 alertaTres.addEventListener('click', ()=> {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
@@ -5088,7 +5104,6 @@ document.getElementById('alerta-seis').children[2].addEventListener('click', () 
 document.querySelector('#perfil-existe').addEventListener('click', () => {
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
   alertaSeis.classList.add('move-alerta')
-  const conteJobTrack = document.querySelector('#job-files')
   conteJobTrack.classList.remove('move-job-track')
   var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','abandonar-perfiles']  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -5174,11 +5189,19 @@ alertaNormal.forEach((alerta) => {
 
 // BOTON BORRAR CALCULADORA
 
+
+
 const DELETE_INITIAL_DELAY = 400;
 const DELETE_REPEAT_RATE = 70;
 
 let deleteTimeout = null;
 let deleteInterval = null;
+
+document.addEventListener('focusin', (e) => {
+  if (e.target.matches('input, textarea')) {
+    lastFocusedInput = e.target;
+  }
+});
 
 const limpiarBase = () => {
   coleccionNumeros.length = 0;
@@ -5189,62 +5212,78 @@ const limpiarBase = () => {
 const stopDeleting = () => {
   clearTimeout(deleteTimeout);
   clearInterval(deleteInterval);
+
   deleteTimeout = null;
   deleteInterval = null;
 };
 
+const deleteLastCharacter = (target) => {
+
+  const value = target.value ?? target.textContent ?? '';
+  if (!value.length) return;
+
+  const newValue = value.slice(0, -1);
+
+  if ('value' in target) {
+    target.value = newValue;
+  } else {
+    target.textContent = newValue;
+  }
+
+};
+
 if (esDesktop) {
+
   botonBorrar.addEventListener('click', (e) => {
     e.preventDefault();
     limpiarBase();
   });
+
 }
 
 if (!esDesktop) {
+
+  inputPerfil.setAttribute('readonly', true);
+
   botonBorrar.addEventListener('touchstart', (e) => {
     e.preventDefault();
 
-    limpiarBase();
+    document.querySelectorAll('.number').forEach(el => {
+      el.textContent = '';
+    });
+
 
     const target = lastFocusedInput;
     if (!target) return;
 
-    const deleteFirstCharacter = () => {
-      const value = target.value ?? target.textContent ?? '';
-      if (!value.length) return;
+    // borrar carácter primero
+    deleteLastCharacter(target);
 
-      const newValue = value.slice(1);
+    // luego limpiar estado interno
+    limpiarBase();
 
-      if ('value' in target) {
-        target.value = newValue;
-      } else {
-        target.textContent = newValue;
-      }
-    };
-
-    // borrado inmediato
-    deleteFirstCharacter();
-
-    // repetición progresiva
+    // iniciar repetición progresiva
     deleteTimeout = setTimeout(() => {
-      deleteInterval = setInterval(
-        deleteFirstCharacter,
-        DELETE_REPEAT_RATE
-      );
+
+      deleteInterval = setInterval(() => {
+        deleteLastCharacter(target);
+      }, DELETE_REPEAT_RATE);
+
     }, DELETE_INITIAL_DELAY);
+
   });
 
   botonBorrar.addEventListener('touchend', stopDeleting);
   botonBorrar.addEventListener('touchcancel', stopDeleting);
-  inputPerfil.setAttribute('readonly', true);
+
 }
 
-botonBorrar.addEventListener('touchend', stopDeleting);
-botonBorrar.addEventListener('touchcancel', stopDeleting);
+
+
 
 document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
   alertaMSG.style.display = 'none';
-  document.querySelector('#job-files').style.display = 'none'
+  conteJobTrack.style.display = 'none'
   document.querySelector('#contenedor-registro').style.display = 'none'
   calculadora.classList.add('move-calculadora')
   document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {
