@@ -1236,15 +1236,14 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
     });    
 
     span.style.backgroundColor ='rgb(20,40,60)';
-    const azul = 'rgb(20, 40, 60)';
-    const hayMesActivo = Array.from(document.querySelectorAll('.mes'))
-    .some(el => getComputedStyle(el).backgroundColor === azul);
+    const azul = 'rgb(90, 160, 220)';
+    
+    const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
+    const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
 
-    const hayMaquinaActiva = Array.from(document.querySelectorAll('.maquina'))
-    .some(el => getComputedStyle(el).backgroundColor === azul);
 
     if (!hayMesActivo || !hayMaquinaActiva){
-      alternarColor(firstMachine)
+      alternarColor(firstMachine,secondMachine,2000)
       saltarAlerta('Seleccione una Maquina y el Mes', 'lanzaGrafos')
       return;
     }  // corta la ejecución
@@ -1739,40 +1738,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
- /*  campoBusqueda.addEventListener('focusin',() =>{
-    if(!esDesktop) showKeyboard()
-  })
-  campoBusqueda.addEventListener('blur',() =>{
-    if(!esDesktop){
-      campoBusqueda.setAttribute('readonly', true);
-      hideKeyboard()
-    } 
-  }) */
-
   const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-  // 1️⃣ Configuración inicial
-
-
-  /* // 2️⃣ Mostrar teclado virtual al intentar enfocar
-  campoBusqueda.addEventListener('focusin', (e) => {
-    if (!esDesktop && esTactil) {
-      e.target.blur();          // bloquea teclado nativo
-      showKeyboard();           // muestra tu teclado
-    }
-  });
-
-  // 3️⃣ Cerrar teclado cuando se hace click fuera
-  document.addEventListener('pointerdown', (e) => {
-    if (esDesktop) return;
-
-    const clickDentroInput = campoBusqueda.contains(e.target);
-    const clickDentroTeclado = keyboardWrapper?.contains(e.target);
-
-    if (!clickDentroInput && !clickDentroTeclado) {
-      hideKeyboard();
-    }
-  }); */
 
   if (!esDesktop && esTactil) {
     campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
@@ -1783,9 +1749,6 @@ document.addEventListener('DOMContentLoaded', () => {
   campoBusqueda.addEventListener('blur', () => {
     if(!esDesktop) hideKeyboard()
   });
-
-
-
 
   // --- funciones auxiliares ---
 
@@ -4128,9 +4091,7 @@ document.addEventListener('focusin', (e) => {
   }
 });
 
-inputNombre.addEventListener('focusin',()=>{
-  keyboardWrapper.style.display='flex'
-})
+
 const keyboardLayout = [
   ['q','w','e','r','t','y','u','i','o','p'],
   ['a','s','d','f','g','h','j','k','l','ñ'],
@@ -4154,8 +4115,8 @@ function createKeyboard(layout) {
       const key = document.createElement('button');
       key.type = 'button';
       key.className = 'key';
+      key.tabIndex = -1;
 
-      /* ===== RENDER (una sola vez) ===== */
       if (letter === 'space') {
         key.classList.add('key-space');
         key.innerHTML = '<div class="space-bar"></div>';
@@ -4165,12 +4126,27 @@ function createKeyboard(layout) {
         key.textContent = letter;
       }
 
-      /* ===== LÓGICA DE CLICK ===== */
       const DELETE_INITIAL_DELAY = 400;
       const DELETE_REPEAT_RATE = 60;
 
       let deleteTimeout = null;
       let deleteInterval = null;
+
+      const deleteCharacter = () => {
+        if (!lastFocusedInput) return;
+
+        const input = lastFocusedInput;
+        const value = input.value;
+
+        if (!value.length) return;
+
+        input.value = value.slice(0, -1);
+
+        const newLength = input.value.length;
+        input.selectionStart = input.selectionEnd = newLength;
+
+        input.focus();
+      };
 
       key.addEventListener('touchstart', (e) => {
         e.preventDefault();
@@ -4179,33 +4155,13 @@ function createKeyboard(layout) {
 
         const input = lastFocusedInput;
 
-        const deleteCharacter = () => {
-          const value = input.value;
-
-          if (!value.length) return;
-
-          // elimina siempre el último carácter
-          input.value = value.slice(0, -1);
-
-          // coloca el cursor al final
-          const newLength = input.value.length;
-          input.selectionStart = input.selectionEnd = newLength;
-
-          input.focus();
-        };
-        
-
-        const startPos = input.selectionStart;
-        const endPos = input.selectionEnd;
+        const startPos = input.selectionStart ?? input.value.length;
+        const endPos = input.selectionEnd ?? input.value.length;
         const value = input.value;
 
-        // BACKSPACE
         if (letter === 'backspace') {
-
-          // primer borrado inmediato
           deleteCharacter();
 
-          // repetición progresiva
           deleteTimeout = setTimeout(() => {
             deleteInterval = setInterval(
               deleteCharacter,
@@ -4216,32 +4172,86 @@ function createKeyboard(layout) {
           return;
         }
 
-        // SPACE
         if (letter === 'space') {
           input.value =
             value.slice(0, startPos) + ' ' + value.slice(endPos);
+
           input.selectionStart =
           input.selectionEnd = startPos + 1;
+
           input.focus();
           return;
         }
 
-        // LETRAS con mayúscula automática
         const prevChar = value[startPos - 1];
         const shouldUppercase =
           startPos === 0 || prevChar === ' ';
+
         const char = shouldUppercase
           ? letter.toUpperCase()
           : letter;
 
         input.value =
           value.slice(0, startPos) + char + value.slice(endPos);
+
         input.selectionStart =
         input.selectionEnd = startPos + 1;
+
         input.focus();
       });
 
-      // detener repetición
+      key.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+
+        if (!lastFocusedInput) return;
+
+        const input = lastFocusedInput;
+
+        const startPos = input.selectionStart ?? input.value.length;
+        const endPos = input.selectionEnd ?? input.value.length;
+        const value = input.value;
+
+        if (letter === 'backspace') {
+          deleteCharacter();
+
+          deleteTimeout = setTimeout(() => {
+            deleteInterval = setInterval(
+              deleteCharacter,
+              DELETE_REPEAT_RATE
+            );
+          }, DELETE_INITIAL_DELAY);
+
+          return;
+        }
+
+        if (letter === 'space') {
+          input.value =
+            value.slice(0, startPos) + ' ' + value.slice(endPos);
+
+          input.selectionStart =
+          input.selectionEnd = startPos + 1;
+
+          input.focus();
+          return;
+        }
+
+        const prevChar = value[startPos - 1];
+        const shouldUppercase =
+          startPos === 0 || prevChar === ' ';
+
+        const char = shouldUppercase
+          ? letter.toUpperCase()
+          : letter;
+
+        input.value =
+          value.slice(0, startPos) + char + value.slice(endPos);
+
+        input.selectionStart =
+        input.selectionEnd = startPos + 1;
+
+        input.focus();
+      });
+
       const stopDeleting = () => {
         clearTimeout(deleteTimeout);
         clearInterval(deleteInterval);
@@ -4251,7 +4261,8 @@ function createKeyboard(layout) {
 
       key.addEventListener('touchend', stopDeleting);
       key.addEventListener('touchcancel', stopDeleting);
-      
+      key.addEventListener('mouseup', stopDeleting);
+      key.addEventListener('mouseleave', stopDeleting);
 
       row.appendChild(key);
     });
@@ -4259,6 +4270,9 @@ function createKeyboard(layout) {
     keyboard.appendChild(row);
   });
 }
+inputNombre.addEventListener('focusin',()=>{
+  keyboardWrapper.style.display='flex'
+})
 function handleKeyPress(letter) {
   if (!lastFocusedInput) return;
 
@@ -4296,18 +4310,27 @@ function handleKeyPress(letter) {
 }
 createKeyboard(keyboardLayout);
 const closeKeyboardBtn = document.getElementById('close-keyboard-btn');
-closeKeyboardBtn.addEventListener('click',()=>{keyboardWrapper.style.display='none'})
+
+closeKeyboardBtn.addEventListener('click', () => {
+  keyboardWrapper.style.display = 'none';
+});
+
+
+
 document.addEventListener('focusin', e => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
     lastFocusedInput = e.target;
   }
 });
-const tclVirtual = document.getElementById('keyboard-wrapper');
+
+
+
+
 function showKeyboard() {
-  tclVirtual.classList.add('is-visible');
+  keyboardWrapper.classList.add('is-visible');
 }
 function hideKeyboard() {
-  tclVirtual.classList.remove('is-visible');
+  keyboardWrapper.classList.remove('is-visible');
 }
 function hideCalculator() {
   calculadora.classList.add('move-calculadora-down');  
@@ -4432,7 +4455,7 @@ function activarGrid(grid){
   });
 
 }
-
+activarGrid(document.getElementById('grilla-teñido-hijo'));
 activarGrid(document.getElementById('grilla-entintado'));
 activarGrid(document.getElementById('grilla-corta-entintado'));
 activarGrid(document.getElementById('grilla-frena'));

@@ -3392,6 +3392,7 @@ function LubricaDesbobinador(idButt) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
       }
+      gridFreno.style.display='grid'
       container1.style.display='grid'
       alternarButtsFreno(idButt)
       /* manejarTransicion('child-move-II', 'abuelo-grilla','marco-freno',1000); */
@@ -3429,7 +3430,6 @@ function LubricaDesbobinador(idButt) {
   }   
 } 
 
-
 function UnidadTeñido(buttId) {
   alternarButtsTeñido(buttId);
 
@@ -3454,7 +3454,6 @@ function UnidadTeñido(buttId) {
       eliminarEstilos('.butt-mautonomo-teñido');
       break;
     }
-
     case 'boton9': {
       const excepciones = [
         'buscador', 'search-form', 'links-inicialesI', 'links-iniciales',
@@ -3465,7 +3464,6 @@ function UnidadTeñido(buttId) {
       eliminarEstilos('.butt-mautonomo-rodilleria');
       break;
     }
-
     case 'boton10':
     case 'boton11':
     case 'boton12': {
@@ -3486,8 +3484,8 @@ function UnidadTeñido(buttId) {
       ];
       mostrarElementos(excepciones);
       alternarButtsnPneumatic(buttId);
-      manejarTransicion('pieza-movil', 'abuelo-grilla-teñido', 'marco-teñido', 1200);
-      break;
+      gridTeñido.style.display = 'grid';
+     break;
     }
 
     case 'btn700':
@@ -3508,8 +3506,6 @@ function UnidadTeñido(buttId) {
   }
 }
 
-
-
 function mostrartBotonesIntervalo(className) {
   const buttons = document.querySelectorAll(`.${className}`);
   buttons.forEach(button => button.style.visibility = 'hidden');
@@ -3523,7 +3519,6 @@ function mostrartBotonesIntervalo(className) {
     delay += 177;
   });
 }
-
 
 function UnidadAlimenta(buttId) {
   alternarButtsfeed(buttId);
@@ -3559,7 +3554,6 @@ function UnidadAlimenta(buttId) {
   }
 }
 
-
 function UnidadProceso(buttId) {
   alternarButtsUnit(buttId);
 
@@ -3585,7 +3579,6 @@ function UnidadProceso(buttId) {
   }
 }
 
-
 function UnidadRebonina(buttId) {
   alternarButtsRebobina(buttId);
 
@@ -3610,8 +3603,6 @@ function UnidadRebonina(buttId) {
     palpitarBoton('rebobinador');
   }
 }
-
-
 
 function UnidadTintero(buttId,btnIniId){
   var alimenta = document.getElementById('uTeñidos')

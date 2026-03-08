@@ -902,12 +902,12 @@ color: white;
   grid-column: 1 / -1;
   grid-row: 1 / -1;
 }
+#grilla-teñido-hijo.modo-unico .expand:not(.expand-activo),
 #grilla-frena.modo-unico .expand:not(.expand-activo),
 #grilla-corta-entintado.modo-unico .expand:not(.expand-activo),
 #grilla-entintado.modo-unico .expand:not(.expand-activo){
   display: none;
 }
-
 
 .imgs-row img{
   cursor: pointer;
@@ -3763,39 +3763,41 @@ elemento.visible {
 }
 #cont-arriba{
   position: absolute;
-  width:27%;
-  height:80%;
+  display: flex;
+  left: 22%;
   top:0;
-  left:14%;
-  display: none;
-  z-index: -1;
+  width: 27%;
+  height:50%;
+  margin-bottom: 20px;
 }
 #teñido-I{
-  position: absolute; 
+  display: flex;
+  position: absolute;
   top:0;
   left:15%;
+  background: linear-gradient(45deg, black 33%, gray 67%);
   width:70%;
   height:10%;
-  border-radius: 11px;
+  border-radius: 7px;
   justify-content: center;
   align-items: center;
 }
 #vidTeñido{
-  position: relative;
-  display: flex;
-  top:21%;
-  left:0;
-  height:37vh;
-  width:27vw;
-}
-#teñido-vid {
   position: absolute;
   display: flex;
+  top:13%;
+  left:0;
+  margin-bottom: 17px;
   width:100%;
-  height:auto;
-  border: 1px solid red;
-  border-radius: 17px;
-  object-fit:cover; 
+  height:95%;  
+}
+#teñido-vid {
+  position:absolute;
+  width:100%;
+  height: 87%;
+  border: 1px solid rgba(255,255,0,15);
+  border-radius: 17px;  
+  object-fit: fill;
 }
 #teñido-II{
   position: absolute;
@@ -6134,7 +6136,6 @@ input.numero:focus {
   width: 100vw;
   display:block;
 }
-#padre-grilla,
 #lubricantes,
 #inicio{
   display:none;
@@ -6276,16 +6277,7 @@ input.numero:focus {
   left: 0;
   border-radius:50%;
 }
-#pieza-movil{
-  width: 60px;
-  height: 60px;
-  background-color: rgb(255, 0, 255);
-  box-shadow: 0 0 30px rgba(255, 0, 255, 1), 0 0 60px rgba(255, 0, 255, 0.7);
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-radius:50%;
-}
+
 .abuelo-lub,
 .grand-father{
   position: absolute;
@@ -6383,33 +6375,22 @@ input.numero:focus {
 .rodillo-durezas{
   border-radius:20px;
 }
-#grilla-frena{
+
+#grilla-frena,
+#grilla-teñido-hijo{
   position: absolute;
   display: grid;
-  grid-template-columns:32% 32% 32%;
-  grid-template-rows: repeat(3, 1fr);
-  z-index:10;
-  top:1%;
-  left:1%;
-  width: 98%;
-  height:98%;
-  gap: 10px;
-  box-sizing: border-box;
-  border-radius: 11px;
-}
-.grilla-teñido-hijo{
-  position: absolute;
-  display: grid;
-  top:1%;
-  left:1%;
-  width: 98%;
-  height:98%;
-  display: grid;
+  top: 1%;
+  left: 54%;
+  width: 42%;
+  height: 64%;
   grid-template-columns:32% 32% 32%;
   grid-template-rows: repeat(3, 1fr);
   gap: 10px;
   box-sizing: border-box;
   border-radius: 11px;
+  z-index: 3;
+  display: none;
 }
 .move_vid_pre{
   transform: translateX(27vh);    
