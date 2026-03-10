@@ -1,19 +1,17 @@
-document.addEventListener('keydown', function(event) {                
+document.addEventListener('keydown', function(event) {                 
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z': 
-        showKeyboard()
-
-  
+        document  .querySelector('#padre-evento').style.display='block'  
       break;  
       case 'H':  
         Geometria()
       break;
       case 'X':
-      document.querySelectorAll('.number').forEach(el => {
-        el.textContent = '';
-      });
-  
+      blurOverlay.style.display='block'
+      blurOverlay.style.zIndex=2005 
+      blurOverlay.style.backdropFilter = 'blur(0px)';
+
       break;                  
     }
   }
@@ -180,7 +178,6 @@ const menosSolucionGeneral = document.querySelector('#ctrl-gral-agua > div:nth-o
 const salirCalculadora = document.querySelector('#conte-butts-calculadora')
 const botonesSelectores = document.querySelectorAll('.butt-selector') 
 const nombreCliente = document.querySelector('.nombre-cliente') 
-const listaClientes = document.getElementById('lista-clientes')
 const alertaBotones = document.querySelector('.alerta-botones')
 const buttsGenerales = document.querySelectorAll('.mod-tinta')
 const alertaPerfil = document.querySelector('.alerta-perfil')
@@ -4887,26 +4884,15 @@ buttsJobs.forEach(boton => {
 
     switch(boton.id) {
       case 'clientes':
-        irAconsola.style.display='none'
-        let listaClientes = document.querySelector('#lista-clientes')
         listaClientes.removeAttribute('style');      
-        listaClientes.style.top='43vh'
-        limpiarColoresDeFondo()
         desactivarClick(['.butt-perfiles', '.estilo-1']);  
         listaClientes.style.display = 'block'
         mostrarNombresDeObjetos(); 
-        setTimeout(() => {
-          if (listaClientes && listaClientes.children.length === 0) {
-            alertaCuatro.style.display='flex'
-            alertaCuatro.style.top = '30vh'       
-            alertaCuatro.textContent= 'El almacenamiento y la base de datos estan vacíos'   
-          }
-        }, 50);      
       break;
       case 'lineas':
         irAconsola.style.display='none'
         let lineaClientes = document.querySelector('#lista-lineas')
-        lineaClientes.style.top='57vh'
+        lineaClientes.style.top='64vh'
         lineaClientes.style.height = '39vh'
         lineaClientes.addEventListener('mouseleave', () => {
           lineaClientes.style.display = 'none'
@@ -4916,7 +4902,7 @@ buttsJobs.forEach(boton => {
         if(panelUno.textContent === ''){alertaTres.style.display = 'flex';} 
         else{
           document.querySelector('#lista-lineas').style.display = 'block'
-          document.querySelector('#lista-clientes').style.display = 'none'
+          listaClientes.style.display = 'none'
         }
       break;
       case 'tirajes':
@@ -5596,6 +5582,7 @@ listaClientes.addEventListener('mouseleave',() =>{
 
 
 const jobs = document.querySelectorAll('.jobs');
+
 function mostrarNombresDeObjetos() {
   flagAplicacion = true;
   
@@ -5802,6 +5789,7 @@ function mostrarNombresDeObjetos() {
     console.log("No se encontraron objetos almacenados en localStorage.");
   }
 }
+
 function buscarPerfil(event) {
   desactivarClick(['.cliente-item']);
 

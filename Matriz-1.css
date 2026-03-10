@@ -7960,7 +7960,7 @@ background-color: #3FEF9C;
   left: 29vw;
   width: 44vw;
   height: 70vh;
-  background-color: #6b7280; /* gris acero */
+  background-color: #6b7280;
   padding: 16px;
   border-radius: 8px;
   align-items: center;
@@ -7981,9 +7981,7 @@ background-color: #3FEF9C;
   grid-template-rows: repeat(12, minmax(0, 1fr));
   row-gap: 10px;
   column-gap: 12px;
-
   gap: 10px 12px;
-
   min-height: 0;
 }
 

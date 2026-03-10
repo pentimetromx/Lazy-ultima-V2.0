@@ -1079,17 +1079,22 @@ function obtenerDiasDelMes(nombreMes) {
   }
 }
 function activarBlur() {
-  document.getElementById('blur-layer').style.display = 'block';
+  if(fichasTecnicas.style.display='flex'){
+    blurOverlay.style.display = 'block';
+    blurOverlay.style.backdropFilter = 'blur(0px)';
+    blurOverlay.style.zindex = 2005;
+  }else{
+    blurOverlay.style.display = 'block';
+  }
 }
 function desactivarBlur() {
-  document.getElementById('blur-layer').style.display = 'none';
+  blurOverlay.style.display = 'none';
 }
 function crearGraficoLleno() {
   const padreGrafica11 = document.querySelector('#padre-grafica9');
   const linksMA = document.querySelector('#links-inicialesI');
   const linkLista = document.querySelector('#links-iniciales');
   const buscador = document.querySelector('#buscador');
-  const blurOverlay = document.querySelector('#blur-layer'); // nuevo overlay
 
   padreGrafica11.style.display = 'flex';
   const canvas = document.getElementById('MiGrafica15');
@@ -3872,6 +3877,10 @@ kaizens.forEach((grafico, index) => {
 });
 
 imgsKaizen.addEventListener('click', (e) => {
+  const focusables = document.querySelectorAll('.current-focus')
+  focusables.forEach(focusable =>{
+    focusable.value=''
+  })
   imgsKaizen.style.zIndex = '100';
   const cellSeleccionada = e.target.closest('.cell');
   if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;
@@ -3911,9 +3920,6 @@ imgsKaizen.addEventListener('click', (e) => {
     }
   });  
 
-  /* setTimeout(() => {
-    fichaTecnica.style.zIndex = '100';
-  }, 800); */
   setTimeout(() => {
     restablecerClick(['.cell']);    
   }, 2500);
@@ -4460,6 +4466,63 @@ activarGrid(document.getElementById('grilla-entintado'));
 activarGrid(document.getElementById('grilla-corta-entintado'));
 activarGrid(document.getElementById('grilla-frena'));
 /* ***************************************************************************************************************************************** */
+function mostrarListaClientes() {
+
+  imgsKaizen.style.display = 'grid';
+  container1.style.display = 'grid';
+
+  activarBlur();
+
+  setTimeout(() => {
+    listaClientes.style.display = 'flex';
+    listaClientes.style.top = '29vh';
+    listaClientes.style.left = '46vw';
+    listaClientes.style.zIndex = 2010;
+  }, 250);
+
+  listaClientes.innerHTML = '';
+
+  const almacenJSON = localStorage.getItem('almacenObjetos');
+
+  if (!almacenJSON) {
+    alertaCuatro.style.display = 'flex';
+    alertaCuatro.style.top = '30vh';
+    alertaCuatro.textContent = 'El almacenamiento y la base de datos están vacíos';
+    return;
+  }
+
+  const almacen = JSON.parse(almacenJSON);
+  const nombres = Object.keys(almacen);
+
+  if (nombres.length === 0) {
+    alertaCuatro.style.display = 'flex';
+    alertaCuatro.style.top = '30vh';
+    alertaCuatro.textContent = 'El almacenamiento y la base de datos están vacíos';
+    return;
+  }
+
+  nombres.forEach(nombre => {
+
+    const item = document.createElement('div');
+    item.className = 'cliente-item';
+    item.textContent = nombre;
+
+    item.addEventListener('click', () => {
+      desactivarBlur()
+      if (activeInput) {
+        activeInput.value = nombre;
+      }
+
+      objetoGlobal = nombre;
+      listaClientes.style.display = 'none';
+
+    });
+
+    listaClientes.appendChild(item);
+
+  });
+
+}
 
 let activeInput = null;
 
@@ -4477,110 +4540,51 @@ fichaGrid.addEventListener('focusin', capturarInput);   // teclado / foco real
 fichaGrid.addEventListener('pointerdown', capturarInput); // mouse + touch
 
 function configurarInput(input) {
+  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','simulador','fichas-tecnicas']; 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var elemento = document.getElementById(allContenedores[i]) 
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
+    }
+  }  
 
   switch (input.id) {
-  
-
     case 'empleado':
-      var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','simulador','lista-clientes','fichas-tecnicas']; 
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
-      }  
-      imgsKaizen.style.display='grid'    
-      container1.style.display='grid'
-      const listaClientes = document.querySelector('#lista-clientes');
-
-      listaClientes.style.top = '29vh';
-      listaClientes.style.zIndex = 2010;
-
-      // limpiar contenido previo
-      listaClientes.innerHTML = '';
-
-      // mostrar contenedor
-
-      // recuperar datos almacenados
-     const almacenJSON = localStorage.getItem('almacenObjetos');
-
-      if (!almacenJSON) {
-        alertaCuatro.style.display = 'flex';
-        alertaCuatro.style.top = '30vh';
-        alertaCuatro.textContent = 'El almacenamiento y la base de datos están vacíos';
-        break;
-      }
-
-      const almacen = JSON.parse(almacenJSON);
-      const nombres = Object.keys(almacen);
-
-      if (nombres.length === 0) {
-        alertaCuatro.style.display = 'flex';
-        alertaCuatro.style.top = '30vh';
-        alertaCuatro.textContent = 'El almacenamiento y la base de datos están vacíos';
-        break;
-      }
-
-      // construir lista
-      nombres.forEach(nombre => {
-
-        const item = document.createElement('div');
-        item.className = 'cliente-item';
-        item.textContent = nombre;
-
-        item.addEventListener('click', () => {
-          if(conteJobTrack.style.display==='flex')alert()
-          const panelUno = document.getElementById('panel-uno');
-
-          creaNombre.value = nombre;
-          panelUno.textContent = nombre;
-
-          objetoGlobal = nombre;
-
-          listaClientes.style.display = 'none';
-
-        });
-
-        listaClientes.appendChild(item);
-
-      }); 
-
-    break;
-
-     
-
-    case 'mejora':
-      input.maxLength = 120;
-      break;
-
-    case 'fecha':
-      input.readOnly = false;
-      break;
-
-    case 'autogestionado':
-      input.placeholder = 'Sí / No';
-      break;
-
     case 'participante1':
     case 'participante2':
     case 'participante3':
     case 'participante4':
     case 'participante5':
-      input.maxLength = 40;
+      imgsKaizen.style.display='grid'
+      container1.style.display='grid'
+      activarBlur() 
+      setTimeout(() => {
+        mostrarListaClientes()
+        listaClientes.style.top = '29vh';
+        listaClientes.style.left = '46vw';
+        listaClientes.style.zIndex = 2010;
+      }, 150);     
+    break;
+    case 'mejora':
+      input.maxLength = 120;
+      break;
+    case 'fecha':
+      input.readOnly = false;
+      break;
+    case 'autogestionado':
+      input.placeholder = 'Sí / No';
       break;
 
+      input.maxLength = 40;
+      break;
     case 'lider':
       input.maxLength = 40;
       break;
-
     case 'equipo':
       input.maxLength = 30;
       break;
-
     case 'area':
       input.maxLength = 30;
       break;
-
   }
-
 }

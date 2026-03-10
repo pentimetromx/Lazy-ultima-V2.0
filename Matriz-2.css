@@ -2746,34 +2746,32 @@ width: 70%;
   position: absolute;
   display: block;
   flex-direction: column;
-  background-color:  rgb(138, 149, 160);
-  border: 1px solid rgb(144,144,144);
+  background-color:rgba(255,255,255,0.95);
   overflow-y:auto;
   overflow-x: hidden;
   display: none;
   border-radius: 7px;
-  top: 34vh;
-  width: 59.8vw;
-  left: 37vw;
+  top: 42vh;
+  width: 27vw;
+  left: 37.5vw;
   height: 55vh;
-  z-index: 40;
+  z-index: 2010;
 }
 .listado-lineas > *,
 .listado-clientes > * {
   display: block;
-  margin: 3px;
   padding: 10px;
-  background-color:rgb(0,0,22);
+  background-color:rgba(255,255,255,0.95);
   font-family: 'Oswald';
-  font-size: 0.7em;
-  color:rgb(144,144,144);
+  font-size: 0.9em;
+  color:rgb(51,55,65);
   box-sizing: border-box;
   cursor: pointer;
 }
 .listado-lineas > *:hover,
 .listado-clientes > *:hover{
-  background-color: #6FCF97;
-  color: rgb(0,0,33);
+  background-color:rgba(63, 68, 85, 1);
+  color:rgba(255,255,255,0.95);
 }
 .alerta-perfil,
 .alerta-botones,
@@ -4610,7 +4608,7 @@ top: 44%;
   inset: 0;
   z-index: 100;
   display: none;
-  -webkit-backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(1px);
   backdrop-filter: blur(50px);
   background: rgba(0,0,0,0.15);
 }
