@@ -4349,7 +4349,6 @@ function ubicaCalculadoraSegunContexto(){
   calculadora.classList.remove('move-calculadora-up');
   calculadora.classList.remove('move-calculadora-down');
 
-
   if(!esDesktop && interfazRRHH.style.display==='grid'){
     simulador.style.display='flex'
     calculadora.classList.remove('move-calculadora-1')
