@@ -5319,6 +5319,7 @@ btnEntrar.addEventListener('click', () => {
     }
   }else{
     if(!esDesktop)avanzarFoco();
+    if(interfazRRHH)calculadora.classList.add('move-calculadora-down')
   }
 });
 
