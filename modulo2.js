@@ -70,9 +70,8 @@ salirPadreRgb.addEventListener('click', () => {
 
 function deslizaContenedor(identificador, idButton) {
   restablecerPosiciones(['.ocultos', '.class-line']);
-  let contenedor = document.querySelector('#troubleshooting');
-  contenedor.style.top = '';
-  contenedor.style.left = '';
+  troublesh.removeAttribute('style');
+  
   clearAllIntervals();
   desactivarClicsPorUnTiempo(500);
 
@@ -102,12 +101,9 @@ function deslizaContenedor(identificador, idButton) {
 
   const activarLayout = () => {
     container1.style.display = 'grid';
-    document.querySelector('#conti-boton').style.display = 'grid';
-    if (screenWidth < 500) {
-      const conti = document.getElementById('conti-boton');
-      conti.style.display = 'flex';
-      conti.style.top = '';
-    }
+    contiButtRepuest.style.display = 'grid';
+    contiButtRepuest.removeAttribute('style');
+
   };
 
   switch (identificador) {
@@ -4587,8 +4583,9 @@ function moveElement(element, parent,frame) {
       }
   }, speed * 2);
 }
+
 document.getElementById('butt-sitio').addEventListener('click', () => {
-  let elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']
+  /* let elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']
   for (let i = 0; i < allContenedores.length; i++) { 
     let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -4598,8 +4595,10 @@ document.getElementById('butt-sitio').addEventListener('click', () => {
   container1.style.display='grid' 
     document.getElementById('conti-boton').style.top=''
   document.getElementById('butt-sitio').style.display='none'
-  ElementosMaII('conteneMantaut')
+  ElementosMaII('conteneMantaut') */
+  mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])  
 })
+
 function isVisible(element) {
   const style = window.getComputedStyle(element);
   return (

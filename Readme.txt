@@ -136,15 +136,11 @@ document.addEventListener('pointerdown'  ====> CLICK FUERA PARA OCULTAR
 
 3:4977 digitos.forEach((elemento
 
-3:5253 btnEntrar.addEventListener('click', (
+3:5291 btnEntrar.addEventListener('click', (
 
 4:3510 aplicarColoresInputs() COLORES INPUTS VERTICALES
 
 4:3872 avanzarFoco() 
-
-
-
-
 
 
 inputPerfil.addEventListener('focusin',() =>{
@@ -155,5 +151,17 @@ inputPerfil.addEventListener('blur', () => {
 });
 
 
-ESTOY EN 4: 4531
+
+
+
+
+contImgDistribuidor  //BORRAR TODO INDICIO DE ESTE ELEMENTO
+
+padre-entintadore    //BORRAR TODO INDICIO DE ESTE ELEMENTO
+
+
+
+
+
+
 

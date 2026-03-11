@@ -2926,12 +2926,10 @@ function irContenedorSiguiente() {
 
 function listaEntrenamientosII(btnList) {
   restablecerPosiciones(['.ocultos']);
-
-  const solucionador = document.querySelector('#troubleshooting');
   const conteLink = document.querySelector('#linksMA');
   conteLink.style = '';
-  solucionador.style.top = '';
-  solucionador.style.left = '';
+  troublesh.style.top = '';
+  troublesh.style.left = '';
   document.body.style.zoom = "100%";
 
   enlacesIDs.forEach(id => {
@@ -3038,8 +3036,6 @@ function toggleFullScreen(element) {
 
 function imagenesPasoApaso(id) {
   desactivarClicsPorUnTiempo(500);
-
-  const solucionador = document.getElementById('troubleshooting');
   const botoneras = document.querySelector('#conti-boton')
   const conteLink = document.getElementById('linksMA');
   const botones = document.getElementsByClassName('colorClick');
@@ -3120,22 +3116,15 @@ function imagenesPasoApaso(id) {
   /* container1.style.display = 'grid'; */
   botoneras.style.display = 'grid';
   botoneras.style.top='14vh'
-  solucionador.style.display = 'grid';
-  solucionador.style.left = (screenWidth < 500) ? '2px' : '11.5%';
-  solucionador.style.top='15vh'
-
-  // Ajuste de posición de enlaces
-  /* const linksI = document.getElementById('links-inicialesI');
-  const links = document.getElementById('links-iniciales');
-  linksI.style.left = (screenWidth < 500) ? '47vw' : '107vw';
-  links.style.left = (screenWidth < 500) ? '47vw' : '127vw'; */
-
+  troublesh.style.display = 'grid';
+  troublesh.style.left = (screenWidth < 500) ? '2px' : '11.5%';
+  troublesh.style.top='15vh'
   // Ejecutar acción específica del paso
   paso.accion();
 
   // Reajuste móvil
   if (screenWidth < 500) {
-    Object.assign(solucionador.style, {
+    Object.assign(troublesh.style, {
       gridTemplateColumns: 'repeat(2, 1fr)',
       gridTemplateRows: 'repeat(4, 1fr)'
     });
@@ -4627,7 +4616,7 @@ let intervaloAltura = null;
 let intervaloAlturaI = null;
 let alturaObjetivoAlcanzada = false;
 
-document.getElementById('linkListI').addEventListener('mouseleave', () =>{
+linkListI.addEventListener('mouseleave', () =>{
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]);
     if (elemento) {
@@ -4636,7 +4625,7 @@ document.getElementById('linkListI').addEventListener('mouseleave', () =>{
     }
     linkListI.style.display='none'
 })
-document.getElementById('links-inicialesI').addEventListener('mouseleave', () =>{
+linkIni1.addEventListener('mouseleave', () =>{
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]);
     if (elemento) {
@@ -4645,16 +4634,16 @@ document.getElementById('links-inicialesI').addEventListener('mouseleave', () =>
     }
     linkListI.style.display='none'
 })
-document.getElementById('linkList').addEventListener('mouseleave', () =>{
+linkList.addEventListener('mouseleave', () =>{
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]);
     if (elemento) {
         elemento.style.filter = '';
       }
     }
-    document.getElementById('linkList').style.display='none'
+    linkList.style.display='none'
 })
-document.getElementById('links-iniciales').addEventListener('mouseleave', () =>{
+linkIni2.addEventListener('mouseleave', () =>{
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]);
     if (elemento) {

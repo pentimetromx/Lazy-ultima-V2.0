@@ -8,17 +8,17 @@ document.addEventListener('keydown', function(event) {
         Geometria()
       break;
       case 'X':
-      blurOverlay.style.display='block'
-      blurOverlay.style.zIndex=2005 
-      blurOverlay.style.backdropFilter = 'blur(0px)';
-
+      const conti = document.getElementById('conti-boton');
+      conti.removeAttribute('style');
+      conti.style.top='4vh'
+      
       break;                  
     }
   }
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.getElementById('lista-clientes');  
+  let contiBoton = document.querySelector('#lista-lineas');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -4884,7 +4884,7 @@ buttsJobs.forEach(boton => {
 
     switch(boton.id) {
       case 'clientes':
-        listaClientes.removeAttribute('style');      
+        /* listaClientes.removeAttribute('style'); */      
         desactivarClick(['.butt-perfiles', '.estilo-1']);  
         listaClientes.style.display = 'block'
         mostrarNombresDeObjetos(); 
@@ -4906,6 +4906,7 @@ buttsJobs.forEach(boton => {
         }
       break;
       case 'tirajes':
+        if (getComputedStyle(padreLineas).isVisible === 'true') return;
         restablecerEstilos('calculadora');
         calculadora.classList.remove('move-calculadora-up')
         calculadora.classList.remove('move-calculadora-down')
@@ -4943,6 +4944,7 @@ listadoClientes.forEach(cliente => {
     arriba.textContent = cliente.textContent;
     listaClientes.style.display = 'none'
     restablecerClick(['.butt-perfiles', '.estilo-1']);
+    blurOverlay.style.display='none'
   });
 });
 const listaLineas = document.querySelectorAll('#lista-lineas > div');
@@ -5287,7 +5289,7 @@ document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
 
 // ENTER DE LA CALCULADORA
 
-btnEntrar.addEventListener('click', () => {
+btnEntrar.addEventListener('click', () => {  
   detenerParpadeo()
 
   if(!calculadoraSimulador){
@@ -5319,7 +5321,7 @@ btnEntrar.addEventListener('click', () => {
     }
   }else{
     if(!esDesktop)avanzarFoco();
-    if(interfazRRHH)calculadora.classList.add('move-calculadora-down')
+    /* if(interfazRRHH)calculadora.classList.add('move-calculadora-down') */
   }
 });
 
@@ -7360,8 +7362,7 @@ creaNombre.addEventListener('click', () => {
     elemento.style.display = 'block';   
   });
   listaClientes.style.top='39vh' 
-  listaClientes.style.width = '46vw'
-  listaClientes.style.left = '50vw'
+  listaClientes.style.left = '70vw'
   limpiarColoresDeFondo()
   desactivarClick(['.butt-perfiles', '.estilo-1']);  
   listaClientes.style.display = 'block'   
@@ -7374,6 +7375,7 @@ creaNombre.addEventListener('click', () => {
   }, 50);      
 
 });
+
 function configurarOcultarLista() {
   let temporizador;
   // Si el mouse entra en la lista antes de que pasen 3 segundos, cancelamos el ocultamiento

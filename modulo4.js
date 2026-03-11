@@ -1751,6 +1751,7 @@ document.addEventListener('DOMContentLoaded', () => {
   campoBusqueda.addEventListener('focusin',() =>{
     if(!esDesktop) showKeyboard()
   })
+
   campoBusqueda.addEventListener('blur', () => {
     if(!esDesktop) hideKeyboard()
   });
@@ -2239,19 +2240,19 @@ inputsColorGeneral.forEach(input => {
 
   input.addEventListener('blur', (e) => {
 
-  const next = document.activeElement;
+    const next = document.activeElement;
 
-  // Si el foco quedó dentro de la calculadora no ocultar
-  if (next && next.closest('#calculadora')) return;
+    // Si el foco quedó dentro de la calculadora no ocultar
+    if (next && next.closest('#calculadora')) return;
 
-  const target = e.target;
-  target.value = soloNumeros(target.value);
+    const target = e.target;
+    target.value = soloNumeros(target.value);
 
-  if (!esDesktop) {
-    hideCalculator();
-  }
+    if (!esDesktop) {
+      hideCalculator();
+    }
 
-}); 
+  }); 
 
 });
 
@@ -2372,8 +2373,7 @@ function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
 }
 
 // Uso en los listeners
-['click', 'touchstart'].forEach(evt => {
-  canvas.addEventListener(evt, () => {
+['click', 'touchstart'].forEach(evt => {canvas.addEventListener(evt, () => {
     document.querySelector('#grafico-area').style.display = 'block';
 
     mostrarCalendario(mesGlobal);
@@ -2385,6 +2385,7 @@ function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
     });
   });
 });
+
 function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
   if (!contenedor) return;
@@ -4466,11 +4467,8 @@ activarGrid(document.getElementById('grilla-corta-entintado'));
 activarGrid(document.getElementById('grilla-frena'));
 /* ***************************************************************************************************************************************** */
 function mostrarListaClientes() {
-
   imgsKaizen.style.display = 'grid';
   container1.style.display = 'grid';
-
-  activarBlur();
 
   setTimeout(() => {
     listaClientes.style.display = 'flex';
@@ -4556,7 +4554,7 @@ function configurarInput(input) {
     case 'participante5':
       imgsKaizen.style.display='grid'
       container1.style.display='grid'
-      activarBlur() 
+      /* activarBlur()  */
       setTimeout(() => {
         mostrarListaClientes()
         listaClientes.style.top = '29vh';
@@ -4586,4 +4584,31 @@ function configurarInput(input) {
       input.maxLength = 30;
       break;
   }
+}
+
+
+function borrrrrrarrrr(){
+    ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
+  const padreBotonera = document.querySelector('#botonera-frente')
+  padreBotonera.style.display='grid'
+  conteJobTrack.classList.remove('move-job-track')
+  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
+    }
+  }
+  container1.style.display = 'none'
+  desactivarClick(['.butt-perfiles'])
+  restablecerClick(['.estilo-1', '.butt-revierte'])
+  document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
+  
+  conteJobTrack.style.display='flex'
+  document.querySelectorAll('.datos-base').forEach((elemento) => { 
+    elemento.textContent = ''
+  });  
+  setTimeout(() => {
+    conteJobTrack.classList.add('move-job-track') 
+  }, 100);
 }
