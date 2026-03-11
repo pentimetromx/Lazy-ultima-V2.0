@@ -3432,6 +3432,10 @@ width: 70%;
   font-family: "Oswald";                              
   font-size: 0.5em;
 }
+.border-around{
+  outline: 1px solid #C0C0C0;
+  outline-offset: 3px;  
+}
 #padre-cmyk,
 #padre-rgb {
   position: absolute;
@@ -3442,10 +3446,11 @@ width: 70%;
   width: 50vw;
   height: 68vh;
   background-color: rgb(44,47,44);
-  border: 0 1px 1px 1px solid white;
   border-radius: 11px; 
   user-select: none;
 
+  outline: 1px solid #C0C0C0;
+  outline-offset: 3px;  
   display: none;
   transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
 }
@@ -4220,7 +4225,6 @@ top: 44%;
   margin-top: 14.4vh;
   grid-template-rows: 1fr 1fr;
   border-radius: 14px;
-  padding: 10px;
   height: 50vh;
   width: 50vw;
   gap: 2%;
@@ -7387,6 +7391,7 @@ top: 44%;
   #grilla-entintado{
     position: absolute;
     display:grid;
+    display: none;
     left:1%;
     top:1%;
     grid-template-columns:25% 25% 25% 25%;

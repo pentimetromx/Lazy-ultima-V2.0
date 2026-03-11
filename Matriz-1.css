@@ -879,24 +879,30 @@ color: white;
 #grilla-entintado{
   position: absolute;
   display: grid;
+  left: 25vw;
+  top: 18vh;
+  height: 66vh;
+  width: 50vw;
+  border-radius: 15px;
+  display: none;
   padding: 4px;
   gap: 4px;
-
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-
   background-color: rgb(0,0,10);
-  border: 1px solid gray;
   border-radius: 9px;
+
+  outline: 1px solid #C0C0C0;
+  outline-offset: 3px;
 }
 #grilla-entintado .imgs-row{
   width: 100%;
   height: 100%;
 }
-.grilla-entintado-imgs-row{
+/* .grilla-entintado-imgs-row{
   grid-column: 1 / -1;
   grid-row: 1 / -1;
-}
+} */
 
 .expand-activo{
   grid-column: 1 / -1;
@@ -1194,10 +1200,9 @@ width:447px ;
 
 #canvasContainer2{
   position: absolute;
-  /* display: flex; */
   flex-direction: column;
   left: 19%;
-  top: 21%;
+  top: 15%;
   width:31vw;
   height: 333px;
   border-radius: 20px;
@@ -1217,7 +1222,7 @@ width:447px ;
   position: absolute;
   flex-direction: column;
   left: 20vw;
-  top:22vh;
+  top:15.5vh;
   width:16vw;
   height:68vh;
   border-radius: 20px;
@@ -1244,7 +1249,7 @@ width:447px ;
   position: absolute;
   flex-direction: column;
   left:18vw;
-  top:23vh;
+  top:16.5vh;
   height:52vh;
   width: 11vw;
   border-radius: 20px; 
@@ -1281,7 +1286,6 @@ width:447px ;
 .graphs-lines {
   display: flex;
   opacity: 1;
-  border: 1px solid white;
   box-sizing: border-box;
   background-color: rgb(0, 0, 17);
   border-radius: 5px;
@@ -1290,6 +1294,9 @@ width:447px ;
   cursor: pointer;
   transform: translate3d(0, 0, 0);
   transition: transform 1.6s ease, opacity 1.5s ease;
+
+  outline: 1px solid #C0C0C0;
+  outline-offset: 3px;  
 }
 .graphs-lines.oculto {
   opacity: 0;
@@ -2274,10 +2281,12 @@ header {
   align-items: center;
   border-radius: 21px; 
   background-color: black;
-  border: solid 1px rgba(180, 180, 180, 0.5);
   transform: scale(0);          /* empieza reducido */
   transform-origin: center;     /* crece desde el centro */
   transition: transform 1s ease; /* animación de 1000ms */
+
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;
 }
 #imag2 > h6{
   width:8vw;
@@ -2440,7 +2449,8 @@ header {
   width:69vw;
   border-radius: 21px; 
   background-color:black;
-  border: solid 1px rgba(180, 180, 180, 0.5);
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;
 
   display: none; 
   transform: scale(0);
@@ -2518,11 +2528,13 @@ header {
   height: 85vh;
   width: 72vw;
   overflow: hidden;
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;  
+
   
   transform: scale(0);          /* empieza reducido */
   transform-origin: center;     /* crece desde el centro */
   transition: transform 1s ease; /* animación de 1000ms */
-
 }
 
 #contImaginario{
@@ -2535,12 +2547,13 @@ header {
   width:69vw; 
   border-radius: 21px; 
   background-color:black;
-  border: solid 2px rgba(180, 180, 180, 0.5);
-
   display: none; 
   transform: scale(0);          /* empieza reducido */
   transform-origin: center;     /* crece desde el centro */
   transition: transform 1s ease; /* animación de 1000ms */
+
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;  
 }
 #contImaginario.activo {
   display: flex;
@@ -2733,12 +2746,13 @@ h6{
   flex-direction: column;
   left: 31vw;
   top:22.5vh;
-  /* transition: left 1.007s ease; */
-  border: 3px solid orange;  
   border-radius: 20px;
   overflow: hidden;
   height:69vh;
   width:55vw;
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;  
+
 
   transition: transform 0.5s ease; /* 501 ms */
   z-index: 2;
@@ -3446,6 +3460,9 @@ elemento.visible {
   width: 42%;
   border-radius: 10px;
   object-fit: fill; 
+
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;  
 }
 .contene-botones{
   position: absolute;
@@ -3463,6 +3480,11 @@ elemento.visible {
   width:8.2vw;
   background-color: #1897ff;
   color: black;
+
+  display: flex;
+  align-items: center;     /* centra verticalmente */
+  justify-content: flex-start; /* mantiene el texto a la izquierda */
+
   text-align: left;    
   font-size: 0.9vw;
   border-radius: 5px;
@@ -3959,9 +3981,12 @@ elemento.visible {
   height: calc(50% - 10px);
   margin: 5px;
   box-sizing: border-box;
-  border: solid orange;
   border-radius: 7px;
   cursor: pointer;
+
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;
+  
 }
 #toyota-kaizen{
   position:absolute;
@@ -3985,8 +4010,11 @@ elemento.visible {
   left:0;
   width: 100%;
   height: 100%;
-  border: orange solid 3px;
   border-radius: 9px;
+
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;  
+
 }
 #casos-kaizen{
   position:absolute;
@@ -4026,10 +4054,12 @@ elemento.visible {
 .imgs-Antes {
   margin: 5px;
   box-sizing: border-box;
-  border: solid orange;
   border-radius: 7px;
   width: calc(33.3333% - 10px); 
   margin-bottom: 10px;
+
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;  
 }
 #toyota-kaizen-antes{
   position:absolute;
@@ -4398,9 +4428,12 @@ h4{
   left: 28%;
   width: 40%;
   height: 47%;
-  border: solid 1px white;
   border-radius: 19px;  
   transition: transform 1.6s ease;
+
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;  
+
 }
 #plate-smed,
 #videoElement3,
@@ -4440,7 +4473,10 @@ h4{
   height: 20%;
   max-height: 14vh;
   margin-top: 2px;
-  border: 1px solid gray;
+  
+  outline: 1px solid #C0C0C0;
+  outline-offset: 3px;  
+
 }
 #conti-boton-repuestos{
   position: absolute;
@@ -4590,13 +4626,16 @@ h4{
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 33% 33% 33%;
-  border-radius: 20px;
+  border-radius: 9px;
   gap: 1px;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;  
   display: none;
+
+  outline: 1.1px solid #C0C0C0;
+  outline-offset: 3px;  
 }
 #cont-plana .child-section,
 #cont-variable .child-section{
@@ -4629,17 +4668,14 @@ h4{
   display: none;
   left: 29vw;
   top: 17vh;
-  gap: 6px;
+  gap: 12px;
   z-index: 2;
-
   grid-template-columns:33% 33% 34%;
   grid-template-rows: 50% 50%;
   margin-top:3%;
   width: 68%;
   height:68%;
   border-radius: 15px;
-
-
 }
 .row{
   display: grid;
@@ -4652,7 +4688,6 @@ h4{
 .cell{
   display: grid;
   opacity: 1;
-  border: 2px solid orange;
   border-radius: 18px;
   width: 100%;
   height: 100%;
@@ -4661,6 +4696,9 @@ h4{
   overflow: hidden;
   transform: translate3d(0, 0, 0);
   transition: transform 1.6s ease, opacity 1.5s ease;
+
+  outline: 2px solid #C0C0C0;
+  outline-offset: 3px;  
 }
 .cell.oculto {
   opacity: 0;
@@ -5885,7 +5923,7 @@ input.numero:focus {
   border-radius:8px;                               
   width:25.3vw;
   height:52.5vh; 
-  top:22.5vh;
+  top:16vh;
   left:30vw;
   padding:27px;
 
@@ -5908,7 +5946,7 @@ input.numero:focus {
 }
 #patern{
   position:absolute;
-  top:22.5vh;
+  top:16.5vh;
   left:20.4vw;
   width:29vw;
   height:60vh; 
@@ -6103,7 +6141,7 @@ input.numero:focus {
   /* display: grid; */
   grid-template-columns: repeat(4, 1fr);
   flex-wrap: nowrap;
-  top:22.7vh;
+  top:16.5vh;
   left:40vw;
   width:50vw; 
   height:27vh;
