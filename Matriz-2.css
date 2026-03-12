@@ -2755,6 +2755,9 @@ width: 70%;
   left: 37.5vw;
   height: 55vh;
   z-index: 2010;
+
+  outline: 1.5px solid #C0C0C0;
+  outline-offset: 3px;  
 }
 .listado-lineas > *,
 .listado-clientes > * {
@@ -5232,7 +5235,7 @@ top: 44%;
   left: var(--keyboard-left, 15vw);
   top: var(--keyboard-top, 48vh);
   width: var(--keyboard-width);
-  z-index: 1000;
+  z-index: 3000;
 
   display: flex;
   flex-direction: column;

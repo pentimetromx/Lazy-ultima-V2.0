@@ -1659,7 +1659,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const listadoNombres = document.getElementById('listaNombres');
   const img = document.getElementById('imagenVisor');
   const nombre = document.querySelector('.visor > span');
-  const campoBusqueda = document.getElementById('buscador-empleado');
 
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
@@ -1727,8 +1726,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const coincidencia = colaboradores.find(c =>
-      c.nombre.toLowerCase().includes(valor)
+    const coincidencia = colaboradores.find(c => c.nombre.toLowerCase().includes(valor)
     );
 
     if (coincidencia) {
@@ -1748,9 +1746,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!esDesktop && esTactil) {
     campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
   }
-  campoBusqueda.addEventListener('focusin',() =>{
-    if(!esDesktop) showKeyboard()
-  })
+
+
+  campoBusqueda.addEventListener('focusin', (e) => {
+    activeInput = e.target; // asignar input activo
+    mostrarListaClientes('perfilesIndividual'); // abrir lista
+  });
+
 
   campoBusqueda.addEventListener('blur', () => {
     if(!esDesktop) hideKeyboard()
@@ -2041,7 +2043,7 @@ function limpiarYCapitalizar(e) {
 }
 
 // Aplicarlo a ambos inputs
-[inputNombre, inputNombreMA].forEach(input => {
+/*[inputNombre, inputNombreMA].forEach(input => {
   if (input) input.addEventListener('input', limpiarYCapitalizar);
 });
 
@@ -2057,6 +2059,32 @@ buscaNombre.addEventListener('focusin',() =>{
 })
 buscaNombre.addEventListener('blur', () => {
   if(!esDesktop) hideKeyboard()
+}); */
+
+const inputsVarios = [inputNombre, buscaNombre, inputNombreMA,mejoraFichaTec,equiposMA];
+
+inputsVarios.forEach(input => {
+  if (!input) return;
+
+  input.addEventListener('focusin', () => {
+    if (!esDesktop) showKeyboard();
+  });
+
+  input.addEventListener('blur', () => {
+    if (!esDesktop) hideKeyboard();
+  });
+
+  input.addEventListener('input', limpiarYCapitalizar);
+});
+
+inputsVarios.forEach(input => {
+  input.addEventListener('focusin', () => {
+    if (!esDesktop) showKeyboard();
+  });
+
+  input.addEventListener('blur', () => {
+    if (!esDesktop) hideKeyboard();
+  });
 });
 
 
@@ -4277,9 +4305,11 @@ function createKeyboard(layout) {
     keyboard.appendChild(row);
   });
 }
-inputNombre.addEventListener('focusin',()=>{
+
+/* inputNombre.addEventListener('focusin',()=>{
   keyboardWrapper.style.display='flex'
-})
+}) */
+
 function handleKeyPress(letter) {
   if (!lastFocusedInput) return;
 
@@ -4463,19 +4493,14 @@ function activarGrid(grid){
 }
 activarGrid(document.getElementById('grilla-teñido-hijo'));
 activarGrid(document.getElementById('grilla-entintado'));
-activarGrid(document.getElementById('grilla-corta-entintado'));
+activarGrid(document.getElementById('grilla-corta-entintado')); 
 activarGrid(document.getElementById('grilla-frena'));
 /* ***************************************************************************************************************************************** */
-function mostrarListaClientes() {
-  imgsKaizen.style.display = 'grid';
-  container1.style.display = 'grid';
+let activeInput = null;
 
-  setTimeout(() => {
-    listaClientes.style.display = 'flex';
-    listaClientes.style.top = '29vh';
-    listaClientes.style.left = '46vw';
-    listaClientes.style.zIndex = 2010;
-  }, 250);
+function mostrarListaClientes(seccion) {
+  listaClientes.style.display = 'flex';
+  listaClientes.style.zIndex = 2010;
 
   listaClientes.innerHTML = '';
 
@@ -4519,10 +4544,32 @@ function mostrarListaClientes() {
 
   });
 
+  switch(seccion){
+    case 'listadoClientes':
+      console.log('Input Enfocado' , activeInput)
+      listaClientes.style.top = '29vh';
+      listaClientes.style.left = '51vw';
+    break
+    case 'jobTrack' :
+      console.log('Input Enfocado' , activeInput)
+      listaClientes.style.top = '42vh';
+      listaClientes.style.left = '38vw';          
+    break
+    case 'softwareColor' :
+      console.log('Input Enfocado' , activeInput)
+      listaClientes.style.top='39vh' 
+      listaClientes.style.left = '70vw'
+    break
+    case 'perfilesIndividual' :
+      document.querySelector('#simulador').style.display='flex'
+      listaClientes.style.top='35vh' 
+      listaClientes.style.left = '25vw'
+      console.log('Input Enfocado' , activeInput)
+    break    
+   
+  }
+
 }
-
-let activeInput = null;
-
 
 const fichaGrid = document.querySelector('.ficha-grid');
 
@@ -4543,7 +4590,8 @@ function configurarInput(input) {
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
     }
-  }  
+  }
+  imgsKaizen.style.display='grid'
 
   switch (input.id) {
     case 'empleado':
@@ -4553,13 +4601,9 @@ function configurarInput(input) {
     case 'participante4':
     case 'participante5':
       imgsKaizen.style.display='grid'
-      container1.style.display='grid'
-      /* activarBlur()  */
+      container1.style.display='grid'  
       setTimeout(() => {
-        mostrarListaClientes()
-        listaClientes.style.top = '29vh';
-        listaClientes.style.left = '46vw';
-        listaClientes.style.zIndex = 2010;
+        mostrarListaClientes('listadoClientes')
       }, 150);     
     break;
     case 'mejora':

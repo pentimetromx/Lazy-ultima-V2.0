@@ -296,7 +296,7 @@ function showNextGraf() {
 function showRepuesto(elementId) {
   const config = {
     contImgDistribuidor: {
-      excluidos: ['buscador','search-form','links-iniciales','links-inicialesI','frame-rollers','contImgDistribuidor'],
+      excluidos: ['buscador','search-form','links-iniciales','links-inicialesI','frame-rollers','grilla-entintado'],
       grid: 'grilla-entintado',      
     },
     contImgEntintador: {
