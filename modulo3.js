@@ -2,7 +2,7 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z': 
-        document  .querySelector('#padre-evento').style.display='block'  
+        mostrarListaClientes('perfilesIndividual')
       break;  
       case 'H':  
         Geometria()
@@ -18,7 +18,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.querySelector('#lista-lineas');  
+  let contiBoton = document.querySelector('#lista-clientes');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -4886,13 +4886,13 @@ buttsJobs.forEach(boton => {
       case 'clientes':
         /* listaClientes.removeAttribute('style'); */      
         desactivarClick(['.butt-perfiles', '.estilo-1']);  
-        listaClientes.style.display = 'block'
+        mostrarListaClientes('jobTrack')
         mostrarNombresDeObjetos(); 
       break;
       case 'lineas':
         irAconsola.style.display='none'
         let lineaClientes = document.querySelector('#lista-lineas')
-        lineaClientes.style.top='64vh'
+        lineaClientes.style.top='56vh'
         lineaClientes.style.height = '39vh'
         lineaClientes.addEventListener('mouseleave', () => {
           lineaClientes.style.display = 'none'
@@ -7361,12 +7361,9 @@ creaNombre.addEventListener('click', () => {
   botonesPerfilColor.forEach(elemento => {   
     elemento.style.display = 'block';   
   });
-  listaClientes.style.top='39vh' 
-  listaClientes.style.left = '70vw'
+  mostrarListaClientes('softwareColor')
   limpiarColoresDeFondo()
   desactivarClick(['.butt-perfiles', '.estilo-1']);  
-  listaClientes.style.display = 'block'   
-  listaClientes.style.zIndex = 500
   mostrarNombresDeObjetos(); 
   setTimeout(() => {
     if (listaClientes && listaClientes.children.length === 0) {
