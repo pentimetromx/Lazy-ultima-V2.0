@@ -1,6 +1,6 @@
 let anchoPantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 let acumuladorVideos = []  
-let intervaloColor;  
+let intervaloColor;   
 let videoStore = []
 let contenedor2 = document.getElementById('canvasContainer2')
 let troublesh = document.getElementById('troubleshooting')  

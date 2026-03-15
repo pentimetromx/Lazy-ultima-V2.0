@@ -212,17 +212,18 @@ color: white;
 #links-color{
   margin-left: -170%;
   width: 70%;
-  top: 7%;
+  top: -4%;
   height:200%;
   font-size:1.6em;
 }
 #simulador-impresion {
   position: relative;
+  padding-left: 23px;
 }
 
 #links-registro {
   position: absolute;
-  top: 1%;
+  top: -4%;
   left: -65%;
 
   display: none;
@@ -264,15 +265,6 @@ color: white;
   z-index: 777;
   padding: 0;
   margin: 0;
-}
-.auxiliar-registro li,
-#links-color li,
-.auxiliar-links li{
-  position: relative;
-  height: 6vh;
-  padding: 5px;
-  cursor: pointer;
-  transition: background-color 0.5s ease, color 0.8s ease;  
 }
 #titleContainer,
 #titleContainerI{
@@ -2070,7 +2062,6 @@ width:447px ;
   transition: background-color 0.5s ease, color 0.8s ease; 
   height: 6vh;  
   font-size: clamp(9px, 0.9vw, 16px);
-
 }
 .submenu-colorimetria li:hover,
 .iridescent-element li:hover {
