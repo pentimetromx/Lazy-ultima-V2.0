@@ -2,23 +2,20 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z': 
-        mostrarListaClientes('perfilesIndividual')
+        mostrarTablaLocalStorage('empleadosRegistrados');
       break;  
       case 'H':  
         Geometria()
       break;
       case 'X':
-      const conti = document.getElementById('conti-boton');
-      conti.removeAttribute('style');
-      conti.style.top='4vh'
-      
+      eliminarClaveLocalStorage('empleadosRegistrados')
       break;                  
     }
   }
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.querySelector('#lista-clientes');  
+  let contiBoton = document.querySelector('#listaFotos');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -145,9 +142,7 @@ class objetoColores {
     };
   }
 }
-function restablecerMenuContextual() {
-  document.removeEventListener('contextmenu', bloquearMenuPersonalizado); 
-}
+
 function bloquearMenuPersonalizado(event) {
   event.preventDefault();
 }  
@@ -4099,7 +4094,8 @@ function vaciarObjetoEnLocal() {
   console.log('Objeto eliminado de localStorage');
 }  
 // Crear una nueva instancia de la clase objetoColores y guardarla en almacenObjetos
-function crearYGuardarInstanciaEnAlmacen(clave) {
+
+/* function crearYGuardarInstanciaEnAlmacen(clave) {
   // Verificar si la clave ya existe en el almacén
   if (almacenObjetos[clave]) {
     console.warn(`La clave "${clave}" ya existe en el almacén. No se creó una nueva instancia.`);
@@ -4117,7 +4113,8 @@ function crearYGuardarInstanciaEnAlmacen(clave) {
 
   console.log(`Nueva instancia creada y almacenada bajo la clave "${clave}":`, nuevaInstancia);
   console.log('ALMACEN OBJETOS :', almacenObjetos);
-}
+} */
+
 function guardarCambios(nombreClave) {
   if (objetoGlobal) {
     try {
@@ -4305,6 +4302,7 @@ function mostrarVentanaEmergente(mensaje) {
   mensajeEmergente.textContent = mensaje;
   ventanaEmergente.classList.remove('oculta');
 }
+
 document.getElementById('cerrarEmergente').addEventListener('click', () => {
   let conteCMYK = document.querySelector('#padre-cmyk');
   let conteRGB = document.querySelector('#padre-rgb');
@@ -5859,7 +5857,7 @@ function buscarPerfil(event) {
     restablecerClick(['.cliente-item']);
   }, 500);
 }
-function guardarObjetoEnAlmacen(nombreObjeto, datosObjeto) {
+/* function guardarObjetoEnAlmacen(nombreObjeto, datosObjeto) {
   // Capitalizar el nombre antes de guardar
   const nombreCapitalizado = capitalizarTexto(nombreObjeto);
 
@@ -5873,7 +5871,7 @@ function guardarObjetoEnAlmacen(nombreObjeto, datosObjeto) {
   localStorage.setItem('almacenObjetos', JSON.stringify(almacenObjetos));
 
   console.log(`Guardado en almacenObjetos:`, almacenObjetos);
-}
+} */
 function eliminarObjeto(nombreObjeto) {
   desactivarClick(['.cliente-item']);
   document.querySelectorAll('.cliente-item').forEach(item => {
@@ -6132,6 +6130,7 @@ function consultarCapacidadAlamcenamiento() {
   console.log("Estado de las banderas:", flagsEstado);
   
 }
+
 function traerAlmacenObjetos() {
   console.clear()
   // Recuperar el almacenamiento desde localStorage
@@ -6155,8 +6154,8 @@ function traerAlmacenObjetos() {
   // Confirmar que el objeto se ha asignado correctamente
   console.log('objetoGlobal:', objetoGlobal);
   console.log('nombreProvisional:', nombreProvisional);
-
 }
+
 function moverFormulario() {
   const formulario = document.querySelector('#formulario-perfiles'); 
   formulario.style.display='none' 

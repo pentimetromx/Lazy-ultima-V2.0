@@ -1078,18 +1078,23 @@ function obtenerDiasDelMes(nombreMes) {
       return 30; // valor por defecto en caso de error
   }
 }
-function activarBlur() {
-  if(fichasTecnicas.style.display='flex'){
-    blurOverlay.style.display = 'block';
-    blurOverlay.style.backdropFilter = 'blur(0px)';
-    blurOverlay.style.zindex = 2005;
-  }else{
-    blurOverlay.style.display = 'block';
-  }
+
+
+function activarBlur(nivelBlur = 1, nivelZ = 2005) {
+  blurOverlay.style.display = 'block';
+  blurOverlay.style.backdropFilter = `blur(${nivelBlur}px)`;
+  blurOverlay.style.webkitBackdropFilter = `blur(${nivelBlur}px)`;
+  blurOverlay.style.zIndex = nivelZ;
 }
+
+
 function desactivarBlur() {
   blurOverlay.style.display = 'none';
+  blurOverlay.style.backdropFilter = '';
+  blurOverlay.style.webkitBackdropFilter = '';
+  blurOverlay.style.zIndex = '';
 }
+
 function crearGraficoLleno() {
   const padreGrafica11 = document.querySelector('#padre-grafica9');
   const linksMA = document.querySelector('#links-inicialesI');
@@ -1600,6 +1605,10 @@ document.addEventListener('click', (e) => {
 
   const functionExe = funciones[nombre];
   if (functionExe) ejecutarFuncionEmpleado(functionExe);
+
+  if (!listaFotos.contains(e.target) && e.target !== inputFoto) {
+    listaFotos.style.display = 'none';
+  }
 });
 
 const visorI = document.getElementById('imagenVisor');
@@ -1825,7 +1834,7 @@ const colaboradores = [
 ];
 const imgEmpleado = document.getElementById('empleadoImg');
 const btnMostrar = document.getElementById('btnMostrar');
-const inputFoto = document.getElementById('numDoc6'); 
+const inputFoto = document.getElementById('input-foto-empl'); 
 const listaFotos = document.getElementById('listaFotos');
 const previewFoto = document.getElementById('empleadoImg'); 
 
@@ -1939,7 +1948,7 @@ function ingresoEmpleado(){
 
   setTimeout(() => {
     if (!esDesktop) {
-      inputs.forEach(input => {
+      inputs.forEach(input => {                                                                                                                             
         if (input.tagName === 'INPUT') {
           input.readOnly = true; 
         }
@@ -2169,17 +2178,26 @@ document.querySelectorAll('.fila-ingreso-ma > input').forEach(input => {
   });
 });
 
+document.querySelector('#doc-empl').addEventListener('input',(e=>{
+  e.target.value = e.target.value.replace(/[^0-9]/g, '');
+}))
+
 inputRRHH.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
   if(!esDesktop) ubicaCalculadoraSegunContexto()
 });
+
 inputRRHH.addEventListener('click',() =>{
+  if(!esDesktop) ubicaCalculadoraSegunContexto()
+})
+inputRRHH.addEventListener('focusin',() =>{
   if(!esDesktop) ubicaCalculadoraSegunContexto()
 })
 
 inputDocumentoEmpleado.addEventListener('click',() =>{
   if(!esDesktop) ubicaCalculadoraSegunContexto()
 })
+
 inputMA.addEventListener('input', (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, '');
   ubicaCalculadoraSegunContexto()
@@ -2469,20 +2487,25 @@ function insertarGrafico(idContenedor, idCanvas) {
 
 // CLICK EN EL INPUT
 inputFoto.addEventListener('click', () => {
+
   /* listaFotos.style.display = 'block'; */
   generarListaFotos()
 });
 // ocultar lista si se hace clic fuera
 
-document.addEventListener('click', e => {
+
+/* document.addEventListener('click', e => {
   if (!listaFotos.contains(e.target) && e.target !== inputFoto) {
     listaFotos.style.display = 'none';
   }
-});
+}); */
+
 function generarListaFotos() {
-  listaFotos.innerHTML = ""; // limpia anterior
+
+  listaFotos.innerHTML = "";
 
   rutasFotos.forEach(ruta => {
+
     const itemFoto = document.createElement('div');
     itemFoto.textContent = ruta;
 
@@ -2493,15 +2516,16 @@ function generarListaFotos() {
     itemFoto.addEventListener('click', () => {  
       inputFoto.value = ruta;
       previewFoto.src = ruta;
-      listaFotos.style.display = 'none';
+      listaFotos.classList.add('oculto');
     });
 
     listaFotos.appendChild(itemFoto);
+
   });
 
-  listaFotos.style.display = 'block'; // mostrar solo cuando se genera
-}
+  listaFotos.classList.remove('oculto');
 
+}
 
 /**************************************************************************************************************** */
 
@@ -2509,6 +2533,7 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
   ingresoEmpleado()
 })
+
 document.querySelector('#borrarBoton2').addEventListener('click', () =>{
   activarPantallaCompleta()
   deslizaContenedor('conti-boton-kaizen','kaizen')
@@ -2741,7 +2766,8 @@ function aplicarLeds(valores) {
   });        
     
 }
-function cargarEmpleadoMA() {
+
+function   cargarEmpleadoMA() {
   const valorBusqueda = inputMA.value.trim();
 
   if (!valorBusqueda) {
@@ -2749,16 +2775,16 @@ function cargarEmpleadoMA() {
     return;
   }
 
-  const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
 
-  // Buscar empleado por documento
-  const empleado = empleados.find(emp => emp.documento === valorBusqueda);
+  
+const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+const empleado = empleados[String(valorBusqueda).trim()];
+if (!empleado) {
+  console.log('NO HAY COINCIDENCIA EN LOCAL ALMACEN');
+  empleadoGlobal = null;
+  return;
+}
 
-  if (!empleado) {
-    console.log('NO HAY COINCIDENCIA EN LOCAL ALMACEN');
-    empleadoGlobal = null;        // Limpia global si no hay coincidencia
-    return;
-  }
 
   // Guardar en variable global
   empleadoGlobal = empleado;
@@ -2834,24 +2860,18 @@ function infoEmpleadoPorSector(infoSector) {
           return;
         }else{
           calculadora.classList.remove('move-calculadora-up')
-
           const valor = inputMA.value.trim();
-          const empleados = JSON.parse(
-            localStorage.getItem('empleadosRegistrados')
-          ) || [];
 
-          const empleadoEncontrado = empleados.find(
-            emp => emp.documento === valor
-          );
 
-          if (!empleadoEncontrado) {
-            saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn');
-            return;
-          }
+const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+const empleadoEncontrado = empleados[String(valor).trim()];
+if (!empleadoEncontrado) {
+  saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn');
+  return;
+}
 
           cargarEmpleadoMA();
           setTimeout(aplicarColoresInputs, 250);
-
 
         }
 
@@ -2860,8 +2880,7 @@ function infoEmpleadoPorSector(infoSector) {
       case 'recursoHumano': {
         
         console.log(
-          'Contenido de localStorage empleadosRegistrados:',
-          JSON.parse(localStorage.getItem('empleadosRegistrados'))
+          'Contenido de localStorage empleadosRegistrados:', JSON.parse(localStorage.getItem('empleadosRegistrados'))
         );
 
         const valor = inputRRHH.value.trim();
@@ -2876,31 +2895,10 @@ function infoEmpleadoPorSector(infoSector) {
           return;
         }else{
           calculadora.classList.remove('move-calculadora-up')
-          const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
 
-          // Buscar usando cualquiera de los dos valores
-          const empleadoEncontrado = empleados.find(emp =>
-            emp.documento === valor
-          );
-
+          const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+          const empleadoEncontrado = empleados[valor];
           if (empleadoEncontrado) {
-            console.log('Empleado encontrado:');
-            console.log(`Nombre: ${empleadoEncontrado.nombre}`);
-            console.log(`Documento: ${empleadoEncontrado.documento}`);
-            console.log(`Área: ${empleadoEncontrado.area}`);
-            console.log(`Cargo: ${empleadoEncontrado.cargo}`);
-            console.log(`Equipo: ${empleadoEncontrado.equipo}`);
-            console.log(`Fecha ingreso: ${empleadoEncontrado.fecha}`);
-            console.log(`Imagen: ${empleadoEncontrado.imagen}`);
-            console.log(`Identificados: ${empleadoEncontrado.identificados}`);
-            console.log(`Corregidos: ${empleadoEncontrado.corregidos}`);
-            console.log(`Tipo A: ${empleadoEncontrado.tipoA}`);
-            console.log(`Tipo B: ${empleadoEncontrado.tipoB}`);
-            console.log(`Kaizen: ${empleadoEncontrado.kaizen}`);
-            console.log(`ADA.s: ${empleadoEncontrado.adas}`);
-            console.log(`ADT: ${empleadoEncontrado.adt}`);
-            console.log(`Lup: ${empleadoEncontrado.lup}`);
-
 
             document.getElementById('numDoc').value = empleadoEncontrado.nombre;
             document.getElementById('numDoc1').value = empleadoEncontrado.documento;
@@ -2945,9 +2943,7 @@ function infoEmpleadoPorSector(infoSector) {
       }
     };
 
-
-
-        }
+  }
 
 }
 
@@ -3040,7 +3036,7 @@ function actualizarIdentificadosMA(sector) {
     const nuevoCargo        = cargoInput.value.trim();
     const nuevoFecha        = fechaInput.value.trim();
     const nuevoEquipo       = equipoInput.value.trim();
-    const nuevoFoto         = fotoInput.value.trim();
+    const nuevoFoto         = fotoInput.value.trim(); 
 
     // Validación básica
     if (!documentoBusqueda) {
@@ -3050,12 +3046,12 @@ function actualizarIdentificadosMA(sector) {
     }
 
     // 1. Cargar empleados
-    let empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
+    const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
 
     console.log('Estado inicial empleados:', empleados);
 
     // 2. Buscar empleado por documento
-    const empleado = empleados.find(emp => emp.documento === documentoBusqueda);
+    const empleado = empleados[documentoBusqueda];
 
     if (!empleado) {
       mostrarVentanaMensaje('No se encontró un empleado con ese documento.');
@@ -3602,26 +3598,32 @@ function decisionesEstrategicas(){
 
 
 }
-
-const listarI = document.querySelectorAll('#linkListI li');
+/******************************************************************************************************************************************************* */
+//CONTROLA DESAPARICION NO DESEADA DE LISTAS DESPLEGABLES                            
+const listaIzquierda = document.querySelectorAll('#linkListI li');
+const subListaRRHH = document.querySelectorAll('#links-auxiliar li')
+const hijoSubListaRRHH = document.querySelectorAll('#empleado-ingreso > li')
+const primerSubListaRRHH = subListaRRHH[0]
+const primerhijoSubListaRRHH = hijoSubListaRRHH[0]
+const segundohijoSubListaRRHH = hijoSubListaRRHH[1]
 const linksAuxiliar = document.getElementById('links-auxiliar');
 const linksPadre = document.querySelector('#linkListI')
 const linksPadreColor = document.querySelector('#linkList')
-const novenoElemento = listarI[7];
+const septimoIzquierda = listaIzquierda[7]; 
 let masTiempo = null;
 
-if (listarI.length >= 9) {
+if (listaIzquierda.length >= 9) {
 
-  novenoElemento.addEventListener('mouseenter', () => {
+  septimoIzquierda.addEventListener('mouseenter', () => {
     masTiempo = setTimeout(() => {
       linksAuxiliar.style.display = 'block';
     }, 250);
   });
 
-  novenoElemento.addEventListener('mouseleave', () => {
+  septimoIzquierda.addEventListener('mouseleave', () => {
     if (masTiempo) {
       clearTimeout(masTiempo);
-      sobreTmasTiempoiempo = null;
+      masTiempo = null;
     }
     linksAuxiliar.style.display = 'none';
   });
@@ -3631,25 +3633,27 @@ linksAuxiliar.addEventListener('mouseleave', (e) => {
   const destino = e.relatedTarget;
 
   // Si vuelve al noveno elemento, no cerrar
-  if (novenoElemento.contains(destino)) return;
+  if (septimoIzquierda.contains(destino)) return;
 
   setTimeout(() => {
     linksAuxiliar.style.display = 'none';
   }, 350);
 });
+/******************************************************************************************************************************************************* */
 
-const listar = document.querySelectorAll('#linkList > li');
+
+const listaDerecha = document.querySelectorAll('#linkList > li');
 const listarDos = document.querySelectorAll('#links-color > li');
 
 const linksRegistro = document.getElementById('links-registro');
 const linksRgbaCmyk = document.getElementById('links-registro');
 
-const segundoElemento = listar[1]
-const septimoElemento = listar[6];
-const quintoElemento = listarDos[4];
+const primeroDerecha = listaDerecha[1]
+const sextoDerecha = listaDerecha[6];
+const cuartoDerecha = listarDos[4];
 
-const linksColor = septimoElemento.querySelector('#links-color');
-const linksTec = quintoElemento.querySelector('.submenu-colorimetria'); 
+const linksColor = sextoDerecha.querySelector('#links-color');
+const linksTec = cuartoDerecha.querySelector('.submenu-colorimetria'); 
 let sobreTiempo = null;
 
 simulador.addEventListener('click', (e) => {
@@ -3660,48 +3664,48 @@ simulador.addEventListener('click', (e) => {
   iniciarAnimaciones();
 });
 
-if (!segundoElemento || !linksRgbaCmyk || !linksRegistro) {
+if (!primeroDerecha || !linksRgbaCmyk || !linksRegistro) {
   throw new Error('Elemento requerido no encontrado');
 }
 linksRegistro.addEventListener('click', (e) => {
   e.stopPropagation();
 });
-segundoElemento.addEventListener('mouseenter', () => {
+primeroDerecha.addEventListener('mouseenter', () => {
   sobreTiempo = setTimeout(() => {
     linksRgbaCmyk.style.display = 'block';
   }, 250);
 });
-segundoElemento.addEventListener('mouseleave', () => {
+primeroDerecha.addEventListener('mouseleave', () => {
   if (sobreTiempo) {
     clearTimeout(sobreTiempo);
     sobreTiempo = null;
   }
   linksRgbaCmyk.style.display = 'none';
 });
-if (!septimoElemento || !linksColor) {
+if (!sextoDerecha || !linksColor) {
   throw new Error('Elemento requerido no encontrado');
 }
-if (!quintoElemento || !linksTec) {
+if (!cuartoDerecha || !linksTec) {
   throw new Error('Elemento requerido no encontrado');
 }
-septimoElemento.addEventListener('mouseenter', () => {
+sextoDerecha.addEventListener('mouseenter', () => {
   sobreTiempo = setTimeout(() => {
     linksColor.style.display = 'block';
   }, 250);
 });
-quintoElemento.addEventListener('mouseenter', () => {
+cuartoDerecha.addEventListener('mouseenter', () => {
   sobreTiempo = setTimeout(() => {
     linksTec.style.display = 'block';
   }, 250);
 });
-septimoElemento.addEventListener('mouseleave', () => {
+sextoDerecha.addEventListener('mouseleave', () => {
   if (sobreTiempo) {
     clearTimeout(sobreTiempo);
     sobreTiempo = null;
   }
   linksColor.style.display = 'none';
 });
-quintoElemento.addEventListener('mouseleave', () => {
+cuartoDerecha.addEventListener('mouseleave', () => {
   if (sobreTiempo) {
     clearTimeout(sobreTiempo);
     sobreTiempo = null;
@@ -3709,21 +3713,41 @@ quintoElemento.addEventListener('mouseleave', () => {
   linksTec.style.display = 'none';
 });
 
+primerSubListaRRHH.addEventListener('mouseenter', () => {
+  sobreTiempo = setTimeout(() => {
+    document.querySelector('#empleado-ingreso').style.display='block'
+  }, 250);
+});
+primerSubListaRRHH.addEventListener('mouseleave', () => {
+  sobreTiempo = setTimeout(() => {
+    document.querySelector('#empleado-ingreso').style.display='none'
+  }, 250);
+});
+
+primerhijoSubListaRRHH.addEventListener('click', () => {
+  linkListI.style.display='none'  
+  mostrarInterfazIngreso()
+});
+segundohijoSubListaRRHH.addEventListener('click', () => {
+  linkListI.style.display='none'  
+  ingresoEmpleado()
+});
+
 // LI autonomo tercer hijo
 hijos.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
-
     if (index === 0) {
-      ingresoEmpleado()
     }  
+    if (index === 1) {
+      resultadosMaquina()
+    }
     if (index === 2) {
-        ingresoEmpleadoMA()
+      ingresoEmpleadoMA()
     }
     if (index === 3) {
       resultadosMA('interfaz-mtto')
     }
-
   });
 });
 
@@ -3983,7 +4007,7 @@ const CATEGORY_LABELS = {
   D: 'Desarrollo',
   E: 'Cumplimiento'
 };
-function mostrarAlertaEnElemento(mensaje, top, left) {
+/* function mostrarAlertaEnElemento(mensaje, top, left) {
   const alerta = document.getElementById('alerta-ui');
   const texto = alerta.querySelector('.texto');
 
@@ -3993,7 +4017,7 @@ function mostrarAlertaEnElemento(mensaje, top, left) {
   alerta.style.top = typeof top === 'number' ? `${top}px` : top;
   alerta.style.left = typeof left === 'number' ? `${left}px` : left;
 }
-mostrarAlertaEnElemento({mensaje: 'Ingrese solo valores numéricos',top: '70%',left: '40%'});
+mostrarAlertaEnElemento({mensaje: 'Ingrese solo valores numéricos',top: '70%',left: '40%'}); */
 
 let inputActivo = null;
 function onFocusIn(e) {
@@ -4570,21 +4594,17 @@ function mostrarListaClientes(seccion) {
   }
 
 }
-
 const fichaGrid = document.querySelector('.ficha-grid');
-
 function capturarInput(e){
   if (e.target.tagName === 'INPUT') {
     activeInput = e.target;
     configurarInput(e.target);
   }
 }
-
 fichaGrid.addEventListener('focusin', capturarInput);   // teclado / foco real
 fichaGrid.addEventListener('pointerdown', capturarInput); // mouse + touch
-
 function configurarInput(input) {
-  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','simulador','fichas-tecnicas']; 
+  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','simulador','fichas-tecnicas','conti-boton-kaizen']; 
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]) 
     if (elemento) {
@@ -4629,6 +4649,116 @@ function configurarInput(input) {
       break;
   }
 }
+
+/* ***************************************************************************************************************************************** */
+
+formularioNuevoIngreso.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const inputsIngresoEmpl = document.querySelectorAll('.dato-ma');
+  const existeVacio = [...inputsIngresoEmpl].some(input => input.value.trim() === '');
+  if (existeVacio) {
+    saltarAlerta('Existen campos sin diligenciar', 'nuevoEmpleado');
+    return;
+  }
+
+  const datos = new FormData(formularioNuevoIngreso);
+  const documento = String(datos.get('documento')).trim();
+
+  const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+
+  if (empleados[documento]) {
+    saltarAlerta('El empleado ya existe en la BD', 'nuevoEmpleado');
+    return;
+  }
+
+  const empleado = new Empleado(
+    datos.get('nombre'),
+    documento,
+    datos.get('area'),
+    datos.get('cargo'),
+    datos.get('equipo'),
+    datos.get('fecha'),
+    datos.get('imagen'),
+    Number(datos.get('identificados')),
+    Number(datos.get('corregidos')),
+    Number(datos.get('tipoA')),
+    Number(datos.get('tipoB')),
+    Number(datos.get('kaizen')),
+    Number(datos.get('adas')),
+    Number(datos.get('adt')),
+    Number(datos.get('lup'))
+  );
+
+  guardarEmpleado(empleado);
+});
+
+function guardarEmpleado(empleado){
+  const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+  empleados[empleado.documento] = empleado;
+  localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
+  saltarAlerta('Empleado registrado','exitoRegistro')
+}
+
+function mostrarTablaLocalStorage(clave){
+
+  const datos = JSON.parse(localStorage.getItem(clave));
+
+  if (!datos){
+    console.warn('No existe información en localStorage para la clave:', clave);
+    return;
+  }
+
+  const lista = Object.entries(datos).map(([key, value]) => ({
+    objeto: clave,
+    id: key,
+    ...value
+  }));
+
+  console.table(lista);
+
+}
+
+function eliminarClaveLocalStorage(clave){
+  if (!localStorage.getItem(clave)) {
+    console.warn(`La clave "${clave}" no existe en localStorage`);
+    return;
+  }
+  localStorage.removeItem(clave);
+  console.log(`Clave "${clave}" eliminada de localStorage`);
+}
+
+const limpiarBtn = document.getElementById('limpiar');
+limpiarBtn.addEventListener('click', () => {
+  inputNuevoEmpl.forEach(input => input.value = '');
+});
+
+document.querySelector('#salir').addEventListener('click',()=>{
+  /* formularioNuevoIngreso.style.display='none' */
+  formularioNuevoIngreso.classList.remove('activo')
+  desactivarBlur()
+})
+
+function mostrarInterfazIngreso(){
+  activarPantallaCompleta()
+  elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut']  
+  for (let i = 0; i < allContenedores.length; i++) { 
+    let elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  } 
+  container1.style.display='grid'
+
+  inputNuevoEmpl.forEach(input => input.value = '');
+  /* formularioNuevoIngreso.style.display='block'  */
+  ["formulario-empleado"].forEach(id => aparecerElemento(id, "block"));
+
+  activarBlur(4,20)
+  blurOverlay.zindex=1
+}
+
+/* ***************************************************************************************************************************************** */
 
 
 function borrrrrrarrrr(){

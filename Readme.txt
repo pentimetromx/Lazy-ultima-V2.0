@@ -7,6 +7,8 @@ No enumeres opciones, no des contexto adicional.”
 
 “Una sola causa + una sola solución. Nada más.”
 
+dame lista indexada con cada palabra (explicando en maximo 20 caracteres)para que se usa ej:
+
 
 actualizarIdsArray('padre-cmyk');
 
@@ -151,17 +153,12 @@ inputPerfil.addEventListener('blur', () => {
 });
 
 
+OJO !!!!!!!!!!!!!!!!  TENGO COMENTADAS LINEAS AL INICIO DE LOS DOS .CSS  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
+PARA MIRAR SI SE BORRA function mostrarVentanaEmergente(mensaje) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-contImgDistribuidor  //BORRAR TODO INDICIO DE ESTE ELEMENTO
+!!!!!!!!!!!!!!! function mostrarTablaLocalStorage(clave) =>  mostrarTablaLocalStorage('Empleados');   !!!!!!!
 
-padre-entintadore    //BORRAR TODO INDICIO DE ESTE ELEMENTO
-
-
-
-
-
-
-
+!!!!!!!!!!!!!!! function function eliminarClaveLocalStorage(clave) => function eliminarClaveLocalStorage('Empleados')
