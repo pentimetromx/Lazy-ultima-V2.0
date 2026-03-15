@@ -162,3 +162,14 @@ PARA MIRAR SI SE BORRA function mostrarVentanaEmergente(mensaje) !!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!! function mostrarTablaLocalStorage(clave) =>  mostrarTablaLocalStorage('Empleados');   !!!!!!!
 
 !!!!!!!!!!!!!!! function function eliminarClaveLocalStorage(clave) => function eliminarClaveLocalStorage('Empleados')
+
+
+#linkList > li:nth-child(2)::after,
+padding-left: 23px;
+
+
+
+
+
+
+

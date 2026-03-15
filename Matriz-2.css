@@ -5109,25 +5109,54 @@ top: 44%;
 .lista-oculta {
   display: none;
 }
-#ingreso-color,
+#ingreso-color{
+  position: relative;
+  padding-left: 23px; /* espacio para la flecha */
+}
 #ingreso-padre {
   position: relative;
   padding-right: 20px; /* espacio para la flecha */
+}
+.auxiliar-registro li,
+#links-color li,
+.auxiliar-links li{
+  position: relative;
+  height: 6vh;
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s ease, color 0.8s ease;  
 }
 #links-registro > li {
   position: relative;
   display: flex;
   align-items: center;
-  height:5vh;
+  height:6vh;
   padding: 0 12px;
   box-sizing: border-box;
 }
-
-#links-auxiliar > li:nth-child(1)::after,
-#linkList > li:nth-child(2)::after,
-#links-registro > li:nth-child(2)::after,
-.has-submenu::after,
+#links-registro > li:nth-child(2){
+  position: relative;
+  padding-left:23px;
+}
 #ingreso-color::after,
+#linkList > li:nth-child(2)::after,
+.has-submenu::after,
+#links-registro > li:nth-child(2)::after{
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  width: 0;
+  height: 0;
+
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid rgb(0,0,255);
+}
+
+#links-auxiliar > li:nth-child(2)::after,
 #links-auxiliar > .auxiliar-links > li:nth-child(1)::after,
 #ingreso-padre::after {
   content: '';
@@ -5136,24 +5165,27 @@ top: 44%;
   right: 5px;
   top: 50%;
   transform: translateY(-50%);
-
   width: 0;
   height: 0;
 
-  border-left: 6px solid rgb(0,0,255);
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
+  border-left: 6px solid rgb(0,0,255);
 }
-#links-auxiliar > li:nth-child(1):hover::after,
-#linkList > li:nth-child(2):hover::after,
+#ingreso-color:hover::after,
 #links-registro > li:nth-child(2):hover::after,
 .has-submenu:hover::after,
-#ingreso-color:hover::after,
+#linkList > li:nth-child(2):hover::after{
+  border-right-color: #ffffff;
+}
+#links-auxiliar > li:nth-child(2):hover::after,
+#links-registro > li:nth-child(2):hover::after,
 #ingreso-padre:hover::after {
   border-left-color: #ffffff;
 }
-.has-submenu{
+#links-color > .has-submenu{
   position: relative;
+  padding-left: 21px;
 }
 .submenu-colorimetria{
   position: absolute;
@@ -5370,8 +5402,8 @@ top: 44%;
   gap:2%;
 }
 .controller{
-  margin-top: 85%;
-  width: 40%;
+  margin-top: 88%;
+  width: 30%;
   display: grid;
   grid-template-rows: repeat(2,1fr);
 }
@@ -5423,7 +5455,7 @@ button:hover{
   background:rgb(255,0,124);     /* gris neutro para no competir */
   color:white;  
   border:none;
-  border-radius:8px;
+  border-radius:5px;
   font-size:65%;
   cursor:pointer;
   transition:.2s;

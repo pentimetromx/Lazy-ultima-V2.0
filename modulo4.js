@@ -3603,7 +3603,9 @@ function decisionesEstrategicas(){
 const listaIzquierda = document.querySelectorAll('#linkListI li');
 const subListaRRHH = document.querySelectorAll('#links-auxiliar li')
 const hijoSubListaRRHH = document.querySelectorAll('#empleado-ingreso > li')
-const primerSubListaRRHH = subListaRRHH[0]
+
+const primerSubListaRRHH = subListaRRHH[1]
+
 const primerhijoSubListaRRHH = hijoSubListaRRHH[0]
 const segundohijoSubListaRRHH = hijoSubListaRRHH[1]
 const linksAuxiliar = document.getElementById('links-auxiliar');
@@ -3733,13 +3735,13 @@ segundohijoSubListaRRHH.addEventListener('click', () => {
   ingresoEmpleado()
 });
 
-// LI autonomo tercer hijo
+// SEGUNDO NIVEL DE LISTAS
 hijos.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (index === 0) {
-    }  
     if (index === 1) {
+    }  
+    if (index === 0) {
       resultadosMaquina()
     }
     if (index === 2) {
