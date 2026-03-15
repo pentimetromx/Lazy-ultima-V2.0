@@ -458,6 +458,147 @@ document.addEventListener('DOMContentLoaded', () => {
     spanInterno.style.backgroundColor = 'red'; 
     spanInterno.textContent = 'VER';
   }
+
+
+  const listadoNombres = document.getElementById('listaNombres');
+  const img = document.getElementById('imagenVisor');
+  const nombre = document.querySelector('.visor > span');
+
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  // estado
+  let indiceActual = 0;
+  let fotoFijada = null;
+
+  // --- construir lista dinámica ---
+  colaboradores.forEach((emp, i) => {
+    const span = document.createElement('span');
+    span.textContent = emp.nombre;
+    span.dataset.img = emp.ruta; // importante para navegación
+    span.dataset.index = i;
+
+    span.addEventListener('mouseenter', () => {
+      indiceActual = i;
+      mostrarEmpleadoPorIndice(i, { fijar: false });
+    });
+
+    span.addEventListener('mouseleave', () => {
+      if (fotoFijada) {
+        mostrarEmpleadoObj(fotoFijada);
+      } else {
+        limpiarVisor();
+      }
+    });
+
+    span.addEventListener('click', () => {
+      indiceActual = i;
+      if (fotoFijada === emp) {
+        fotoFijada = null;
+        limpiarVisor();
+      } else {
+        fotoFijada = emp;
+        mostrarEmpleadoObj(emp);
+      }
+    });
+
+    listadoNombres.appendChild(span);
+  });
+
+  // --- navegación Prev / Next ---
+  prevBtn.addEventListener('click', () => {
+    const spans = listadoNombres.querySelectorAll('span');
+    if (!spans.length) return;
+    const nuevo = Math.max(0, indiceActual - 1);
+    mostrarEmpleadoPorIndice(nuevo, { fijar: false });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    const spans = listadoNombres.querySelectorAll('span');
+    if (!spans.length) return;
+    const nuevo = Math.min(spans.length - 1, indiceActual + 1);
+    mostrarEmpleadoPorIndice(nuevo, { fijar: false });
+  });
+
+  // --- búsqueda ---
+  campoBusqueda.addEventListener('input', () => {
+    const valor = campoBusqueda.value.trim().toLowerCase();
+
+    if (!valor) {
+      limpiarVisor();
+      fotoFijada = null;
+      return;
+    }
+
+    const coincidencia = colaboradores.find(c => c.nombre.toLowerCase().includes(valor)
+    );
+
+    if (coincidencia) {
+      fotoFijada = coincidencia; // fija desde buscador
+      mostrarEmpleadoObj(coincidencia);
+      // sincronizar índice si coincide con la lista
+      const idx = colaboradores.indexOf(coincidencia);
+      if (idx >= 0) indiceActual = idx;
+    } else {
+      limpiarVisor();
+      fotoFijada = null;
+    }
+  });
+
+  const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  if (!esDesktop && esTactil) {
+    campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
+  }
+
+
+  campoBusqueda.addEventListener('focusin', (e) => {
+    activeInput = e.target; // asignar input activo
+    mostrarListaClientes('perfilesIndividual'); // abrir lista
+  });
+
+
+  campoBusqueda.addEventListener('blur', () => {
+    if(!esDesktop) hideKeyboard()
+  });
+
+  // --- funciones auxiliares ---
+
+  // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
+  function mostrarEmpleadoPorIndice(index, opts = { fijar: false }) {
+    const spans = listadoNombres.querySelectorAll('span');
+    const span = spans[index];
+    if (!span) return;
+    const imgSrc = span.dataset.img;
+    if (!imgSrc) return;
+
+    // actualizar visor
+    img.src = imgSrc;
+    nombre.textContent = span.textContent;
+    indiceActual = Number(span.dataset.index ?? index);
+
+    if (opts.fijar) {
+      // fijar objeto si existe en colaboradores
+      const emp = colaboradores[indiceActual];
+      if (emp) fotoFijada = emp;
+    }
+  }
+
+  // muestra usando el objeto de colaboradores (click o buscador)
+  function mostrarEmpleadoObj(emp) {
+    if (!emp) return;
+    img.src = emp.ruta ?? '';
+    nombre.textContent = emp.nombre ?? '';
+    // sincronizar indiceActual con la posición en colaboradores
+    const idx = colaboradores.indexOf(emp);
+    if (idx >= 0) indiceActual = idx;
+  }
+
+  function limpiarVisor() {
+    img.src = '';
+    nombre.textContent = '';
+  }
+
   
 });
 function showNextInputChec() {
@@ -1803,11 +1944,6 @@ document.getElementById('shrinkButton').addEventListener('click', function() {
   });
 });
 
-
-function cerrarSecciones(){
-  linkList.style.display = "none";
-  linkListI.style.display = "none";
-}
 function abrirPilarMA(){
   linkListI.style.display = "none";    
   for (var i = 0; i < allContenedores.length; i++) {

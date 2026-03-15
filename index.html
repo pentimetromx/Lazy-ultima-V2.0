@@ -8,7 +8,7 @@
     <title>Lazy 2208</title>
     <link rel="stylesheet" href="./Matriz-1.css">
     <link rel="stylesheet" href="./Matriz-2.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" href="./Matriz-1.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" href="./Matriz-1.css">
   </head>
 
   <script></script> 
@@ -476,7 +476,9 @@
         </div> 
       </div>
     </div>
+
     <div class="overlay"></div>
+
     <video class="lazy" id="video-background" autoplay loop muted playsinline>
       <source data-src="./assets/galaxy.mp4" type="video/mp4">
       Tu navegador no soporta el elemento de video.
@@ -498,15 +500,23 @@
         <li>Administrativo y soporte</li>
         <li onclick="decisionesEstrategicas()">Estrategia</li> 
 
-        <li id="ingreso-padre">
-          Ingresos / Resultados
+        <li id="ingreso-padre">Ingresos / Resultados
+
           <ul id="links-auxiliar" class="auxiliar-links">
-            <li>Recursos Humanos</li>
-            <li onclick="resultadosMaquina('rot4','updateRota-4','img1','true')">Job track</li> 
+
+            <li>Administrador
+              <ul id="empleado-ingreso" class="auxiliar-links">
+                <li>Nuevo ingreso</li>
+                <li>Data empleado</li>
+              </ul>
+            </li>
+            <!-- <li>RR.HH</li> -->
+            <li>Job track</li> 
             <li>Mantenimiento Autonomo</li>
             <li>Resultado individual M.A</li>
             <li>Ingresos</li>
           </ul>
+          
         </li>
         
         <li onclick="cerrarPilares()">Salir</li> 
@@ -905,7 +915,7 @@
         <button class="butt-mautonomo" onclick="deslizaContenedor('canvasContainer2','def1')">DEFECTOS TIPO 1</button>
         <button class="butt-mautonomo" onclick="deslizaContenedor('contChecks','def2')">DEFECTOS TIPO 2</button>
         <button class="butt-mautonomo" onclick="deslizaContenedor('canvasContainer3','adtBut')">ADT</button>
-        <button class="butt-mautonomo" onclick="deslizaContenedor('contImagNeg','fua1')">FUA</button>          
+        <button class="butt-mautonomo" onclick="deslizaContenedor('contImagNeg','fua1')">FUA</button>         
         <button class="butt-mautonomo" onclick="deslizaContenedor('contImagGraf','lup')">LUP</button>
         <button class="butt-mautonomo" onclick="deslizaContenedor('conti-boton-kaizen','kaizen')">KAIZEN</button>
         <button class="butt-mautonomo" onclick="resetBotns('troubleshoot')" style="background-color: red;color: white;">Reset</button>
@@ -3887,82 +3897,30 @@
 
           <div class="fila-ingreso">
             <label for="numDoc2">Área corporativa</label>
-
-            <select id="numDoc2" class="entrada-empleado storeText">
-              <option value="" disabled selected>Seleccione un área</option>
-              <option value="Recursos Humanos">Recursos Humanos</option>
-              <option value="Finanzas">Finanzas</option>
-              <option value="Mercadeo">Mercadeo</option>
-              <option value="Ventas">Ventas</option>
-              <option value="Producción">Producción</option>
-              <option value="Calidad">Calidad</option>
-              <option value="Investigación y Desarrollo">Investigación y Desarrollo</option>
-              <option value="Logística">Logística</option>
-              <option value="Servicio al Cliente">Servicio al Cliente</option>
-              <option value="Tecnología">Tecnología</option>
-            </select>
+            <input id="numDoc2" class="entrada-empleado storeText  verGraficos" data-multi>
           </div>
 
           <div class="fila-ingreso">
             <label for="numDoc5">Cargo</label>
-            <select id="numDoc5" class="entrada-empleado storeText">
-              <option value="" disabled selected>Seleccione un cargo</option>
-              <option value="Presidente">Presidente</option>
-              <option value="Director General">Director General</option>
-              <option value="Gerente de Producción">Gerente de Producción</option>
-              <option value="Gerente Comercial">Gerente Comercial</option>
-              <option value="Gerente de Finanzas">Gerente de Finanzas</option>
-              <option value="Gerente de Calidad">Gerente de Calidad</option>
-              <option value="Jefe de Preprensa">Jefe de Preprensa</option>
-              <option value="Jefe de Impresión Offset">Jefe de Impresión Offset</option>
-              <option value="Jefe de Acabados y Empaque">Jefe de Acabados y Empaque</option>
-              <option value="Jefe de Mantenimiento">Jefe de Mantenimiento</option>
-              <option value="Supervisor de Producción">Supervisor de Producción</option>
-              <option value="Diseñador Gráfico">Diseñador Gráfico</option>
-              <option value="Coordinador de Logística">Coordinador de Logística</option>
-              <option value="Asistente de Compras">Asistente de Compras</option>
-              <option value="Técnico en Control de Calidad">Técnico en Control de Calidad</option>
-              <option value="Operario de Máquina Offset">Operario de Máquina Offset</option>
-              <option value="Auxiliar de Máquina">Auxiliar de Máquina</option>
-              <option value="Operario de Acabados">Operario de Acabados</option>
-              <option value="Mensajero Interno">Mensajero Interno</option>
-              <option value="Servicios Generales">Servicios Generales</option>
-            </select>
+            <input type="text" id="numDoc5" class="entrada-empleado storeText  verGraficos" data-multi>
           </div> 
 
           <div class="fila-ingreso">
             <label for="numDoc3">Equipo asignado</label>
-            <select id="numDoc3" class="entrada-empleado storeText">
-              <option value="" disabled selected>Seleccione un recurso</option>
-              <option value="Epson SurePress L-6534VW">Epson SurePress L-6534VW</option>
-              <option value="Epson SurePress L-6534VW (Orange Ink)">Epson SurePress L-6534VW (Orange Ink)</option>
-              <option value="Epson SurePress L-6534VW (CMYKW+Or)">Epson SurePress L-6534VW (CMYKW+Or)</option>
-              <option value="Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press">Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press</option>
-              <option value="Ricoh Pro Z75 (Duplex)">Ricoh Pro Z75 (Duplex)</option>
-              <option value="Ricoh Pro Z75 (400 gsm Media Support)">Ricoh Pro Z75 (400 gsm Media Support)</option>
-              <option value="IBM InfoPrint Production Press">IBM InfoPrint Production Press</option>
-              <option value="IBM InfoPrint Color 1000">IBM InfoPrint Color 1000</option>
-              <option value="IBM InfoColor 70">IBM InfoColor 70</option>
-              <option value="Roland Sheetfed 900 Evolution">Roland Sheetfed 900 Evolution</option>
-              <option value="Roland Sheetfed DI 106-8-L (LED UV)">Roland Sheetfed DI 106-8-L (LED UV)</option>
-              <option value="Roland Sheetfed 700 Series (High Performance)">Roland Sheetfed 700 Series (High Performance)</option>
-              <option value="Heidelberg Speedmaster SX 102">Heidelberg Speedmaster SX 102</option>
-              <option value="Heidelberg Speedmaster XL 105">Heidelberg Speedmaster XL 105</option>
-              <option value="Heidelberg Speedmaster CX 145">Heidelberg Speedmaster CX 145</option>
-              <option value="Rotatek Brava 450 Semi-Rotary/Rotary Offset Press">Rotatek Brava 450 Semi-Rotary/Rotary Offset Press</option>
-              <option value="Rotatek Universal 850 Web-Offset Press">Rotatek Universal 850 Web-Offset Press</option>
-              <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press">Rotatek RK-250 Plus Roll-to-Roll Offset Press</option>
-            </select>
+            <input type="text" id="numDoc3" class="entrada-empleado storeText  verGraficos" data-multi>
+
           </div>
+
           <div class="fila-ingreso">
             <label for="numDoc4">Fecha ingreso</label>
-            <input type="text" id="numDoc4" class="entrada-empleado storeText" placeholder="DD/MM/YYYY" readonly>
-          </div>   
+            <input type="text" id="numDoc4" class="entrada-empleado storeText">
+          </div>  
+          
           <div class="fila-ingreso">
             <label for="numDoc6">Registro fotográfico</label>
-            <input type="text"id="numDoc6"class="entrada-empleado storeText" value="" placeholder="Ruta o enlace de la fotografía" readonly>
+            <input type="text"id="numDoc6"class="entrada-empleado storeText" value="">
             
-            <div id="listaFotos" class="oculto"></div>
+            <!-- <div id="listaFotos" class="oculto"></div> -->
 
           </div>           
         </div>
@@ -3974,7 +3932,7 @@
 
           <button id="nuevo-ingreso" class="entrada-empleado">Registrar</button>
           <button id="limpia-ingreso" class="entrada-empleado">Limpiar campos</button>
-          <button id="modifica-ingreso" class="entrada-empleado">Modificar</button>
+          <button id="modifica-ingreso" class="entrada-empleado">Modificar</button><br>
         </div>
         <div class="columna-derecha">
           <label for="numDoc">Buscar</label> <!-- /////////////////// -->
@@ -3990,6 +3948,7 @@
       </div>    
         
     </div>
+
     <div id="padre-ingresos-ma" class="special-border"> 
       <div id="ingresos-sistema-ma">
         <div class="encabezado">
@@ -4078,6 +4037,7 @@
       </div>     
       
     </div>
+
     <div id="calendario"></div>
     <div id="lista-imagenes"></div>
     <div id="msg-empleado" class="ventana-mensaje">
@@ -4332,15 +4292,159 @@
 
     </div>
 
-    <div id="alerta-ui">
-      <span class="texto"></span>
-      <span class="flecha"></span>
-    </div>
-
     <div id="keyboard-wrapper">
       <div id="virtual-keyboard"></div>
       <button id="close-keyboard-btn">Cerrar teclado</button>
     </div>
+
+    <form id="formulario-empleado" class="form-empleado">
+
+      <h2>Registro de Empleado</h2>
+
+      <div id="panel-empleado" class="grid">
+
+        <div class="campo">
+          <label>Nombre</label>
+          <input name="nombre" class="estilo-empl" required>
+        </div>
+
+        <div class="campo">
+          <label>Documento</label>
+          <input id="doc-empl" name="documento" class="estilo-empl" required>
+        </div>
+
+        <div class="campo">
+          <label>Área</label>
+          <select name="area" class="entrada-empleado storeText estilo-empl" required>
+            <option value="" style="background-color: blue;" disabled selected></option>
+            <option value="Recursos Humanos">Recursos Humanos</option>
+            <option value="Finanzas">Finanzas</option>
+            <option value="Mercadeo">Mercadeo</option>
+            <option value="Ventas">Ventas</option>
+            <option value="Producción">Producción</option>
+            <option value="Calidad">Calidad</option>
+            <option value="Investigación y Desarrollo">Investigación y Desarrollo</option>
+            <option value="Logística">Logística</option>
+            <option value="Servicio al Cliente">Servicio al Cliente</option>
+            <option value="Tecnología">Tecnología</option>
+          </select>
+
+        </div>
+
+        <div class="campo">
+          <label>Cargo</label>
+          <select name="cargo" class="entrada-empleado storeText estilo-empl" required>
+            <option value="" disabled selected></option>
+            <option value="Presidente">Presidente</option>
+            <option value="Director General">Director General</option>
+            <option value="Gerente de Producción">Gerente de Producción</option>
+            <option value="Gerente Comercial">Gerente Comercial</option>
+            <option value="Gerente de Finanzas">Gerente de Finanzas</option>
+            <option value="Gerente de Calidad">Gerente de Calidad</option>
+            <option value="Jefe de Preprensa">Jefe de Preprensa</option>
+            <option value="Jefe de Impresión Offset">Jefe de Impresión Offset</option>
+            <option value="Jefe de Acabados y Empaque">Jefe de Acabados y Empaque</option>
+            <option value="Jefe de Mantenimiento">Jefe de Mantenimiento</option>
+            <option value="Supervisor de Producción">Supervisor de Producción</option>
+            <option value="Diseñador Gráfico">Diseñador Gráfico</option>
+            <option value="Coordinador de Logística">Coordinador de Logística</option>
+            <option value="Asistente de Compras">Asistente de Compras</option>
+            <option value="Técnico en Control de Calidad">Técnico en Control de Calidad</option>
+            <option value="Operario de Máquina Offset">Operario de Máquina Offset</option>
+            <option value="Auxiliar de Máquina">Auxiliar de Máquina</option>
+            <option value="Operario de Acabados">Operario de Acabados</option>
+            <option value="Mensajero Interno">Mensajero Interno</option>
+            <option value="Servicios Generales">Servicios Generales</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label>Equipo</label>
+          <select name="equipo" class="entrada-empleado storeText estilo-empl" required>
+            <option value="" disabled selected></option>
+            <option value="Epson SurePress L-6534VW">Epson SurePress L-6534VW</option>
+            <option value="Epson SurePress L-6534VW (Orange Ink)">Epson SurePress L-6534VW (Orange Ink)</option>
+            <option value="Epson SurePress L-6534VW (CMYKW+Or)">Epson SurePress L-6534VW (CMYKW+Or)</option>
+            <option value="Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press">Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press</option>
+            <option value="Ricoh Pro Z75 (Duplex)">Ricoh Pro Z75 (Duplex)</option>
+            <option value="Ricoh Pro Z75 (400 gsm Media Support)">Ricoh Pro Z75 (400 gsm Media Support)</option>
+            <option value="IBM InfoPrint Production Press">IBM InfoPrint Production Press</option>
+            <option value="IBM InfoPrint Color 1000">IBM InfoPrint Color 1000</option>
+            <option value="IBM InfoColor 70">IBM InfoColor 70</option>
+            <option value="Roland Sheetfed 900 Evolution">Roland Sheetfed 900 Evolution</option>
+            <option value="Roland Sheetfed DI 106-8-L (LED UV)">Roland Sheetfed DI 106-8-L (LED UV)</option>
+            <option value="Roland Sheetfed 700 Series (High Performance)">Roland Sheetfed 700 Series (High Performance)</option>
+            <option value="Heidelberg Speedmaster SX 102">Heidelberg Speedmaster SX 102</option>
+            <option value="Heidelberg Speedmaster XL 105">Heidelberg Speedmaster XL 105</option>
+            <option value="Heidelberg Speedmaster CX 145">Heidelberg Speedmaster CX 145</option>
+            <option value="Rotatek Brava 450 Semi-Rotary/Rotary Offset Press">Rotatek Brava 450 Semi-Rotary/Rotary Offset Press</option>
+            <option value="Rotatek Universal 850 Web-Offset Press">Rotatek Universal 850 Web-Offset Press</option>
+            <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press">Rotatek RK-250 Plus Roll-to-Roll Offset Press</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label>Fecha</label>
+          <input type="date" name="fecha" class="estilo-empl" required>
+        </div>
+
+        <div class="campo">
+
+          <label>Registro fotográfico</label>
+          <input id="input-foto-empl" type="text" class="entrada-empleado storeText estilo-empl" value="" name="imagen" required>
+          <div id="listaFotos" class="oculto"></div> 
+                  
+        </div>
+
+        <div class="campo">
+          <label>Identificados</label>
+          <input type="number" class="dato-ma estilo-empl" name="identificados">
+        </div>
+
+        <div class="campo">
+          <label>Corregidos</label>
+          <input type="number" class="dato-ma estilo-empl" name="corregidos">
+        </div>
+
+        <div class="campo">
+          <label>Tipo A</label>
+          <input type="number" class="dato-ma estilo-empl" name="tipoA">
+        </div>
+
+        <div class="campo">
+          <label>Tipo B</label>
+          <input type="number" class="dato-ma" name="tipoB">
+        </div>
+
+        <div class="campo">
+          <label>Kaizen</label>
+          <input type="number" class="dato-ma estilo-empl" name="kaizen">
+        </div>
+
+        <div class="campo">
+          <label>ADAS</label>
+          <input type="number" class="dato-ma estilo-empl" name="adas"> 
+        </div>
+
+        <div class="campo">
+          <label>ADT</label>
+          <input type="number" class="dato-ma estilo-empl" name="adt">
+        </div>
+
+        <div class="campo">
+          <label>LUP</label>
+          <input type="number" class="dato-ma estilo-empl" name="lup">
+        </div>
+
+      </div>
+
+      <div class="controller">
+        <button type="submit">Guardar Empleado</button>
+        <button type="button" id="limpiar">Limpiar Campos</button>
+        <button type="button" id="salir">Salir</button>
+      </div>
+
+    </form>    
  
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
