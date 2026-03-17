@@ -21,7 +21,7 @@
       <form id="search-form">
         <input type="text" id="search-input" placeholder="Buscar..."> 
         <datalist id="suggestions"></datalist>                                             
-        <img data-src="./assets/lupa.jpg" class="busqueda lazy" alt="Buscar">   
+        <img data-src="./assets/lupa.jpg" class="busqueda lazy" alt="Buscar">    
       </form>
     </header>
     <div id="gran-cortina"></div>   
@@ -730,7 +730,7 @@
 
     <div id="container01" class="ocultos" data-display="grid">  
       <button id="bot-atras" class="entrada-empleado" onclick="irContenedorAnterior('contPortPlaca')"></button>
-      <button id="bot-inicial" class="entrada-empleado" onclick="VolveraInicio()">Panel Inicio</buttonclass=>
+      <button id="bot-inicial" class="entrada-empleado" onclick="abrirInterfaz()">Panel Inicio</buttonclass=>
       <button id="iniciar" class="entrada-empleado" onclick="activarPantallaCompleta()">Full Screen</buttonclass=>
       <button id="bot-atras12" class="entrada-empleado" onclick="irContenedorSiguiente()"></buttonclass=>
     </div>
@@ -1051,8 +1051,7 @@
 
     <div id="marco-lubricantes"></div>
     <div id="lubricantes" class="conte-lubrica ventana">
-      <div id="child-move"></div>
-      <div id="abuelo-lubrica" class="abuelo-lub">
+      <!-- <div id="child-move"></div> -->
         <div id="titulo-lubrica">
           <div class="aceite-lub"><span class="labl-class">ACEITE</span></div>
           <div class="aceite-lub"><span class="labl-class">GRASA</span></div>
@@ -1098,8 +1097,6 @@
           </div>
         </div>
 
-
-      </div> 
     </div>
     <button id="butt-links-II" class="butt-links ventana" onclick="cerrarVentanasII()">Volver</button>
     <div id="lubri-I">
@@ -1141,9 +1138,8 @@
       </div>
 
     </div>
-    <div id="marco-lubrica"></div>
+  
     <div id="inicio" class="genesis ventana">
-      <div id="child-div"></div>
       <div id="bis-abuelo" class="grand-father">
       <div id="padre-lubrica" class="contenedor-padre">
         <div class="item"><img data-src="./assets/rodamiento mandos.jpg" class="item-child lazy" alt="rodamiento"></div>
@@ -1262,29 +1258,22 @@
         
       </div>
 
-      <div id="abuelo-cuadricula" class="marco-3">
-        <div id="child-div-I"></div>
-        <div id="padre-cuadricula" class="marco-2">
-          <div  id="hijo-cuadricula" class="marco-1">
-            <div><img data-src="./assets/tinter.jpg" class="rodillo lazy"  alt="freno"></div>  
-            <div><img data-src="./assets/tinter 1.jpg" class="rodillo lazy" alt="freno"></div>
-            <div><img data-src="./assets/tinter 2.jpg" class="rodillo lazy" alt="freno"></div>
-            <div><img data-src="./assets/tinter 3.jpg" class="rodillo lazy" alt="freno"></div>  
-          </div>
+      <div id="padre-cuadricula" class="marco-2">
+        <div  id="hijo-cuadricula" class="marco-1">
+          <div><img data-src="./assets/tinter.jpg" class="rodillo lazy"  alt="freno"></div>  
+          <div><img data-src="./assets/tinter 1.jpg" class="rodillo lazy" alt="freno"></div>
+          <div><img data-src="./assets/tinter 2.jpg" class="rodillo lazy" alt="freno"></div>
+          <div><img data-src="./assets/tinter 3.jpg" class="rodillo lazy" alt="freno"></div>  
         </div>
       </div>
 
-      <div id="grilla-durezas" class="dureza">
-        <div id="item-movil"></div>
-        <div id="abuelo-grilla-dureza" class="grand-father-dureza">
-          <div id="grilla-duro" class="grilla-dureza-hijo">
-            <div class="duros"><img data-src="./assets/durometro 1.jpg" class="rodillo-durezas lazy" alt="freno"></div>
-            <div class="duros"><img data-src="./assets/durometro 2.jpg" class="rodillo-durezas lazy" alt="freno"></div>
-            <div class="duros"><img data-src="./assets/durometro 3.jpg" class="rodillo-durezas lazy" alt="freno"></div>
-            <div class="duros"><img data-src="./assets/durometro 4.jpg" class="rodillo-durezas lazy"  alt="freno"></div>
-          </div>
-        </div>
+      <div id="grilla-duro" class="grilla-dureza-hijo">
+        <div class="duros"><img data-src="./assets/durometro 1.jpg" class="rodillo-durezas lazy" alt="freno"></div>
+        <div class="duros"><img data-src="./assets/durometro 2.jpg" class="rodillo-durezas lazy" alt="freno"></div>
+        <div class="duros"><img data-src="./assets/durometro 3.jpg" class="rodillo-durezas lazy" alt="freno"></div>
+        <div class="duros"><img data-src="./assets/durometro 4.jpg" class="rodillo-durezas lazy"  alt="freno"></div>
       </div>
+
     </div>        
     <div id="contPortPlaca">
       <video class="lazy video-training" id="video-placa" autoplay loop muted playsinline>
@@ -1409,53 +1398,46 @@
       <div class="imgs-row expand"><img data-src="./assets/forma-4.jpg" class="lazy image-trainings" alt="imgDistrib-21"></div>
     </div>  
 
-    <div id="abuelo-variable">
 
-      <div id="padre-variable">
+    <div id="padre-variable">
 
-        <div id="cont-variable">          
-          <img data-src="./assets/IBM 4000.jpg" class="lazy child-section " alt="IBM4000">
-          <video class="lazy child-section" autoplay loop muted playsinline controls>
-            <source data-src="./assets/info-I.mp4" type="video/mp4">
-          </video>
+      <div id="cont-variable">          
+        <img data-src="./assets/IBM 4000.jpg" class="lazy child-section " alt="IBM4000">
+        <video class="lazy child-section" autoplay loop muted playsinline controls>
+          <source data-src="./assets/info-I.mp4" type="video/mp4">
+        </video>
 
-          <img data-src="./assets/IBM 5000.jpg" class="lazy child-section " alt="IBM4000">
-          <video class="lazy child-section" autoplay loop muted playsinline controls>
-            <source data-src="./assets/info-II.mp4" type="video/mp4">
-          </video>
+        <img data-src="./assets/IBM 5000.jpg" class="lazy child-section " alt="IBM4000">
+        <video class="lazy child-section" autoplay loop muted playsinline controls>
+          <source data-src="./assets/info-II.mp4" type="video/mp4">
+        </video>
 
-          <img data-src="./assets/info print.jpg" class="lazy child-section " alt="IBM4000">
-          <video class="lazy child-section" autoplay loop muted playsinline controls>
-            <source data-src="./assets/info-III.mp4" type="video/mp4">
-          </video>
-          
-        </div>
-
+        <img data-src="./assets/info print.jpg" class="lazy child-section " alt="IBM4000">
+        <video class="lazy child-section" autoplay loop muted playsinline controls>
+          <source data-src="./assets/info-III.mp4" type="video/mp4">
+        </video>
+        
       </div>
 
     </div>
 
-    <div id="abuelo-plana">
-
-      <div id="child-move-plana"></div>
-
-      <div id="padre-plana">
-        <div id="cont-plana">           
-          <img data-src="./assets/sor-m.jpg" class="lazy child-section " alt="GTO52">
-          <video class="lazy child-section" autoplay loop muted playsinline controls>
-            <source data-src="./assets/Planas-I.mp4" type="video/mp4">
-          </video>
-          <img data-src="./assets/GTO 52.jpg" class="lazy child-section " alt="GTO52">
-          <video class="lazy child-section" autoplay loop muted playsinline controls>
-            <source data-src="./assets/planas-II.mp4" type="video/mp4">
-          </video>
-          <img data-src="./assets/pinza heidelberg.jpg" class="lazy child-section " alt="GTO52">
-          <video class="lazy child-section" autoplay loop muted playsinline controls>
-            <source data-src="./assets/planas-III.mp4" type="video/mp4">
-          </video>
-        </div>
+    <div id="padre-plana">
+      <div id="cont-plana">           
+        <img data-src="./assets/sor-m.jpg" class="lazy child-section " alt="GTO52">
+        <video class="lazy child-section" autoplay loop muted playsinline controls>
+          <source data-src="./assets/Planas-I.mp4" type="video/mp4">
+        </video>
+        <img data-src="./assets/GTO 52.jpg" class="lazy child-section " alt="GTO52">
+        <video class="lazy child-section" autoplay loop muted playsinline controls>
+          <source data-src="./assets/planas-II.mp4" type="video/mp4">
+        </video>
+        <img data-src="./assets/pinza heidelberg.jpg" class="lazy child-section " alt="GTO52">
+        <video class="lazy child-section" autoplay loop muted playsinline controls>
+          <source data-src="./assets/planas-III.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
+    
     <div id="cont-secador">
       <div class="video-container">
         <video class="lazy video-training" id="curado-uv" autoplay loop muted playsinline>
@@ -1974,7 +1956,7 @@
             <input id="buscador-empleado" type="text" readonly placeholder="Buscar por nombre..." >
             
             <div id="visorImagen" class="visor-imagen">
-              <img src=""  id="imagenVisor"> 
+              <img src="" id="imagenVisor"> 
             </div>
 
             <span></span>
@@ -3718,7 +3700,6 @@
     <div id="marco-formulario">
 
       <div id="formulario-cuenta" class="formulario-crear-cuenta">
-        <div id="child-move-azul"></div>
         <h2>Areas de trabajo</h2 > 
         <span class="etq-frm">Perfil cuchillas sheeter</span>
         <span class="etq-frm">Montaje cuchilla sheeter</span>
@@ -3918,9 +3899,6 @@
           <div class="fila-ingreso">
             <label for="numDoc6">Registro fotográfico</label>
             <input type="text"id="numDoc6"class="entrada-empleado storeText" value="">
-            
-            <!-- <div id="listaFotos" class="oculto"></div> -->
-
           </div>           
         </div>
         <div class="columna-centro"> 
@@ -3949,6 +3927,7 @@
     </div>
 
     <div id="padre-ingresos-ma" class="special-border"> 
+
       <div id="ingresos-sistema-ma">
         <div class="encabezado">
           Registro indicadores M.A
@@ -3967,43 +3946,43 @@
 
           <div class="fila-ingreso-ma">
             <label for="numDoc1-ma">Defectos identificados</label>
-            <input type="text" id="numDoc1-ma" class="entrada-empleado verGraficos  limpiarInput" data-colorable readonly>
+            <input type="text" id="numDoc1-ma" class="entrada-empleado verGraficos  limpiarInput" data-colorable readonly tabindex="3">
           </div>
 
           <div class="fila-ingreso-ma">
             <label for="numDoc2">Defectos corregidos</label>
-            <input type="text"  id="numDoc2-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly>
+            <input type="text"  id="numDoc2-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="4">
 
           </div>
 
           <div class="fila-ingreso-ma">
             <label for="numDoc5">Defectos tipo A</label>
-            <input type="text"  id="numDoc5-ma" list="cargos" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly>
+            <input type="text"  id="numDoc5-ma" list="cargos" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="5">
           </div> 
 
           <div class="fila-ingreso-ma">
             <label for="numDoc3">Defectos tipo B</label>
-            <input type="text"  id="numDoc3-ma" list="equipos" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly>
+            <input type="text"  id="numDoc3-ma" list="equipos" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="6">
           </div>
 
           <div class="fila-ingreso-ma">
             <label for="numDoc4">Kaizen</label>
-            <input type="text"  id="numDoc4-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly>
+            <input type="text"  id="numDoc4-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="7">
           </div>   
           
           <div class="fila-ingreso-ma">
             <label for="numDoc6">ADA,s</label>
-            <input type="text"  id="numDoc7-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable readonly>
+            <input type="text"  id="numDoc7-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="8">
           </div> 
           
           <div class="fila-ingreso-ma">
             <label for="numDoc6">ADT</label>
-            <input type="text"  id="numDoc6-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable readonly>
+            <input type="text"  id="numDoc6-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="9">
           </div>
           
           <div class="fila-ingreso-ma">
             <label for="numDoc6">Lup</label>
-            <input type="text"  id="numDoc8-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable readonly>
+            <input type="text"  id="numDoc8-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="10">
           </div>          
       
         </div>
@@ -4014,15 +3993,15 @@
             <img src=""  id="empleadoImg-ma" alt=""> 
           </div>
 
-          <button for="numDoc" id="nuevo-ingreso-ma" class="entrada-empleado">Actualizar</button>
+          <button for="numDoc" id="nuevo-ingreso-ma" class="entrada-empleado" tabindex="11">Actualizar</button>
           <button for="numDoc" id="limpia-ingreso-ma" class="entrada-empleado">Limpiar campos</button>
         </div>
 
         <div class="columna-derecha">
 
           <label for="numDoc">Buscar</label> 
-          <input id="nomEmpl-ma" inputmode="none" class="entrada-empleado verGraficos" data-multi>
-          <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso-ma">Ir</button>
+          <input id="nomEmpl-ma" inputmode="none" class="entrada-empleado verGraficos" data-multi tabindex="1">
+          <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso-ma" tabindex="2">Ir</button>
           
           <button id="recargaMA" class="cierra-graficos"></button>
 
@@ -4146,48 +4125,58 @@
 
     </div>
 
+    <div id="cortina-bloqueo" class="bloqueador"></div>
 
-    <div id="fichas-tecnicas" class="ficha-tecnica">  
+    <div id="fichas-tecnicas" class="ficha-tecnica">
+      
+      <div>
+        <form class="ficha-grid">
 
-      <form class="ficha-grid">
+          <label for="empleado">Nombre del empleado</label>
+          <input id="empleado" class="opcion-empleado current-focus" type="text" readonly> 
 
-        <label for="empleado">Nombre del empleado</label>
-        <input id="empleado" class="opcion-empleado current-focus" type="text" readonly> 
+          <label for="mejora">Mejora propuesta</label>
+          <input id="mejora" class="opcion-empleado" inputmode="none" type="text">
 
-        <label for="mejora">Mejora propuesta</label>
-        <input id="mejora" class="opcion-empleado" inputmode="none" type="text">
+          <label for="fecha">Fecha de presentación</label>
+          <input id="fecha" type="date">
 
-        <label for="fecha">Fecha de presentación</label>
-        <input id="fecha" type="date">
+          <label for="autogestionado">Autogestionado</label>
+          <input id="autogestionado" class="opcion-empleado" type="text">
 
-        <label for="autogestionado">Autogestionado</label>
-        <input id="autogestionado" class="opcion-empleado" type="text">
+          <label for="participante1">Participante 1</label>
+          <input id="participante1" class="opcion-empleado current-focus" type="text" readonly> 
 
-        <label for="participante1">Participante 1</label>
-        <input id="participante1" class="opcion-empleado current-focus" type="text" readonly> 
+          <label for="participante2">Participante 2</label>
+          <input id="participante2" class="opcion-empleado current-focus" type="text" readonly> 
 
-        <label for="participante2">Participante 2</label>
-        <input id="participante2" class="opcion-empleado current-focus" type="text" readonly> 
+          <label for="participante3">Participante 3</label>
+          <input id="participante3" class="opcion-empleado current-focus" type="text" readonly> 
 
-        <label for="participante3">Participante 3</label>
-        <input id="participante3" class="opcion-empleado current-focus" type="text" readonly> 
+          <label for="participante4">Participante 4</label>
+          <input id="participante4" class="opcion-empleado current-focus" type="text" readonly> 
 
-        <label for="participante4">Participante 4</label>
-        <input id="participante4" class="opcion-empleado current-focus" type="text" readonly> 
+          <label for="participante5">Participante 5</label>
+          <input id="participante5" class="opcion-empleado current-focus" type="text" readonly> 
 
-        <label for="participante5">Participante 5</label>
-        <input id="participante5" class="opcion-empleado current-focus" type="text" readonly> 
+          <label for="lider">Líder de área</label>
+          <input id="lider" class="opcion-empleado" type="text">
 
-        <label for="lider">Líder de área</label>
-        <input id="lider" class="opcion-empleado" type="text">
+          <label for="equipo">Equipo M.A</label>
+          <input id="equipo" class="opcion-empleado" type="text">
 
-        <label for="equipo">Equipo M.A</label>
-        <input id="equipo" class="opcion-empleado" type="text">
+          <label for="area">Área</label>
+          <input id="area" class="opcion-empleado" type="text">
 
-        <label for="area">Área</label>
-        <input id="area" class="opcion-empleado" type="text">
+        </form>
+      </div>
 
-      </form>
+      <div class="controller-fichas">
+        <button class="fichas-butts" type="button">Administrador</button>
+        <button class="fichas-butts" type="button">Guardar</button>
+        <button class="fichas-butts" type="button">Salir</button>
+        <button class="fichas-butts" type="button">Buscar</button>
+      </div>
 
     </div>
 
@@ -4388,11 +4377,8 @@
         </div>
 
         <div class="campo">
-
-          <label>Registro fotográfico</label>
-          <input id="input-foto-empl" type="text" class="entrada-empleado storeText estilo-empl" value="" name="imagen" required>
-          <div id="listaFotos" class="oculto"></div> 
-                  
+          <label id="registro">Registro fotográfico</label> 
+          <input id="input-foto-empl" type="text" class="entrada-empleado storeText estilo-empl" value="" name="imagen" required>                  
         </div>
 
         <div class="campo">
@@ -4443,8 +4429,29 @@
         <button type="button" id="salir">Salir</button>
       </div>
 
-    </form>    
- 
+    </form> 
+
+    <div class="almacen-fotos">
+
+      <div id="listaFotos"></div>
+      <div id="visorImagen-II" class="visor-imagen-II">
+        <img src="" id="imagenVisor-II"> 
+      </div>       
+
+    </div>
+
+    <div class="buscador-kaizen">
+      <h2>Seleccion atomica</h2>
+      <div class="input-propositor">
+        <select name="" id="propositores"></select>
+      </div>
+
+      <div class="lista-propuestas">
+      </div>
+    </div>
+   
+
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@3.1.0"></script>

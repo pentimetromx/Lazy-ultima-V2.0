@@ -1835,7 +1835,6 @@ const colaboradores = [
 const imgEmpleado = document.getElementById('empleadoImg');
 const btnMostrar = document.getElementById('btnMostrar');
 const inputFoto = document.getElementById('input-foto-empl'); 
-const listaFotos = document.getElementById('listaFotos');
 const previewFoto = document.getElementById('empleadoImg'); 
 
 prevBtn.addEventListener('click', () => {
@@ -2485,11 +2484,11 @@ function insertarGrafico(idContenedor, idCanvas) {
   });
 }
 
-// CLICK EN EL INPUT
+// CLICK EN EL INPUT REGISTRO FOTOGRAFICO
 inputFoto.addEventListener('click', () => {
-
-  /* listaFotos.style.display = 'block'; */
   generarListaFotos()
+  blurOverlay.style.display = 'block';
+  blurOverlay.style.zIndex = 2000;
 });
 // ocultar lista si se hace clic fuera
 
@@ -2500,32 +2499,58 @@ inputFoto.addEventListener('click', () => {
   }
 }); */
 
+
+
+const visorContenedor = document.querySelector('#visorImagen-II');
+const imagenVisor = document.querySelector('#imagenVisor-II');
+
 function generarListaFotos() {
+
+  const almacen = document.querySelector('.almacen-fotos');
+
+  almacen.classList.remove('oculto');   // quitar ocultamiento previo
+  almacen.style.display = 'grid';
+
+  document.querySelector('#visorImagen-II').classList.remove('oculto');
 
   listaFotos.innerHTML = "";
 
-  rutasFotos.forEach(ruta => {
-
-    const itemFoto = document.createElement('div');
-    itemFoto.textContent = ruta;
-
-    itemFoto.addEventListener('mouseenter', () => {
-      previewFoto.src = ruta;
-    });
-
-    itemFoto.addEventListener('click', () => {  
-      inputFoto.value = ruta;
-      previewFoto.src = ruta;
-      listaFotos.classList.add('oculto');
-    });
-
-    listaFotos.appendChild(itemFoto);
-
+  colaboradores.forEach(colaborador => {
+    const item = document.createElement('div');
+    item.textContent = colaborador.nombre;
+    item.dataset.ruta = colaborador.ruta;
+    listaFotos.appendChild(item);
   });
 
   listaFotos.classList.remove('oculto');
-
 }
+
+
+listaFotos.addEventListener('mouseover', e => {
+  const item = e.target.closest('[data-ruta]');
+  if (!item) return;
+  imagenVisor.src = item.dataset.ruta;
+});
+// CLCICK EN LA RUTA FOTO
+listaFotos.addEventListener('click', e => {
+  const item = e.target.closest('[data-ruta]');
+  if (!item) return;
+
+  const ruta = item.dataset.ruta;
+
+  imagenVisor.src = ruta;
+  inputFoto.value = ruta;
+
+  listaFotos.classList.add('oculto');
+  blurOverlay.style.display = 'none';
+
+});
+
+listaFotos.addEventListener('mouseleave', () => {
+  /* listaFotos.classList.add('oculto'); */
+  document.querySelector('.almacen-fotos').classList.add('oculto')
+  blurOverlay.style.display='none'
+});
 
 /**************************************************************************************************************** */
 
@@ -2557,7 +2582,6 @@ botoni.addEventListener('click', () => {
   } else {
     wrapper.style.display = 'none';
     botoni.style.backgroundColor = 'green'
-
   }
 });
 
@@ -2664,6 +2688,7 @@ padreLinks.addEventListener('mouseleave', () => {
 });
 
 primerItem.addEventListener('click', () =>{
+
   const padres = document.querySelector('#grafico-area')  
   padres.style.display = 'block';
     Array.from(padres.querySelectorAll('*')).forEach(hijo => {
@@ -2680,6 +2705,7 @@ primerItem.addEventListener('click', () =>{
     aplicarNormalizacionDeColores()
   }, 2200); 
   padreLinks.style.display='none'
+
 })
 
 segundoItem.addEventListener('click', () =>{
@@ -2695,22 +2721,22 @@ tercerItem.addEventListener('click', () =>{
   }, 350);
 })
 
-function aplicarLedsDesdeEmpleado(empleadoGlobal) {
-  // 1. Cargar la colección completa
+function aplicarLedsDesdeEmpleado(documento) {
+
   const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados'));
-  if (!almacen || !Array.isArray(almacen)) {
-    console.error('No existe el objeto empleadosRegistrados en localStorage.');
+
+  if (!almacen) {
+    console.error('No existe empleadosRegistrados en localStorage');
     return;
   }
 
-  // 2. Buscar el empleado seleccionado por nombre
-  const empleado = almacen.find(e => e.documento === empleadoGlobal);
+  const empleado = almacen[documento];
+
   if (!empleado) {
-    console.error(`No se encontró un empleado con nombre: ${empleadoGlobal}`);
+    console.error(`No se encontró el empleado con documento: ${documento}`);
     return;
   }
 
-  // 3. Propiedades requeridas en el orden exacto
   const campos = [
     'identificados',
     'corregidos',
@@ -2722,12 +2748,11 @@ function aplicarLedsDesdeEmpleado(empleadoGlobal) {
     'lup'
   ];
 
-  // 4. Extraer valores numéricos en ese orden
   const valores = campos.map(prop => Number(empleado[prop] ?? 0));
 
-  // 5. Llamar a tu función base
   aplicarLeds(valores);
 }
+
 
 function aplicarLeds(valores) {
   const ids = [
@@ -2861,18 +2886,14 @@ function infoEmpleadoPorSector(infoSector) {
         }else{
           calculadora.classList.remove('move-calculadora-up')
           const valor = inputMA.value.trim();
-
-
-const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
-const empleadoEncontrado = empleados[String(valor).trim()];
-if (!empleadoEncontrado) {
-  saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn');
-  return;
-}
-
+          const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+          const empleadoEncontrado = empleados[String(valor).trim()];
+          if (!empleadoEncontrado) {
+            saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn');
+            return;
+          }
           cargarEmpleadoMA();
           setTimeout(aplicarColoresInputs, 250);
-
         }
 
         break;
@@ -2988,9 +3009,7 @@ function actualizarIdentificadosMA(sector) {
 
     console.log('Estado inicial de empleadosRegistrados:', empleados);
 
-    // Ubicar empleado correspondiente
-    const empleado = empleados.find(emp => emp.documento === documentoBusqueda);
-
+    const empleado = empleados[documentoBusqueda];
     if (!empleado) {
       console.log('No se encontró un empleado con ese documento.');
       return;
@@ -3940,7 +3959,7 @@ imgsKaizen.addEventListener('click', (e) => {
   const cellSeleccionada = e.target.closest('.cell');
   if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;
 
-  aparecerElemento("fichas-tecnicas", "flex")  
+  aparecerElemento("fichas-tecnicas", "grid")  
   desactivarClick(['.cell']); 
 
   if(turnBlock === false){
@@ -4572,17 +4591,14 @@ function mostrarListaClientes(seccion) {
 
   switch(seccion){
     case 'listadoClientes':
-      console.log('Input Enfocado' , activeInput)
       listaClientes.style.top = '29vh';
       listaClientes.style.left = '51vw';
     break
     case 'jobTrack' :
-      console.log('Input Enfocado' , activeInput)
       listaClientes.style.top = '42vh';
       listaClientes.style.left = '38vw';          
     break
     case 'softwareColor' :
-      console.log('Input Enfocado' , activeInput)
       listaClientes.style.top='39vh' 
       listaClientes.style.left = '70vw'
     break
@@ -4590,7 +4606,6 @@ function mostrarListaClientes(seccion) {
       document.querySelector('#simulador').style.display='flex'
       listaClientes.style.top='35vh' 
       listaClientes.style.left = '25vw'
-      console.log('Input Enfocado' , activeInput)
     break    
    
   }
@@ -4606,7 +4621,7 @@ function capturarInput(e){
 fichaGrid.addEventListener('focusin', capturarInput);   // teclado / foco real
 fichaGrid.addEventListener('pointerdown', capturarInput); // mouse + touch
 function configurarInput(input) {
-  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','simulador','fichas-tecnicas','conti-boton-kaizen']; 
+  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','simulador','conti-boton-kaizen']; 
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]) 
     if (elemento) {
@@ -4614,6 +4629,7 @@ function configurarInput(input) {
     }
   }
   imgsKaizen.style.display='grid'
+  fichasTecnicas.style.display='grid'
 
   switch (input.id) {
     case 'empleado':
@@ -4653,7 +4669,6 @@ function configurarInput(input) {
 }
 
 /* ***************************************************************************************************************************************** */
-
 formularioNuevoIngreso.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -4694,14 +4709,12 @@ formularioNuevoIngreso.addEventListener('submit', (e) => {
 
   guardarEmpleado(empleado);
 });
-
 function guardarEmpleado(empleado){
   const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
   empleados[empleado.documento] = empleado;
   localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
   saltarAlerta('Empleado registrado','exitoRegistro')
 }
-
 function mostrarTablaLocalStorage(clave){
 
   const datos = JSON.parse(localStorage.getItem(clave));
@@ -4720,7 +4733,6 @@ function mostrarTablaLocalStorage(clave){
   console.table(lista);
 
 }
-
 function eliminarClaveLocalStorage(clave){
   if (!localStorage.getItem(clave)) {
     console.warn(`La clave "${clave}" no existe en localStorage`);
@@ -4729,18 +4741,15 @@ function eliminarClaveLocalStorage(clave){
   localStorage.removeItem(clave);
   console.log(`Clave "${clave}" eliminada de localStorage`);
 }
-
 const limpiarBtn = document.getElementById('limpiar');
 limpiarBtn.addEventListener('click', () => {
   inputNuevoEmpl.forEach(input => input.value = '');
 });
-
 document.querySelector('#salir').addEventListener('click',()=>{
   /* formularioNuevoIngreso.style.display='none' */
   formularioNuevoIngreso.classList.remove('activo')
   desactivarBlur()
 })
-
 function mostrarInterfazIngreso(){
   activarPantallaCompleta()
   elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut']  
@@ -4759,8 +4768,52 @@ function mostrarInterfazIngreso(){
   activarBlur(4,20)
   blurOverlay.zindex=1
 }
+/* **********************************************************************************************************************/
+function bloquearEdicion(){
+  bloqueador.style.display='flex'
+}
+function habilitarEdicion(){
+  bloqueador.style.display='none'
+}
+document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
 
-/* ***************************************************************************************************************************************** */
+  btn.addEventListener('click', () => {
+
+    if (index === 0) {
+      bloqueador.style.display = 'none';
+      fichasTecnicas.classList.remove('activo')
+      setTimeout(() => {
+        fichasTecnicas.classList.add('activo')
+      }, 500);
+    }
+    if (index === 1) {
+      let inputsFichaTecnica = document.querySelectorAll('#fichas-tecnicas .ficha-grid input'); 
+      for (const input of inputsFichaTecnica) {
+
+        if (input.value.trim() === '') {
+          const etiqueta = input.previousElementSibling?.textContent || 'un campo';
+          saltarAlerta(`Debe completar: ${etiqueta}`, 'fichaTecnica');
+          parpadearElemento(input.id, 150, 2500);
+
+          return;
+        }
+
+      }
+      bloqueador.style.display = 'block';
+      agregarKaizen();
+      document.querySelector('.ficha-grid').reset();
+      saltarAlerta('Propuesta Kaizen registrada correctamente.', 'fichaTecnica');
+    }
+    if (index === 2) {
+      desaparecerElemento("fichas-tecnicas")
+      bloqueador.style.display='none' 
+      rodillosKaizen('btn17','')    
+    }
+
+  });
+
+});
+/******************************************************************************************************************************************* */
 
 
 function borrrrrrarrrr(){

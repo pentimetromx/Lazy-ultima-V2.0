@@ -15,6 +15,7 @@ function desvanecerColor(id) {
 function aparecerElemento(id, display = "grid") {
   const contenedor = document.getElementById(id);
   if (!contenedor) return;
+  if(id==='fichas-tecnicas')bloqueador.style.display='block'
 
   // Forzar ocultamiento previo
   contenedor.classList.remove("activo");

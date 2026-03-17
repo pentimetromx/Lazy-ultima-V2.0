@@ -2764,7 +2764,8 @@ width: 70%;
   display: block;
   padding: 10px;
   background-color:rgba(255,255,255,0.95);
-  font-family: 'Oswald';
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+
   font-size: 0.9em;
   color:rgb(51,55,65);
   box-sizing: border-box;
@@ -4090,20 +4091,7 @@ top: 44%;
   display: none;
   flex-direction: column;
 }
-#marco-lubrica{
-  position: absolute;
-  display: flex;
-  display: none;
-  left:33vw;
-  top: 25vh;
-  width: 50vw;
-  height: 50vh;
-  background-color: rgb(0,255, 0);
-  box-shadow: 0 0 30px rgba(0,255, 0, 1),
-              0 0 60px rgba(0,255, 0, 0.7);
-  border-radius: 13px;
-  transition: background-color 2s ease, box-shadow 2s ease;
-}
+
 #marco-formulario{
   position: relative;
   display: flex;
@@ -4615,10 +4603,8 @@ top: 44%;
   inset: 0;
   z-index: 100;
   display: none;
-
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(0.2px);
-
   background: rgba(0,0,0,0.15);
 }
 
@@ -5433,6 +5419,7 @@ top: 44%;
   border-color:#2f81f7;
   box-shadow:0 0 0 .4vh rgba(47,129,247,.2);
 }
+
 .controller button{
   margin-top:2%;
   width:100%;
@@ -5448,20 +5435,11 @@ top: 44%;
 button:hover{
   background:#1f6feb;
 }
-#limpiar{
-  margin-top:2%;          /* separación del botón principal */
-  width:100%;
-  padding:3%;
-  background:rgb(255,0,124);     /* gris neutro para no competir */
-  color:white;  
-  border:none;
-  border-radius:5px;
-  font-size:65%;
-  cursor:pointer;
-  transition:.2s;
+#salir{
+  background:rgb(255,0,124); 
 }
 #limpiar:hover{
-  background:rgba(255,0,124,0.7);     /* gris neutro para no competir */
+  background:rgba(255,0,124,0.7);
   color:white;  
 
 }
@@ -5876,7 +5854,7 @@ button:hover{
     border-radius: 20px;
     z-index: 33;
   }
-  #child-move{
+  /* #child-move{
     width: 60px;
     height: 60px;
     background-color: rgb(255, 165, 0);
@@ -5885,7 +5863,7 @@ button:hover{
     border-radius:50%;
     top: 0;
     left: 0;
-  }
+  } */
   #child-div {
     width: 60px;
     height: 60px;
@@ -6196,10 +6174,7 @@ button:hover{
     height: 80%;
   
   }
-  #abuelo-cuadricula{
-    position: absolute;
-    display: flex;
-  }
+
   #padre-cuadricula{
     position: absolute;
     display: flex;
@@ -6234,17 +6209,17 @@ button:hover{
     height: 100px;
     width: 150px;
   }
-  #grilla-durezas{
+/*   #grilla-durezas{
     position: absolute;
     display: flex;
-  }
-  .dureza{
+  } */
+  /* .dureza{
     margin-top:47%;
     margin-left: -34%;
     width:90%;
     height:40%;
     z-index:33;
-  }
+  } */
   .img-rodillo{
     margin-right: 10px;
     border-radius: 7px;
@@ -7671,7 +7646,7 @@ button:hover{
     cursor: pointer;
     font-size: 3.2vw;
   }
-  #abuelo-plana,
+  /* #abuelo-plana,
   #abuelo-variable{
     position: relative;
     display:flex;
@@ -7680,7 +7655,7 @@ button:hover{
     width: 77vw;
     height: 47vh;
     display: none;
-  }
+  } */
   #padre-plana,
   #padre-variable{
     position: absolute;
@@ -9760,6 +9735,9 @@ button:hover{
     font-size: '13px'
   }
 
+  #listaFotos {
+    top: 44vh;
+  }
 
 }
 

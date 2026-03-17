@@ -2,9 +2,10 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z': 
-        mostrarTablaLocalStorage('empleadosRegistrados');
+        mostrarTablaLocalStorage('empleadosRegistrados'); 
+        fichasTecnicas.classList.remove('activo')
       break;  
-      case 'H':  
+      case 'H':   
         Geometria()
       break;
       case 'X':
@@ -15,7 +16,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.querySelector('#listaFotos');  
+  let contiBoton = document.querySelector('#padre-inicio');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  

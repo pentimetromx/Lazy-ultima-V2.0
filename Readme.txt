@@ -164,9 +164,10 @@ PARA MIRAR SI SE BORRA function mostrarVentanaEmergente(mensaje) !!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!! function function eliminarClaveLocalStorage(clave) => function eliminarClaveLocalStorage('Empleados')
 
 
-#linkList > li:nth-child(2)::after,
-padding-left: 23px;
+font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
+
+abrirInterfaz()
 
 
 
