@@ -472,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let fotoFijada = null;
 
   // --- construir lista dinámica ---
-  colaboradores.forEach((emp, i) => {
+  /* colaboradores.forEach((emp, i) => {
     const span = document.createElement('span');
     span.textContent = emp.nombre;
     span.dataset.img = emp.ruta; // importante para navegación
@@ -503,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     listadoNombres.appendChild(span);
-  });
+  }); */
 
   // --- navegación Prev / Next ---
   prevBtn.addEventListener('click', () => {
@@ -4202,7 +4202,7 @@ function rodillosTeñido(botId) {
 
   switch(botId) {
     case 'btn06':
-      var elementosExcluidos = ['buscador','search-form','cont-links','links-inicialesI','links-iniciales','pantalla-inicial','uTeñidos','rodilleria','vidRodillos','rodilleria-vid','conti-boton-rodilleria','cont-arriba-rodillos','abuelo-cuadricula']  
+      var elementosExcluidos = ['buscador','search-form','cont-links','links-inicialesI','links-iniciales','pantalla-inicial','uTeñidos','rodilleria','vidRodillos','rodilleria-vid','conti-boton-rodilleria','cont-arriba-rodillos','abuelo-cuadricula','padre-cuadricula']  
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -4227,6 +4227,7 @@ function rodillosTeñido(botId) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
       } 
+      document.querySelector('#grilla-duro').style.display='grid'
       container1.style.display='grid'
       alternarButtsnRodilleria(botId)
       manejarTransicion('item-movil', 'grilla-durezas', 'marco-durezas',1100);
@@ -4602,12 +4603,6 @@ function resultadosMA(identificador){
   }
   
   container1.style.display='grid'
-
-  /* rutasFotos.forEach(ruta => {
-    const span = document.createElement('span');
-    span.textContent = ruta;
-    contenedor.appendChild(span);
-  }); */
 
   const padre = document.querySelector('.contenedor-visor');
   // elimina todos los estilos en línea del padre y sus hijos
