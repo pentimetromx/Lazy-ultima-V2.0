@@ -2,11 +2,15 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {             
       case 'Z': 
-        mostrarTablaLocalStorage('empleadosRegistrados'); 
-        fichasTecnicas.classList.remove('activo')
+        /* inspeccionarTipoLS('kaizenRegistrados') */
+        mostrarPorClaveLocalStore('kaizenRegistrados')
+        console.log(kaizen);
+        /* vaciarPorClaveLocalStore('kaizenRegistrados', 'object') */
       break;  
       case 'H':   
-        Geometria()
+        /* Geometria() */
+        /* vaciarPorClaveLocalStore('kaizenRegistrados') */
+        mostrarPorClaveLocalStore('kaizenRegistrados')
       break;
       case 'X':
       eliminarClaveLocalStorage('empleadosRegistrados')
@@ -85,65 +89,6 @@ function animarWidth(selector, duracion = 1000) {
   }
   requestAnimationFrame(animar);
 }
-let color = ''  
-class objetoColores {
-  constructor() {
-    this.amarillo = this.crearPropiedadColor();
-    this.magenta = this.crearPropiedadColor();
-    this.azul = this.crearPropiedadColor();
-    this.negro = this.crearPropiedadColor();
-    this.especial = this.crearPropiedadColor();
-    this.barniz = this.crearPropiedadColor();
-    this.RGBA = this.crearPropiedadRGBA(); // Agregar RGBA como un color más
-    this.CMYK = this.crearPropiedadCMYK(); // Agregar CMYK como un color más
-  }
- 
-  // Método para crear la estructura repetitiva
-  crearEstructura(prefijo, cantidad) {
-    const estructura = {};
-    for (let i = 1; i <= cantidad; i++) {
-      estructura[`${prefijo}-${i}`] = [];
-    }
-    return estructura;
-  }
-
-  // Método para generar una estructura completa de color
-  crearPropiedadColor() {
-    return {
-      linea: this.crearEstructura("linea", 22),
-      lineaSeguidor: this.crearEstructura("led", 22),
-      lineaGrilla: this.crearEstructura("grilla", 22),
-      nivelAgua: [],
-      nivelAguaGral: [],
-      nivelTinta: [],
-      nivelTintaGral: [],
-      colorElemento: '',
-      posicionTopDisplay: 0
-    };
-  }
-
-  // Método para crear la propiedad RGBA como un "color"
-  crearPropiedadRGBA() {
-    return {
-      R: [],
-      G: [],
-      B: [],
-      A: []
-    };
-  }
-
-  // Método para crear la propiedad CMYK como un "color"
-  crearPropiedadCMYK() {
-    return {
-      C: [],
-      M: [],
-      Y: [],
-      K: [],
-      A: []
-    };
-  }
-}
-
 function bloquearMenuPersonalizado(event) {
   event.preventDefault();
 }  
@@ -200,7 +145,7 @@ let lineaClientes = document.querySelector('#lista-lineas')
 let flagAplicacion = false
 let iniciador = document.getElementById('iniciador')
 let retroceder = document.getElementById('iniciador-I')
-let almacenObjetos = JSON.parse(localStorage.getItem('almacenObjetos')) || {};  
+let almacenObjetos = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};  
 let objetoGlobal = null
 let nombreProvisional = null
 let objetoGlobalColor = null
@@ -407,43 +352,6 @@ document.addEventListener('mouseup', () => {
   enArrastre = false; // Dejar de arrastrar
   contenedorPanel.style.cursor = 'grab'; // Cambia el cursor a "grab" cuando se suelta
 });
-
-/* tableta.addEventListener('mousedown', (e) => {
-  e.preventDefault(); // Prevenir comportamiento predeterminado de arrastre
-  isDraggingI = true; // El elemento empieza a ser arrastrado
-  offsetX = e.clientX - tableta.offsetLeft; // Distancia del clic desde el borde izquierdo del contenedor
-  offsetY = e.clientY - tableta.offsetTop; // Distancia del clic desde el borde superior del contenedor
-  tableta.style.cursor = 'grabbing'; // Cambia el cursor a "grabbing" durante el arrastre
-});
-// Evento para mover el contenedor
-document.addEventListener('mousemove', (e) => {
-  if (isDragging) { // Si el arrastre está activo
-    e.preventDefault(); // Prevenir comportamiento predeterminado de arrastre
-    // Calcula la nueva posición del contenedor
-    const newLeft = e.clientX - offsetX;
-    const newTop = e.clientY - offsetY;
-    contenedorPadre.style.left = `${newLeft}px`;
-    contenedorPadre.style.top = `${newTop}px`;
-  }
-  if (isDraggingI) { // Si el arrastre está activo
-    e.preventDefault(); // Prevenir comportamiento predeterminado de arrastre
-    // Calcula la nueva posición del contenedor
-    const newLeft = e.clientX - offsetX;
-    const newTop = e.clientY - offsetY;
-    tableta.style.left = `${newLeft}px`;
-    tableta.style.top = `${newTop}px`;
-  }
-
-}); */
-
-// Evento para finalizar el arrastre
-/* document.addEventListener('mouseup', () => {
-  isDragging = false; // El arrastre ha 
-  isDraggingI = false;
-  contenedorPadre.style.cursor = 'grab'; // Regresa el cursor a "grab"
-  tableta.style.cursor = 'grab';
-}); */
-
 function resetearElementos() {
   const elementos = [
     document.getElementById('miRectangulo'),
@@ -3521,7 +3429,7 @@ function vaciarObjeto(){
 }
 function vaciarAlmacenObjetos() {
   // 1. Traer el objeto almacenado en localStorage
-  const almacenJSON = localStorage.getItem('almacenObjetos');
+  const almacenJSON = localStorage.getItem('coloresRegistrados');
 
   if (!almacenJSON) {
     console.log("El almacén de objetos está vacío o no existe.");
@@ -3536,7 +3444,7 @@ function vaciarAlmacenObjetos() {
   almacenObjetos = {};
 
   // 3. Guardar los cambios en localStorage
-  localStorage.setItem('almacenObjetos', JSON.stringify(almacenObjetos));
+  localStorage.setItem('coloresRegistrados', JSON.stringify(almacenObjetos));
 
   console.log("El almacén de objetos ha sido vaciado.");
 }
@@ -4094,28 +4002,6 @@ function vaciarObjetoEnLocal() {
   
   console.log('Objeto eliminado de localStorage');
 }  
-// Crear una nueva instancia de la clase objetoColores y guardarla en almacenObjetos
-
-/* function crearYGuardarInstanciaEnAlmacen(clave) {
-  // Verificar si la clave ya existe en el almacén
-  if (almacenObjetos[clave]) {
-    console.warn(`La clave "${clave}" ya existe en el almacén. No se creó una nueva instancia.`);
-    return;
-  }
-
-  // Crear la nueva instancia
-  const nuevaInstancia = new objetoColores();
-
-  // Guardar la instancia en almacenObjetos con la clave proporcionada
-  almacenObjetos[clave] = nuevaInstancia;
-
-  // Guardar el almacén actualizado en localStorage
-  localStorage.setItem('almacenObjetos', JSON.stringify(almacenObjetos));
-
-  console.log(`Nueva instancia creada y almacenada bajo la clave "${clave}":`, nuevaInstancia);
-  console.log('ALMACEN OBJETOS :', almacenObjetos);
-} */
-
 function guardarCambios(nombreClave) {
   if (objetoGlobal) {
     try {
@@ -4194,7 +4080,7 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   // Actualizar el almacén con el objeto ordenado
   almacenObjetos = almacenObjetosOrdenado;
   // Guardar el objeto ordenado en localStorage
-  localStorage.setItem('almacenObjetos', JSON.stringify(almacenObjetos));
+  localStorage.setItem('coloresRegistrados', JSON.stringify(almacenObjetos));
   // Notificar al usuario
   console.log(`Perfil "${inputNombre}" creado y almacenado.`);
   console.log("Objeto almacenado en la variable global:", objetoGlobal);
@@ -4205,7 +4091,7 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   // Limpiar el input
   inputPerfil.value = '';
   // Recuperar y mostrar el almacén desde localStorage
-  const almacenJSON = localStorage.getItem('almacenObjetos');
+  const almacenJSON = localStorage.getItem('coloresRegistrados');
   if (almacenJSON) {
     const almacenRecuperado = JSON.parse(almacenJSON);
     console.log("Almacén de Objetos:", "almacenObjetos"); // Nombre del almacén 
@@ -4290,7 +4176,7 @@ function cargarObjetoGlobalDesdeLocalStorage() {
 }
 function guardarCambiosGeneralesEnAlmacen() {
   try {
-    localStorage.setItem('almacenObjetos', JSON.stringify(almacenObjetos));
+    localStorage.setItem('coloresRegistrados', JSON.stringify(almacenObjetos));
     console.log('Todos los cambios en almacenObjetos guardados en localStorage.');
   } catch (error) {
     console.error('Error al guardar almacenObjetos en localStorage:', error);  
@@ -4936,29 +4822,40 @@ buttsJobs.forEach(boton => {
 function actualizarDisplay() {
   document.querySelectorAll('#resultado-calculadora .number, #display-cantidad .cantidad-display').forEach(elemento => elemento.textContent = '');
 }
-const listadoClientes = document.querySelectorAll('#lista-clientes > div');
+
+// CLIENTES
+const contenedorClientes = document.getElementById('lista-clientes');
 const arriba = document.querySelector('#job-files > div:nth-child(1) > span:nth-child(2)');
-listadoClientes.forEach(cliente => {
-  cliente.addEventListener('click', () => {
-    arriba.textContent = cliente.textContent;
-    listaClientes.style.display = 'none'
-    restablecerClick(['.butt-perfiles', '.estilo-1']);
-    blurOverlay.style.display='none'
-  });
+
+contenedorClientes.addEventListener('click', (e) => {
+  const cliente = e.target.closest('div');
+  if (!cliente) return;
+
+  arriba.textContent = cliente.textContent;
+  contenedorClientes.style.display = 'none';
+
+  restablecerClick(['.butt-perfiles', '.estilo-1']);
+  blurOverlay.style.display = 'none';
 });
-const listaLineas = document.querySelectorAll('#lista-lineas > div');
+
+
+// LINEAS
+const contenedorLineas = document.getElementById('lista-lineas');
 const panelDos = document.getElementById('panel-dos');
-const destinoLinea = document.querySelector('#job-files > .jobs:nth-child(2) > .base-datos:nth-child(2)');  
-listaLineas.forEach(linea => {
-  linea.addEventListener('click', () => {
-    panelDos.style.backgroundColor='rgb(0,0,23)'
-    panelDos.style.color='rgb(200,200,200)'
-    destinoLinea.textContent = linea.textContent;
-    document.querySelector('#lista-lineas').style.display = 'none';  
-    restablecerClick(['.jobs', '.estilo-1']);
-    mostrarBarraProgres(33.5, 67);    
-  });
-  
+const destinoLinea = document.querySelector('#job-files > .jobs:nth-child(2) > .base-datos:nth-child(2)');
+
+contenedorLineas.addEventListener('click', (e) => {
+  const linea = e.target.closest('div');
+  if (!linea) return;
+
+  panelDos.style.backgroundColor = 'rgb(0,0,23)';
+  panelDos.style.color = 'rgb(200,200,200)';
+
+  destinoLinea.textContent = linea.textContent;
+  contenedorLineas.style.display = 'none';
+
+  restablecerClick(['.jobs', '.estilo-1']);
+  mostrarBarraProgres(33.5, 67);
 });
 
 // BOTONES DE LA CALCULADORA
@@ -5589,7 +5486,7 @@ function mostrarNombresDeObjetos() {
   flagAplicacion = true;
   
   // Recuperar el objeto almacenado en localStorage
-  const almacenJSON = localStorage.getItem('almacenObjetos');
+  const almacenJSON = localStorage.getItem('coloresRegistrados');
   if (almacenJSON) {
     const almacenRecuperado = JSON.parse(almacenJSON);
     const almacenCapitalizado = {};
@@ -5601,7 +5498,7 @@ function mostrarNombresDeObjetos() {
     });
 
     // Sobrescribir almacenObjetos en localStorage con los nombres capitalizados 
-    localStorage.setItem('almacenObjetos', JSON.stringify(almacenCapitalizado));
+    localStorage.setItem('coloresRegistrados', JSON.stringify(almacenCapitalizado));
 
     // Seleccionar el contenedor de la lista
     listaClientes.innerHTML = '';
@@ -5863,13 +5760,13 @@ function buscarPerfil(event) {
   const nombreCapitalizado = capitalizarTexto(nombreObjeto);
 
   // Obtener el objeto almacenado en localStorage
-  almacenObjetos = JSON.parse(localStorage.getItem('almacenObjetos')) || {};
+  almacenObjetos = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
 
   // Guardar o actualizar el objeto con el nombre capitalizado
   almacenObjetos[nombreCapitalizado] = datosObjeto;
 
   // Actualizar el almacenamiento en localStorage
-  localStorage.setItem('almacenObjetos', JSON.stringify(almacenObjetos));
+  localStorage.setItem('coloresRegistrados', JSON.stringify(almacenObjetos));
 
   console.log(`Guardado en almacenObjetos:`, almacenObjetos);
 } */
@@ -5913,14 +5810,14 @@ function eliminarObjeto(nombreObjeto) {
     const alertaNueve = document.getElementById('span-index');    
     divEliminacion.style.display='none'
     // Eliminar del localStorage  
-    const almacenJSON = localStorage.getItem('almacenObjetos');
+    const almacenJSON = localStorage.getItem('coloresRegistrados');
     if (almacenJSON) {
       const almacenRecuperado = JSON.parse(almacenJSON);
       if (almacenRecuperado[nombreObjeto]) {
         delete almacenRecuperado[nombreObjeto]; // Eliminar la clave del objeto
-        localStorage.setItem('almacenObjetos', JSON.stringify(almacenRecuperado)); // Guardar cambios
+        localStorage.setItem('coloresRegistrados', JSON.stringify(almacenRecuperado)); // Guardar cambios
         setTimeout(() => {
-          almacenObjetos = JSON.parse(localStorage.getItem('almacenObjetos')) || {};
+          almacenObjetos = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
         }, 50);
       }
     } 
@@ -6002,7 +5899,7 @@ function editarObjeto(nombreObjeto) {
       return;
     }
     // Recuperar el objeto almacenado en localStorage
-    const almacenJSON = localStorage.getItem('almacenObjetos');
+    const almacenJSON = localStorage.getItem('coloresRegistrados');
     if (almacenJSON) {
       const almacenRecuperado = JSON.parse(almacenJSON);
       // Verificar que el nuevo nombre no exista ya
@@ -6020,7 +5917,7 @@ function editarObjeto(nombreObjeto) {
       almacenRecuperado[nuevoNombre] = almacenRecuperado[nombreObjeto]; // Copiar los datos del objeto
       delete almacenRecuperado[nombreObjeto]; // Eliminar la clave antigua
       // Guardar nuevamente en localStorage
-      localStorage.setItem('almacenObjetos', JSON.stringify(almacenRecuperado));
+      localStorage.setItem('coloresRegistrados', JSON.stringify(almacenRecuperado));
       // Actualizar la lista visualmente
       const elementosLista = document.querySelectorAll('.cliente-item');
       elementosLista.forEach((elemento) => {
@@ -6135,7 +6032,7 @@ function consultarCapacidadAlamcenamiento() {
 function traerAlmacenObjetos() {
   console.clear()
   // Recuperar el almacenamiento desde localStorage
-  const datosGuardados = localStorage.getItem('almacenObjetos');
+  const datosGuardados = localStorage.getItem('coloresRegistrados');
   if (datosGuardados) {
     try {
       // Parsear los datos y asignarlos a almacenObjetos
@@ -7177,18 +7074,10 @@ function crearPerfilColor() { // crear nuevo desde botón blanco
   }
 
   // Ordenar almacenObjetos alfabéticamente
-  const almacenObjetosOrdenado = Object.keys(almacenObjetos)
-    .sort()
-    .reduce((obj, key) => {
-      obj[key] = almacenObjetos[key];
-      return obj;
-    }, {});
+  const almacenObjetosOrdenado = Object.keys(almacenObjetos).sort().reduce((obj, key) => {obj[key] = almacenObjetos[key];return obj;}, {});
 
   // Persistir en localStorage
-  localStorage.setItem(
-    'almacenObjetos',
-    JSON.stringify(almacenObjetosOrdenado)
-  );
+  localStorage.setItem('coloresRegistrados',JSON.stringify(almacenObjetosOrdenado) );
 
   // Feedback visual
   mostrarVentanaEmergente('Perfil creado y almacenado');

@@ -167,9 +167,8 @@ PARA MIRAR SI SE BORRA function mostrarVentanaEmergente(mensaje) !!!!!!!!!!!!!!!
 font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
 
-abrirInterfaz()
 
-
+lista-propuestas
 
 
 

@@ -11,7 +11,7 @@ function desvanecerColor(id) {
     }
   }, { once: true });
 }
-
+// CLICK EN CUARTO BOTON DE BUSCADOR
 function aparecerElemento(id, display = "grid") {
   const contenedor = document.getElementById(id);
   if (!contenedor) return;
@@ -876,6 +876,7 @@ function rodillosKaizen(idButton,vidElem) {
   let conPlanos = document.getElementById('planos-kaizen')
   let bton12 = document.getElementById('btn12')
   fichaTecnica.style.zIndex=''
+  activarPantallaCompleta()
   if (bton12 !== null) {
     bton12.style.backgroundColor = '' 
     bton12.style.color = ''
@@ -1101,8 +1102,6 @@ function rodillosKaizen(idButton,vidElem) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
       };
-      /* desactivarClick(['.cell']); */
-      /* restablecerClick(['.cell']); */
 
       document.querySelector('#fichas-tecnicas').style.display='flex'
       document.querySelector('#kaizen-propuestos > .cell:nth-child(1)').classList.remove('move-kaizen');
@@ -3083,6 +3082,9 @@ let intervalId4 = null
 let intervalId5 = null
 let intervalId6 = null
 let intervalId7 = null
+let currentLeft = parseFloat(window.getComputedStyle(button).left)
+let newLeft = currentLeft + 2
+
 buttonLeft.addEventListener('mousedown', () => {
   if (!clickHabilitado) return; 
   intervalId = setInterval(() => {
