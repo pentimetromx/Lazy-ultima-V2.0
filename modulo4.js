@@ -3969,7 +3969,6 @@ imgsKaizen.addEventListener('click', (e) => {
   setTimeout(() => {   
     if(turnGraphic === false){
       turnGraphic = true
-      /* moverElementos(["conte-butts-graphs"], 27, -7); */
     }
   }, 500); 
 
@@ -3987,6 +3986,8 @@ imgsKaizen.addEventListener('click', (e) => {
     // visibilidad real (canvas incluido)
     const opacity = esActivo ? '1' : '0';
     grafico.style.opacity = opacity;
+
+    cortina.classList.add('esiloOverlay')
 
     // aplicar movimiento solo al activo
     if (esActivo) {
@@ -4549,7 +4550,7 @@ function mostrarListaClientes(seccion) {
 
   listaClientes.innerHTML = '';
 
-  const almacenJSON = localStorage.getItem('almacenObjetos');
+  const almacenJSON = localStorage.getItem('coloresRegistrados');
 
   if (!almacenJSON) {
     alertaCuatro.style.display = 'flex';
@@ -4591,8 +4592,7 @@ function mostrarListaClientes(seccion) {
 
   switch(seccion){
     case 'listadoClientes':
-      listaClientes.style.top = '29vh';
-      listaClientes.style.left = '51vw';
+      
     break
     case 'jobTrack' :
       listaClientes.style.top = '42vh';
@@ -4611,8 +4611,8 @@ function mostrarListaClientes(seccion) {
   }
 
 }
-const fichaGrid = document.querySelector('.ficha-grid');
 function capturarInput(e){
+  console.log('ARCHIV O4: function capturarInput(e)')
   if (e.target.tagName === 'INPUT') {
     activeInput = e.target;
     configurarInput(e.target);
@@ -4651,7 +4651,14 @@ function configurarInput(input) {
       input.readOnly = false;
       break;
     case 'autogestionado':
-      input.placeholder = 'Sí / No';
+      (() => {
+        const autogestionadoEl = document.getElementById('autogestionado');
+
+        autogestionadoEl.addEventListener('change', (e) => {
+          const valor = e.target.value === 'true';
+          console.log(valor);
+        });
+      })();
       break;
 
       input.maxLength = 40;
@@ -4775,9 +4782,11 @@ function bloquearEdicion(){
 function habilitarEdicion(){
   bloqueador.style.display='none'
 }
+
 document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
 
   btn.addEventListener('click', () => {
+    btn.removeAttribute('style');
 
     if (index === 0) {
       bloqueador.style.display = 'none';
@@ -4789,30 +4798,186 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
     if (index === 1) {
       let inputsFichaTecnica = document.querySelectorAll('#fichas-tecnicas .ficha-grid input'); 
       for (const input of inputsFichaTecnica) {
-
         if (input.value.trim() === '') {
           const etiqueta = input.previousElementSibling?.textContent || 'un campo';
           saltarAlerta(`Debe completar: ${etiqueta}`, 'fichaTecnica');
           parpadearElemento(input.id, 150, 2500);
-
           return;
         }
-
       }
       bloqueador.style.display = 'block';
       agregarKaizen();
-      document.querySelector('.ficha-grid').reset();
+      /* fichaGrid.reset(); */
       saltarAlerta('Propuesta Kaizen registrada correctamente.', 'fichaTecnica');
     }
     if (index === 2) {
+      fichaGrid.reset();
       desaparecerElemento("fichas-tecnicas")
       bloqueador.style.display='none' 
       rodillosKaizen('btn17','')    
     }
-
+    if (index === 3) {
+      fichaGrid.reset();  
+    }
+    if (index === 4) {
+      aparecerElemento("kaizen-buscador",'grid')
+    }    
   });
 
 });
+
+const idsSelect = [
+  'propositores',
+  'empleado',
+  'participante1',
+  'participante2',
+  'participante3',
+  'participante4',
+  'participante5'
+];
+function cargarEmpleados(select) {
+
+  if (select.dataset.loaded === 'true') return;
+
+  const empleados = JSON.parse(localStorage.getItem('listaEmpleados')) || [];
+
+  select.innerHTML = '';
+
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = 'Seleccione...';
+  select.appendChild(defaultOption);
+
+  empleados.forEach(nombre => {
+    const option = document.createElement('option');
+    option.value = nombre;
+    option.textContent = nombre;
+    select.appendChild(option);
+  });
+
+  select.dataset.loaded = 'true';
+}
+function setSelectValue(id, value) {
+  const select = document.getElementById(id);
+  if (!select) return;
+
+  // asegurar opciones cargadas
+  if (select.dataset.loaded !== 'true') {
+    cargarEmpleados(select);
+  }
+
+  // verificar existencia
+  const existe = [...select.options].some(opt => opt.value === value);
+
+  if (!existe && value) {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = value;
+    select.appendChild(option);
+  }
+
+  select.value = value || '';
+}
+// función para filtrar kaizen
+function mostrarPropuestas(nombre) {
+
+  const contenedor = document.querySelector('.lista-propuestas');
+  contenedor.innerHTML = '';
+
+  const kaizenRaw = JSON.parse(localStorage.getItem('kaizenRegistrados')) || [];
+
+  const kaizenArray = Array.isArray(kaizenRaw)
+    ? kaizenRaw
+    : Object.values(kaizenRaw);
+
+  const filtrados = kaizenArray.filter(k => k.empleado === nombre);
+
+  if (filtrados.length === 0) {
+    const div = document.createElement('div');
+    div.textContent = 'No se encontraron propuestas de mejora';
+    contenedor.appendChild(div);
+    return;
+  }
+
+  filtrados.forEach(k => {
+
+    const div = document.createElement('div');
+    div.textContent = k.propuesta;
+
+    // evento click para cargar ficha técnica
+    div.addEventListener('click', () => cargarFichaTecnica(k));
+
+    contenedor.appendChild(div);
+
+  });
+}
+cortinaBloqueo.addEventListener('click',()=>{
+  const primerBotonFicha = document.querySelector('.controller-fichas .fichas-butts');
+  parpadearElemento(primerBotonFicha.id, 150, 2500);
+})
+
+botonesFicha.forEach(btn => {
+  btn.addEventListener('mouseenter', () => {
+    btn.removeAttribute('style');
+  });
+});
+// ==============================
+// CARGAR FICHA TÉCNICA
+// ==============================
+//RENDERIZAR KAIZEN DESDE BUSCADOR
+function cargarFichaTecnica(kaizen) {
+  const ficha = document.getElementById('fichas-tecnicas');
+  ficha.style.display = 'grid';
+
+  document.getElementById('mejora').value = kaizen.propuesta || '';
+  document.getElementById('fecha').value = kaizen.fecha || '';
+  document.getElementById('autogestionado').value = kaizen.autogestionado || '';
+  document.getElementById('lider').value = kaizen.lider || '';
+  document.getElementById('equipo').value = kaizen.equipo || '';
+  document.getElementById('area').value = kaizen.area || '';
+
+  setSelectValue('imagen-kaizen', kaizen.imagen);
+  setSelectValue('empleado', kaizen.empleado);
+  setSelectValue('participante1', kaizen.participante1);
+  setSelectValue('participante2', kaizen.participante2);
+  setSelectValue('participante3', kaizen.participante3);
+  setSelectValue('participante4', kaizen.participante4);
+  setSelectValue('participante5', kaizen.participante5);
+
+  const visorKaizen = document.querySelector('.cell-exterior img');
+  const nombreKaizen = document.querySelector('.cell-exterior label');
+  pantallaKaizen.style.display='grid'
+
+  setTimeout(() => {
+    if (kaizen.imagen && visorKaizen && nombreKaizen) {
+      visorKaizen.src = kaizen.imagen;
+      nombreKaizen.textContent = kaizen.propuesta || '';
+    }
+  }, 100);
+
+  desaparecerElemento("kaizen-buscador");
+}
+
+
+// asignar eventos
+idsSelect.forEach(id => {
+  const select = document.getElementById(id);
+  if (!select) return;
+
+  // cargar lista
+  select.addEventListener('click', () => cargarEmpleados(select));
+
+  // SOLO para propositores: filtrar kaizen
+  if (id === 'propositores') {
+    select.addEventListener('change', (e) => {
+      const nombre = e.target.value;
+      if (!nombre) return;
+      mostrarPropuestas(nombre);
+    });
+  }
+});
+
+
 /******************************************************************************************************************************************* */
 
 

@@ -5419,7 +5419,6 @@ top: 44%;
   border-color:#2f81f7;
   box-shadow:0 0 0 .4vh rgba(47,129,247,.2);
 }
-
 .controller button{
   margin-top:2%;
   width:100%;
@@ -5443,7 +5442,16 @@ button:hover{
   color:white;  
 
 }
-
+.esiloOverlay{
+  position: absolute;
+  display: flex;
+  top:60vh;
+  left: 73vw;
+  width:27vw;
+  height:34vh;
+  background-color:transparent;
+  z-index: 3200;
+}
 
 
 

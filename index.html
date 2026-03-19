@@ -477,7 +477,7 @@
       </div>
     </div>
 
-    <div class="overlay"></div>
+    <div id="overlay-cortina" class="overlay"></div>
 
     <video class="lazy" id="video-background" autoplay loop muted playsinline>
       <source data-src="./assets/galaxy.mp4" type="video/mp4">
@@ -937,7 +937,7 @@
       <canvas id="ctx"></canvas>
     </div>
     <div id="conti-boton-kaizen">
-      <button class="butt-mautonomo-kaizen" id="btn17" onclick="rodillosKaizen('btn17','')">PROPUESTOS</button>
+      <button class="butt-mautonomo-kaizen" id="btn17" onclick="c">PROPUESTOS</button>
       <button class="butt-mautonomo-kaizen" id="btn12" onclick="rodillosKaizen('btn12','vidElem')">IMPLEMENTADOS</button>
       <button class="butt-mautonomo-kaizen" id="btn10" onclick="rodillosKaizen('btn10','')">BENCH MARK</button>
       <button class="butt-mautonomo-kaizen" id="btn11" onclick="rodillosKaizen('btn11','')">PROYECTOS</button>
@@ -993,30 +993,35 @@
     <div id="kaizen-propuestos">
 
       <div class="cell" data-index="0">
-        <div class="label">Salva manos en maquina colectora</div>
+        <label class="label">Salva manos en maquina colectora</label>
         <img data-src="./assets/kaizen colectora.jpg" class="lazy kaizen-img" alt="colectora">
       </div>
+
       <div class="cell" data-index="1">
-        <div class="label">Mejora en linea de ensamble</div>
+        <label class="label">Mejora en linea de ensamble</label>
         <img data-src="./assets/kaizen fresa.jpg" class="lazy kaizen-img" alt="colectora">
       </div>
       <div class="cell" data-index="2">
-        <div class="label">Bodega estanteria lijera</div>
+        <label class="label">Bodega estanteria lijera</label>
         <img data-src="./assets/kaizen estante.jpg" class="lazy kaizen-img" alt="colectora">
       </div>
       <div class="cell" data-index="3">
-        <div class="label">Metodologia 5S</div>
+        <label class="label">Metodologia 5S</label>
         <img data-src="./assets/kaizen 5S.jpg" class="lazy kaizen-img" alt="colector">
       </div>
       <div class="cell" data-index="4">
-        <div class="label">Lean manufacturing</div>
+        <label class="label">Lean manufacturing</label>
         <img data-src="./assets/kaizen lean.jpg" class="lazy kaizen-img" alt="colector">
       </div>
       <div class="cell" data-index="5">
-        <div class="label">Filosofia kaizen japones</div>
+        <label class="label">Filosofia kaizen japones</label>
         <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
+    </div>
 
+    <div id="pantalla-kaizen" class="cell-exterior">
+      <label class="label">Filosofia kaizen japones</label>
+      <img data-src="" class="lazy kaizen-img" alt="colecta">
     </div>
 
     <div id="lubricacion">
@@ -4127,13 +4132,20 @@
 
     <div id="cortina-bloqueo" class="bloqueador"></div>
 
-    <div id="fichas-tecnicas" class="ficha-tecnica">
+    <div id="fichas-tecnicas" class="ficha-tecnica"> 
+
+      <div class="titulo-kaizen">
+          <h3>Hoja de vida kaizen</h3>
+      </div>
       
       <div>
+
         <form class="ficha-grid">
 
           <label for="empleado">Nombre del empleado</label>
-          <input id="empleado" class="opcion-empleado current-focus" type="text" readonly> 
+          <select id="empleado" class="opcion-empleado current-focus">
+            <option value="">Seleccione...</option>
+          </select>
 
           <label for="mejora">Mejora propuesta</label>
           <input id="mejora" class="opcion-empleado" inputmode="none" type="text">
@@ -4142,22 +4154,41 @@
           <input id="fecha" type="date">
 
           <label for="autogestionado">Autogestionado</label>
-          <input id="autogestionado" class="opcion-empleado" type="text">
+          <select id="autogestionado" class="opcion-empleado">
+            <option value="">Seleccione...</option>
+            <option value="true">Sí</option>
+            <option value="false">No</option>
+          </select>
 
           <label for="participante1">Participante 1</label>
-          <input id="participante1" class="opcion-empleado current-focus" type="text" readonly> 
+          <select id="participante1" class="opcion-empleado current-focus">
+            <option value="">Seleccione...</option>
+          </select>
 
           <label for="participante2">Participante 2</label>
-          <input id="participante2" class="opcion-empleado current-focus" type="text" readonly> 
+          <select id="participante2" class="opcion-empleado current-focus">
+            <option value="">Seleccione...</option>
+          </select>
 
           <label for="participante3">Participante 3</label>
-          <input id="participante3" class="opcion-empleado current-focus" type="text" readonly> 
+          <select id="participante3" class="opcion-empleado current-focus">
+            <option value="">Seleccione...</option>
+          </select>
 
           <label for="participante4">Participante 4</label>
-          <input id="participante4" class="opcion-empleado current-focus" type="text" readonly> 
+          <select id="participante4" class="opcion-empleado current-focus">
+            <option value="">Seleccione...</option>
+          </select>
 
           <label for="participante5">Participante 5</label>
-          <input id="participante5" class="opcion-empleado current-focus" type="text" readonly> 
+          <select id="participante5" class="opcion-empleado current-focus">
+            <option value="">Seleccione...</option>
+          </select>
+
+          <label for="participante5">Imagen</label>
+          <select id="imagen-kaizen" class="opcion-empleado current-focus">
+            <option value="">Seleccione...</option>
+          </select>
 
           <label for="lider">Líder de área</label>
           <input id="lider" class="opcion-empleado" type="text">
@@ -4169,12 +4200,14 @@
           <input id="area" class="opcion-empleado" type="text">
 
         </form>
+        
       </div>
 
       <div class="controller-fichas">
-        <button class="fichas-butts" type="button">Administrador</button>
+        <button id="boton-administrador" class="fichas-butts" type="button">Administrador</button>
         <button class="fichas-butts" type="button">Guardar</button>
         <button class="fichas-butts" type="button">Salir</button>
+        <button class="fichas-butts" type="button">Limpiar</button>
         <button class="fichas-butts" type="button">Buscar</button>
       </div>
 
@@ -4267,7 +4300,7 @@
       <button id="borrarBoton" class="borrar-boton">RRHH</button>
       <button id="borrarBoton2" class="borrar-boton">MA</button>
       <button id="borrarBoton3" onclick="rodillosKaizen('btn17','')" class="borrar-boton">CALCULADORA</button>
-      <button id="borrarBoton4" class="borrar-boton" onclick="borrrrrrarrrr()">SIMULADOR</button>
+      <button id="borrarBoton4" class="borrar-boton" onclick="rodillosKaizen('btn17','')">SIMULADOR</button>
     </div>   
 
     <div id="padre-evento">
@@ -4440,8 +4473,8 @@
 
     </div>
 
-    <div class="buscador-kaizen">
-      <h2>Seleccion atomica</h2>
+    <div id="kaizen-buscador" class="buscador-kaizen">
+      <h3>Kaizen propuestos</h3>
       <div class="input-propositor">
         <select name="" id="propositores"></select>
       </div>
