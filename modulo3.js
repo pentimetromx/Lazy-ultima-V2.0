@@ -4,11 +4,14 @@ document.addEventListener('keydown', function(event) {
       case 'Z': 
         /* inspeccionarTipoLS('kaizenRegistrados') */
         mostrarPorClaveLocalStore('kaizenRegistrados')
-        console.log(kaizen);
+      
         /* vaciarPorClaveLocalStore('kaizenRegistrados', 'object') */
       break;  
       case 'H':   
-        /* Geometria() */
+        Geometria()
+            /* cortina.classList.add('estiloOverlay') */
+            cortina.style.display='block'
+
         /* vaciarPorClaveLocalStore('kaizenRegistrados') */
         mostrarPorClaveLocalStore('kaizenRegistrados')
       break;
@@ -20,7 +23,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.querySelector('#padre-inicio');  
+  let contiBoton = document.querySelector('#overlay-cortina');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  

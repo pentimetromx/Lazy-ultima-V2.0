@@ -3749,19 +3749,13 @@ top: 44%;
   align-items: center;
   justify-content: center;
 }
-#control-panel-rgb.activo,
-#control-panel-cmyk.activo {
-  display: grid;
-  z-index: 37;
-  opacity: 1;
-  transform: scale(1);
-}
 #control-panel-cmyk.desvanecer,
 #control-panel-rgb.desvanecer{
   opacity: 0;
   transform: scale(0.8);
 }
-
+#control-panel-rgb.activo,
+#control-panel-cmyk.activo,
 #padre-cmyk.activo,
 #padre-rgb.activo {
   display: grid;
@@ -4310,10 +4304,6 @@ top: 44%;
   transform: scale(0);
   transform-origin: center; 
 }
-#visor-tools.activo {
-  display: grid;
-  transform: scale(1); 
-}
 .image-container {
   width: 98%;
   height: 98%;
@@ -4364,11 +4354,6 @@ top: 44%;
   transform: scale(0);
   transform-origin: center; 
 }
-#barras-contenedor.activo {
-  display: grid;
-  transform: scale(1);
-}
-
 .barra-vertical-6 {
   position: relative;
   width: 2px;
@@ -4456,10 +4441,6 @@ top: 44%;
   display: none;
   transform: scale(0);
   transform-origin: center;
-}
-#barras-inicio.activo {
-  display: grid; 
-  transform: scale(1); 
 }
 .barra-vertical-inicio{
   position: relative;
@@ -5442,16 +5423,29 @@ button:hover{
   color:white;  
 
 }
-.esiloOverlay{
+.overlayKaizen{
   position: absolute;
-  display: flex;
-  top:60vh;
-  left: 73vw;
-  width:27vw;
-  height:34vh;
-  background-color:transparent;
-  z-index: 3200;
+  display: block;
+  top: 13%;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1001;
+  background-color: rgb(30,30,30);     
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(8px);
 }
+.overlayImagenesKaizen{
+  position: absolute;
+  display: block;
+  top:15%;
+  left: 0;
+  width: 100vw;
+  height: 80vh;
+  z-index: 1001;
+}
+
+
 
 
 
