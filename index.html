@@ -736,9 +736,9 @@
     </div>
     <div id="pantalla-tintero">  
       <div id="cont-links">
-        <a href="#" class="custom-link" id="linkDistribuidor"onclick="showRepuesto('contImgDistribuidor')">Rodillo distribuidor</a>
-        <a href="#" class="custom-link" id="linkForma" onclick="showRepuesto('contImgEntintador')">Rodillo forma</a>
-        <a href="#" class="custom-link" id="linkPlate" onclick="showRepuesto('contPortPlaca')">Porta plancha</a>
+        <a href="#" class="custom-link" id="linkDistribuidor"onclick="showRepuesto('contImgDistribuidor','')">Rodillo distribuidor</a>
+        <a href="#" class="custom-link" id="linkForma" onclick="showRepuesto('contImgEntintador','')">Rodillo forma</a>
+        <a href="#" class="custom-link" id="linkPlate" onclick="showRepuesto('contPortPlaca','')">Porta plancha</a>
         <a href="#" class="custom-link" id="linkManta" onclick="showRepuesto('contPortManta', 'videoTrain03')">Porta mantilla</a>
         <a href="#" class="custom-link" id="linkImpresor" onclick="showRepuesto('contImpresor', 'videoTrain01')">Cilindro impresor</a>
       </div>
@@ -937,7 +937,7 @@
       <canvas id="ctx"></canvas>
     </div>
     <div id="conti-boton-kaizen">
-      <button class="butt-mautonomo-kaizen" id="btn17" onclick="c">PROPUESTOS</button>
+      <button class="butt-mautonomo-kaizen" id="btn17" onclick="rodillosKaizen('btn17','')">PROPUESTOS</button>
       <button class="butt-mautonomo-kaizen" id="btn12" onclick="rodillosKaizen('btn12','vidElem')">IMPLEMENTADOS</button>
       <button class="butt-mautonomo-kaizen" id="btn10" onclick="rodillosKaizen('btn10','')">BENCH MARK</button>
       <button class="butt-mautonomo-kaizen" id="btn11" onclick="rodillosKaizen('btn11','')">PROYECTOS</button>
@@ -996,7 +996,6 @@
         <label class="label">Salva manos en maquina colectora</label>
         <img data-src="./assets/kaizen colectora.jpg" class="lazy kaizen-img" alt="colectora">
       </div>
-
       <div class="cell" data-index="1">
         <label class="label">Mejora en linea de ensamble</label>
         <img data-src="./assets/kaizen fresa.jpg" class="lazy kaizen-img" alt="colectora">
@@ -1017,6 +1016,7 @@
         <label class="label">Filosofia kaizen japones</label>
         <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
+      
     </div>
 
     <div id="pantalla-kaizen" class="cell-exterior">
@@ -4135,7 +4135,7 @@
     <div id="fichas-tecnicas" class="ficha-tecnica"> 
 
       <div class="titulo-kaizen">
-          <h3>Hoja de vida kaizen</h3>
+        <h3>Hoja de vida Kaizen</h3>
       </div>
       
       <div>
@@ -4474,11 +4474,11 @@
     </div>
 
     <div id="kaizen-buscador" class="buscador-kaizen">
+      <button class="btn-volver">←</button>
       <h3>Kaizen propuestos</h3>
       <div class="input-propositor">
         <select name="" id="propositores"></select>
       </div>
-
       <div class="lista-propuestas">
       </div>
     </div>

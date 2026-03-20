@@ -2069,7 +2069,8 @@ buscaNombre.addEventListener('blur', () => {
   if(!esDesktop) hideKeyboard()
 }); */
 
-const inputsVarios = [inputNombre, buscaNombre, inputNombreMA,mejoraFichaTec,equiposMA];
+
+const inputsVarios = [inputNombre, buscaNombre, inputNombreMA, mejoraFichaTec, equiposMA];
 
 inputsVarios.forEach(input => {
   if (!input) return;
@@ -2083,16 +2084,6 @@ inputsVarios.forEach(input => {
   });
 
   input.addEventListener('input', limpiarYCapitalizar);
-});
-
-inputsVarios.forEach(input => {
-  input.addEventListener('focusin', () => {
-    if (!esDesktop) showKeyboard();
-  });
-
-  input.addEventListener('blur', () => {
-    if (!esDesktop) hideKeyboard();
-  });
 });
 
 
@@ -2567,10 +2558,10 @@ document.querySelector('#borrarBoton2').addEventListener('click', () =>{
 
 })
 
-const botoni = document.querySelector('#borrarBoton3');
 const wrapper = document.querySelector('#calculadora');
 
-botoni.addEventListener('click', () => {
+/* botoni.addEventListener('click', () => {
+  alert()
   const visible = getComputedStyle(wrapper).display !== 'none';
 
   if (!visible) {
@@ -2583,7 +2574,7 @@ botoni.addEventListener('click', () => {
     wrapper.style.display = 'none';
     botoni.style.backgroundColor = 'green'
   }
-});
+}); */
 
 /******************************************************************************************************************** */
 
@@ -3249,8 +3240,7 @@ crearDias('dias-grafico')
 // GRAFICO BARRAS
 crearLeds('ledContainer')
 crearDias('daysContainer')
-crearGraficoOperacion()   
-
+crearGraficoOperacion()
 sliderTree.addEventListener('input', () => {
   if (!chart21) return;
 
@@ -3260,9 +3250,7 @@ sliderTree.addEventListener('input', () => {
   actualizarTreeMapPorSlider(valor);
   actualizarDiasYLedsTreeMap(valor);
 });
-
 let chart21 = null;
-
 function crearGraficoTreeMap() {
   const ctx = document.getElementById('MiGrafica20').getContext('2d');
 
@@ -3305,7 +3293,6 @@ function crearGraficoTreeMap() {
     }
   });
 }
-
 function actualizarTreeMapPorSlider(valor){
   const index = Math.min(valor, series.length - 1);
 
@@ -3317,7 +3304,6 @@ function actualizarTreeMapPorSlider(valor){
   chart21.data.datasets[0].tree = nuevaData;
   chart21.update();
 }
-
 function crearGraficoTreeMap() {
   const ctx = document.getElementById('MiGrafica20').getContext('2d');
 
@@ -3360,7 +3346,6 @@ function crearGraficoTreeMap() {
     }
   });
 }
-
 sliderGraf.addEventListener('input', () => {
   if (!chart20) return;
 
@@ -3431,7 +3416,6 @@ function crearGraficoOperacion() {
     }
   });
 }
-
 function animarTransicion() {
   if (!animando) return;
 
@@ -3457,7 +3441,6 @@ function animarTransicion() {
   }
   requestAnimationFrame(animarTransicion);
 }
-
 function alternarResultados(selector) {
   const grafsDesempeño = document.querySelectorAll('.current-graph');
   grafsDesempeño.forEach(item => {
@@ -3476,7 +3459,6 @@ function alternarResultados(selector) {
     }
   });
 }
-
 function animarHumanEye() {
   if (!interfazColor) return;
   revertirInterfazPerfiles()
@@ -3533,7 +3515,6 @@ function animarHumanEye() {
 
   requestAnimationFrame(step);
 }
-
 function animarHorizontalEye() {
   if (!interfazColor) return;
   revertirInterfazPerfiles()
@@ -3579,7 +3560,6 @@ function animarHorizontalEye() {
 
   requestAnimationFrame(step);
 }
-
 function revertirInterfazPerfiles() {
   const respaldos = document.querySelectorAll('.btn-respaldo');
   if (!respaldos.length) return;
@@ -3605,7 +3585,6 @@ function revertirInterfazPerfiles() {
   const descendants = interfazColor.querySelectorAll('*');
   descendants.forEach(el => limpiar(el));
 }
-
 function decisionesEstrategicas(){
   var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','decisiones-estrategicas']; 
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -3622,9 +3601,7 @@ function decisionesEstrategicas(){
 const listaIzquierda = document.querySelectorAll('#linkListI li');
 const subListaRRHH = document.querySelectorAll('#links-auxiliar li')
 const hijoSubListaRRHH = document.querySelectorAll('#empleado-ingreso > li')
-
 const primerSubListaRRHH = subListaRRHH[1]
-
 const primerhijoSubListaRRHH = hijoSubListaRRHH[0]
 const segundohijoSubListaRRHH = hijoSubListaRRHH[1]
 const linksAuxiliar = document.getElementById('links-auxiliar');
@@ -3632,7 +3609,6 @@ const linksPadre = document.querySelector('#linkListI')
 const linksPadreColor = document.querySelector('#linkList')
 const septimoIzquierda = listaIzquierda[7]; 
 let masTiempo = null;
-
 if (listaIzquierda.length >= 9) {
 
   septimoIzquierda.addEventListener('mouseenter', () => {
@@ -3649,7 +3625,6 @@ if (listaIzquierda.length >= 9) {
     linksAuxiliar.style.display = 'none';
   });
 }
-
 linksAuxiliar.addEventListener('mouseleave', (e) => {
   const destino = e.relatedTarget;
 
@@ -3897,22 +3872,18 @@ function obtenerEstadoLeds() {
   return estado;
 }
 //*********************************************************************************************************************** */
-
 const estadoIndicadores = {};
-
 function actualizarEstadoIndicadores() {
   INDICADORES.forEach((id) => {
     const { verdes } = contarLeds(id);
     estadoIndicadores[id] = verdes;
   });
 }
-
 function colorPorCantidadVerdes(verdes) {
   if (verdes <= 4) return 'red';
   if (verdes <= 7) return 'orange';
   return 'green';
 }
-
 function normalizarColorCeldas() {
   Object.entries(estadoIndicadores).forEach(([id, verdes]) => {
     const contenedor = document.getElementById(id);
@@ -3927,13 +3898,11 @@ function normalizarColorCeldas() {
       });
   });
 }
-
 function aplicarNormalizacionDeColores() {
   actualizarEstadoIndicadores();
   normalizarColorCeldas();
 }
 //*********************************************************************************************************************** */
-
 const MOVE_CLASSES = [
   'move-kaizen',
   'move-kaizen-1',
@@ -3942,34 +3911,36 @@ const MOVE_CLASSES = [
   'move-kaizen-4',
   'move-kaizen-5'
 ];
-
 const contKaizen = document.querySelector('#kaizen-propuestos');
 const kaizens = [...contKaizen.querySelectorAll('.cell')];
-
 kaizens.forEach((grafico, index) => {
   grafico.dataset.index = index;
 });
-
+//CLICK EN LAS 6 IMAGENES KAIZEN
 imgsKaizen.addEventListener('click', (e) => {
   const focusables = document.querySelectorAll('.current-focus')
-  focusables.forEach(focusable =>{
-    focusable.value=''
-  })
+  focusables.forEach(focusable =>{focusable.value=''})
+
   imgsKaizen.style.zIndex = '100';
   const cellSeleccionada = e.target.closest('.cell');
   if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;
 
-  aparecerElemento("fichas-tecnicas", "grid")  
   desactivarClick(['.cell']); 
 
   if(turnBlock === false){
     turnBlock = true
   }
-
+  setTimeout(() => {
+    aparecerElemento("fichas-tecnicas", "grid") 
+  }, 100);
   setTimeout(() => {   
     if(turnGraphic === false){
       turnGraphic = true
     }
+  cortina.classList.remove('overlayKaizen')
+  cortina.style.display = '';
+  cortina.classList.add('overlayImagenesKaizen');
+
   }, 500); 
 
   const index = Number(cellSeleccionada.dataset.index);
@@ -3987,16 +3958,14 @@ imgsKaizen.addEventListener('click', (e) => {
     const opacity = esActivo ? '1' : '0';
     grafico.style.opacity = opacity;
 
-    cortina.classList.add('esiloOverlay')
-
     // aplicar movimiento solo al activo
     if (esActivo) {
       grafico.classList.add(MOVE_CLASSES[index]);
     }
-  });  
 
+  });  
   setTimeout(() => {
-    restablecerClick(['.cell']);    
+    restablecerClick(['.cell']);  
   }, 2500);
 });
 
@@ -4040,14 +4009,12 @@ const CATEGORY_LABELS = {
   alerta.style.left = typeof left === 'number' ? `${left}px` : left;
 }
 mostrarAlertaEnElemento({mensaje: 'Ingrese solo valores numéricos',top: '70%',left: '40%'}); */
-
 let inputActivo = null;
 function onFocusIn(e) {
   if (e.target.matches('.columna-izq-ma input, .columna-derecha input')) {
     inputActivo = e.target;
   }
 }
-
 function onGridClick(e) {  
   const boton = e.target;
 
@@ -4058,7 +4025,6 @@ function onGridClick(e) {
   const valor = boton.textContent.trim();
   inputActivo.value += valor;
 }
-
 function activarLogicaMobile() {
   document.addEventListener('focusin', onFocusIn);
   gridNumbers.addEventListener('click', onGridClick);
@@ -4164,15 +4130,12 @@ function avanzarFoco() {
 /* ===============================
    Sincronizar índice con foco real
    =============================== */
-
 document.addEventListener('focusin', (e) => {
   const index = ordenInputs.indexOf(e.target.id);
   if (index !== -1) {
     indiceFoco = index;
   }
 });
-
-
 const keyboardLayout = [
   ['q','w','e','r','t','y','u','i','o','p'],
   ['a','s','d','f','g','h','j','k','l','ñ'],
@@ -4351,11 +4314,9 @@ function createKeyboard(layout) {
     keyboard.appendChild(row);
   });
 }
-
 /* inputNombre.addEventListener('focusin',()=>{
   keyboardWrapper.style.display='flex'
 }) */
-
 function handleKeyPress(letter) {
   if (!lastFocusedInput) return;
 
@@ -4393,22 +4354,14 @@ function handleKeyPress(letter) {
 }
 createKeyboard(keyboardLayout);
 const closeKeyboardBtn = document.getElementById('close-keyboard-btn');
-
 closeKeyboardBtn.addEventListener('click', () => {
   keyboardWrapper.style.display = 'none';
 });
-
-
-
 document.addEventListener('focusin', e => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
     lastFocusedInput = e.target;
   }
 });
-
-
-
-
 function showKeyboard() {
   keyboardWrapper.classList.add('is-visible');
 }
@@ -4656,7 +4609,6 @@ function configurarInput(input) {
 
         autogestionadoEl.addEventListener('change', (e) => {
           const valor = e.target.value === 'true';
-          console.log(valor);
         });
       })();
       break;
@@ -4796,19 +4748,18 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
       }, 500);
     }
     if (index === 1) {
-      let inputsFichaTecnica = document.querySelectorAll('#fichas-tecnicas .ficha-grid input'); 
-      for (const input of inputsFichaTecnica) {
-        if (input.value.trim() === '') {
-          const etiqueta = input.previousElementSibling?.textContent || 'un campo';
-          saltarAlerta(`Debe completar: ${etiqueta}`, 'fichaTecnica');
-          parpadearElemento(input.id, 150, 2500);
-          return;
-        }
+    let inputsFichaTecnica = document.querySelectorAll('#fichas-tecnicas .ficha-grid input, #fichas-tecnicas .ficha-grid select');
+
+    for (const input of inputsFichaTecnica) {
+      if (input.value.trim() === '') {
+        const etiqueta = input.previousElementSibling?.textContent || 'un campo';
+        saltarAlerta(`Debe completar: ${etiqueta}`, 'fichaTecnica');
+        parpadearElemento(input.id, 150, 2500);
+        return;
       }
+    }
       bloqueador.style.display = 'block';
       agregarKaizen();
-      /* fichaGrid.reset(); */
-      saltarAlerta('Propuesta Kaizen registrada correctamente.', 'fichaTecnica');
     }
     if (index === 2) {
       fichaGrid.reset();
@@ -4821,6 +4772,7 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
     }
     if (index === 4) {
       aparecerElemento("kaizen-buscador",'grid')
+      /* document.querySelector('.lista-propuestas').innerHTML = ''; */
     }    
   });
 
@@ -4835,6 +4787,7 @@ const idsSelect = [
   'participante4',
   'participante5'
 ];
+//empleados ára mostrar en los select
 function cargarEmpleados(select) {
 
   if (select.dataset.loaded === 'true') return;
@@ -4881,8 +4834,7 @@ function setSelectValue(id, value) {
 // función para filtrar kaizen
 function mostrarPropuestas(nombre) {
 
-  const contenedor = document.querySelector('.lista-propuestas');
-  contenedor.innerHTML = '';
+  contenedorPropuesta.innerHTML = '';
 
   const kaizenRaw = JSON.parse(localStorage.getItem('kaizenRegistrados')) || [];
 
@@ -4895,7 +4847,7 @@ function mostrarPropuestas(nombre) {
   if (filtrados.length === 0) {
     const div = document.createElement('div');
     div.textContent = 'No se encontraron propuestas de mejora';
-    contenedor.appendChild(div);
+    contenedorPropuesta.appendChild(div);
     return;
   }
 
@@ -4907,7 +4859,7 @@ function mostrarPropuestas(nombre) {
     // evento click para cargar ficha técnica
     div.addEventListener('click', () => cargarFichaTecnica(k));
 
-    contenedor.appendChild(div);
+    contenedorPropuesta.appendChild(div);
 
   });
 }
@@ -4915,7 +4867,6 @@ cortinaBloqueo.addEventListener('click',()=>{
   const primerBotonFicha = document.querySelector('.controller-fichas .fichas-butts');
   parpadearElemento(primerBotonFicha.id, 150, 2500);
 })
-
 botonesFicha.forEach(btn => {
   btn.addEventListener('mouseenter', () => {
     btn.removeAttribute('style');
@@ -4936,7 +4887,13 @@ function cargarFichaTecnica(kaizen) {
   document.getElementById('equipo').value = kaizen.equipo || '';
   document.getElementById('area').value = kaizen.area || '';
 
-  setSelectValue('imagen-kaizen', kaizen.imagen);
+  llenarOpcionesKaizen();
+
+  const selectImagenKaizen = document.getElementById('imagen-kaizen');
+  if (selectImagenKaizen) {
+    selectImagenKaizen.value = kaizen.imagen || '';
+  }
+
   setSelectValue('empleado', kaizen.empleado);
   setSelectValue('participante1', kaizen.participante1);
   setSelectValue('participante2', kaizen.participante2);
@@ -4946,20 +4903,20 @@ function cargarFichaTecnica(kaizen) {
 
   const visorKaizen = document.querySelector('.cell-exterior img');
   const nombreKaizen = document.querySelector('.cell-exterior label');
-  pantallaKaizen.style.display='grid'
 
-  setTimeout(() => {
-    if (kaizen.imagen && visorKaizen && nombreKaizen) {
-      visorKaizen.src = kaizen.imagen;
-      nombreKaizen.textContent = kaizen.propuesta || '';
-    }
-  }, 100);
+  pantallaKaizen.style.display = 'grid';
+  cortina.classList.remove('overlayImagenesKaizen')
+  cortina.style.display = '';
+  cortina.classList.add('overlayKaizen')
+  if (kaizen.imagen && visorKaizen && nombreKaizen) {
+    visorKaizen.src = kaizen.imagen;
+    visorKaizen.dataset.src = kaizen.imagen;
+    nombreKaizen.textContent = kaizen.propuesta || '';
+  }
 
-  desaparecerElemento("kaizen-buscador");
+  desaparecerElemento('kaizen-buscador');
 }
-
-
-// asignar eventos
+// asignar eventos por cada select
 idsSelect.forEach(id => {
   const select = document.getElementById(id);
   if (!select) return;
@@ -4976,7 +4933,9 @@ idsSelect.forEach(id => {
     });
   }
 });
-
+document.querySelector('.btn-volver').addEventListener('click',()=>{
+  desaparecerElemento('kaizen-buscador');
+})
 
 /******************************************************************************************************************************************* */
 

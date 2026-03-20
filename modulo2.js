@@ -1102,6 +1102,7 @@ function rodillosKaizen(idButton,vidElem) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
       };
+      container1.style.display='grid'
 
       document.querySelector('#fichas-tecnicas').style.display='flex'
       document.querySelector('#kaizen-propuestos > .cell:nth-child(1)').classList.remove('move-kaizen');

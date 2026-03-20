@@ -382,6 +382,32 @@ color: white;
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
+#barras-inicio.activo,
+#barras-contenedor.activo,
+#visor-tools.activo,
+.buscador-kaizen.activo,
+#agrupaOblicuos-C.activo,
+#agrupaOblicuos-XC.activo,
+#agrupaOblicuos-DXXX.activo,
+#agrupaOblicuos-XXX.activo,
+#padre.activo,
+#patern.activo,
+#equalizer.activo,
+#wall_street_II.activo,
+#toyota-kaizen-antes.activo,
+#kaizenCont.activo,
+#troubleshooting.activo,
+.sup-level.activo,
+#contImpresor.activo,
+#contPortPlaca.activo,
+#contPortManta.activo,
+#pantalla-tintero.activo,
+#contImagNeg.activo,
+#canvasContainer3.activo,
+#canvasContainer2.activo,
+#pantalla-inicial.activo,
+.ficha-tecnica.activo,
+.ventana-mensaje.activo,
 #torre-imp.activo {
   display: grid;          /* muestra el contenedor */
   transform: scale(1);    /* escala al tamaño definido en CSS */
@@ -514,10 +540,6 @@ color: white;
   display: none; /* inicialmente oculto */
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
-}
-#pantalla-inicial.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
 }
 
 #desbobinadorId,
@@ -1132,11 +1154,6 @@ width:447px ;
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-#canvasContainer2.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
-
 #canvasContainer3{
   position: absolute;
   flex-direction: column;
@@ -1152,10 +1169,6 @@ width:447px ;
   display: none;
   transform: scale(0);
   transform-origin: center;  
-}
-#canvasContainer3.activo {
-  display: grid; 
-  transform: scale(1);
 }
 
 #MiGrafica{
@@ -1179,11 +1192,6 @@ width:447px ;
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-#contImagNeg.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
-
 #contImagGraf img,
 #contImagNeg img{
   width:100%;
@@ -1784,11 +1792,6 @@ width:447px ;
   transform: scale(0);
   transform-origin: center;  
 }
-#pantalla-tintero.activo {
-  display: grid;
-  transform: scale(1);
-}
-
 #imgsRepuestos-V,
 #imgsRepuestos-IV,
 #imgsRepuestos-III,
@@ -1828,13 +1831,6 @@ width:447px ;
   display: none; /* inicialmente oculto */
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
-}
-.sup-level.activo,
-#contImpresor.activo,
-#contPortPlaca.activo,
-#contPortManta.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
 }
 .sup-level {
   display: grid;
@@ -1974,6 +1970,30 @@ width:447px ;
   transform-origin: center;  /* crecerá desde el centro */
   transition: transform 1s ease; /* 1000ms */  
 }
+#abuelo-grafica12.activo,
+#interfaz-perfiles.activo,
+#padre-desempeños.activo,
+#abuelo-indicadores.activo,
+.contenedor-visor.activo,
+.dashboard-grid.activo,
+#ingresos-sistema-ma.activo,
+#ingresos-sistema.activo,
+#padre-ingresos-ma.activo,
+#padre-ingresos.activo,
+.form-empleado.activo,
+#contenedor-global.activo,
+#titulo-mes.activo,
+#titulo-calendar.activo,
+#meses.activo,
+#calendario-mes.activo,
+#cont-span-semanas.activo,
+#lista-maquinas.activo,
+#contImaginario.activo,
+#padre-instrucciones.activo,
+#puesta-punto.activo,
+#contImaginario-II.activo,
+#padre-2.activo,
+#padre-1.activo,
 #linksMA.activo {
   display: flex;   /* se muestra */
   transform: scale(1); /* crece hasta el tamaño indicado */
@@ -2286,12 +2306,6 @@ header {
   border: solid 1px rgba(180, 180, 180, 0.5);
   border-radius: 10px; 
 }
-#padre-2.activo,
-#padre-1.activo {
-  display: flex;
-  transform: scale(1); /* tamaño normal definido por CSS */
-}
-
 #control-neumatico{
   position: absolute;
   display: flex;
@@ -2448,11 +2462,6 @@ header {
   transform-origin: center;
   transition: transform 1s ease;
 }
-#contImaginario-II.activo {
-  display: flex;
-  transform: scale(1); /* tamaño normal definido por CSS */
-}
-
 #rodillo-infeed{
   position: absolute;
   left:27%;
@@ -2501,11 +2510,6 @@ header {
   transform-origin: center;     /* crece desde el centro */
   transition: transform 1s ease; /* animación de 1000ms */
 }
-#padre-instrucciones.activo,
-#puesta-punto.activo {
-  display: flex;
-  transform: scale(1); /* tamaño normal definido por CSS */
-}
 
 #padre-instrucciones {
   position: absolute;
@@ -2546,11 +2550,6 @@ header {
   outline: 2px solid #C0C0C0;
   outline-offset: 3px;  
 }
-#contImaginario.activo {
-  display: flex;
-  transform: scale(1); /* tamaño normal definido por CSS */
-}
-
 #imag3{
   position:relative;
   display: flex;
@@ -2674,10 +2673,6 @@ h6{
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 } 
-#troubleshooting.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
 #troubleshooting .miBoton{
   font-size:0.8vw;
   color: black;
@@ -2751,11 +2746,6 @@ h6{
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-#kaizenCont.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
-
 #vidElem{
   width:100%;
   height: 100%;
@@ -4069,10 +4059,6 @@ elemento.visible {
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-#toyota-kaizen-antes.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
 #butt-17{
   position: absolute;
   background-color: rgba(0, 0, 0, 0.423);
@@ -4643,22 +4629,28 @@ h4{
   display: none;
 }
 
-
 #kaizen-propuestos{
   position: absolute;
   display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows:200px;
+  gap: 12px;
+
+  margin-top: 3%;
+  width: 68%;
+  max-height: 68%;
+  border-radius: 15px;
+
   display: none;
   left: 29vw;
   top: 17vh;
-  gap: 12px;
-  z-index: 2;
-  grid-template-columns:33% 33% 34%;
-  grid-template-rows: 50% 50%;
-  margin-top:3%;
-  width: 68%;
-  height:68%;
-  border-radius: 15px;
+  overflow-y: auto;
+  padding: 8px;
+  box-sizing: border-box;
+  z-index: 100;
 }
+
+
 .row{
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columnas */
@@ -4672,7 +4664,7 @@ h4{
   display: grid;
   opacity: 1;
   border-radius: 18px;
-  top: 21vh;
+  top: 22.7vh;
   left: 74.3vw;
   width: 24%;
   height: 38%;
@@ -4686,9 +4678,10 @@ h4{
   outline-offset: 3px; 
   
   background-color: #000;
-  z-index:100;
+  z-index:1050;
   display: none;
 }
+
 .cell{
   display: grid;
   opacity: 1;
@@ -4725,30 +4718,29 @@ h4{
   height: 100%;
   display: block;
 }
-
 .move-kaizen{
-  transform: translate3d(204%, 0, 0);
+  transform: translate3d(204%, -2%, 0);
   transition: transform 0.9s ease;
 }
 .move-kaizen-1{
-  transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, -2%, 0);
   transition: transform 0.9s ease;
 }
 .move-kaizen-2{
-  transform: translate3d(-5%, 0, 0);
+  transform: translate3d(-5%, -2%, 0);
   transition: transform 0.9s ease;
 }
 
 .move-kaizen-3{
-  transform: translate3d(204%, -100%, 0);
+  transform: translate3d(204%, -108%, 0);
   transition: transform 0.9s ease;
 }
 .move-kaizen-4{
-  transform: translate3d(99%, -100%, 0);
+  transform: translate3d(99%, -108%, 0);
   transition: transform 0.9s ease;
 }
 .move-kaizen-5{
-  transform: translate3d(-5.5%, -100%, 0);
+  transform: translate3d(-5.5%, -108%, 0);
   transition: transform 0.9s ease;
 }
 .oculta{
@@ -5885,11 +5877,6 @@ input.numero:focus {
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-#wall_street_II.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
-
 #wall_street_II .horizontales{
   display: block;
   width: 100%;
@@ -5937,11 +5924,6 @@ input.numero:focus {
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-#equalizer.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
-
 .column{
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -5966,11 +5948,6 @@ input.numero:focus {
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-#patern.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
-
 #patern .irisado{
   display: block;
   width: 100%;
@@ -6160,11 +6137,6 @@ input.numero:focus {
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-#padre.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
-
 #padre > div {
   display: block;
   width: 100%;
@@ -6528,13 +6500,6 @@ height:44vh;
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-#agrupaOblicuos-C.activo,
-#agrupaOblicuos-XC.activo,
-#agrupaOblicuos-DXXX.activo,
-#agrupaOblicuos-XXX.activo {
-  display: grid;          /* muestra el contenedor */
-  transform: scale(1);    /* escala al tamaño definido en CSS */
-}
 .cont-oblicuos {
 position: relative;
 display: flex;
@@ -6671,10 +6636,6 @@ height:100%;
   font-weight: bold;
 
 }
-#lista-maquinas.activo {
-  display: flex;
-  transform: scale(1); /* tamaño normal definido por CSS */
-}
 .span-semana {
   position: relative;  
   display: flex; 
@@ -6696,16 +6657,6 @@ height:100%;
 }
 .titulo-graf-ma{
   transition: transform 1s ease, filter 0.5s ease;
-}
-
-#cont-span-semanas.activo {
-  display: flex;
-  transform: scale(1); /* tamaño normal definido por CSS */
-}
-
-#calendario-mes.activo {
-  display: flex;
-  transform: scale(1); /* tamaño normal definido por CSS */
 }
 .semana {
   position: relative;
@@ -6793,10 +6744,6 @@ height:100%;
 .vacio {
   background-color: #f0f0f085;
   border: none;
-}
-#meses.activo {
-  display: flex;
-  transform: scale(1); /* tamaño normal definido por CSS */
 }
 .mes{
   flex: 1;
@@ -7148,25 +7095,6 @@ height:100%;
 .metricas-empleado:hover{
   background: linear-gradient(180deg, #b30000 0%, #3d0000 100%);
 }
-.buscador-kaizen.activo,
-.ficha-tecnica.activo,
-#abuelo-grafica12.activo,
-#interfaz-perfiles.activo,
-#padre-desempeños.activo,
-#abuelo-indicadores.activo,
-.contenedor-visor.activo,
-.dashboard-grid.activo,
-#ingresos-sistema-ma.activo,
-#ingresos-sistema.activo,
-#padre-ingresos-ma.activo,
-#padre-ingresos.activo,
-.form-empleado.activo,
-#contenedor-global.activo,
-#titulo-mes.activo,
-#titulo-calendar.activo {
-  display: flex;
-  transform: scale(1); 
-}
 #abuelo-grafica12{
   position: absolute;
   display:grid;
@@ -7436,10 +7364,6 @@ height:100%;
   display: none;
   transform: scale(0);
   transform-origin: center;
-}
-.ventana-mensaje.activo {
-  display: grid;
-  transform: scale(1);
 }
 .ventana-mensaje p {
   margin: 0;
@@ -7980,20 +7904,26 @@ background-color: #3FEF9C;
   display:grid;
   grid-template-rows: 5% 85% 10%;
   top: 22vh;
-  left: 29vw;
+  left: 28vw;
   width: 44vw;
   height: 70vh;
   background-color: #6b7280;
   padding: 16px;
   border-radius: 8px;
   align-items: center;
-  color: #f9fafb; /* alto contraste */
+  color:#F2F4F8; /* alto contraste */
 
   transition: transform 0.5s ease;
   z-index:2002;
   display: none;
   transform: scale(0);
   transform-origin: center; 
+}
+.titulo-kaizen h3{
+  font-size: 1.45em;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
 }
 .ficha-grid {
   width: 100%;
@@ -8007,14 +7937,18 @@ background-color: #3FEF9C;
   min-height: 0;
 }
 .controller-fichas{
-  width:89%;
-  height:60%;
+  position:relative;
   display:grid;
   grid-template-columns:repeat(5,1fr);
+
+  width:89%;
+  height:60%;
   gap: 10px;
   margin:auto;
 }
 .controller-fichas button{
+  position: relative;
+  width: 100%;
   padding:8px 14px;
   border:none;
   background:#e0e0e0;
@@ -8062,13 +7996,15 @@ background-color: #3FEF9C;
   position: absolute;
   display: grid;
 
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2,1fr);
   grid-template-rows: auto 1fr;
 
-  grid-template-areas:"titulo titulo" "input lista";
+  grid-template-areas:
+  "boton titulo"
+  "input lista";
 
-  top: 21vh;
-  left: 42vw;
+  top: 31vh;
+  left: 25vw;
   height: 62vh;
   width: 47vw;
   border: 1px solid rgb(178,179,179);
@@ -8082,12 +8018,29 @@ background-color: #3FEF9C;
   transform-origin: center; 
   transition: transform 1s ease;
 }
-.buscador-kaizen h3{
+.btn-volver{
+  grid-area: boton;
+  width: 30%;
+  border-radius: 5px;
+  font-size: 1.3rem;  
+  margin: auto;
+  cursor: pointer;
+}
+
+/* .buscador-kaizen h3{
   grid-area: titulo;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   font-size: 0.9em;
   color: white;
-  margin-left:303px ;
+  margin-left:63%;
+} */
+ .buscador-kaizen h3{
+  grid-area: titulo;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 0.9em;
+  color: white;
+  margin: auto;
+  align-self: center;
 }
 .input-propositor{
   grid-area: input;
