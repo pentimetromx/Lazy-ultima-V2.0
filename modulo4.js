@@ -3926,6 +3926,7 @@ imgsKaizen.addEventListener('click', (e) => {
   if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;
 
   desactivarClick(['.cell']); 
+  activarPantallaCompleta()
 
   if(turnBlock === false){
     turnBlock = true
