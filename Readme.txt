@@ -153,7 +153,6 @@ inputPerfil.addEventListener('blur', () => {
 });
 
 
-OJO !!!!!!!!!!!!!!!!  TENGO COMENTADAS LINEAS AL INICIO DE LOS DOS .CSS  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 PARA MIRAR SI SE BORRA function mostrarVentanaEmergente(mensaje) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -168,7 +167,10 @@ font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
 
 
-lista-propuestas
+
+en la carpeta : TEXTO MOVIL HICE UNA IMPLEMENTACION
+
+ESTAMOS EN LAS AREAS DE TRABAJO, APLICAR BIEN LA FUNCION ocultarTodos() a los videos por que a las imágenes ya se le hizo el trabajo
 
 
 

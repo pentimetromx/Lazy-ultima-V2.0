@@ -89,7 +89,6 @@ document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListe
     }
   }
   container1.style.display='grid'
-  manejarTransicion('child-move-azul', 'formulario-cuenta', 'marco-formulario',100);
   container1.style.display='grid'
   const cont = document.querySelector('#imagenes-sheeter');
   cont.style.position = 'absolute';
@@ -210,8 +209,6 @@ formularioCuenta.addEventListener('click', e => {
  
   ocultarTodos([cfg.id]);
 
-  document.querySelector('#marco-formulario').style.display = 'flex';
-  document.querySelector('#marco-formulario').style.top='10vh'
   document.querySelector('#formulario-cuenta').style.display = 'grid';
   document.querySelector('#buscador').style.display = 'flex';
   document.querySelector('#search-form').style.displ='flex'
@@ -257,35 +254,52 @@ videos.forEach(video => {
     manejarClick(video);
   });
 });
+
 const alojamiento = document.getElementById("imagenes-sheeter");
 const imagenes = alojamiento.querySelectorAll("img");
 imagenes.forEach((img, index) => {
   img.addEventListener("click", () => {
 
     if (index === 0 || index === 1) {
-      ocultarTodos(['video-cuchilla'])
+      ocultarTodos(['video-cuchilla','buscador','search-form','links-inicialesI','links-iniciales','container01'])
       document.querySelector('#formulario-cuenta').style.display = 'grid'
       const contenedor = document.querySelector('#video-cuchilla')  
       const video = contenedor.querySelector('video')
+      video.dataset.clickActivated = 'true'
       video.currentTime = 0
-      video.play()
+      if (video.readyState >= 3) {
+        video.play().catch(err => console.log('Error al reproducir:', err))
+      } else {
+        video.addEventListener('loadeddata', () => {
+          video.play().catch(err => console.log('Error al reproducir:', err))
+        }, { once: true })
+      }
     }
+
     if (index === 2 || index === 3) {
-      ocultarTodos(['video-cuchilla-1'])
+      ocultarTodos(['video-cuchilla-1','buscador','search-form','links-inicialesI','links-iniciales','container01'])
       document.querySelector('#formulario-cuenta').style.display = 'grid'
       const contenedor = document.querySelector('#video-cuchilla-1')  
       const video = contenedor.querySelector('video')
+      video.dataset.clickActivated = 'true'
       video.currentTime = 0
-      video.play()
+      if (video.readyState >= 3) {
+        video.play().catch(err => console.log('Error al reproducir:', err))
+      } else {
+        video.addEventListener('loadeddata', () => {
+          video.play().catch(err => console.log('Error al reproducir:', err))
+        }, { once: true })
+      }
     }
-    
-    // Ocultar todas excepto la clickeada
+
     imagenes.forEach(i => {
-     i.style.display = "none";
+      i.style.display = "none";
     });
 
   });
 });
+
+
 videoSheeter.forEach(video => {
   video.addEventListener('click', () => {
     // Oculta todos los videos con clase 'vid-demo'
@@ -297,8 +311,8 @@ videoSheeter.forEach(video => {
     document.querySelectorAll('.imagenes-cortador').forEach(img => {
       img.classList.remove('imagen-expandida');
     });
-    ocultarTodos()
-    document.querySelector('#marco-formulario').style.display = 'block'             
+    /* ocultarTodos() */
+    ocultarTodos(['buscador','search-form','links-inicialesI','links-iniciales','container01'])
     document.querySelector('#formulario-cuenta').style.display = 'grid'           
     document.querySelector('#imagenes-sheeter').style.display = 'grid'
     document.querySelector('#img-cuchilla-1').style.display = 'flex'
@@ -3909,7 +3923,14 @@ const MOVE_CLASSES = [
   'move-kaizen-2',
   'move-kaizen-3',
   'move-kaizen-4',
-  'move-kaizen-5'
+  'move-kaizen-5',
+  'move-kaizen-6',
+  'move-kaizen-7',
+  'move-kaizen-8',
+  'move-kaizen-9',
+  'move-kaizen-10',
+  'move-kaizen-11'
+
 ];
 const contKaizen = document.querySelector('#kaizen-propuestos');
 const kaizens = [...contKaizen.querySelectorAll('.cell')];
@@ -3925,8 +3946,8 @@ imgsKaizen.addEventListener('click', (e) => {
   const cellSeleccionada = e.target.closest('.cell');
   if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;
 
-  desactivarClick(['.cell']); 
-  activarPantallaCompleta()
+  desactivarClick(['.cell']);
+  activarPantallaCompleta() 
 
   if(turnBlock === false){
     turnBlock = true
@@ -3938,9 +3959,9 @@ imgsKaizen.addEventListener('click', (e) => {
     if(turnGraphic === false){
       turnGraphic = true
     }
-  cortina.classList.remove('overlayKaizen')
-  cortina.style.display = '';
-  cortina.classList.add('overlayImagenesKaizen');
+      cortina.classList.remove('overlayKaizen')
+      cortina.style.display = '';
+      cortina.classList.add('overlayImagenesKaizen');
 
   }, 500); 
 
@@ -3958,6 +3979,7 @@ imgsKaizen.addEventListener('click', (e) => {
     // visibilidad real (canvas incluido)
     const opacity = esActivo ? '1' : '0';
     grafico.style.opacity = opacity;
+    scrollToTopById('kaizen-propuestos')
 
     // aplicar movimiento solo al activo
     if (esActivo) {
@@ -4939,7 +4961,11 @@ document.querySelector('.btn-volver').addEventListener('click',()=>{
 })
 
 /******************************************************************************************************************************************* */
-
+function scrollToTopById(id) {
+  const element = document.getElementById(id);
+  if (!element) return;
+  element.scrollTop = 0;
+}
 
 function borrrrrrarrrr(){
     ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
