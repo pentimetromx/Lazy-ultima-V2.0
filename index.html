@@ -5,9 +5,20 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>Lazy 2208</title> 
-    <link rel="stylesheet" href="./Matriz-1.css">
-    <link rel="stylesheet" href="./Matriz-2.css">
+    <title>Lazy MINIFICADO</title> 
+    <!-- <link rel="stylesheet" href="./Matriz-1.css">
+    <link rel="stylesheet" href="./Matriz-2.css"> -->
+
+
+    <!-- Matriz-1.css -->
+    <link rel="stylesheet" href="./Matriz-1.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="./Matriz-1.css"></noscript>
+
+    <!-- Matriz-2.css -->
+    <link rel="stylesheet" href="./Matriz-2.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="./Matriz-2.css"></noscript>
+
+
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" href="./Matriz-1.css">
   </head>
 
@@ -33,10 +44,12 @@
     <div id="franja-Blanca">
       <img src="./assets/cadena logo.png" id="img-logo" class="lazy" alt="logo">
     </div> 
+
     <input id="input1" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric" autofocus>    
     <input id="input2" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">    
     <input id="input3" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">    
     <input id="input4" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">
+
     <div class="contraseña" id="contraseña"><span id="texto">Ingrese contraseña</span></div>
 
     <div id="cont-titulo">
@@ -554,7 +567,7 @@
               <ul class="submenu-colorimetria">
                 <li>CMYK</li>
                 <li>RGB</li>
-                <li>CGR|</li>
+                <li>CGR</li>
                 <li>UCR</li>
                 <li>Salir</li>
               </ul>
@@ -734,7 +747,8 @@
       <button id="iniciar" class="entrada-empleado" onclick="activarPantallaCompleta()">Full Screen</buttonclass=>
       <button id="bot-atras12" class="entrada-empleado" onclick="irContenedorSiguiente()"></buttonclass=>
     </div>
-    <div id="pantalla-tintero">  
+    <div id="pantalla-tintero"> 
+
       <div id="cont-links">
         <a href="#" class="custom-link" id="linkDistribuidor"onclick="showRepuesto('contImgDistribuidor','')">Rodillo distribuidor</a>
         <a href="#" class="custom-link" id="linkForma" onclick="showRepuesto('contImgEntintador','')">Rodillo forma</a>
@@ -742,6 +756,7 @@
         <a href="#" class="custom-link" id="linkManta" onclick="showRepuesto('contPortManta', 'videoTrain03')">Porta mantilla</a>
         <a href="#" class="custom-link" id="linkImpresor" onclick="showRepuesto('contImpresor', 'videoTrain01')">Cilindro impresor</a>
       </div>
+      
       <img data-src="./assets/Arriba abajo.jpg" class="lazy" id="imgTorre" alt="imagen-torre"> 
 
       <video class="lazy video-training" id="vidTintero" autoplay loop muted playsinline>
@@ -1016,29 +1031,29 @@
         <label class="label">Filosofia kaizen japones</label>
         <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
-            <div class="cell" data-index="5">
-        <label class="label">Filosofia kaizen japones</label>
-        <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
+      <div class="cell" data-index="5">
+        <label class="label">Siempre adelante</label>
+        <img data-src="./assets/kaizen especial.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
-            <div class="cell" data-index="5">
-        <label class="label">Filosofia kaizen japones</label>
-        <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
+      <div class="cell" data-index="5">
+        <label class="label">Imperceptible</label>
+        <img data-src="./assets/kaizen entropico.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
-            <div class="cell" data-index="5">
-        <label class="label">Filosofia kaizen japones</label>
-        <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
+      <div class="cell" data-index="5">
+        <label class="label">El futuro hoy</label>
+        <img data-src="./assets/kaizen optimus.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
-            <div class="cell" data-index="5">
-        <label class="label">Filosofia kaizen japones</label>
-        <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
+      <div class="cell" data-index="5">
+        <label class="label">La importancia de encajar</label>
+        <img data-src="./assets/kaizen inercial.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
-            <div class="cell" data-index="5">
-        <label class="label">Filosofia kaizen japones</label>
-        <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
+      <div class="cell" data-index="5">
+        <label class="label">Digitalizacion humana</label>
+        <img data-src="./assets/kaizen tactil.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
-            <div class="cell" data-index="5">
-        <label class="label">Filosofia kaizen japones</label>
-        <img data-src="./assets/kaizen japones.jpg" class="lazy kaizen-img" alt="colecta">
+      <div class="cell" data-index="5">
+        <label class="label">Menor esfuerzo : Maximo torque</label>
+        <img data-src="./assets/kaizen community.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
       
     </div>
@@ -1544,11 +1559,13 @@
         <button class="boton-f" onclick="muestraRodillo('videoElement6')">Montaje tomador <div class="linea-horizontal"></div></button>
         <button class="boton-f" onclick="muestraRodillo('videoElement7')">Montaje distribuidor trasero <div class="linea-horizontal"></div></button>
       </div>
+
       <div id="video-entintado">  
         <video class="lazy" id="videoElement1-II" autoplay loop muted playsinline>
           <source data-src="./assets/Bateria de entintado.mp4" type="video/mp4">
         </video>  
       </div> 
+
     </div>
     <div id="bancada-torre-II">
       <div id="contenedor-8" class="contene-botones"> 
@@ -2787,6 +2804,8 @@
 
     </div>
 
+    <img id="sql" src="./assets/sql.png" alt="">
+
 
     <div id="simulador">  
 
@@ -3502,8 +3521,11 @@
       
       
     </div>
+
     <div id="contenedor-1" class="sup-level">
+
       <div class="title">LEVEL <div class="sub-title">Week</div></div>
+
       <div class="container">
         <div class="bar-container"><div class="bar" style="height: 20%;"></div></div>
         <div class="bar-container"><div class="bar" style="height: 40%;"></div></div>
@@ -3513,8 +3535,11 @@
         <div class="bar-container"><div class="bar" style="height: 70%;"></div></div>
         <div class="bar-container"><div class="bar" style="height: 90%;"></div></div>
       </div>  
+
       <div class="litle-title">Service</div>
+      
     </div>
+
     <div id="contenedor-2" class="calendar-container">
       <h2 class="month-title">March</h2>
       
@@ -3578,9 +3603,10 @@
     </div>
     <div id="image-cuatro" class="img-solid">
       <img class="lazy" data-src="./assets/motor.png" alt="">
-    </div>
-    
+    </div>   
+     
     <div id="imagenes-sheeter" class="equal-position border-around">
+
       <div class="imagen-sheeter">
         <img id="img-cuchilla-1" class="lazy imagenes-cortador" data-src="./assets/Cuchilla_imagen.jpg" alt="">
         <img id="img-cuchilla-2" class="lazy imagenes-cortador" data-src="./assets/cuchilla_2.png" alt="">
@@ -3589,8 +3615,9 @@
       <div class="imagen-sheeter">
         <img id="img-cuchilla-3" class="lazy imagenes-cortador" data-src="./assets/cuchilla_3.png" alt="">
         <img id="img-cuchilla-4" class="lazy imagenes-cortador" data-src="./assets/cuchilla_4.png" alt="">
-      </div>    
-    </div>
+      </div>  
+
+    </div> 
 
     <div id="contenedor-sheeter" class="border-around">
       <video class="lazy" autoplay loop muted playsinline>
@@ -3599,16 +3626,18 @@
 
     </div>
 
-    <div id="video-cuchilla" class="vid-demo border-around">
-      <video class="lazy" autoplay loop muted playsinline>
+    <div id="video-cuchilla" class="vid-demo border-around">  
+      <video class="lazy" id="videoElement1-II" autoplay loop muted playsinline>
         <source data-src="./assets/cuchilla video.mp4" type="video/mp4">
-      </video>
-    </div>
+      </video>  
+    </div> 
+
     <div id="video-cuchilla-1" class="vid-demo border-around">
       <video class="lazy" autoplay loop muted playsinline>
         <source data-src="./assets/Cuhilla orificio.mp4" type="video/mp4">
       </video>
     </div>
+
     <div id="video-manta-render" class="border-around">
       <video class="lazy" autoplay loop muted playsinline>
         <source data-src="./assets/manta movement.mp4" type="video/mp4">
@@ -3654,7 +3683,6 @@
         <source data-src="./assets/Desliza plancha.mp4" type="video/mp4">
       </video>
     </div>
-
     <div id="triada-videos" class="equal-position">
 
       <div class="videos-sup">
@@ -3680,7 +3708,6 @@
       </div>
 
     </div>
-
     <div id="video-insolacion" class="border-around">
       <video class="lazy" autoplay loop muted playsinline>
         <source data-src="./assets/Insolar punto plancha.mp4" type="video/mp4">
@@ -3726,34 +3753,33 @@
         <source data-src="./assets/Segmento tinta.mp4" type="video/mp4">
       </video>
     </div>
-    <div id="marco-formulario">
+    
 
-      <div id="formulario-cuenta" class="formulario-crear-cuenta">
-        <h2>Areas de trabajo</h2 > 
-        <span class="etq-frm">Perfil cuchillas sheeter</span>
-        <span class="etq-frm">Montaje cuchilla sheeter</span>
-        <span class="etq-frm">Ajuste cuchilla sheeter</span>
-        <span class="etq-frm">Comprobacion de ajuste cuchilla</span>
-        <span class="etq-frm">Manta en offset</span>
-        <span class="etq-frm">Manta en cilindro</span>
-        <span class="etq-frm">Cotas manta</span>
-        <span class="etq-frm">Offset 360</span>
-        <span class="etq-frm">Offset estatico</span>
-        <span class="etq-frm">Manta general</span>
-        <span class="etq-frm">Manta al detalle</span>
-        <span class="etq-frm">Plancha en cilindro</span>
-        <span class="etq-frm">Plancha estructura</span>
-        <span class="etq-frm">Doctor blade segmentada</span>
-        <span class="etq-frm">Tintero interno</span>
-        <span class="etq-frm">Tintero palancaso</span>
-        <span class="etq-frm">segmento tinta</span>
-        <span class="etq-frm">Trinquete rodillo isometrico</span>
-        <span class="etq-frm">Trinquete solo</span>
-        <span class="etq-frm">Trinquete multi orquilla</span>
-        <span class="etq-frm">Trinquete normal</span>
-      </div>
+    <div id="formulario-cuenta" class="formulario-crear-cuenta">
+      <h2>Areas de trabajo</h2 > 
+      <span class="etq-frm">Perfil cuchillas sheeter</span>
+      <span class="etq-frm">Montaje cuchilla sheeter</span>
+      <span class="etq-frm">Ajuste cuchilla sheeter</span>
+      <span class="etq-frm">Comprobacion de ajuste cuchilla</span>
+      <span class="etq-frm">Manta en offset</span>
+      <span class="etq-frm">Manta en cilindro</span>
+      <span class="etq-frm">Cotas manta</span>
+      <span class="etq-frm">Offset 360</span>
+      <span class="etq-frm">Offset estatico</span>
+      <span class="etq-frm">Manta general</span>
+      <span class="etq-frm">Manta al detalle</span>
+      <span class="etq-frm">Plancha en cilindro</span>
+      <span class="etq-frm">Plancha estructura</span>
+      <span class="etq-frm">Doctor blade segmentada</span>
+      <span class="etq-frm">Tintero interno</span>
+      <span class="etq-frm">Tintero palancaso</span>
+      <span class="etq-frm">segmento tinta</span>
+      <span class="etq-frm">Trinquete rodillo isometrico</span>
+      <span class="etq-frm">Trinquete solo</span>
+      <span class="etq-frm">Trinquete multi orquilla</span>
+      <span class="etq-frm">Trinquete normal</span>
+    </div>
       
-    </div> 
 
     <div id="contenedor-botonera" data-display="grid">
       <button>Barras amarillas</button>
@@ -3946,7 +3972,9 @@
           <input id="nomEmpl" inputmode="none" class="entrada-empleado verGraficos"> 
          
           <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso">Ir</button>
+
           <button id="recarga" class="cierra-graficos"></button>
+
           <button class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
           <button class="cierra-graficos entrada-empleado"></button>
           <button class="cierra-graficos">Areas</button>
@@ -4498,13 +4526,18 @@
     </div>
 
     <div id="kaizen-buscador" class="buscador-kaizen">
-      <button class="btn-volver">←</button>
+
+      <button class="btn-volver">Volver</button>
+
       <h3>Kaizen propuestos</h3>
+
       <div class="input-propositor">
         <select name="" id="propositores"></select>
       </div>
+
       <div class="lista-propuestas">
       </div>
+      
     </div>
    
 
@@ -4514,10 +4547,18 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@3.1.0"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-    <script src="./modulo0.js"></script>
+
+    <!-- <script src="./modulo0.js"></script>
     <script src="./modulo1.js"></script>
     <script src="./modulo2.js"></script>
     <script src="./modulo3.js"></script>
-    <script src="./modulo4.js"></script>      
+    <script src="./modulo4.js"></script>  -->
+
+    <script src="./modulo0.js" defer></script>
+    <script src="./modulo1.js" defer></script>
+    <script src="./modulo2.js" defer></script>
+    <script src="./modulo3.js" defer></script>
+    <script src="./modulo4.js" defer></script>
+
   </body>  
 </html>
