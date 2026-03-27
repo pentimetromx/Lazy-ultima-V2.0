@@ -1,6 +1,6 @@
 let anchoPantalla = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 let screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-
+let allContenedores = ['agrupaOblicuos-XXX','links-auxiliar','visor-tools','abuelo-indicadores','pantalla-kaizen','overlay-cortina','cortina-bloqueo','kaizen-buscador','grilla-duro','padre-cuadricula','formulario-empleado','grilla-teñido-hijo','grilla-corta-entintado','blur-layer','calculadora','grilla-frena','abuelo-grafica12','tree-map','fichas-tecnicas','decisiones-estrategicas','padre-desempeños','wrapper-general','cont-videojuegos','links-ma','padre-instrucciones','father-employees','msg-empleado','ingresos-sistema','padre-ingresos-ma','padre-ingresos','contenedor-global','porta-imagen','barras-contenedor','contenedor-visor','grafico-area','abuelo-grafica4','titulo-calendar','titulo-mes','conte-maquinas','padre-grafica4','lista-maquinas','cont-span-semanas','barras-contenedor','alerta-3','alerta-4','contenedor-registro','barras-inicio','marco-formulario','marco-rodillos','marco-durezas','manta','marco-lubricantes','marco-freno','marco-teñido','marco-lubrica','marco-repuestos','butts-simulador','barras-inicio','barras-contenedor','contenedor-botonera','sections-fondo','sections-fondo','container01','perfiles-color','contenedor-2','control-panel-rgb','control-panel-cmyk','padre-rgb','padre-cmyk','simulador','conte-butts-graphs','gran-cortina','contraseña','input1','input2','input3','input4','tareas-lubricacion','dynamic-graphs-II','tareas-limpieza','dia','actividad-lubricacion','actividad-limpieza','meses','metas-diarias','calendario-mes','ventana-lateral','etqts-festo','vidColor-II','contenedor_padre_3','contenedor_padre_2','contenedor_padre','butt-links-I','butt-links-II','butt-links-III','buscador','search-form','butt-links','imagenes-plancha','uniteñido','video-placa','placa','imagen1','imagen2','imagen3','imagen4','imagenes-impresor','video-impresor','padre-naranja','tendencia-naranja','abuelo-variable','planetary','padre-variable','cont-variable','abuelo-plana','padre-plana','cont-plana','contenedorElementos','general','frec-lubrica','padre-grilla','grilla-durezas','abuelo-entintadores','padre-entintadores','abuelo-grilla-dureza','cont-arriba-rodillos','lubricantes','abuelo-cuadricula','abuelo-grilla-freno','abuelo-teñido','abuelo-grilla','abuelo-lubrica','padre-lubricante','freno-II','conti-boton-freno','cont-arriba','conti-boton-teñido','teñido-I','teñido-II','vidTeñido','teñido-vid','cont-arriba-freno','inicio','padre-lubrica','bis-abuelo','image-background','def2','over_size','over_side','equalizer','nicho_spans','padre','patern','first_half','cortina','second_half','wall_street_II','vid_festo','instrucciones_manometro','positionDisplay_3','display_2','container_interfaz_2','butts_interfaz_2','container_interfaz_3','butts_interfaz_3','display_3','subtitulo-I','display','container_interfaz','butts_interfaz','interfaz','conte-ayudas','ayudas-video','imagen-ayudas','logo-grande','agrupaOblicuos-XI','titulo-ancho','descripcion-I','ventana-lateral','linkList','contenedor','padre-circle','circle','options','nicho-videos','primerCont','vidColor','vid01','vidCicodelia','padre-interfaz','hijo-interaz-1','hijo-interaz-2','abandonar-perfiles','MiGrafica9-II','contLineas-II','contLineas','title-interfaz','vidElem','kaizen-propuestos','canvasContainer3','troubleshooting','conti-boton','canvasContainer2','conteneMantaut','MiGrafica','contImaginario-II','contImaginario-III','padre-1','padre-2','imag3','imag4','contImaginario','bailarina','pneumatico','padre-neumat','largoImpresion','contImgEntrenos','imag1','imag2','linksMA','linkLis','sitio-en-construccion','curado-uv','video-container','conti-video-background','video-background-planas','contenedor-9','conti-video-bancada','plate-smed-I','contVid-smed-I','butt-repuestos-III','imgsIsopropil','contenedor-8','bancada','contVid-smed','contenedor-7-VII','butt-repuestos-II','butt-repuestos-I','contenedor-7-VI','sector-smed','sector-entintador','sector-distribuidor','conti-video-smed','conti-video-entintador','conti-video-distribuidor','conti-boton-repuestos','contenedor-7-V','plate-smed','contenedor-7','butt-repuestos','images-entintador','toggleVideoButton','videoElement1','videoElement1-II','video-entintado','videos-training','videoElement2','contenedor-7','contene-images','cuartoContDensito','tercerContDensito','segundoContDensito','contDensito','imgs-densito','conte-botDensito','conte-botDensitoII','imgs-prepress','frame-rollers','links-inicialesI','linkListI','links-iniciales','impresorImg','agrupaOblicuos-IX','imagenes-manta','cont-titulo-operacion','cont-titulo-calidad','cont-titulo-comercial','cont-titulo-admin','control-neumatico','rodillo-infeed','contBotCasos','puesta-punto','mejoras-kai','casos-kaizen','kaizen-propuestos','toyota-kaizen','toyota-kaizen-antes','materiales-kaizen','planos-kaizen','conti-boton','conti-boton-kaizen','conti-boton-planos','kaizenCont','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','verticales-alimentador','unidProceso','rebobinador','torre-imp','pantalla-tintero','cont-links','imgTorre','imgsRepuestos','agrupaOblicuos-II','pantalla-frente','pantalla-mandos','pantalla-servicio','pantalla-atras','videosTraining','contPortPlaca','contPortManta','contImpresor','grilla-entintado','contImgDistribuidor','contImgEntintador','cont-variable','bancada-torre-II','bateria-entintado-II','cont-secador','sitema-humedad','pre-prensa','agrupaOblicuos-placa','densitometria','contImagGraf','contImagNeg','lubricacion','title-interfaz','iconos','canvasContainer4','canvasContainer4-II','canvasContainer5','canvasContainer5-II','canvasContainer6','canvasContainer6-II','canvasContainer7','canvasContainer7-II','canvasContainer8','canvasContainer8-II','canvasContainer9','canvasContainer9-II','conte-secundario','contenedor-vertical','franja-Blanca','cont-titulo','videoBackground','video-background','videoBackgroundII','lubri-II','lubri-I','images-smed','images-distribuidor','lubri-III','freno','uniTeñido','uniTeñidos','rodilleria', 'cont-user','cont-userI','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7', 'colorCMYK', 'colorDisplay','container-slider','padre-controles','alerta-perfiles', 'cliente-nombre', 'bot-revertir', 'formulario-perfiles','boton-reseteo','boton-perfiles','unit-job-track','lista-lineas','lista-clientes','job-files','clock','texto-perf-indiv','bot-modific','blur-interfaz-perfiles','cont-modificadores','info-perfiles','admin-perfiles','cronometro','cronos','inerfaz-ajuste-fino','perfil-individual','control-perfiles','interfaz-registro','perfiles-entintado','perfil-entintado','interfaz-perfiles','water-background','segunda-pantalla','contenedor-padre','conte-colors','sombra','control-panel','contiene-lineas','triada-videos','trinquete','home-gym','tinta_segmento','trinquete-multi','trinquete-rodillo-tintero-v','trinquete-rodillo-tintero','tintero-interior','tintero-palanca','dos-videos','video-doctor-blade','video-insolacion','video-desliza-plancha','ajuste-corte','corte-oscilacion','corte-ajuste','video-graduar-sheeter','video-cadena-offset','video-completo','video-manta-capas','video-manta-enrolla','video-la-manta','video-manta-dos','video-manta-render','video-cuchilla-1','video-cuchilla','video-cuchilla-1','video-cuchilla','imagenes-sheeter','contenedor-1','contenedor-2','image-uno','image-tres','image-cuatro','contenedor-sheeter','formulario-cuenta']
 let arrayAllPneumatica = ['contImaginario-II','vid-pneumatic','bailarina','padre-neumat','pneumatico','control-neumatico','imag1','imag2','imag3','imag4','contImaginario','vid-basculante','rodillo-infeed','puesta-punto','contImgEntrenos']
 let idsMA = ['control-neumatico','rodillo-infeed','contBotCasos','puesta-punto','casos-kaizen','mejoras-kai','kaizen-propuestos','toyota-kaizen','toyota-kaizen-antes','planos-kaizen','materiales-kaizen','kaizenCont','conti-boton-planos', 'conti-boton-kaizen','troubleshooting','canvasContainer2','canvasContainer3', 'contImagNeg',,'contImagGraf','canvasContainer4','canvasContainer4-II','canvasContainer5','canvasContainer5-II','canvasContainer6','canvasContainer6-II','canvasContainer7','canvasContainer7-II','canvasContainer8','canvasContainer8-II','canvasContainer9','canvasContainer9-II']
 const coleccion = document.querySelectorAll('.desbobinador, .desbobinador-I, .uTeñido, .alimentadorId, .unidpre-prensaProceso, .rebobinador, .contTorrImp')
@@ -20,6 +20,8 @@ let arrayButtsRutilantesIII = ['butt-001130','butt-0012','butt-0016','butt-0021'
 const pantallas = ['pantalla-frente', 'pantalla-mandos','pantalla-servicio','pantalla-atras']
 const btnSalir = document.querySelector('#conte-butts-calculadora > div:nth-child(1)')
 const btnDblFlecha = document.querySelector('.columna-derecha button:nth-child(6)')
+const btnAreas = document.querySelector('.columna-derecha button:nth-child(7)')
+const firstMachine = document.querySelector('#lista-maquinas span:nth-child(1)')
 const mediaDesktop = window.matchMedia('(pointer: fine) and (min-width: 1025px)');
 let contiVidDistribuidor = document.getElementById('conti-video-distribuidor')  
 let arrayButtsIniciales = ['bot-atras','bot-inicial','iniciar','bot-atras12']
@@ -91,14 +93,19 @@ let troublesh = document.getElementById('troubleshooting')
 let linkIni1 = document.getElementById('links-inicialesI')
 let contienePasos = document.getElementById('puesta-punto')
 let contiButtCasos = document.getElementById('mejoras-kai')
+let alertaMSG = document.querySelector('#ventana-alerta')
 const textToColor = document.getElementById("textToColor")
 let contVideo = document.getElementById('video-entintado')
+let botones = document.querySelectorAll('.butt-mautonomo')
 let linkIni2 = document.getElementById('links-iniciales') 
 let contImgsSmed = document.getElementById('images-smed') 
 let arrayButtsKaizen = ['btn10','btn11','btn12','btn17']
 let padreManometro = document.getElementById('padre-1')
 let contVid = document.getElementById('videosTraining')
 const fichaGrid = document.querySelector('.ficha-grid');
+let container1 = document.getElementById('container01')
+let botIzquierda = document.getElementById('bot-atras')
+let botDerecha = document.getElementById('bot-atras12')
 let botonClickIII = document.getElementById('boton13') 
 let contPlana = document.getElementById('cont-plana')
 let botonClickIV = document.getElementById('boton19')
@@ -106,59 +113,53 @@ let botonClickV = document.getElementById('boton25')
 let linkListI = document.getElementById("linkListI")
 let botonMa = document.getElementById('bot-mantaut') 
 let botonClickII = document.getElementById('boton7')
-let botonClick = document.getElementById('boton1')
-let linkList = document.getElementById("linkList")
-let arrayButtsPlanos = ['btn13','btn14','btn15']
-let arrayButtsInstructivos = ['contBotCasos']
-
-let uTeñido = document.getElementById('uTeñidos')
-let currentID = null; 
-let butInicio = document.getElementById('bot-inic')
-let display = document.getElementById('display') 
-let displayII = document.getElementById('display_2')     
-let aplique = document.getElementById('aplique_3')
 let apliqueII = document.getElementById('aplique_2')
-let allContenedores = ['agrupaOblicuos-XXX','links-auxiliar','visor-tools','abuelo-indicadores','pantalla-kaizen','overlay-cortina','cortina-bloqueo','kaizen-buscador','grilla-duro','padre-cuadricula','formulario-empleado','grilla-teñido-hijo','grilla-corta-entintado','blur-layer','calculadora','grilla-frena','abuelo-grafica12','tree-map','fichas-tecnicas','decisiones-estrategicas','padre-desempeños','wrapper-general','cont-videojuegos','links-ma','padre-instrucciones','father-employees','msg-empleado','ingresos-sistema','padre-ingresos-ma','padre-ingresos','contenedor-global','porta-imagen','barras-contenedor','contenedor-visor','grafico-area','abuelo-grafica4','titulo-calendar','titulo-mes','conte-maquinas','padre-grafica4','lista-maquinas','cont-span-semanas','barras-contenedor','alerta-3','alerta-4','contenedor-registro','barras-inicio','marco-formulario','marco-rodillos','marco-durezas','manta','marco-lubricantes','marco-freno','marco-teñido','marco-lubrica','marco-repuestos','butts-simulador','barras-inicio','barras-contenedor','contenedor-botonera','sections-fondo','sections-fondo','container01','perfiles-color','contenedor-2','control-panel-rgb','control-panel-cmyk','padre-rgb','padre-cmyk','simulador','conte-butts-graphs','gran-cortina','contraseña','input1','input2','input3','input4','tareas-lubricacion','dynamic-graphs-II','tareas-limpieza','dia','actividad-lubricacion','actividad-limpieza','meses','metas-diarias','calendario-mes','ventana-lateral','etqts-festo','vidColor-II','contenedor_padre_3','contenedor_padre_2','contenedor_padre','butt-links-I','butt-links-II','butt-links-III','buscador','search-form','butt-links','imagenes-plancha','uniteñido','video-placa','placa','imagen1','imagen2','imagen3','imagen4','imagenes-impresor','video-impresor','padre-naranja','tendencia-naranja','abuelo-variable','planetary','padre-variable','cont-variable','abuelo-plana','padre-plana','cont-plana','contenedorElementos','general','frec-lubrica','padre-grilla','grilla-durezas','abuelo-entintadores','padre-entintadores','abuelo-grilla-dureza','cont-arriba-rodillos','lubricantes','abuelo-cuadricula','abuelo-grilla-freno','abuelo-teñido','abuelo-grilla','abuelo-lubrica','padre-lubricante','freno-II','conti-boton-freno','cont-arriba','conti-boton-teñido','teñido-I','teñido-II','vidTeñido','teñido-vid','cont-arriba-freno','inicio','padre-lubrica','bis-abuelo','image-background','def2','over_size','over_side','equalizer','nicho_spans','padre','patern','first_half','cortina','second_half','wall_street_II','vid_festo','instrucciones_manometro','positionDisplay_3','display_2','container_interfaz_2','butts_interfaz_2','container_interfaz_3','butts_interfaz_3','display_3','subtitulo-I','display','container_interfaz','butts_interfaz','interfaz','conte-ayudas','ayudas-video','imagen-ayudas','logo-grande','agrupaOblicuos-XI','titulo-ancho','descripcion-I','ventana-lateral','linkList','contenedor','padre-circle','circle','options','nicho-videos','primerCont','vidColor','vid01','vidCicodelia','padre-interfaz','hijo-interaz-1','hijo-interaz-2','abandonar-perfiles','MiGrafica9-II','contLineas-II','contLineas','title-interfaz','vidElem','kaizen-propuestos','canvasContainer3','troubleshooting','conti-boton','canvasContainer2','conteneMantaut','MiGrafica','contImaginario-II','contImaginario-III','padre-1','padre-2','imag3','imag4','contImaginario','bailarina','pneumatico','padre-neumat','largoImpresion','contImgEntrenos','imag1','imag2','linksMA','linkLis','sitio-en-construccion','curado-uv','video-container','conti-video-background','video-background-planas','contenedor-9','conti-video-bancada','plate-smed-I','contVid-smed-I','butt-repuestos-III','imgsIsopropil','contenedor-8','bancada','contVid-smed','contenedor-7-VII','butt-repuestos-II','butt-repuestos-I','contenedor-7-VI','sector-smed','sector-entintador','sector-distribuidor','conti-video-smed','conti-video-entintador','conti-video-distribuidor','conti-boton-repuestos','contenedor-7-V','plate-smed','contenedor-7','butt-repuestos','images-entintador','toggleVideoButton','videoElement1','videoElement1-II','video-entintado','videos-training','videoElement2','contenedor-7','contene-images','cuartoContDensito','tercerContDensito','segundoContDensito','contDensito','imgs-densito','conte-botDensito','conte-botDensitoII','imgs-prepress','frame-rollers','links-inicialesI','linkListI','links-iniciales','impresorImg','agrupaOblicuos-IX','imagenes-manta','cont-titulo-operacion','cont-titulo-calidad','cont-titulo-comercial','cont-titulo-admin','control-neumatico','rodillo-infeed','contBotCasos','puesta-punto','mejoras-kai','casos-kaizen','kaizen-propuestos','toyota-kaizen','toyota-kaizen-antes','materiales-kaizen','planos-kaizen','conti-boton','conti-boton-kaizen','conti-boton-planos','kaizenCont','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','verticales-alimentador','unidProceso','rebobinador','torre-imp','pantalla-tintero','cont-links','imgTorre','imgsRepuestos','agrupaOblicuos-II','pantalla-frente','pantalla-mandos','pantalla-servicio','pantalla-atras','videosTraining','contPortPlaca','contPortManta','contImpresor','grilla-entintado','contImgDistribuidor','contImgEntintador','cont-variable','bancada-torre-II','bateria-entintado-II','cont-secador','sitema-humedad','pre-prensa','agrupaOblicuos-placa','densitometria','contImagGraf','contImagNeg','lubricacion','title-interfaz','iconos','canvasContainer4','canvasContainer4-II','canvasContainer5','canvasContainer5-II','canvasContainer6','canvasContainer6-II','canvasContainer7','canvasContainer7-II','canvasContainer8','canvasContainer8-II','canvasContainer9','canvasContainer9-II','conte-secundario','contenedor-vertical','franja-Blanca','cont-titulo','videoBackground','video-background','videoBackgroundII','lubri-II','lubri-I','images-smed','images-distribuidor','lubri-III','freno','uniTeñido','uniTeñidos','rodilleria', 'cont-user','cont-userI','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7', 'colorCMYK', 'colorDisplay','container-slider','padre-controles','alerta-perfiles', 'cliente-nombre', 'bot-revertir', 'formulario-perfiles','boton-reseteo','boton-perfiles','unit-job-track','lista-lineas','lista-clientes','job-files','clock','texto-perf-indiv','bot-modific','blur-interfaz-perfiles','cont-modificadores','info-perfiles','admin-perfiles','cronometro','cronos','inerfaz-ajuste-fino','perfil-individual','control-perfiles','interfaz-registro','perfiles-entintado','perfil-entintado','interfaz-perfiles','water-background','segunda-pantalla','contenedor-padre','conte-colors','sombra','control-panel','contiene-lineas','triada-videos','trinquete','home-gym','tinta_segmento','trinquete-multi','trinquete-rodillo-tintero-v','trinquete-rodillo-tintero','tintero-interior','tintero-palanca','dos-videos','video-doctor-blade','video-insolacion','video-desliza-plancha','ajuste-corte','corte-oscilacion','corte-ajuste','video-graduar-sheeter','video-cadena-offset','video-completo','video-manta-capas','video-manta-enrolla','video-la-manta','video-manta-dos','video-manta-render','video-cuchilla-1','video-cuchilla','video-cuchilla-1','video-cuchilla','imagenes-sheeter','contenedor-1','contenedor-2','image-uno','image-tres','image-cuatro','contenedor-sheeter','formulario-cuenta']
+let botonClick = document.getElementById('boton1')
+let displayII = document.getElementById('display_2')     
+let linkList = document.getElementById("linkList")
+let butInicio = document.getElementById('bot-inic')
 let contIMPlaca = document.getElementById('placa')
 let contIMmanta = document.getElementById('manta')
-const line = document.getElementById("line")  
+let uTeñido = document.getElementById('uTeñidos')
+let aplique = document.getElementById('aplique_3')
+let arrayButtsPlanos = ['btn13','btn14','btn15']
+let display = document.getElementById('display') 
 const lineI = document.getElementById("lineI")
+let arrayButtsInstructivos = ['contBotCasos']
+const line = document.getElementById("line")  
 
-let hoverTimeout;
-let hideTimeout;
-let color = ''  
-let contadorClicks = 0;
-let container1 = document.getElementById('container01')
-let flagEmpleado = true
-let empleadoGlobal = null;
-let alertaMSG = document.querySelector('#ventana-alerta')
-let botIzquierda = document.getElementById('bot-atras')
-let botDerecha = document.getElementById('bot-atras12')
-let currentRotation = 0;
-let currentZoom = 0;
 let lastFocusedInput = null;
-let alertaGlobal=null;
-let botones = document.querySelectorAll('.butt-mautonomo')
-let turnBlock = false
-let turnGraphic = false
-let currentIndex = 0;
-let actualtIndex = 0;
-let nowIndex = 0;
-let acumuladorVideos = []  
-let intervaloColor;   
-let videoStore = []
-let firstClick = true;
-let clickHabilitado = true;
-let primeraVez = false;
-let tecnologyRGB = false;
-let tecnologyCMYK = false;
-let iterations;
-let arrayPosicionnador = []
-let destino = 257
-let idsArray = []; 
 let idsArrayEliminados = []
+let arrayPosicionnador = []
+let clickHabilitado = true;
+let empleadoGlobal = null;
+let tecnologyCMYK = false;
+let tecnologyRGB = false;
+let acumuladorVideos = []
+let primeraVez = false;
+let turnGraphic = false
+let firstClick = true;
+let alertaGlobal=null;
 let previousElementID
 let elementoEliminado
+let turnBlock = false
+let currentIndex = 0;
+let actualtIndex = 0;
+let intervaloColor;   
+let videoStore = []
+let destino = 257
+let nowIndex = 0;
+let idsArray = []; 
+let contadorClicks = 0;
+let currentID = null; 
+let flagEmpleado = true
+let currentRotation = 0;
+let currentZoom = 0;
+let hoverTimeout;
+let hideTimeout;
+let iterations;
+let color = ''  
+
 
 
 const alimentadorId = document.getElementById('alimentadorId')
@@ -206,12 +207,15 @@ const slider1 = document.getElementById('slider')
 const butt2 = document.getElementById('button2')
 const dias = document.querySelectorAll(".dia");
 const inputs = document.querySelectorAll('.numero'); 
+const primerItem = document.querySelector('#vinculos-ma li:first-child');
+const segundoItem = document.querySelector('#vinculos-ma li:nth-child(2)');
+const tercerItem = document.querySelector('#vinculos-ma li:nth-child(3)');
 const marcoGraficas = document.querySelector('#contLineas') 
 const msgEmpleado = document.querySelector('#msg-empleado p')
-const btnAreas = document.querySelector('.columna-derecha button:nth-child(7)')
+
+
 let padreImgs = document.getElementById('imgs-prepress')
 const padreLinks = document.querySelector('#links-ma')
-const firstMachine = document.querySelector('#lista-maquinas span:nth-child(1)')
 const secondMachine = document.querySelector('#meses div:nth-child(1)')
 const btnEntrar = document.querySelector('#entrar-cantidad')  
 const btnLimpiarMA = document.querySelector('#limpia-ingreso-ma')
@@ -220,9 +224,6 @@ let listaClientes = document.getElementById('lista-clientes')
 const btnModificar = document.querySelector('#modifica-ingreso')
 const btnLimpiar = document.querySelector('#limpia-ingreso')
 const btnAgregar = document.querySelector('#nuevo-ingreso');
-const primerItem = document.querySelector('#vinculos-ma li:first-child');
-const segundoItem = document.querySelector('#vinculos-ma li:nth-child(2)');
-const tercerItem = document.querySelector('#vinculos-ma li:nth-child(3)');
 const padre = document.getElementById('ingreso-padre');
 const hijos = document.querySelectorAll('#links-auxiliar > li');
 const hijosColor = document.querySelectorAll('#links-color li');
@@ -547,47 +548,50 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  
   const lazyVideos = Array.from(document.querySelectorAll("video.lazy"));
-  if ("IntersectionObserver" in window) {
-    let lazyVideoObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          let lazyVideo = entry.target;
-          // Pausar para evitar el error
-          lazyVideo.pause();
-          lazyVideo.removeAttribute("autoplay");  // Desactivar autoplay temporal
-          for (let source of lazyVideo.children) {
-            if (source.tagName === "SOURCE") {
-              source.src = source.dataset.src;
-            }
+if ("IntersectionObserver" in window) {
+  let lazyVideoObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        let lazyVideo = entry.target;
+        lazyVideo.pause();
+        lazyVideo.removeAttribute("autoplay");
+        for (let source of lazyVideo.children) {
+          if (source.tagName === "SOURCE") {
+            source.src = source.dataset.src;
           }
-          lazyVideo.load();
-          // Ahora puedes volver a activar el autoplay si quieres
-          lazyVideo.play().catch(err => {
-            // Silencia errores si el autoplay es bloqueado por políticas del navegador
-            console.log('Autoplay bloqueado o error:', err);
-          });
-          lazyVideo.classList.remove("lazy");
-          lazyVideoObserver.unobserve(lazyVideo);
         }
-      });
-    });
-    lazyVideos.forEach(lazyVideo => lazyVideoObserver.observe(lazyVideo));
-  } else {
-    lazyVideos.forEach(lazyVideo => {
-      lazyVideo.pause();
-      lazyVideo.removeAttribute("autoplay");
-      for (let source of lazyVideo.children) {
-        if (source.tagName === "SOURCE") {
-          source.src = source.dataset.src;
-        }
+        lazyVideo.load();
+        lazyVideo.addEventListener('loadeddata', () => {
+          if (!lazyVideo.dataset.clickActivated) {
+            lazyVideo.play().catch(err => console.log('Autoplay bloqueado:', err))
+          }
+        }, { once: true })
+        lazyVideo.classList.remove("lazy");
+        lazyVideoObserver.unobserve(lazyVideo);
       }
-      lazyVideo.load();
-      lazyVideo.play().catch(err => {
-        console.log('Autoplay bloqueado o error:', err);
-      });
     });
-  }
+  });
+  lazyVideos.forEach(lazyVideo => lazyVideoObserver.observe(lazyVideo));
+} else {
+  lazyVideos.forEach(lazyVideo => {
+    lazyVideo.pause();
+    lazyVideo.removeAttribute("autoplay");
+    for (let source of lazyVideo.children) {
+      if (source.tagName === "SOURCE") {
+        source.src = source.dataset.src;
+      }
+    }
+    lazyVideo.load();
+    lazyVideo.addEventListener('loadeddata', () => {
+      if (!lazyVideo.dataset.clickActivated) {
+        lazyVideo.play().catch(err => console.log('Autoplay bloqueado:', err))
+      }
+    }, { once: true })
+  });
+}
+
   // Hover en botones
   const buttons = document.querySelectorAll('.Bot-inicio3, .Bot-inicio7');
   buttons.forEach(button => {

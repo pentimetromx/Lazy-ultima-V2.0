@@ -3360,6 +3360,7 @@ function guardarObjetoEnLocalStorage(){
   localStorage.setItem('objetoEspecial', JSON.stringify(objetoEspecial));
   localStorage.setItem('objetoBarniz', JSON.stringify(objetoBarniz));
 }
+
 function traerObjetoDeLocalStorage() {
   const objetoAmarilloDesdeLocal = JSON.parse(localStorage.getItem('objetoAmarillo') || '{}'); 
   const objetoMagentaDesdeLocal = JSON.parse(localStorage.getItem('objetoMagenta') || '{}');

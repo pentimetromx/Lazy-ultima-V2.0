@@ -1105,12 +1105,17 @@ function rodillosKaizen(idButton,vidElem) {
       container1.style.display='grid'
 
       document.querySelector('#fichas-tecnicas').style.display='flex'
-      document.querySelector('#kaizen-propuestos > .cell:nth-child(1)').classList.remove('move-kaizen');
-      document.querySelector('#kaizen-propuestos > .cell:nth-child(2)').classList.remove('move-kaizen-1');
-      document.querySelector('#kaizen-propuestos > .cell:nth-child(3)').classList.remove('move-kaizen-2');
-      document.querySelector('#kaizen-propuestos > .cell:nth-child(4)').classList.remove('move-kaizen-3');
-      document.querySelector('#kaizen-propuestos > .cell:nth-child(5)').classList.remove('move-kaizen-4');
-      document.querySelector('#kaizen-propuestos > .cell:nth-child(6)').classList.remove('move-kaizen-5');
+
+      const cells = document.querySelectorAll('#kaizen-propuestos > .cell');
+
+      cells.forEach((cell, index) => {
+        if (index === 0) {
+          cell.classList.remove('move-kaizen');
+        } else {
+          cell.classList.remove(`move-kaizen-${index}`);
+        }
+      });
+      
 
       desaparecerElemento('fichas-tecnicas')
       
