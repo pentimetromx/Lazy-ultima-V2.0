@@ -6,6 +6,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <title>Lazy MINIFICADO</title> 
+
+
+
+    <style>
+      body,html{
+        margin:0;
+        padding:0;
+        height:100%;
+        overflow:hidden;
+        background-color:rgb(30,30,30);
+        font-family:'Arial',sans-serif;
+        user-select:none;
+      }
+      #img-logo{
+        position:relative;
+        left:-318px;
+        top:-1px;
+        display:none;
+      }
+      #titulo-ancho{
+        position:absolute;
+        display:flex;
+        width:0;
+        height:auto;
+        transition:width 0.7s ease;
+      }
+      .numero{
+        width:calc(10% - 2px);
+        margin:0 12px;
+        text-align:center;
+        font-family:"Courier New",Courier,monospace;
+        font-size:0.7vw;
+        color:rgb(0,255,0);
+      }
+      .contraseña{
+        position:absolute;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        color:whitesmoke;
+        background-color:#000;
+        top:60%;
+        left:-35%;
+        width:15.6%;
+        height:4vh;
+        border-radius:7px;
+        transition:transform 0.9s ease;
+      }
+    </style>
+
+
+
+
     <!-- <link rel="stylesheet" href="./Matriz-1.css">
     <link rel="stylesheet" href="./Matriz-2.css"> -->
 
