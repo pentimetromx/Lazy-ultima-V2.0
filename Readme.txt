@@ -153,6 +153,7 @@ inputPerfil.addEventListener('blur', () => {
 });
 
 
+OJO !!!!!!!!!!!!!!!!  TENGO COMENTADAS LINEAS AL INICIO DE LOS DOS .CSS  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 PARA MIRAR SI SE BORRA function mostrarVentanaEmergente(mensaje) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -163,14 +164,11 @@ PARA MIRAR SI SE BORRA function mostrarVentanaEmergente(mensaje) !!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!! function function eliminarClaveLocalStorage(clave) => function eliminarClaveLocalStorage('Empleados')
 
 
-font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+#linkList > li:nth-child(2)::after,
+padding-left: 23px;
 
 
 
-
-en la carpeta : TEXTO MOVIL HICE UNA IMPLEMENTACION
-
-ESTAMOS EN LAS AREAS DE TRABAJO, APLICAR BIEN LA FUNCION ocultarTodos() a los videos por que a las imágenes ya se le hizo el trabajo
 
 
 
