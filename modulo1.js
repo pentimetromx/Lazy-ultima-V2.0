@@ -363,6 +363,25 @@ function showRepuesto(elementId) {
     console.log(idsArray);
   }
 }
+
+function cargarColaboradoresDesdeStorage() {
+  const almacenJSON = localStorage.getItem('empleadosRegistrados');
+  if (!almacenJSON) return [];
+
+  const almacen = JSON.parse(almacenJSON);
+
+  const almacenArray = Array.isArray(almacen) 
+    ? almacen 
+    : Object.values(almacen);
+
+  return almacenArray.map(empleado => ({
+    ruta: empleado.imagen || "./assets/silueta.png",
+    nombre: empleado.nombre || "Sin nombre"
+  }));
+}
+
+const colaboradores = cargarColaboradoresDesdeStorage();
+
 document.addEventListener('DOMContentLoaded', () => {
   const cuartoHijo   = document.getElementById('ultimoElemento');
   const segundaLista = document.getElementById('segundaLista');
