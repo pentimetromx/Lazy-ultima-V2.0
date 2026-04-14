@@ -1696,7 +1696,7 @@ const imagennesColaboradores = [
 ]
 
 
-function cargarColaboradoresDesdeStorage() {
+/* function cargarColaboradoresDesdeStorage() {
   const almacenJSON = localStorage.getItem('empleadosRegistrados');
   if (!almacenJSON) return [];
 
@@ -1712,7 +1712,7 @@ function cargarColaboradoresDesdeStorage() {
   }));
 }
 
-const colaboradores = cargarColaboradoresDesdeStorage();
+const colaboradores = cargarColaboradoresDesdeStorage(); */
 
 const imgEmpleado = document.getElementById('empleadoImg');
 const btnMostrar = document.getElementById('btnMostrar');
