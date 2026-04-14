@@ -1,1 +1,7401 @@
-function Geometria(){console.clear();let e=document.querySelector("#porta-imagen");var l=e.getBoundingClientRect(),t=l.top,o=l.left,a=l.width,n=l.height,r=window.getComputedStyle(e),i=r.position,s=r.display,c=r.visibility,d=r.zIndex,u=l.width>0&&l.height>0&&"none"!==s&&"hidden"!==c;console.log("PADRE :",e.id),console.log("Top:",t),console.log("Left:",o),console.log("Height:",n),console.log("Width:",a),console.log("Position:",i),console.log("Display:",s),console.log("Visibility:",c),console.log("Z-Index:",d),console.log("Is Visible:",u);var g=document.getElementById("contLineas"),l=g.getBoundingClientRect(),t=l.top,o=l.left,a=l.width,n=l.height,r=window.getComputedStyle(g),i=r.position,s=r.display,c=r.visibility,u=l.width>0&&l.height>0&&"none"!==s&&"hidden"!==c;console.log("2 :","PADRE :",g.id),console.log("2 :","Top:",t),console.log("2 :","Left:",o),console.log("2 :","Height:",n),console.log("2 :","Width:",a),console.log("2 :","Position:",i),console.log("2 :","Display:",s),console.log("2 :","Visibility:",c),console.log("2 :","Is Visible:",u),console.log("Z-Index:",r.zIndex)}function animarWidth(e,l=1e3){let t=document.querySelector(e);if(!t)return;let o=1,a=(93-o)/(l/16.7);function n(){if((o+=a)>=93){t.style.height="93%";return}t.style.height=o+"%",requestAnimationFrame(n)}requestAnimationFrame(n)}function bloquearMenuPersonalizado(e){e.preventDefault()}function desactivarClicEnElementos(...e){e.forEach(e=>{e&&"function"==typeof e[Symbol.iterator]?e.forEach(e=>{e.style.pointerEvents="none"}):e instanceof HTMLElement&&(e.style.pointerEvents="none")})}function reactivarClicEnElementos(...e){e.forEach(e=>{e.forEach(e=>{e.style.pointerEvents="auto"})})}document.addEventListener("keydown",function(e){if(e.ctrlKey&&e.shiftKey)switch(e.key){case"\xd1":let l=JSON.parse(localStorage.getItem("empleadosRegistrados"));console.log("empleadosRegistrados : ",l),console.log("primer empleado almacenado : ",l[21375808]),document.querySelector("#iconos").style.display="flex",document.querySelector("#contLineas").style.display="grid",borrrrrrrrrrrarrrrrrrrrrrrrrrrrrrr();break;case"Z":localStorage.removeItem("kaizenRegistrados");break;case"H":Geometria();break;case"X":eliminarClaveLocalStorage("empleadosRegistrados")}});const masTintaGeneral=document.querySelector("#ctrl-gral-tinta > div:nth-of-type(1)"),menosTintaGeneral=document.querySelector("#ctrl-gral-tinta > div:nth-of-type(2)"),masSolucionGeneral=document.querySelector("#ctrl-gral-agua > div:nth-of-type(1)"),menosSolucionGeneral=document.querySelector("#ctrl-gral-agua > div:nth-of-type(2)"),salirCalculadora=document.querySelector("#conte-butts-calculadora"),botonesSelectores=document.querySelectorAll(".butt-selector"),nombreCliente=document.querySelector(".nombre-cliente"),alertaBotones=document.querySelector(".alerta-botones"),buttsGenerales=document.querySelectorAll(".mod-tinta"),alertaPerfil=document.querySelector(".alerta-perfil"),buttsJobTrack=document.querySelectorAll(".estilo-1"),buttsControl=document.querySelectorAll(".div-ctrl"),grupoBotsCrear=document.querySelectorAll(".jobs"),buttsColores=document.querySelectorAll(".cabeza"),irAconsola=document.querySelector("#ir-consola"),verdeAgua="rgb(127, 255, 212)",rojo="rgba(255, 0, 0, 0.63)",especial="rgb(255,130,0)",barniz="rgb(200,200,200)",amarillo="rgb(255,255,0)",magenta="rgb(255,0,255)",cian="rgb(0,255,255)",verde="rgb(0,255,0)",negro="rgb(0,0,0)",azul="blue";let botonera=document.querySelectorAll(".botones-registro"),botonInicio=document.getElementById("startButton"),botonDetener=document.getElementById("stopButton"),botonReseteo=document.getElementById("resetButton"),lineaClientes=document.querySelector("#lista-lineas"),flagAplicacion=!1,iniciador=document.getElementById("iniciador"),retroceder=document.getElementById("iniciador-I"),almacenObjetos=JSON.parse(localStorage.getItem("coloresRegistrados"))||{},objetoGlobal=null,nombreProvisional=null,objetoGlobalColor=null;function ocultaElementos(e,l,t,o,a,n,r,i,s,c,d,u,g,b){for(var y=[e,l,t,o,a,n,r,i,s,c,d,u,g,b],m=0;m<allContenedores.length;m++){var p=document.getElementById(allContenedores[m]);p&&(p.style.display=y.includes(allContenedores[m])?"flex":"none")}document.querySelector("#simulador").style.display="flex",container1.style.display="grid";switch(document.getElementById("component1").style.display="flex",e){case"inerfaz-ajuste-fino":("none"===interfaz.style.display||"hidden"===interfaz.style.visibility)&&(interfaz.style.display="flex");break;case"colorCMYK":let f=document.querySelector("#padre-cmyk");mostrarElementoProgressivo(f);break;case"colorDisplay":let v=document.querySelector("#padre-rgb");mostrarElementoProgressivo(v)}}function updateDigitalClock(){let e=new Date,l=e.getHours(),t=e.getMinutes(),o=e.getSeconds();l=l<10?"0"+l:l,t=t<10?"0"+t:t,o=o<10?"0"+o:o;let a=`${l}:${t}:${o}`;document.getElementById("clock").textContent=a}const colorComponents=document.querySelectorAll(".intermitencia");let cronometroInterval=null,elapsedTime=0,primerClick=!0,colorInterval;const emergency=document.getElementById("emergency");function toggleBackgroundColor(){let e=document.querySelectorAll(".equal"),l=!0;colorInterval=setInterval(()=>{e.forEach(e=>{l?(e.style.backgroundColor="rgb(255, 0, 0)",colorComponents.forEach(e=>{e.style.backgroundColor=""})):(e.style.backgroundColor="rgb(255, 166, 0)",colorComponents.forEach(e=>{e.style.backgroundColor="rgb(255, 166, 0)"}))}),l=!l},500)}function startCronometro(){botonDetener.style.backgroundColor="",botonInicio.style.backgroundColor="rgb(0,255,0)",botonInicio.style.color="rgb(77,0,0)",botonReseteo.style.backgroundColor="",null===cronometroInterval&&(cronometroInterval=setInterval(()=>{elapsedTime+=1;let e=Math.floor(elapsedTime/36e3),l=Math.floor(elapsedTime%36e3/600),t=Math.floor(elapsedTime%600/10),o=elapsedTime%10;document.getElementById("cronometro").textContent=`${e.toString().padStart(2,"0")}:${l.toString().padStart(2,"0")}:${t.toString().padStart(2,"0")}.${o}`},100))}function stopCronometro(){"rgb(0,255,0)"===botonInicio.style.backgroundColor?(botonDetener.style.backgroundColor="rgb(255,0,0)",botonDetener.style.color="rgb(255,255,255)",botonReseteo.style.backgroundColor=""):(botonInicio.style.backgroundColor="",botonInicio.style.color="",botonDetener.style.backgroundColor="rgb(255,0,0)",botonDetener.style.color="rgb(255,255,255)"),null!==cronometroInterval&&(clearInterval(cronometroInterval),cronometroInterval=null)}function resetCronometro(){"rgb(255,0,0)"===botonDetener.style.backgroundColor&&(botonDetener.style.backgroundColor="",botonDetener.style.color="",botonInicio.style.backgroundColor="",botonInicio.style.color=""),null===cronometroInterval&&(stopCronometro(),elapsedTime=0,document.getElementById("cronometro").textContent="00:00:00.0",botonDetener.style.backgroundColor="",botonDetener.style.color="",botonInicio.style.backgroundColor="",botonInicio.style.color="")}emergency.addEventListener("click",()=>{let e=document.getElementById("sombra");primerClick?(emergency.style.transform="translateY(3px) rotate(85deg)",e.style.height="21%",e.style.width="12%",e.style.left="27.5%",e.style.top="9%",toggleBackgroundColor(),balizaAlarma()):(emergency.style.transform="translateY(0px) rotate(0deg)",e.style.height="",e.style.width="",e.style.left="",e.style.top="",colorComponents.forEach(e=>{e.style.backgroundColor="",detenerBaliza()}),clearInterval(colorInterval),document.querySelectorAll(".equal").forEach(e=>{e.style.backgroundColor="rgb(255, 166, 0)"})),primerClick=!primerClick}),botonInicio.addEventListener("click",startCronometro),botonDetener.addEventListener("click",stopCronometro),botonReseteo.addEventListener("click",resetCronometro),setInterval(updateDigitalClock,1e3),updateDigitalClock();const contenedorPadre=document.getElementById("clock"),tableta=document.getElementById("water-background");let contenedorPanel=document.getElementById("segunda-pantalla"),enArrastre=!1,offsetXX,offsetYY;function resetearElementos(){let e=[document.getElementById("miRectangulo"),document.getElementById("miRectangulo1"),document.getElementById("miRectangulo2"),document.getElementById("miRectangulo3"),document.getElementById("miRectangulo4"),document.getElementById("miRectangulo5"),document.getElementById("miRectangulo6")];e.forEach(e=>{e.style.transition="none",e.style.transform="none",e.style.top=""})}function animarRectangulos(){let e=document.querySelectorAll(".rectangulo");e.forEach((e,l)=>{let t=479-40*l;setTimeout(()=>{e.style.transition="top 0.5s ease",e.style.top=`${t}px`},200*l)})}function girarElemento(e){resetearElementos();let l=[document.getElementById("miRectangulo"),document.getElementById("miRectangulo1"),document.getElementById("miRectangulo2"),document.getElementById("miRectangulo3"),document.getElementById("miRectangulo4"),document.getElementById("miRectangulo5"),document.getElementById("miRectangulo6")],t={"top-left":"0% 0%","top-right":"100% 0%","bottom-left":"0% 100%","bottom-right":"100% 100%"};l.forEach((e,l)=>{e.style.display="flex"}),l.forEach((l,o)=>{setTimeout(()=>{l.style.transformOrigin=t[e],l.style.transition="transform 1.5s ease",l.style.transform="rotate(360deg)"},100*o)}),setTimeout(()=>{animarRectangulos()},2e3)}contenedorPanel.addEventListener("mousedown",e=>{e.preventDefault(),enArrastre=!0,offsetXX=e.clientX-contenedorPanel.offsetLeft,offsetYY=e.clientY-contenedorPanel.offsetTop,contenedorPanel.style.cursor="grabbing"}),document.addEventListener("mousemove",e=>{if(enArrastre){let l=e.clientX-offsetXX,t=e.clientY-offsetYY;contenedorPanel.style.left=l+"px",contenedorPanel.style.top=t+"px"}}),document.addEventListener("mouseup",()=>{enArrastre=!1,contenedorPanel.style.cursor="grab"}),document.getElementById("alterna1").addEventListener("click",()=>{document.getElementById("pantalla-registro").style.zIndex=2,document.getElementById("pantalla-guias").style.zIndex=1,document.getElementById("alterna2").style.backgroundColor="rgb(177,177,177)",document.getElementById("alterna1").style.backgroundColor=""}),document.getElementById("alterna2").addEventListener("click",()=>{document.getElementById("pantalla-registro").style.zIndex=1,document.getElementById("pantalla-guias").style.zIndex=2,document.getElementById("alterna1").style.backgroundColor="rgb(177,177,177)",document.getElementById("alterna2").style.backgroundColor=""});const pliego=document.getElementById("pliego");let anguloX=0,posLeft=50,direccionA=1;document.getElementById("guia-4").addEventListener("mouseup",()=>{let e=window.getComputedStyle(pliego),l=e.transform,t=0;if("none"!==l){let o=l.split("(")[1].split(")")[0].split(","),a=parseFloat(o[0]),n=parseFloat(o[1]);t=Math.round(Math.atan2(n,a)*(180/Math.PI))}let r=t+direccionA;pliego.style.transform=`rotateZ(${r}deg)`,document.getElementById("conteo-sup").textContent=`${r}\xba`,document.getElementById("conteo-inf").textContent=""}),document.getElementById("guia-1").addEventListener("mouseup",()=>{let e=window.getComputedStyle(pliego),l=e.transform,t=0;if("none"!==l){let o=l.split("(")[1].split(")")[0].split(","),a=parseFloat(o[0]),n=parseFloat(o[1]);t=Math.round(Math.atan2(n,a)*(180/Math.PI))}let r=t-direccionA;pliego.style.transform=`rotateZ(${r}deg)`,document.getElementById("conteo-sup").textContent=`${r}\xba`,document.getElementById("conteo-inf").textContent=""});let direccion=1;document.getElementById("guia-6").addEventListener("mouseup",()=>{let e=window.getComputedStyle(pliego),l=e.transform,t=0;if("none"!==l){let o=l.split("(")[1].split(")")[0].split(","),a=parseFloat(o[0]),n=parseFloat(o[1]);t=Math.round(Math.atan2(n,a)*(180/Math.PI))}let r=t-direccion;pliego.style.transform=`rotateZ(${r}deg)`,document.getElementById("conteo-inf").textContent=`${r}\xba`,document.getElementById("conteo-sup").textContent=""}),document.getElementById("guia-3").addEventListener("mouseup",()=>{let e=window.getComputedStyle(pliego),l=e.transform,t=0;if("none"!==l){let o=l.split("(")[1].split(")")[0].split(","),a=parseFloat(o[0]),n=parseFloat(o[1]);t=Math.round(Math.atan2(n,a)*(180/Math.PI))}let r=t+direccion;pliego.style.transform=`rotateZ(${r}deg)`,document.getElementById("conteo-inf").textContent=`${r}\xba`,document.getElementById("conteo-sup").textContent=""});let direccionLeft=-1;document.getElementById("guia-2").addEventListener("click",()=>{let e=window.getComputedStyle(pliego),l=parseFloat(e.left),t=pliego.offsetParent.offsetWidth,o=l/t*100+direccionLeft;o>44&&(pliego.style.left=`${o}%`)}),document.getElementById("guia-5").addEventListener("click",()=>{let e=window.getComputedStyle(pliego),l=parseFloat(e.left),t=pliego.offsetParent.offsetWidth,o=l/t*100-direccionLeft;o<57&&(pliego.style.left=`${o}%`)});const pliego1=document.getElementById("pliego");let incrementos=0;document.getElementById("guia-7").addEventListener("click",()=>{let e=parseFloat(window.getComputedStyle(pliego1).getPropertyValue("top")),l=pliego1.parentElement.clientHeight||window.innerHeight,t=.05*l;e>t&&(e-=1,pliego1.style.top=`${e}px`),document.getElementById("conteo-escuadra").textContent=`${e.toFixed(1)}`}),document.getElementById("guia-8").addEventListener("click",()=>{let e=parseFloat(window.getComputedStyle(pliego1).getPropertyValue("top")),l=pliego1.parentElement.clientHeight||window.innerHeight,t=.15*l;e<t&&(e+=1,pliego1.style.top=`${e}px`),document.getElementById("conteo-escuadra").textContent=`${e.toFixed(1)}`});const reflejo=document.getElementById("reflejo");let visible=!0,intervaloId=null;function balizaAlarma(){intervaloId||(intervaloId=setInterval(()=>{visible?reflejo.style.boxShadow="none":(reflejo.style.display="flex",reflejo.style.boxShadow="0 0 320px 160px rgba(255, 0, 0, 0.8)"),visible=!visible},500))}function detenerBaliza(){intervaloId&&(clearInterval(intervaloId),intervaloId=null),reflejo.style.display="none"}function resetRegistros(){pliego.style.top="",pliego.style.left="",pliego.style.zIndex="",pliego.style.transform="",document.getElementById("conteo-escuadra").textContent="",document.getElementById("conteo-sup").textContent="",document.getElementById("conteo-inf").textContent="",botonera.forEach(e=>{e.style.backgroundColor=""})}function crearLineaLeds(e){let l=document.createElement("div");l.id=`linea-${e}`,l.classList.add("linea-leds");let t=document.createElement("div");t.id="regla-leds";for(let o=24;o>=1;o--){let a=document.createElement("div");a.classList.add("division"),a.textContent=o,t.appendChild(a)}let n=document.createElement("div");n.id="display-leds";for(let r=1;r<=24;r++){let i=document.createElement("div");i.classList.add("leds"),n.appendChild(i)}let s=document.createElement("div");s.id="display-ajuste";for(let c=1;c<=24;c++){let d=document.createElement("div");d.classList.add("litle-leds"),s.appendChild(d)}return l.appendChild(t),l.appendChild(n),l.appendChild(s),l}function crearVariasLineas(e){let l=document.getElementById("columna-70");for(let t=1;t<=e;t++){let o=crearLineaLeds(t);l.appendChild(o)}}function crearBotoneraDinamica(e){setTimeout(()=>{eliminarBotonesSuma(),eliminarBotonesResta()},20),setTimeout(()=>{crearBotonSuma(e,"linea","lineaSeguidor","lineaGrilla"),crearBotonResta(e,"linea","lineaSeguidor","lineaGrilla")},40),setTimeout(()=>{crearLedsSpan()},60),setTimeout(()=>{renderizarPerfilesTinta(e)},80)}botonera.forEach(e=>{e.addEventListener("click",()=>{botonera.forEach(e=>{e.style.backgroundColor=""}),e.style.backgroundColor="rgb(0,200,255)"})}),interfazColor.addEventListener("click",e=>{e.stopPropagation(),interfazColor.style.zIndex=30}),document.querySelectorAll(".cabeza").forEach(e=>{e.addEventListener("click",e=>{e.stopPropagation()})});let almacenGlogal=[],flagNegro=!1,flagCyan=!1,flagMagenta=!1,flagAmarillo=!1,flagEspecial=!1,flagBarniz=!1;const estadoIntervaloSolucion={intervalo:null},estadoIntervaloTinta={intervalo:null},estadoBalanceNegro={indices:[],indicador:[]},estadoBalanceCyan={indices:[],indicador:[]},estadoBalanceMagenta={indices:[],indicador:[]},estadoBalanceAmarillo={indices:[],indicador:[]},estadoBalanceEspecial={indices:[],indicador:[]},estadoBalanceBarniz={indices:[],indicador:[]},estadoTinta={indices:[]},estadoSolucion={indices:[],indicador:[]},mostrarAlertaVerde=()=>{darColorVerdeCabeza(),alertaBotones.style.display="flex",alertaBotones.style.backgroundColor=verde,alertaBotones.style.color="black",alertaBotones.style.left="21vw",setTimeout(()=>{alertaBotones.style.backgroundColor="",alertaBotones.style.color=""},500)},iniciarMasTintaGeneral=()=>{objetoGlobal&&Object.keys(objetoGlobal).length>0?flagNegro||flagCyan||flagMagenta||flagAmarillo||flagEspecial||flagBarniz||(mostrarAlertaVerde(),desactivarClicEnElementos(botonesPerfilColor)):(mostrarAlertaVerde(),desactivarClicEnElementos(botonesPerfilColor,buttsColores)),flagNegro&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-negro #footer-1 .divs-grales-tinta-negro","yellow","black","negro"),flagCyan&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-azul #footer-3 .divs-grales-tinta-azul","yellow","cyan","azul"),flagMagenta&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-magenta #footer-5 .divs-grales-tinta-magenta","yellow","magenta","magenta"),flagAmarillo&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-amarillo #footer-7 .divs-grales-tinta-amarillo","yellow","yellow","amarillo"),flagEspecial&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-especial #footer-9 .divs-grales-tinta-especial","yellow","rgb(255,130,0)","especial"),flagBarniz&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-barniz #footer-11 .divs-grales-tinta-barniz","yellow","rgb(200,200,200)","barniz"),masTintaGeneral.style.backgroundColor="#2bf22bc0"},detenerMasTintaGeneral=()=>{estadoIntervaloTinta.intervalo&&(clearInterval(estadoIntervaloTinta.intervalo),estadoIntervaloTinta.intervalo=null),masTintaGeneral.style.backgroundColor=""},aviso=document.querySelector("#span-index"),iniciarMenosTintaGeneral=()=>{objetoGlobal&&Object.keys(objetoGlobal).length>0?flagNegro||flagCyan||flagMagenta||flagAmarillo||flagEspecial||flagBarniz||(mostrarAlertaVerde(),desactivarClicEnElementos(botonesPerfilColor,botonesSelectores)):(mostrarAlertaVerde(),desactivarClicEnElementos(botonesPerfilColor)),flagNegro&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-negro #footer-1 .divs-grales-tinta-negro","yellow","black","negro"),flagCyan&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-azul #footer-3 .divs-grales-tinta-azul","yellow","cyan","azul"),flagMagenta&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-magenta #footer-5 .divs-grales-tinta-magenta","yellow","magenta","magenta"),flagAmarillo&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-amarillo #footer-7 .divs-grales-tinta-amarillo","yellow","yellow","amarillo"),flagEspecial&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-especial #footer-9 .divs-grales-tinta-especial","yellow","orange","especial"),flagBarniz&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-barniz #footer-11 .divs-grales-tinta-barniz","yellow","gray","barniz"),menosTintaGeneral.style.backgroundColor="#2bf22bc0"},detenerMenosTintaGeneral=()=>{estadoIntervaloTinta.intervalo&&(clearInterval(estadoIntervaloTinta.intervalo),estadoIntervaloTinta.intervalo=null),menosTintaGeneral.style.backgroundColor=""};masTintaGeneral.addEventListener("mousedown",iniciarMasTintaGeneral),masTintaGeneral.addEventListener("mouseup",detenerMasTintaGeneral),masTintaGeneral.addEventListener("mouseleave",()=>{aviso&&(aviso.style.display="none"),detenerMasTintaGeneral(),restablecerClick([".cabeza"])}),menosTintaGeneral.addEventListener("mousedown",iniciarMenosTintaGeneral),menosTintaGeneral.addEventListener("mouseup",detenerMenosTintaGeneral),menosTintaGeneral.addEventListener("mouseleave",()=>{aviso&&(aviso.style.display="none")}),masTintaGeneral.addEventListener("touchstart",e=>{e.preventDefault(),iniciarMasTintaGeneral()},{passive:!1}),masTintaGeneral.addEventListener("touchend",detenerMasTintaGeneral,{passive:!0}),masTintaGeneral.addEventListener("touchcancel",detenerMasTintaGeneral,{passive:!0}),menosTintaGeneral.addEventListener("touchstart",e=>{e.preventDefault(),iniciarMenosTintaGeneral()},{passive:!1}),menosTintaGeneral.addEventListener("touchend",detenerMenosTintaGeneral,{passive:!0}),menosTintaGeneral.addEventListener("touchcancel",detenerMenosTintaGeneral,{passive:!0});const iniciarMasSolucionGeneral=()=>{objetoGlobal&&Object.keys(objetoGlobal).length>0?flagNegro||flagCyan||flagMagenta||flagAmarillo||flagEspecial||flagBarniz||(mostrarAlertaVerde(),desactivarClicEnElementos(botonesPerfilColor,buttsColores)):(mostrarAlertaVerde(),desactivarClicEnElementos(botonesPerfilColor)),flagNegro&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-negro #footer-2 .divs-grales-solucion-negro","yellow",verdeAgua,"negro","nivelAgua"),flagCyan&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-azul #footer-4 .divs-grales-solucion-azul","yellow",verdeAgua,"azul","nivelAgua"),flagMagenta&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-magenta #footer-6 .divs-grales-solucion-magenta","yellow",verdeAgua,"magenta","nivelAgua"),flagAmarillo&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-amarillo #footer-8 .divs-grales-solucion-amarillo","yellow",verdeAgua,"amarillo","nivelAgua"),flagEspecial&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-especial #footer-10 .divs-grales-solucion-especial","yellow",verdeAgua,"especial","nivelAgua"),flagBarniz&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-barniz #footer-12 .divs-grales-solucion-barniz","yellow",verdeAgua,"barniz","nivelAgua"),masSolucionGeneral.style.backgroundColor="#2bf22bc0"},detenerMasSolucionGeneral=()=>{estadoIntervaloSolucion.intervalo&&(clearInterval(estadoIntervaloSolucion.intervalo),estadoIntervaloSolucion.intervalo=null),masSolucionGeneral.style.backgroundColor=""},iniciarMenosSolucionGeneral=()=>{objetoGlobal&&Object.keys(objetoGlobal).length>0?flagNegro||flagCyan||flagMagenta||flagAmarillo||flagEspecial||flagBarniz||(mostrarAlertaVerde(),desactivarClicEnElementos(botonesPerfilColor,buttsColores)):(mostrarAlertaVerde(),desactivarClicEnElementos(botonesPerfilColor)),flagNegro&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-negro #footer-2 .divs-grales-solucion-negro","yellow",verdeAgua,"negro","nivelAgua"),flagCyan&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-azul #footer-4 .divs-grales-solucion-azul","yellow",verdeAgua,"azul","nivelAgua"),flagMagenta&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-magenta #footer-6 .divs-grales-solucion-magenta","yellow",verdeAgua,"magenta","nivelAgua"),flagAmarillo&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-amarillo #footer-8 .divs-grales-solucion-amarillo","yellow",verdeAgua,"amarillo","nivelAgua"),flagEspecial&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-especial #footer-10 .divs-grales-solucion-especial","yellow",verdeAgua,"especial","nivelAgua"),flagBarniz&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-barniz #footer-12 .divs-grales-solucion-barniz","yellow",verdeAgua,"barniz","nivelAgua"),menosSolucionGeneral.style.backgroundColor="rgb(0,255,0)"},detenerMenosSolucionGeneral=()=>{estadoIntervaloSolucion.intervalo&&(clearInterval(estadoIntervaloSolucion.intervalo),estadoIntervaloSolucion.intervalo=null),menosSolucionGeneral.style.backgroundColor=""};masSolucionGeneral.addEventListener("mousedown",iniciarMasSolucionGeneral),masSolucionGeneral.addEventListener("mouseup",detenerMasSolucionGeneral),masSolucionGeneral.addEventListener("mouseleave",()=>{aviso&&(aviso.style.display="none")}),menosSolucionGeneral.addEventListener("mousedown",iniciarMenosSolucionGeneral),menosSolucionGeneral.addEventListener("mouseup",detenerMenosSolucionGeneral),menosSolucionGeneral.addEventListener("mouseleave",()=>{aviso&&(aviso.style.display="none")}),masSolucionGeneral.addEventListener("touchstart",e=>{e.preventDefault(),iniciarMasSolucionGeneral()},{passive:!1}),masSolucionGeneral.addEventListener("touchend",detenerMasSolucionGeneral,{passive:!0}),masSolucionGeneral.addEventListener("touchcancel",detenerMasSolucionGeneral,{passive:!0}),menosSolucionGeneral.addEventListener("touchstart",e=>{e.preventDefault(),iniciarMenosSolucionGeneral()},{passive:!1}),menosSolucionGeneral.addEventListener("touchend",detenerMenosSolucionGeneral,{passive:!0}),menosSolucionGeneral.addEventListener("touchcancel",detenerMenosSolucionGeneral,{passive:!0}),alertaBotones.addEventListener("click",()=>{document.querySelectorAll(".cliente-item").forEach(e=>{e.style.filter="none"}),reactivarClicEnElementos(botonesPerfilColor,buttsColores,buttsControl,buttsGenerales,botonesSelectores,buttsJobTrack),alertaBotones.classList.add("move-alerta"),setTimeout(()=>{alertaBotones.style.display="none",alertaBotones.classList.remove("move-alerta")},1e3)}),alertaPerfil.addEventListener("click",()=>{reactivarClicEnElementos(botonesPerfilColor,buttsColores,buttsGenerales,botonesSelectores,buttsControl),alertaPerfil.classList.add("move-alerta-perfil"),setTimeout(()=>{alertaPerfil.style.display="none",alertaPerfil.classList.remove("move-alerta-perfil")},1e3)});let contadorTinta=document.getElementById("tinta-perc"),tanqueTinta=document.getElementById("tanque-tinta");const masTinta=document.querySelector("#ctrl-gral > div:nth-of-type(5)"),menosTinta=document.querySelector("#ctrl-gral > div:nth-of-type(7)");let contadorSolucion=document.getElementById("solucion-porcentaje"),tanqueSolucion=document.getElementById("tanque-solucion"),lineasSolucion=document.querySelectorAll(".lineas-solucion");const masSolucion=document.querySelector("#ctrl-gral > div:nth-of-type(6)"),menosSolucion=document.querySelector("#ctrl-gral > div:nth-of-type(8)");function AelementosDinamicamente(e,l,t,o=null){let a=document.getElementById(e);a.innerHTML="";let n=null!==o?o:null;for(let r=1;r<=l;r++){let i=document.createElement("div");i.classList.add(t),i.classList.add("lineas-tinta"),null!==n&&(i.textContent=n,n++),a.appendChild(i)}}let actualIndexSolucion=99,actualIndexTinta=99,intervaloTinta=null;const iniciarMasTinta=()=>{objetoGlobal&&Object.keys(objetoGlobal).length>0&&(flagNegro||flagCyan||flagMagenta||flagAmarillo||flagEspecial||flagBarniz)||(darColorVerdeCabeza(),alertaBotones.style.display="flex",alertaBotones.style.backgroundColor=verde,alertaBotones.style.color="black",alertaBotones.style.top="25vh",alertaBotones.style.left="21vw",setTimeout(()=>{alertaBotones.style.backgroundColor="",alertaBotones.style.color=""},500),desactivarClicEnElementos(botonesPerfilColor,botonesSelectores)),flagNegro&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-negro #footer-1 .divs-grales-tinta-negro","yellow","black","negro"),flagCyan&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-azul #footer-3 .divs-grales-tinta-azul","yellow","cyan","azul"),flagMagenta&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-magenta #footer-5 .divs-grales-tinta-magenta","yellow","magenta","magenta"),flagAmarillo&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-amarillo #footer-7 .divs-grales-tinta-amarillo","yellow","yellow","amarillo"),flagEspecial&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-especial #footer-9 .divs-grales-tinta-especial","yellow","rgb(255,130,0)","especial"),flagBarniz&&aumentarBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-barniz #footer-11 .divs-grales-tinta-barniz","yellow","rgb(200,200,200)","barniz"),masTinta.style.backgroundColor="#2bf22bc0"};masTinta.addEventListener("mousedown",iniciarMasTinta),masTinta.addEventListener("touchstart",e=>{e.preventDefault(),iniciarMasTinta()},{passive:!1});const detenerMasTinta=()=>{estadoIntervaloTinta.intervalo&&(clearInterval(estadoIntervaloTinta.intervalo),estadoIntervaloTinta.intervalo=null),masTinta.style.backgroundColor=""};masTinta.addEventListener("mouseup",detenerMasTinta),masTinta.addEventListener("mouseleave",detenerMasTinta),masTinta.addEventListener("touchend",detenerMasTinta,{passive:!0}),masTinta.addEventListener("touchcancel",detenerMasTinta,{passive:!0});const iniciarMenosTinta=()=>{objetoGlobal&&Object.keys(objetoGlobal).length>0&&(flagNegro||flagCyan||flagMagenta||flagAmarillo||flagEspecial||flagBarniz)||(darColorVerdeCabeza(),alertaBotones.style.display="flex",alertaBotones.style.backgroundColor=verde,alertaBotones.style.color="black",alertaBotones.style.top="25vh",alertaBotones.style.left="21vw",setTimeout(()=>{alertaBotones.style.backgroundColor="",alertaBotones.style.color=""},500),desactivarClicEnElementos(botonesPerfilColor,botonesSelectores)),flagNegro&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-negro #footer-1 .divs-grales-tinta-negro","yellow","black","negro"),flagCyan&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-azul #footer-3 .divs-grales-tinta-azul","yellow","cyan","azul"),flagMagenta&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-magenta #footer-5 .divs-grales-tinta-magenta","yellow","magenta","magenta"),flagAmarillo&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-amarillo #footer-7 .divs-grales-tinta-amarillo","yellow","amarillo","amarillo"),flagEspecial&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-especial #footer-9 .divs-grales-tinta-especial","yellow","especial","especial"),flagBarniz&&disminuirBalanceTinta(estadoIntervaloTinta,".lineas-tinta","#footer-barniz #footer-11 .divs-grales-tinta-barniz","yellow","gray","barniz"),menosTinta.style.backgroundColor="rgb(0,255,0)"},detenerMenosTinta=()=>{estadoIntervaloTinta.intervalo&&(clearInterval(estadoIntervaloTinta.intervalo),estadoIntervaloTinta.intervalo=null),menosTinta.style.backgroundColor=""};menosTinta.addEventListener("mousedown",iniciarMenosTinta),menosTinta.addEventListener("mouseup",detenerMenosTinta),menosTinta.addEventListener("mouseleave",detenerMenosTinta),menosTinta.addEventListener("touchstart",e=>{e.preventDefault(),iniciarMenosTinta()},{passive:!1}),menosTinta.addEventListener("touchend",detenerMenosTinta,{passive:!0}),menosTinta.addEventListener("touchcancel",detenerMenosTinta,{passive:!0});let intervaloTintaNegro=null,intervaloTintaCyan=null,intervaloTintaMagenta=null,intervaloTintaAmarillo=null,intervaloTintaEspecial=null,intervaloTintaBarniz=null,intervaloSolucionNegro=null,intervaloSolucionCyan=null,intervaloSolucionMagenta=null,intervaloSolucionAmarillo=null,intervaloSolucionEspecial=null,intervaloSolucionBarniz=null;function reducirBalanceSolucion(e,l,t,o,a,n){let r=document.querySelectorAll(l),i=document.querySelectorAll(t),s=r.length,c=document.querySelector("#ctrl-gral .div-ctrl #solucion-porcentaje"),d=document.querySelector(`#display-general-${n}`);flagNegro&&(traerObjetoNegro(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelAgua.length;if(l<0){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelAgua.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.style.top=l-14+"%",guardarObjetoNegro(objetoNegro),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagCyan&&(traerObjetoCian(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelAgua.length;if(l<0){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelAgua.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.style.top=l-14+"%",guardarObjetoCian(objetoCian),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagMagenta&&(traerObjetoMagenta(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelAgua.length;if(l<0){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelAgua.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.style.top=l-14+"%",guardarobjetoMagenta(objetoMagenta),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagAmarillo&&(traerObjetoAmarillo(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelAgua.length;if(l<0){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelAgua.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.style.top=l-14+"%",guardarObjetoAmarillo(objetoAmarillo),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagEspecial&&(traerObjetoEspecial(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelAgua.length;if(l<0){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelAgua.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.style.top=l-14+"%",guardarObjetoEspecial(objetoEspecial),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagBarniz&&(traerObjetoBarniz(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelAgua.length;if(l<0){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelAgua.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",d.style.top=l-14+"%",guardarObjetoBarniz(objetoBarniz),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77))}function aumentarBalanceSolucion(e,l,t,o,a,n,r){let i=document.querySelectorAll(l),s=document.querySelectorAll(t),c=i.length,d=document.querySelector("#ctrl-gral .div-ctrl #solucion-porcentaje"),u=document.querySelector(`#display-general-${n}`);flagNegro&&(traerObjetoNegro(),e.intervalo=setInterval(()=>{let l=c-almacenObjetos[objetoGlobal][n].nivelAgua.length-1;if(l<0||l>=c){clearInterval(e.intervalo),e.intervalo=null;return}let t=i[l],r=s[l];t?(t.style.backgroundColor=o,r.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelAgua.push(l),d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l-14+"%",guardarObjetoNegro(objetoNegro),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagCyan&&(traerObjetoCian(),e.intervalo=setInterval(()=>{let l=c-almacenObjetos[objetoGlobal][n].nivelAgua.length-1;if(l<0||l>=c){clearInterval(e.intervalo),e.intervalo=null;return}let t=i[l],r=s[l];t?(t.style.backgroundColor=o,r.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelAgua.push(l),d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l-14+"%",guardarObjetoCian(objetoCian),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagAmarillo&&(traerObjetoAmarillo(),e.intervalo=setInterval(()=>{let l=c-almacenObjetos[objetoGlobal][n].nivelAgua.length-1;if(l<0||l>=c){clearInterval(e.intervalo),e.intervalo=null,console.log("Proceso completado.");return}let t=i[l],r=s[l];t?(t.style.backgroundColor=o,r.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelAgua.push(l),d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l-14+"%",guardarObjetoAmarillo(objetoAmarillo),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagMagenta&&(traerObjetoMagenta(),e.intervalo=setInterval(()=>{let l=c-almacenObjetos[objetoGlobal][n].nivelAgua.length-1;if(l<0||l>=c){clearInterval(e.intervalo),e.intervalo=null;return}let t=i[l],r=s[l];t?(t.style.backgroundColor=o,r.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelAgua.push(l),d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l-14+"%",guardarobjetoMagenta(objetoMagenta),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagEspecial&&(traerObjetoEspecial(),e.intervalo=setInterval(()=>{let l=c-almacenObjetos[objetoGlobal][n].nivelAgua.length-1;if(l<0||l>=c){clearInterval(e.intervalo),e.intervalo=null,console.log("Proceso completado.");return}let t=i[l],r=s[l];t?(t.style.backgroundColor=o,r.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelAgua.push(l),d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l-14+"%",guardarObjetoEspecial(objetoEspecial),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagBarniz&&(traerObjetoBarniz(),e.intervalo=setInterval(()=>{let l=c-almacenObjetos[objetoGlobal][n].nivelAgua.length-1;if(l<0||l>=c){clearInterval(e.intervalo),e.intervalo=null,console.log("Proceso completado.");return}let t=i[l],r=s[l];t?(t.style.backgroundColor=o,r.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelAgua.push(l),d.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l+"%",u.textContent=almacenObjetos[objetoGlobal][n].nivelAgua.length+"%",u.style.top=l-14+"%",guardarObjetoBarniz(objetoBarniz),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77))}function aumentarBalanceTinta(e,l,t,o,a,n){let r=document.querySelectorAll(l),i=document.querySelectorAll(t),s=r.length,c=document.querySelector("#ctrl-gral .div-ctrl #tinta-perc"),d=document.querySelector(`#gral-display-${n}`);flagNegro&&(traerObjetoNegro(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length-1;if(l<0||l>=s){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],u=i[l];t?(t.style.backgroundColor=o,u.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelTinta.push(l),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarObjetoNegro(objetoNegro),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagCyan&&(traerObjetoCian(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length-1;(l<0||l>=s)&&(clearInterval(e.intervalo),e.intervalo=null);let t=r[l],a=i[l];t?(t.style.backgroundColor=o,a.style.backgroundColor=azul,almacenObjetos[objetoGlobal][n].nivelTinta.push(l),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarObjetoCian(objetoCian),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagAmarillo&&(traerObjetoAmarillo(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length-1;if(l<0||l>=s){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],u=i[l];t?(t.style.backgroundColor=o,u.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelTinta.push(l),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarObjetoAmarillo(objetoAmarillo),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagMagenta&&(traerObjetoMagenta(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length-1;(l<0||l>=s)&&(clearInterval(e.intervalo),e.intervalo=null);let t=r[l],u=i[l];t?(t.style.backgroundColor=o,u.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelTinta.push(l),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarobjetoMagenta(objetoMagenta),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagEspecial&&(e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length-1;if(l<0||l>=s){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],u=i[l];t?(t.style.backgroundColor=o,u.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelTinta.push(l),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarObjetoEspecial(objetoEspecial),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagBarniz&&(traerObjetoBarniz(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length-1;(l<0||l>=s)&&(clearInterval(e.intervalo),e.intervalo=null);let t=r[l],u=i[l];t?(t.style.backgroundColor=o,u.style.backgroundColor=a,almacenObjetos[objetoGlobal][n].nivelTinta.push(l),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarObjetoBarniz(objetoBarniz),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77))}function disminuirBalanceTinta(e,l,t,o,a,n){let r=document.querySelectorAll(l),i=document.querySelectorAll(t),s=r.length,c=document.querySelector("#ctrl-gral .div-ctrl #tinta-perc"),d=document.querySelector(`#gral-display-${n}`);flagNegro&&(traerObjetoNegro(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length;if(l<0||l>=s){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelTinta.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarObjetoNegro(objetoNegro),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagCyan&&(traerObjetoCian(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length;if(l<0||l>=s){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelTinta.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarObjetoCian(objetoCian),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagMagenta&&(traerObjetoMagenta(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length;if(l<0||l>=s){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelTinta.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarobjetoMagenta(objetoMagenta),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagAmarillo&&(traerObjetoAmarillo(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length;if(l<0||l>=s){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelTinta.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarObjetoAmarillo(objetoAmarillo),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagEspecial&&(traerObjetoEspecial(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length;if(l<0||l>=s){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelTinta.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarObjetoEspecial(objetoEspecial),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77)),flagBarniz&&(traerObjetoBarniz(),e.intervalo=setInterval(()=>{let l=s-almacenObjetos[objetoGlobal][n].nivelTinta.length;if(l<0||l>=s){clearInterval(e.intervalo),e.intervalo=null;return}let t=r[l],o=i[l];t?(t.style.backgroundColor="",o.style.backgroundColor="",almacenObjetos[objetoGlobal][n].nivelTinta.pop(),c.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.textContent=almacenObjetos[objetoGlobal][n].nivelTinta.length+"%",d.style.top=l-14+"%",guardarObjetoBarniz(objetoBarniz),guardarCambiosGeneralesEnAlmacen()):console.warn(`Elemento no encontrado en el \xedndice ${l}.`)},77))}function darColorVerdeCabeza(){let e=document.querySelectorAll(".cabeza"),l=0,t=setInterval(()=>{l>=e.length?(clearInterval(t),setTimeout(()=>{let l=e.length-1,t=setInterval(()=>{l>=0?(e[l].style.backgroundColor="",l--):clearInterval(t)},17)},300)):(e[l].style.backgroundColor="#A9B0B8",e[l].style.color="black",l++)},17)}let indexSolucion=99,intervaloSolucion=null;const controlSolucion=[];let intervaloMasSolucion=null,intervaloMasTinta=null,intervaloMenosSolucion=null,indexAumento=0;const lineasTinta=document.querySelectorAll(".lineas-tinta"),contenedor=document.getElementById("butts-selectores"),iniciarMasSolucion=()=>{objetoGlobal&&Object.keys(objetoGlobal).length>0&&(flagNegro||flagCyan||flagMagenta||flagAmarillo||flagEspecial||flagBarniz)||(darColorVerdeCabeza(),alertaBotones.style.display="flex",alertaBotones.style.backgroundColor=verde,alertaBotones.style.color="black",alertaBotones.style.top="25vh",alertaBotones.style.left="21vw",setTimeout(()=>{alertaBotones.style.backgroundColor="",alertaBotones.style.color=""},500),desactivarClicEnElementos(botonesPerfilColor,botonesSelectores)),flagNegro&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-negro #footer-2 .divs-grales-solucion-negro","yellow",verdeAgua,"negro","nivelAgua"),flagCyan&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-azul #footer-4 .divs-grales-solucion-azul","yellow",verdeAgua,"azul","nivelAgua"),flagMagenta&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-magenta #footer-6 .divs-grales-solucion-magenta","yellow",verdeAgua,"magenta","nivelAgua"),flagAmarillo&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-amarillo #footer-8 .divs-grales-solucion-amarillo","yellow",verdeAgua,"amarillo"),flagEspecial&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-especial #footer-10 .divs-grales-solucion-especial","yellow",verdeAgua,"especial"),flagBarniz&&aumentarBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-barniz #footer-12 .divs-grales-solucion-barniz","yellow",verdeAgua,"barniz"),masSolucion.style.backgroundColor="#2bf22bc0"},detenerMasSolucion=()=>{estadoIntervaloSolucion.intervalo&&(clearInterval(estadoIntervaloSolucion.intervalo),estadoIntervaloSolucion.intervalo=null),masSolucion.style.backgroundColor=""};masSolucion.addEventListener("mousedown",iniciarMasSolucion),masSolucion.addEventListener("mouseup",detenerMasSolucion),masSolucion.addEventListener("mouseleave",detenerMasSolucion),masSolucion.addEventListener("touchstart",e=>{e.preventDefault(),iniciarMasSolucion()},{passive:!1}),masSolucion.addEventListener("touchend",detenerMasSolucion,{passive:!0}),masSolucion.addEventListener("touchcancel",detenerMasSolucion,{passive:!0});const iniciarMenosSolucion=()=>{objetoGlobal&&Object.keys(objetoGlobal).length>0?flagNegro||flagCyan||flagMagenta||flagAmarillo||flagEspecial||flagBarniz||(darColorVerdeCabeza(),alertaBotones.style.display="flex",alertaBotones.style.backgroundColor=verde,alertaBotones.style.color="black",setTimeout(()=>{alertaBotones.style.backgroundColor="",alertaBotones.style.color=""},500),desactivarClicEnElementos(botonesPerfilColor,botonesSelectores)):(darColorVerdeCabeza(),alertaBotones.style.display="flex",alertaBotones.style.backgroundColor=verde,alertaBotones.style.color="black",alertaBotones.style.top="25vh",alertaBotones.style.left="21vw",setTimeout(()=>{alertaBotones.style.backgroundColor="",alertaBotones.style.color=""},500),desactivarClicEnElementos(botonesPerfilColor,botonesSelectores)),flagNegro&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-negro #footer-2 .divs-grales-solucion-negro","yellow",verdeAgua,"negro"),flagCyan&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-azul #footer-4 .divs-grales-solucion-azul","yellow",verdeAgua,"azul"),flagMagenta&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-magenta #footer-6 .divs-grales-solucion-magenta","yellow",verdeAgua,"magenta"),flagAmarillo&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-amarillo #footer-8 .divs-grales-solucion-amarillo","yellow",verdeAgua,"amarillo"),flagEspecial&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-especial #footer-10 .divs-grales-solucion-especial","yellow",verdeAgua,"especial"),flagBarniz&&reducirBalanceSolucion(estadoIntervaloSolucion,".lineas-solucion","#footer-barniz #footer-12 .divs-grales-solucion-barniz","yellow",verdeAgua,"barniz"),menosSolucion.style.backgroundColor="rgb(0,255,0)"},detenerMenosSolucion=()=>{estadoIntervaloSolucion.intervalo&&(clearInterval(estadoIntervaloSolucion.intervalo),estadoIntervaloSolucion.intervalo=null),menosSolucion.style.backgroundColor=""};menosSolucion.addEventListener("mousedown",iniciarMenosSolucion),menosSolucion.addEventListener("mouseup",detenerMenosSolucion),menosSolucion.addEventListener("mouseleave",detenerMenosSolucion),menosSolucion.addEventListener("touchstart",e=>{e.preventDefault(),iniciarMenosSolucion()},{passive:!1}),menosSolucion.addEventListener("touchend",detenerMenosSolucion,{passive:!0}),menosSolucion.addEventListener("touchcancel",detenerMenosSolucion,{passive:!0});let almacenSolucionNegro=[],almacenSolucionCyan=[],almacenSolucionMagenta=[],almacenSolucionAmarillo=[],almacenSolucionEspecial=[],almacenSolucionBarniz=[],almacenTintaNegro=[],almacenTintaCyan=[],almacenTintaMagenta=[],almacenTintaAmarillo=[],almacenTintaEspecial=[],almacenTintaBarniz=[];const flags={negro:flagNegro,cyan:flagCyan,magenta:flagMagenta,amarillo:flagAmarillo,epecial:flagEspecial,barniz:flagBarniz},estadosBalance={negro:estadoBalanceNegro,cyan:estadoBalanceCyan,magenta:estadoBalanceMagenta,amarillo:estadoBalanceAmarillo,especial:estadoBalanceEspecial,barniz:estadoBalanceBarniz};function aplicarColor(e,l){let t=document.getElementById("solucion-porcentaje"),o=document.getElementById("tinta-perc"),a=document.querySelectorAll(".lineas-tinta");if(t.textContent="0%",o.textContent="0%",a.forEach(e=>{e.style.backgroundColor=""}),flagNegro){let n=document.querySelectorAll("#footer-negro #footer-1 .divs-grales-tinta-negro"),r=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),i=document.querySelectorAll("#footer-negro #footer-2 .divs-grales-solucion-negro"),s=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),c=document.getElementById("solucion-porcentaje"),d=objetoNegro.nivelTinta.length,u=objetoNegro.nivelAgua.length,g=r.length;for(let b=0;b<d;b++){let y=g-1-b;r[y]&&(r[y].style.backgroundColor=amarillo,n[y].style.backgroundColor=negro,o.textContent=d+"%")}let m=s.length;for(let p=0;p<u;p++){let f=m-1-p;s[f]&&(s[f].style.backgroundColor=amarillo,i[f].style.backgroundColor=verdeAgua,c.textContent=u+"%")}}if(flagCyan){let v=document.querySelectorAll("#footer-azul #footer-3 .divs-grales-tinta-azul"),E=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),C=document.querySelectorAll("#footer-azul #footer-4 .divs-grales-solucion-azul"),$=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),j=document.getElementById("tinta-perc"),h=document.getElementById("solucion-porcentaje"),S=objetoCian.nivelTinta.length,_=objetoCian.nivelAgua.length,B=E.length;for(let A=0;A<S;A++){let k=B-1-A;E[k]&&(E[k].style.backgroundColor=amarillo,v[k].style.backgroundColor=cian,j.textContent=S+"%")}let I=$.length;for(let q=0;q<_;q++){let G=I-1-q;$[G]&&($[G].style.backgroundColor=amarillo,C[G].style.backgroundColor=verdeAgua,h.textContent=_+"%")}}if(flagMagenta){let x=document.querySelectorAll("#footer-magenta #footer-5 .divs-grales-tinta-magenta"),L=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),O=document.querySelectorAll("#footer-magenta #footer-6 .divs-grales-solucion-magenta"),T=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),z=document.getElementById("tinta-perc"),M=document.getElementById("solucion-porcentaje"),w=objetoMagenta.nivelTinta.length,N=objetoMagenta.nivelAgua.length,P=L.length;for(let R=0;R<w;R++){let D=P-1-R;L[D]&&(L[D].style.backgroundColor=amarillo,x[D].style.backgroundColor=magenta,z.textContent=w+"%")}let Y=T.length;for(let K=0;K<N;K++){let V=Y-1-K;T[V]&&(T[V].style.backgroundColor=amarillo,O[V].style.backgroundColor=verdeAgua,M.textContent=N+"%")}}if(flagAmarillo){let H=document.querySelectorAll("#footer-amarillo #footer-7 .divs-grales-tinta-amarillo"),F=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),W=document.querySelectorAll("#footer-amarillo #footer-8 .divs-grales-solucion-amarillo"),X=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),J=document.getElementById("tinta-perc"),Z=document.getElementById("solucion-porcentaje"),U=objetoAmarillo.nivelTinta.length,Q=objetoAmarillo.nivelAgua.length,ee=F.length;for(let el=0;el<U;el++){let et=ee-1-el;F[et]&&(F[et].style.backgroundColor=amarillo,H[et].style.backgroundColor=amarillo,J.textContent=U+"%")}let eo=X.length;for(let ea=0;ea<Q;ea++){let en=eo-1-ea;X[en]&&(X[en].style.backgroundColor=amarillo,W[en].style.backgroundColor=verdeAgua,Z.textContent=Q+"%")}}if(flagEspecial){let er=document.querySelectorAll("#footer-especial #footer-9 .divs-grales-tinta-especial"),ei=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),es=document.querySelectorAll("#footer-especial #footer-10 .divs-grales-solucion-especial"),ec=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),ed=document.getElementById("tinta-perc"),eu=document.getElementById("solucion-porcentaje"),eg=objetoEspecial.nivelTinta.length,eb=objetoEspecial.nivelAgua.length,ey=ei.length;for(let em=0;em<eg;em++){let ep=ey-1-em;ei[ep]&&(ei[ep].style.backgroundColor=amarillo,er[ep].style.backgroundColor=especial,ed.textContent=eg+"%")}let ef=ec.length;for(let ev=0;ev<eb;ev++){let eE=ef-1-ev;ec[eE]&&(ec[eE].style.backgroundColor=amarillo,es[eE].style.backgroundColor=verdeAgua,eu.textContent=eb+"%")}}if(flagBarniz){let eC=document.querySelectorAll("#footer-barniz #footer-11 .divs-grales-tinta-barniz"),e$=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),ej=document.querySelectorAll("#footer-barniz #footer-12 .divs-grales-solucion-barniz"),eh=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),eS=document.getElementById("tinta-perc"),e_=document.getElementById("solucion-porcentaje"),eB=objetoBarniz.nivelTinta.length,eA=objetoBarniz.nivelAgua.length,ek=e$.length;for(let eI=0;eI<eB;eI++){let eq=ek-1-eI;e$[eq]&&(e$[eq].style.backgroundColor=amarillo,eC[eq].style.backgroundColor=barniz,eS.textContent=eB+"%")}let eG=eh.length;for(let ex=0;ex<eA;ex++){let eL=eG-1-ex;eh[eL]&&(eh[eL].style.backgroundColor=amarillo,ej[eL].style.backgroundColor=verdeAgua,e_.textContent=eA+"%")}}document.querySelectorAll(l);let e0=e.indices.length>0?e.indices.at(-1):0;contadorTinta.textContent=`${e0}%`}function aplicarSolucion(e,l){let t=document.querySelectorAll(".lineas-solucion");if(t.forEach(e=>{e.style.backgroundColor=""}),flagNegro){let o=document.querySelectorAll("#footer-negro #footer-1 .divs-grales-tinta-negro"),a=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),n=document.querySelectorAll("#footer-negro #footer-2 .divs-grales-solucion-negro"),r=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),i=document.getElementById("tinta-perc");document.querySelector("#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje");let s=objetoNegro.nivelTinta.length,c=objetoNegro.nivelAgua.length,d=a.length;for(let u=0;u<s;u++){let g=d-1-u;a[g]&&(a[g].style.backgroundColor=amarillo,o[g].style.backgroundColor=negro,i.textContent=s+"%")}let b=r.length;for(let y=0;y<c;y++){let m=b-1-y;r[m]&&(r[m].style.backgroundColor=amarillo,n[m].style.backgroundColor=verdeAgua)}}if(flagCyan){let p=document.querySelectorAll("#footer-azul #footer-3 .divs-grales-tinta-azul"),f=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),v=document.querySelectorAll("#footer-azul #footer-4 .divs-grales-solucion-azul"),E=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),C=document.getElementById("tinta-perc");document.querySelector("#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje");let $=objetoCian.nivelTinta.length,j=objetoCian.nivelAgua.length,h=f.length;for(let S=0;S<$;S++){let _=h-1-S;f[_]&&(f[_].style.backgroundColor=amarillo,p[_].style.backgroundColor=cian,C.textContent=$+"%")}let B=E.length;for(let A=0;A<j;A++){let k=B-1-A;E[k]&&(E[k].style.backgroundColor=amarillo,v[k].style.backgroundColor=verdeAgua)}}if(flagMagenta){let I=document.querySelectorAll("#footer-magenta #footer-5 .divs-grales-tinta-magenta"),q=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),G=document.querySelectorAll("#footer-magenta #footer-6 .divs-grales-solucion-magenta"),x=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),L=document.getElementById("tinta-perc");document.querySelector("#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje");let O=objetoMagenta.nivelTinta.length,T=objetoMagenta.nivelAgua.length,z=q.length;for(let M=0;M<O;M++){let w=z-1-M;q[w]&&(q[w].style.backgroundColor=amarillo,I[w].style.backgroundColor=magenta,L.textContent=O+"%")}let N=x.length;for(let P=0;P<T;P++){let R=N-1-P;x[R]&&(x[R].style.backgroundColor=amarillo,G[R].style.backgroundColor=verdeAgua)}}if(flagAmarillo){let D=document.querySelectorAll("#footer-amarillo #footer-7 .divs-grales-tinta-amarillo"),Y=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),K=document.querySelectorAll("#footer-amarillo #footer-8 .divs-grales-solucion-amarillo"),V=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),H=document.getElementById("tinta-perc");document.querySelector("#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje");let F=objetoAmarillo.nivelTinta.length,W=objetoAmarillo.nivelAgua.length,X=Y.length;for(let J=0;J<F;J++){let Z=X-1-J;Y[Z]&&(Y[Z].style.backgroundColor=amarillo,D[Z].style.backgroundColor=amarillo,H.textContent=F+"%")}let U=V.length;for(let Q=0;Q<W;Q++){let ee=U-1-Q;V[ee]&&(V[ee].style.backgroundColor=amarillo,K[ee].style.backgroundColor=verdeAgua)}}if(flagEspecial){let el=document.querySelectorAll("#footer-especial #footer-9 .divs-grales-tinta-especial"),et=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),eo=document.querySelectorAll("#footer-especial #footer-10 .divs-grales-solucion-especial"),ea=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),en=document.getElementById("tinta-perc");document.querySelector("#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje");let er=objetoEspecial.nivelTinta.length,ei=objetoEspecial.nivelAgua.length,es=et.length;for(let ec=0;ec<er;ec++){let ed=es-1-ec;et[ed]&&(et[ed].style.backgroundColor=amarillo,el[ed].style.backgroundColor=especial,en.textContent=er+"%")}let eu=ea.length;for(let eg=0;eg<ei;eg++){let eb=eu-1-eg;ea[eb]&&(ea[eb].style.backgroundColor=amarillo,eo[eb].style.backgroundColor=verdeAgua)}}if(flagBarniz){let ey=document.querySelectorAll("#footer-barniz #footer-11 .divs-grales-tinta-barniz"),em=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),ep=document.querySelectorAll("#footer-barniz #footer-12 .divs-grales-solucion-barniz"),ef=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),ev=document.getElementById("tinta-perc");document.querySelector("#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje");let eE=objetoBarniz.nivelTinta.length,eC=objetoBarniz.nivelAgua.length,e$=em.length;for(let ej=0;ej<eE;ej++){let eh=e$-1-ej;em[eh]&&(em[eh].style.backgroundColor=amarillo,ey[eh].style.backgroundColor=barniz,ev.textContent=eE+"%")}let eS=ef.length;for(let e_=0;e_<eC;e_++){let eB=eS-1-e_;ef[eB]&&(ef[eB].style.backgroundColor=amarillo,ep[eB].style.backgroundColor=verdeAgua)}}}function renderObjeto(){let e=document.querySelectorAll(".lineas-tinta"),l=estadoBalanceNegro.indices.length;for(let t=0;t<l;t++){let o=e.length-1-t;o>=0&&(e[o].style.backgroundColor="yellow")}let a=document.getElementById("tinta-perc"),n=100*Math.min(l,e.length)/e.length;a.textContent=`${Math.round(n)}%`}document.getElementById("butt-perfil-tinta").addEventListener("click",()=>{nombreCliente.style.top="";let e=document.querySelector("#cliente-nombre");interfazPerfiles.classList.remove("move-perfiles-entintado"),desactivarClick([".butt-perfiles",".cabeza",".mod-tinta"]);for(var l=["simulador","interfaz-perfiles","perfiles-entintado","boton-perfiles","boton-reseteo","spn-blur-1","spn-blur-2","spn-blur-3","spn-blur-4","spn-blur-5","spn-blur-6","spn-blur-7"],t=0;t<allContenedores.length;t++){var o=document.getElementById(allContenedores[t]);o&&(o.style.display=l.includes(allContenedores[t])?"flex":"none")}container1.style.display="none",(null===objetoGlobal||""===objetoGlobal)&&(e.textContent=""),setTimeout(()=>{interfazPerfiles.classList.add("move-perfiles-entintado")},100),setTimeout(()=>{document.querySelector(".nombre-cliente").style.display="flex"},1500),setTimeout(()=>{restablecerClick([".butt-perfiles",".cabeza",".mod-tinta"])},1550),botonesPerfilColor.forEach(e=>{e.style.display="flex"})}),document.getElementById("butt-perfil").addEventListener("click",()=>{for(var e=["simulador","inerfaz-ajuste-fino","perfil-individual","control-perfiles","admin-perfiles","texto-perf-indiv","blur-interfaz-perfiles","spn-blur-1","spn-blur-2","spn-blur-3","spn-blur-4","spn-blur-5","spn-blur-6","spn-blur-7"],l=0;l<allContenedores.length;l++){var t=document.getElementById(allContenedores[l]);t&&(t.style.display=e.includes(allContenedores[l])?"flex":"none")}botonesPerfilColor.forEach(e=>{e.style.display="block"}),container1.style.display="none";let o=document.getElementById("inerfaz-ajuste-fino");interfazColor.style.zIndex="",interfazColor.style.display="flex",interfazColor.style.position="absolute",interfazColor.style.top="5vh",primerClickRealizado||(o.style.display="flex",o.style.top="33vh",crearVariasLineas(22),primerClickRealizado=!0)});let primerClickRealizado=!1;document.getElementById("butt-control-tinta").addEventListener("click",()=>{let e=document.querySelector("#current-Color");for(var l=["simulador","inerfaz-ajuste-fino","perfil-individual","control-perfiles","interfaz-perfiles","spn-blur-1","spn-blur-2","spn-blur-3","spn-blur-4","spn-blur-5","spn-blur-6","spn-blur-7"],t=0;t<allContenedores.length;t++){var o=document.getElementById(allContenedores[t]);o&&(o.style.display=l.includes(allContenedores[t])?"flex":"none")}container1.style.display="none",flagNegro&&(flagNegro=!0,flagCyan=!1,flagMagenta=!1,flagAmarillo=!1,flagEspecial=!1,flagBarniz=!1,crearBotoneraDinamica(color="rgb(0,0,0)"),setTimeout(()=>{eliminarColores()},50),setTimeout(()=>{objetoGlobal&&flagNegro&&muestraRenderObjetoGlobal(objetoGlobal,"negro","linea","lineaSeguidor","lineaGrilla","tanque-tinta","nivelTinta","nivelAgua",1,2)},100),e.style.color=color),flagCyan&&(flagCyan=!0,flagNegro=!1,flagMagenta=!1,flagAmarillo=!1,flagEspecial=!1,flagBarniz=!1,crearBotoneraDinamica(color="rgb(0,0,255)"),setTimeout(()=>{eliminarColores()},50),setTimeout(()=>{objetoGlobal&&flagCyan&&muestraRenderObjetoGlobal(objetoGlobal,"azul","linea","lineaSeguidor","lineaGrilla","tanque-tinta","nivelTinta","nivelAgua",3,4)},100)),flagMagenta&&(flagMagenta=!0,flagCyan=!1,flagNegro=!1,flagAmarillo=!1,flagEspecial=!1,flagBarniz=!1,crearBotoneraDinamica(color="rgb(255,0,255)"),setTimeout(()=>{eliminarColores()},50),setTimeout(()=>{objetoGlobal&&flagMagenta&&muestraRenderObjetoGlobal(objetoGlobal,"magenta","linea","lineaSeguidor","lineaGrilla","tanque-tinta","nivelTinta","nivelAgua",5,6)},100)),flagAmarillo&&(flagAmarillo=!0,flagCyan=!1,flagMagenta=!1,flagNegro=!1,flagEspecial=!1,flagBarniz=!1,crearBotoneraDinamica(color="rgb(255,255,0)"),setTimeout(()=>{eliminarColores()},50),setTimeout(()=>{objetoGlobal&&flagAmarillo&&muestraRenderObjetoGlobal(objetoGlobal,"amarillo","linea","lineaSeguidor","lineaGrilla","tanque-tinta","nivelTinta","nivelAgua",7,8)},100)),flagEspecial&&(flagEspecial=!0,flagCyan=!1,flagMagenta=!1,flagAmarillo=!1,flagNegro=!1,flagBarniz=!1,crearBotoneraDinamica(color="rgb(255,130,0)"),setTimeout(()=>{eliminarColores()},50),setTimeout(()=>{objetoGlobal&&flagEspecial&&muestraRenderObjetoGlobal(objetoGlobal,"especial","linea","lineaSeguidor","lineaGrilla","tanque-tinta","nivelTinta","nivelAgua",9,10)},100)),flagBarniz&&(color="rgb(200,200,200)",flagBarniz=!0,flagCyan=!1,flagMagenta=!1,flagAmarillo=!1,flagEspecial=!1,flagNegro=!1,crearBotoneraDinamica(barniz),setTimeout(()=>{eliminarColores()},50),setTimeout(()=>{objetoGlobal&&flagBarniz&&muestraRenderObjetoGlobal(objetoGlobal,"barniz","linea","lineaSeguidor","lineaGrilla","tanque-tinta","nivelTinta","nivelAgua",11,12)},100),e.style.color=color);let a=document.getElementById("perfil-individual");a.classList.remove("move-perfil-individual");let n=document.getElementById("inerfaz-ajuste-fino");nombreCliente.style.display="flex",nombreCliente.style.top="5vh",primerClickRealizado||(n.style.display="flex",n.style.top="33vh",crearVariasLineas(22),primerClickRealizado=!0),a.classList.add("move-perfil-individual"),setTimeout(()=>{botonesPerfilColor.forEach(e=>{e.style.display="block"}),restablecerClick([".butt-selector"])},10)});let calculadoraSimulador=!1;document.getElementById("butt-job-track").addEventListener("click",()=>{["panel-uno","panel-dos"].forEach(e=>document.getElementById(e)?.removeAttribute("style"));let e=document.querySelector("#botonera-frente");e.style.display="grid",conteJobTrack.classList.remove("move-job-track");for(var l=["simulador","unit-job-track","interfaz-perfiles","boton-perfiles","boton-reseteo","abandonar-perfiles","spn-blur-1","spn-blur-2","spn-blur-3","spn-blur-4","spn-blur-5","spn-blur-6","spn-blur-7"],t=0;t<allContenedores.length;t++){var o=document.getElementById(allContenedores[t]);o&&(o.style.display=l.includes(allContenedores[t])?"flex":"none")}container1.style.display="none",desactivarClick([".butt-perfiles"]),restablecerClick([".estilo-1",".butt-revierte"]),document.getElementById("boton-reseteo").style.pointerEvents="auto",conteJobTrack.style.display="flex",document.querySelectorAll(".datos-base").forEach(e=>{e.textContent=""}),setTimeout(()=>{conteJobTrack.classList.add("move-job-track")},100)}),document.getElementById("conte-img").addEventListener("click",()=>{for(var e=["simulador","interfaz-perfiles","inerfaz-ajuste-fino","perfil-individual","control-perfiles","spn-blur-1","spn-blur-2","spn-blur-3","spn-blur-4","spn-blur-5","spn-blur-6","spn-blur-7"],l=0;l<allContenedores.length;l++){var t=document.getElementById(allContenedores[l]);t&&(t.style.display=e.includes(allContenedores[l])?"flex":"none")}botonesPerfilColor.forEach(e=>{e.style.display="block"})});let menuHambrgr=document.getElementById("show-todos"),txtHambrgr=document.getElementById("texto-perf-todos");function manejarColor(e,l,t,o){if(removerClasesColores(),!e){switch(flagNegro=flagCyan=flagMagenta=flagAmarillo=flagEspecial=flagBarniz=!1,o){case 1:flagNegro=!0;break;case 2:flagCyan=!0;break;case 3:flagMagenta=!0;break;case 4:flagAmarillo=!0;break;case 5:flagEspecial=!0;break;case 6:flagBarniz=!0}crearBotoneraDinamica(t),aplicarColor(l,".lineas-tinta"),aplicarSolucion(l,".lineas-solucion")}}function mostrarMenuYAplicarColor(e,l,t,o){menuHambrgr.style.display="flex",txtHambrgr.style.display="flex",manejarColor(e,l,t,o)}menuHambrgr.addEventListener("click",()=>{document.querySelectorAll(".color-ind").forEach(e=>e.style.display="flex"),document.getElementById("info-perfiles").style.display="none",document.getElementById("cont-modificadores").style.display="none"}),document.querySelectorAll(".color-ind").forEach((e,l)=>{e.addEventListener("click",()=>{switch(document.getElementById("info-perfiles").style.display="grid",document.getElementById("cont-modificadores").style.display="grid",document.querySelectorAll(".color-ind").forEach(e=>e.style.display="none"),e.style.display="flex",menuHambrgr.style.display="flex",txtHambrgr.style.display="flex",l+1){case 1:mostrarMenuYAplicarColor(flagNegro,estadoBalanceNegro,negro,1);break;case 2:mostrarMenuYAplicarColor(flagCyan,estadoBalanceCyan,azul,2);break;case 3:mostrarMenuYAplicarColor(flagMagenta,estadoBalanceMagenta,magenta,3);break;case 4:mostrarMenuYAplicarColor(flagAmarillo,estadoBalanceAmarillo,"yellow",4);break;case 5:mostrarMenuYAplicarColor(flagEspecial,estadoBalanceEspecial,especial,5);break;case 6:mostrarMenuYAplicarColor(flagBarniz,estadoBalanceBarniz,barniz,6)}})});let banderaNegro=!1,banderaCian=!1,banderaMagenta=!1,banderaAmarillo=!1,banderaEspecial=!1,banderaBarniz=!1;function removerClasesColores(){let e=document.querySelectorAll(".color-ind");e.forEach(e=>{e.classList.remove("move-perfil-barniz","move-perfil-especial","move-perfil-amarillo","move-perfil-magenta","move-perfil-cian","move-perfil-negro")})}const textos=["N","C","M","A","E-1","E-2"],textosEncabezados=["Negro","Cyan","Magenta","Aamarillo","Especial","Barniz"],textosReglas=Array.from({length:22},(e,l)=>l+1),idsEncabezados=["cabeza-negro","cabeza-azul","cabeza-magenta","cabeza-amarillo","cabeza-especial","cabeza-barniz"],maquinasTextos=["IBM 5000","IBM Infoprint","GTO 52","Pinza","Heidelberg SORMZ","rotatek RK-200","rotatek RK-300"];function elementosDinamicamente(e,l,t,o=null,a=""){let n=document.getElementById(e);n.innerHTML="";let r=Number.isInteger(o)?o:null;for(let i=1;i<=l;i++){let s=document.createElement("div");s.classList.add(t),null!==r&&(s.textContent=r,r++),a&&(s.id=`${a}-${i}`),n.appendChild(s)}}function elementosConSpanDinamicamente(e,l,t,o=[],a=[]){let n=document.getElementById(e);n.innerHTML="";for(let r=0;r<l;r++){let i=document.createElement("div");if(i.classList.add(t),o[r]){let s=document.createElement("span");s.classList.add("texto-selectores"),s.textContent=o[r],i.appendChild(s)}a[r]&&(i.id=a[r]),n.appendChild(i)}}function clasePadreCantidadClaseTextId(e,l,t,o=[],a=""){let n=document.querySelectorAll(`.${e}`);if(0===n.length){console.warn(`No se encontr\xf3 ning\xfan contenedor con la clase: ${e}`);return}n.forEach((e,n)=>{e.innerHTML="";for(let r=1;r<=l;r++){let i=document.createElement("span");i.classList.add(t),i.textContent=o.length>0&&o[r-1]||"",a&&(i.id=`${a}-${r}`),e.appendChild(i)}})}function idPadreCantidadClaseTextId(e,l,t,o="",a=[],n="",r,i,s){let c=document.getElementById(e);c.innerHTML="";let d=document.createElement("span"),u=document.createElement("span");d.classList.add("div-agua","agua-div"),u.classList.add("div-gral"),d.id=`display-general-${i}`,u.id=`gral-display-${i}`;let g=document.getElementById(r),b=document.getElementById(s);g&&g.appendChild(d),b&&b.appendChild(u);for(let y=1;y<=l;y++){let m=document.createElement("span");m.classList.add(t),o&&m.classList.add(o),m.textContent=a.length>0&&a[y-1]||"",n&&(m.id=`${n}-${y}`),c.appendChild(m)}}let intervalColorNegro=null,intervalColorCyan=null,intervalColorMagenta=null,intervalColorAmmarillo=null,intervalColorEspecial=null,intervalColorBarniz=null;function toggleColorButton(e){let l=document.querySelectorAll(".cabeza"),t=document.querySelectorAll(".butt-selector");if(l.forEach(e=>e.style.backgroundColor=""),t.forEach(e=>e.style.backgroundColor=""),l[e]&&(l[e].style.backgroundColor=verde),t[e]){t[e].style.backgroundColor=verde;let o=t[e].querySelector(`#butts-selectores div:nth-child(${e}) .texto-selectores`);o&&(o.style.color="black")}}function crearLedsSpan(){for(let e=1;e<=22;e++){let l=document.getElementById(`led-${e}`);if(l){for(;l.firstChild;)l.removeChild(l.firstChild);for(let t=1;t<=24;t++){let o=document.createElement("span");o.classList.add("led"),l.appendChild(o)}}else console.warn(`No se encontr\xf3 el contenedor con id: led-${e}`)}let a=document.querySelectorAll("#control-perfiles #led-1 .led");0===a.length&&a.forEach(e=>{e.classList.add("elemento-sync")})}function eliminarBotonesSuma(){let e=document.getElementById("columna-30"),l=e.querySelectorAll(".linea-control.suma");l.forEach(l=>{e.removeChild(l)})}function eliminarBotonesResta(){let e=document.getElementById("columna-30"),l=e.querySelectorAll(".linea-control.resta");l.forEach(l=>{e.removeChild(l)})}const informacionBotonesNegro=[],informacionBotonesAmarillo=[],informacionBotonesCyan=[],informacionBotonesMagenta=[],informacionBotonesNaranja=[],informacionBotonesGris=[];let colorAplicadoContador=0;const numeroLineas=22;let currentLinea=0,currentIndice=0;function desactivarEventos(){document.addEventListener("click",bloquearEvento,!0),document.addEventListener("mousedown",bloquearEvento,!0)}function activarEventos(){document.removeEventListener("click",bloquearEvento,!0),document.removeEventListener("mousedown",bloquearEvento,!0)}function bloquearEvento(e){e.stopPropagation(),e.preventDefault()}let objetoAmarillo={linea:{"linea-1":[],"linea-2":[],"linea-3":[],"linea-4":[],"linea-5":[],"linea-6":[],"linea-7":[],"linea-8":[],"linea-9":[],"linea-10":[],"linea-11":[],"linea-12":[],"linea-13":[],"linea-14":[],"linea-15":[],"linea-16":[],"linea-17":[],"linea-18":[],"linea-19":[],"linea-20":[],"linea-21":[],"linea-22":[]},lineaSeguidor:{"led-1":[],"led-2":[],"led-3":[],"led-4":[],"led-5":[],"led-6":[],"led-7":[],"led-8":[],"led-9":[],"led-10":[],"led-11":[],"led-12":[],"led-13":[],"led-14":[],"led-15":[],"led-16":[],"led-17":[],"led-18":[],"led-19":[],"led-20":[],"led-21":[],"led-22":[]},lineaGrilla:{"grilla-1":[],"grilla-2":[],"grilla-3":[],"grilla-4":[],"grilla-5":[],"grilla-6":[],"grilla-7":[],"grilla-8":[],"grilla-9":[],"grilla-10":[],"grilla-11":[],"grilla-12":[],"grilla-13":[],"grilla-14":[],"grilla-15":[],"grilla-16":[],"grilla-17":[],"grilla-18":[],"grilla-19":[],"grilla-20":[],"grilla-21":[],"grilla-22":[]},nivelAgua:[],nivelAguaGral:[],nivelTinta:[],nivelTintaGral:[],colorElemento:""},objetoMagenta=JSON.parse(JSON.stringify(objetoAmarillo)),objetoCian=JSON.parse(JSON.stringify(objetoAmarillo)),objetoNegro=JSON.parse(JSON.stringify(objetoAmarillo)),objetoEspecial=JSON.parse(JSON.stringify(objetoAmarillo)),objetoBarniz=JSON.parse(JSON.stringify(objetoAmarillo)),primeraPantalla=!0,segundaPantalla=!1,objetoRender={boton1:{boton:"",elementosColoreados:[],linea1:"",claseElemento:"",colorElemento:""}};const colorNames={"rgb(255,255,0)":"amarillo","rgb(0,0,255)":"azul","rgb(255,0,255)":"magenta","rgb(0,0,0)":"negro","rgb(255,130,0)":"especial","rgb(200,200,200)":"barniz"};function getColorName(e){let l="string"==typeof e?e:e.toString();return colorNames[l]||"desconocido"}function crearBotonSuma(e,l,t,o){let a=document.getElementById("columna-30"),n=[],r=document.querySelectorAll(".indexar");for(let i=1;i<=22;i++){let s=document.createElement("div");s.classList.add("linea-control","suma"),s.id=`bot-${i}`,a.appendChild(s),n.push(s);let c=null,d=()=>{if(!flagAplicacion){alertaBotones.style.display="flex",alertaBotones.style.backgroundColor=verde,alertaBotones.style.color="black",alertaBotones.style.top="20vh",desactivarClicEnElementos(buttSelector,buttSelector,botonesPerfilColor,buttsControl,buttsColores,buttSuma,buttResta),setTimeout(()=>{alertaBotones.style.backgroundColor="",alertaBotones.style.color=""},500);return}let a=s.id.match(/\d+/)?.[0];s.style.backgroundColor="rgb(0, 250, 254)";let n=getColorName(e),d=`linea-${a}`,u=`led-${a}`,g=`grilla-${a}`,b=`#columna-70 #${d} #display-leds .leds`,y=`#control-perfiles #led-${a} .led`,m=`#perfil-${n} #grilla-${a} .led-general`,p=document.querySelectorAll(b),f=document.querySelectorAll(y),v=document.querySelectorAll(m),E=p.length-1-almacenObjetos[objetoGlobal][n][l][d].length;c=setInterval(()=>{E>=0?(p[E].style.backgroundColor=rojo,f[E].style.backgroundColor=e,v[E].style.backgroundColor=e,almacenObjetos[objetoGlobal][n][l][d].push(E),almacenObjetos[objetoGlobal][n][t][u].push(E),almacenObjetos[objetoGlobal][n][o][g].push(E),guardarObjetoEnLocalStorage(),guardarCambiosGeneralesEnAlmacen(),E--):(clearInterval(c),c=null)},177);let C=r[i-1];C&&(C.style.color="red",C.style.fontSize="1em",C.style.fontWeight="bold")},u=()=>{let e=r[i-1];e&&(e.style.color="",e.style.fontSize="",e.style.fontWeight=""),s.style.backgroundColor="",c&&(clearInterval(c),c=null)};s.addEventListener("mousedown",d),s.addEventListener("mouseup",u),s.addEventListener("mouseleave",u),s.addEventListener("touchstart",e=>{e.preventDefault(),d()},{passive:!1}),s.addEventListener("touchend",u,{passive:!0}),s.addEventListener("touchcancel",u,{passive:!0})}}function guardarObjetoEnLocalStorage(){localStorage.setItem("objetoAmarillo",JSON.stringify(objetoAmarillo)),localStorage.setItem("objetoMagenta",JSON.stringify(objetoMagenta)),localStorage.setItem("objetoCian",JSON.stringify(objetoCian)),localStorage.setItem("objetoNegro",JSON.stringify(objetoNegro)),localStorage.setItem("objetoEspecial",JSON.stringify(objetoEspecial)),localStorage.setItem("objetoBarniz",JSON.stringify(objetoBarniz))}function traerObjetoDeLocalStorage(){let e=JSON.parse(localStorage.getItem("objetoAmarillo")||"{}"),l=JSON.parse(localStorage.getItem("objetoMagenta")||"{}"),t=JSON.parse(localStorage.getItem("objetoCian")||"{}"),o=JSON.parse(localStorage.getItem("objetoNegro")||"{}"),a=JSON.parse(localStorage.getItem("objetoEspecial")||"{}"),n=JSON.parse(localStorage.getItem("objetoBarniz")||"{}");Object.keys(e).length>0?Object.assign(objetoAmarillo,e):console.warn("El objeto no existe en localStorage o est\xe1 vac\xedo."),Object.keys(l).length>0?Object.assign(objetoMagenta,l):console.warn("El objeto no existe en localStorage o est\xe1 vac\xedo."),Object.keys(t).length>0?Object.assign(objetoCian,t):console.warn("El objeto no existe en localStorage o est\xe1 vac\xedo."),Object.keys(o).length>0?Object.assign(objetoNegro,o):console.warn("El objeto no existe en localStorage o est\xe1 vac\xedo."),Object.keys(a).length>0?Object.assign(objetoEspecial,a):console.warn("El objeto no existe en localStorage o est\xe1 vac\xedo."),Object.keys(n).length>0?Object.assign(objetoBarniz,n):console.warn("El objeto no existe en localStorage o est\xe1 vac\xedo."),ensayoAplicacion(objetoMagenta,"#perfil-magenta",magenta,"magenta"),ensayoAplicacion(objetoAmarillo,"#perfil-amarillo",amarillo,"amarillo"),ensayoAplicacion(objetoCian,"#perfil-azul",cian,"cyan"),ensayoAplicacion(objetoNegro,"#perfil-negro",negro,"negro"),ensayoAplicacion(objetoEspecial,"#perfil-especial",especial,"especial"),ensayoAplicacion(objetoBarniz,"#perfil-barniz",barniz,"barniz")}function vaciarObjeto(){[objetoAmarillo,objetoMagenta,objetoCian,objetoNegro,objetoEspecial,objetoBarniz].forEach(e=>{for(let l in e)if("object"!=typeof e[l]||Array.isArray(e[l]))Array.isArray(e[l])?e[l]=[]:e[l]="";else for(let t in e[l])e[l][t]=[]}),guardarObjetoEnLocalStorage()}function vaciarAlmacenObjetos(){let e=localStorage.getItem("coloresRegistrados");if(!e){console.log("El almac\xe9n de objetos est\xe1 vac\xedo o no existe.");return}almacenObjetos=JSON.parse(e),console.log("Almac\xe9n antes de vaciarlo:",almacenObjetos),almacenObjetos={},localStorage.setItem("coloresRegistrados",JSON.stringify(almacenObjetos)),console.log("El almac\xe9n de objetos ha sido vaciado.")}let buttonSmart=document.getElementById("seleccion-gral"),intervaloLeds;function guardarObjetoEnLocal(e){let l=JSON.stringify(e);localStorage.setItem("informacionCopia",l)}function guardarObjetoAmarillo(e){try{let l=JSON.stringify(e);localStorage.setItem("objetoAmarillo",l),console.log("Objeto guardado exitosamente:",e)}catch(t){console.error("Error al guardar el objeto en localStorage:",t)}}function guardarobjetoMagenta(e){try{let l=JSON.stringify(e);localStorage.setItem("objetoMagenta",l),console.log("Objeto guardado exitosamente:",e)}catch(t){console.error("Error al guardar el objeto en localStorage:",t)}}function guardarObjetoCian(e){try{let l=JSON.stringify(e);localStorage.setItem("objetoCian",l),console.log("Objeto guardado exitosamente:",e)}catch(t){console.error("Error al guardar el objeto en localStorage:",t)}}function guardarObjetoNegro(e){try{let l=JSON.stringify(e);localStorage.setItem("objetoNegro",l),console.log("Objeto guardado exitosamente:",e)}catch(t){console.error("Error al guardar el objeto en localStorage:",t)}}function guardarObjetoEspecial(e){try{let l=JSON.stringify(e);localStorage.setItem("objetoEspecial",l),console.log("Objeto guardado exitosamente:",e)}catch(t){console.error("Error al guardar el objeto en localStorage:",t)}}function guardarObjetoBarniz(e){try{let l=JSON.stringify(e);localStorage.setItem("objetoBarniz",l),console.log("Objeto guardado exitosamente:",e)}catch(t){console.error("Error al guardar el objeto en localStorage:",t)}}function vaciarObjetosPerfiles(){let e={clase:"",claseSeguidor:"",claseGrilla:"",linea:{"linea-1":[],"linea-2":[],"linea-3":[],"linea-4":[],"linea-5":[],"linea-6":[],"linea-7":[],"linea-8":[],"linea-9":[],"linea-10":[],"linea-11":[],"linea-12":[],"linea-13":[],"linea-14":[],"linea-15":[],"linea-16":[],"linea-17":[],"linea-18":[],"linea-19":[],"linea-20":[],"linea-21":[],"linea-22":[]},lineaSeguidor:{"led-1":[],"led-2":[],"led-3":[],"led-4":[],"led-5":[],"led-6":[],"led-7":[],"led-8":[],"led-9":[],"led-10":[],"led-11":[],"led-12":[],"led-13":[],"led-14":[],"led-15":[],"led-16":[],"led-17":[],"led-18":[],"led-19":[],"led-20":[],"led-21":[],"led-22":[]},lineaGrilla:{"grilla-1":[],"grilla-2":[],"grilla-3":[],"grilla-4":[],"grilla-5":[],"grilla-6":[],"grilla-7":[],"grilla-8":[],"grilla-9":[],"grilla-10":[],"grilla-11":[],"grilla-12":[],"grilla-13":[],"grilla-14":[],"grilla-15":[],"grilla-16":[],"grilla-17":[],"grilla-18":[],"grilla-19":[],"grilla-20":[],"grilla-21":[],"grilla-22":[]},colorElemento:"",contadorPulsos:[]};["objetoAmarillo","objetoMagenta","objetoCian","objetoNegro","objetoEspecial","objetoBarniz"].forEach(l=>{if(window[l]){let t=window[l];Object.assign(t,JSON.parse(JSON.stringify(e)))}localStorage.removeItem(l)}),console.log("Objetos vaciados y eliminados de localStorage.")}function traerObjetoAmarillo(){try{let e=localStorage.getItem("objetoAmarillo");if(!e)return console.warn("No se encontr\xf3 un objeto en localStorage. Devolviendo un objeto vac\xedo."),{clase:[],claseSeguidor:[],claseGrilla:[],linea:"",lineaSeguidor:"",lineaGrilla:"",colorPerfilGrilla:"",colorElemento:"",contadorPulsos:[]};{let l=JSON.parse(e);return console.log("Objeto recuperado exitosamente:",l),l}}catch(t){return console.error("Error al recuperar el objeto desde localStorage:",t),{clase:[],claseSeguidor:[],linea:"",lineaSeguidor:"",colorElemento:"",contadorPulsos:[]}}}function traerObjetoMagenta(){try{let e=localStorage.getItem("objetoMagenta");if(!e)return console.warn("No se encontr\xf3 un objeto en localStorage. Devolviendo un objeto vac\xedo."),{clase:[],claseSeguidor:[],claseGrilla:[],colorPerfilGrilla:"",linea:"",lineaSeguidor:"",lineaGrilla:"",colorElemento:"",contadorPulsos:[]};{let l=JSON.parse(e);return console.log("Objeto recuperado exitosamente:",l),l}}catch(t){return console.error("Error al recuperar el objeto desde localStorage:",t),{clase:[],claseSeguidor:[],linea:"",lineaSeguidor:"",colorElemento:"",contadorPulsos:[]}}}function traerObjetoCian(){try{let e=localStorage.getItem("objetoCian");if(!e)return console.warn("No se encontr\xf3 un objeto en localStorage. Devolviendo un objeto vac\xedo."),{clase:[],claseSeguidor:[],claseGrilla:[],colorPerfilGrilla:"",linea:"",lineaSeguidor:"",lineaGrilla:"",colorElemento:"",contadorPulsos:[]};{let l=JSON.parse(e);return console.log("Objeto recuperado exitosamente:",l),l}}catch(t){return console.error("Error al recuperar el objeto desde localStorage:",t),{clase:[],claseSeguidor:[],linea:"",lineaSeguidor:"",colorElemento:"",contadorPulsos:[]}}}function traerObjetoNegro(){try{let e=localStorage.getItem("objetoNegro");if(!e)return console.warn("No se encontr\xf3 un objeto en localStorage. Devolviendo un objeto vac\xedo."),{clase:[],claseSeguidor:[],claseGrilla:[],colorPerfilGrilla:"",linea:"",lineaSeguidor:"",lineaGrilla:"",colorElemento:"",contadorPulsos:[],nivelTinta:[],nivelAgua:[]};{let l=JSON.parse(e);return console.log("Objeto recuperado exitosamente:",l),l}}catch(t){return console.error("Error al recuperar el objeto desde localStorage:",t),{clase:[],claseSeguidor:[],linea:"",lineaSeguidor:"",colorElemento:"",contadorPulsos:[]}}}function traerObjetoEspecial(){try{let e=localStorage.getItem("objetoEspecial");if(!e)return console.warn("No se encontr\xf3 un objeto en localStorage. Devolviendo un objeto vac\xedo."),{clase:[],claseSeguidor:[],claseGrilla:[],colorPerfilGrilla:"",linea:"",lineaSeguidor:"",lineaGrilla:"",colorElemento:"",contadorPulsos:[]};{let l=JSON.parse(e);return console.log("Objeto recuperado exitosamente:",l),l}}catch(t){return console.error("Error al recuperar el objeto desde localStorage:",t),{clase:[],claseSeguidor:[],linea:"",lineaSeguidor:"",colorElemento:"",contadorPulsos:[]}}}function traerObjetoBarniz(){try{let e=localStorage.getItem("objetoBarniz");if(!e)return console.warn("No se encontr\xf3 un objeto en localStorage. Devolviendo un objeto vac\xedo."),{clase:[],claseSeguidor:[],claseGrilla:[],colorPerfilGrilla:"",linea:"",lineaSeguidor:"",lineaGrilla:"",colorElemento:"",contadorPulsos:[]};{let l=JSON.parse(e);return console.log("Objeto recuperado exitosamente:",l),l}}catch(t){return console.error("Error al recuperar el objeto desde localStorage:",t),{clase:[],claseSeguidor:[],linea:"",lineaSeguidor:"",colorElemento:"",contadorPulsos:[]}}}function aplicarColorDesdeObjeto(e){if(e===objetoAmarillo){document.querySelectorAll("#columna-70 #linea-1 #display-leds .leds"),document.querySelectorAll("#control-perfiles #led-1 .led"),document.querySelectorAll("#perfil-amarillo #grilla-1 .led-general"),document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),document.querySelectorAll("#footer-amarillo #footer-7 .divs-grales-tinta-amarillo"),document.querySelectorAll("#footer-amarillo #footer-8 .divs-grales-solucion-amarillo"),document.getElementsByClassName("lineas-tinta"),document.getElementsByClassName("lineas-solucion"),document.getElementById("solucion-porcentaje"),document.getElementById("tinta-perc");let l=e.linea["linea-1"].length;console.log("LEDS : ",l)}}function traerObjetoDeLocal(){let e=localStorage.getItem("informacionCopia");if(!e)return console.log("No se encontr\xf3 objeto en localStorage."),null;{let l=JSON.parse(e);return Array.isArray(l)?(l=l.slice(0,22),console.log("Informaci\xf3n del objeto recuperado de localStorage:"),l.forEach((e,l)=>{console.log(`Elemento ${l+1}:`),console.log(`botonOprimido: ${e.botonOprimido}`),console.log(`lineaActual: ${e.lineaActual}`),console.log(`ledActual: ${e.ledActual}`),console.log(`ledSecundario: ${e.ledSecundario}`),console.log(`ledsColoreados: ${e.ledsColoreados.length}`),console.log(`colorAplicadoContador: ${e.colorAplicadoContador}`),console.log(`clasesColoreadas: ${e.clasesColoreadas.join(", ")}`),console.log(`clasesColoreadas: ${e.colorElemento}`),console.log("---")}),l.forEach(e=>{renderizarObjetoLocal(e)}),l):(console.log("El objeto recuperado no es una lista."),null)}}function renderizarObjetoLocal(e){let l=document.querySelectorAll(`#${e.lineaActual} .${e.clasesColoreadas[0]}`),t=document.querySelectorAll(`#${e.lineaActual} .${e.ledActual}`),o=document.querySelectorAll(`#${e.lineaActual} .${e.ledSecundario}`);if(l.length>0||t.length||o.length>0){let a=e.colorAplicadoContador,n=0;for(let r=l.length-1;r>=0;r--)if(n<a)l[r].style.backgroundColor=e.colorElemento,n++;else break;for(let i=t.length-1;i>=0;i--)if(n<a)t[i].style.backgroundColor=e.colorElemento,n++;else break}else console.warn("No se encontraron elementos para aplicar color.")}function vaciarObjetoEnLocal(){localStorage.removeItem("objetoAmarillo"),console.log("Objeto eliminado de localStorage")}function guardarCambios(e){if(objetoGlobal)try{localStorage.setItem(e,JSON.stringify(almacenObjetos)),console.log(`Cambios guardados bajo la clave: ${e}`)}catch(l){console.error("Error al guardar los cambios en localStorage:",l)}else console.warn("No hay una instancia cargada para guardar cambios.")}function cargarInstanciaDesdeLocalEnObjetoglobal(e){let l=localStorage.getItem(e);if(l)try{objetoGlobal=JSON.parse(l),console.log(`Instancia cargada desde la clave "${e}":`,objetoGlobal)}catch(t){console.error("Error al parsear la instancia desde localStorage:",t),objetoGlobal=null}else console.warn(`No se encontr\xf3 ninguna instancia bajo la clave "${e}".`)}function vaciarTodoAlmacenObjetos(){localStorage.clear(),console.log("Todos los objetos han sido eliminados del almacenamiento local.")}function capitalizarTexto(e){return e.replace(/\b\w/g,e=>e.toUpperCase())}function actualizarListaNombres(){let e=document.getElementById("listaNombresContainer");e.innerHTML="";let l=Object.keys(almacenObjetos).sort();l.forEach(l=>{let t=document.createElement("div");t.textContent=l,t.classList.add("elemento-objeto"),t.addEventListener("click",()=>{resaltarElemento(t)}),e.appendChild(t)})}function resaltarElemento(e){let l=document.getElementById("listaNombresContainer"),t=Array.from(l.querySelectorAll(".elemento-objeto"));t.forEach(e=>{e.style.backgroundColor="",e.style.color="",e.style.display="block"}),e.style.backgroundColor="blue",e.style.color="white",t.forEach(l=>{l!==e&&(l.style.display="none")}),document.querySelector("#filtroNombres input").value=""}function cargarObjetoGlobalDesdeLocalStorage(){let e=localStorage.getItem("objetoGlobal");if(e)try{objetoGlobal=JSON.parse(e),console.log("objetoGlobal cargado desde localStorage:",objetoGlobal)}catch(l){console.error("Error al cargar objetoGlobal desde localStorage:",l)}else console.warn("No se encontraron datos de objetoGlobal en localStorage.")}function guardarCambiosGeneralesEnAlmacen(){try{localStorage.setItem("coloresRegistrados",JSON.stringify(almacenObjetos)),console.log("Todos los cambios en almacenObjetos guardados en localStorage.")}catch(e){console.error("Error al guardar almacenObjetos en localStorage:",e)}}function mostrarVentanaEmergente(e){let l=document.getElementById("ventanaEmergente"),t=document.getElementById("mensajeEmergente");t.textContent=e,l.classList.remove("oculta")}function crearBotonResta(e,l,t,o){let a=document.getElementById("columna-30"),n=[],r=document.querySelectorAll(".indexar");for(let i=1;i<=22;i++){let s=document.createElement("div");s.classList.add("linea-control","resta"),s.id=`bot-resta-${i}`,a.appendChild(s),n.push(s);let c=()=>{if(flagAplicacion){let a=s.id.match(/\d+/)?.[0];s.style.backgroundColor="rgb(0, 250, 254)";let n=getColorName(e),c=`linea-${a}`,d=`led-${a}`,u=`grilla-${a}`,g=`#columna-70 #${c} #display-leds .leds`,b=`#control-perfiles #led-${a} .led`,y=`#perfil-${n} #grilla-${a} .led-general`,m=document.querySelectorAll(g),p=document.querySelectorAll(b),f=document.querySelectorAll(y);console.log(" COLORNAME :",n);let v=m.length-almacenObjetos[objetoGlobal][n][l][c].length,E=setInterval(()=>{24!==v&&(v>=0?(m[v].style.backgroundColor="",p[v].style.backgroundColor="",f[v].style.backgroundColor="",almacenObjetos[objetoGlobal][n][l][c].pop(),almacenObjetos[objetoGlobal][n][t][d].pop(),almacenObjetos[objetoGlobal][n][o][u].pop(),guardarObjetoEnLocalStorage(),guardarCambiosGeneralesEnAlmacen(),v++):clearInterval(E))},177),C=r[i-1];C&&(C.style.color="red",C.style.fontSize="1em",C.style.fontWeight="bold");let $=()=>{let e=r[i-1];e&&(e.style.color="",e.style.fontSize="",e.style.fontWeight=""),s.style.backgroundColor="",clearInterval(E)};s.addEventListener("mouseup",$),s.addEventListener("mouseleave",$),s.addEventListener("touchend",$,{passive:!0}),s.addEventListener("touchcancel",$,{passive:!0})}else alertaBotones.style.display="flex",alertaBotones.style.backgroundColor=verde,alertaBotones.style.color="black",alertaBotones.style.top="20vh",desactivarClicEnElementos(buttSelector,buttSelector,botonesPerfilColor,buttsControl,buttsColores,buttSuma,buttResta),setTimeout(()=>{alertaBotones.style.backgroundColor="",alertaBotones.style.color=""},500)};s.addEventListener("mousedown",c),s.addEventListener("touchstart",e=>{e.preventDefault(),c()},{passive:!1})}}function renderizarPerfilesTinta(e){let l=document.querySelectorAll(".led, .leds");l.forEach(e=>{e.style.backgroundColor=""});let t;switch(e){case negro:t=informacionBotonesNegro;break;case amarillo:t=informacionBotonesAmarillo;break;case magenta:t=informacionBotonesMagenta;break;case cian:t=informacionBotonesCyan;break;case especial:t=informacionBotonesNaranja;break;case barniz:t=informacionBotonesGris;break;default:return}aplicarColorLeds(t,e)}function aplicarColorLeds(e,l){e.forEach((e,t)=>{let o=document.querySelectorAll(`#linea-${t+1} #display-leds .leds`),a=document.querySelectorAll(`#control-perfiles #led-${t+1} .led`);e.ledsColoreados.forEach(e=>{let t=o[e],n=a[e];t&&(t.style.backgroundColor=l,t.dataset.color=l),n&&(n.style.backgroundColor=l,n.dataset.color=l)})})}function resetPerfiles(){resetColor(flagNegro,informacionBotonesNegro,"negro"),resetColor(flagCyan,informacionBotonesCyan,"cyan"),resetColor(flagMagenta,informacionBotonesMagenta,"magenta"),resetColor(flagEspecial,informacionBotonesNaranja,"especial"),resetColor(flagBarniz,informacionBotonesGris,"barniz"),resetColor(flagAmarillo,informacionBotonesAmarillo,"yellow")}function resetColor(e,l,t){let o=document.getElementById("solucion-porcentaje"),a=document.getElementById("tinta-perc");e&&(l.forEach(e=>{e.ledsColoreados=[],e.colorAplicadoContador=0}),eliminarColoresConIntervalo(t),o.textContent="0%",a.textContent="0%")}function eliminarColoresConIntervalo(e){let l=document.getElementById("dialogo-flotante");if(l.style.display="block",0===currentLinea&&0===currentIndice&&desactivarEventos(),currentLinea<22){let t=document.querySelectorAll(`#linea-${currentLinea+1} #display-leds .leds`),o=document.querySelectorAll(`#perfil-${e} #grilla-${currentLinea+1} .led-general`),a=document.querySelectorAll(`#led-${currentLinea+1} .led`);currentIndice<t.length?([t,o,a].forEach(e=>{let l=e[currentIndice];l&&""!==l.style.backgroundColor&&(l.style.backgroundColor="",l.style.border="",l.dataset.color="")}),currentIndice++,setTimeout(()=>eliminarColoresConIntervalo(e),1)):(currentLinea++,currentIndice=0,setTimeout(()=>eliminarColoresConIntervalo(e),1))}else activarEventos(),l.style.display="none","negro"===e&&(almacenSolucionNegro=[],almacenTintaNegro=[],limpiarColores("negro")),"cyan"===e&&(almacenSolucionCyan=[],almacenTintaCyan=[]),"magenta"===e&&(almacenSolucionMagenta=[],almacenTintaMagenta=[]),"yellow"===e&&(almacenSolucionAmarillo=[],almacenTintaAmarillo=[]),"especial"===e&&(almacenSolucionEspecial=[],almacenTintaEspecial=[]),"barniz"===e&&(almacenSolucionBarniz=[],almacenTintaBarniz=[]),limpiarColores(e),currentLinea=0,currentIndice=0}function limpiarColores(e){let l=document.querySelectorAll(".lineas-solucion"),t=document.querySelectorAll(".lineas-tinta");t.forEach(e=>{e.style.backgroundColor="",almacenTintaNegro=[]}),l.forEach(e=>{e.style.backgroundColor="",almacenSolucionNegro=[]});let o=document.querySelectorAll(`#footer-${e} #footer-1 .divs-grales-tinta-${e}`);o.forEach(e=>{e.style.backgroundColor=""});let a=document.querySelectorAll(`#footer-${e} #footer-2 .divs-grales-solucion-${e}`);a.forEach(e=>{e.style.backgroundColor="",e.classList.remove("elemento-agua")})}buttonSmart.addEventListener("mousedown",()=>{primeraPantalla=!1,segundaPantalla=!0,objetoAmarillo.linea["linea-11"].push(1),guardarObjetoAmarillo(objetoAmarillo),console.log(objetoAmarillo)}),buttonSmart.addEventListener("mouseup",()=>{clearInterval(intervaloLeds),console.log("Todos los LEDs han sido coloreados.")}),document.querySelector("#boton-reseteo").addEventListener("click",()=>{alertaGlobal="boton-reseteo";for(var e=["simulador","butt-perfil-tinta","butt-control-tinta","butt-perfil","butt-job-track","boton-perfiles","interfaz-perfiles","boton-reseteo","spn-blur-1","spn-blur-2","spn-blur-3","spn-blur-4","spn-blur-5","spn-blur-6","spn-blur-7"],l=0;l<allContenedores.length;l++){var t=document.getElementById(allContenedores[l]);t&&(t.style.display=e.includes(allContenedores[l])?"flex":"none")}container1.style.display="none",desactivarClick([".butt-perfiles"]),saltarAlerta("Esta acci\xf3n elimina definitivamente los perfiles guardados ","reseteo")}),document.querySelector("#boton-prensas").addEventListener("click",()=>{for(var e=["buscador","search-form","links-inicialesI","links-iniciales","container01"],l=0;l<allContenedores.length;l++){var t=document.getElementById(allContenedores[l]);t&&(t.style.display=e.includes(allContenedores[l])?"flex":"none")}interfazPerfiles.classList.remove("move-perfiles-entintado"),document.querySelector(".sections").style.display="grid",document.querySelector("#sections-fondo").style.display="grid",document.querySelector("#contenedor-botonera").style.display="grid"}),document.querySelector("#boton-perfiles").addEventListener("click",()=>{for(var e=["simulador","butt-perfil-tinta","butt-control-tinta","butt-perfil","butt-job-track","boton-perfiles","interfaz-perfiles","boton-reseteo","spn-blur-1","spn-blur-2","spn-blur-3","spn-blur-4","spn-blur-5","spn-blur-6","spn-blur-7"],l=0;l<allContenedores.length;l++){var t=document.getElementById(allContenedores[l]);t&&(t.style.display=e.includes(allContenedores[l])?"flex":"none")}container1.style.display="none",desactivarClick([".butt-perfiles"]),restablecerClick([".butt-revierte"]),setTimeout(()=>{moverFormulario(),esDesktop&&inputPerfil.focus(),inputPerfil.value=""},20)}),inputPerfil.addEventListener("input",function(){let e=this.value.toLowerCase().replace(/\b\w/g,e=>e.toUpperCase());this.value=e}),inputPerfil.addEventListener("focusin",()=>{esDesktop||showKeyboard()}),inputPerfil.addEventListener("blur",()=>{esDesktop||hideKeyboard()}),document.getElementById("btn-crea-perfil").addEventListener("click",()=>{let e=inputPerfil.value.trim();if(""===e){saltarAlerta("Por favor, ingrese un nombre v\xe1lido","perfilador");return}if(almacenObjetos[e=capitalizarTexto(e)]){saltarAlerta("Ya existe un perfil con este nombre","perfilExiste");return}let l=new objetoColores;almacenObjetos[e]=l;let t=Object.keys(almacenObjetos).sort().reduce((e,l)=>(e[l]=almacenObjetos[l],e),{});almacenObjetos=t,localStorage.setItem("coloresRegistrados",JSON.stringify(almacenObjetos)),console.log(`Perfil "${e}" creado y almacenado.`),console.log("Objeto almacenado en la variable global:",objetoGlobal),console.log(almacenObjetos),saltarAlerta("Perfil creado y almacenado","perfilAgregado"),inputPerfil.value="";let o=localStorage.getItem("coloresRegistrados");if(o){let a=JSON.parse(o);console.log("Almac\xe9n de Objetos:","almacenObjetos"),Object.keys(a).forEach(e=>{console.log(`- Objeto: ${e}`);let l=Object.keys(a[e]);console.log("  Propiedades principales:",l.join(", "))}),console.log("VARIABLE GLOBAL CON JSON :",JSON.stringify(objetoGlobal,null,2)),console.log("VARIABLE GLOBAL SIN JSON :",objetoGlobal)}else console.log("No se encontraron objetos almacenados en el localStorage.")}),document.getElementById("cerrarEmergente").addEventListener("click",()=>{let e=document.querySelector("#padre-cmyk"),l=document.querySelector("#padre-rgb"),t=document.getElementById("mensajeEmergente");if(conteJobTrack.classList.remove("move-job-track"),"Perfil creado y almacenado"===t.textContent){document.getElementById("ventanaEmergente").classList.add("oculta"),document.querySelector("#unit-job-track").style.display="flex";let o="grid"===window.getComputedStyle(e).display,a="grid"===window.getComputedStyle(l).display;buscaNombre.focus(),o||a||conteJobTrack.classList.add("move-job-track"),inputPerfil.value="",document.querySelectorAll(".datos-base").forEach(e=>{e.textContent=""}),desactivarClick([".butt-perfiles"]),restablecerClick([".cont-vacio"]),setTimeout(()=>{ocultarElemento("#formulario-perfiles")},200),setTimeout(()=>{mostrarElemento(".files-job"),inputPerfil.focus(),inputPerfil.value=""},700)}"Por favor, ingrese un nombre v\xe1lido"===t.textContent&&(document.getElementById("ventanaEmergente").classList.add("oculta"),inputPerfil.focus(),inputPerfil.value="",detenerParpadeo(),esDesktop&&buscaNombre.focus()),"Cargue la base de datos antes de generar el perfil de color"===t.textContent&&(document.getElementById("ventanaEmergente").classList.add("oculta"),esDesktop&&creaNombre.focus(),detenerParpadeo(),buscaNombre.value="",creaNombre.value="",botonesPerfilColor.forEach(e=>{e.style.display="block"}),limpiarColoresDeFondo(),desactivarClick([".butt-perfiles",".estilo-1"]),mostrarNombresDeObjetos(),setTimeout(()=>{listaClientes&&0===listaClientes.children.length&&mostrarVentanaMensaje("El almacenamiento y la base de datos estan vac\xedos")},50)),"Ya existe un perfil con este nombre"===t.textContent&&document.getElementById("ventanaEmergente").classList.add("oculta")}),document.querySelector("#cont-modificadores span:nth-child(1)").addEventListener("click",()=>{interfazColor.style.display="none",resetPerfiles(),desactivarEventos()}),document.querySelector("#cont-modificadores span:nth-child(3)").addEventListener("click",()=>{for(var e=["simulador","interfaz-perfiles","inerfaz-ajuste-fino","perfil-individual","control-perfiles"],l=0;l<allContenedores.length;l++){var t=document.getElementById(allContenedores[l]);t&&(t.style.display=e.includes(allContenedores[l])?"flex":"none")}});let intervalo=null;function actualizarSolucion(e){let l=document.querySelectorAll(".lineas-solucion");switch(e){case"negro":let t=l.length-almacenSolucionNegro.length;for(let o=l.length-1;o>=t;o--)l[o].style.backgroundColor="yellow";break;case"cyan":let a=l.length-almacenSolucionCyan.length;for(let n=l.length-1;n>=a;n--)l[n].style.backgroundColor="yellow";break;case"magenta":let r=l.length-almacenSolucionMagenta.length;for(let i=l.length-1;i>=r;i--)l[i].style.backgroundColor="yellow";break;case"yellow":let s=l.length-almacenSolucionAmarillo.length;for(let c=l.length-1;c>=s;c--)l[c].style.backgroundColor="yellow";break;case"especial":let d=l.length-almacenSolucionEspecial.length;for(let u=l.length-1;u>=d;u--)l[u].style.backgroundColor="yellow";break;case"barniz":let g=l.length-almacenSolucionBarniz.length;for(let b=l.length-1;b>=g;b--)l[b].style.backgroundColor="yellow"}}function actualizarTinta(e){let l=document.querySelectorAll(".lineas-tinta");switch(e){case"negro":contadorTinta.textContent=objetoNegro.nivelTinta.length+"%";let t=l.length-almacenTintaNegro.length;for(let o=l.length-1;o>=t;o--)l[o].style.backgroundColor="yellow";let a=document.querySelectorAll(".divs-grales-tinta-negro");for(let n=a.length-1;n>=t;n--)a[n].style.backgroundColor=negro;break;case"cyan":contadorTinta.textContent=objetoCian.nivelTinta.length+"%";let r=l.length-almacenTintaCyan.length;for(let i=l.length-1;i>=r;i--)l[i].style.backgroundColor="yellow";let s=document.querySelectorAll(".divs-grales-tinta-azul");for(let c=s.length-1;c>=r;c--)s[c].style.backgroundColor=negro;break;case"magenta":contadorTinta.textContent=objetoMagenta.nivelTinta.length+"%";let d=l.length-almacenTintaMagenta.length;for(let u=l.length-1;u>=d;u--)l[u].style.backgroundColor="yellow";let g=document.querySelectorAll(".divs-grales-tinta-magenta");for(let b=g.length-1;b>=d;b--)g[b].style.backgroundColor=magenta;break;case"yellow":contadorTinta.textContent=objetoAmarillo.nivelTinta.length+"%";let y=l.length-almacenTintaAmarillo.length;for(let m=l.length-1;m>=y;m--)l[m].style.backgroundColor="yellow";let p=document.querySelectorAll(".divs-grales-tinta-amarillo");for(let f=p.length-1;f>=y;f--)p[f].style.backgroundColor=amarillo;break;case"especial":contadorTinta.textContent=objetoEspecial.nivelTinta.length+"%";let v=l.length-almacenTintaEspecial.length;for(let E=l.length-1;E>=v;E--)l[E].style.backgroundColor="yellow";let C=document.querySelectorAll(".divs-grales-tinta-especial");for(let $=C.length-1;$>=v;$--)C[$].style.backgroundColor=especial;break;case"barniz":contadorTinta.textContent=objetoBarniz.nivelTinta.length+"%";let j=l.length-almacenTintaBarniz.length;for(let h=l.length-1;h>=j;h--)l[h].style.backgroundColor="yellow";let S=document.querySelectorAll(".divs-grales-tinta-barniz");for(let _=S.length-1;_>=j;_--)S[_].style.backgroundColor=barniz}}botonesPerfilColor.forEach(e=>{e.addEventListener("click",()=>{botonesPerfilColor.forEach(e=>e.style.backgroundColor=""),e.style.backgroundColor="#2bf22bc0"})});const intervalosColor=new Map;function alternarColor(e,l,t){detenerTodosLosColores(),[e,l].forEach(e=>{if(!e)return;e.style.backgroundColor="rgb(0, 255, 0)";let l=setInterval(()=>{e.style.backgroundColor="rgb(0, 255, 0)"===e.style.backgroundColor?"transparent":"rgb(0, 255, 0)"},100);intervalosColor.set(e,l)}),setTimeout(()=>{detenerAlternarColor(e,l)},t)}function detenerAlternarColor(...e){e.forEach(e=>{intervalosColor.has(e)&&(clearInterval(intervalosColor.get(e)),intervalosColor.delete(e),e.style.backgroundColor="")})}function detenerAlternarColor(...e){e.forEach(e=>{intervalosColor.has(e)&&(clearInterval(intervalosColor.get(e)),intervalosColor.delete(e),e.style.backgroundColor="")})}function detenerTodosLosColores(){for(let[e,l]of intervalosColor)clearInterval(l),e.style.backgroundColor="";intervalosColor.clear()}btnSalir.addEventListener("click",()=>{let e=document.querySelectorAll(".number"),l=Array.from(e).some(e=>""!==e.textContent.trim());l?(saltarAlerta("Click en ENTRAR para ingesar la informacion","salirCalcula"),parpadearElemento("entrar-cantidad",150,2500)):calculadora.classList.add("move-calculadora")});const coleccionNumeros=[],contenedorResultado=document.querySelector("#resultado-calculadora"),spansNumeros=contenedorResultado.querySelectorAll(".number"),contenedorCantidad=document.querySelector("#display-cantidad"),spansCantidades=contenedorCantidad.querySelectorAll(".cantidad-display"),digitos=document.querySelectorAll(".grid-item"),buttsAguaGral=document.querySelectorAll(".mod-tinta"),buttsAguaSingle=document.querySelectorAll(".div-ctrl"),buttSelector=document.querySelectorAll(".butt-selector"),buttSuma=document.querySelectorAll(".linea-control"),buttResta=document.querySelectorAll(".resta"),buttsClientes=document.querySelectorAll(".estilo-1"),alertaTres=document.getElementById("alerta-tres"),alertaCuatro=document.getElementById("alerta-cuatro"),alertaCinco=document.getElementById("alerta-cinco"),alertaSeis=document.getElementById("alerta-seis"),alertaSiete=document.getElementById("alerta-siete"),alertaOcho=document.getElementById("alerta-ocho");let alertaNueve=document.querySelector("#alerta-nueve");const buttsJobs=document.querySelectorAll(".base-datos"),botonClientes=document.querySelector("#clientes");function actualizarDisplay(){document.querySelectorAll("#resultado-calculadora .number, #display-cantidad .cantidad-display").forEach(e=>e.textContent="")}buttsJobs.forEach(e=>{let l=document.getElementById("panel-uno"),t=document.getElementById("panel-dos");e.addEventListener("click",()=>{switch(restablecerEstilos("calculadora"),calculadora.classList.remove("subir"),e.id){case"clientes":desactivarClick([".butt-perfiles",".estilo-1"]),mostrarListaClientes("jobTrack"),mostrarNombresDeObjetos();break;case"lineas":irAconsola.style.display="none";let o=document.querySelector("#lista-lineas");o.style.top="56vh",o.style.height="39vh",o.addEventListener("mouseleave",()=>{o.style.display="none",restablecerClick([".butt-perfiles",".estilo-1"])}),desactivarClick([".butt-perfiles",".estilo-1"]),""===l.textContent?alertaTres.style.display="flex":(document.querySelector("#lista-lineas").style.display="block",listaClientes.style.display="none");break;case"tirajes":if("true"===getComputedStyle(padreLineas).isVisible)return;restablecerEstilos("calculadora"),calculadora.classList.remove("move-calculadora-up"),calculadora.classList.remove("move-calculadora-down"),calculadoraSimulador=!1,irAconsola.style.display="none",desactivarClick([".butt-perfiles",".estilo-1"]),restablecerClick([".digito"]),""===l.textContent||""===t.textContent?alertaTres.style.display="flex":(calculadora.classList.remove("move-calculadora"),calculadora.classList.remove("move-calculadora-1"),setTimeout(()=>{gridNumbers.style.display="grid",calculadora.classList.add("move-calculadora-1")},100)),coleccionNumeros.length=0,actualizarDisplay()}})});const contenedorClientes=document.getElementById("lista-clientes"),arriba=document.querySelector("#job-files > div:nth-child(1) > span:nth-child(2)");contenedorClientes.addEventListener("click",e=>{let l=e.target.closest("div");l&&(arriba.textContent=l.textContent,contenedorClientes.style.display="none",restablecerClick([".butt-perfiles",".estilo-1"]),blurOverlay.style.display="none")});const contenedorLineas=document.getElementById("lista-lineas"),panelDos=document.getElementById("panel-dos"),destinoLinea=document.querySelector("#job-files > .jobs:nth-child(2) > .base-datos:nth-child(2)");contenedorLineas.addEventListener("click",e=>{let l=e.target.closest("div");l&&(panelDos.style.backgroundColor="rgb(0,0,23)",panelDos.style.color="rgb(200,200,200)",destinoLinea.textContent=l.textContent,contenedorLineas.style.display="none",restablecerClick([".jobs",".estilo-1"]),mostrarBarraProgres(33.5,67))}),digitos.forEach(e=>{e.addEventListener("mousedown",e=>e.preventDefault()),e.addEventListener("click",l=>{if(l.stopPropagation(),calculadoraSimulador){if(!lastFocusedInput)return;let t=lastFocusedInput;if("backspace"===e.dataset.action){let o=t.value??"";if(!o.length)return;t.value=o.slice(0,-1),t.selectionStart=t.selectionEnd=t.value.length;return}let a=e.textContent,n=t.value.length;if(t.selectionStart=n,t.selectionEnd=n,t.value=t.value+a,t.selectionStart=t.selectionEnd=t.value.length,"nomEmpl"!==t.id&&"nomEmpl-ma"!==t.id&&"numDoc1"!==t.id){let r=(e,l,t)=>Math.min(t,Math.max(l,e));if(t.value=t.value.replace(/\D/g,""),""!==t.value){let i=Number(t.min)||0,s=Number(t.max)||100;t.value=r(parseInt(t.value,10),i,s)}}}else{digitos.forEach(e=>e.style.pointerEvents="none");let c=document.querySelectorAll(".datos-base");if([...c].every(e=>""===e.textContent.trim()))alertaTres.style.display="flex",desactivarClicEnElementos(digitos,botonesPerfilColor,buttsClientes);else if(""===c[0].textContent.trim())document.getElementById("alerta-uno").style.display="flex",desactivarClicEnElementos(digitos,botonesPerfilColor,buttsClientes);else if(""===c[1].textContent.trim())document.getElementById("alerta-dos").style.display="flex",desactivarClicEnElementos(digitos,botonesPerfilColor,buttsClientes);else{let d=parseInt(e.textContent);if(!isNaN(d)){if(coleccionNumeros.length>=10){digitos.forEach(e=>e.style.pointerEvents="auto");return}coleccionNumeros.push(d),spansNumeros.forEach(e=>e.textContent=""),spansCantidades.forEach(e=>e.textContent="");for(let u=0;u<coleccionNumeros.length;u++)spansNumeros[spansNumeros.length-coleccionNumeros.length+u].textContent=coleccionNumeros[u],spansCantidades[spansCantidades.length-coleccionNumeros.length+u].textContent=coleccionNumeros[u]}}setTimeout(()=>{digitos.forEach(e=>e.style.pointerEvents="auto")},200)}})}),alertaTres.addEventListener("click",()=>{restablecerClick([".butt-perfiles",".estilo-1"])}),btnSalir.addEventListener("mouseleave",()=>{restablecerClick([".estilo-1",".digit",".digito"]),detenerAlternarColor(btnEntrar),alertaCinco.style.display="none"}),document.getElementById("alerta-seis").children[2].addEventListener("click",()=>{alertaSeis.classList.add("move-alerta"),restablecerClick([".mod-tinta",".div-ctrl",".butt-perfiles",".butt-selector",".cabeza",".estilo-1",".digit",".digito"]),setTimeout(()=>{alertaSeis.classList.remove("move-alerta"),alertaSeis.style.display="none"},700)}),document.querySelector("#perfil-existe").addEventListener("click",()=>{["panel-uno","panel-dos"].forEach(e=>document.getElementById(e)?.removeAttribute("style")),alertaSeis.classList.add("move-alerta"),conteJobTrack.classList.remove("move-job-track");for(var e=["simulador","unit-job-track","interfaz-perfiles","spn-blur-1","spn-blur-2","spn-blur-3","spn-blur-4","spn-blur-5","spn-blur-6","spn-blur-7","abandonar-perfiles"],l=0;l<allContenedores.length;l++){var t=document.getElementById(allContenedores[l]);t&&(t.style.display=e.includes(allContenedores[l])?"flex":"none")}container1.style.display="none",botonesPerfilColor.forEach(e=>{e.style.display="block"}),conteJobTrack.style.display="flex",document.querySelectorAll(".datos-base").forEach(e=>{e.textContent=""}),setTimeout(()=>{conteJobTrack.classList.add("move-job-track")},100),setTimeout(()=>{alertaSeis.style.display="none",alertaSeis.classList.remove("move-alerta"),restablecerClick([".cont-vacio",".mod-tinta",".div-ctrl",".base-datos"])},1e3)}),document.querySelector("#perfil-crear").addEventListener("click",()=>{["panel-uno","panel-dos"].forEach(e=>document.getElementById(e)?.removeAttribute("style")),alertaSeis.classList.add("move-alerta");for(var e=["simulador","butt-perfil-tinta","butt-control-tinta","butt-perfil","butt-job-track","boton-perfiles","interfaz-perfiles","spn-blur-1","spn-blur-2","spn-blur-3","spn-blur-4","spn-blur-5","spn-blur-6","spn-blur-7"],l=0;l<allContenedores.length;l++){var t=document.getElementById(allContenedores[l]);t&&(t.style.display=e.includes(allContenedores[l])?"flex":"none")}container1.style.display="none",botonesPerfilColor.forEach(e=>{e.style.display="block"}),setTimeout(()=>{desactivarClick([".butt-perfiles"]),restablecerClick([".cont-vacio",".mod-tinta",".div-ctrl",".base-datos"])},50),setTimeout(()=>{moverFormulario(),inputPerfil.focus(),inputPerfil.value=""},200)});const alertasVacios=document.querySelectorAll(".alerta-vacio"),alertaNormal=document.querySelectorAll(".alerta-normal");alertasVacios.forEach(e=>{e.addEventListener("click",()=>{alertasVacios.forEach(e=>{e.style.backgroundColor=verde,e.style.color="black",setTimeout(()=>{e.style.display="none",e.style.backgroundColor="",e.style.color=""},200)}),reactivarClicEnElementos(digitos,botonesPerfilColor,buttsClientes),calculadora.classList.add("move-calculadora")})}),alertaNormal.forEach(e=>{e.addEventListener("click",()=>{alertaNormal.forEach(e=>{e.style.backgroundColor=verde,e.style.color="black",setTimeout(()=>{listaClientes.style.display="none",e.style.display="none",e.style.backgroundColor="",e.style.color=""},200)}),reactivarClicEnElementos(digitos,buttsClientes)})});const DELETE_INITIAL_DELAY=400,DELETE_REPEAT_RATE=70;let deleteTimeout=null,deleteInterval=null;document.addEventListener("focusin",e=>{e.target.matches("input, textarea")&&(lastFocusedInput=e.target)});const limpiarBase=()=>{coleccionNumeros.length=0,actualizarDisplay(),detenerAlternarColor()},stopDeleting=()=>{clearTimeout(deleteTimeout),clearInterval(deleteInterval),deleteTimeout=null,deleteInterval=null},deleteLastCharacter=e=>{let l=e.value??e.textContent??"";if(!l.length)return;let t=l.slice(0,-1);"value"in e?e.value=t:e.textContent=t};function sumarPorcentaje(){let e=parseInt(contadorTinta.textContent.replace("%",""),10);(e+=1)>100&&(e=100),contadorTinta.textContent=e+"%",console.log("Nuevo porcentaje:",e+"%")}function muestraRenderObjetoGlobal(e,l,t,o,a,n,r,i,s,c){let d={negro:"black",amarillo:"yellow",rojo:"red",azul:"blue",verde:"green",gris:"rgb(200,200,200)",barniz:"rgb(200,200,200)",especial:"rgb(255,130,0)"}[l]||l,u=document.querySelector("#ctrl-gral .div-ctrl #tinta-perc"),g=document.querySelector("#ctrl-gral .div-ctrl #solucion-porcentaje"),b=document.querySelector(`#gral-display-${l}`),y=document.querySelector(`#display-general-${l}`);g.textContent=almacenObjetos[objetoGlobal][l].nivelAgua.length+"%",u.textContent=almacenObjetos[objetoGlobal][l].nivelTinta.length+"%";for(let m=1;m<=22;m++){let p=almacenObjetos[e][l][t];if(!p){console.error(`No se encontr\xf3 la propiedad '${t}' en el color '${l}'.`);return}let f=`linea-${m}`,v=p[f];if(v){let E=document.querySelectorAll(`#columna-70 #${f} #display-leds .leds`);if(E.length>0)for(let C=E.length-1,$=0;$<v.length&&C>=0;C--,$++)E[C].style.backgroundColor=rojo}}for(let j=1;j<=22;j++){let h=almacenObjetos[e][l][o];if(!h){console.error(`No se encontr\xf3 la propiedad '${o}' en el color '${l}'.`);return}let S=`led-${j}`,_=h[S];if(_){let B=document.querySelectorAll(`#control-perfiles #led-${j} .led`);if(B.length>0)for(let A=B.length-1,k=0;k<_.length&&A>=0;A--,k++)B[A].style.backgroundColor=d}}for(let I=1;I<=22;I++){let q=almacenObjetos[e][l][a];if(!q){console.error(`No se encontr\xf3 la propiedad '${a}' en el color '${l}'.`);return}let G=`grilla-${I}`,x=q[G];if(x){let L=document.querySelectorAll(`#perfiles-entintado #perfil-${l} #grilla-${I} .led-general`);if(L.length>0)for(let O=L.length-1,T=0;T<x.length&&O>=0;O--,T++)L[O].style.backgroundColor=d}}for(let z=1;z<=100;z++){let M=almacenObjetos[objetoGlobal][l][r];if(!M){console.error(`No se encontr\xf3 la propiedad '${r}' en el color '${l}'.`);return}let w=document.querySelectorAll("#ctrl-gral #tanque-tinta .lineas-tinta"),N=document.querySelectorAll(`#footer-perfiles #footer-${l} #footer-${s} .divs-grales-tinta-${l}`);if(w.length>0){let P=M.length;for(let R=w.length-1;R>=w.length-P;R--)R>=0&&R<w.length&&(w[R].style.backgroundColor=amarillo)}if(N.length>0){let D=M.length;for(let Y=N.length-1;Y>=N.length-D;Y--)Y>=0&&Y<N.length&&(N[Y].style.backgroundColor=d)}else console.log()}for(let K=1;K<=100;K++){let V=almacenObjetos[objetoGlobal][l][i];if(!V){console.error(`No se encontr\xf3 la propiedad '${i}' en el color '${l}'.`);return}let H=document.querySelectorAll("#ctrl-gral #tanque-solucion .lineas-solucion"),F=document.querySelectorAll(`#footer-perfiles #footer-${l} #footer-${c} .divs-grales-solucion-${l}`);if(H.length>0){let W=V.length;for(let X=H.length-1;X>=H.length-W;X--)X>=0&&(H[X].style.backgroundColor=amarillo)}if(F.length>0){let J=V.length;for(let Z=F.length-1;Z>=F.length-J;Z--)Z>=0&&(F[Z].style.backgroundColor=verdeAgua)}}setTimeout(()=>{b.textContent=almacenObjetos[objetoGlobal][l].nivelTinta.length+"%",b.style.top=87-almacenObjetos[objetoGlobal][l].nivelTinta.length+"%",y.textContent=almacenObjetos[objetoGlobal][l].nivelAgua.length+"%",y.style.top=87-almacenObjetos[objetoGlobal][l].nivelAgua.length+"%";let e=document.querySelectorAll(".div-gral, .div-agua");e.forEach(e=>{e.style.color=""})},1e3)}function eliminarColores(){let e=document.querySelectorAll(".lineas-solucion"),l=document.querySelectorAll(".lineas-tinta"),t=document.querySelectorAll(".leds"),o=document.querySelectorAll(".led");for(let a=0;a<e.length;a++)e[a].style.backgroundColor="";for(let n=0;n<l.length;n++)l[n].style.backgroundColor="";for(let r=0;r<t.length;r++)t[r].style.backgroundColor="";for(let i=0;i<o.length;i++)o[i].style.backgroundColor=""}function desactivarClick(e){if(!Array.isArray(e)){console.error("El par\xe1metro debe ser un array de selectores.");return}e.forEach(e=>{let l=document.querySelectorAll(e);l.forEach(e=>{e.style.pointerEvents="none",e.querySelectorAll("*").forEach(e=>e.style.pointerEvents="none")})})}function desactivarClickTemporalmente(e,l){if(!Array.isArray(e)||"number"!=typeof l){console.error("Par\xe1metros inv\xe1lidos. Se espera un array de selectores y una duraci\xf3n en milisegundos.");return}e.forEach(e=>{let t=document.querySelectorAll(e);t.forEach(e=>{e.style.pointerEvents="none"}),setTimeout(()=>{t.forEach(e=>{e.style.pointerEvents="auto"})},l)})}function bloquearClick(e){"true"===e.currentTarget.dataset.clickDisabled&&(e.stopPropagation(),e.preventDefault(),console.log("Click desactivado en:",e.currentTarget))}function limpiarColoresDeFondo(){let e=[".led-general",".clase-dos",".led",".leds",".lineas-tinta",".lineas-solucion"];e.forEach(e=>{let l=document.querySelectorAll(e);l.forEach(e=>{e.style.backgroundColor=""})}),console.log("Colores de fondo eliminados para las clases:",e.join(", "))}esDesktop&&botonBorrar.addEventListener("click",e=>{e.preventDefault(),limpiarBase()}),esDesktop||(inputPerfil.setAttribute("readonly",!0),botonBorrar.addEventListener("touchstart",e=>{e.preventDefault(),document.querySelectorAll(".number").forEach(e=>{e.textContent=""});let l=lastFocusedInput;l&&(deleteLastCharacter(l),limpiarBase(),deleteTimeout=setTimeout(()=>{deleteInterval=setInterval(()=>{deleteLastCharacter(l)},70)},400))}),botonBorrar.addEventListener("touchend",stopDeleting),botonBorrar.addEventListener("touchcancel",stopDeleting)),document.querySelector("#abandonar-perfiles").addEventListener("click",()=>{alertaMSG.style.display="none",conteJobTrack.style.display="none",document.querySelector("#contenedor-registro").style.display="none",calculadora.classList.add("move-calculadora"),document.querySelectorAll(".butt-perfiles, .btn-respaldo").forEach(e=>{e.style.display="block"}),restablecerClick([".butt-perfiles"]),setTimeout(()=>{animarColorSecuencia()},100),setTimeout(()=>{animarSecuenciaPerfiles()},200)}),btnEntrar.addEventListener("click",()=>{if(detenerParpadeo(),calculadoraSimulador)esDesktop||avanzarFoco();else{desactivarClick([".butt-perfiles",".digit",".estilo-1","digito"]),detenerAlternarColor();let e=document.querySelectorAll(".number"),l=Array.from(e).every(e=>""===e.textContent.trim());console.log(document.querySelectorAll(".digito")),l?mostrarVentanaMensaje("Ingrese tiraje para este producto ..."):(document.querySelectorAll(".butt-perfiles, .btn-respaldo").forEach(e=>{e.style.display="none",document.querySelector("#abandonar-perfiles").style.display="none"}),coleccionNumeros.length=0,document.querySelectorAll("#resultado-calculadora .number").forEach(e=>e.textContent=""),calculadora.classList.add("move-calculadora"),setTimeout(()=>{mostrarBarraProgres(67,100)},500),setTimeout(()=>{irAconsola.style.display="block"},1600),setTimeout(()=>{desactivarClick([".butt-perfiles"])},1700))}});let inputBuscar=document.getElementById("input-buscar-perfil");listaClientes.addEventListener("mouseleave",()=>{setTimeout(()=>{let e=document.getElementById("menu-contextual"),l=e&&"block"===e.style.display;l||(listaClientes.style.display="none",inputBuscar&&(inputBuscar.style.display="none"),e.style.display="none",restablecerClick([".base-datos"]))},100)});const jobs=document.querySelectorAll(".jobs");function mostrarNombresDeObjetos(){flagAplicacion=!0;let e=localStorage.getItem("coloresRegistrados");if(!e){console.log("No se encontraron objetos almacenados en localStorage.");return}let l=JSON.parse(e),t={};Object.keys(l).forEach(e=>{let o=capitalizarTexto(e);t[o]=l[e]}),localStorage.setItem("coloresRegistrados",JSON.stringify(t)),listaClientes.innerHTML="";let o=document.getElementById("menu-contextual");o&&o.remove();let a=document.createElement("div");a.id="menu-contextual",document.body.appendChild(a),["Editar","Filtrar","Eliminar"].forEach(e=>{let l=document.createElement("div");l.className="opcion",l.textContent=e,l.style.cursor="pointer",l.style.padding="5px",l.style.display="flex",l.style.alignItems="center",l.style.justifyContent="flex-start",l.addEventListener("click",()=>{a.style.display="none","Editar"===e?editarObjeto(a.dataset.nombreObjeto):"Filtrar"===e?buscarPerfil(event):"Eliminar"===e&&eliminarObjeto(a.dataset.nombreObjeto)}),a.appendChild(l)}),document.removeEventListener("contextmenu",bloquearMenuPersonalizado),document.addEventListener("contextmenu",bloquearMenuPersonalizado);let n=()=>a.style.display="none";document.removeEventListener("click",n),document.addEventListener("click",n),Object.keys(t).forEach(e=>{let l=document.createElement("div");l.className="cliente-item",l.textContent=e,l.style.fontSize="0.7em",l.addEventListener("click",()=>{restablecerClick([".estilo-1"]);let l=document.getElementById("panel-uno"),t=document.querySelector("#perfiles-color");creaNombre.value=e;let o=document.querySelector(".nombre-cliente");o.textContent=e,l.textContent=e,l.style.backgroundColor="rgb(0,0,23)",l.style.color="rgb(200,200,200)",objetoGlobal=e,console.log("OBJETO GLOBAL :",objetoGlobal),listaClientes.style.display="none",t&&"none"!==getComputedStyle(t).display||mostrarBarraProgres(.1,33.5);let a=document.querySelector("#btn-execute");!function e(l,t=1e3,o=50){let a=!1,n=l.style.backgroundColor,r=l.style.transform,i=l.style.transition;l.style.transition=`transform ${t}ms ease, background-color ${o}ms linear`,l.style.transform="scale(1.3)";let s=setInterval(()=>{l.style.backgroundColor=a?"white":"green",a=!a},o);setTimeout(()=>{clearInterval(s),l.style.backgroundColor=n,l.style.transform=r,l.style.transition=i},t)}(a)}),l.addEventListener("contextmenu",l=>{l.preventDefault(),a.style.display="block",a.style.visibility="hidden";let t=a.offsetHeight,o=a.offsetWidth,n=window.innerHeight,r=window.innerWidth,i=l.pageX,s=l.pageY;i+o>r&&(i=r-o-10),s+t>n&&(s=n-t-10),a.style.left=`${i}px`,a.style.top=`${s}px`,a.style.visibility="visible",a.dataset.nombreObjeto=e,setTimeout(()=>{document.querySelectorAll(".cliente-item").forEach(e=>e.blur())},100)}),listaClientes.appendChild(l)}),a.addEventListener("mouseover",()=>{listaClientes.style.display="block",a.style.display="block"}),a.addEventListener("mouseleave",()=>{a.style.display="none"}),listaClientes.addEventListener("mouseleave",()=>{listaClientes.style.display="none",inputBuscar&&(inputBuscar.style.display="none"),a.style.display="none",restablecerClick([".base-datos"])}),console.log("Nombres de objetos mostrados en lista-clientes:",Object.keys(t))}function buscarPerfil(e){desactivarClick([".cliente-item"]),inputBuscar||((inputBuscar=document.createElement("input")).type="text",inputBuscar.placeholder="Buscar perfil...",inputBuscar.style.position="absolute",inputBuscar.style.zIndex="5000",inputBuscar.style.padding="8px",inputBuscar.style.backgroundColor="#060101",inputBuscar.style.border="1px solid #ccc",inputBuscar.style.color="#ccc",inputBuscar.style.borderRadius="5px",inputBuscar.style.outline="none",inputBuscar.style.display="none",document.body.appendChild(inputBuscar),inputBuscar.addEventListener("mouseleave",()=>{""===inputBuscar.value.trim()&&(inputBuscar.style.display="none",listaClientes.style.display="none")})),e&&void 0!==e.pageX&&void 0!==e.pageY?(inputBuscar.style.left="47vw",inputBuscar.style.top="44vh",inputBuscar.style.zIndex=5e3):(inputBuscar.style.left="50%",inputBuscar.style.top="20px",inputBuscar.style.transform="translateX(-50%)"),inputBuscar.style.display="block",inputBuscar.value="",inputBuscar.focus(),inputBuscar.addEventListener("input",()=>{let e=inputBuscar.value.toLowerCase();document.querySelectorAll(".cliente-item").forEach(l=>{let t=l.textContent.toLowerCase();l.style.display=t.startsWith(e)?"block":"none"})}),setTimeout(()=>{document.addEventListener("click",function e(l){l.target!==inputBuscar&&(inputBuscar.style.display="none",document.removeEventListener("click",e))}),restablecerClick([".cliente-item"])},500)}function eliminarObjeto(e){desactivarClick([".cliente-item"]),document.querySelectorAll(".cliente-item").forEach(e=>{e.style.filter="blur(15px)"});let l=document.createElement("div");l.id="alerta-nueve",listaClientes.appendChild(l);let t=document.createElement("span"),o=document.createElement("span"),a=document.createElement("span"),n=document.createElement("span");t.id="actual-nombre",t.textContent="Se eliminar\xe1 definitivamente el perfil :",o.id="name-span",o.className="span-nueve",o.textContent=`${e}`,a.textContent="Eliminar",a.id="perfil-eliminar",a.className="nueve-span",n.textContent="Abandonar",n.id="perfil-abandonar",n.className="nueve-span",l.appendChild(t),l.appendChild(o),l.appendChild(a),l.appendChild(n),l.style.display="grid",l.style.height="21vh",a.addEventListener("click",t=>{t.stopPropagation();let o=document.getElementById("span-index");l.style.display="none";let a=localStorage.getItem("coloresRegistrados");if(a){let n=JSON.parse(a);n[e]&&(delete n[e],localStorage.setItem("coloresRegistrados",JSON.stringify(n)),setTimeout(()=>{almacenObjetos=JSON.parse(localStorage.getItem("coloresRegistrados"))||{}},50))}let r=document.querySelectorAll(".cliente-item");r.forEach(l=>{l.textContent===e&&l.remove()}),mostrarNombresDeObjetos(),document.querySelector(".alerta-botones").style.display="flex",document.querySelector(".alerta-botones").style.top="43vh",document.querySelector(".alerta-botones").style.left="37vw",document.querySelector(".alerta-botones").textContent=`El perfil : ${e} ha sido eliminado exitosamente.`,document.querySelectorAll(".cliente-item").forEach(e=>{e.style.filter="blur(15px)",o.style.zIndex=9999})}),n.addEventListener("click",e=>{e.stopPropagation(),restablecerClick([".cliente-item"]),document.querySelectorAll(".cliente-item").forEach(e=>{e.style.filter="none"}),l.style.display="none"}),document.getElementById("panel-uno").textContent="",document.getElementById("panel-uno").style.backgroundColor="",desactivarClickTemporalmente([".nueve-span"],500)}function editarObjeto(e){document.querySelectorAll(".cliente-item").forEach(e=>{e.style.filter="blur(15px)"});let l=document.querySelector("#span-nombre"),t=document.createElement("input");t.type="text",t.value=e,t.id="input-edicion";let o=document.createElement("button"),a=document.createElement("button");o.textContent="Guardar",o.className="boton-edicion",o.className="edicion-span",a.textContent="Salir",a.className="boton-edicion",a.className="edicion-span";let n=document.createElement("div");n.classList.add("contenedor-edicion"),n.appendChild(t),n.appendChild(o),n.appendChild(a),listaClientes.appendChild(n),n.style.display="grid",t.focus(),o.addEventListener("click",o=>{o.stopPropagation();let a=t.value.trim();if(!a){alertaOcho.style.display="flex",alertaOcho.style.zIndex=5e3,alertaOcho.textContent="El perfil debe tener un nombre";return}let r=localStorage.getItem("coloresRegistrados");if(r){let i=JSON.parse(r);if(i[a]){alertaOcho.style.display="flex",alertaOcho.style.zIndex=5e3,alertaOcho.addEventListener("click",()=>{alertaOcho.style.display="none",listaClientes.style.filter="none"});return}i[a]=i[e],delete i[e],localStorage.setItem("coloresRegistrados",JSON.stringify(i));let s=document.querySelectorAll(".cliente-item");s.forEach(l=>{l.textContent===e&&(l.textContent=a,l.style.filter="blur(15px)")}),ordenarListaClientes(),mostrarNombresDeObjetos(),alertaSiete.style.display="grid",alertaSiete.style.zIndex=5e3,l.textContent=`${a}`}n.remove(),traerAlmacenObjetos()}),a.addEventListener("click",e=>{e.stopPropagation(),document.querySelectorAll(".cliente-item").forEach(e=>{e.style.filter="none"});let l=document.querySelectorAll(".cerrar");n.style.display="none",l.forEach(e=>{e.style.display="none"}),document.querySelectorAll(".datos-base").forEach(e=>{e.textContent=""}),restablecerClick([".butt-perfiles",".estilo-1",".digit",".digito"]),calculadora.classList.add("move-calculadora"),objetoGlobal=""})}function ordenarListaClientes(){let e=Array.from(listaClientes.children);e.sort((e,l)=>e.textContent.localeCompare(l.textContent,"es",{sensitivity:"base"})),e.forEach(e=>listaClientes.appendChild(e))}function ocultarConsultas(){let e=document.querySelectorAll(".cerrar"),l=document.querySelector("#menu-contextual"),t=document.querySelector("#alerta-siete");ocultarElemento("#formulario-perfiles, .files-job, .listado-clientes, .consola-ir"),botonesPerfilColor.forEach(e=>{e.style.display="block"}),detenerAlternarColor(),e.forEach(e=>{e.style.display="none"}),document.querySelectorAll(".datos-base").forEach(e=>{e.textContent=""}),restablecerClick([".butt-perfiles",".estilo-1",".digit",".digito"]),l&&(l.style.display="none"),t.style.display="none","rgb(0,255,0)"===document.querySelector("#butt-job-track").style.backgroundColor&&"rgb(0,255,0)"===document.querySelector("#boton-perfiles").style.backgroundColor&&(objetoGlobal=""),console.log("OBJETO GLOBAL ",objetoGlobal)}function consultarCapacidadAlamcenamiento(){let e=0;for(let l in localStorage)localStorage.hasOwnProperty(l)&&(e+=(localStorage[l].length+l.length)*2);console.log(`Uso actual: ${(e/1024).toFixed(2)} KB`),console.log("Capacidad total: 5120 KB"),console.log(`Espacio disponible: ${((5242880-e)/1024).toFixed(2)} KB`);let t={flagNegro,flagCyan,flagMagenta,flagAmarillo,flagEspecial,flagBarniz};console.log("Estado de las banderas:",t)}function traerAlmacenObjetos(){console.clear();let e=localStorage.getItem("coloresRegistrados");if(e)try{almacenObjetos=JSON.parse(e),console.log("almacenObjetos CARGADO:",almacenObjetos)}catch(l){console.error("Error al parsear almacenObjetos desde localStorage:",l),almacenObjetos={}}else console.warn("No se encontraron datos en localStorage."),almacenObjetos={};console.log("objetoGlobal:",objetoGlobal),console.log("nombreProvisional:",nombreProvisional)}function moverFormulario(){let e=document.querySelector("#formulario-perfiles");e.style.display="none",e.style.transition="none",e.classList.remove("mover-izquierda"),e.offsetHeight,e.style.transition="transform 0.5s ease-in-out",e.style.display="grid",setTimeout(()=>{e.style.display="grid",e.classList.add("mover-izquierda")},50)}function ocultarElemento(e){let l=document.querySelectorAll(e);if(0===l.length)return;let t=1,o=setInterval(()=>{t-=.1,l.forEach(e=>{e.style.opacity=t}),t<=0&&(clearInterval(o),l.forEach(e=>{e.style.display="none",e.style.opacity="1"}))},50)}function mostrarElemento(e){let l=document.querySelectorAll(e);if(0===l.length)return;l.forEach(e=>{e.style.display="",e.style.opacity="0"});let t=0,o=setInterval(()=>{t+=.1,l.forEach(e=>{e.style.opacity=t}),t>=1&&(clearInterval(o),l.forEach(e=>e.style.opacity="1"))},50)}document.querySelector("#perfil-cambio").addEventListener("click",()=>{document.querySelector("#alerta-siete").style.display="none",restablecerClick([".butt-perfiles"]),document.querySelectorAll(".cliente-item").forEach(e=>{e.style.filter="none"})}),document.querySelectorAll(".section").forEach((e,l)=>{e.addEventListener("mouseover",()=>{let t=document.querySelectorAll(".btn-sections")[l];t&&(t.style.backgroundColor="rgb(255,255,0)",e.style.border="1px solid rgb(111,111,111)")}),e.addEventListener("mouseout",()=>{let t=document.querySelectorAll(".btn-sections")[l];t&&(t.style.backgroundColor="",e.style.border="")})});let values={C:0,M:0,Y:0,K:0,A:0,R:0,G:0,B:0,W:0},red=0,green=0,blue=0;function initSliderCMYK(e,l,t){let o=document.getElementById(e),a=o.querySelector(".slider-thumb-cmyk"),n=document.getElementById(l),r=!1,i=e=>{let l=o.getBoundingClientRect(),r=l.bottom-e,i=Math.max(0,Math.min(100,r/l.height*100)),s=i/100*(l.height-a.offsetHeight);a.style.bottom=`${s}px`,o.style.background=`linear-gradient(to top, rgb(255,120,0) ${i}%, rgb(0,0,17) ${i}%)`,values[t]=Math.round(i),n&&(n.textContent=`${values[t]}%`),updateColorCMYK(t)},s=e=>{e.preventDefault(),r=!0,a.setPointerCapture(e.pointerId),i(e.clientY)},c=e=>{r&&i(e.clientY)},d=()=>{r=!1};a.addEventListener("pointerdown",s),a.addEventListener("pointermove",c),a.addEventListener("pointerup",d),a.addEventListener("pointercancel",d),o.addEventListener("pointerdown",s)}function updateColorCMYK(e){let l=cmykwToRgb(values.C,values.M,values.Y,values.K,values.A);document.getElementById("colorCMYK").style.backgroundColor=l,document.getElementById("c-span").textContent=values.C.toFixed(0),document.getElementById("m-span").textContent=values.M.toFixed(0),document.getElementById("y-span").textContent=values.Y.toFixed(0),document.getElementById("k-span").textContent=values.K.toFixed(0),document.getElementById("w-span").textContent=values.A.toFixed(0),document.getElementById("input-c").value=values.C.toFixed(0),document.getElementById("input-m").value=values.M.toFixed(0),document.getElementById("input-y").value=values.Y.toFixed(0),document.getElementById("input-k").value=values.K.toFixed(0),document.getElementById("input-a").value=values.A.toFixed(0),objetoGlobalColor||(objetoGlobalColor={CMYK:{}}),objetoGlobalColor.CMYK||(objetoGlobalColor.CMYK={}),objetoGlobalColor.CMYK[e]||(objetoGlobalColor.CMYK[e]={value:0}),objetoGlobalColor.CMYK[e].value=values[e]}function normalizeCMYK(e,l,t,o){let a=Math.max(e,l,t,o);return a>0&&(e=Math.round(e/a*100),l=Math.round(l/a*100),t=Math.round(t/a*100),o=Math.round(o/a*100)),{c:e,m:l,y:t,k:o}}function animarSlidersCMYK(e,l=1e3){let t=null;function o(a){t||(t=a);let n=(a-t)/l;n>1&&(n=1),e.forEach(({trackId:e,spanId:l,channel:t,porcentajeDestino:o})=>{let a=document.getElementById(e),r=a.querySelector(".slider-thumb-cmyk"),i=document.getElementById(l),s=a.getBoundingClientRect(),c=n*(o/100*(s.height-r.offsetHeight));r.style.bottom=`${c}px`;let d=c/(s.height-r.offsetHeight)*100;a.style.background=`linear-gradient(to top, rgb(255,120,0) ${d}%, rgb(0,0,17) ${d}%)`,values[t]=Math.round(d),i.textContent=Math.round(values[t])}),updateColorCMYK(),n<1&&requestAnimationFrame(o)}requestAnimationFrame(o)}function initSliderRGB(e,l,t){let o=document.getElementById(e),a=o.querySelector(".slider-thumb-rgb"),n=document.getElementById(l),r=!1,i=e=>{let l=o.getBoundingClientRect(),r=l.bottom-e,i=Math.max(0,Math.min(100,r/l.height*100)),s=i/100*(l.height-a.offsetHeight);a.style.bottom=`${s}px`,o.style.background=`linear-gradient(to top, rgb(255,120,0) ${i}%, rgb(0,0,17) ${i}%)`,values[t]=Math.round(i/100*255),n.textContent=values[t],updateColorRGB()},s=e=>{e.preventDefault(),r=!0,a.setPointerCapture(e.pointerId),i(e.clientY)},c=e=>{r&&i(e.clientY)},d=()=>{r=!1};a.addEventListener("pointerdown",s),a.addEventListener("pointermove",c),a.addEventListener("pointerup",d),a.addEventListener("pointercancel",d),o.addEventListener("pointerdown",s)}function updateColorRGB(){let e=`rgba(${values.R}, ${values.G}, ${values.B}, ${values.W/255})`;document.getElementById("colorDisplay").style.backgroundColor=e,document.getElementById("c-span-rgb").textContent=values.R,document.getElementById("m-span-rgb").textContent=values.G,document.getElementById("y-span-rgb").textContent=values.B,document.getElementById("w-span-rgb").textContent=(values.W/255).toFixed(2),document.getElementById("input-r").value=values.R,document.getElementById("input-g").value=values.G,document.getElementById("input-b").value=values.B,document.getElementById("input-w").value=values.W}function animarSlidersRGB(e,l=1e3){let t=null;function o(a){t||(t=a);let n=(a-t)/l;n>1&&(n=1),e.forEach(({trackId:e,spanId:l,channel:t,porcentajeDestino:o})=>{let a=document.getElementById(e),r=a.querySelector(".slider-thumb-rgb"),i=document.getElementById(l),s=a.getBoundingClientRect(),c=n*(o/255*(s.height-r.offsetHeight));r.style.bottom=`${c}px`;let d=c/(s.height-r.offsetHeight)*100;a.style.background=`linear-gradient(to top, rgb(255,120,0) ${d}%, rgb(0,0,17) ${d}%)`,values[t]=Math.round(d/100*255),i.textContent=values[t]}),updateColorRGB(),n<1&&requestAnimationFrame(o)}requestAnimationFrame(o)}function cmykwToRgb(e,l,t,o,a){let n=normalizeCMYK(e,l,t,o);e=n.c,l=n.m,t=n.y;let r=255*(1-e/100)*(1-(o=n.k)/100),i=255*(1-l/100)*(1-o/100),s=255*(1-t/100)*(1-o/100),c=a/100;return r+=(255-r)*c,i+=(255-i)*c,s+=(255-s)*c,`rgb(${Math.round(r)}, ${Math.round(i)}, ${Math.round(s)})`}function animarColorSecuencia(){desactivarClick([".butt-perfiles"]);let e=document.querySelectorAll(".btn-respaldo"),l=document.querySelectorAll(".btn-respaldo");if(0===e.length)return;let t=0,o=255,a=0,n=0,r=Date.now();function i(){e.forEach(e=>{e.style.backgroundColor=`rgb(${t}, ${o}, ${a})`})}function s(e,l,s,d){let u=setInterval(()=>{if(Date.now()-r>=2e3){clearInterval(u),t=0,o=255,a=0,i();return}t!==e&&(t+=t<e?51:-51),o!==l&&(o+=o<l?51:-51),a!==s&&(a+=a<s?51:-51),i(),t===e&&o===l&&a===s&&(clearInterval(u),setTimeout(()=>{n=d,c()},100))},1)}function c(){if(!(Date.now()-r>=1e3))switch(n){case 0:s(255,255,255,1);break;case 1:s(255,255,0,2);break;case 2:s(255,255,255,3);break;case 3:s(255,0,255,4);break;case 4:s(255,255,255,5);break;case 5:s(0,255,255,6);break;case 6:s(255,255,255,7);break;case 7:s(0,255,0,0)}}c(),setTimeout(()=>{l.forEach(e=>{e.style.backgroundColor="rgb(0,255,0)"}),restablecerClick([".butt-perfiles"])},1010)}function animarSecuenciaPerfiles(){let e=document.querySelectorAll(".btn-respaldo");if(0===botonesPerfilColor.length)return;let l=0;!function t(){if(l>=botonesPerfilColor.length)return;let o=botonesPerfilColor[l],a=e[l],n=o.style.backgroundColor;o.style.backgroundColor="#2bf22bc0",a.style.backgroundColor="#2bf22bc0",setTimeout(()=>{o.style.backgroundColor=n,l++,t()},145)}()}function colorearRespaldos(){let e=document.querySelectorAll(".btn-respaldo"),l=botonesPerfilColor;if(!e.length)return;e.forEach(e=>{e.style.backgroundColor="",e.style.height="3vh"}),l.forEach(e=>{e.style.backgroundColor=""});let t=0;setTimeout(()=>{let o=setInterval(()=>{t<e.length&&(e[t].style.backgroundColor="rgb(0,255,0)"),++t>=Math.max(e.length,l.length)&&clearInterval(o)},100)},100)}function initDrag(e){let l=!1,t,o;e.addEventListener("mousedown",a=>{a.target===e&&(l=!0,t=a.clientX-e.offsetLeft,o=a.clientY-e.offsetTop)}),document.addEventListener("mousemove",a=>{l&&(e.style.left=`${a.clientX-t}px`,e.style.top=`${a.clientY-o}px`)}),document.addEventListener("mouseup",()=>{l=!1}),e.querySelectorAll("button, input[type='range']").forEach(e=>{e.addEventListener("mousedown",e=>{e.stopPropagation()})})}function cmykFlotante(){for(var e=["colorCMYK","container-slider","simulador","boton-perfiles","boton-reseteo"],l=0;l<allContenedores.length;l++){var t=document.getElementById(allContenedores[l]);t&&(t.style.display=e.includes(allContenedores[l])?"flex":"none")}document.querySelectorAll(".cmyRgb-group, .lbls-cmyRgb").forEach(e=>{e.style.display="block"});let o=document.querySelector("#padre-cmyk"),a=document.querySelector("#container-slider"),n=document.querySelector("#perfiles-color");o.style.display="grid",a.style.display="grid",o.style.zIndex=200,n.removeAttribute("style")}function rgbFlotante(){for(var e=["colorDisplay","padre-controles","simulador","boton-perfiles","boton-reseteo"],l=0;l<allContenedores.length;l++){var t=document.getElementById(allContenedores[l]);t&&(t.style.display=e.includes(allContenedores[l])?"flex":"none")}document.querySelectorAll(".btn-opcion, .lbls-cmyRgb").forEach(e=>{e.style.display="block"});let o=document.querySelector("#padre-rgb"),a=document.querySelector("#padre-controles"),n=document.querySelector("#perfiles-color");o.style.display="grid",a.style.display="grid",o.style.zIndex=200,n.removeAttribute("style")}function initResize(e,l){let t=!1,o,a;function n(l){if(!t)return;let o=l.clientX-e.getBoundingClientRect().left,a=l.clientY-e.getBoundingClientRect().top;o>=200&&(e.style.width=`${o}px`),a>=200&&(e.style.height=`${a}px`)}function r(){t=!1,document.removeEventListener("mousemove",n),document.removeEventListener("mouseup",r)}l.addEventListener("mousedown",e=>{t=!0,o=e.clientX,a=e.clientY,document.addEventListener("mousemove",n),document.addEventListener("mouseup",r)})}function resetBotonMezclador(e){if("string"!=typeof e)return;let l="padre-cmyk"===(e=e.trim().toLowerCase());document.querySelectorAll(l?".slider-thumb-cmyk":".slider-thumb-rgb").forEach(e=>{e.style.transition="bottom 0.8s ease",e.style.bottom="0%",setTimeout(()=>{e.style.transition=""},800)});let t=document.querySelector(l?"#colorCMYK":"#colorDisplay");t&&(t.style.backgroundColor=""),"object"!=typeof values&&(values={}),Object.assign(values,l?{C:0,M:0,Y:0,K:0,A:0}:{R:0,G:0,B:0,W:0});document.querySelectorAll(l?".slider-track":".slider-track-rgb").forEach(e=>{e.style.transition="background 0.8s ease",e.style.background="linear-gradient(to top, rgb(255,120,0) 0%, rgb(0,0,17) 0%)",setTimeout(()=>{e.style.transition=""},800)}),l?updateColorCMYK():(values.A=parseFloat(values.A)||0,updateColorRGB())}function configurarBoton(e,l,t){let o=document.querySelector(e),a=document.querySelector(l);o&&a&&(o.addEventListener("mousedown",()=>{document.querySelectorAll(".cmyRgb-group").forEach(e=>{e.style.backgroundColor=""}),o.style.backgroundColor="rgb(255,0,0)",a.style.width="50vw",a.style.height="68vh",a.style.zIndex=200,a.style.backgroundColor="",t&&t()}),o.addEventListener("mouseup",()=>{o.style.backgroundColor=""}))}function alternarTeccnologia(e){let l=document.getElementById("padre-cmyk"),t=document.getElementById("control-panel-cmyk"),o=document.getElementById("padre-rgb"),a=document.getElementById("control-panel-rgb");switch(e){case"rgb":l&&(ocultarElementoProgressivo(l),ocultarElementoProgressivo(t),mostrarElementoProgressivo(o),mostrarElementoProgressivo(a));break;case"cmyk":o&&(ocultarElementoProgressivo(o),ocultarElementoProgressivo(a),mostrarElementoProgressivo(l),mostrarElementoProgressivo(t))}}function ocultarElementoProgressivo(e,l){if(!e||("string"==typeof e&&(e=document.getElementById(e)||document.querySelector(e)),!e))return;e.style.transition="",e.style.opacity="1";let t="none"===getComputedStyle(e).display;if(t){e.style.display="none";return}requestAnimationFrame(()=>{e.style.transition="opacity 0.5s ease",e.style.opacity="0"});let o=null,a=()=>{o&&(clearTimeout(o),o=null),e.style.display="none",e.style.transition="",e.style.opacity="",e.style.visibility="","function"==typeof l&&l()},n=l=>{l.target===e&&(l.propertyName&&"opacity"!==l.propertyName||(e.removeEventListener("transitionend",n),a()))};e.addEventListener("transitionend",n);let r=getComputedStyle(e),i=1e3*(parseFloat((r.transitionDuration||"0").split(",")[0])||0),s=1e3*(parseFloat((r.transitionDelay||"0").split(",")[0])||0);o=setTimeout(()=>{e.removeEventListener("transitionend",n),a()},i+s>0?i+s+50:600)}function mostrarElementoProgressivo(e){e&&(e.style.transition="",e.style.opacity="0",e.style.display="grid",Array.from(e.querySelectorAll("*")).forEach(e=>{e.style.transition="",e.style.opacity="0",e.style.display="",e.style.visibility="visible"}),requestAnimationFrame(()=>{e.style.transition="opacity 0.5s ease",e.style.opacity="1",Array.from(e.querySelectorAll("*")).forEach(e=>{e.style.transition="opacity 0.5s ease",e.style.opacity="1"})}),e.addEventListener("transitionend",()=>{e.style.transition="",Array.from(e.querySelectorAll("*")).forEach(e=>{e.style.transition=""})},{once:!0}))}function secuenciaAparicion(e){let l=document.querySelector("#perfiles-color");if(!l||"none"!==getComputedStyle(l).display)return;let t=document.querySelector("#perfiles-color");switch(mostrarElementoProgressivo(t),setTimeout(()=>{buscaNombre&&(buscaNombre.value="",creaNombre.value="",esDesktop&&buscaNombre.focus())},100),e){case"rgb":["boton-rgb","boton-rgb-alternar","boton-rgb-salir","lab-rgb","lab-alternar","lab-salir-rgb"].forEach(e=>{let l=document.getElementById(e);l&&(l.style.display="none")});break;case"cmyk":["lab-seis","boton-seis","lab-cmyk","boton-cmyk","lab-salir-cmyk","boton-cmyk-salir"].forEach(e=>{let l=document.getElementById(e);l&&(l.style.display="none")})}}document.getElementById("animate-btn").addEventListener("click",()=>{let e=parseInt(document.getElementById("input-r").value)||0,l=parseInt(document.getElementById("input-g").value)||0,t=parseInt(document.getElementById("input-b").value)||0,o=parseInt(document.getElementById("input-w").value)||0;animarSlidersRGB([{trackId:"slid-rojo-rgb",spanId:"c-span-rgb",channel:"R",porcentajeDestino:e},{trackId:"slid-verde-rgb",spanId:"m-span-rgb",channel:"G",porcentajeDestino:l},{trackId:"slid-azul-rgb",spanId:"y-span-rgb",channel:"B",porcentajeDestino:t},{trackId:"slid-blanco-rgb",spanId:"w-span-rgb",channel:"W",porcentajeDestino:o}])}),document.getElementById("reset-btn-rgb").addEventListener("click",()=>{let e=document.querySelectorAll('#control-rgb-inpt input[type="number"]');e.forEach(e=>e.value=0),resetBotonMezclador("padre-rgb")}),document.getElementById("reset-btn-cmyk").addEventListener("click",()=>{let e=document.querySelectorAll('#control-cmyk-inpt input[type="number"]');e.forEach(e=>e.value=0),resetBotonMezclador("padre-cmyk")}),document.getElementById("animate-btn-cmyk").addEventListener("mouseup",()=>{let e=parseInt(document.getElementById("input-c").value)||0,l=parseInt(document.getElementById("input-m").value)||0,t=parseInt(document.getElementById("input-y").value)||0,o=parseInt(document.getElementById("input-k").value)||0,a=parseInt(document.getElementById("input-a").value)||0;animarSlidersCMYK([{trackId:"slid-cian",spanId:"c-span",channel:"C",porcentajeDestino:e},{trackId:"slid-magenta",spanId:"m-span",channel:"M",porcentajeDestino:l},{trackId:"slid-amarillo",spanId:"y-span",channel:"Y",porcentajeDestino:t},{trackId:"slid-negro",spanId:"k-span",channel:"K",porcentajeDestino:o},{trackId:"slid-blanco",spanId:"w-span",channel:"A",porcentajeDestino:a}])}),buscaNombre.addEventListener("click",()=>{creaNombre.value="",listaClientes.style.display="none",keyboardWrapper.style.display="flex"});let parpadeoActivo=null;function parpadearElemento(e,l=200,t=null){detenerParpadeo();let o=document.getElementById(e);if(!o)return;let a=getComputedStyle(o).backgroundColor,n=!1,r=setInterval(()=>{o.style.backgroundColor=n?a:"rgba(0,255,255,0.44)",n=!n},l),i=null;"number"==typeof t&&(i=setTimeout(()=>{detenerParpadeo()},t)),parpadeoActivo={el:o,intervalo:r,timeout:i,colorOriginal:a}}function detenerParpadeo(){parpadeoActivo&&(clearInterval(parpadeoActivo.intervalo),parpadeoActivo.timeout&&clearTimeout(parpadeoActivo.timeout),parpadeoActivo.el.style.backgroundColor=parpadeoActivo.colorOriginal,parpadeoActivo=null)}function crearPerfilColor(){let e=document.querySelector("#padre-rgb"),l=document.querySelector("#padre-cmyk"),t=document.querySelector("#input-r"),o=document.querySelector("#input-g"),a=document.querySelector("#input-b"),n=document.querySelector("#input-w"),r=document.querySelector("#input-c"),i=document.querySelector("#input-m"),s=document.querySelector("#input-y"),c=document.querySelector("#input-k"),d=document.querySelector("#input-a"),u=document.getElementById("nombre-Perfil").value.trim();if(!u){parpadearElemento("nombre-Perfil"),saltarAlerta("Por favor, ingrese un nombre v\xe1lido","vacioRgb");return}let g="";if(e&&"grid"===e.style.display?g="RGB - ":l&&"grid"===l.style.display&&(g="CMYK - "),g&&!u.startsWith(g)&&(u=g+u),almacenObjetos[u=capitalizarTexto(u)]){mostrarVentanaEmergente("Ya existe un perfil con este nombre");return}let b=new objetoColores;if(almacenObjetos[u]=b,!almacenObjetos[objetoGlobal=u]){console.error("Error: No se pudo encontrar el perfil en almacenObjetos.");return}e&&"grid"===e.style.display&&(almacenObjetos[objetoGlobal].RGBA.R=parseInt(t.value,10)||0,almacenObjetos[objetoGlobal].RGBA.G=parseInt(o.value,10)||0,almacenObjetos[objetoGlobal].RGBA.B=parseInt(a.value,10)||0,almacenObjetos[objetoGlobal].RGBA.A=parseInt(n.value,10)||0),l&&"grid"===l.style.display&&(almacenObjetos[objetoGlobal].CMYK.C=parseInt(r.value,10)||0,almacenObjetos[objetoGlobal].CMYK.M=parseInt(i.value,10)||0,almacenObjetos[objetoGlobal].CMYK.Y=parseInt(s.value,10)||0,almacenObjetos[objetoGlobal].CMYK.K=parseInt(c.value,10)||0,almacenObjetos[objetoGlobal].CMYK.A=parseInt(d.value,10)||0);let y=Object.keys(almacenObjetos).sort().reduce((e,l)=>(e[l]=almacenObjetos[l],e),{});localStorage.setItem("coloresRegistrados",JSON.stringify(y)),mostrarVentanaEmergente("Perfil creado y almacenado"),document.getElementById("nombre-Perfil").value="",traerAlmacenObjetos()}function colorRenderizado(){let e=document.querySelector("#padre-rgb"),l=document.querySelector("#padre-cmyk");e.style.display="grid",l.style.display="none",e.style.display="grid",setTimeout(()=>{renderizaMezclaRGB()},100),l.style.display="grid",e.style.display="none",l.style.display="grid",setTimeout(()=>{renderizaMezclaCMYK()},100)}function renderizaMezclaRGB(){if(!almacenObjetos[objetoGlobal]||!almacenObjetos[objetoGlobal].CMYK){console.warn("Error: objetoGlogal o objetoGlogal.RGBA no est\xe1 definido."),document.getElementById("ventanaEmergente").classList.remove("oculta"),document.getElementById("mensajeEmergente").textContent="Cargue la base de datos antes de generar el perfil de color";return}console.log("almacenObjetos.objetoGlobal",almacenObjetos[objetoGlobal]);let e=almacenObjetos[objetoGlobal].RGBA.R,l=almacenObjetos[objetoGlobal].RGBA.G,t=almacenObjetos[objetoGlobal].RGBA.B,o=almacenObjetos[objetoGlobal].RGBA.A;console.log("Valores RGBA extra\xeddos:",{R:e,G:l,B:t,W:o}),animarSlidersRGB([{trackId:"slid-rojo-rgb",spanId:"c-span-rgb",channel:"R",porcentajeDestino:e},{trackId:"slid-verde-rgb",spanId:"m-span-rgb",channel:"G",porcentajeDestino:l},{trackId:"slid-azul-rgb",spanId:"y-span-rgb",channel:"B",porcentajeDestino:t},{trackId:"slid-blanco-rgb",spanId:"w-span-rgb",channel:"W",porcentajeDestino:o}]),traerAlmacenObjetos()}function renderizaMezclaCMYK(){if(!almacenObjetos[objetoGlobal]||!almacenObjetos[objetoGlobal].CMYK){console.warn("Error: objetoGlogal o objetoGlogal.CMYK no est\xe1 definido."),document.getElementById("ventanaEmergente").classList.remove("oculta"),document.getElementById("mensajeEmergente").textContent="Cargue la base de datos antes de generar el perfil de color";return}console.log("almacenObjetos.objetoGlobal",almacenObjetos.objetoGlobal);let e=almacenObjetos[objetoGlobal].CMYK.C,l=almacenObjetos[objetoGlobal].CMYK.M,t=almacenObjetos[objetoGlobal].CMYK.Y,o=almacenObjetos[objetoGlobal].CMYK.K,a=almacenObjetos[objetoGlobal].CMYK.A;console.log("Valores CMYK extra\xeddos:",{C:e,M:l,Y:t,K:o,A:a}),animarSlidersCMYK([{trackId:"slid-cian",spanId:"c-span",channel:"C",porcentajeDestino:e},{trackId:"slid-magenta",spanId:"m-span",channel:"M",porcentajeDestino:l},{trackId:"slid-amarillo",spanId:"y-span",channel:"Y",porcentajeDestino:t},{trackId:"slid-negro",spanId:"k-span",channel:"K",porcentajeDestino:o},{trackId:"slid-blanco",spanId:"w-span",channel:"A",porcentajeDestino:a}]),traerAlmacenObjetos()}function alternarOcultarBotones(){let e=document.querySelector("#control-panel-rgb"),l=document.querySelector("#control-panel-cmyk"),t=document.querySelector("#perfiles-color"),o=e=>{document.querySelectorAll(e).forEach(e=>e.style.display="flex")};[".lbl-cmyk",".btnCmyk",".lbl-opcion",".btn-opcion"].forEach(o),ocultarElementoProgressivo(t),ocultarElementoProgressivo(e),ocultarElementoProgressivo(l)}function pintarColor(){if(!creaNombre.value.trim()){parpadearElemento("nombre-perfil-existe"),saltarAlerta("Cargue la base de datos antes de generar el perfil de color","vacioCmyk"),tecnologyCMYK&&resetBotonMezclador("padre-cmyk"),tecnologyRGB&&resetBotonMezclador("padre-rgb");return}tecnologyCMYK&&renderizaMezclaCMYK(),tecnologyRGB&&renderizaMezclaRGB()}function observarCambioDisplay(){let e=new MutationObserver(()=>{let e="grid"===getComputedStyle(document.getElementById("padre-rgb")).display,l="grid"===getComputedStyle(document.getElementById("padre-cmyk")).display;e?(tecnologyRGB=!0,tecnologyCMYK=!1):l&&(tecnologyRGB=!1,tecnologyCMYK=!0)});e.observe(document.body,{attributes:!0,subtree:!0,attributeFilter:["style","class"]})}function mostrarBarraProgres(e,l){let t=document.getElementById("barra-progreso-registro"),o=document.getElementById("contenedor-registro");t.style.width=e+"%",intervaloProgreso||(o.style.display="grid",setTimeout(()=>{intervaloProgreso=setInterval(()=>{let e=(parseFloat(t.style.width)||0)+.5;e>l&&(e=l,clearInterval(intervaloProgreso),intervaloProgreso=null),t.style.width=e+"%"},10)},100))}function ejecutarFase(e){switch(e){case"inicio":mostrarBarraProgres(.1,33.5);break;case"medio":mostrarBarraProgres(33.5,67);break;case"final":mostrarBarraProgres(67,100)}}function borrrrrrrrrrrarrrrrrrrrrrrrrrrrrrr(){let e=document.querySelectorAll(".graphs-lines");e.forEach(e=>{e.style.display="flex"});let l=document.querySelector("#MiGrafica9");l&&(l.style.opacity=1,l.style.display="flex",l.style.visibility="visible");let t=document.querySelector("#iconos"),o=document.querySelector("#contLineas"),a=document.querySelector("#conte-secundario"),n=document.querySelector("#conte-butts-graphs"),r=document.querySelector("#porta-visor"),i=document.querySelector("#porta-imagen");t&&(t.style.display="flex"),o&&(o.style.display="grid"),a&&(a.style.display="flex"),n&&(n.style.display="grid"),i&&(i.style.display="grid"),aparecerElemento("porta-visor","grid"),setTimeout(()=>{r&&!r.classList.contains("modificarPosicion")&&r.classList.add("modificarPosicion")},50),document.querySelector("#listaNombres").style.display="none",document.querySelector("#buscador-empleado").classList.add("ubicacion"),document.querySelector("#visorImagen").classList.add("ubicar-visor"),document.querySelector("#porta-visor > div.visor > span").classList.add("ubicado"),document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add("ancho")}configurarBoton("#boton-seis","#padre-cmyk",()=>resetBotonMezclador("padre-cmyk")),configurarBoton("#boton-rgb","#padre-rgb",()=>resetBotonMezclador("padre-rgb")),configurarBoton("#boton-cmyk","#padre-cmyk",""),configurarBoton("#boton-rgb-alternar","#padre-rgb",""),configurarBoton("#boton-rgb-salir","#padre-rgb",""),configurarBoton("#boton-cmyk-salir","#padre-cmyk",""),document.querySelector("#btn-salir-perfiles").addEventListener("click",alternarOcultarBotones),document.querySelectorAll(".alterna-panel").forEach(e=>{e.addEventListener("click",()=>{"exit-cmyk"===e.id&&ocultarElementoProgressivo(panelControlCMYK),"exit-rgb"===e.id&&ocultarElementoProgressivo(panelRgb)})}),document.querySelector("#boton-rgb-alternar").addEventListener("mousedown",()=>{let e=document.querySelector("#container-slider");for(var l=["colorCMYK","container-slider","simulador","container01","links-inicialesI","links-iniciales","buscador","search-form"],t=0;t<allContenedores.length;t++){var o=document.getElementById(allContenedores[t]);o&&(o.style.display=l.includes(allContenedores[t])?"flex":"none")}container1.style.display="grid",e.style.display="grid",aparecerElemento("padre-cmyk","grid"),actualizarIdsArray("padre-cmyk")}),document.querySelector("#boton-cmyk").addEventListener("mousedown",()=>{let e=document.querySelector("#padre-controles");for(var l=["colorDisplay","padre-controles","simulador","container01","links-inicialesI","links-iniciales","buscador","search-form"],t=0;t<allContenedores.length;t++){var o=document.getElementById(allContenedores[t]);o&&(o.style.display=l.includes(allContenedores[t])?"flex":"none")}container1.style.display="grid",e.style.display="grid",aparecerElemento("padre-rgb","grid"),actualizarIdsArray("padre-rgb")}),document.querySelector("#save-tecnology").addEventListener("click",()=>{crearPerfilColor()}),creaNombre.addEventListener("click",()=>{document.querySelector("#nombre-Perfil").value="",creaNombre.value="",botonesPerfilColor.forEach(e=>{e.style.display="block"}),mostrarListaClientes("softwareColor"),limpiarColoresDeFondo(),desactivarClick([".butt-perfiles",".estilo-1"]),mostrarNombresDeObjetos(),setTimeout(()=>{listaClientes&&0===listaClientes.children.length&&mostrarVentanaMensaje("El almacenamiento y la base de datos estan vac\xedos")},50)}),grupoBotsCrear.forEach(e=>{e.addEventListener("mouseleave",()=>{alertaTres.style.display="none",0===listaClientes.children.length&&(listaClientes.style.display="none",alertaMSG.style.display="none"),lineaClientes&&0===lineaClientes.children.length?lineaClientes.style.display="none":alertaTres.style.display="none",setTimeout(()=>{listaClientes.matches(":hover")||(listaClientes.style.display="none",restablecerClick([".estilo-1",".jobs"]))},300)})});
+document.addEventListener('keydown', function(event) {                 
+  if (event.ctrlKey && event.shiftKey) { 
+    switch (event.key) {  
+      case 'Ñ':
+        /* console.log('BANDERA = ', flagEmpleado)
+         Object.keys(localStorage).forEach(key => {
+          console.group(key);
+          console.log(JSON.parse(localStorage.getItem(key)));
+          console.groupEnd();
+        }); */
+
+        const datos = JSON.parse(localStorage.getItem('empleadosRegistrados'))
+        const cedula = 21375808
+        console.log('empleadosRegistrados : ', datos)
+        console.log('primer empleado almacenado : ', datos[cedula])
+
+        /* limpiarFormulario() */
+
+        document.querySelector('#iconos').style.display='flex'
+        document.querySelector('#contLineas').style.display='grid'
+        borrrrrrrrrrrarrrrrrrrrrrrrrrrrrrr()
+
+      
+
+      break
+      case 'Z':
+      localStorage.removeItem('kaizenRegistrados');
+      
+      break;  
+      case 'H':
+        Geometria()
+      break;
+      case 'X':
+      eliminarClaveLocalStorage('empleadosRegistrados')
+      break;                  
+    }
+  }
+});   
+function Geometria() {
+  console.clear();  
+  let contiBoton = document.querySelector('#porta-imagen');  
+  var rect = contiBoton.getBoundingClientRect(); 
+  var topPosition = rect.top;  
+  var leftPosition = rect.left;  
+  var widthValue = rect.width;  
+  var heightValue = rect.height;  
+  var style = window.getComputedStyle(contiBoton);  
+  var positionType = style.position;  
+  var displayType = style.display;  
+  var visibilityType = style.visibility;  
+  var zIndexValue = style.zIndex;  
+  var isVisible = rect.width > 0 && rect.height > 0 && displayType !== 'none' && visibilityType !== 'hidden';   
+  
+  
+  console.log("PADRE :", contiBoton.id);  
+  console.log("Top:", topPosition);  
+  console.log("Left:", leftPosition);  
+  console.log("Height:", heightValue);  
+  console.log("Width:", widthValue);  
+  console.log("Position:", positionType);  
+  console.log("Display:", displayType);  
+  console.log("Visibility:", visibilityType);  
+  console.log("Z-Index:", zIndexValue);  
+  console.log("Is Visible:", isVisible);
+  
+  var contiBotonI = document.getElementById('contLineas') 
+  var rect = contiBotonI.getBoundingClientRect();
+  var topPosition = rect.top;
+  var leftPosition = rect.left;
+  var widthValue = rect.width;
+  var heightValue = rect.height;
+  var style = window.getComputedStyle(contiBotonI);
+  var positionType = style.position;
+  var displayType = style.display;
+  var visibilityType = style.visibility;
+  var isVisible = rect.width > 0 && rect.height > 0 && displayType !== 'none' && visibilityType !== 'hidden';
+  console.log('2 :','PADRE :', contiBotonI.id);
+  console.log('2 :','Top:', topPosition);
+  console.log('2 :','Left:', leftPosition);
+  console.log('2 :','Height:', heightValue);
+  console.log('2 :','Width:', widthValue);
+  console.log('2 :','Position:', positionType);
+  console.log('2 :','Display:', displayType);
+  console.log('2 :','Visibility:', visibilityType);
+  console.log('2 :','Is Visible:', isVisible); 
+  console.log("Z-Index:", style.zIndex);
+}
+function animarWidth(selector, duracion = 1000) {
+  const elemento = document.querySelector(selector);
+  if (!elemento) return;
+
+  let heightInicial = 1;        // Valor de inicio en %
+  const heightFinal = 93;      // Valor final en %
+  const incremento = (heightFinal - heightInicial) / (duracion / 16.7); 
+  // ~60 fps → 16.7 ms por frame
+
+  function animar() {
+    heightInicial += incremento;
+
+    if (heightInicial >= heightFinal) {
+      elemento.style.height = heightFinal + '%';
+      return;
+    }
+
+    elemento.style.height = heightInicial + '%';
+    requestAnimationFrame(animar);
+  }
+  requestAnimationFrame(animar);
+}
+function bloquearMenuPersonalizado(event) {
+  event.preventDefault();
+}  
+function desactivarClicEnElementos(...elementos) {
+  elementos.forEach(coleccion => {
+    // Verificar si la colección es iterable (como un array o NodeList)   
+    if (coleccion && typeof coleccion[Symbol.iterator] === 'function') {   
+      coleccion.forEach(elemento => {
+        elemento.style.pointerEvents = 'none'; 
+      });
+    } else if (coleccion instanceof HTMLElement) {   
+      // Si es un solo elemento HTML
+      coleccion.style.pointerEvents = 'none';  
+    }
+  });
+} 
+function reactivarClicEnElementos(...elementos) {   
+  elementos.forEach(coleccion => {
+    coleccion.forEach(elemento => {   
+      elemento.style.pointerEvents = 'auto';
+    });
+  });
+}
+const masTintaGeneral = document.querySelector('#ctrl-gral-tinta > div:nth-of-type(1)')
+const menosTintaGeneral = document.querySelector('#ctrl-gral-tinta > div:nth-of-type(2)')
+const masSolucionGeneral = document.querySelector('#ctrl-gral-agua > div:nth-of-type(1)')
+const menosSolucionGeneral = document.querySelector('#ctrl-gral-agua > div:nth-of-type(2)') 
+const salirCalculadora = document.querySelector('#conte-butts-calculadora')
+const botonesSelectores = document.querySelectorAll('.butt-selector') 
+const nombreCliente = document.querySelector('.nombre-cliente') 
+const alertaBotones = document.querySelector('.alerta-botones')
+const buttsGenerales = document.querySelectorAll('.mod-tinta')
+const alertaPerfil = document.querySelector('.alerta-perfil')
+const buttsJobTrack = document.querySelectorAll('.estilo-1')   
+const buttsControl = document.querySelectorAll('.div-ctrl')
+const grupoBotsCrear = document.querySelectorAll('.jobs')
+const buttsColores = document.querySelectorAll('.cabeza')  
+const irAconsola = document.querySelector('#ir-consola')
+const verdeAgua = 'rgb(127, 255, 212)'
+const rojo = 'rgba(255, 0, 0, 0.63)'
+const especial = 'rgb(255,130,0)' 
+const barniz = 'rgb(200,200,200)'
+const amarillo ='rgb(255,255,0)'
+const magenta = 'rgb(255,0,255)'  
+const cian = 'rgb(0,255,255)'
+const verde = 'rgb(0,255,0)'
+const negro = 'rgb(0,0,0)'
+const azul = 'blue'
+let botonera = document.querySelectorAll('.botones-registro');
+let botonInicio = document.getElementById('startButton')
+let botonDetener = document.getElementById('stopButton') 
+let botonReseteo = document.getElementById('resetButton')
+let lineaClientes = document.querySelector('#lista-lineas')
+let flagAplicacion = false
+let iniciador = document.getElementById('iniciador')
+let retroceder = document.getElementById('iniciador-I')
+let almacenObjetos = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};  
+let objetoGlobal = null
+let nombreProvisional = null
+let objetoGlobalColor = null
+
+function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14){
+  var elementosExcluidos = [id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14]  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'  
+    }
+  }
+  document.querySelector('#simulador').style.display = 'flex'
+  container1.style.display = 'grid'
+  let displayTraining = document.getElementById('component1')  
+  displayTraining.style.display = 'flex'
+  switch(id1){
+    case 'inerfaz-ajuste-fino':
+      if (interfaz.style.display === 'none' || interfaz.style.visibility === 'hidden') {
+        interfaz.style.display = 'flex'
+      }
+    break;
+    case 'colorCMYK':
+      const almacenCmyk = document.querySelector('#padre-cmyk')
+      mostrarElementoProgressivo(almacenCmyk);
+    
+    break;
+    case 'colorDisplay':
+      const almacenRgb = document.querySelector('#padre-rgb')
+      mostrarElementoProgressivo(almacenRgb);  
+          
+    break;
+  }  
+}
+
+function updateDigitalClock() {   
+  const now = new Date();
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
+  let seconds = now.getSeconds();
+  hours = hours < 10 ? '0' + hours : hours;
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  seconds = seconds < 10 ? '0' + seconds : seconds;
+  const formattedTime = `${hours}:${minutes}:${seconds}`;
+  document.getElementById('clock').textContent = formattedTime;
+}
+const colorComponents = document.querySelectorAll('.intermitencia');
+let cronometroInterval = null;
+let elapsedTime = 0;
+let primerClick = true;
+let colorInterval; 
+const emergency = document.getElementById('emergency');
+function toggleBackgroundColor() {
+  const elements = document.querySelectorAll('.equal');
+  let isOriginalColor = true;
+  colorInterval = setInterval(() => {
+    elements.forEach(element => {
+      if (isOriginalColor) {
+        element.style.backgroundColor = 'rgb(255, 0, 0)';
+        colorComponents.forEach(colorComponent => {
+          colorComponent.style.backgroundColor = '';
+        });
+      } else {
+        element.style.backgroundColor = 'rgb(255, 166, 0)';
+        colorComponents.forEach(colorComponent => {
+          colorComponent.style.backgroundColor = 'rgb(255, 166, 0)';
+        });
+      }
+    });
+    isOriginalColor = !isOriginalColor;
+  }, 500);
+}
+emergency.addEventListener('click', () => {
+  let sombra = document.getElementById('sombra');
+  if (primerClick) {
+    emergency.style.transform = 'translateY(3px) rotate(85deg)';
+    sombra.style.height = '21%';
+    sombra.style.width = '12%';
+    sombra.style.left = '27.5%';
+    sombra.style.top = '9%';
+    toggleBackgroundColor();
+    balizaAlarma()
+  } else {
+    emergency.style.transform = 'translateY(0px) rotate(0deg)';
+    sombra.style.height = '';
+    sombra.style.width = '';
+    sombra.style.left = '';
+    sombra.style.top = '';
+    colorComponents.forEach(colorComponent => {
+    colorComponent.style.backgroundColor = '';
+    detenerBaliza()
+    });
+    clearInterval(colorInterval); // Detenemos el intervalo
+    document.querySelectorAll('.equal').forEach(element => {
+      element.style.backgroundColor = 'rgb(255, 166, 0)'; // Color original
+    });
+  }
+  primerClick = !primerClick;
+});
+function startCronometro() {
+  botonDetener.style.backgroundColor = ''
+  botonInicio.style.backgroundColor = 'rgb(0,255,0)'
+  botonInicio.style.color = 'rgb(77,0,0)'
+  botonReseteo.style.backgroundColor=''
+
+  if (cronometroInterval === null) { // Verifica si no hay otro intervalo corriendo
+    cronometroInterval = setInterval(() => {
+      elapsedTime += 1;
+      const hours = Math.floor(elapsedTime / 36000);
+      const minutes = Math.floor((elapsedTime % 36000) / 600);
+      const seconds = Math.floor((elapsedTime % 600) / 10);
+      const tenths = elapsedTime % 10;
+
+      document.getElementById('cronometro').textContent =
+        `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${tenths}`;
+    }, 100);
+  }
+}
+function stopCronometro() {
+  if(botonInicio.style.backgroundColor === 'rgb(0,255,0)'){    
+    botonDetener.style.backgroundColor = 'rgb(255,0,0)'
+    botonDetener.style.color='rgb(255,255,255)'
+    botonReseteo.style.backgroundColor=''
+  }else{
+    botonInicio.style.backgroundColor = ''
+    botonInicio.style.color = ''
+    botonDetener.style.backgroundColor = 'rgb(255,0,0)'
+    botonDetener.style.color='rgb(255,255,255)'
+  }
+  if (cronometroInterval !== null) {
+    clearInterval(cronometroInterval);
+    cronometroInterval = null;
+    // Capturar y mostrar el tiempo transcurrido
+    const hours = Math.floor(elapsedTime / 3600);
+    const minutes = Math.floor((elapsedTime % 3600) / 60);
+    const seconds = Math.floor(elapsedTime % 60);
+    const tenths = Math.floor((elapsedTime % 1) * 10);
+  }
+}
+function resetCronometro() {
+  if(botonDetener.style.backgroundColor === 'rgb(255,0,0)'){
+    botonDetener.style.backgroundColor = ''
+    botonDetener.style.color=''
+    botonInicio.style.backgroundColor = ''
+    botonInicio.style.color = ''
+  }
+  if (cronometroInterval !== null) {
+    return;
+  }
+  stopCronometro(); 
+  elapsedTime = 0;
+  document.getElementById('cronometro').textContent = '00:00:00.0';
+  botonDetener.style.backgroundColor = ''
+  botonDetener.style.color=''
+  botonInicio.style.backgroundColor = ''
+  botonInicio.style.color = ''
+
+}
+botonInicio.addEventListener('click', startCronometro);
+botonDetener.addEventListener('click', stopCronometro);
+botonReseteo.addEventListener('click', resetCronometro);
+setInterval(updateDigitalClock, 1000);
+updateDigitalClock(); // Llamar inmediatamente para mostrar la hora al cargar
+const contenedorPadre = document.getElementById('clock');
+const tableta = document.getElementById('water-background');
+
+/* let isDragging = false;
+let isDraggingI = false;
+let offsetX, offsetY; 
+
+
+contenedorPadre.addEventListener('mousedown', (e) => {
+  e.preventDefault(); // Prevenir comportamiento predeterminado de arrastre
+  isDragging = true; // El elemento empieza a ser arrastrado
+  offsetX = e.clientX - contenedorPadre.offsetLeft; // Distancia del clic desde el borde izquierdo del contenedor
+  offsetY = e.clientY - contenedorPadre.offsetTop; // Distancia del clic desde el borde superior del contenedor
+  contenedorPadre.style.cursor = 'grabbing'; // Cambia el cursor a "grabbing" durante el arrastre
+}) */;
+
+let contenedorPanel = document.getElementById('segunda-pantalla');
+let enArrastre = false;
+let offsetXX, offsetYY;
+contenedorPanel.addEventListener('mousedown', (e) => {
+  e.preventDefault(); // Prevenir comportamiento predeterminado
+  enArrastre = true; // Indicar que estamos en modo de arrastre
+  // Calcular la distancia desde el borde del elemento hasta el clic
+  offsetXX = e.clientX - contenedorPanel.offsetLeft;
+  offsetYY = e.clientY - contenedorPanel.offsetTop;
+  contenedorPanel.style.cursor = 'grabbing'; // Cambia el cursor a "grabbing" durante el arrastre
+});
+// Mover el elemento mientras se arrastra
+document.addEventListener('mousemove', (e) => {
+  if (enArrastre) { // Si estamos en modo de arrastre
+    // Calcular nuevas coordenadas del elemento
+    let newX = e.clientX - offsetXX;
+    let newY = e.clientY - offsetYY;
+    // Actualizar posición del elemento
+    contenedorPanel.style.left = newX + 'px';
+    contenedorPanel.style.top = newY + 'px';
+  }
+});
+// Detener el arrastre cuando se suelta el mouse
+document.addEventListener('mouseup', () => {
+  enArrastre = false; // Dejar de arrastrar
+  contenedorPanel.style.cursor = 'grab'; // Cambia el cursor a "grab" cuando se suelta
+});
+function resetearElementos() {
+  const elementos = [
+    document.getElementById('miRectangulo'),
+    document.getElementById('miRectangulo1'),
+    document.getElementById('miRectangulo2'),
+    document.getElementById('miRectangulo3'),
+    document.getElementById('miRectangulo4'),
+    document.getElementById('miRectangulo5'),
+    document.getElementById('miRectangulo6')
+  ];
+
+  elementos.forEach(elemento => {
+    elemento.style.transition = 'none'; // Elimina cualquier transición aplicada
+    elemento.style.transform = 'none';  // Restablece la transformación (rotación, escala, etc.)
+    elemento.style.top = '';            // Restablece la posición `top` a su valor por defecto
+  });
+}
+function animarRectangulos() {
+  const rectangulos = document.querySelectorAll('.rectangulo');
+  rectangulos.forEach((rectangulo, index) => {
+    const nuevaPosicion = 479 - index * 40; 
+    setTimeout(() => {
+      rectangulo.style.transition = 'top 0.5s ease';
+      rectangulo.style.top = `${nuevaPosicion}px`;
+    }, index * 200); 
+  });
+}
+function girarElemento(esquina) {
+  resetearElementos()
+  const elementos = [
+    document.getElementById('miRectangulo'),
+    document.getElementById('miRectangulo1'),
+    document.getElementById('miRectangulo2'),
+    document.getElementById('miRectangulo3'),
+    document.getElementById('miRectangulo4'),
+    document.getElementById('miRectangulo5'),
+    document.getElementById('miRectangulo6')
+  ];
+  const origenes = {
+    'top-left': '0% 0%',
+    'top-right': '100% 0%',
+    'bottom-left': '0% 100%',
+    'bottom-right': '100% 100%'
+  };
+  elementos.forEach((elemento, index) => {
+    elemento.style.display='flex'
+  });
+  elementos.forEach((elemento, index) => {
+    setTimeout(() => {
+      elemento.style.transformOrigin = origenes[esquina];
+      elemento.style.transition = 'transform 1.5s ease';
+      elemento.style.transform = `rotate(${360}deg)`;
+    }, index * 100);    
+  });
+  setTimeout(() => {
+    animarRectangulos()
+  }, 2000);
+}
+document.getElementById('alterna1').addEventListener('click', () =>{ 
+  document.getElementById('pantalla-registro').style.zIndex=2
+  document.getElementById('pantalla-guias').style.zIndex=1
+  document.getElementById('alterna2').style.backgroundColor='rgb(177,177,177)'
+  document.getElementById('alterna1').style.backgroundColor=''
+}  )
+document.getElementById('alterna2').addEventListener('click', () =>{
+  document.getElementById('pantalla-registro').style.zIndex=1
+  document.getElementById('pantalla-guias').style.zIndex=2
+  document.getElementById('alterna1').style.backgroundColor='rgb(177,177,177)'
+  document.getElementById('alterna2').style.backgroundColor=''
+})
+const pliego = document.getElementById('pliego');
+let anguloX = 0;
+let posLeft = 50;
+let direccionA = 1;
+document.getElementById('guia-4').addEventListener('mouseup', () => {
+  // Obtener la transformación actual del elemento
+  const computedStyle = window.getComputedStyle(pliego);
+  const matrix = computedStyle.transform;
+  // Verificar si hay una transformación aplicada
+  let anguloActual = 0;
+  if (matrix !== 'none') {
+    // Extraer el valor de la matriz de transformación y convertir a grados
+    const values = matrix.split('(')[1].split(')')[0].split(',');
+    const a = parseFloat(values[0]);
+    const b = parseFloat(values[1]);
+    anguloActual = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+  }
+  // Sumar o restar el ángulo basado en la dirección
+  let anguloX = anguloActual + direccionA;
+  // Aplicar la nueva rotación al elemento
+  pliego.style.transform = `rotateZ(${anguloX}deg)`;
+  // Actualizar el texto de conteo
+  document.getElementById('conteo-sup').textContent = `${anguloX}º`;
+  document.getElementById('conteo-inf').textContent = ``;
+});
+document.getElementById('guia-1').addEventListener('mouseup', () => {
+  const computedStyle = window.getComputedStyle(pliego);
+  const matrix = computedStyle.transform;
+  let anguloActual = 0;
+  if (matrix !== 'none') {
+    const values = matrix.split('(')[1].split(')')[0].split(',');
+    const a = parseFloat(values[0]);
+    const b = parseFloat(values[1]);
+    anguloActual = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+  }
+  let anguloX = anguloActual - direccionA;
+  pliego.style.transform = `rotateZ(${anguloX}deg)`;
+  document.getElementById('conteo-sup').textContent = `${anguloX}º`;
+  document.getElementById('conteo-inf').textContent = ``;
+});
+let direccion = 1;
+document.getElementById('guia-6').addEventListener('mouseup', () => {
+  const computedStyle = window.getComputedStyle(pliego);
+  const matrix = computedStyle.transform;
+  let anguloActual = 0;
+  if (matrix !== 'none') {
+    const values = matrix.split('(')[1].split(')')[0].split(',');
+    const a = parseFloat(values[0]);
+    const b = parseFloat(values[1]);
+    anguloActual = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+  }
+  let anguloX = anguloActual - direccion;
+  pliego.style.transform = `rotateZ(${anguloX}deg)`;
+  document.getElementById('conteo-inf').textContent = `${anguloX}º`;
+  document.getElementById('conteo-sup').textContent = ``;
+});
+document.getElementById('guia-3').addEventListener('mouseup', () => {
+  // Obtener la transformación actual del elemento
+  const computedStyle = window.getComputedStyle(pliego);
+  const matrix = computedStyle.transform;
+  // Verificar si hay una transformación aplicada
+  let anguloActual = 0;
+  if (matrix !== 'none') {
+    // Extraer el valor de la matriz de transformación y convertir a grados
+    const values = matrix.split('(')[1].split(')')[0].split(',');
+    const a = parseFloat(values[0]);
+    const b = parseFloat(values[1]);
+    anguloActual = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+  }
+  // Sumar o restar el ángulo basado en la dirección
+  let anguloX = anguloActual + direccion;
+  // Aplicar la nueva rotación al elemento
+  pliego.style.transform = `rotateZ(${anguloX}deg)`;
+  // Actualizar el texto de conteo
+  document.getElementById('conteo-inf').textContent = `${anguloX}º`;
+  document.getElementById('conteo-sup').textContent = ``;
+});
+let direccionLeft = -1;
+document.getElementById('guia-2').addEventListener('click', () => {
+  const computedStyle = window.getComputedStyle(pliego);
+  let leftActual = parseFloat(computedStyle.left); // Obtener la posición actual (en píxeles)
+  const parentWidth = pliego.offsetParent.offsetWidth;
+  let leftPorcentajeActual = (leftActual / parentWidth) * 100;
+  let nuevaPosLeft = leftPorcentajeActual + direccionLeft;
+  if (nuevaPosLeft > 44) {
+    pliego.style.left = `${nuevaPosLeft}%`;
+  }
+});
+document.getElementById('guia-5').addEventListener('click', () => {
+  const computedStyle = window.getComputedStyle(pliego);
+  let leftActual = parseFloat(computedStyle.left); // Obtener la posición actual (en píxeles)
+  const parentWidth = pliego.offsetParent.offsetWidth;
+  let leftPorcentajeActual = (leftActual / parentWidth) * 100;
+  let nuevaPosLeft = leftPorcentajeActual - direccionLeft;
+  if (nuevaPosLeft < 57) {
+    pliego.style.left = `${nuevaPosLeft}%`;
+  }
+});
+const pliego1 = document.getElementById('pliego');
+let incrementos = 0; // Contador de clics
+document.getElementById('guia-7').addEventListener('click', () => {
+  // Obtener los estilos computados
+  let computedStyles = window.getComputedStyle(pliego1);
+  let topPosition = parseFloat(computedStyles.getPropertyValue('top')); // Convertir 'top' a número en píxeles  
+  // Obtener el alto del contenedor padre o de la ventana
+  const containerHeight = pliego1.parentElement.clientHeight || window.innerHeight;  
+  // Convertir 5% y 15% del alto del contenedor a píxeles
+  const minTop = containerHeight * 0.05; // 5%
+  const maxTop = containerHeight * 0.15; // 15%
+  // Comprobar si el valor 'top' está dentro del rango y si no ha alcanzado el mínimo
+  if (topPosition > minTop) {
+    topPosition -= 1; // Mover hacia arriba (disminuir top en 1px)
+    pliego1.style.top = `${topPosition}px`; // Actualizar la posición 'top'
+  }
+  document.getElementById('conteo-escuadra').textContent = `${topPosition.toFixed(1)}`}
+);
+document.getElementById('guia-8').addEventListener('click', () => {
+  let computedStyles = window.getComputedStyle(pliego1);
+  let topPosition = parseFloat(computedStyles.getPropertyValue('top')); // Convertir 'top' a número en píxeles 
+  const containerHeight = pliego1.parentElement.clientHeight || window.innerHeight;
+  const minTop = containerHeight * 0.05; // 5%
+  const maxTop = containerHeight * 0.15; // 15%
+  if (topPosition < maxTop) {
+    topPosition += 1; // Mover hacia abajo (incrementar top en 1px)
+    pliego1.style.top = `${topPosition}px`; // Actualizar la posición 'top'
+  }
+  document.getElementById('conteo-escuadra').textContent = `${topPosition.toFixed(1)}`
+});
+const reflejo = document.getElementById('reflejo');
+let visible = true;
+let intervaloId = null;
+function balizaAlarma() {
+  if (!intervaloId) {
+    intervaloId = setInterval(() => {
+      if (visible) {
+        reflejo.style.boxShadow = 'none';
+      } else {
+        reflejo.style.display = 'flex'
+        reflejo.style.boxShadow = '0 0 320px 160px rgba(255, 0, 0, 0.8)';
+      }
+      visible = !visible;
+    }, 500);
+  }
+}
+function detenerBaliza() {
+  if (intervaloId) {
+    clearInterval(intervaloId);
+    intervaloId = null;
+  }
+  reflejo.style.display = 'none'
+}
+function resetRegistros() {
+  pliego.style.top = '';
+  pliego.style.left = '';
+  pliego.style.zIndex = '';
+  pliego.style.transform = '';
+  document.getElementById('conteo-escuadra').textContent = ``
+  document.getElementById('conteo-sup').textContent = ``
+  document.getElementById('conteo-inf').textContent = ``;
+
+  botonera.forEach(element => {
+    element.style.backgroundColor = ''
+  });
+  
+}
+botonera.forEach(element => {
+  element.addEventListener('click', () => {
+    // Restablecer el color de todos los elementos al color por defecto
+    botonera.forEach(el => {
+      el.style.backgroundColor = ''; // Vuelve al color por defecto del CSS
+    });
+
+    // Cambiar el color del elemento que recibe el clic
+    element.style.backgroundColor = 'rgb(0,200,255)'; // Color naranja
+  });
+});
+
+// Incrementar la posición en Z solo cuando se haga clic en 'interfaz-perfiles'
+interfazColor.addEventListener('click', (e) => {
+  e.stopPropagation();   
+  interfazColor.style.zIndex = 30;
+});
+
+// Evitar la propagación del clic en los elementos hijos
+document.querySelectorAll('.cabeza').forEach(element => {
+  element.addEventListener('click', (e) => {
+    e.stopPropagation(); // Esto evita que el clic en '.cabeza' afecte al padre
+  });
+});
+function crearLineaLeds(idLinea) {
+  // Crear contenedor principal para la línea
+  const lineaLeds = document.createElement('div');
+  lineaLeds.id = `linea-${idLinea}`;
+  lineaLeds.classList.add('linea-leds');
+  // Crear regla de LEDs (divisiones numéricas del 24 al 1)
+  const reglaLeds = document.createElement('div');
+  reglaLeds.id = 'regla-leds';  
+  for (let i = 24; i >= 1; i--) {
+    const division = document.createElement('div');
+    division.classList.add('division');
+    division.textContent = i; // El número de la división
+    reglaLeds.appendChild(division);
+  }
+  // Crear el display de LEDs (los LEDs visuales)
+  const displayLeds = document.createElement('div');
+  displayLeds.id = 'display-leds';  
+  for (let i = 1; i <= 24; i++) {
+    const led = document.createElement('div');
+    led.classList.add('leds');
+    displayLeds.appendChild(led);
+  }
+  // Crear el display de ajuste (otra fila de LEDs)
+  const displayAjuste = document.createElement('div');
+  displayAjuste.id = 'display-ajuste';  
+  for (let i = 1; i <= 24; i++) {
+    const led = document.createElement('div');
+    led.classList.add('litle-leds');
+    displayAjuste.appendChild(led);
+  }
+  // Añadir los tres bloques al contenedor de la línea
+  lineaLeds.appendChild(reglaLeds);
+  lineaLeds.appendChild(displayLeds);
+  lineaLeds.appendChild(displayAjuste);
+  // Devolver la línea completa
+  return lineaLeds;
+}
+function crearVariasLineas(numeroDeLineas) {
+  const contenedorPrincipal = document.getElementById('columna-70');
+
+  for (let i = 1; i <= numeroDeLineas; i++) {
+    const lineaLeds = crearLineaLeds(i);
+    contenedorPrincipal.appendChild(lineaLeds);
+  }
+}
+function crearBotoneraDinamica(color) {
+  setTimeout(() => {
+    eliminarBotonesSuma()
+    eliminarBotonesResta()
+  }, 20);
+  setTimeout(() => {
+    crearBotonSuma(color, 'linea', 'lineaSeguidor', 'lineaGrilla') 
+    crearBotonResta(color, 'linea', 'lineaSeguidor', 'lineaGrilla')
+  }, 40);
+  setTimeout(() => {
+    crearLedsSpan();
+  }, 60);
+  setTimeout(() => {
+    renderizarPerfilesTinta(color)
+  }, 80);
+}
+let almacenGlogal = [];
+let flagNegro = false  
+let flagCyan = false
+let flagMagenta = false
+let flagAmarillo = false
+let flagEspecial = false
+let flagBarniz = false
+const estadoIntervaloSolucion = { intervalo: null };  
+const estadoIntervaloTinta = { intervalo: null };
+const estadoBalanceNegro = {
+  indices: [], // Almacena los índices de los elementos coloreados de amarillo
+  indicador: []
+};
+const estadoBalanceCyan = {
+  indices: [],
+  indicador: []
+};
+const estadoBalanceMagenta = {
+  indices: [],
+  indicador: []
+};
+const estadoBalanceAmarillo = {
+  indices: [],
+  indicador: []
+};
+const estadoBalanceEspecial = {
+  indices: [],
+  indicador: []
+};
+const estadoBalanceBarniz = {
+  indices: [],
+  indicador: []
+};
+const estadoTinta = {
+  indices: []
+}
+const estadoSolucion = {
+  indices: [],
+  indicador: []
+} 
+// 🟢 Función para mostrar la alerta verde
+const mostrarAlertaVerde = () => {
+  darColorVerdeCabeza();
+  alertaBotones.style.display = 'flex';
+  alertaBotones.style.backgroundColor = verde;
+  alertaBotones.style.color = 'black';
+  alertaBotones.style.left = '21vw';
+  setTimeout(() => {
+    alertaBotones.style.backgroundColor = '';
+    alertaBotones.style.color = '';
+  }, 500);
+};
+// 🟢 Iniciar AUMENTAR tinta general
+const iniciarMasTintaGeneral = () => {
+  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
+    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {  
+      mostrarAlertaVerde();
+      desactivarClicEnElementos(botonesPerfilColor);
+    }
+  } else {
+    mostrarAlertaVerde();
+    desactivarClicEnElementos(botonesPerfilColor, buttsColores);
+  }
+
+  if (flagNegro) {
+    aumentarBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-negro #footer-1 .divs-grales-tinta-negro', 'yellow', 'black', 'negro');
+  }
+  if (flagCyan) {
+    aumentarBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-azul #footer-3 .divs-grales-tinta-azul', 'yellow', 'cyan', 'azul');
+  }
+  if (flagMagenta) {
+    aumentarBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-magenta #footer-5 .divs-grales-tinta-magenta', 'yellow', 'magenta', 'magenta');
+  }
+  if (flagAmarillo) {
+    aumentarBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-amarillo #footer-7 .divs-grales-tinta-amarillo', 'yellow', 'yellow', 'amarillo');
+  }
+  if (flagEspecial) {
+    aumentarBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-especial #footer-9 .divs-grales-tinta-especial', 'yellow', 'rgb(255,130,0)', 'especial');
+  }
+  if (flagBarniz) {
+    aumentarBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-barniz #footer-11 .divs-grales-tinta-barniz', 'yellow', 'rgb(200,200,200)', 'barniz');
+  }
+
+  masTintaGeneral.style.backgroundColor = '#2bf22bc0';
+};
+// 🔴 Detener AUMENTAR tinta general
+const detenerMasTintaGeneral = () => {
+  if (estadoIntervaloTinta.intervalo) {
+    clearInterval(estadoIntervaloTinta.intervalo);
+    estadoIntervaloTinta.intervalo = null;
+  }
+  masTintaGeneral.style.backgroundColor = '';
+};
+
+const aviso = document.querySelector('#span-index');
+// 🟠 Iniciar DISMINUIR tinta general
+const iniciarMenosTintaGeneral = () => {
+  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
+    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {   
+      mostrarAlertaVerde();
+      desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+    }
+  } else {
+    mostrarAlertaVerde();
+    desactivarClicEnElementos(botonesPerfilColor);
+  }
+
+  if (flagNegro) {
+    disminuirBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-negro #footer-1 .divs-grales-tinta-negro', 'yellow', 'black', 'negro');
+  }
+  if (flagCyan) {
+    disminuirBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-azul #footer-3 .divs-grales-tinta-azul', 'yellow', 'cyan', 'azul');
+  }
+  if (flagMagenta) {
+    disminuirBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-magenta #footer-5 .divs-grales-tinta-magenta', 'yellow', 'magenta', 'magenta');
+  }
+  if (flagAmarillo) {
+    disminuirBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-amarillo #footer-7 .divs-grales-tinta-amarillo', 'yellow', 'yellow', 'amarillo');
+  }
+  if (flagEspecial) {
+    disminuirBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-especial #footer-9 .divs-grales-tinta-especial', 'yellow', 'orange', 'especial');
+  }
+  if (flagBarniz) {
+    disminuirBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-barniz #footer-11 .divs-grales-tinta-barniz', 'yellow', 'gray', 'barniz');
+  }
+
+  menosTintaGeneral.style.backgroundColor = '#2bf22bc0';
+};
+// 🔴 Detener DISMINUIR tinta general
+const detenerMenosTintaGeneral = () => {
+  if (estadoIntervaloTinta.intervalo) {
+    clearInterval(estadoIntervaloTinta.intervalo);
+    estadoIntervaloTinta.intervalo = null;
+  }
+  menosTintaGeneral.style.backgroundColor = '';
+};
+// 🖱️ Eventos PC
+masTintaGeneral.addEventListener('mousedown', iniciarMasTintaGeneral);
+masTintaGeneral.addEventListener('mouseup', detenerMasTintaGeneral);
+masTintaGeneral.addEventListener('mouseleave', () => { 
+  if (aviso) aviso.style.display = 'none';
+  detenerMasTintaGeneral(); 
+  restablecerClick(['.cabeza']);
+});
+menosTintaGeneral.addEventListener('mousedown', iniciarMenosTintaGeneral);
+menosTintaGeneral.addEventListener('mouseup', detenerMenosTintaGeneral);
+menosTintaGeneral.addEventListener('mouseleave', () =>{
+  if (aviso) aviso.style.display = 'none';
+  detenerMenosTintaGeneral
+} )
+// 📱 Eventos táctiles
+masTintaGeneral.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  iniciarMasTintaGeneral();
+}, { passive: false });
+masTintaGeneral.addEventListener('touchend', detenerMasTintaGeneral, { passive: true });
+masTintaGeneral.addEventListener('touchcancel', detenerMasTintaGeneral, { passive: true });
+menosTintaGeneral.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  iniciarMenosTintaGeneral();
+}, { passive: false });
+menosTintaGeneral.addEventListener('touchend', detenerMenosTintaGeneral, { passive: true });
+menosTintaGeneral.addEventListener('touchcancel', detenerMenosTintaGeneral, { passive: true });
+
+// 🟢 Iniciar AUMENTAR agua general
+const iniciarMasSolucionGeneral = () => {
+  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
+    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {
+      mostrarAlertaVerde();
+      desactivarClicEnElementos(botonesPerfilColor, buttsColores);
+    }
+  } else {
+    mostrarAlertaVerde();
+    desactivarClicEnElementos(botonesPerfilColor);
+  }
+
+  if (flagNegro) {
+    aumentarBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-negro #footer-2 .divs-grales-solucion-negro', 'yellow', verdeAgua, 'negro', 'nivelAgua');
+  }
+  if (flagCyan) {
+    aumentarBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-azul #footer-4 .divs-grales-solucion-azul', 'yellow', verdeAgua, 'azul', 'nivelAgua');
+  }
+  if (flagMagenta) {
+    aumentarBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-magenta #footer-6 .divs-grales-solucion-magenta', 'yellow', verdeAgua, 'magenta', 'nivelAgua');
+  }
+  if (flagAmarillo) {
+    aumentarBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-amarillo #footer-8 .divs-grales-solucion-amarillo', 'yellow', verdeAgua, 'amarillo', 'nivelAgua');
+  }
+  if (flagEspecial) {
+    aumentarBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-especial #footer-10 .divs-grales-solucion-especial', 'yellow', verdeAgua, 'especial', 'nivelAgua');
+  }
+  if (flagBarniz) {
+    aumentarBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-barniz #footer-12 .divs-grales-solucion-barniz', 'yellow', verdeAgua, 'barniz', 'nivelAgua');
+  }
+
+  masSolucionGeneral.style.backgroundColor = '#2bf22bc0';
+};
+// 🔴 Detener AUMENTAR agua general
+const detenerMasSolucionGeneral = () => {
+  if (estadoIntervaloSolucion.intervalo) {
+    clearInterval(estadoIntervaloSolucion.intervalo);
+    estadoIntervaloSolucion.intervalo = null;
+  }
+  masSolucionGeneral.style.backgroundColor = '';
+};
+// 🟠 Iniciar DISMINUIR agua general
+const iniciarMenosSolucionGeneral = () => {
+  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
+    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {
+      mostrarAlertaVerde();
+      desactivarClicEnElementos(botonesPerfilColor, buttsColores);
+    }
+  } else {
+    mostrarAlertaVerde();
+    desactivarClicEnElementos(botonesPerfilColor);
+  }
+
+  if (flagNegro) {
+    reducirBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-negro #footer-2 .divs-grales-solucion-negro', 'yellow', verdeAgua, 'negro', 'nivelAgua');
+  }
+  if (flagCyan) {
+    reducirBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-azul #footer-4 .divs-grales-solucion-azul', 'yellow', verdeAgua, 'azul', 'nivelAgua');
+  }
+  if (flagMagenta) {
+    reducirBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-magenta #footer-6 .divs-grales-solucion-magenta', 'yellow', verdeAgua, 'magenta', 'nivelAgua');
+  }
+  if (flagAmarillo) {
+    reducirBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-amarillo #footer-8 .divs-grales-solucion-amarillo', 'yellow', verdeAgua, 'amarillo', 'nivelAgua');
+  }
+  if (flagEspecial) {
+    reducirBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-especial #footer-10 .divs-grales-solucion-especial', 'yellow', verdeAgua, 'especial', 'nivelAgua');
+  }
+  if (flagBarniz) {
+    reducirBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-barniz #footer-12 .divs-grales-solucion-barniz', 'yellow', verdeAgua, 'barniz', 'nivelAgua');
+  }
+
+  menosSolucionGeneral.style.backgroundColor = 'rgb(0,255,0)';
+};
+// 🔴 Detener DISMINUIR agua general
+const detenerMenosSolucionGeneral = () => {
+  if (estadoIntervaloSolucion.intervalo) {
+    clearInterval(estadoIntervaloSolucion.intervalo);
+    estadoIntervaloSolucion.intervalo = null;
+  }
+  menosSolucionGeneral.style.backgroundColor = '';
+};
+// 🖱️ Eventos PC
+masSolucionGeneral.addEventListener('mousedown', iniciarMasSolucionGeneral);
+masSolucionGeneral.addEventListener('mouseup', detenerMasSolucionGeneral);
+masSolucionGeneral.addEventListener('mouseleave',() =>{
+  if (aviso) aviso.style.display = 'none';
+ detenerMasSolucionGeneral
+});
+menosSolucionGeneral.addEventListener('mousedown', iniciarMenosSolucionGeneral);
+menosSolucionGeneral.addEventListener('mouseup', detenerMenosSolucionGeneral);
+menosSolucionGeneral.addEventListener('mouseleave',() =>{
+ if (aviso) aviso.style.display = 'none';
+ detenerMenosSolucionGeneral  
+});
+// 📱 Eventos táctiles
+masSolucionGeneral.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  iniciarMasSolucionGeneral();
+}, { passive: false });
+masSolucionGeneral.addEventListener('touchend', detenerMasSolucionGeneral, { passive: true });
+masSolucionGeneral.addEventListener('touchcancel', detenerMasSolucionGeneral, { passive: true });
+menosSolucionGeneral.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  iniciarMenosSolucionGeneral();
+}, { passive: false });
+
+menosSolucionGeneral.addEventListener('touchend', detenerMenosSolucionGeneral, { passive: true });
+menosSolucionGeneral.addEventListener('touchcancel', detenerMenosSolucionGeneral, { passive: true });
+alertaBotones.addEventListener('click', () =>{
+  document.querySelectorAll('.cliente-item').forEach(item => {
+    item.style.filter = 'none';
+  });
+  reactivarClicEnElementos(botonesPerfilColor,buttsColores, buttsControl,buttsGenerales,botonesSelectores,buttsJobTrack);
+  alertaBotones.classList.add('move-alerta')
+  setTimeout(() => {
+    alertaBotones.style.display='none'
+    alertaBotones.classList.remove('move-alerta')
+  }, 1000);   
+})
+alertaPerfil.addEventListener('click', () =>{
+  reactivarClicEnElementos(botonesPerfilColor,buttsColores,buttsGenerales,botonesSelectores,buttsControl); 
+  alertaPerfil.classList.add('move-alerta-perfil')
+  setTimeout(() => {
+    alertaPerfil.style.display='none'
+    alertaPerfil.classList.remove('move-alerta-perfil')
+  }, 1000);   
+})
+let contadorTinta = document.getElementById('tinta-perc')
+let tanqueTinta = document.getElementById('tanque-tinta')
+const masTinta = document.querySelector('#ctrl-gral > div:nth-of-type(5)')
+const menosTinta = document.querySelector('#ctrl-gral > div:nth-of-type(7)')
+let contadorSolucion = document.getElementById('solucion-porcentaje')
+let tanqueSolucion = document.getElementById('tanque-solucion')
+let lineasSolucion = document.querySelectorAll('.lineas-solucion')
+const masSolucion = document.querySelector('#ctrl-gral > div:nth-of-type(6)')
+const menosSolucion = document.querySelector('#ctrl-gral > div:nth-of-type(8)')
+function AelementosDinamicamente(contPadre, numeroDeLineas, classElto, startNumber = null) {
+  const contenedorPrincipal = document.getElementById(contPadre);
+  contenedorPrincipal.innerHTML = '';
+  let numeroConsecutivo = startNumber !== null ? startNumber : null;
+
+  for (let i = 1; i <= numeroDeLineas; i++) {
+    const lineaLeds = document.createElement('div'); 
+    lineaLeds.classList.add(classElto);
+    lineaLeds.classList.add('lineas-tinta')
+    if (numeroConsecutivo !== null) {
+      lineaLeds.textContent = numeroConsecutivo;
+      numeroConsecutivo++;
+    }
+    contenedorPrincipal.appendChild(lineaLeds); 
+  }
+}
+let actualIndexSolucion = 99;  
+let actualIndexTinta = 99
+let intervaloTinta = null;
+const iniciarMasTinta = () => {
+  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
+    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {   
+      darColorVerdeCabeza();
+      alertaBotones.style.display = 'flex';
+      alertaBotones.style.backgroundColor = verde;
+      alertaBotones.style.color = 'black';
+      alertaBotones.style.top = '25vh';
+      alertaBotones.style.left = '21vw';
+      setTimeout(() => {
+        alertaBotones.style.backgroundColor = '';
+        alertaBotones.style.color = '';
+      }, 500);
+      desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+    }
+  } else {
+    darColorVerdeCabeza();
+    alertaBotones.style.display = 'flex';
+    alertaBotones.style.backgroundColor = verde;
+    alertaBotones.style.color = 'black';
+    alertaBotones.style.top = '25vh';
+    alertaBotones.style.left = '21vw';
+    setTimeout(() => {
+      alertaBotones.style.backgroundColor = '';
+      alertaBotones.style.color = '';
+    }, 500);
+    desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+  }
+
+  if (flagNegro) {
+    aumentarBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-negro #footer-1 .divs-grales-tinta-negro',
+      'yellow',
+      'black',
+      'negro'
+    );
+  }
+  if (flagCyan) {
+    aumentarBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-azul #footer-3 .divs-grales-tinta-azul',
+      'yellow',
+      'cyan',
+      'azul',
+    );
+  }
+  if (flagMagenta) {
+    aumentarBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-magenta #footer-5 .divs-grales-tinta-magenta',
+      'yellow',
+      'magenta',
+      'magenta'
+    );
+  }
+  if (flagAmarillo) {
+    aumentarBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-amarillo #footer-7 .divs-grales-tinta-amarillo',
+      'yellow',
+      'yellow',
+      'amarillo',
+    );
+  }
+  if (flagEspecial) {
+    aumentarBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-especial #footer-9 .divs-grales-tinta-especial',
+      'yellow',
+      'rgb(255,130,0)',
+      'especial',
+    );
+  }
+  if (flagBarniz) {
+    aumentarBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-barniz #footer-11 .divs-grales-tinta-barniz',
+      'yellow',
+      'rgb(200,200,200)',
+      'barniz',
+    );
+  }
+
+  masTinta.style.backgroundColor = '#2bf22bc0';
+};
+// 🟡 Evento estándar para PC
+masTinta.addEventListener('mousedown', iniciarMasTinta);
+// 🟡 Nuevo: soporte táctil para móviles
+masTinta.addEventListener('touchstart', (e) => {
+  e.preventDefault(); // evita que interprete el toque como scroll o selección
+  iniciarMasTinta();
+}, { passive: false });
+const detenerMasTinta = () => {
+  if (estadoIntervaloTinta.intervalo) {
+    clearInterval(estadoIntervaloTinta.intervalo);
+    estadoIntervaloTinta.intervalo = null;
+  }
+  masTinta.style.backgroundColor = '';
+};
+// 🖱️ PC
+masTinta.addEventListener('mouseup', detenerMasTinta);
+masTinta.addEventListener('mouseleave', detenerMasTinta);
+// 📱 Táctil
+masTinta.addEventListener('touchend', detenerMasTinta, { passive: true });
+masTinta.addEventListener('touchcancel', detenerMasTinta, { passive: true });
+
+const iniciarMenosTinta = () => {
+  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
+    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {   
+      darColorVerdeCabeza();
+      alertaBotones.style.display = 'flex';
+      alertaBotones.style.backgroundColor = verde;
+      alertaBotones.style.color = 'black';
+      alertaBotones.style.top = '25vh';
+      alertaBotones.style.left = '21vw';
+      setTimeout(() => {
+        alertaBotones.style.backgroundColor = ''; 
+        alertaBotones.style.color = '';  
+      }, 500);
+      desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+    }
+  } else {
+    darColorVerdeCabeza();
+    alertaBotones.style.display = 'flex';
+    alertaBotones.style.backgroundColor = verde;
+    alertaBotones.style.color = 'black';
+    alertaBotones.style.top = '25vh';
+    alertaBotones.style.left = '21vw';
+    setTimeout(() => {
+      alertaBotones.style.backgroundColor = ''; 
+      alertaBotones.style.color = '';  
+    }, 500);
+    desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+  }
+
+  if (flagNegro) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-negro #footer-1 .divs-grales-tinta-negro',
+      'yellow',
+      'black',
+      'negro'
+    );
+  }
+  if (flagCyan) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-azul #footer-3 .divs-grales-tinta-azul',
+      'yellow',
+      'cyan',
+      'azul'
+    );
+  }
+  if (flagMagenta) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-magenta #footer-5 .divs-grales-tinta-magenta',
+      'yellow',
+      'magenta',
+      'magenta'
+    );
+  }
+  if (flagAmarillo) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-amarillo #footer-7 .divs-grales-tinta-amarillo',
+      'yellow',
+      'amarillo',
+      'amarillo'
+    );
+  }
+  if (flagEspecial) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-especial #footer-9 .divs-grales-tinta-especial',
+      'yellow',
+      'especial',
+      'especial'
+    );
+  }
+  if (flagBarniz) {
+    disminuirBalanceTinta(
+      estadoIntervaloTinta,
+      '.lineas-tinta',
+      '#footer-barniz #footer-11 .divs-grales-tinta-barniz',
+      'yellow',
+      'gray',
+      'barniz'
+    );
+  }
+
+  menosTinta.style.backgroundColor = 'rgb(0,255,0)';
+};
+const detenerMenosTinta = () => {
+  if (estadoIntervaloTinta.intervalo) {
+    clearInterval(estadoIntervaloTinta.intervalo);
+    estadoIntervaloTinta.intervalo = null;
+  }
+  menosTinta.style.backgroundColor = ''; 
+};
+// 🖱️ PC
+menosTinta.addEventListener('mousedown', iniciarMenosTinta);
+menosTinta.addEventListener('mouseup', detenerMenosTinta);
+menosTinta.addEventListener('mouseleave', detenerMenosTinta);
+// 📱 Táctil
+menosTinta.addEventListener('touchstart', (e) => {
+  e.preventDefault(); // evita scroll accidental
+  iniciarMenosTinta();
+}, { passive: false });
+menosTinta.addEventListener('touchend', detenerMenosTinta, { passive: true });
+menosTinta.addEventListener('touchcancel', detenerMenosTinta, { passive: true });
+
+
+
+
+let intervaloTintaNegro = null
+let intervaloTintaCyan = null
+let intervaloTintaMagenta = null
+let intervaloTintaAmarillo = null
+let intervaloTintaEspecial = null
+let intervaloTintaBarniz = null
+let intervaloSolucionNegro = null
+let intervaloSolucionCyan = null 
+let intervaloSolucionMagenta = null 
+let intervaloSolucionAmarillo = null
+let intervaloSolucionEspecial = null
+let intervaloSolucionBarniz = null
+function reducirBalanceSolucion(estado, lineasSelector, footerSelector, colorTinta, colorAgua, gama) {
+  const lineasTinta = document.querySelectorAll(lineasSelector);
+  const lineasGrales = document.querySelectorAll(footerSelector);   
+  const totalElementos = lineasTinta.length;
+  let displays = document.querySelector('#ctrl-gral .div-ctrl #solucion-porcentaje');
+  let displayGeneral = document.querySelector(`#display-general-${gama}`)
+  
+  if (flagNegro) {  
+    traerObjetoNegro();
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length;
+      if (actualIndex < 0) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = '';
+        lineaGral.style.backgroundColor = '';
+        almacenObjetos[objetoGlobal][gama].nivelAgua.pop();
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoNegro(objetoNegro);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+  if (flagCyan) {
+    traerObjetoCian(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length;
+      if (actualIndex < 0) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = '';
+        lineaGral.style.backgroundColor = '';        
+        almacenObjetos[objetoGlobal][gama].nivelAgua.pop();
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';        
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoCian(objetoCian);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+  if (flagMagenta) {
+    traerObjetoMagenta(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length;
+      if (actualIndex < 0) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = '';
+        lineaGral.style.backgroundColor = '';        
+        almacenObjetos[objetoGlobal][gama].nivelAgua.pop();
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';        
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarobjetoMagenta(objetoMagenta);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+  if (flagAmarillo) {
+    traerObjetoAmarillo(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length;
+      if (actualIndex < 0) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = '';
+        lineaGral.style.backgroundColor = '';        
+        almacenObjetos[objetoGlobal][gama].nivelAgua.pop();
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';        
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoAmarillo(objetoAmarillo);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+  if (flagEspecial) {
+    traerObjetoEspecial(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length;
+      if (actualIndex < 0) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = '';
+        lineaGral.style.backgroundColor = '';        
+        almacenObjetos[objetoGlobal][gama].nivelAgua.pop();
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';        
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoEspecial(objetoEspecial);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+  if (flagBarniz) {
+    traerObjetoBarniz(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length;
+      if (actualIndex < 0) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = '';
+        lineaGral.style.backgroundColor = '';        
+        almacenObjetos[objetoGlobal][gama].nivelAgua.pop();
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';        
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoBarniz(objetoBarniz);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+}
+function aumentarBalanceSolucion(estado, lineasSelector, footerSelector, colorTinta, colorAgua,gama, aquaLevel) {
+  const lineasTinta = document.querySelectorAll(lineasSelector);
+  const lineasGrales = document.querySelectorAll(footerSelector)
+  const totalElementos = lineasTinta.length;
+  let displays = document.querySelector('#ctrl-gral .div-ctrl #solucion-porcentaje') 
+  let displayGeneral = document.querySelector(`#display-general-${gama}`)
+
+  if(flagNegro){
+    traerObjetoNegro(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length - 1; 
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex]
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta;
+        lineaGral.style.backgroundColor = colorAgua;
+        almacenObjetos[objetoGlobal][gama].nivelAgua.push(actualIndex)
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoNegro(objetoNegro);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+  if(flagCyan){
+    traerObjetoCian(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex]
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta;
+        lineaGral.style.backgroundColor = colorAgua;
+        almacenObjetos[objetoGlobal][gama].nivelAgua.push(actualIndex)
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'; 
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = actualIndex + '%'
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoCian(objetoCian);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+
+  }
+  if (flagAmarillo) {
+    traerObjetoAmarillo(); // Sincroniza el objetoAmarillo
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        console.log("Proceso completado.");
+        return;
+      }  
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];  
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta;
+        lineaGral.style.backgroundColor = colorAgua;
+        almacenObjetos[objetoGlobal][gama].nivelAgua.push(actualIndex)
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = actualIndex + '%'
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoAmarillo(objetoAmarillo);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }  
+  if (flagMagenta) {
+    traerObjetoMagenta(); // Sincroniza el objetoMagenta
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }  
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];  
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta;
+        lineaGral.style.backgroundColor = colorAgua;
+        almacenObjetos[objetoGlobal][gama].nivelAgua.push(actualIndex)
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = actualIndex + '%'
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarobjetoMagenta(objetoMagenta);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }  
+  if (flagEspecial) {
+    traerObjetoEspecial(); // Sincroniza el objetoEspecial
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        console.log("Proceso completado.");
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta;
+        lineaGral.style.backgroundColor = colorAgua;
+        almacenObjetos[objetoGlobal][gama].nivelAgua.push(actualIndex)
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = actualIndex + '%'
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoEspecial(objetoEspecial);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }  
+  if (flagBarniz) {
+    traerObjetoBarniz(); // Sincroniza el objetoBarniz
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelAgua.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        console.log("Proceso completado.");
+        return;
+      }  
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta;
+        lineaGral.style.backgroundColor = colorAgua;
+        almacenObjetos[objetoGlobal][gama].nivelAgua.push(actualIndex)
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%';
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = actualIndex + '%'
+        displayGeneral.textContent = almacenObjetos[objetoGlobal][gama].nivelAgua.length + '%'
+        displayGeneral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoBarniz(objetoBarniz);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+}
+function aumentarBalanceTinta(estado, lineasSelector, footerSelector, colorTinta, colorAgua, gama) { 
+  const lineasTinta = document.querySelectorAll(lineasSelector);
+  const lineasGrales = document.querySelectorAll(footerSelector);
+  const totalElementos = lineasTinta.length;
+  let displays = document.querySelector('#ctrl-gral .div-ctrl #tinta-perc');
+  let displayGral = document.querySelector(`#gral-display-${gama}`);
+
+  if (flagNegro) {
+    traerObjetoNegro();
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }      
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta;
+        lineaGral.style.backgroundColor = colorAgua;
+        almacenObjetos[objetoGlobal][gama].nivelTinta.push(actualIndex);
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoNegro(objetoNegro);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+  if (flagCyan) {
+    traerObjetoCian(); // Sincroniza el objetoCian
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;s
+      }      
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta; // Aplicar color de tinta
+        lineaGral.style.backgroundColor = azul;   // Aplicar color general
+        almacenObjetos[objetoGlobal][gama].nivelTinta.push(actualIndex)
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoCian(objetoCian);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }  
+  if (flagAmarillo) {
+    traerObjetoAmarillo(); // Sincroniza el objetoAmarillo
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta; // Aplicar color de tinta
+        lineaGral.style.backgroundColor = colorAgua;   // Aplicar color general
+        almacenObjetos[objetoGlobal][gama].nivelTinta.push(actualIndex)    
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoAmarillo(objetoAmarillo);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }  
+  if (flagMagenta) {
+    traerObjetoMagenta(); // Sincroniza el objetoMagenta
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;s
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta; // Aplicar color de tinta
+        lineaGral.style.backgroundColor = colorAgua;   // Aplicar color general
+        almacenObjetos[objetoGlobal][gama].nivelTinta.push(actualIndex)    
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarobjetoMagenta(objetoMagenta);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }  
+  if (flagEspecial) {
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta; // Aplicar color de tinta
+        lineaGral.style.backgroundColor = colorAgua;   // Aplicar color general
+        almacenObjetos[objetoGlobal][gama].nivelTinta.push(actualIndex)    
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoEspecial(objetoEspecial);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }  
+  if (flagBarniz) {
+    traerObjetoBarniz(); // Sincroniza el objetoBarniz
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length - 1;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;s
+      }
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = colorTinta; // Aplicar color de tinta
+        lineaGral.style.backgroundColor = colorAgua;   // Aplicar color general
+        almacenObjetos[objetoGlobal][gama].nivelTinta.push(actualIndex)    
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoBarniz(objetoBarniz);
+        guardarCambiosGeneralesEnAlmacen()
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+}
+function disminuirBalanceTinta(estado, lineasSelector, footerSelector, uno, dos, gama) {
+  const lineasTinta = document.querySelectorAll(lineasSelector);
+  const lineasGrales = document.querySelectorAll(footerSelector);
+  const totalElementos = lineasTinta.length;
+  let displays = document.querySelector('#ctrl-gral .div-ctrl #tinta-perc');  
+  let displayGral = document.querySelector(`#gral-display-${gama}`);
+
+  if (flagNegro) {
+    traerObjetoNegro();
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {   
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }      
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = '';
+        lineaGral.style.backgroundColor = '';
+        almacenObjetos[objetoGlobal][gama].nivelTinta.pop();
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoNegro(objetoNegro);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }  
+  if (flagCyan) {
+    traerObjetoCian(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }      
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = ''; // Eliminar color de tinta
+        lineaGral.style.backgroundColor = '';  // Eliminar color general
+        almacenObjetos[objetoGlobal][gama].nivelTinta.pop(); // Elimina el índice del arreglo
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoCian(objetoCian);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+
+  }
+  if (flagMagenta) {
+    traerObjetoMagenta(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }      
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = ''; // Eliminar color de tinta
+        lineaGral.style.backgroundColor = '';  // Eliminar color general
+        almacenObjetos[objetoGlobal][gama].nivelTinta.pop(); // Elimina el índice del arreglo
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarobjetoMagenta(objetoMagenta);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+  if (flagAmarillo) {
+    traerObjetoAmarillo(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }      
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = ''; // Eliminar color de tinta
+        lineaGral.style.backgroundColor = '';  // Eliminar color general
+        almacenObjetos[objetoGlobal][gama].nivelTinta.pop(); // Elimina el índice del arreglo
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoAmarillo(objetoAmarillo);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  } 
+  if (flagEspecial) {
+    traerObjetoEspecial(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }      
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = ''; // Eliminar color de tinta
+        lineaGral.style.backgroundColor = '';  // Eliminar color general
+        almacenObjetos[objetoGlobal][gama].nivelTinta.pop(); // Elimina el índice del arreglo
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoEspecial(objetoEspecial);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+  if (flagBarniz) {
+    traerObjetoBarniz(); // Sincroniza el objetoNegro
+    estado.intervalo = setInterval(() => {
+      let actualIndex = totalElementos - almacenObjetos[objetoGlobal][gama].nivelTinta.length;
+      if (actualIndex < 0 || actualIndex >= totalElementos) {
+        clearInterval(estado.intervalo);
+        estado.intervalo = null;
+        return;
+      }      
+      let lineaActual = lineasTinta[actualIndex];
+      let lineaGral = lineasGrales[actualIndex];
+      if (lineaActual) {
+        lineaActual.style.backgroundColor = ''; // Eliminar color de tinta
+        lineaGral.style.backgroundColor = '';  // Eliminar color general
+        almacenObjetos[objetoGlobal][gama].nivelTinta.pop(); // Elimina el índice del arreglo
+        displays.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.textContent = almacenObjetos[objetoGlobal][gama].nivelTinta.length + '%';
+        displayGral.style.top = (actualIndex - 14) + '%'
+        guardarObjetoBarniz(objetoBarniz);
+        guardarCambiosGeneralesEnAlmacen();
+      } else {
+        console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
+      }
+    }, 77);
+  }
+}
+
+function darColorVerdeCabeza() {
+  const elementosCabeza = document.querySelectorAll('.cabeza');
+  let index = 0;
+  const gris = '#A9B0B8';
+  const noire = 'black';
+
+
+  const intervaloAplicarColor = setInterval(() => {
+    if (index >= elementosCabeza.length) {
+      clearInterval(intervaloAplicarColor);
+      setTimeout(() => {
+        let eliminarIndex = elementosCabeza.length - 1;
+        const intervaloEliminarColor = setInterval(() => {
+          if (eliminarIndex >= 0) {
+            elementosCabeza[eliminarIndex].style.backgroundColor = '';  
+            eliminarIndex--;
+          } else {
+            clearInterval(intervaloEliminarColor);
+          }
+        }, 17);
+      }, 300);
+    } else {
+      elementosCabeza[index].style.backgroundColor = gris;
+      elementosCabeza[index].style.color = noire;
+      index++;
+    }
+  }, 17);
+}
+
+let indexSolucion = 99;
+let intervaloSolucion = null; 
+const controlSolucion = [];   
+let intervaloMasSolucion = null;
+let intervaloMasTinta = null;
+let intervaloMenosSolucion = null;
+let indexAumento = 0
+const lineasTinta = document.querySelectorAll('.lineas-tinta');
+const contenedor = document.getElementById('butts-selectores');
+
+
+// 🔸 Se agrupa la lógica de inicio en una función reutilizable
+const iniciarMasSolucion = () => {
+  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
+    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {   
+      darColorVerdeCabeza();
+      alertaBotones.style.display = 'flex';
+      alertaBotones.style.backgroundColor = verde;
+      alertaBotones.style.color = 'black';
+      alertaBotones.style.top = '25vh';
+      alertaBotones.style.left = '21vw';
+      setTimeout(() => {
+        alertaBotones.style.backgroundColor = ''; 
+        alertaBotones.style.color = '';  
+      }, 500);
+      desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+    }
+  } else {
+    darColorVerdeCabeza();
+    alertaBotones.style.display = 'flex';
+    alertaBotones.style.backgroundColor = verde;
+    alertaBotones.style.color = 'black';
+    alertaBotones.style.top = '25vh';
+    alertaBotones.style.left = '21vw';
+    setTimeout(() => {
+      alertaBotones.style.backgroundColor = ''; 
+      alertaBotones.style.color = '';  
+    }, 500);
+    desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+  }  
+
+  if (flagNegro) {
+    aumentarBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-negro #footer-2 .divs-grales-solucion-negro',   
+      'yellow',
+      verdeAgua,
+      'negro',
+      'nivelAgua',
+    );    
+  }
+  if (flagCyan) {
+    aumentarBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-azul #footer-4 .divs-grales-solucion-azul',
+      'yellow',
+      verdeAgua,
+      'azul',
+      'nivelAgua',
+    );    
+  }
+  if (flagMagenta) {
+    aumentarBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-magenta #footer-6 .divs-grales-solucion-magenta',
+      'yellow',
+      verdeAgua,
+      'magenta',
+      'nivelAgua',
+    );    
+  }
+  if (flagAmarillo) {
+    aumentarBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-amarillo #footer-8 .divs-grales-solucion-amarillo',
+      'yellow',
+      verdeAgua,
+      'amarillo'
+    );    
+  }
+  if (flagEspecial) {
+    aumentarBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-especial #footer-10 .divs-grales-solucion-especial',
+      'yellow',
+      verdeAgua,
+      'especial'
+    );    
+  }
+  if (flagBarniz) {
+    aumentarBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-barniz #footer-12 .divs-grales-solucion-barniz',
+      'yellow',
+      verdeAgua,
+      'barniz'
+    );    
+  }
+
+  masSolucion.style.backgroundColor = '#2bf22bc0';
+};
+// 🔸 Se agrupa la lógica de detención en otra función reutilizable
+const detenerMasSolucion = () => {
+  if (estadoIntervaloSolucion.intervalo) {
+    clearInterval(estadoIntervaloSolucion.intervalo);
+    estadoIntervaloSolucion.intervalo = null;
+  }
+  masSolucion.style.backgroundColor = '';
+};
+// 🖱️ PC
+masSolucion.addEventListener('mousedown', iniciarMasSolucion);
+masSolucion.addEventListener('mouseup', detenerMasSolucion);
+masSolucion.addEventListener('mouseleave', detenerMasSolucion);
+// 📱 Táctil
+masSolucion.addEventListener('touchstart', (e) => {
+  e.preventDefault(); // evita scroll accidental en móviles
+  iniciarMasSolucion();
+}, { passive: false });
+masSolucion.addEventListener('touchend', detenerMasSolucion, { passive: true });
+masSolucion.addEventListener('touchcancel', detenerMasSolucion, { passive: true });
+
+
+
+// 🔸 Se agrupa la lógica de inicio en una función reutilizable
+const iniciarMenosSolucion = () => {
+  if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
+    if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {   
+      darColorVerdeCabeza();
+      alertaBotones.style.display = 'flex';
+      alertaBotones.style.backgroundColor = verde;
+      alertaBotones.style.color = 'black';
+      setTimeout(() => {
+        alertaBotones.style.backgroundColor = '';
+        alertaBotones.style.color = '';  
+      }, 500);
+      desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+    }
+  } else {
+    darColorVerdeCabeza();
+    alertaBotones.style.display = 'flex';
+    alertaBotones.style.backgroundColor = verde;
+    alertaBotones.style.color = 'black';
+    alertaBotones.style.top = '25vh';
+    alertaBotones.style.left = '21vw';
+    setTimeout(() => {
+      alertaBotones.style.backgroundColor = ''; 
+      alertaBotones.style.color = '';  
+    }, 500);
+    desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
+  }  
+
+  if (flagNegro) {
+    reducirBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-negro #footer-2 .divs-grales-solucion-negro',
+      'yellow', 
+      verdeAgua,
+      'negro',
+    );
+  }
+  if (flagCyan) {
+    reducirBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-azul #footer-4 .divs-grales-solucion-azul',
+      'yellow',
+      verdeAgua,
+      'azul'
+    );
+  }
+  if (flagMagenta) {
+    reducirBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-magenta #footer-6 .divs-grales-solucion-magenta',
+      'yellow',
+      verdeAgua,
+      'magenta',
+    );
+  }
+  if (flagAmarillo) {
+    reducirBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-amarillo #footer-8 .divs-grales-solucion-amarillo',
+      'yellow',
+      verdeAgua,
+      'amarillo',
+    );
+  }
+  if (flagEspecial) {
+    reducirBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-especial #footer-10 .divs-grales-solucion-especial',
+      'yellow',
+      verdeAgua,
+      'especial'
+    );
+  }
+  if (flagBarniz) {
+    reducirBalanceSolucion(
+      estadoIntervaloSolucion,
+      '.lineas-solucion',
+      '#footer-barniz #footer-12 .divs-grales-solucion-barniz',
+      'yellow',
+      verdeAgua,
+      'barniz',
+    );
+  }
+
+  menosSolucion.style.backgroundColor = 'rgb(0,255,0)';
+};
+// 🔸 Se agrupa la lógica de detención en otra función reutilizable
+const detenerMenosSolucion = () => {
+  if (estadoIntervaloSolucion.intervalo) {
+    clearInterval(estadoIntervaloSolucion.intervalo);
+    estadoIntervaloSolucion.intervalo = null;
+  }
+  menosSolucion.style.backgroundColor = '';
+};
+// 🖱️ PC
+menosSolucion.addEventListener('mousedown', iniciarMenosSolucion);
+menosSolucion.addEventListener('mouseup', detenerMenosSolucion);
+menosSolucion.addEventListener('mouseleave', detenerMenosSolucion);
+// 📱 Táctil
+menosSolucion.addEventListener('touchstart', (e) => {
+  e.preventDefault(); // evita scroll accidental
+  iniciarMenosSolucion();
+}, { passive: false });
+menosSolucion.addEventListener('touchend', detenerMenosSolucion, { passive: true });
+menosSolucion.addEventListener('touchcancel', detenerMenosSolucion, { passive: true });
+
+
+
+let almacenSolucionNegro = []  
+let almacenSolucionCyan = []
+let almacenSolucionMagenta = []
+let almacenSolucionAmarillo = []
+let almacenSolucionEspecial = []
+let almacenSolucionBarniz = []
+let almacenTintaNegro = []
+let almacenTintaCyan = []
+let almacenTintaMagenta = []
+let almacenTintaAmarillo = []  
+let almacenTintaEspecial = []
+let almacenTintaBarniz = []
+// Objetos que contienen las banderas y los estados correspondientes
+const flags = {
+  negro: flagNegro,
+  cyan: flagCyan,
+  magenta: flagMagenta,
+  amarillo: flagAmarillo,
+  epecial: flagEspecial,
+  barniz: flagBarniz
+};
+const estadosBalance = {
+  negro: estadoBalanceNegro,
+  cyan: estadoBalanceCyan,
+  magenta: estadoBalanceMagenta,
+  amarillo: estadoBalanceAmarillo,
+  especial: estadoBalanceEspecial,
+  barniz: estadoBalanceBarniz
+};
+function aplicarColor(estadoObjeto, claseElemento) {
+  const displaySolucion = document.getElementById('solucion-porcentaje')
+  const displayTinta = document.getElementById('tinta-perc')
+  const lineasTinta = document.querySelectorAll('.lineas-tinta');
+  displaySolucion.textContent = 0 + '%'
+  displayTinta.textContent = 0 + '%'
+  lineasTinta.forEach(linea => {
+    linea.style.backgroundColor = '';
+  });
+  if(flagNegro){
+    const nivelTintaGral = document.querySelectorAll('#footer-negro #footer-1 .divs-grales-tinta-negro'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-negro #footer-2 .divs-grales-solucion-negro')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displaySolucion = document.getElementById('solucion-porcentaje')
+    const iteraciones = objetoNegro.nivelTinta.length;
+    const iterAgua = objetoNegro.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = negro;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;
+        displaySolucion.textContent = iterAgua + '%';
+      }
+    }
+  
+  }
+  if(flagCyan){
+    const nivelTintaGral = document.querySelectorAll('#footer-azul #footer-3 .divs-grales-tinta-azul'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-azul #footer-4 .divs-grales-solucion-azul')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.getElementById('solucion-porcentaje')
+    const iteraciones = objetoCian.nivelTinta.length;
+    const iterAgua = objetoCian.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = cian;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;
+        displaySolucion.textContent = iterAgua + '%';
+      }
+    }
+  }
+  if(flagMagenta){
+    const nivelTintaGral = document.querySelectorAll('#footer-magenta #footer-5 .divs-grales-tinta-magenta'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-magenta #footer-6 .divs-grales-solucion-magenta')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.getElementById('solucion-porcentaje')
+    const iteraciones = objetoMagenta.nivelTinta.length;
+    const iterAgua = objetoMagenta.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = magenta;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;
+        displaySolucion.textContent = iterAgua + '%';
+      }
+    }
+  }
+  if(flagAmarillo){
+    const nivelTintaGral = document.querySelectorAll('#footer-amarillo #footer-7 .divs-grales-tinta-amarillo'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-amarillo #footer-8 .divs-grales-solucion-amarillo')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.getElementById('solucion-porcentaje')
+    const iteraciones = objetoAmarillo.nivelTinta.length;
+    const iterAgua = objetoAmarillo.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = amarillo;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;
+        displaySolucion.textContent = iterAgua + '%';
+      }
+    }
+  }
+  if(flagEspecial){
+    const nivelTintaGral = document.querySelectorAll('#footer-especial #footer-9 .divs-grales-tinta-especial'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-especial #footer-10 .divs-grales-solucion-especial')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.getElementById('solucion-porcentaje')
+    const iteraciones = objetoEspecial.nivelTinta.length;
+    const iterAgua = objetoEspecial.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = especial;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;
+        displaySolucion.textContent = iterAgua + '%';
+      }
+    }
+  }
+  if(flagBarniz){
+    const nivelTintaGral = document.querySelectorAll('#footer-barniz #footer-11 .divs-grales-tinta-barniz'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-barniz #footer-12 .divs-grales-solucion-barniz')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.getElementById('solucion-porcentaje')
+    const iteraciones = objetoBarniz.nivelTinta.length;
+    const iterAgua = objetoBarniz.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = barniz;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;
+        displaySolucion.textContent = iterAgua + '%';
+      }
+    }
+  }
+  const elementos = document.querySelectorAll(claseElemento);
+  // Captura el último porcentaje almacenado en el objeto, o 0 si está vacío
+  const porcentaje = estadoObjeto.indices.length > 0 ? estadoObjeto.indices.at(-1) : 0;
+  contadorTinta.textContent = `${porcentaje}%`;
+}
+function aplicarSolucion(estadoObjeto, claseElemento) {
+  const lineasSolucion = document.querySelectorAll('.lineas-solucion');
+ // Restablecer colores
+  lineasSolucion.forEach(linea => {
+    linea.style.backgroundColor = ''; // Quitar cualquier color previo
+  });
+
+  if(flagNegro){
+    const nivelTintaGral = document.querySelectorAll('#footer-negro #footer-1 .divs-grales-tinta-negro'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-negro #footer-2 .divs-grales-solucion-negro')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
+
+    const iteraciones = objetoNegro.nivelTinta.length;
+    const iterAgua = objetoNegro.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = negro;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
+      }
+
+    }
+  }  
+  if(flagCyan){
+    const nivelTintaGral = document.querySelectorAll('#footer-azul #footer-3 .divs-grales-tinta-azul'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-azul #footer-4 .divs-grales-solucion-azul')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
+
+    const iteraciones = objetoCian.nivelTinta.length;
+    const iterAgua = objetoCian.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = cian;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
+      }
+
+    }
+  }
+  if(flagMagenta){
+    const nivelTintaGral = document.querySelectorAll('#footer-magenta #footer-5 .divs-grales-tinta-magenta'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-magenta #footer-6 .divs-grales-solucion-magenta')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
+
+    const iteraciones = objetoMagenta.nivelTinta.length;
+    const iterAgua = objetoMagenta.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = magenta;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
+      }
+
+    }
+  }
+  if(flagAmarillo){
+    const nivelTintaGral = document.querySelectorAll('#footer-amarillo #footer-7 .divs-grales-tinta-amarillo'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-amarillo #footer-8 .divs-grales-solucion-amarillo')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
+
+    const iteraciones = objetoAmarillo.nivelTinta.length;
+    const iterAgua = objetoAmarillo.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = amarillo;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
+      }
+
+    }
+  }
+  if(flagEspecial){
+    const nivelTintaGral = document.querySelectorAll('#footer-especial #footer-9 .divs-grales-tinta-especial'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-especial #footer-10 .divs-grales-solucion-especial')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
+
+    const iteraciones = objetoEspecial.nivelTinta.length;
+    const iterAgua = objetoEspecial.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = especial;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
+      }
+
+    }
+  }
+  if(flagBarniz){
+    const nivelTintaGral = document.querySelectorAll('#footer-barniz #footer-11 .divs-grales-tinta-barniz'); 
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelSolucionGral = document.querySelectorAll('#footer-barniz #footer-12 .divs-grales-solucion-barniz')
+    const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const displayTinta = document.getElementById('tinta-perc')
+    const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
+
+    const iteraciones = objetoBarniz.nivelTinta.length;
+    const iterAgua = objetoBarniz.nivelAgua.length;
+    // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
+    const elementosTinta = nivelTinta.length;
+    for (let i = 0; i < iteraciones; i++) {
+      const indice = elementosTinta - 1 - i; // Índice del elemento desde el final
+      if (nivelTinta[indice]) { // Verificar que el elemento exista
+        nivelTinta[indice].style.backgroundColor = amarillo; // Aplicar color
+        nivelTintaGral[indice].style.backgroundColor = barniz;
+        displayTinta.textContent = iteraciones + '%';
+      }
+    }
+    const elementosAgua = nivelSolucion.length;
+    for (let i = 0; i < iterAgua; i++) {
+      const indice = elementosAgua - 1 - i; // Índice del elemento desde el final
+      if (nivelSolucion[indice]) { // Verificar que el elemento exista
+        nivelSolucion[indice].style.backgroundColor = amarillo;
+        nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
+      }
+
+    }
+  }
+} 
+function renderObjeto() {
+  // 1. Selecciona todos los elementos con la clase `.lineas-tinta`
+  const elementos = document.querySelectorAll('.lineas-tinta');  
+  // 2. Calcula la cantidad de elementos a los que se les dará color
+  const cantidad = estadoBalanceNegro.indices.length;  
+  // 3. Recorre desde el último elemento hacia el primero, aplicando color a los `cantidad` elementos
+  for (let i = 0; i < cantidad; i++) {
+    const index = elementos.length - 1 - i;  // Calcula el índice desde el final
+    
+    if (index >= 0) {  // Verifica que el índice no sea negativo
+      elementos[index].style.backgroundColor = 'yellow';  // Aplica el color amarillo
+    }   
+  }
+  // 4. Actualiza el porcentaje de tinta en el elemento de texto
+  const porcentajeTinta = document.getElementById('tinta-perc'); // Obtiene el elemento donde mostrar el porcentaje
+  const porcentaje = Math.min(cantidad, elementos.length) * 100 / elementos.length; // Calcula el porcentaje (0-100)
+  porcentajeTinta.textContent = `${Math.round(porcentaje)}%`;  
+}  
+document.getElementById('butt-perfil-tinta').addEventListener('click', () =>{ 
+  nombreCliente.style.top=''
+  let nombreDatos = document.querySelector('#cliente-nombre')
+  interfazPerfiles.classList.remove('move-perfiles-entintado')
+  desactivarClick(['.butt-perfiles', '.cabeza', '.mod-tinta']); 
+  var elementosExcluidos = ['simulador','interfaz-perfiles','perfiles-entintado','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }
+  container1.style.display = 'none'
+  if(objetoGlobal === null || objetoGlobal === ''){nombreDatos.textContent = ''}
+  setTimeout(() => {
+    interfazPerfiles.classList.add('move-perfiles-entintado')
+  }, 100);
+  setTimeout(() => {
+    document.querySelector('.nombre-cliente').style.display='flex'
+  }, 1500);
+  setTimeout(() =>{
+    restablecerClick(['.butt-perfiles', '.cabeza', '.mod-tinta']);
+  },1550);
+    botonesPerfilColor.forEach(elemento => {  
+    elemento.style.display = 'flex'; 
+  });
+})
+document.getElementById('butt-perfil').addEventListener('click', () =>{
+  var elementosExcluidos = ['simulador','inerfaz-ajuste-fino','perfil-individual','control-perfiles','admin-perfiles','texto-perf-indiv','blur-interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }
+    botonesPerfilColor.forEach(boton => {
+    boton.style.display = 'block'
+  } )
+  container1.style.display = 'none'
+  const displayAjusteFino = document.getElementById('inerfaz-ajuste-fino');
+  interfazColor.style.zIndex = '';
+  interfazColor.style.display = 'flex';
+  interfazColor.style.position = 'absolute';
+  interfazColor.style.top = '5vh';
+  if (!primerClickRealizado) {
+    displayAjusteFino.style.display = 'flex';
+    displayAjusteFino.style.top = '33vh'
+    crearVariasLineas(22);
+    primerClickRealizado = true;
+  }
+})  
+
+let primerClickRealizado = false;
+document.getElementById('butt-control-tinta').addEventListener('click', () =>{ 
+  const colorPerfilador = document.querySelector('#current-Color');   
+  var elementosExcluidos = ['simulador','inerfaz-ajuste-fino','perfil-individual','control-perfiles','interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }
+  container1.style.display = 'none'
+  if(flagNegro){
+    color = 'rgb(0,0,0)'
+    flagNegro = true;
+    flagCyan = false;
+    flagMagenta = false;
+    flagAmarillo = false;
+    flagEspecial = false;
+    flagBarniz = false; 
+    crearBotoneraDinamica(color)
+    setTimeout(() => {
+      eliminarColores()
+    }, 50);
+    setTimeout(() => {
+      if (objetoGlobal && flagNegro) {
+        muestraRenderObjetoGlobal(objetoGlobal, 'negro', 'linea', 'lineaSeguidor', 'lineaGrilla', 'tanque-tinta', 'nivelTinta', 'nivelAgua', 1,2);
+      }
+    }, 100);
+    colorPerfilador.style.color = color
+  }  
+  if (flagCyan) {
+    color = 'rgb(0,0,255)'
+    flagCyan = true;
+    flagNegro = false;
+    flagMagenta = false;
+    flagAmarillo = false;
+    flagEspecial = false;
+    flagBarniz = false; 
+    crearBotoneraDinamica(color)
+    setTimeout(() => {
+      eliminarColores()
+    }, 50);
+    setTimeout(() => {
+      if (objetoGlobal && flagCyan) {
+        muestraRenderObjetoGlobal(objetoGlobal, 'azul', 'linea', 'lineaSeguidor', 'lineaGrilla', 'tanque-tinta', 'nivelTinta', 'nivelAgua', 3,4);
+      }
+    }, 100);
+  }
+  if (flagMagenta) {
+    color = 'rgb(255,0,255)'
+    flagMagenta = true;
+    flagCyan = false;
+    flagNegro = false;
+    flagAmarillo = false;
+    flagEspecial = false;
+    flagBarniz = false; 
+    crearBotoneraDinamica(color)
+    setTimeout(() => {
+      eliminarColores()
+    }, 50);
+    setTimeout(() => {
+      if (objetoGlobal && flagMagenta) {
+        muestraRenderObjetoGlobal(objetoGlobal, 'magenta', 'linea', 'lineaSeguidor', 'lineaGrilla', 'tanque-tinta', 'nivelTinta', 'nivelAgua', 5,6);
+      }
+    }, 100);
+  }
+  if (flagAmarillo) {
+    color = 'rgb(255,255,0)'
+    flagAmarillo = true;
+    flagCyan = false;
+    flagMagenta = false;
+    flagNegro = false;
+    flagEspecial = false;
+    flagBarniz = false; 
+    crearBotoneraDinamica(color)
+    setTimeout(() => {
+      eliminarColores()
+    }, 50);
+    setTimeout(() => {
+      if (objetoGlobal && flagAmarillo) {
+        muestraRenderObjetoGlobal(objetoGlobal, 'amarillo', 'linea', 'lineaSeguidor', 'lineaGrilla', 'tanque-tinta', 'nivelTinta', 'nivelAgua', 7,8);
+      }
+    }, 100);
+  }    
+  if (flagEspecial) {
+    color = 'rgb(255,130,0)'
+    flagEspecial = true;
+    flagCyan = false;
+    flagMagenta = false;
+    flagAmarillo = false;
+    flagNegro = false;
+    flagBarniz = false; 
+    crearBotoneraDinamica(color)
+    setTimeout(() => {
+      eliminarColores()
+    }, 50);
+    setTimeout(() => {
+      if (objetoGlobal && flagEspecial) {
+        muestraRenderObjetoGlobal(objetoGlobal, 'especial', 'linea', 'lineaSeguidor', 'lineaGrilla', 'tanque-tinta', 'nivelTinta', 'nivelAgua', 9,10);
+      }
+    }, 100);
+  }    
+  if (flagBarniz) {
+    color = 'rgb(200,200,200)'
+    flagBarniz = true;
+    flagCyan = false;
+    flagMagenta = false;
+    flagAmarillo = false;
+    flagEspecial = false;
+    flagNegro = false; 
+    crearBotoneraDinamica(barniz);
+    setTimeout(() => {
+      eliminarColores()
+    }, 50);
+    setTimeout(() => {
+      if (objetoGlobal && flagBarniz) {
+        muestraRenderObjetoGlobal(objetoGlobal, 'barniz', 'linea', 'lineaSeguidor', 'lineaGrilla', 'tanque-tinta', 'nivelTinta', 'nivelAgua', 11,12);
+      }
+    }, 100);
+    colorPerfilador.style.color = color
+  }   
+  const contPerfilIndividual = document.getElementById('perfil-individual')   
+  contPerfilIndividual.classList.remove('move-perfil-individual')
+  const displayAjusteFino = document.getElementById('inerfaz-ajuste-fino'); 
+  nombreCliente.style.display='flex'
+  nombreCliente.style.top='5vh'
+  if (!primerClickRealizado) {
+    displayAjusteFino.style.display = 'flex';
+    displayAjusteFino.style.top = '33vh'
+    crearVariasLineas(22);   
+    primerClickRealizado = true;
+  }
+  contPerfilIndividual.classList.add('move-perfil-individual')
+  setTimeout(() => {
+    botonesPerfilColor.forEach(elemento => {   
+      elemento.style.display = 'block'; 
+    });   
+    restablecerClick(['.butt-selector'])  
+  }, 10);
+})
+
+let calculadoraSimulador = false
+
+document.getElementById('butt-job-track').addEventListener('click', () =>{
+  ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
+  const padreBotonera = document.querySelector('#botonera-frente')
+  padreBotonera.style.display='grid'
+  conteJobTrack.classList.remove('move-job-track')
+  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
+    }
+  }
+  container1.style.display = 'none'
+  desactivarClick(['.butt-perfiles'])
+  restablecerClick(['.estilo-1', '.butt-revierte'])
+  document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
+  
+  conteJobTrack.style.display='flex'
+  document.querySelectorAll('.datos-base').forEach((elemento) => { 
+    elemento.textContent = ''
+  });  
+  setTimeout(() => {
+    conteJobTrack.classList.add('move-job-track') 
+  }, 100);
+})
+
+document.getElementById('conte-img').addEventListener('click', () =>{
+  var elementosExcluidos = ['simulador','interfaz-perfiles','inerfaz-ajuste-fino','perfil-individual','control-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }  
+  botonesPerfilColor.forEach(boton => {
+    boton.style.display = 'block'
+  } )
+
+})
+let menuHambrgr = document.getElementById('show-todos')
+let txtHambrgr = document.getElementById('texto-perf-todos')
+// Función común para manejar el cambio de color y las acciones relacionadas
+function manejarColor(flagActual, estadoBalance, color, index) {
+  removerClasesColores()
+  if (!flagActual) {
+    // Restablecemos todos los flags a false y activamos el flag correspondiente
+    flagNegro = flagCyan = flagMagenta = flagAmarillo = flagEspecial = flagBarniz = false;    
+    switch(index) {
+      case 1:
+        flagNegro = true;
+      break;
+      case 2:
+        flagCyan = true;
+      break;
+      case 3:
+        flagMagenta = true;
+      break;
+      case 4:
+        flagAmarillo = true;
+        break;
+      case 5:
+        flagEspecial = true;
+      break;
+      case 6:
+        flagBarniz = true;
+      break;
+    }
+    // Llama a las funciones para actualizar la interfaz
+    crearBotoneraDinamica(color);
+    aplicarColor(estadoBalance, '.lineas-tinta');
+    aplicarSolucion(estadoBalance, '.lineas-solucion');
+  }
+}
+// Función común para mostrar los elementos y manejar el cambio de color
+function mostrarMenuYAplicarColor(flagActual, estadoBalance, color, index) {
+  menuHambrgr.style.display = 'flex';
+  txtHambrgr.style.display = 'flex';
+  manejarColor(flagActual, estadoBalance, color, index);
+}
+menuHambrgr.addEventListener('click', () => {
+  document.querySelectorAll('.color-ind').forEach(el => el.style.display = 'flex');
+  document.getElementById('info-perfiles').style.display = 'none'
+  document.getElementById('cont-modificadores').style.display = 'none'       
+});
+document.querySelectorAll('.color-ind').forEach((elemento, index) => {
+  elemento.addEventListener('click', () => {    
+    document.getElementById('info-perfiles').style.display = 'grid'
+    document.getElementById('cont-modificadores').style.display = 'grid'
+    document.querySelectorAll('.color-ind').forEach(el => el.style.display = 'none');    
+    elemento.style.display = 'flex';
+    menuHambrgr.style.display='flex'
+    txtHambrgr.style.display='flex'
+
+    // Lógica de mostrar el menú y aplicar color basado en el índice
+    switch(index + 1) {
+      case 1:
+        mostrarMenuYAplicarColor(flagNegro, estadoBalanceNegro, negro, 1);
+      break;
+      case 2:
+        mostrarMenuYAplicarColor(flagCyan, estadoBalanceCyan, azul, 2);
+      break;
+      case 3:
+        mostrarMenuYAplicarColor(flagMagenta, estadoBalanceMagenta, magenta, 3);
+      break;
+      case 4:
+        mostrarMenuYAplicarColor(flagAmarillo, estadoBalanceAmarillo, 'yellow', 4);
+      break;
+      case 5:
+        mostrarMenuYAplicarColor(flagEspecial, estadoBalanceEspecial, especial, 5);
+      break;
+      case 6:
+        mostrarMenuYAplicarColor(flagBarniz, estadoBalanceBarniz, barniz, 6);
+      break;
+    }
+  });
+});
+let banderaNegro = false;
+let banderaCian = false;
+let banderaMagenta = false;
+let banderaAmarillo = false;
+let banderaEspecial = false;  
+let banderaBarniz = false;
+function removerClasesColores() {
+  const elementosColorInd = document.querySelectorAll('.color-ind');  
+  // Recorremos todos los elementos y eliminamos las clases de movimiento
+  elementosColorInd.forEach((elemento) => {
+    elemento.classList.remove(
+      'move-perfil-barniz',
+      'move-perfil-especial',
+      'move-perfil-amarillo',
+      'move-perfil-magenta',
+      'move-perfil-cian',  
+      'move-perfil-negro'
+    );
+  });
+}
+const textos = ['N', 'C', 'M', 'A', 'E-1', 'E-2'];
+const textosEncabezados = ['Negro', 'Cyan', 'Magenta', 'Aamarillo', 'Especial', 'Barniz'];
+const textosReglas = Array.from({ length: 22 }, (_, i) => i + 1); // Array de números del 1 al 20
+const idsEncabezados = ['cabeza-negro', 'cabeza-azul', 'cabeza-magenta', 'cabeza-amarillo', 'cabeza-especial', 'cabeza-barniz'];
+const maquinasTextos = ['IBM 5000','IBM Infoprint','GTO 52','Pinza','Heidelberg SORMZ','rotatek RK-200','rotatek RK-300'] 
+function elementosDinamicamente(contPadre, numeroDeLineas, classElto, startNumber = null, prefixId = '') {
+  const contenedorPrincipal = document.getElementById(contPadre);
+  // Limpiar el contenedor para evitar acumulación de elementos
+  contenedorPrincipal.innerHTML = '';
+  // Definir el número inicial solo si se proporciona `startNumber` y es un número
+  let numeroConsecutivo = Number.isInteger(startNumber) ? startNumber : null;
+
+  for (let i = 1; i <= numeroDeLineas; i++) {
+    const lineaLeds = document.createElement('div');    
+    lineaLeds.classList.add(classElto);
+
+    // Asignar contenido de texto solo si `numeroConsecutivo` es un número válido
+    if (numeroConsecutivo !== null) {
+      lineaLeds.textContent = numeroConsecutivo;
+      numeroConsecutivo++;
+    }
+
+    // Asignar ID con prefijo solo si `prefixId` tiene un valor
+    if (prefixId) {
+      lineaLeds.id = `${prefixId}-${i}`; // Prefijo y número de línea
+    }
+
+    contenedorPrincipal.appendChild(lineaLeds);
+  }
+}
+function elementosConSpanDinamicamente(contPadre, numeroDeLineas, classElto, texts = [], ids = []) {
+  const contenedorPrincipal = document.getElementById(contPadre);  
+  contenedorPrincipal.innerHTML = '';
+
+  for (let i = 0; i < numeroDeLineas; i++) {
+    const lineaLeds = document.createElement('div');
+    lineaLeds.classList.add(classElto);
+
+    // Crear el span con el texto del array texts si está disponible
+    if (texts[i]) {
+      const span = document.createElement('span');
+      span.classList.add('texto-selectores');
+      span.textContent = texts[i];
+      lineaLeds.appendChild(span);
+    }
+
+    // Asignar id del arreglo ids si está disponible
+    if (ids[i]) {
+      lineaLeds.id = ids[i];
+    }    
+
+    contenedorPrincipal.appendChild(lineaLeds);
+  }
+  
+}
+function clasePadreCantidadClaseTextId(contPadre, numeroDeLineas, classElto, texts = [], prefixId = '') {
+  const contenedoresPrincipales = document.querySelectorAll(`.${contPadre}`);
+
+  // Verifica si se encontraron elementos con la clase proporcionada
+  if (contenedoresPrincipales.length === 0) {
+    console.warn(`No se encontró ningún contenedor con la clase: ${contPadre}`);
+    return;
+  }
+
+  contenedoresPrincipales.forEach((contenedorPrincipal, index) => {
+    // Limpiar cada contenedor para evitar acumulación de elementos
+    contenedorPrincipal.innerHTML = '';
+
+    for (let i = 1; i <= numeroDeLineas; i++) {
+      const spanElement = document.createElement('span');
+      spanElement.classList.add(classElto);
+      
+      // Añadir el texto correspondiente, si se proporciona
+      spanElement.textContent = texts.length > 0 ? texts[i - 1] || '' : ''; 
+
+      // Asignar un ID basado en el índice y el prefijo, si se proporciona
+      if (prefixId) {
+        spanElement.id = `${prefixId}-${i}`; // Prefijo, índice del contenedor, y número de línea
+      }
+
+      // Agregar el span creado al contenedor padre
+      contenedorPrincipal.appendChild(spanElement);
+    }
+  });
+}
+function idPadreCantidadClaseTextId(contPadre, numeroDeLineas, classElto, claseDos = '', texts = [], prefixId = '', padreEtiqueta, color, padreEtiquetaTinta) {   
+  const contenedorPrincipal = document.getElementById(contPadre);  
+  // Limpiar el contenedor para evitar acumulación de elementos
+  contenedorPrincipal.innerHTML = '';
+  // Crear el único span que debe estar fuera del bucle
+  const spanAgua = document.createElement('span');
+  const spanTinta = document.createElement('span');
+  spanAgua.classList.add('div-agua', 'agua-div');
+  spanTinta.classList.add('div-gral');
+  // Asignar ID al span creado
+  spanAgua.id = `display-general-${color}`;
+  spanTinta.id = `gral-display-${color}`;
+  // Agregar el span al contenedor padre especificado en `padreEtiqueta`
+  const contenedorDestino = document.getElementById(padreEtiqueta);
+  const contenedorTinta = document.getElementById(padreEtiquetaTinta);
+  if (contenedorDestino) {
+    contenedorDestino.appendChild(spanAgua);
+  } else {
+    
+  }
+
+  if (contenedorTinta) {
+    contenedorTinta.appendChild(spanTinta);
+  } else {
+  
+  }
+
+  // Crear múltiples spans dentro del contenedorPrincipal usando el bucle
+  for (let i = 1; i <= numeroDeLineas; i++) {
+    const spanElement = document.createElement('span');
+    
+    // Agregar la clase principal
+    spanElement.classList.add(classElto); 
+
+    // Agregar la segunda clase si se proporciona
+    if (claseDos) {
+      spanElement.classList.add(claseDos);
+    }
+
+    // Añadir el texto correspondiente, si se proporciona
+    spanElement.textContent = texts.length > 0 ? texts[i - 1] || '' : ''; 
+
+    // Asignar un ID basado en el índice y el prefijo, si se proporciona
+    if (prefixId) {
+      spanElement.id = `${prefixId}-${i}`;
+    }
+
+    // Agregar el span creado dentro del contenedor principal
+    contenedorPrincipal.appendChild(spanElement);
+  }
+}
+let intervalColorNegro = null
+let intervalColorCyan = null
+let intervalColorMagenta = null
+let intervalColorAmmarillo = null
+let intervalColorEspecial = null
+let intervalColorBarniz = null
+function toggleColorButton(index) {
+  const coleccionCabeza = document.querySelectorAll('.cabeza');
+  const coleccionButtSelector = document.querySelectorAll('.butt-selector');
+
+  // Restablece el color de todos los botones en ambas colecciones
+  coleccionCabeza.forEach(boton => boton.style.backgroundColor = '');
+  coleccionButtSelector.forEach(boton => boton.style.backgroundColor = '');
+
+  // Aplica el color rojo solo a los botones en la posición `index`
+  if (coleccionCabeza[index]) coleccionCabeza[index].style.backgroundColor = verde; 
+  // Aplicar color verde al botón y negro al texto en el <span> inmediatamente
+  if (coleccionButtSelector[index]) {
+    coleccionButtSelector[index].style.backgroundColor = verde;
+
+    // Captura el <span> directamente dentro del botón y aplica el color negro
+    const span = coleccionButtSelector[index].querySelector(`#butts-selectores div:nth-child(${index}) .texto-selectores`);
+    if (span) {
+      span.style.color = 'black';
+    }
+  }
+  
+}
+function crearLedsSpan() {
+  // Ciclo para crear 22 padres con IDs secuenciales y 24 spans en cada uno
+  for (let i = 1; i <= 22; i++) {
+    // Obtener el padre correspondiente
+    const contenedorLed = document.getElementById(`led-${i}`);
+    
+    // Verificar que el contenedor padre exista
+    if (contenedorLed) {
+      // Eliminar todos los spans hijos existentes en el contenedor
+      while (contenedorLed.firstChild) {
+        contenedorLed.removeChild(contenedorLed.firstChild);
+      }
+
+      // Crear 24 elementos span y agregarlos al padre actual
+      for (let j = 1; j <= 24; j++) {
+        const elementoSpan = document.createElement('span');
+        elementoSpan.classList.add('led'); // Agregar la clase 'led' a cada span
+        contenedorLed.appendChild(elementoSpan); // Agregar el span al contenedor padre 
+      }
+    } else {
+      console.warn(`No se encontró el contenedor con id: led-${i}`);
+    }
+  }
+
+  const columnaClon = document.querySelectorAll('#control-perfiles #led-1 .led')
+  if (columnaClon.length === 0) { 
+    columnaClon.forEach(nieto => {
+      nieto.classList.add('elemento-sync');
+    });
+  }
+
+}
+function eliminarBotonesSuma() {
+  const contenedorPrincipal = document.getElementById('columna-30');
+  const botonesSuma = contenedorPrincipal.querySelectorAll('.linea-control.suma');
+  botonesSuma.forEach((boton) => {
+    contenedorPrincipal.removeChild(boton);
+  });
+}
+function eliminarBotonesResta() {
+  const contenedorPrincipal = document.getElementById('columna-30');
+  const botonesSuma = contenedorPrincipal.querySelectorAll('.linea-control.resta');
+  botonesSuma.forEach((boton) => {
+    contenedorPrincipal.removeChild(boton);
+  });
+}
+const informacionBotonesNegro = [];
+const informacionBotonesAmarillo = [];
+const informacionBotonesCyan = [];
+const informacionBotonesMagenta = [];
+const informacionBotonesNaranja = [];
+const informacionBotonesGris = [];
+let colorAplicadoContador = 0;
+const numeroLineas = 22; 
+let currentLinea = 0;
+let currentIndice = 0;
+function desactivarEventos() {
+  // Prevenir clicks y mousedown en toda la página
+  document.addEventListener('click', bloquearEvento, true);
+  document.addEventListener('mousedown', bloquearEvento, true);
+}
+function activarEventos() {
+  // Reactivar clicks y mousedown
+  document.removeEventListener('click', bloquearEvento, true);
+  document.removeEventListener('mousedown', bloquearEvento, true);
+}
+function bloquearEvento(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+let objetoAmarillo = { 
+  linea: {
+    "linea-1": [],
+    "linea-2": [],
+    "linea-3": [],
+    "linea-4": [],
+    "linea-5": [],
+    "linea-6": [],
+    "linea-7": [],
+    "linea-8": [],
+    "linea-9": [],
+    "linea-10": [],
+    "linea-11": [],
+    "linea-12": [],
+    "linea-13": [],
+    "linea-14": [],
+    "linea-15": [],
+    "linea-16": [],
+    "linea-17": [],
+    "linea-18": [],
+    "linea-19": [],
+    "linea-20": [],
+    "linea-21": [],
+    "linea-22": [],
+  },
+    lineaSeguidor: {
+    "led-1": [],
+    "led-2": [],
+    "led-3": [],
+    "led-4": [],
+    "led-5": [],
+    "led-6": [],
+    "led-7": [],
+    "led-8": [],
+    "led-9": [],
+    "led-10": [],
+    "led-11": [],
+    "led-12": [],
+    "led-13": [],
+    "led-14": [],
+    "led-15": [],
+    "led-16": [],
+    "led-17": [],
+    "led-18": [],
+    "led-19": [],
+    "led-20": [],
+    "led-21": [],
+    "led-22": [],
+  },
+    lineaGrilla: {
+    "grilla-1": [],
+    "grilla-2": [],
+    "grilla-3": [],
+    "grilla-4": [],
+    "grilla-5": [],
+    "grilla-6": [],
+    "grilla-7": [],
+    "grilla-8": [],
+    "grilla-9": [],
+    "grilla-10": [],
+    "grilla-11": [],
+    "grilla-12": [],
+    "grilla-13": [],
+    "grilla-14": [],
+    "grilla-15": [],
+    "grilla-16": [],
+    "grilla-17": [],
+    "grilla-18": [],
+    "grilla-19": [],
+    "grilla-20": [],
+    "grilla-21": [],
+    "grilla-22": [],
+  },
+  nivelAgua: [],
+  nivelAguaGral: [],
+  nivelTinta: [],
+  nivelTintaGral: [],
+  colorElemento: ''
+};
+let objetoMagenta = JSON.parse(JSON.stringify(objetoAmarillo));
+let objetoCian = JSON.parse(JSON.stringify(objetoAmarillo));
+let objetoNegro = JSON.parse(JSON.stringify(objetoAmarillo));
+let objetoEspecial = JSON.parse(JSON.stringify(objetoAmarillo));
+let objetoBarniz = JSON.parse(JSON.stringify(objetoAmarillo));
+let primeraPantalla = true;
+let segundaPantalla = false;
+let objetoRender = {
+  boton1: {
+    boton: "",
+    elementosColoreados: [],
+    linea1: "",
+    claseElemento: "",
+    colorElemento: ""
+  }
+};
+const colorNames = {
+  "rgb(255,255,0)": "amarillo",
+  "rgb(0,0,255)": "azul",
+  "rgb(255,0,255)": "magenta",
+  "rgb(0,0,0)": "negro",
+  "rgb(255,130,0)": "especial",
+  "rgb(200,200,200)": "barniz",
+};
+function getColorName(color) {
+  const rgbColor = typeof color === "string" ? color : color.toString();      
+  return colorNames[rgbColor] || "desconocido";
+}
+
+function crearBotonSuma(color, linea1, linea2, linea3) {
+  const contenedorPrincipal = document.getElementById('columna-30');
+  const botonesSuma = []; 
+  const indexarElements = document.querySelectorAll('.indexar');
+
+  for (let i = 1; i <= 22; i++) {
+    const elementoSuma = document.createElement('div');
+    elementoSuma.classList.add('linea-control', 'suma');
+    elementoSuma.id = `bot-${i}`;
+    contenedorPrincipal.appendChild(elementoSuma);
+    botonesSuma.push(elementoSuma);
+
+    let intervalID = null; // 🔸 Cada botón mantiene su propio intervalo
+
+    // 🔸 Lógica de inicio común para mouse y táctil
+    const iniciarAccion = () => {
+      if (!flagAplicacion) {
+        alertaBotones.style.display = 'flex';
+        alertaBotones.style.backgroundColor = verde;
+        alertaBotones.style.color = 'black';
+        alertaBotones.style.top = '20vh';
+        desactivarClicEnElementos(buttSelector, buttSelector, botonesPerfilColor, buttsControl, buttsColores, buttSuma, buttResta);
+        setTimeout(() => {
+          alertaBotones.style.backgroundColor = '';
+          alertaBotones.style.color = '';
+        }, 500);
+        return;
+      }
+
+      const numeroBoton = elementoSuma.id.match(/\d+/)?.[0];
+      elementoSuma.style.backgroundColor = 'rgb(0, 250, 254)';
+      const colorName = getColorName(color);
+      const lineaID = `linea-${numeroBoton}`;
+      const ledID = `led-${numeroBoton}`;
+      const ledGeneral = `grilla-${numeroBoton}`;
+
+      const ledsRuta = `#columna-70 #${lineaID} #display-leds .leds`;
+      const ledControlRuta = `#control-perfiles #led-${numeroBoton} .led`;
+      const ledGeneralRuta = `#perfil-${colorName} #grilla-${numeroBoton} .led-general`;
+
+      const coleccionLeds = document.querySelectorAll(ledsRuta);
+      const coleccionLed = document.querySelectorAll(ledControlRuta);
+      const coleccionGeneral = document.querySelectorAll(ledGeneralRuta);
+
+      let index = (coleccionLeds.length - 1) - almacenObjetos[objetoGlobal][colorName][linea1][lineaID].length;
+
+      intervalID = setInterval(() => {
+        if (index >= 0) {
+          coleccionLeds[index].style.backgroundColor = rojo;
+          coleccionLed[index].style.backgroundColor = color;
+          coleccionGeneral[index].style.backgroundColor = color;
+
+          almacenObjetos[objetoGlobal][colorName][linea1][lineaID].push(index);
+          almacenObjetos[objetoGlobal][colorName][linea2][ledID].push(index);
+          almacenObjetos[objetoGlobal][colorName][linea3][ledGeneral].push(index);
+
+          guardarObjetoEnLocalStorage();
+          guardarCambiosGeneralesEnAlmacen();
+          index--;
+        } else {
+          clearInterval(intervalID);
+          intervalID = null;
+        }
+      }, 177);
+
+      const indexarElement = indexarElements[i - 1];
+      if (indexarElement) {
+        indexarElement.style.color = 'red';
+        indexarElement.style.fontSize = '1em';
+        indexarElement.style.fontWeight = 'bold';
+      }
+    };
+
+    // 🔸 Lógica de detención común
+    const detenerAccion = () => {
+      const indexarElement = indexarElements[i - 1];
+      if (indexarElement) {
+        indexarElement.style.color = '';
+        indexarElement.style.fontSize = '';
+        indexarElement.style.fontWeight = '';
+      }
+      elementoSuma.style.backgroundColor = '';
+      if (intervalID) {
+        clearInterval(intervalID);
+        intervalID = null;
+      }
+    };
+
+    // 🖱️ Eventos para PC
+    elementoSuma.addEventListener('mousedown', iniciarAccion);
+    elementoSuma.addEventListener('mouseup', detenerAccion);
+    elementoSuma.addEventListener('mouseleave', detenerAccion);
+
+    // 📱 Eventos para táctiles
+    elementoSuma.addEventListener('touchstart', (e) => {
+      e.preventDefault(); // evita scroll o zoom
+      iniciarAccion();
+    }, { passive: false });
+
+    elementoSuma.addEventListener('touchend', detenerAccion, { passive: true });
+    elementoSuma.addEventListener('touchcancel', detenerAccion, { passive: true });
+  }
+}
+
+function guardarObjetoEnLocalStorage(){
+  localStorage.setItem('objetoAmarillo', JSON.stringify(objetoAmarillo));
+  localStorage.setItem('objetoMagenta', JSON.stringify(objetoMagenta));
+  localStorage.setItem('objetoCian', JSON.stringify(objetoCian));
+  localStorage.setItem('objetoNegro', JSON.stringify(objetoNegro));
+  localStorage.setItem('objetoEspecial', JSON.stringify(objetoEspecial));
+  localStorage.setItem('objetoBarniz', JSON.stringify(objetoBarniz));
+}
+
+function traerObjetoDeLocalStorage() {
+  const objetoAmarilloDesdeLocal = JSON.parse(localStorage.getItem('objetoAmarillo') || '{}'); 
+  const objetoMagentaDesdeLocal = JSON.parse(localStorage.getItem('objetoMagenta') || '{}');
+  const objetoCianDesdeLocal = JSON.parse(localStorage.getItem('objetoCian') || '{}');
+  const objetoNegroDesdeLocal = JSON.parse(localStorage.getItem('objetoNegro') || '{}');
+  const objetoEspecialDesdeLocal = JSON.parse(localStorage.getItem('objetoEspecial') || '{}');
+  const objetoBarnizDesdeLocal = JSON.parse(localStorage.getItem('objetoBarniz') || '{}');
+  if (Object.keys(objetoAmarilloDesdeLocal).length > 0) {
+    // Reasignar las propiedades del objeto local al objeto global
+    Object.assign(objetoAmarillo, objetoAmarilloDesdeLocal);
+  } else {
+    console.warn('El objeto no existe en localStorage o está vacío.');
+  }
+  if (Object.keys(objetoMagentaDesdeLocal).length > 0) {
+    // Reasignar las propiedades del objeto local al objeto global
+    Object.assign(objetoMagenta, objetoMagentaDesdeLocal);
+  } else {
+    console.warn('El objeto no existe en localStorage o está vacío.');
+  }
+  if (Object.keys(objetoCianDesdeLocal).length > 0) {
+    // Reasignar las propiedades del objeto local al objeto global
+    Object.assign(objetoCian, objetoCianDesdeLocal);
+  } else {
+    console.warn('El objeto no existe en localStorage o está vacío.');
+  }
+  if (Object.keys(objetoNegroDesdeLocal).length > 0) {
+    // Reasignar las propiedades del objeto local al objeto global
+    Object.assign(objetoNegro, objetoNegroDesdeLocal);
+  } else {
+    console.warn('El objeto no existe en localStorage o está vacío.');
+  }
+  if (Object.keys(objetoEspecialDesdeLocal).length > 0) {
+    // Reasignar las propiedades del objeto local al objeto global
+    Object.assign(objetoEspecial, objetoEspecialDesdeLocal);
+  } else {
+    console.warn('El objeto no existe en localStorage o está vacío.');
+  }
+  if (Object.keys(objetoBarnizDesdeLocal).length > 0) {
+    // Reasignar las propiedades del objeto local al objeto global
+    Object.assign(objetoBarniz, objetoBarnizDesdeLocal);
+  } else {
+    console.warn('El objeto no existe en localStorage o está vacío.');
+  }
+  ensayoAplicacion(objetoMagenta,'#perfil-magenta',magenta,'magenta'); 
+  ensayoAplicacion(objetoAmarillo,'#perfil-amarillo',amarillo,'amarillo');      
+  ensayoAplicacion(objetoCian,'#perfil-azul',cian,'cyan');     
+  ensayoAplicacion(objetoNegro,'#perfil-negro',negro,'negro'); 
+  ensayoAplicacion(objetoEspecial,'#perfil-especial',especial,'especial');         
+  ensayoAplicacion(objetoBarniz,'#perfil-barniz',barniz,'barniz');
+}
+function vaciarObjeto(){
+  const objetos = [objetoAmarillo, objetoMagenta, objetoCian, objetoNegro, objetoEspecial, objetoBarniz];  
+  objetos.forEach(objeto => {
+    for (let key in objeto) {
+      if (typeof objeto[key] === 'object' && !Array.isArray(objeto[key])) { 
+        // Si es un objeto, limpiarlo recursivamente
+        for (let subKey in objeto[key]) {
+          objeto[key][subKey] = [];
+        }
+      } else if (Array.isArray(objeto[key])) {
+        // Si es un array, vaciarlo
+        objeto[key] = [];
+      } else {
+        // Si es otro tipo de dato, inicializarlo
+        objeto[key] = '';
+      }
+    }
+  });  
+  guardarObjetoEnLocalStorage();
+}
+function vaciarAlmacenObjetos() {
+  // 1. Traer el objeto almacenado en localStorage
+  const almacenJSON = localStorage.getItem('coloresRegistrados');
+
+  if (!almacenJSON) {
+    console.log("El almacén de objetos está vacío o no existe.");
+    return;
+  }
+
+  // Parsear el objeto JSON almacenado
+  almacenObjetos = JSON.parse(almacenJSON);
+  console.log("Almacén antes de vaciarlo:", almacenObjetos);
+
+  // 2. Vaciar el objeto
+  almacenObjetos = {};
+
+  // 3. Guardar los cambios en localStorage
+  localStorage.setItem('coloresRegistrados', JSON.stringify(almacenObjetos));
+
+  console.log("El almacén de objetos ha sido vaciado.");
+}
+let buttonSmart = document.getElementById('seleccion-gral')
+let intervaloLeds; // Declaración global
+buttonSmart.addEventListener('mousedown', () =>{
+  primeraPantalla = false
+  segundaPantalla = true
+  objetoAmarillo.linea['linea-11'].push(1);
+  guardarObjetoAmarillo(objetoAmarillo)
+  console.log(objetoAmarillo)
+})
+buttonSmart.addEventListener('mouseup', () =>{
+  // Detener el intervalo si todos los LEDs han sido coloreados
+  clearInterval(intervaloLeds);
+  console.log("Todos los LEDs han sido coloreados.");  
+})
+function guardarObjetoEnLocal(objeto) {
+  // Convertir el objeto a una cadena JSON
+  const objetoString = JSON.stringify(objeto);
+  
+  // Guardarlo en localStorage
+  localStorage.setItem('informacionCopia', objetoString);
+  
+}
+function guardarObjetoAmarillo(objetoAmarillo) {   
+  try {
+      // Convertir el objeto a una cadena JSON
+      const objetoString = JSON.stringify(objetoAmarillo);
+
+      // Guardar en localStorage con la clave "objetoAmarillo"
+      localStorage.setItem("objetoAmarillo", objetoString);
+
+      console.log("Objeto guardado exitosamente:", objetoAmarillo);
+  } catch (error) {
+      console.error("Error al guardar el objeto en localStorage:", error);
+  }
+} 
+function guardarobjetoMagenta(objetoMagenta) {
+  try {
+      // Convertir el objeto a una cadena JSON
+      const objetoString = JSON.stringify(objetoMagenta);
+
+      // Guardar en localStorage con la clave "objetoAmarillo"
+      localStorage.setItem("objetoMagenta", objetoString);
+
+      console.log("Objeto guardado exitosamente:", objetoMagenta);
+  } catch (error) {
+      console.error("Error al guardar el objeto en localStorage:", error);
+  }
+}
+function guardarObjetoCian(objetoCian) {
+  try {
+    const objetoString = JSON.stringify(objetoCian);
+    localStorage.setItem("objetoCian", objetoString);
+    console.log("Objeto guardado exitosamente:", objetoCian);
+  } catch (error) {
+    console.error("Error al guardar el objeto en localStorage:", error);
+  }
+}
+function guardarObjetoNegro(objetoNegro) {
+  try {
+    const objetoString = JSON.stringify(objetoNegro);
+    localStorage.setItem("objetoNegro", objetoString);
+    console.log("Objeto guardado exitosamente:", objetoNegro);
+  } catch (error) {
+    console.error("Error al guardar el objeto en localStorage:", error);
+  }
+}
+function guardarObjetoEspecial(objetoEspecial) {
+  try {
+    const objetoString = JSON.stringify(objetoEspecial);
+    localStorage.setItem("objetoEspecial", objetoString);
+    console.log("Objeto guardado exitosamente:", objetoEspecial);
+  } catch (error) {
+    console.error("Error al guardar el objeto en localStorage:", error);
+  }
+}
+function guardarObjetoBarniz(objetoBarniz) {
+  try {
+    const objetoString = JSON.stringify(objetoBarniz);
+    localStorage.setItem("objetoBarniz", objetoString);
+    console.log("Objeto guardado exitosamente:", objetoBarniz);
+  } catch (error) {
+    console.error("Error al guardar el objeto en localStorage:", error);
+  }
+}  
+function vaciarObjetosPerfiles() {
+  // Lista de nombres de los objetos a vaciar
+  const objetos = ["objetoAmarillo", "objetoMagenta", "objetoCian", "objetoNegro", "objetoEspecial", "objetoBarniz"];
+  // Estructura base para reiniciar
+  const estructuraBase = {
+    clase: '',
+    claseSeguidor: '',
+    claseGrilla: '',
+    linea: {
+      "linea-1": [],
+      "linea-2": [],
+      "linea-3": [],
+      "linea-4": [],
+      "linea-5": [],
+      "linea-6": [],
+      "linea-7": [],
+      "linea-8": [],
+      "linea-9": [],
+      "linea-10": [],
+      "linea-11": [],
+      "linea-12": [],
+      "linea-13": [],
+      "linea-14": [],
+      "linea-15": [],
+      "linea-16": [],
+      "linea-17": [],
+      "linea-18": [],
+      "linea-19": [],
+      "linea-20": [],
+      "linea-21": [],
+      "linea-22": [],
+    },
+    lineaSeguidor: {
+      "led-1": [],
+      "led-2": [],
+      "led-3": [],
+      "led-4": [],
+      "led-5": [],
+      "led-6": [],
+      "led-7": [],
+      "led-8": [],
+      "led-9": [],
+      "led-10": [],
+      "led-11": [],
+      "led-12": [],
+      "led-13": [],
+      "led-14": [],
+      "led-15": [],
+      "led-16": [],
+      "led-17": [],
+      "led-18": [],
+      "led-19": [],
+      "led-20": [],
+      "led-21": [],
+      "led-22": [],
+    },
+    lineaGrilla: {
+      "grilla-1": [],
+      "grilla-2": [],
+      "grilla-3": [],
+      "grilla-4": [],
+      "grilla-5": [],
+      "grilla-6": [],
+      "grilla-7": [],
+      "grilla-8": [],
+      "grilla-9": [],
+      "grilla-10": [],
+      "grilla-11": [],
+      "grilla-12": [],
+      "grilla-13": [],
+      "grilla-14": [],
+      "grilla-15": [],
+      "grilla-16": [],
+      "grilla-17": [],
+      "grilla-18": [],
+      "grilla-19": [],
+      "grilla-20": [],
+      "grilla-21": [],
+      "grilla-22": [],
+    },
+    colorElemento: '',
+    contadorPulsos: [], 
+  };
+
+  // Iterar sobre cada objeto
+  objetos.forEach(nombre => {
+    if (window[nombre]) {
+      const objeto = window[nombre];
+      // Restablecer al estado inicial
+      Object.assign(objeto, JSON.parse(JSON.stringify(estructuraBase)));
+    }
+    // Eliminar del localStorage
+    localStorage.removeItem(nombre);
+  });
+  console.log("Objetos vaciados y eliminados de localStorage.");
+
+}
+document.querySelector('#boton-reseteo').addEventListener('click', () =>{
+  alertaGlobal='boton-reseteo'
+  var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }
+  container1.style.display = 'none'
+  desactivarClick(['.butt-perfiles']); 
+  saltarAlerta('Esta acción elimina definitivamente los perfiles guardados ', 'reseteo') 
+})
+
+// BOTON SALA
+document.querySelector('#boton-prensas').addEventListener('click', () =>{
+  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','container01']  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }
+  interfazPerfiles.classList.remove('move-perfiles-entintado')
+
+  document.querySelector('.sections').style.display = 'grid' 
+  document.querySelector('#sections-fondo').style.display = 'grid'
+  document.querySelector('#contenedor-botonera').style.display = 'grid'
+})
+
+// CREACION DE PERFILES
+document.querySelector('#boton-perfiles').addEventListener('click', () =>{
+  var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles', 'boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'   
+    }
+  } 
+  container1.style.display = 'none'
+  desactivarClick(['.butt-perfiles']); 
+  restablecerClick(['.butt-revierte'])
+  setTimeout(() => {
+    moverFormulario()
+
+  if (esDesktop) {
+    inputPerfil.focus();
+  }     
+    inputPerfil.value = ''
+  }, 20);
+})
+
+function traerObjetoAmarillo() {
+  try {
+    // Recuperar el objeto almacenado en localStorage
+    const objetoString = localStorage.getItem("objetoAmarillo");
+
+    if (objetoString) {
+      // Convertir la cadena JSON de vuelta a un objeto
+      const objeto = JSON.parse(objetoString);
+      console.log("Objeto recuperado exitosamente:", objeto);
+      return objeto;
+    } else {
+      console.warn("No se encontró un objeto en localStorage. Devolviendo un objeto vacío.");
+      return {
+        clase: [],
+        claseSeguidor: [],
+        claseGrilla: [],
+        linea: '',
+        lineaSeguidor: '',
+        lineaGrilla: '',
+        colorPerfilGrilla: '',
+        colorElemento: '',
+        contadorPulsos: []
+      };
+    }
+  }
+  catch (error) {
+    console.error("Error al recuperar el objeto desde localStorage:", error);
+    return {
+      clase: [],
+      claseSeguidor: [],
+      linea: '',
+      lineaSeguidor: '',
+      colorElemento: '',
+      contadorPulsos: []
+    };
+  }
+}
+function traerObjetoMagenta() {
+  try {
+    // Recuperar el objeto almacenado en localStorage
+    const objetoString = localStorage.getItem("objetoMagenta");
+
+    if (objetoString) {
+      // Convertir la cadena JSON de vuelta a un objeto
+      const objeto = JSON.parse(objetoString);
+      console.log("Objeto recuperado exitosamente:", objeto);
+      return objeto;
+    } else {
+      console.warn("No se encontró un objeto en localStorage. Devolviendo un objeto vacío.");
+      return {
+        clase: [],
+        claseSeguidor: [],
+        claseGrilla: [],
+        colorPerfilGrilla: '',
+        linea: '',
+        lineaSeguidor: '',
+        lineaGrilla: '',
+        colorElemento: '',
+        contadorPulsos: []
+      };
+    }
+  }
+  catch (error) {
+    console.error("Error al recuperar el objeto desde localStorage:", error);
+    return {
+      clase: [],
+      claseSeguidor: [],
+      linea: '',
+      lineaSeguidor: '',
+      colorElemento: '',
+      contadorPulsos: []
+    };
+  }
+}
+function traerObjetoCian() {
+  try {
+    // Recuperar el objeto almacenado en localStorage
+    const objetoString = localStorage.getItem("objetoCian");
+
+    if (objetoString) {
+      // Convertir la cadena JSON de vuelta a un objeto
+      const objeto = JSON.parse(objetoString);
+      console.log("Objeto recuperado exitosamente:", objeto);
+      return objeto;
+    } else {
+      console.warn("No se encontró un objeto en localStorage. Devolviendo un objeto vacío.");
+      return {
+        clase: [],
+        claseSeguidor: [],
+        claseGrilla: [],
+        colorPerfilGrilla: '',
+        linea: '',
+        lineaSeguidor: '',
+        lineaGrilla: '',
+        colorElemento: '',
+        contadorPulsos: []
+      };
+    }
+  }
+  catch (error) {
+    console.error("Error al recuperar el objeto desde localStorage:", error);
+    return {
+      clase: [],
+      claseSeguidor: [],
+      linea: '',
+      lineaSeguidor: '',
+      colorElemento: '',
+      contadorPulsos: []
+    };
+  }
+}
+function traerObjetoNegro() {
+  try {
+    // Recuperar el objeto almacenado en localStorage
+    const objetoString = localStorage.getItem("objetoNegro");
+
+    if (objetoString) {
+      // Convertir la cadena JSON de vuelta a un objeto
+      const objeto = JSON.parse(objetoString);
+      console.log("Objeto recuperado exitosamente:", objeto);
+      return objeto;
+    } else {
+      console.warn("No se encontró un objeto en localStorage. Devolviendo un objeto vacío.");
+      return {
+        clase: [],
+        claseSeguidor: [],
+        claseGrilla: [],
+        colorPerfilGrilla: '',
+        linea: '',
+        lineaSeguidor: '',
+        lineaGrilla: '',
+        colorElemento: '',
+        contadorPulsos: [],
+        nivelTinta: [],
+        nivelAgua: []
+      };
+    }
+  }
+  catch (error) {
+    console.error("Error al recuperar el objeto desde localStorage:", error);
+    return {
+      clase: [],
+      claseSeguidor: [],
+      linea: '',
+      lineaSeguidor: '',
+      colorElemento: '',
+      contadorPulsos: []
+    };
+  }
+}
+function traerObjetoEspecial() {
+  try {
+    // Recuperar el objeto almacenado en localStorage
+    const objetoString = localStorage.getItem("objetoEspecial");
+
+    if (objetoString) {
+      // Convertir la cadena JSON de vuelta a un objeto
+      const objeto = JSON.parse(objetoString);
+      console.log("Objeto recuperado exitosamente:", objeto);
+      return objeto;
+    } else {
+      console.warn("No se encontró un objeto en localStorage. Devolviendo un objeto vacío.");
+      return {
+        clase: [],
+        claseSeguidor: [],
+        claseGrilla: [],
+        colorPerfilGrilla: '',
+        linea: '',
+        lineaSeguidor: '',
+        lineaGrilla: '',
+        colorElemento: '',
+        contadorPulsos: []
+      };
+    }
+  }
+  catch (error) {
+    console.error("Error al recuperar el objeto desde localStorage:", error);
+    return {
+      clase: [],
+      claseSeguidor: [],
+      linea: '',
+      lineaSeguidor: '',
+      colorElemento: '',
+      contadorPulsos: []
+    };
+  }
+}
+function traerObjetoBarniz() {
+  try {
+    // Recuperar el objeto almacenado en localStorage
+    const objetoString = localStorage.getItem("objetoBarniz");
+
+    if (objetoString) {
+      // Convertir la cadena JSON de vuelta a un objeto
+      const objeto = JSON.parse(objetoString);
+      console.log("Objeto recuperado exitosamente:", objeto);
+      return objeto;
+    } else {
+      console.warn("No se encontró un objeto en localStorage. Devolviendo un objeto vacío.");
+      return {
+        clase: [],
+        claseSeguidor: [],
+        claseGrilla: [],
+        colorPerfilGrilla: '',
+        linea: '',
+        lineaSeguidor: '',
+        lineaGrilla: '',
+        colorElemento: '',
+        contadorPulsos: []
+      };
+    }
+  }
+  catch (error) {
+    console.error("Error al recuperar el objeto desde localStorage:", error);
+    return {
+      clase: [],
+      claseSeguidor: [],
+      linea: '',
+      lineaSeguidor: '',
+      colorElemento: '',
+      contadorPulsos: []
+    };
+  }
+}
+function aplicarColorDesdeObjeto(objeto) {
+  if(objeto === objetoAmarillo){
+    // 1. Capturar la colección de elementos
+    const lineaLeds = document.querySelectorAll('#columna-70 #linea-1 #display-leds .leds')
+    const lineaSeguidor = document.querySelectorAll('#control-perfiles #led-1 .led')
+    const lineaGeneral = document.querySelectorAll('#perfil-amarillo #grilla-1 .led-general')
+
+    const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
+    const nivelAgua = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
+    const nivelTintaGral = document.querySelectorAll('#footer-amarillo #footer-7 .divs-grales-tinta-amarillo');
+    const nivelAguaGral = document.querySelectorAll('#footer-amarillo #footer-8 .divs-grales-solucion-amarillo');
+    const ledsTinta = document.getElementsByClassName('lineas-tinta');
+    const ledsAgua = document.getElementsByClassName('lineas-solucion');
+    const displayAgua = document.getElementById('solucion-porcentaje')
+    const displayTinta = document.getElementById('tinta-perc')
+
+    let ledsParaColorear = objeto.linea["linea-1"].length;
+    console.log('LEDS : ', ledsParaColorear)
+
+  }
+}
+function traerObjetoDeLocal() {
+  const objetoString = localStorage.getItem('informacionCopia');
+
+  if (objetoString) {
+    let objetos = JSON.parse(objetoString);
+
+    if (Array.isArray(objetos)) {
+      // Limitar a los primeros 22 elementos
+      objetos = objetos.slice(0, 22);
+
+      console.log('Información del objeto recuperado de localStorage:');
+      objetos.forEach((objetoActual, index) => {
+        console.log(`Elemento ${index + 1}:`);
+        console.log(`botonOprimido: ${objetoActual.botonOprimido}`);
+        console.log(`lineaActual: ${objetoActual.lineaActual}`);
+        console.log(`ledActual: ${objetoActual.ledActual}`);
+        console.log(`ledSecundario: ${objetoActual.ledSecundario}`);
+        console.log(`ledsColoreados: ${objetoActual.ledsColoreados.length}`);
+        console.log(`colorAplicadoContador: ${objetoActual.colorAplicadoContador}`);
+        console.log(`clasesColoreadas: ${objetoActual.clasesColoreadas.join(', ')}`);
+        console.log(`clasesColoreadas: ${objetoActual.colorElemento}`);
+        console.log('---');
+      });
+
+      // Llama a renderizarObjetoLocal con el array de objetos
+      objetos.forEach((objetoActual) => {
+        renderizarObjetoLocal(objetoActual);
+      });
+
+      return objetos;
+    } else {
+      console.log('El objeto recuperado no es una lista.');
+      return null;
+    }
+  } else {
+    console.log('No se encontró objeto en localStorage.');
+    return null;
+  }
+}
+function renderizarObjetoLocal(objetoActual) {
+  const elementosObjeto = document.querySelectorAll(`#${objetoActual.lineaActual} .${objetoActual.clasesColoreadas[0]}`);
+  const elementosLedObjeto = document.querySelectorAll(`#${objetoActual.lineaActual} .${objetoActual.ledActual}`);
+  const elementosGrillaObjeto = document.querySelectorAll(`#${objetoActual.lineaActual} .${objetoActual.ledSecundario}`);
+
+  if (elementosObjeto.length > 0 || elementosLedObjeto.length || elementosGrillaObjeto.length > 0) {
+    const limite = objetoActual.colorAplicadoContador;
+    let coloreados = 0;
+
+    // Aplicar el color almacenado
+    for (let i = elementosObjeto.length - 1; i >= 0; i--) {
+      if (coloreados < limite) {
+        elementosObjeto[i].style.backgroundColor = objetoActual.colorElemento; // Usa el color directamente.
+        coloreados++;
+      } else {
+        break;
+      }
+    }
+
+    for (let i = elementosLedObjeto.length - 1; i >= 0; i--) {
+      if (coloreados < limite) {
+        elementosLedObjeto[i].style.backgroundColor = objetoActual.colorElemento;
+        coloreados++;
+      } else {
+        break;
+      }
+    }
+  } else {
+    console.warn('No se encontraron elementos para aplicar color.');  
+  }
+}
+function vaciarObjetoEnLocal() {
+  // Eliminar el objeto almacenado en localStorage
+  localStorage.removeItem('objetoAmarillo');
+  
+  console.log('Objeto eliminado de localStorage');
+}  
+function guardarCambios(nombreClave) {
+  if (objetoGlobal) {
+    try {
+      // Convertir el objeto a una cadena JSON y almacenarlo en localStorage
+      localStorage.setItem(nombreClave, JSON.stringify(almacenObjetos));
+      console.log(`Cambios guardados bajo la clave: ${nombreClave}`);
+    } catch (error) {
+      console.error("Error al guardar los cambios en localStorage:", error);
+    }
+  } else {
+    console.warn("No hay una instancia cargada para guardar cambios.");
+  }
+}
+function cargarInstanciaDesdeLocalEnObjetoglobal(nombreClave) {
+  const instanciaGuardada = localStorage.getItem(nombreClave);
+    
+  if (instanciaGuardada) {
+    try {
+      objetoGlobal = JSON.parse(instanciaGuardada);
+      console.log(`Instancia cargada desde la clave "${nombreClave}":`, objetoGlobal);  
+    } catch (error) {
+      console.error("Error al parsear la instancia desde localStorage:", error);
+      objetoGlobal = null;
+    }
+  } else {
+    console.warn(`No se encontró ninguna instancia bajo la clave "${nombreClave}".`);
+  }
+}
+
+inputPerfil.addEventListener('input', function () {
+  const valor = this.value
+    .toLowerCase()                         // normaliza todo
+    .replace(/\b\w/g, c => c.toUpperCase()); // mayúscula por palabra
+
+  this.value = valor;
+});
+inputPerfil.addEventListener('focusin',() =>{
+  if(!esDesktop) showKeyboard()
+})
+inputPerfil.addEventListener('blur', () => {
+  if(!esDesktop) hideKeyboard()
+});
+
+
+function vaciarTodoAlmacenObjetos() {
+  localStorage.clear(); // Borra todo el contenido de localStorage
+  console.log("Todos los objetos han sido eliminados del almacenamiento local.");
+}
+
+document.getElementById('btn-crea-perfil').addEventListener('click', () => {
+  // Capturar el valor del input
+  let inputNombre = inputPerfil.value.trim();
+  if (inputNombre === '') {
+    saltarAlerta('Por favor, ingrese un nombre válido', 'perfilador');
+    return;
+  }
+  // Capitalizar la primera letra de cada palabra
+  inputNombre = capitalizarTexto(inputNombre);
+  if (almacenObjetos[inputNombre]) {
+    saltarAlerta('Ya existe un perfil con este nombre', 'perfilExiste');
+    /* mostrarVentanaEmergente('Ya existe un perfil con este nombre'); */
+    return;
+  }
+  // Crear una nueva instancia de la clase objetoColores
+  const nuevoObjeto = new objetoColores();
+ 
+  // Almacenar el objeto en el almacén bajo el nombre del input 
+  almacenObjetos[inputNombre] = nuevoObjeto;
+  // Crear un nuevo objeto ordenado alfabéticamente por las claves
+  const almacenObjetosOrdenado = Object.keys(almacenObjetos)
+    .sort() // Ordenar las claves alfabéticamente
+    .reduce((obj, key) => {
+      obj[key] = almacenObjetos[key]; // Reconstruir el objeto con las claves ordenadas
+      return obj;
+    }, {});
+  // Actualizar el almacén con el objeto ordenado
+  almacenObjetos = almacenObjetosOrdenado;
+  // Guardar el objeto ordenado en localStorage
+  localStorage.setItem('coloresRegistrados', JSON.stringify(almacenObjetos));
+  // Notificar al usuario
+  console.log(`Perfil "${inputNombre}" creado y almacenado.`);
+  console.log("Objeto almacenado en la variable global:", objetoGlobal);
+  console.log(almacenObjetos);
+  // Mostrar mensaje de éxito
+  /* mostrarVentanaEmergente('Perfil creado y almacenado'); */
+  saltarAlerta('Perfil creado y almacenado','perfilAgregado')
+  // Limpiar el input
+  inputPerfil.value = '';
+  // Recuperar y mostrar el almacén desde localStorage
+  const almacenJSON = localStorage.getItem('coloresRegistrados');
+  if (almacenJSON) {
+    const almacenRecuperado = JSON.parse(almacenJSON);
+    console.log("Almacén de Objetos:", "almacenObjetos"); // Nombre del almacén 
+    Object.keys(almacenRecuperado).forEach(nombreObjeto => {
+      console.log(`- Objeto: ${nombreObjeto}`); // Nombre del objeto
+      const propiedades = Object.keys(almacenRecuperado[nombreObjeto]);
+      console.log("  Propiedades principales:", propiedades.join(", "));
+    });
+    console.log('VARIABLE GLOBAL CON JSON :', JSON.stringify(objetoGlobal, null, 2));
+    console.log('VARIABLE GLOBAL SIN JSON :', objetoGlobal);
+  } else {
+    console.log("No se encontraron objetos almacenados en el localStorage.");
+  }
+  /* restablecerClick(['.butt-perfiles', '.jobs']) */
+});
+
+// Función para capitalizar la primera letra de cada palabra
+function capitalizarTexto(texto) {
+  return texto.replace(/\b\w/g, char => char.toUpperCase());
+}
+// Función para actualizar y mostrar la lista de nombres
+function actualizarListaNombres() {
+  const listaNombresContainer = document.getElementById('listaNombresContainer');  
+  // Limpiar el contenedor antes de actualizarlo
+  listaNombresContainer.innerHTML = '';
+
+  // Obtener los nombres del almacén y ordenarlos alfabéticamente
+  const nombresOrdenados = Object.keys(almacenObjetos)
+    .sort(); // Ordenar alfabéticamente
+
+  // Iterar sobre los nombres ordenados y mostrarlos en el contenedor
+  nombresOrdenados.forEach(nombre => {
+    const nombreDiv = document.createElement('div');
+    nombreDiv.textContent = nombre; // Mostrar el nombre con formato
+    nombreDiv.classList.add('elemento-objeto'); // Agregar clase para estilos o identificación
+
+    // Agregar evento de clic al elemento dinámico
+    nombreDiv.addEventListener('click', () => {
+      resaltarElemento(nombreDiv);
+    });
+
+    listaNombresContainer.appendChild(nombreDiv);
+  });
+}
+// Función para resaltar un elemento y ocultar los demás
+function resaltarElemento(elementoClicado) {
+  const listaNombresContainer = document.getElementById('listaNombresContainer');
+  const nombresDivs = Array.from(listaNombresContainer.querySelectorAll('.elemento-objeto'));
+
+  // Quitar el color de fondo y mostrar todos los elementos primero
+  nombresDivs.forEach(div => {
+    div.style.backgroundColor = ''; // Restaurar el color original
+    div.style.color = ''; // Restaurar el color del texto
+    div.style.display = 'block'; // Mostrar todos los elementos
+  });
+
+  // Aplicar el color azul de fondo al elemento clicado
+  elementoClicado.style.backgroundColor = 'blue';
+  elementoClicado.style.color = 'white';
+
+  // Ocultar todos los demás elementos
+  nombresDivs.forEach(div => {
+    if (div !== elementoClicado) {
+      div.style.display = 'none'; // Ocultar los demás
+    }
+   });
+  document.querySelector('#filtroNombres input').value = '';
+}
+// LOGICA PARA ADMINISTRAR EL objetoGlobal
+function cargarObjetoGlobalDesdeLocalStorage() {
+  const datosObjetoGlobal = localStorage.getItem('objetoGlobal');
+  if (datosObjetoGlobal) {
+    try {
+      objetoGlobal = JSON.parse(datosObjetoGlobal); // Carga objetoGlobal desde localStorage
+      console.log('objetoGlobal cargado desde localStorage:', objetoGlobal);
+    } catch (error) {
+      console.error('Error al cargar objetoGlobal desde localStorage:', error);
+    }
+  } else {
+    console.warn('No se encontraron datos de objetoGlobal en localStorage.');
+  }
+}
+function guardarCambiosGeneralesEnAlmacen() {
+  try {
+    localStorage.setItem('coloresRegistrados', JSON.stringify(almacenObjetos));
+    console.log('Todos los cambios en almacenObjetos guardados en localStorage.');
+  } catch (error) {
+    console.error('Error al guardar almacenObjetos en localStorage:', error);  
+  }
+}
+// Función para mostrar la ventana emergente
+function mostrarVentanaEmergente(mensaje) {
+  const ventanaEmergente = document.getElementById('ventanaEmergente');
+  const mensajeEmergente = document.getElementById('mensajeEmergente');
+  mensajeEmergente.textContent = mensaje;
+  ventanaEmergente.classList.remove('oculta');
+}
+
+document.getElementById('cerrarEmergente').addEventListener('click', () => {
+  let conteCMYK = document.querySelector('#padre-cmyk');
+  let conteRGB = document.querySelector('#padre-rgb');
+  const mensajeEmergente = document.getElementById('mensajeEmergente');
+  conteJobTrack.classList.remove('move-job-track')
+
+  if (mensajeEmergente.textContent === 'Perfil creado y almacenado') {
+    document.getElementById('ventanaEmergente').classList.add('oculta');
+    document.querySelector('#unit-job-track').style.display = 'flex';
+
+    // Verificar si alguno de los dos contenedores tiene display "grid"
+    let cmykVisible = window.getComputedStyle(conteCMYK).display === 'grid';
+    let rgbVisible = window.getComputedStyle(conteRGB).display === 'grid';
+    buscaNombre.focus()
+
+
+    if (!cmykVisible && !rgbVisible) { 
+      conteJobTrack.classList.add('move-job-track'); 
+    }
+
+    inputPerfil.value = '';
+    document.querySelectorAll('.datos-base').forEach((elemento) => {
+      elemento.textContent = '';
+    });
+
+    desactivarClick(['.butt-perfiles']);
+    restablecerClick(['.cont-vacio']);
+
+    setTimeout(() => {
+      ocultarElemento('#formulario-perfiles');
+    }, 200);
+
+    setTimeout(() => {
+      mostrarElemento('.files-job');
+      inputPerfil.focus();
+      inputPerfil.value = '';
+    }, 700);
+    
+  }
+  if (mensajeEmergente.textContent === 'Por favor, ingrese un nombre válido') {
+    document.getElementById('ventanaEmergente').classList.add('oculta');
+    inputPerfil.focus();
+    inputPerfil.value = '';
+    detenerParpadeo() 
+    if (esDesktop) {
+      buscaNombre.focus()
+    }    
+  }
+  if (mensajeEmergente.textContent === 'Cargue la base de datos antes de generar el perfil de color') {
+    document.getElementById('ventanaEmergente').classList.add('oculta');
+    if (esDesktop) {
+      creaNombre.focus()
+    }
+    detenerParpadeo() 
+    buscaNombre.value = ''
+    creaNombre.value = ''
+
+    botonesPerfilColor.forEach(elemento => {   
+      elemento.style.display = 'block';   
+    });
+    limpiarColoresDeFondo()
+    desactivarClick(['.butt-perfiles', '.estilo-1']);  
+    mostrarNombresDeObjetos(); 
+    setTimeout(() => {
+      if (listaClientes && listaClientes.children.length === 0) {
+        mostrarVentanaMensaje('El almacenamiento y la base de datos estan vacíos')
+      }
+    }, 50);      
+
+
+  }
+  if (mensajeEmergente.textContent === 'Ya existe un perfil con este nombre') {
+    document.getElementById('ventanaEmergente').classList.add('oculta');
+  }    
+
+});
+function crearBotonResta(color, linea1, linea2, linea3) {
+  const contenedorPrincipal = document.getElementById('columna-30');
+  const botonesResta = [];
+
+  const indexarElements = document.querySelectorAll('.indexar');
+  for (let i = 1; i <= 22; i++) {
+    const elementoResta = document.createElement('div');
+    elementoResta.classList.add('linea-control', 'resta');
+    elementoResta.id = `bot-resta-${i}`;
+    contenedorPrincipal.appendChild(elementoResta);
+    botonesResta.push(elementoResta);
+
+    // 🔸 Se agrupa la lógica común para reutilizar en eventos táctiles y de mouse
+    const iniciarResta = () => {
+      if (!flagAplicacion) {
+        alertaBotones.style.display = 'flex';
+        alertaBotones.style.backgroundColor = verde;
+        alertaBotones.style.color = 'black';
+        alertaBotones.style.top = '20vh';
+        desactivarClicEnElementos(buttSelector, buttSelector, botonesPerfilColor, buttsControl, buttsColores, buttSuma, buttResta);
+        setTimeout(() => {
+          alertaBotones.style.backgroundColor = '';
+          alertaBotones.style.color = '';
+        }, 500);
+      } else {
+        const numeroBoton = elementoResta.id.match(/\d+/)?.[0];
+        elementoResta.style.backgroundColor = 'rgb(0, 250, 254)';
+        const colorName = getColorName(color);
+        const lineaID = `linea-${numeroBoton}`;
+        const ledID = `led-${numeroBoton}`;
+        const ledGeneral = `grilla-${numeroBoton}`;
+        const ledsRuta = `#columna-70 #${lineaID} #display-leds .leds`;
+        const ledControlRuta = `#control-perfiles #led-${numeroBoton} .led`;
+        const ledGeneralRuta = `#perfil-${colorName} #grilla-${numeroBoton} .led-general`;
+        const coleccionLeds = document.querySelectorAll(ledsRuta);
+        const coleccionLed = document.querySelectorAll(ledControlRuta);
+        const coleccionGeneral = document.querySelectorAll(ledGeneralRuta);
+        console.log(' COLORNAME :', colorName);
+
+        let index = (coleccionLeds.length) - almacenObjetos[objetoGlobal][colorName][linea1][lineaID].length;
+        let intervalID = setInterval(() => {
+          if (index === 24) return;
+          if (index >= 0) {
+            coleccionLeds[index].style.backgroundColor = '';
+            coleccionLed[index].style.backgroundColor = '';
+            coleccionGeneral[index].style.backgroundColor = '';
+
+            almacenObjetos[objetoGlobal][colorName][linea1][lineaID].pop();
+            almacenObjetos[objetoGlobal][colorName][linea2][ledID].pop();
+            almacenObjetos[objetoGlobal][colorName][linea3][ledGeneral].pop();
+
+            guardarObjetoEnLocalStorage();
+            guardarCambiosGeneralesEnAlmacen();
+            index++;
+          } else {
+            clearInterval(intervalID);
+          }
+        }, 177);
+
+        const indexarElement = indexarElements[i - 1];
+        if (indexarElement) {
+          indexarElement.style.color = 'red';
+          indexarElement.style.fontSize = '1em';
+          indexarElement.style.fontWeight = 'bold';
+        }
+
+        const detenerResta = () => { // 🟡 Nueva función reutilizable
+          const indexarElement = indexarElements[i - 1];
+          if (indexarElement) {
+            indexarElement.style.color = '';
+            indexarElement.style.fontSize = '';
+            indexarElement.style.fontWeight = '';
+          }
+          elementoResta.style.backgroundColor = '';
+          clearInterval(intervalID);
+        };
+
+        elementoResta.addEventListener("mouseup", detenerResta);
+        elementoResta.addEventListener("mouseleave", detenerResta);
+
+        // 🟡 Nuevos eventos táctiles equivalentes a mouseup/mouseleave
+        elementoResta.addEventListener("touchend", detenerResta, { passive: true });
+        elementoResta.addEventListener("touchcancel", detenerResta, { passive: true });
+      }
+    };
+
+    elementoResta.addEventListener("mousedown", iniciarResta);
+
+    // 🟡 Nuevo: soporte táctil equivalente a mousedown
+    elementoResta.addEventListener("touchstart", (e) => {
+      e.preventDefault(); // evita scroll en pantallas táctiles
+      iniciarResta();
+    }, { passive: false });
+  }
+
+
+  }
+function renderizarPerfilesTinta(color) {
+  const todosLeds = document.querySelectorAll('.led, .leds');
+  todosLeds.forEach(led => {
+    led.style.backgroundColor = '';
+  });
+
+  let informacionBalance; // Variable para almacenar la información de los botones según el color
+  let informacionBotones; // Variable para almacenar la información de los botones según el color
+  switch(color) {
+    case negro:
+      informacionBotones = informacionBotonesNegro;
+    break;
+    case amarillo:
+    informacionBotones = informacionBotonesAmarillo;
+    break;
+    case magenta:        
+      informacionBotones = informacionBotonesMagenta;
+    break;
+    case cian:
+      informacionBotones = informacionBotonesCyan;
+    break;
+    case especial:
+      informacionBotones = informacionBotonesNaranja;
+    break;
+    case barniz:
+      informacionBotones = informacionBotonesGris;
+    break;  
+    default:
+    return; // Salir si no hay un color válido
+  }
+  aplicarColorLeds(informacionBotones, color);
+}
+function aplicarColorLeds(informacionBotones, color) {
+  informacionBotones.forEach((obj, index) => {
+    // Seleccionar todos los leds correspondientes a la linea actual
+    const displayLedsLinea = document.querySelectorAll(`#linea-${index + 1} #display-leds .leds`);
+    const displayLedsSeguidores = document.querySelectorAll(`#control-perfiles #led-${index + 1} .led`);      
+
+    // Recorrer los índices de leds coloreados almacenados en el objeto
+    obj.ledsColoreados.forEach((ledIndex) => {
+      // Aplicar el color a cada led que se encuentra en el array ledsColoreados
+      const led = displayLedsLinea[ledIndex];
+      const seguidorLed = displayLedsSeguidores[ledIndex];      
+      if (led) {
+        led.style.backgroundColor = color; // Cambia 'red' por el color deseado
+        led.dataset.color = color;
+      }      
+      if (seguidorLed) {
+        seguidorLed.style.backgroundColor = color;
+        seguidorLed.dataset.color = color;
+      }
+    });
+  });
+}
+document.querySelector('#cont-modificadores span:nth-child(1)').addEventListener('click', () =>{
+  interfazColor.style.display='none'
+  resetPerfiles()
+  desactivarEventos()
+})
+document.querySelector('#cont-modificadores span:nth-child(3)').addEventListener('click', () =>{
+  var elementosExcluidos = ['simulador','interfaz-perfiles','inerfaz-ajuste-fino','perfil-individual','control-perfiles']  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }  
+  
+})
+function resetPerfiles() {
+  resetColor(flagNegro, informacionBotonesNegro, 'negro');
+  resetColor(flagCyan, informacionBotonesCyan, 'cyan');
+  resetColor(flagMagenta, informacionBotonesMagenta, 'magenta');
+  resetColor(flagEspecial, informacionBotonesNaranja, 'especial');
+  resetColor(flagBarniz, informacionBotonesGris, 'barniz');
+  resetColor(flagAmarillo, informacionBotonesAmarillo, 'yellow');
+}
+function resetColor(flag, informacionBotones, color) {
+  const displaySolucion = document.getElementById('solucion-porcentaje')
+  const displayTinta = document.getElementById('tinta-perc')
+  if (flag) {
+    informacionBotones.forEach(informacion => {
+      informacion.ledsColoreados = []; 
+      informacion.colorAplicadoContador = 0;
+     });
+    eliminarColoresConIntervalo(color);
+    displaySolucion.textContent = 0 + '%'
+    displayTinta.textContent = 0 + '%'
+  }
+}
+//ELIMINA COLOR DE PERFILES
+function eliminarColoresConIntervalo(perfil) {
+  const dialogoFlotante = document.getElementById('dialogo-flotante'); 
+  dialogoFlotante.style.display = 'block';  
+  if (currentLinea === 0 && currentIndice === 0) {
+    desactivarEventos();
+  }
+  if (currentLinea < numeroLineas) {
+    // Seleccionar elementos de las líneas y perfiles correspondientes
+    const lineaActual = document.querySelectorAll(`#linea-${currentLinea + 1} #display-leds .leds`);
+    const lineaClon = document.querySelectorAll(`#perfil-${perfil} #grilla-${currentLinea + 1} .led-general`);
+    const lineaCopiadora = document.querySelectorAll(`#led-${currentLinea + 1} .led`);
+    const colecciones = [lineaActual, lineaClon, lineaCopiadora];
+    if (currentIndice < lineaActual.length) {
+      colecciones.forEach((coleccion) => {
+        const elemento = coleccion[currentIndice];
+        if (elemento && elemento.style.backgroundColor !== '') {
+          elemento.style.backgroundColor = '';
+          elemento.style.border = '';
+          elemento.dataset.color = ''; // Limpiar el dataset
+        }
+      });
+      currentIndice++;
+      setTimeout(() => eliminarColoresConIntervalo(perfil), 1); // Llamar de nuevo con el mismo perfil
+    } else {
+      currentLinea++; // Pasar a la siguiente línea
+      currentIndice = 0; // Reiniciar el índice para la nueva línea
+      setTimeout(() => eliminarColoresConIntervalo(perfil), 1); // Llamar de nuevo con el mismo perfil
+    }
+  } else {
+    // Reactivar los eventos cuando todo ha finalizado
+    activarEventos();
+    dialogoFlotante.style.display = 'none';
+    if(perfil === 'negro'){
+    almacenSolucionNegro = []
+    almacenTintaNegro = []
+    limpiarColores('negro');
+    }
+    if(perfil === 'cyan'){
+      almacenSolucionCyan = []
+      almacenTintaCyan = []
+    }
+    if(perfil === 'magenta'){
+      almacenSolucionMagenta = []
+      almacenTintaMagenta = []
+    }
+    if(perfil === 'yellow'){
+      almacenSolucionAmarillo = []
+      almacenTintaAmarillo = []
+    }
+    if(perfil === 'especial'){
+      almacenSolucionEspecial = []
+      almacenTintaEspecial = []
+    }
+    if(perfil === 'barniz'){
+      almacenSolucionBarniz = []
+      almacenTintaBarniz = []
+    }
+
+    limpiarColores(perfil)
+    // Reiniciar variables para futuras ejecuciones
+    currentLinea = 0;
+    currentIndice = 0;
+
+  }
+
+}
+function limpiarColores(perfil) {
+  const lineasSolucion = document.querySelectorAll('.lineas-solucion');
+  const lineasTinta = document.querySelectorAll('.lineas-tinta');
+
+  lineasTinta.forEach(lineas =>{
+    lineas.style.backgroundColor=''
+    almacenTintaNegro = []
+  })
+  lineasSolucion.forEach(lineat =>{
+    lineat.style.backgroundColor=''
+    almacenSolucionNegro = []
+  })
+
+  const inkLines = document.querySelectorAll(`#footer-${perfil} #footer-1 .divs-grales-tinta-${perfil}`);  
+  inkLines.forEach(line => {
+    line.style.backgroundColor = ''; // Elimina el color de fondo de cada elemento
+  });
+
+  const fontLines = document.querySelectorAll(`#footer-${perfil} #footer-2 .divs-grales-solucion-${perfil}`)
+  fontLines.forEach(font => {
+    font.style.backgroundColor = '';
+    font.classList.remove('elemento-agua');
+  });    
+}
+let intervalo = null    
+function actualizarSolucion(color) {
+  const boranda = document.querySelectorAll('.lineas-solucion');
+  switch(color){
+    case 'negro':  
+        const limit = boranda.length - almacenSolucionNegro.length; // Límite hasta donde se aplicará el color  
+        for (let index = boranda.length - 1; index >= limit; index--) {
+          boranda[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+        } 
+    break
+    case 'cyan':
+      const limit1 = boranda.length - almacenSolucionCyan.length; // Límite hasta donde se aplicará el color
+      for (let index = boranda.length - 1; index >= limit1; index--) {
+        boranda[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+    break
+    case 'magenta':
+      const limit2 = boranda.length - almacenSolucionMagenta.length; // Límite hasta donde se aplicará el color
+      for (let index = boranda.length - 1; index >= limit2; index--) {
+        boranda[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+    break
+    case 'yellow':
+      const limit3 = boranda.length - almacenSolucionAmarillo.length; // Límite hasta donde se aplicará el color
+      for (let index = boranda.length - 1; index >= limit3; index--) {
+        boranda[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+    break
+    case 'especial':
+      const limit4 = boranda.length - almacenSolucionEspecial.length; // Límite hasta donde se aplicará el color
+      for (let index = boranda.length - 1; index >= limit4; index--) {
+        boranda[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+    break
+    case 'barniz':
+      const limit5 = boranda.length - almacenSolucionBarniz.length; // Límite hasta donde se aplicará el color
+      for (let index = boranda.length - 1; index >= limit5; index--) {
+        boranda[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+    break
+  }
+} 
+function actualizarTinta(color) {
+  const coleccionTinta = document.querySelectorAll('.lineas-tinta');
+  switch(color){
+    case 'negro':
+      contadorTinta.textContent = objetoNegro.nivelTinta.length + '%';           
+      const limit = coleccionTinta.length - almacenTintaNegro.length; // Límite hasta donde se aplicará el color
+      for (let index = coleccionTinta.length - 1; index >= limit; index--) {
+        coleccionTinta[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+      const coleccionTintaNegro = document.querySelectorAll('.divs-grales-tinta-negro')
+      for (let index = coleccionTintaNegro.length - 1; index >= limit; index--) {
+        coleccionTintaNegro[index].style.backgroundColor = negro ; // Aplica el color amarillo simultáneamente
+      }
+    break
+    case 'cyan':
+      contadorTinta.textContent = objetoCian.nivelTinta.length + '%';   
+      const limit1 = coleccionTinta.length - almacenTintaCyan.length; // Límite hasta donde se aplicará el color
+      for (let index = coleccionTinta.length - 1; index >= limit1; index--) {
+        coleccionTinta[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+      const coleccionTintaCian = document.querySelectorAll('.divs-grales-tinta-azul')
+      for (let index = coleccionTintaCian.length - 1; index >= limit1; index--) {
+        coleccionTintaCian[index].style.backgroundColor = negro ; // Aplica el color amarillo simultáneamente
+      }
+    break
+    case 'magenta':
+      contadorTinta.textContent = objetoMagenta.nivelTinta.length + '%';   
+      const limit2 = coleccionTinta.length - almacenTintaMagenta.length; // Límite hasta donde se aplicará el color
+      for (let index = coleccionTinta.length - 1; index >= limit2; index--) {
+        coleccionTinta[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+      const coleccionTintaMagenta = document.querySelectorAll('.divs-grales-tinta-magenta')
+      for (let index = coleccionTintaMagenta.length - 1; index >= limit2; index--) {
+        coleccionTintaMagenta[index].style.backgroundColor = magenta ; // Aplica el color amarillo simultáneamente
+      }
+    break
+    case 'yellow':
+      contadorTinta.textContent = objetoAmarillo.nivelTinta.length + '%';   
+      const limit3 = coleccionTinta.length - almacenTintaAmarillo.length; // Límite hasta donde se aplicará el color
+      for (let index = coleccionTinta.length - 1; index >= limit3; index--) {
+        coleccionTinta[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+      const coleccionTintaAmarillo = document.querySelectorAll('.divs-grales-tinta-amarillo')
+      for (let index = coleccionTintaAmarillo.length - 1; index >= limit3; index--) {
+        coleccionTintaAmarillo[index].style.backgroundColor = amarillo ; // Aplica el color amarillo simultáneamente
+      }      
+    break
+    case 'especial':
+      contadorTinta.textContent = objetoEspecial.nivelTinta.length + '%';   
+      const limit4 = coleccionTinta.length - almacenTintaEspecial.length; // Límite hasta donde se aplicará el color
+      for (let index = coleccionTinta.length - 1; index >= limit4; index--) {
+        coleccionTinta[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+      const coleccionTintaEspecial = document.querySelectorAll('.divs-grales-tinta-especial')
+      for (let index = coleccionTintaEspecial.length - 1; index >= limit4; index--) {
+        coleccionTintaEspecial[index].style.backgroundColor = especial ; // Aplica el color amarillo simultáneamente
+      }
+    break
+    case 'barniz':
+      contadorTinta.textContent = objetoBarniz.nivelTinta.length + '%';   
+      const limit5 = coleccionTinta.length - almacenTintaBarniz.length; // Límite hasta donde se aplicará el color
+      for (let index = coleccionTinta.length - 1; index >= limit5; index--) {
+        coleccionTinta[index].style.backgroundColor = 'yellow'; // Aplica el color amarillo simultáneamente
+      }
+      const coleccionTintaBarniz = document.querySelectorAll('.divs-grales-tinta-barniz')
+      for (let index = coleccionTintaBarniz.length - 1; index >= limit5; index--) {
+        coleccionTintaBarniz[index].style.backgroundColor = barniz ; // Aplica el color amarillo simultáneamente
+      }
+    break
+  }
+}  
+
+botonesPerfilColor.forEach(boton => {
+  boton.addEventListener('click', () => {
+    botonesPerfilColor.forEach(b => b.style.backgroundColor = '');
+    boton.style.backgroundColor = '#2bf22bc0';
+  });
+});
+
+const intervalosColor = new Map();
+
+
+function alternarColor(el1, el2,espera) {
+  detenerTodosLosColores(); // ← CLAVE
+
+  [el1, el2].forEach(el => {
+    if (!el) return;
+
+    el.style.backgroundColor = 'rgb(0, 255, 0)';
+
+    const intervalo = setInterval(() => {
+      el.style.backgroundColor =
+        el.style.backgroundColor === 'rgb(0, 255, 0)'
+          ? 'transparent'
+          : 'rgb(0, 255, 0)';
+    }, 100);
+
+    intervalosColor.set(el, intervalo);
+  });
+
+  setTimeout(() => {
+    detenerAlternarColor(el1, el2);
+  }, espera);
+}
+
+function detenerAlternarColor(...elementos) {
+  elementos.forEach(el => {
+    if (!intervalosColor.has(el)) return;
+
+    clearInterval(intervalosColor.get(el));
+    intervalosColor.delete(el);
+    el.style.backgroundColor = '';
+  });
+}
+
+function detenerAlternarColor(...elementos) {
+  elementos.forEach(el => {
+    if (!intervalosColor.has(el)) return;
+
+    clearInterval(intervalosColor.get(el));
+    intervalosColor.delete(el);
+    el.style.backgroundColor = '';
+  });
+}
+
+function detenerTodosLosColores() {
+  for (const [el, intervalo] of intervalosColor) {
+    clearInterval(intervalo);
+    el.style.backgroundColor = '';
+  }
+  intervalosColor.clear();
+}
+
+
+btnSalir.addEventListener('click', ()=>{ 
+  const numeros = document.querySelectorAll('.number'); // Selecciona todos los elementos con la clase .number  
+  const algunoConContenido = Array.from(numeros).some(numero => numero.textContent.trim() !== '');
+  if (algunoConContenido) {
+    /* mostrarVentanaMensaje('Click en ENTRAR para ingesar la informacion') */
+    saltarAlerta('Click en ENTRAR para ingesar la informacion','salirCalcula')
+    /* alternarColor('entrar-cantidad') */
+    parpadearElemento('entrar-cantidad', 150, 2500);
+  }else{
+    calculadora.classList.add('move-calculadora')
+  }
+})      
+
+const coleccionNumeros = [];
+const contenedorResultado = document.querySelector('#resultado-calculadora');
+const spansNumeros = contenedorResultado.querySelectorAll('.number');
+const contenedorCantidad = document.querySelector('#display-cantidad')
+const spansCantidades = contenedorCantidad.querySelectorAll('.cantidad-display'); 
+const digitos = document.querySelectorAll('.grid-item');  
+const buttsAguaGral = document.querySelectorAll('.mod-tinta');
+const buttsAguaSingle = document.querySelectorAll('.div-ctrl');
+const buttSelector = document.querySelectorAll('.butt-selector')
+const buttSuma = document.querySelectorAll('.linea-control')
+const buttResta = document.querySelectorAll('.resta')
+const buttsClientes = document.querySelectorAll('.estilo-1');
+const alertaTres = document.getElementById('alerta-tres')
+const alertaCuatro = document.getElementById('alerta-cuatro')  
+const alertaCinco = document.getElementById('alerta-cinco')
+const alertaSeis = document.getElementById('alerta-seis')
+const alertaSiete = document.getElementById('alerta-siete')
+const alertaOcho = document.getElementById('alerta-ocho')
+let alertaNueve = document.querySelector('#alerta-nueve')
+const buttsJobs = document.querySelectorAll('.base-datos');
+const botonClientes = document.querySelector('#clientes')
+
+buttsJobs.forEach(boton => {
+  let panelUno = document.getElementById('panel-uno')
+  let panelDos = document.getElementById('panel-dos')  
+  
+
+  //CALCULADORA SIMULADOR
+  boton.addEventListener('click', () => {
+    restablecerEstilos('calculadora');
+    calculadora.classList.remove('subir');
+    
+    switch(boton.id) {
+      case 'clientes':
+        /* listaClientes.removeAttribute('style'); */      
+        desactivarClick(['.butt-perfiles', '.estilo-1']);  
+        mostrarListaClientes('jobTrack')
+        mostrarNombresDeObjetos(); 
+      break;
+      case 'lineas':
+        irAconsola.style.display='none'
+        let lineaClientes = document.querySelector('#lista-lineas')
+        lineaClientes.style.top='56vh'
+        lineaClientes.style.height = '39vh'
+        lineaClientes.addEventListener('mouseleave', () => {
+          lineaClientes.style.display = 'none'
+          restablecerClick(['.butt-perfiles', '.estilo-1']);
+        })
+        desactivarClick(['.butt-perfiles', '.estilo-1']);
+        if(panelUno.textContent === ''){alertaTres.style.display = 'flex';} 
+        else{
+          document.querySelector('#lista-lineas').style.display = 'block'
+          listaClientes.style.display = 'none'
+        }
+      break;
+      case 'tirajes':
+        if (getComputedStyle(padreLineas).isVisible === 'true') return;
+        restablecerEstilos('calculadora');
+        calculadora.classList.remove('move-calculadora-up')
+        calculadora.classList.remove('move-calculadora-down')
+
+        calculadoraSimulador=false
+        if(!calculadoraSimulador){
+          irAconsola.style.display='none'
+          desactivarClick(['.butt-perfiles', '.estilo-1']);
+          restablecerClick(['.digito'])
+          if(panelUno.textContent === '' || panelDos.textContent === ''){  
+            alertaTres.style.display = 'flex';
+          }else{          
+            calculadora.classList.remove('move-calculadora')
+            calculadora.classList.remove('move-calculadora-1')
+            setTimeout(() => {
+              gridNumbers.style.display = 'grid'
+              calculadora.classList.add('move-calculadora-1') 
+            }, 100);
+          }
+          coleccionNumeros.length = 0;
+          actualizarDisplay(); 
+        }
+      break;  
+    } 
+  });
+
+});
+function actualizarDisplay() {
+  document.querySelectorAll('#resultado-calculadora .number, #display-cantidad .cantidad-display').forEach(elemento => elemento.textContent = '');
+}
+
+// CLIENTES
+const contenedorClientes = document.getElementById('lista-clientes');
+const arriba = document.querySelector('#job-files > div:nth-child(1) > span:nth-child(2)');
+
+contenedorClientes.addEventListener('click', (e) => {
+  const cliente = e.target.closest('div');
+  if (!cliente) return;
+
+  arriba.textContent = cliente.textContent;
+  contenedorClientes.style.display = 'none';
+
+  restablecerClick(['.butt-perfiles', '.estilo-1']);
+  blurOverlay.style.display = 'none';
+});
+
+
+// LINEAS
+const contenedorLineas = document.getElementById('lista-lineas');
+const panelDos = document.getElementById('panel-dos');
+const destinoLinea = document.querySelector('#job-files > .jobs:nth-child(2) > .base-datos:nth-child(2)');
+
+contenedorLineas.addEventListener('click', (e) => {
+  const linea = e.target.closest('div');
+  if (!linea) return;
+
+  panelDos.style.backgroundColor = 'rgb(0,0,23)';
+  panelDos.style.color = 'rgb(200,200,200)';
+
+  destinoLinea.textContent = linea.textContent;
+  contenedorLineas.style.display = 'none';
+
+  restablecerClick(['.jobs', '.estilo-1']);
+  mostrarBarraProgres(33.5, 67);
+});
+
+// BOTONES DE LA CALCULADORA
+
+// BOTONES DE LA CALCULADORA
+
+digitos.forEach((elemento) => {
+
+  elemento.addEventListener('mousedown', (e) => e.preventDefault());
+
+  elemento.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    if (!calculadoraSimulador) {  // CALCULADORA NORMAL
+
+      digitos.forEach(d => d.style.pointerEvents = 'none');
+
+      const spans = document.querySelectorAll('.datos-base');
+
+      if ([...spans].every(span => span.textContent.trim() === '')) {
+        alertaTres.style.display = 'flex';
+        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+
+      } else if (spans[0].textContent.trim() === '') {
+        document.getElementById('alerta-uno').style.display = 'flex';
+        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+
+      } else if (spans[1].textContent.trim() === '') {
+        document.getElementById('alerta-dos').style.display = 'flex';
+        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+
+      } else {
+
+        const numero = parseInt(elemento.textContent);
+
+        if (!isNaN(numero)) {
+
+          if (coleccionNumeros.length >= 10) {
+            digitos.forEach(d => d.style.pointerEvents = 'auto');
+            return;
+          }
+
+          coleccionNumeros.push(numero);
+
+          spansNumeros.forEach(span => span.textContent = '');
+          spansCantidades.forEach(span => span.textContent = '');
+
+          for (let i = 0; i < coleccionNumeros.length; i++) {
+
+            spansNumeros[
+              spansNumeros.length - coleccionNumeros.length + i
+            ].textContent = coleccionNumeros[i];
+
+            spansCantidades[
+              spansCantidades.length - coleccionNumeros.length + i
+            ].textContent = coleccionNumeros[i];
+          }
+        }
+
+      }
+
+      setTimeout(() => {
+        digitos.forEach(d => d.style.pointerEvents = 'auto');
+      }, 200);
+
+    } 
+
+    else { // CALCULADORA ESPECIAL
+
+      if (!lastFocusedInput) return;
+
+      const input = lastFocusedInput;
+
+      if (elemento.dataset.action === 'backspace') {
+
+        const value = input.value ?? '';
+        if (!value.length) return;
+
+        input.value = value.slice(0, -1);
+
+        input.selectionStart = input.selectionEnd = input.value.length;
+
+        return; // evitar que continúe la inserción
+      }
+      const numero = elemento.textContent;
+      const end = input.value.length;
+      input.selectionStart = end;
+      input.selectionEnd = end;
+      input.value = input.value + numero;
+      input.selectionStart = input.selectionEnd = input.value.length;
+      if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
+
+        const clamp = (val, min, max) =>
+          Math.min(max, Math.max(min, val));
+
+        input.value = input.value.replace(/\D/g, '');
+
+        if (input.value !== '') {
+          const min = Number(input.min) || 0;
+          const max = Number(input.max) || 100;
+          input.value = clamp(parseInt(input.value, 10), min, max);
+        }
+
+      }
+
+    }
+
+  });
+
+});
+
+
+
+alertaTres.addEventListener('click', ()=> {
+  restablecerClick(['.butt-perfiles', '.estilo-1']);
+})
+btnSalir.addEventListener('mouseleave', () => {
+  restablecerClick(['.estilo-1','.digit','.digito']);
+  detenerAlternarColor(btnEntrar)
+  alertaCinco.style.display='none'
+} )
+
+document.getElementById('alerta-seis').children[2].addEventListener('click', () => {
+  alertaSeis.classList.add('move-alerta')
+  restablecerClick(['.mod-tinta','.div-ctrl','.butt-perfiles', '.butt-selector', '.cabeza', '.estilo-1', '.digit', '.digito']);
+  setTimeout(() => {
+    alertaSeis.classList.remove('move-alerta')
+    alertaSeis.style.display='none'
+  }, 700);
+});
+document.querySelector('#perfil-existe').addEventListener('click', () => {
+  ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
+  alertaSeis.classList.add('move-alerta')
+  conteJobTrack.classList.remove('move-job-track')
+  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','abandonar-perfiles']  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'    
+    }
+  }
+  container1.style.display = 'none'
+  botonesPerfilColor.forEach(elemento => {
+    elemento.style.display = 'block';
+  });
+  conteJobTrack.style.display='flex'
+  document.querySelectorAll('.datos-base').forEach((elemento) => {
+    elemento.textContent = ''
+  });
+   setTimeout(() => {
+    conteJobTrack.classList.add('move-job-track') 
+  }, 100); 
+  setTimeout(() => {
+    alertaSeis.style.display='none'
+    alertaSeis.classList.remove('move-alerta')
+    restablecerClick(['.cont-vacio', '.mod-tinta', '.div-ctrl','.base-datos'])
+  }, 1000);
+
+}) 
+document.querySelector('#perfil-crear').addEventListener('click', () => {
+  ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
+  alertaSeis.classList.add('move-alerta')  
+  var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
+    }
+  } 
+  container1.style.display = 'none'
+  botonesPerfilColor.forEach(elemento => {
+    elemento.style.display = 'block';
+  });
+  setTimeout(() => {
+    desactivarClick(['.butt-perfiles'])
+    restablecerClick(['.cont-vacio', '.mod-tinta', '.div-ctrl','.base-datos'])
+  }, 50);
+  setTimeout(() => {
+    moverFormulario()
+    inputPerfil.focus();
+    inputPerfil.value = ''
+  }, 200);   
+})
+const alertasVacios = document.querySelectorAll('.alerta-vacio');
+const alertaNormal = document.querySelectorAll('.alerta-normal');
+alertasVacios.forEach((alerta) => {
+  alerta.addEventListener('click', () => {
+    alertasVacios.forEach((alertaItem) => {
+      alertaItem.style.backgroundColor = verde
+      alertaItem.style.color = 'black'
+      setTimeout(() => {
+        alertaItem.style.display = 'none';
+        alertaItem.style.backgroundColor = ''
+        alertaItem.style.color = ''  
+      }, 200);
+    });
+    reactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+    calculadora.classList.add('move-calculadora');
+  });
+});
+alertaNormal.forEach((alerta) => {
+  alerta.addEventListener('click', () => {
+    alertaNormal.forEach((alertaItem) => {
+      alertaItem.style.backgroundColor = verde
+      alertaItem.style.color = 'black'
+      setTimeout(() => {
+        listaClientes.style.display = 'none';
+        alertaItem.style.display = 'none';
+        alertaItem.style.backgroundColor = ''
+        alertaItem.style.color = ''  
+      }, 200);
+    });
+    reactivarClicEnElementos(digitos, buttsClientes);
+  });
+});
+
+// BOTON BORRAR CALCULADORA
+
+
+
+const DELETE_INITIAL_DELAY = 400;
+const DELETE_REPEAT_RATE = 70;
+
+let deleteTimeout = null;
+let deleteInterval = null;
+
+document.addEventListener('focusin', (e) => {
+  if (e.target.matches('input, textarea')) {
+    lastFocusedInput = e.target;
+  }
+});
+
+const limpiarBase = () => {
+  coleccionNumeros.length = 0;
+  actualizarDisplay();
+  detenerAlternarColor();
+};
+
+const stopDeleting = () => {
+  clearTimeout(deleteTimeout);
+  clearInterval(deleteInterval);
+
+  deleteTimeout = null;
+  deleteInterval = null;
+};
+
+const deleteLastCharacter = (target) => {
+
+  const value = target.value ?? target.textContent ?? '';
+  if (!value.length) return;
+
+  const newValue = value.slice(0, -1);
+
+  if ('value' in target) {
+    target.value = newValue;
+  } else {
+    target.textContent = newValue;
+  }
+
+};
+
+if (esDesktop) {
+
+  botonBorrar.addEventListener('click', (e) => {
+    e.preventDefault();
+    limpiarBase();
+  });
+
+}
+
+if (!esDesktop) {
+
+  inputPerfil.setAttribute('readonly', true);
+
+  botonBorrar.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+
+    document.querySelectorAll('.number').forEach(el => {
+      el.textContent = '';
+    });
+
+
+    const target = lastFocusedInput;
+    if (!target) return;
+
+    // borrar carácter primero
+    deleteLastCharacter(target);
+
+    // luego limpiar estado interno
+    limpiarBase();
+
+    // iniciar repetición progresiva
+    deleteTimeout = setTimeout(() => {
+
+      deleteInterval = setInterval(() => {
+        deleteLastCharacter(target);
+      }, DELETE_REPEAT_RATE);
+
+    }, DELETE_INITIAL_DELAY);
+
+  });
+
+  botonBorrar.addEventListener('touchend', stopDeleting);
+  botonBorrar.addEventListener('touchcancel', stopDeleting);
+
+}
+
+
+
+
+document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
+  alertaMSG.style.display = 'none';
+  conteJobTrack.style.display = 'none'
+  document.querySelector('#contenedor-registro').style.display = 'none'
+  calculadora.classList.add('move-calculadora')
+  document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {
+     elemento.style.display = 'block';
+  }) 
+  restablecerClick(['.butt-perfiles']) 
+    setTimeout(() => {          
+    animarColorSecuencia();
+  }, 100);
+  setTimeout(() => {
+    animarSecuenciaPerfiles();
+  }, 200); 
+})
+
+// ENTER DE LA CALCULADORA
+
+btnEntrar.addEventListener('click', () => {  
+  detenerParpadeo()
+
+  if(!calculadoraSimulador){
+    desactivarClick(['.butt-perfiles','.digit', '.estilo-1','digito']);
+    detenerAlternarColor()
+    const elementos = document.querySelectorAll('.number');
+    const todosVacios = Array.from(elementos).every(elemento => elemento.textContent.trim() === '');  
+    console.log(document.querySelectorAll('.digito'));
+    if (todosVacios) {
+      mostrarVentanaMensaje('Ingrese tiraje para este producto ...')
+    }else{
+      document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {  
+        elemento.style.display = 'none';
+        document.querySelector('#abandonar-perfiles').style.display = 'none'
+
+      }); 
+      coleccionNumeros.length = 0;        
+      document.querySelectorAll('#resultado-calculadora .number').forEach(elemento => elemento.textContent = '');
+      calculadora.classList.add('move-calculadora')
+      setTimeout(() => {
+        mostrarBarraProgres(67, 100);         
+      }, 500);
+      setTimeout(() => {
+        irAconsola.style.display='block'
+      }, 1600); 
+      setTimeout(() => {
+        desactivarClick(['.butt-perfiles']) 
+      }, 1700);
+    }
+  }else{
+    if(!esDesktop)avanzarFoco();
+    /* if(interfazRRHH)calculadora.classList.add('move-calculadora-down') */
+  }
+});
+
+function sumarPorcentaje() {
+  // Obtener el valor actual del contador (remover el símbolo '%')
+  let porcentajeCurrent = parseInt(contadorTinta.textContent.replace('%', ''), 10);
+
+  // Sumar 1 al porcentaje
+  porcentajeCurrent = porcentajeCurrent + 1;
+
+  // Si el porcentaje supera 100, igualarlo a 100
+  if (porcentajeCurrent > 100) {
+    porcentajeCurrent = 100;
+  }
+
+  // Actualizar el texto del contador con el nuevo valor y el símbolo '%'
+  contadorTinta.textContent = porcentajeCurrent + '%';
+
+  // Para depuración (opcional)
+  console.log('Nuevo porcentaje:', porcentajeCurrent + '%');
+}
+//APLICA A leds, led, grilla
+function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propiedadIII, propiedadIV, propiedadV, propiedadVI, footer, foot){
+  // Mapeo de nombres de colores a valores CSS válidos
+  const colorMap = {
+    negro: 'black',
+    amarillo: 'yellow',
+    rojo: 'red',
+    azul: 'blue',
+    verde: 'green',
+    gris: 'rgb(200,200,200)',
+    barniz: 'rgb(200,200,200)', 
+    especial: 'rgb(255,130,0)',   
+  };
+  // Convertir el valor del parámetro `color` al correspondiente CSS
+  const colorCSS = colorMap[color] || color; // Si no existe en el mapa, usar el valor directamente
+  let displayTinta = document.querySelector('#ctrl-gral .div-ctrl #tinta-perc');
+  let displaySolucion = document.querySelector('#ctrl-gral .div-ctrl #solucion-porcentaje');  
+  let displayTintaGral = document.querySelector(`#gral-display-${color}`)
+  let displaySolucionGral = document.querySelector(`#display-general-${color}`)
+  displaySolucion.textContent = almacenObjetos[objetoGlobal][color].nivelAgua.length + '%';
+  displayTinta.textContent = almacenObjetos[objetoGlobal][color].nivelTinta.length + '%';
+  // Primera iteración: Aplicar lógica a `#columna-70`
+  for (let i = 1; i <= 22; i++) {
+    const rutaEntrega = almacenObjetos[objeto][color][propiedad];    
+    if (!rutaEntrega) {
+      console.error(`No se encontró la propiedad '${propiedad}' en el color '${color}'.`);
+      return;
+    } 
+    const lineaKey = `linea-${i}`;
+    const linea = rutaEntrega[lineaKey];  
+    if (linea) {
+      const rutaRecibe = document.querySelectorAll(`#columna-70 #${lineaKey} #display-leds .leds`);
+      if (rutaRecibe.length > 0) {
+        for (let index = rutaRecibe.length - 1, count = 0; count < linea.length && index >= 0; index--, count++) {
+          rutaRecibe[index].style.backgroundColor = rojo; // Aplicar el color CSS
+        }
+      }
+    }
+  }
+  // Segunda iteración: Aplicar lógica a `#control-perfiles`
+  for (let i = 1; i <= 22; i++) {
+    const rutaEntregaII = almacenObjetos[objeto][color][propiedadII];    
+    if (!rutaEntregaII) {
+      console.error(`No se encontró la propiedad '${propiedadII}' en el color '${color}'.`);
+      return;
+    } 
+    const lineaKey = `led-${i}`;
+    const lineaSigue = rutaEntregaII[lineaKey];
+
+    if (lineaSigue) {
+      const rutaSigue = document.querySelectorAll(`#control-perfiles #led-${i} .led`);
+      if (rutaSigue.length > 0) {
+        for (let index = rutaSigue.length - 1, count = 0; count < lineaSigue.length && index >= 0; index--, count++) {
+          rutaSigue[index].style.backgroundColor = colorCSS; // Aplicar el color CSS
+        }
+      }
+    }
+  }
+  // Tercera iteración: Aplicar lógica a `#perfiles-entintado`
+  for (let i = 1; i <= 22; i++) {
+    const rutaEntregaIII = almacenObjetos[objeto][color][propiedadIII];
+    if (!rutaEntregaIII) {
+      console.error(`No se encontró la propiedad '${propiedadIII}' en el color '${color}'.`);
+      return;
+    } 
+    const lineaKey = `grilla-${i}`;
+    const linea = rutaEntregaIII[lineaKey];
+    if (linea) {
+      const rutaClona = document.querySelectorAll(`#perfiles-entintado #perfil-${color} #grilla-${i} .led-general`);
+      if (rutaClona.length > 0) {
+        for (let index = rutaClona.length - 1, count = 0; count < linea.length && index >= 0; index--, count++) {
+          rutaClona[index].style.backgroundColor = colorCSS; // Aplicar el color CSS
+        }
+      } 
+    }
+  }  
+  // Cuarta iteración: Aplicar lógica a `#tanque-tinta y tanque general`
+  for (let i = 1; i <= 100; i++) {
+    const rutaEntregaIII = almacenObjetos[objetoGlobal][color][propiedadV];
+    if (!rutaEntregaIII) {
+      console.error(`No se encontró la propiedad '${propiedadV}' en el color '${color}'.`); 
+      return;
+    }
+    const rutaClona = document.querySelectorAll(`#ctrl-gral #tanque-tinta .lineas-tinta`);
+    const rutaClonaGral = document.querySelectorAll(`#footer-perfiles #footer-${color} #footer-${footer} .divs-grales-tinta-${color}`);
+    if (rutaClona.length > 0) {
+      const elementosAColorear = rutaEntregaIII.length;
+      for (let index = rutaClona.length - 1; index >= rutaClona.length - elementosAColorear; index--) {          
+        if (index >= 0 && index < rutaClona.length) { // Verificar que el índice es válido
+          rutaClona[index].style.backgroundColor = amarillo; // Aplicar el color CSS
+        }
+      }
+    }
+    if (rutaClonaGral.length > 0) {
+      const elementosAColorear = rutaEntregaIII.length;
+      for (let index = rutaClonaGral.length - 1; index >= rutaClonaGral.length - elementosAColorear; index--) {          
+        if (index >= 0 && index < rutaClonaGral.length) { // Verificar que el índice es válido
+          rutaClonaGral[index].style.backgroundColor = colorCSS;
+        }
+      }
+    }else{console.log()}
+  }  
+  // Quinta iteración: Aplicar lógica a `#tanque-agua y tanque general`  
+  for (let i = 1; i <= 100; i++) {
+    const rutaEntregaIII = almacenObjetos[objetoGlobal][color][propiedadVI];
+    if (!rutaEntregaIII) {
+      console.error(`No se encontró la propiedad '${propiedadVI}' en el color '${color}'.`);
+      return;
+    }
+    const rutaClona = document.querySelectorAll(`#ctrl-gral #tanque-solucion .lineas-solucion`);
+    const rutaClonaGral = document.querySelectorAll(`#footer-perfiles #footer-${color} #footer-${foot} .divs-grales-solucion-${color}`);
+    if (rutaClona.length > 0) {
+      const elementosAColorear = rutaEntregaIII.length;
+      for (let index = rutaClona.length - 1; index >= rutaClona.length - elementosAColorear; index--) {          
+        if (index >= 0) { // Asegurarnos de no acceder a índices negativos
+          rutaClona[index].style.backgroundColor = amarillo; // Aplicar el color CSS
+        }
+      }
+    }
+    if (rutaClonaGral.length > 0) {
+      const elementosAColorear = rutaEntregaIII.length;
+      for (let index = rutaClonaGral.length - 1; index >= rutaClonaGral.length - elementosAColorear; index--) {          
+        if (index >= 0) { // Asegurarnos de no acceder a índices negativos
+          rutaClonaGral[index].style.backgroundColor = verdeAgua;
+        }
+      }  
+    }
+  }
+  setTimeout(() => {
+    displayTintaGral.textContent = almacenObjetos[objetoGlobal][color].nivelTinta.length + '%';
+    displayTintaGral.style.top = 87 - (almacenObjetos[objetoGlobal][color].nivelTinta.length) + '%';
+    displaySolucionGral.textContent = almacenObjetos[objetoGlobal][color].nivelAgua.length + '%';
+    displaySolucionGral.style.top = 87 - (almacenObjetos[objetoGlobal][color].nivelAgua.length) + '%';     
+    const elementos = document.querySelectorAll('.div-gral, .div-agua');
+    elementos.forEach(elemento => {
+    elemento.style.color = ''
+    });
+  }, 1000);
+}
+function eliminarColores(){
+  const lineasSolucion = document.querySelectorAll('.lineas-solucion');
+  const lineasTinta = document.querySelectorAll('.lineas-tinta');
+  const lineasLeds = document.querySelectorAll('.leds');
+  const lineasLed = document.querySelectorAll('.led');
+  for (let i = 0; i < lineasSolucion.length; i++) {
+    lineasSolucion[i].style.backgroundColor = '';
+  }
+  for (let i = 0; i < lineasTinta.length; i++) {
+    lineasTinta[i].style.backgroundColor = '';
+  }
+  for (let i = 0; i < lineasLeds.length; i++) {
+    lineasLeds[i].style.backgroundColor = '';
+  }
+  for (let i = 0; i < lineasLed.length; i++) {
+    lineasLed[i].style.backgroundColor = '';
+  } 
+
+
+} 
+function desactivarClick(classElements) {
+  if (!Array.isArray(classElements)) {
+    console.error('El parámetro debe ser un array de selectores.');
+    return;
+  }
+  classElements.forEach(selector => {
+    const botones = document.querySelectorAll(selector);
+    botones.forEach(boton => {
+      boton.style.pointerEvents = 'none'; 
+      boton.querySelectorAll('*').forEach(hijo => hijo.style.pointerEvents = 'none'); // ← aquí
+    });
+  });
+}
+function desactivarClickTemporalmente(classElements, duracion) {
+  if (!Array.isArray(classElements) || typeof duracion !== 'number') {
+    console.error('Parámetros inválidos. Se espera un array de selectores y una duración en milisegundos.');
+    return;
+  }
+
+  classElements.forEach(selector => {
+    const botones = document.querySelectorAll(selector);
+    
+    botones.forEach(boton => {
+      boton.style.pointerEvents = 'none'; // Desactivar clics
+    });
+
+    // Reactivar después del tiempo especificado
+    setTimeout(() => {
+      botones.forEach(boton => {
+        boton.style.pointerEvents = 'auto'; // Reactivar clics
+      });
+    }, duracion);
+  });
+}
+/* function restablecerClick(classElements) { 
+  if (!Array.isArray(classElements)) {
+    console.error('El parámetro debe ser un array de selectores.');
+    return;
+  }
+  classElements.forEach(selector => {
+    const botones = document.querySelectorAll(selector);
+    botones.forEach(boton => {
+      boton.style.pointerEvents = 'auto'; // Reactiva eventos de clic
+      boton.style.opacity = '1'; // Restaura la apariencia
+    });
+  });
+} */  
+function bloquearClick(event) {
+  if (event.currentTarget.dataset.clickDisabled === 'true') {
+    event.stopPropagation();
+    event.preventDefault();
+    console.log('Click desactivado en:', event.currentTarget); 
+  }
+}  
+function limpiarColoresDeFondo() {
+  // Lista de clases a recorrer
+  const clases = ['.led-general', '.clase-dos', '.led', '.leds', '.lineas-tinta', '.lineas-solucion'];
+
+  // Recorrer cada clase
+  clases.forEach(clase => {
+    // Seleccionar todos los elementos con la clase actual
+    const elementos = document.querySelectorAll(clase);
+
+    // Recorrer los elementos seleccionados
+    elementos.forEach(elemento => {
+      elemento.style.backgroundColor = ''; // Eliminar el color de fondo
+    });
+  });
+
+  console.log('Colores de fondo eliminados para las clases:', clases.join(', '));
+}
+let inputBuscar = document.getElementById('input-buscar-perfil');
+
+
+listaClientes.addEventListener('mouseleave', () => {
+  setTimeout(() => {
+    const menuContextual = document.getElementById('menu-contextual');
+    const menuVisible = menuContextual && menuContextual.style.display === 'block';
+    if (menuVisible) return;
+    listaClientes.style.display = 'none';
+    if (inputBuscar) inputBuscar.style.display = 'none';
+    menuContextual.style.display = 'none';
+    restablecerClick(['.base-datos']);
+  }, 100);
+});
+
+const jobs = document.querySelectorAll('.jobs');
+function mostrarNombresDeObjetos() {
+  flagAplicacion = true;
+  
+  const almacenJSON = localStorage.getItem('coloresRegistrados');
+  if (!almacenJSON) {
+    console.log("No se encontraron objetos almacenados en localStorage.");
+    return;
+  }
+
+  const almacenRecuperado = JSON.parse(almacenJSON);
+  const almacenCapitalizado = {};
+
+  Object.keys(almacenRecuperado).forEach(nombreObjeto => {
+    const nombreCapitalizado = capitalizarTexto(nombreObjeto);
+    almacenCapitalizado[nombreCapitalizado] = almacenRecuperado[nombreObjeto];
+  });
+
+  localStorage.setItem('coloresRegistrados', JSON.stringify(almacenCapitalizado));
+
+  listaClientes.innerHTML = '';
+
+  // ✅ Fix 1 — Eliminar menuContextual anterior si ya existe
+  const menuAnterior = document.getElementById('menu-contextual');
+  if (menuAnterior) menuAnterior.remove();
+
+  // ✅ Fix 1 — Crear menuContextual una sola vez
+  const menuContextual = document.createElement('div');
+  menuContextual.id = 'menu-contextual';
+  document.body.appendChild(menuContextual);
+
+  const opcionesMenu = ['Editar', 'Filtrar', 'Eliminar'];
+  opcionesMenu.forEach(opcion => {  
+    const menuItem = document.createElement('div');
+    menuItem.className = 'opcion';
+    menuItem.textContent = opcion;
+    menuItem.style.cursor = 'pointer';    
+    menuItem.style.padding = '5px';
+    menuItem.style.display = 'flex';
+    menuItem.style.alignItems = 'center';
+    menuItem.style.justifyContent = 'flex-start';
+
+    menuItem.addEventListener('click', () => {
+      menuContextual.style.display = 'none';
+
+      if (opcion === 'Editar') {
+        editarObjeto(menuContextual.dataset.nombreObjeto);
+      } else if (opcion === 'Filtrar') {
+        buscarPerfil(event);
+      } else if (opcion === 'Eliminar') {
+        eliminarObjeto(menuContextual.dataset.nombreObjeto); 
+      }    
+    });
+
+    menuContextual.appendChild(menuItem);
+  });
+
+  // ✅ Fix 2 — Remover listeners anteriores antes de agregar nuevos
+  document.removeEventListener('contextmenu', bloquearMenuPersonalizado);
+  document.addEventListener('contextmenu', bloquearMenuPersonalizado);
+
+  // ✅ Fix 2 — Usar una función nombrada para poder removerla
+  const ocultarMenu = () => menuContextual.style.display = 'none';
+  document.removeEventListener('click', ocultarMenu);
+  document.addEventListener('click', ocultarMenu);
+
+  Object.keys(almacenCapitalizado).forEach(nombreCapitalizado => {  
+    const nuevoDiv = document.createElement('div');
+    nuevoDiv.className = 'cliente-item';
+    nuevoDiv.textContent = nombreCapitalizado;  
+    nuevoDiv.style.fontSize = '0.7em';
+
+    nuevoDiv.addEventListener('click', () => {
+      restablecerClick(['.estilo-1']);
+      const panelUno = document.getElementById('panel-uno');
+      const perfilador = document.querySelector('#perfiles-color');
+
+      creaNombre.value = nombreCapitalizado;         
+      const nombreCliente = document.querySelector('.nombre-cliente');
+      nombreCliente.textContent = nombreCapitalizado;
+      panelUno.textContent = nombreCapitalizado;
+      panelUno.style.backgroundColor = 'rgb(0,0,23)';
+      panelUno.style.color = 'rgb(200,200,200)';
+      objetoGlobal = nombreCapitalizado;
+      console.log('OBJETO GLOBAL :', objetoGlobal);
+      listaClientes.style.display = 'none';
+
+      if (!perfilador || getComputedStyle(perfilador).display === 'none') {
+        mostrarBarraProgres(0.1, 33.5);
+      }
+
+      const btn = document.querySelector('#btn-execute');
+      function parpadearBoton(elemento, duracion = 1000, intervalo = 50) {
+        let encendido = false;
+        const originalColor = elemento.style.backgroundColor;
+        const originalTransform = elemento.style.transform;
+        const originalTransition = elemento.style.transition;
+        elemento.style.transition = `transform ${duracion}ms ease, background-color ${intervalo}ms linear`;
+        elemento.style.transform = 'scale(1.3)';
+        const intervalID = setInterval(() => {
+          elemento.style.backgroundColor = encendido ? 'white' : 'green';
+          encendido = !encendido;
+        }, intervalo);
+        setTimeout(() => {
+          clearInterval(intervalID);
+          elemento.style.backgroundColor = originalColor;
+          elemento.style.transform = originalTransform;
+          elemento.style.transition = originalTransition;
+        }, duracion);
+      }
+      parpadearBoton(btn);
+    });
+
+    nuevoDiv.addEventListener('contextmenu', (event) => {
+      event.preventDefault();
+      menuContextual.style.display = 'block';
+      menuContextual.style.visibility = 'hidden';
+
+      const menuAltura = menuContextual.offsetHeight;
+      const menuAnchura = menuContextual.offsetWidth;
+      const alturaVentana = window.innerHeight;
+      const anchoVentana = window.innerWidth;
+
+      let posX = event.pageX;
+      let posY = event.pageY;
+
+      if (posX + menuAnchura > anchoVentana) posX = anchoVentana - menuAnchura - 10;
+      if (posY + menuAltura > alturaVentana) posY = alturaVentana - menuAltura - 10;
+
+      menuContextual.style.left = `${posX}px`;
+      menuContextual.style.top = `${posY}px`;
+      menuContextual.style.visibility = 'visible';
+      menuContextual.dataset.nombreObjeto = nombreCapitalizado;
+
+      setTimeout(() => {
+        document.querySelectorAll('.cliente-item').forEach(item => item.blur());
+      }, 100);
+    });
+
+    listaClientes.appendChild(nuevoDiv);
+  });
+
+  // ✅ Fix 3 — Listeners del menuContextual solo una vez
+  menuContextual.addEventListener('mouseover', () => {
+    listaClientes.style.display = 'block';
+    menuContextual.style.display = 'block';
+  });
+
+  menuContextual.addEventListener('mouseleave', () => {
+    menuContextual.style.display = 'none';
+  });
+
+  listaClientes.addEventListener('mouseleave', () => {
+    listaClientes.style.display = 'none';
+    if(inputBuscar)inputBuscar.style.display='none'
+    menuContextual.style.display = 'none';
+    restablecerClick(['.base-datos']);
+  });
+
+  console.log('Nombres de objetos mostrados en lista-clientes:', Object.keys(almacenCapitalizado));
+}
+
+function buscarPerfil(event) {
+  desactivarClick(['.cliente-item']); 
+
+  if (!inputBuscar) {
+    // Crear el input flotante solo si no existe
+    inputBuscar = document.createElement('input');
+    inputBuscar.type = 'text';
+    inputBuscar.placeholder = 'Buscar perfil...';
+    inputBuscar.style.position = 'absolute';
+    inputBuscar.style.zIndex = '5000';
+    inputBuscar.style.padding = '8px';
+    inputBuscar.style.backgroundColor='#060101'
+    inputBuscar.style.border = '1px solid #ccc';
+    inputBuscar.style.color = '#ccc';  
+    inputBuscar.style.borderRadius = '5px';
+    inputBuscar.style.outline = 'none';
+    inputBuscar.style.display = 'none'; // Inicialmente oculto
+    document.body.appendChild(inputBuscar);
+
+    // Agregar evento mouseleave para ocultar el input
+    inputBuscar.addEventListener('mouseleave', () => {
+      if (inputBuscar.value.trim() === '') { 
+        // Solo ocultar si el input está vacío
+        inputBuscar.style.display = 'none';
+        listaClientes.style.display = 'none';
+      }
+    });    
+
+  }  
+
+  // Verificar si el evento es válido
+  if (event && event.pageX !== undefined && event.pageY !== undefined) {
+    inputBuscar.style.left = '47vw'
+    inputBuscar.style.top = '44vh'
+    inputBuscar.style.zIndex=5000
+  } else {
+    // Si no hay evento, ubicarlo en el centro de la pantalla como fallback
+    inputBuscar.style.left = '50%';
+    inputBuscar.style.top = '20px';
+    inputBuscar.style.transform = 'translateX(-50%)';
+  }
+
+  inputBuscar.style.display = 'block';
+  inputBuscar.value = '';
+  inputBuscar.focus();
+
+  // Evento para filtrar en tiempo real
+  inputBuscar.addEventListener('input', () => {
+    let textoIngresado = inputBuscar.value.toLowerCase();
+    let clientes = document.querySelectorAll('.cliente-item');
+
+    clientes.forEach(cliente => {
+      let nombre = cliente.textContent.toLowerCase();
+      cliente.style.display = nombre.startsWith(textoIngresado) ? 'block' : 'none';
+    });
+  });
+
+  // Evento para ocultar el input cuando se haga clic fuera
+  setTimeout(() => {
+    document.addEventListener('click', function ocultarInput(evento) {
+      if (evento.target !== inputBuscar) {
+        inputBuscar.style.display = 'none';
+        document.removeEventListener('click', ocultarInput);
+      }
+    });
+    restablecerClick(['.cliente-item']);
+  }, 500);
+}
+/* function guardarObjetoEnAlmacen(nombreObjeto, datosObjeto) {
+  // Capitalizar el nombre antes de guardar
+  const nombreCapitalizado = capitalizarTexto(nombreObjeto);
+
+  // Obtener el objeto almacenado en localStorage
+  almacenObjetos = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
+
+  // Guardar o actualizar el objeto con el nombre capitalizado
+  almacenObjetos[nombreCapitalizado] = datosObjeto;
+
+  // Actualizar el almacenamiento en localStorage
+  localStorage.setItem('coloresRegistrados', JSON.stringify(almacenObjetos));
+
+  console.log(`Guardado en almacenObjetos:`, almacenObjetos);
+} */
+
+function eliminarObjeto(nombreObjeto) {
+  desactivarClick(['.cliente-item']);
+  document.querySelectorAll('.cliente-item').forEach(item => {
+    item.style.filter = 'blur(15px)';
+  });
+  const divEliminacion = document.createElement('div');
+  divEliminacion.id = 'alerta-nueve';
+  listaClientes.appendChild(divEliminacion);
+
+  // Crear elementos de la alerta
+  const spanAnuncio = document.createElement('span');
+  const nombreElemento = document.createElement('span');
+  const spanConfirmar = document.createElement('span');
+  const spanAbandonar = document.createElement('span');
+
+  spanAnuncio.id = 'actual-nombre';
+  spanAnuncio.textContent = 'Se eliminará definitivamente el perfil :'; 
+
+  nombreElemento.id = 'name-span';
+  nombreElemento.className =  'span-nueve'
+  nombreElemento.textContent = `${nombreObjeto}`;
+
+  spanConfirmar.textContent = 'Eliminar';
+  spanConfirmar.id = 'perfil-eliminar';
+  spanConfirmar.className =  'nueve-span'
+
+  spanAbandonar.textContent = 'Abandonar'
+  spanAbandonar.id = 'perfil-abandonar'
+  spanAbandonar.className = 'nueve-span'
+  divEliminacion.appendChild(spanAnuncio);
+  divEliminacion.appendChild(nombreElemento);
+  divEliminacion.appendChild(spanConfirmar);   
+  divEliminacion.appendChild(spanAbandonar);
+  divEliminacion.style.display = 'grid';
+  divEliminacion.style.height = '21vh'
+  // Evento para confirmar la eliminación
+  spanConfirmar.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const alertaNueve = document.getElementById('span-index');    
+    divEliminacion.style.display='none'
+    // Eliminar del localStorage  
+    const almacenJSON = localStorage.getItem('coloresRegistrados');
+    if (almacenJSON) {
+      const almacenRecuperado = JSON.parse(almacenJSON);
+      if (almacenRecuperado[nombreObjeto]) {
+        delete almacenRecuperado[nombreObjeto]; // Eliminar la clave del objeto
+        localStorage.setItem('coloresRegistrados', JSON.stringify(almacenRecuperado)); // Guardar cambios
+        setTimeout(() => {
+          almacenObjetos = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
+        }, 50);
+      }
+    } 
+    // Eliminar visualmente de la lista
+    const elementosLista = document.querySelectorAll('.cliente-item');
+    elementosLista.forEach((elemento) => {
+      if (elemento.textContent === nombreObjeto) {
+        elemento.remove();
+      }
+    }); 
+
+    mostrarNombresDeObjetos(); // Refrescar la lista después de eliminar
+    document.querySelector('.alerta-botones').style.display='flex'
+    document.querySelector('.alerta-botones').style.top='43vh'
+    document.querySelector('.alerta-botones').style.left='37vw'
+    document.querySelector('.alerta-botones').textContent= `El perfil : ${nombreObjeto} ha sido eliminado exitosamente.`
+    document.querySelectorAll('.cliente-item').forEach(item => {
+    item.style.filter = 'blur(15px)';
+    alertaNueve.style.zIndex=9999
+
+    });  
+  });
+
+  spanAbandonar.addEventListener('click', (e) => {
+    e.stopPropagation();
+    
+    restablecerClick(['.cliente-item']);
+    document.querySelectorAll('.cliente-item').forEach(item => {
+      item.style.filter = 'none';
+    });
+    divEliminacion.style.display = 'none';
+  });
+  document.getElementById('panel-uno').textContent = '';
+  document.getElementById('panel-uno').style.backgroundColor=''
+
+  desactivarClickTemporalmente(['.nueve-span'], 500);
+
+}
+
+function editarObjeto(nombreObjeto) {
+  document.querySelectorAll('.cliente-item').forEach(item => {
+    item.style.filter = 'blur(15px)';
+  });
+  
+  let spanAviso = document.querySelector('#span-nombre')
+  // Crear un input para capturar el nuevo nombre
+  const inputNuevoNombre = document.createElement('input');
+  inputNuevoNombre.type = 'text';
+  inputNuevoNombre.value = nombreObjeto; // Valor actual por defecto 
+  inputNuevoNombre.id = 'input-edicion'
+
+  // Botón para confirmar el cambio de nombre
+  const botonConfirmar = document.createElement('button');
+  const botonSalir = document.createElement('button')
+  botonConfirmar.textContent = 'Guardar';
+  botonConfirmar.className = 'boton-edicion'
+  botonConfirmar.className ='edicion-span'  
+
+  botonSalir.textContent = 'Salir'
+  botonSalir.className = 'boton-edicion'
+  botonSalir.className ='edicion-span'
+
+  // Contenedor temporal para edición
+  const contenedorEdicion = document.createElement('div');
+  contenedorEdicion.classList.add('contenedor-edicion'); // Usamos la clase para el posicionamiento estático  
+  contenedorEdicion.appendChild(inputNuevoNombre);
+  contenedorEdicion.appendChild(botonConfirmar);
+  contenedorEdicion.appendChild(botonSalir);
+ 
+  // Insertar el contenedor en el DOM
+  listaClientes.appendChild(contenedorEdicion);
+  contenedorEdicion.style.display='grid'
+  
+  inputNuevoNombre.focus();
+  // Evento para confirmar el cambio de nombre
+  botonConfirmar.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const nuevoNombre = inputNuevoNombre.value.trim(); 
+    if (!nuevoNombre) {
+      alertaOcho.style.display='flex'
+      alertaOcho.style.zIndex = 5000
+      alertaOcho.textContent='El perfil debe tener un nombre'
+      return;
+    }
+    // Recuperar el objeto almacenado en localStorage
+    const almacenJSON = localStorage.getItem('coloresRegistrados');
+    if (almacenJSON) {
+      const almacenRecuperado = JSON.parse(almacenJSON);
+      // Verificar que el nuevo nombre no exista ya
+      if (almacenRecuperado[nuevoNombre]) {
+        alertaOcho.style.display='flex'
+        alertaOcho.style.zIndex = 5000
+
+        alertaOcho.addEventListener('click', () => {
+          alertaOcho.style.display='none'
+          listaClientes.style.filter = 'none';
+        });
+        return;
+      }
+      // Actualizar el nombre en el almacenamiento
+      almacenRecuperado[nuevoNombre] = almacenRecuperado[nombreObjeto]; // Copiar los datos del objeto
+      delete almacenRecuperado[nombreObjeto]; // Eliminar la clave antigua
+      // Guardar nuevamente en localStorage
+      localStorage.setItem('coloresRegistrados', JSON.stringify(almacenRecuperado));
+      // Actualizar la lista visualmente
+      const elementosLista = document.querySelectorAll('.cliente-item');
+      elementosLista.forEach((elemento) => {
+        if (elemento.textContent === nombreObjeto) {
+          elemento.textContent = nuevoNombre; // Cambiar el nombre visualmente 
+          elemento.style.filter = 'blur(15px)';
+        }
+      });
+      // Ordenar la lista después de actualizar el nombre
+      ordenarListaClientes();
+      mostrarNombresDeObjetos();
+      alertaSiete.style.display='grid'
+      alertaSiete.style.zIndex= 5000
+      spanAviso.textContent = `${nuevoNombre}`;      
+    }                           
+    // Eliminar el contenedor temporal
+    contenedorEdicion.remove();
+    traerAlmacenObjetos();
+  }); 
+
+  botonSalir.addEventListener('click', (e) => {
+    e.stopPropagation(); 
+    document.querySelectorAll('.cliente-item').forEach(item => {
+      item.style.filter = 'none';
+    });
+    let alertas = document.querySelectorAll('.cerrar')
+    contenedorEdicion.style.display='none'
+    alertas.forEach(alerta =>{
+      alerta.style.display='none'
+    })
+    document.querySelectorAll('.datos-base').forEach((elemento) => {
+    elemento.textContent = ''
+    })
+    restablecerClick(['.butt-perfiles', '.estilo-1','.digit','.digito']); 
+    calculadora.classList.add('move-calculadora')
+    objetoGlobal = '' 
+    
+  }) 
+}
+function ordenarListaClientes() {
+  const elementos = Array.from(listaClientes.children);
+  
+  elementos.sort((a, b) => {
+    return a.textContent.localeCompare(b.textContent, 'es', { sensitivity: 'base' });
+  });
+
+  // Reordenar los elementos en el DOM
+  elementos.forEach(elemento => listaClientes.appendChild(elemento));
+}
+document.querySelector('#perfil-cambio').addEventListener('click', () =>{ 
+  document.querySelector('#alerta-siete').style.display='none'
+  restablecerClick((['.butt-perfiles']))
+  document.querySelectorAll('.cliente-item').forEach(item => {
+    item.style.filter = 'none';
+  });
+})
+function ocultarConsultas(){
+  let alertas = document.querySelectorAll('.cerrar')
+  let menu = document.querySelector('#menu-contextual')
+  let alerta = document.querySelector('#alerta-siete')
+  ocultarElemento('#formulario-perfiles, .files-job, .listado-clientes, .consola-ir')
+  botonesPerfilColor.forEach(elemento => {
+    elemento.style.display = 'block';
+  }) 
+  detenerAlternarColor();
+  alertas.forEach(alerta =>{
+    alerta.style.display='none'
+  })
+  document.querySelectorAll('.datos-base').forEach((elemento) => {
+  elemento.textContent = ''
+  })
+  restablecerClick(['.butt-perfiles', '.estilo-1','.digit','.digito']);
+  if(menu){
+    menu.style.display = 'none'
+  }
+  alerta.style.display = 'none'
+  if(document.querySelector('#butt-job-track').style.backgroundColor === 'rgb(0,255,0)' && document.querySelector('#boton-perfiles').style.backgroundColor === 'rgb(0,255,0)' ){
+    objetoGlobal = ''
+  }
+  console.log('OBJETO GLOBAL ', objetoGlobal)
+}
+function consultarCapacidadAlamcenamiento() {
+  // Verificar uso actual
+  let totalUsed = 0;
+  for (let key in localStorage) {
+    if (localStorage.hasOwnProperty(key)) {
+      totalUsed += ((localStorage[key].length + key.length) * 2); // Cada carácter ocupa 2 bytes
+    }
+  }
+
+  // Capacidad total estimada
+  const totalCapacity = 5 * 1024 * 1024; // 5 MB en bytes (ajustar si sabes la capacidad específica de tu navegador)
+
+  // Mostrar resultados
+  console.log(`Uso actual: ${(totalUsed / 1024).toFixed(2)} KB`);
+  console.log(`Capacidad total: ${(totalCapacity / 1024).toFixed(2)} KB`);
+  console.log(`Espacio disponible: ${((totalCapacity - totalUsed) / 1024).toFixed(2)} KB`);
+
+  const flagsEstado = {
+    flagNegro,
+    flagCyan,
+    flagMagenta,
+    flagAmarillo,
+    flagEspecial,
+    flagBarniz
+  };
+  
+  // Muestra el estado actual de las banderas en la consola
+  console.log("Estado de las banderas:", flagsEstado);
+  
+}
+
+function traerAlmacenObjetos() {
+  console.clear()
+  // Recuperar el almacenamiento desde localStorage
+  const datosGuardados = localStorage.getItem('coloresRegistrados');
+  if (datosGuardados) {
+    try {
+      // Parsear los datos y asignarlos a almacenObjetos
+      almacenObjetos = JSON.parse(datosGuardados);
+      console.log('almacenObjetos CARGADO:', almacenObjetos);
+      // Mostrar la composición detallada del objeto
+
+    } catch (error) {
+      console.error('Error al parsear almacenObjetos desde localStorage:', error);
+      almacenObjetos = {}; // En caso de error, inicializar vacío
+    }
+  } else {
+    console.warn('No se encontraron datos en localStorage.');
+    almacenObjetos = {}; // Inicializar con un objeto vacío
+  }
+  // Asignar el objeto recuperado a objetoGlobal
+  // Confirmar que el objeto se ha asignado correctamente
+  console.log('objetoGlobal:', objetoGlobal);
+  console.log('nombreProvisional:', nombreProvisional);
+}
+
+function moverFormulario() {
+  const formulario = document.querySelector('#formulario-perfiles'); 
+  formulario.style.display='none' 
+  // Deshabilitar la transición para que el cambio sea inmediato
+  formulario.style.transition = 'none';
+  formulario.classList.remove('mover-izquierda');
+  // FORZAR un reflow para aplicar el cambio de inmediato
+  void formulario.offsetHeight;
+  // Restaurar la transición
+  formulario.style.transition = 'transform 0.5s ease-in-out';
+  // Asegurar que el formulario es visible antes de moverlo
+  formulario.style.display = 'grid';
+  setTimeout(() => {
+    formulario.style.display='grid'
+    formulario.classList.add('mover-izquierda');
+  }, 50);
+}
+function ocultarElemento(selectores) {
+  const formularios = document.querySelectorAll(selectores); // Selecciona los elementos basados en el parámetro
+  if (formularios.length === 0) return; // Si no hay elementos, salir
+  let opacidad = 1;
+  const duracion = 500; // 0.5 segundos
+  const intervalo = 50; 
+  const decremento = intervalo / duracion; 
+  const animacion = setInterval(() => {
+    opacidad -= decremento;
+    formularios.forEach(formulario => {
+      formulario.style.opacity = opacidad;
+    });
+    if (opacidad <= 0) {
+      clearInterval(animacion); 
+      formularios.forEach(formulario => {
+        formulario.style.display = 'none';
+        formulario.style.opacity = '1'; // Restablece para futuras apariciones
+      });
+    }
+  }, intervalo);
+}
+function mostrarElemento(selectores) {
+  const elementos = document.querySelectorAll(selectores); // Selecciona los elementos basados en el parámetro
+  if (elementos.length === 0) return; // Si no hay elementos, salir
+
+  elementos.forEach(elemento => {
+    elemento.style.display = ''; // Asegura que sea visible antes de animar
+    elemento.style.opacity = '0'; // Inicia en 0 para el efecto de aparición
+  });
+
+  let opacidad = 0;
+  const duracion = 500; // 0.5 segundos
+  const intervalo = 50;
+  const incremento = intervalo / duracion;
+
+  const animacion = setInterval(() => {
+    opacidad += incremento;
+    elementos.forEach(elemento => {
+      elemento.style.opacity = opacidad;
+    });
+    if (opacidad >= 1) {
+      clearInterval(animacion);
+      elementos.forEach(elemento => elemento.style.opacity = '1'); // Asegura que quede en 1 al final
+    }
+  }, intervalo);
+}
+document.querySelectorAll('.section').forEach((btn, index) => {
+  btn.addEventListener('mouseover', () => {
+    let buttBlur = document.querySelectorAll('.btn-sections')[index]
+    if (buttBlur) {
+      buttBlur.style.backgroundColor = 'rgb(255,255,0)'
+      btn.style.border = '1px solid rgb(111,111,111)'
+    }
+  })
+
+  btn.addEventListener('mouseout', () => {
+    let buttBlur = document.querySelectorAll('.btn-sections')[index]
+    if (buttBlur) {
+      buttBlur.style.backgroundColor = ''
+      btn.style.border = ''
+    }
+  })
+})
+// mueve botones mezcladores DA COLOR NARANJA Y COLOR A PANTALLAS RGB Y CMYK
+let values = { C: 0, M: 0, Y: 0, K: 0, A: 0, R: 0, G: 0, B: 0, W:0 };
+let red = 0, green = 0, blue = 0; 
+// ejecuta la función de inicialización de los sliders (initSliderCYK) para cada canal de color
+
+
+function initSliderCMYK(trackId, spanId, channel) {
+  const track = document.getElementById(trackId);
+  const thumb = track.querySelector(".slider-thumb-cmyk");
+  const span = document.getElementById(spanId);
+
+  let dragging = false;
+
+  const updateFromClientY = (clientY) => {
+    const rect = track.getBoundingClientRect();
+    const offset = rect.bottom - clientY;
+
+    const porcentaje = Math.max(
+      0,
+      Math.min(100, (offset / rect.height) * 100)
+    );
+
+    const pos =
+      (porcentaje / 100) * (rect.height - thumb.offsetHeight);
+
+    thumb.style.bottom = `${pos}px`;
+    track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+
+    values[channel] = Math.round(porcentaje);
+    if (span) span.textContent = `${values[channel]}%`;
+
+    updateColorCMYK(channel);
+  };
+
+  const start = (e) => {
+    e.preventDefault();
+    dragging = true;
+    thumb.setPointerCapture(e.pointerId);
+    updateFromClientY(e.clientY);
+  };
+
+  const move = (e) => {
+    if (!dragging) return;
+    updateFromClientY(e.clientY);
+  };
+
+  const end = () => {
+    dragging = false;
+  };
+
+  // Thumb
+  thumb.addEventListener("pointerdown", start);
+  thumb.addEventListener("pointermove", move);
+  thumb.addEventListener("pointerup", end);
+  thumb.addEventListener("pointercancel", end);
+
+  // Track (permite tocar cualquier punto)
+  track.addEventListener("pointerdown", start);
+}
+
+// Convierte los valores CMYKW a RGB y actualiza el color en 'colorBox' y los valores en labels e inputs.
+function updateColorCMYK(channel) { // CMYK
+  let rgb = cmykwToRgb(values.C, values.M, values.Y, values.K, values.A);
+  document.getElementById("colorCMYK").style.backgroundColor = rgb;
+  document.getElementById("c-span").textContent = values.C.toFixed(0); 
+  document.getElementById("m-span").textContent = values.M.toFixed(0);
+  document.getElementById("y-span").textContent = values.Y.toFixed(0);
+  document.getElementById("k-span").textContent = values.K.toFixed(0);
+  document.getElementById("w-span").textContent = values.A.toFixed(0);  
+  document.getElementById("input-c").value = values.C.toFixed(0);
+  document.getElementById("input-m").value = values.M.toFixed(0);
+  document.getElementById("input-y").value = values.Y.toFixed(0);
+  document.getElementById("input-k").value = values.K.toFixed(0);
+  document.getElementById("input-a").value = values.A.toFixed(0);
+
+  // Asegurar que objetoGlobalColor y su estructura existan
+  if (!objetoGlobalColor) {
+    objetoGlobalColor = { CMYK: {} };
+  }
+  if (!objetoGlobalColor.CMYK) {
+    objetoGlobalColor.CMYK = {};
+  }
+  if (!objetoGlobalColor.CMYK[channel]) {
+    objetoGlobalColor.CMYK[channel] = { value: 0 };
+  }
+  // Asignar el valor actualizado
+  objetoGlobalColor.CMYK[channel].value = values[channel];
+}
+// Normaliza valores CMYK manteniendo la proporción entre ellos.
+function normalizeCMYK(c, m, y, k) { // CMYK 
+  let max = Math.max(c, m, y, k);
+  if (max > 0) {
+    c = Math.round((c / max) * 100);
+    m = Math.round((m / max) * 100);
+    y = Math.round((y / max) * 100);
+    k = Math.round((k / max) * 100);
+  }
+  return { c, m, y, k };
+}
+// Anima el movimiento de los sliders hasta un porcentaje destino en un tiempo determinado.
+function animarSlidersCMYK(sliderConfigs, duracion = 1000) {
+  let startTime = null;
+
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    let progress = (timestamp - startTime) / duracion;
+    if (progress > 1) progress = 1;
+
+    sliderConfigs.forEach(({ trackId, spanId, channel, porcentajeDestino }) => {
+      let track = document.getElementById(trackId);
+      let thumb = track.querySelector(".slider-thumb-cmyk");
+      let span = document.getElementById(spanId);
+      let rect = track.getBoundingClientRect();
+      
+      // Cálculo de la posición final según el porcentaje destino
+      let endValue = (porcentajeDestino / 100) * (rect.height - thumb.offsetHeight);
+      let newValue = progress * endValue;
+
+      thumb.style.bottom = `${newValue}px`;
+      let porcentaje = (newValue / (rect.height - thumb.offsetHeight)) * 100;
+
+      track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+
+      values[channel] = Math.round(porcentaje); // ✅ Ahora W se mantiene en escala 0-100 como los demás      
+
+      span.textContent = Math.round(values[channel]); 
+    });
+    updateColorCMYK();
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function initSliderRGB(trackId, spanId, channel) {
+  const track = document.getElementById(trackId);
+  const thumb = track.querySelector(".slider-thumb-rgb");
+  const span = document.getElementById(spanId);
+
+  let dragging = false;
+
+  const updateFromClientY = (clientY) => {
+    const rect = track.getBoundingClientRect();
+    const offset = rect.bottom - clientY;
+
+    const porcentaje = Math.max(0, Math.min(100, (offset / rect.height) * 100));
+    const pos = (porcentaje / 100) * (rect.height - thumb.offsetHeight);
+
+    thumb.style.bottom = `${pos}px`;
+    track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+
+    values[channel] = Math.round((porcentaje / 100) * 255);
+    span.textContent = values[channel];
+
+    updateColorRGB();
+  };
+
+  const start = (e) => {
+    e.preventDefault();
+    dragging = true;
+    thumb.setPointerCapture(e.pointerId);
+    updateFromClientY(e.clientY);
+  };
+
+  const move = (e) => {
+    if (!dragging) return;
+    updateFromClientY(e.clientY);
+  };
+
+  const end = () => {
+    dragging = false;
+  };
+
+  // Thumb
+  thumb.addEventListener("pointerdown", start);
+  thumb.addEventListener("pointermove", move);
+  thumb.addEventListener("pointerup", end);
+  thumb.addEventListener("pointercancel", end);
+
+  // Track (mejora UX: tocar cualquier punto del track)
+  track.addEventListener("pointerdown", start);
+}
+
+function updateColorRGB() {
+  let rgba = `rgba(${values.R}, ${values.G}, ${values.B}, ${values.W / 255})`;
+  document.getElementById("colorDisplay").style.backgroundColor = rgba;
+
+  document.getElementById("c-span-rgb").textContent = values.R;
+  document.getElementById("m-span-rgb").textContent = values.G;
+  document.getElementById("y-span-rgb").textContent = values.B;
+  document.getElementById("w-span-rgb").textContent = (values.W / 255).toFixed(2);
+
+  document.getElementById("input-r").value = values.R;
+  document.getElementById("input-g").value = values.G;
+  document.getElementById("input-b").value = values.B;
+  document.getElementById("input-w").value = values.W;
+}
+
+/* const clamp = (value, min, max) =>
+  Math.min(max, Math.max(min, value));
+
+panelRGB
+  .querySelectorAll('input[type="number"]')
+  .forEach(input => {
+    input.addEventListener('input', () => {
+      if (input.value === '') return;
+
+      const min = Number(input.min);
+      const max = Number(input.max);
+
+      let value = parseInt(input.value, 10);
+
+      if (isNaN(value)) {
+        input.value = '';
+        return;
+      }
+
+      input.value = clamp(value, min, max);
+    });
+});
+
+panelControlCMYK
+  .querySelectorAll('input[type="number"]')
+  .forEach(input => {
+    input.addEventListener('input', () => {
+      if (input.value === '') return;
+
+      const min = Number(input.min);
+      const max = Number(input.max);
+
+      let value = parseInt(input.value, 10);
+
+      if (isNaN(value)) {
+        input.value = '';
+        return;
+      }
+
+      input.value = clamp(value, min, max);
+    });
+}); */  
+
+function animarSlidersRGB(sliderConfigs, duracion = 1000) {
+  let startTime = null;
+
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    let progress = (timestamp - startTime) / duracion;
+    if (progress > 1) progress = 1;
+
+    sliderConfigs.forEach(({ trackId, spanId, channel, porcentajeDestino }) => {
+      let track = document.getElementById(trackId);
+      let thumb = track.querySelector(".slider-thumb-rgb");
+      let span = document.getElementById(spanId);
+      let rect = track.getBoundingClientRect();
+
+      // 🔹 W ahora usa el mismo cálculo que los demás
+      let endValue = (porcentajeDestino / 255) * (rect.height - thumb.offsetHeight);
+      let newValue = progress * endValue;
+
+      thumb.style.bottom = `${newValue}px`;
+
+      let porcentaje = (newValue / (rect.height - thumb.offsetHeight)) * 100;
+      track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+
+      values[channel] = Math.round((porcentaje / 100) * 255);
+      span.textContent = values[channel];
+    });
+    updateColorRGB();
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  }
+  requestAnimationFrame(step);
+}
+// Botón para animar los sliders según los valores en los inputs
+document.getElementById("animate-btn").addEventListener("click", () => {
+  let rValue = parseInt(document.getElementById("input-r").value) || 0;
+  let gValue = parseInt(document.getElementById("input-g").value) || 0;
+  let bValue = parseInt(document.getElementById("input-b").value) || 0;
+  let wValue = parseInt(document.getElementById("input-w").value) || 0;
+
+  animarSlidersRGB([
+    { trackId: "slid-rojo-rgb", spanId: "c-span-rgb", channel: "R", porcentajeDestino: rValue },
+    { trackId: "slid-verde-rgb", spanId: "m-span-rgb", channel: "G", porcentajeDestino: gValue },
+    { trackId: "slid-azul-rgb", spanId: "y-span-rgb", channel: "B", porcentajeDestino: bValue },
+    { trackId: "slid-blanco-rgb", spanId: "w-span-rgb", channel: "W", porcentajeDestino: wValue }
+  ]);
+});
+document.getElementById("reset-btn-rgb").addEventListener("click", () => {
+  const inputs = document.querySelectorAll('#control-rgb-inpt input[type="number"]');
+  inputs.forEach(input => input.value = 0);
+  resetBotonMezclador('padre-rgb') 
+});
+document.getElementById("reset-btn-cmyk").addEventListener("click", () => {
+  const inputs = document.querySelectorAll('#control-cmyk-inpt input[type="number"]');
+  inputs.forEach(input => input.value = 0);
+  resetBotonMezclador('padre-cmyk') 
+});
+function cmykwToRgb(c, m, y, k, a) {  // RGB
+  let normalized = normalizeCMYK(c, m, y, k);
+  c = normalized.c;
+  m = normalized.m;
+  y = normalized.y;
+  k = normalized.k;
+  let r = 255 * (1 - c / 100) * (1 - k / 100);
+  let g = 255 * (1 - m / 100) * (1 - k / 100);
+  let b = 255 * (1 - y / 100) * (1 - k / 100);
+  let factorBlanco = a / 100;
+  r = r + (255 - r) * factorBlanco;
+  g = g + (255 - g) * factorBlanco;
+  b = b + (255 - b) * factorBlanco;
+  return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
+}
+// renderiza cantidad guardada en inputs CMYK
+document.getElementById("animate-btn-cmyk").addEventListener("mouseup", () => {
+  let cValue = parseInt(document.getElementById("input-c").value) || 0;
+  let mValue = parseInt(document.getElementById("input-m").value) || 0;
+  let yValue = parseInt(document.getElementById("input-y").value) || 0;
+  let kValue = parseInt(document.getElementById("input-k").value) || 0;
+  let oValue = parseInt(document.getElementById("input-a").value) || 0;
+
+  animarSlidersCMYK([
+    { trackId: "slid-cian", spanId: "c-span", channel: "C", porcentajeDestino: cValue },
+    { trackId: "slid-magenta", spanId: "m-span", channel: "M", porcentajeDestino: mValue },
+    { trackId: "slid-amarillo", spanId: "y-span", channel: "Y", porcentajeDestino: yValue },
+    { trackId: "slid-negro", spanId: "k-span", channel: "K", porcentajeDestino: kValue },
+    { trackId: "slid-blanco", spanId: "w-span", channel: "A", porcentajeDestino: oValue }
+  ]);
+});
+function animarColorSecuencia() {
+  desactivarClick(['.butt-perfiles']);
+  
+  const botones = document.querySelectorAll(".btn-respaldo");
+  const perfiles = document.querySelectorAll(".btn-respaldo"); // Selecciona los botones de perfil  
+
+  if (botones.length === 0) return;
+
+  let r = 0, g = 255, b = 0; // Inicia en verde
+  let fase = 0; // Controla las fases del ciclo
+  let tiempoInicio = Date.now(); // Guarda el tiempo de inicio
+
+  function actualizarColor() {
+    botones.forEach(btn => {
+      btn.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    });
+  }
+
+  function iniciarTransicion(objetivoR, objetivoG, objetivoB, siguienteFase) {
+    const intervalo = setInterval(() => {
+      let tiempoTranscurrido = Date.now() - tiempoInicio;
+
+      // Si han pasado 2000ms, forzar color verde y detener animación
+      if (tiempoTranscurrido >= 2000) {
+        clearInterval(intervalo);
+        r = 0;
+        g = 255;
+        b = 0;
+        actualizarColor();
+        return;
+      }
+
+      if (r !== objetivoR) r += (r < objetivoR) ? 51 : -51;
+      if (g !== objetivoG) g += (g < objetivoG) ? 51 : -51;
+      if (b !== objetivoB) b += (b < objetivoB) ? 51 : -51;
+
+      actualizarColor();
+
+      if (r === objetivoR && g === objetivoG && b === objetivoB) {
+        clearInterval(intervalo);
+        setTimeout(() => {
+          fase = siguienteFase;
+          ejecutarFase();
+        }, 100);
+      }
+    }, 1);
+  }
+
+  function ejecutarFase() {
+    // Si ya pasaron 2000ms, no continuar con más transiciones
+    if (Date.now() - tiempoInicio >= 1000) return;
+
+    switch (fase) {
+      case 0: iniciarTransicion(255, 255, 255, 1); break; // Verde → Blanco
+      case 1: iniciarTransicion(255, 255, 0, 2); break;  // Blanco → Amarillo
+      case 2: iniciarTransicion(255, 255, 255, 3); break; // Amarillo → Blanco
+      case 3: iniciarTransicion(255, 0, 255, 4); break; // Blanco → Magenta
+      case 4: iniciarTransicion(255, 255, 255, 5); break; // Magenta → Blanco
+      case 5: iniciarTransicion(0, 255, 255, 6); break;  // Blanco → Cian
+      case 6: iniciarTransicion(255, 255, 255, 7); break; // Cian → Blanco
+      case 7: iniciarTransicion(0, 255, 0, 0); break; // Blanco → Verde (reinicio)
+    }
+  }
+
+  ejecutarFase(); // Iniciar la secuencia
+  setTimeout(() => {
+    perfiles.forEach(btn => {
+      btn.style.backgroundColor = `rgb(0,255,0)`;
+    });
+    restablecerClick(['.butt-perfiles'])
+  }, 1010);
+}
+function animarSecuenciaPerfiles() {
+  const perfilesFondo = document.querySelectorAll(".btn-respaldo");
+
+
+  if (botonesPerfilColor.length === 0) return; // Si no hay elementos, no hacer nada
+
+  let indice = 0;
+
+  function cambiarColor() {
+    if (indice >= botonesPerfilColor.length) return; // Si ya pasó por todos, detener ejecución
+
+    const boton = botonesPerfilColor[indice]; // Selecciona el botón actual
+    const botonFondo = perfilesFondo[indice]
+    const colorOriginal = boton.style.backgroundColor; // Guarda su color original
+
+    boton.style.backgroundColor = '#2bf22bc0'; // Lo cambia a verde
+    botonFondo.style.backgroundColor = '#2bf22bc0'; // Lo cambia a verde
+
+    setTimeout(() => {
+      boton.style.backgroundColor = colorOriginal; // Lo regresa a su color original
+      indice++; // Pasa al siguiente elemento
+
+      cambiarColor(); // Llama a la función para el siguiente botón
+    }, 145);
+
+  }
+
+  cambiarColor(); // Inicia la secuencia
+}
+function colorearRespaldos() {
+  const respaldos = document.querySelectorAll('.btn-respaldo');
+  const frentes   = botonesPerfilColor;
+  if (!respaldos.length) return;
+
+  // 1. Quitar color de fondo en ambos grupos
+  respaldos.forEach(el => {
+    el.style.backgroundColor = '';
+    el.style.height = '3vh';
+  });
+  frentes.forEach(el => {
+    el.style.backgroundColor = '';
+  });
+
+  // 2. Tras 100 ms aplicar verde a ambos grupos con intervalo de 0.1 s
+  let i = 0;
+  setTimeout(() => {
+    const intervalo = setInterval(() => {
+      if (i < respaldos.length) {
+        respaldos[i].style.backgroundColor = 'rgb(0,255,0)';
+      }
+      i++;
+      if (i >= Math.max(respaldos.length, frentes.length)) {
+        clearInterval(intervalo);
+      }
+    }, 100);
+  }, 100);
+}
+// arrastre PADRES mezcladores
+function initDrag(elemento) {
+  let isDragging = false;
+  let offsetX, offsetY;
+
+  elemento.addEventListener("mousedown", (e) => {
+    if (e.target === elemento) {
+      isDragging = true;
+      offsetX = e.clientX - elemento.offsetLeft;
+      offsetY = e.clientY - elemento.offsetTop;
+    }
+  });
+
+  document.addEventListener("mousemove", (e) => {
+    if (isDragging) {
+      elemento.style.left = `${e.clientX - offsetX}px`;
+      elemento.style.top = `${e.clientY - offsetY}px`;
+    }
+  });
+
+  document.addEventListener("mouseup", () => {
+    isDragging = false;
+  });
+
+  elemento.querySelectorAll("button, input[type='range']").forEach((btn) => {
+    btn.addEventListener("mousedown", (e) => {
+      e.stopPropagation();
+    });
+  });
+}
+
+/* initDrag(document.getElementById("padre-rgb"));
+initDrag(document.getElementById("padre-cmyk"));
+initResize(
+  document.querySelector("#padre-rgb"),
+  document.querySelector(".esquina-rgb")
+);
+initResize(
+  document.querySelector("#padre-cmyk"),
+  document.querySelector(".esquina-cmyk")
+); */
+function cmykFlotante() { // botones rojos
+  var elementosExcluidos = ['colorCMYK','container-slider','simulador','boton-perfiles','boton-reseteo'] 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }
+  document.querySelectorAll('.cmyRgb-group, .lbls-cmyRgb').forEach(el => {
+    el.style.display = 'block';
+  });     
+
+  let padreCmyk = document.querySelector("#padre-cmyk");
+  let padreControles = document.querySelector("#container-slider");
+  let perfilador = document.querySelector('#perfiles-color')
+
+  padreCmyk.style.display = "grid";
+  padreControles.style.display = 'grid';
+  padreCmyk.style.zIndex = 200
+  perfilador.removeAttribute("style");
+}
+function rgbFlotante() { // botones rojos
+  var elementosExcluidos = ['colorDisplay','padre-controles','simulador','boton-perfiles','boton-reseteo'] 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }
+   document.querySelectorAll('.btn-opcion, .lbls-cmyRgb').forEach(el => {
+    el.style.display = 'block';
+  });      
+
+  let padreRgb = document.querySelector("#padre-rgb");
+  let padreControles = document.querySelector("#padre-controles");
+  let perfilador = document.querySelector('#perfiles-color')
+
+  padreRgb.style.display = "grid";
+  padreControles.style.display = 'grid';
+  padreRgb.style.zIndex = 200
+  perfilador.removeAttribute("style");
+}
+function initResize(contenedor, esquina) {
+  const MIN_WIDTH = 200;
+  const MIN_HEIGHT = 200;
+  let isResizing = false, offsetX, offsetY;
+
+  esquina.addEventListener("mousedown", (e) => {
+    isResizing = true;
+    offsetX = e.clientX;
+    offsetY = e.clientY;
+    document.addEventListener("mousemove", resize);
+    document.addEventListener("mouseup", stopResize);
+  });
+
+  function resize(e) {
+    if (!isResizing) return;
+
+    let nuevoAncho = e.clientX - contenedor.getBoundingClientRect().left;
+    let nuevoAlto = e.clientY - contenedor.getBoundingClientRect().top;
+
+    if (nuevoAncho >= MIN_WIDTH) {
+      contenedor.style.width = `${nuevoAncho}px`;
+    }
+    if (nuevoAlto >= MIN_HEIGHT) {
+      contenedor.style.height = `${nuevoAlto}px`;
+    }
+  }
+
+  function stopResize() {
+    isResizing = false;
+    document.removeEventListener("mousemove", resize);
+    document.removeEventListener("mouseup", stopResize);
+  }
+}
+function resetBotonMezclador(parentContiner) {
+  if (typeof parentContiner !== "string") return;
+  parentContiner = parentContiner.trim().toLowerCase();
+
+  let isCMYK = parentContiner === 'padre-cmyk';
+  let sliders = document.querySelectorAll(isCMYK ? ".slider-thumb-cmyk" : ".slider-thumb-rgb");
+  
+  sliders.forEach(mezclador => {
+    mezclador.style.transition = "bottom 0.8s ease"; 
+    mezclador.style.bottom = "0%"; 
+
+    setTimeout(() => {
+      mezclador.style.transition = "";
+    }, 800);
+  });
+
+  let colorElement = document.querySelector(isCMYK ? "#colorCMYK" : "#colorDisplay");
+  if (colorElement) colorElement.style.backgroundColor = "";  
+
+  // Reseteo de los valores de mezcla
+  if (typeof values !== "object") values = {};
+  Object.assign(values, isCMYK ? 
+    { C: 0, M: 0, Y: 0, K: 0, A: 0 } : 
+    { R: 0, G: 0, B: 0, W: 0 }
+  );
+
+  // **Aquí se restablece el degradado en el slider-track**
+  let sliderTracks = document.querySelectorAll(isCMYK ? ".slider-track" : ".slider-track-rgb");
+  sliderTracks.forEach(track => {
+    track.style.transition = "background 0.8s ease";
+    track.style.background = `linear-gradient(to top, rgb(255,120,0) 0%, rgb(0,0,17) 0%)`;
+
+    setTimeout(() => {
+      track.style.transition = "";
+    }, 800);
+  });
+
+  // Llamar a la función de actualización correspondiente
+  if (isCMYK) {
+    updateColorCMYK();  
+  } else {
+    values.A = parseFloat(values.A) || 0;  
+    updateColorRGB();
+  }
+}
+function configurarBoton(selector, contenedor, callback) {
+  const boton = document.querySelector(selector);
+  const padre = document.querySelector(contenedor);
+  if (!boton || !padre) return;
+
+  boton.addEventListener('mousedown', () => {
+    // Resetear todos los botones al estilo CSS original
+    document.querySelectorAll('.cmyRgb-group').forEach(b => {
+      b.style.backgroundColor = ''; // vacío => vuelve al color CSS
+    });
+
+    // Aplicar efecto solo al botón activo
+    boton.style.backgroundColor = 'rgb(255,0,0)';
+
+    // Ajustes al contenedor
+    padre.style.width = '50vw';
+    padre.style.height = '68vh';
+    padre.style.zIndex = 200;
+    padre.style.backgroundColor = '';
+
+    if (callback) callback();
+  });
+
+  boton.addEventListener('mouseup', () => {
+    boton.style.backgroundColor = ''; 
+  });
+}
+// RGB CMYK
+function alternarTeccnologia(tecnologia) {
+  const padreCmyk = document.getElementById('padre-cmyk');
+  const controlCmyk = document.getElementById('control-panel-cmyk');
+
+  const padreRgb = document.getElementById('padre-rgb');
+  const controlRgb = document.getElementById('control-panel-rgb');
+
+  switch (tecnologia) {
+    case 'rgb':
+      if (padreCmyk) {
+        ocultarElementoProgressivo(padreCmyk)
+        ocultarElementoProgressivo(controlCmyk)
+        mostrarElementoProgressivo(padreRgb);
+        mostrarElementoProgressivo(controlRgb);
+      
+      }
+    break;
+
+    case 'cmyk':
+      if (padreRgb) {
+        ocultarElementoProgressivo(padreRgb)
+        ocultarElementoProgressivo(controlRgb)
+        mostrarElementoProgressivo(padreCmyk);
+        mostrarElementoProgressivo(controlCmyk);
+      }
+    break;
+  }
+}
+function ocultarElementoProgressivo(el, callback) {
+  if (!el) return;
+  // aceptar id/selector o elemento
+  if (typeof el === 'string') el = document.getElementById(el) || document.querySelector(el);
+  if (!el) return;
+
+  // estado inicial claro para animar
+  el.style.transition = '';
+  el.style.opacity = '1';
+
+  const wasHidden = getComputedStyle(el).display === 'none';
+  if (wasHidden) {
+    // ya estaba oculto → terminar inmediatamente
+    el.style.display = 'none';
+    return;
+  }
+
+  // iniciar fade out
+  requestAnimationFrame(() => {
+    el.style.transition = 'opacity 0.5s ease';
+    el.style.opacity = '0';
+  });
+
+  let timer = null;
+
+  const finish = () => {
+    if (timer) { clearTimeout(timer); timer = null; }
+    // mantén oculto y deja el elemento en estado "neutro" (sin residuos) excepto display:none
+    el.style.display = 'none';   // importante: conservar oculto
+    el.style.transition = '';
+    el.style.opacity = '';       // limpio para la próxima aparición
+    el.style.visibility = '';
+    if (typeof callback === 'function') callback();
+  };
+
+  const onTransitionEnd = (ev) => {
+    if (ev.target !== el) return;               // ignorar transiciones de hijos
+    if (ev.propertyName && ev.propertyName !== 'opacity') return;
+    el.removeEventListener('transitionend', onTransitionEnd);
+    finish();
+  };
+
+  el.addEventListener('transitionend', onTransitionEnd);
+
+  // fallback si no ocurre transitionend
+  const cs = getComputedStyle(el);
+  const dur = (parseFloat((cs.transitionDuration || '0').split(',')[0]) || 0) * 1000;
+  const del = (parseFloat((cs.transitionDelay || '0').split(',')[0]) || 0) * 1000;
+  const fallback = (dur + del) > 0 ? dur + del + 50 : 600;
+  timer = setTimeout(() => {
+    el.removeEventListener('transitionend', onTransitionEnd);
+    finish();
+  }, fallback);
+}
+function mostrarElementoProgressivo(el) {
+  if (!el) return;
+
+  // resetear estilos previos
+  el.style.transition = '';
+  el.style.opacity = '0';
+  el.style.display = 'grid';
+
+  // también forzar a todos los hijos
+  Array.from(el.querySelectorAll('*')).forEach(hijo => {
+    hijo.style.transition = '';
+    hijo.style.opacity = '0';
+    hijo.style.display = '';
+    hijo.style.visibility = 'visible';
+  });
+
+  requestAnimationFrame(() => {
+    // transición del padre
+    el.style.transition = 'opacity 0.5s ease';
+    el.style.opacity = '1';
+
+    // transición de los hijos
+    Array.from(el.querySelectorAll('*')).forEach(hijo => {
+      hijo.style.transition = 'opacity 0.5s ease';
+      hijo.style.opacity = '1';
+    });
+  });
+
+  el.addEventListener("transitionend", () => {
+    el.style.transition = '';
+    Array.from(el.querySelectorAll('*')).forEach(hijo => {
+      hijo.style.transition = '';
+    });
+  }, { once: true });
+}
+// MUESTRA LOS PADRES
+function secuenciaAparicion(canal) {
+ const controlColor = document.querySelector('#perfiles-color');
+  if (!controlColor || getComputedStyle(controlColor).display !== "none") {
+    return; 
+  }
+  const perfilesRgb = document.querySelector('#perfiles-color')
+  mostrarElementoProgressivo(perfilesRgb)
+  setTimeout(() => {
+    if (!buscaNombre) return;
+
+    buscaNombre.value = '';
+    creaNombre.value = '';
+
+    if (esDesktop) {
+      buscaNombre.focus();
+    }
+  }, 100);
+  
+  
+  switch(canal){
+    case 'rgb':
+      const ids = ['boton-rgb', 'boton-rgb-alternar', 'boton-rgb-salir','lab-rgb','lab-alternar','lab-salir-rgb'];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+    break
+    case 'cmyk' :
+      const keys = ['lab-seis', 'boton-seis', 'lab-cmyk','boton-cmyk','lab-salir-cmyk','boton-cmyk-salir'];
+      keys.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = 'none';
+      });
+    break
+  }
+}
+
+buscaNombre.addEventListener('click', () => {
+  creaNombre.value = ''
+  listaClientes.style.display = 'none'
+  keyboardWrapper.style.display='flex'
+})
+
+
+let parpadeoActivo = null;
+
+function parpadearElemento(id,intervaloMs = 200, duracionMs = null) {
+  detenerParpadeo();
+
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const colorOriginal = getComputedStyle(el).backgroundColor;
+  let alternar = false;
+
+  const intervalo = setInterval(() => {
+    el.style.backgroundColor = alternar
+      ? colorOriginal
+      : 'rgba(0,255,255,0.44)';
+
+    alternar = !alternar;
+  }, intervaloMs);
+
+  let timeout = null;
+
+  // Si se define duración total
+  if (typeof duracionMs === 'number') {
+    timeout = setTimeout(() => {
+      detenerParpadeo();
+    }, duracionMs);
+  }
+
+  parpadeoActivo = {
+    el,
+    intervalo,
+    timeout,
+    colorOriginal
+  };
+}
+
+function detenerParpadeo() {
+  if (!parpadeoActivo) return;
+
+  clearInterval(parpadeoActivo.intervalo);
+
+  if (parpadeoActivo.timeout) {
+    clearTimeout(parpadeoActivo.timeout);
+  }
+
+  parpadeoActivo.el.style.backgroundColor =
+    parpadeoActivo.colorOriginal;
+
+  parpadeoActivo = null;
+}
+
+
+// BOTON BLANCO RGB
+function crearPerfilColor() { // crear nuevo desde botón blanco
+  const contRGB  = document.querySelector('#padre-rgb');
+  const contCYMK = document.querySelector('#padre-cmyk');
+
+  const primerImputRGB  = document.querySelector('#input-r');
+  const segundoImputRGB = document.querySelector('#input-g');
+  const tercerImputRGB  = document.querySelector('#input-b');
+  const cuartoImputRGB  = document.querySelector('#input-w');
+
+  const primerImputCMYK  = document.querySelector('#input-c');
+  const segundoImputCMYK = document.querySelector('#input-m');
+  const tercerImputCMYK  = document.querySelector('#input-y');
+  const cuartoImputCMYK  = document.querySelector('#input-k');
+  const quintoImputCMYK  = document.querySelector('#input-a');
+
+  // Capturar nombre del perfil
+  let inputNombre = document.getElementById('nombre-Perfil').value.trim();
+
+  if (!inputNombre) {
+    parpadearElemento('nombre-Perfil');
+    /* mostrarVentanaEmergente('Por favor, ingrese un nombre válido'); */
+    saltarAlerta('Por favor, ingrese un nombre válido','vacioRgb')
+    return;
+  }
+
+  // Determinar prefijo según contenedor visible
+  let prefijo = '';
+
+  if (contRGB && contRGB.style.display === 'grid') {
+    prefijo = 'RGB - ';
+  } else if (contCYMK && contCYMK.style.display === 'grid') {
+    prefijo = 'CMYK - ';
+  }
+
+  // Evitar duplicar prefijo
+  if (prefijo && !inputNombre.startsWith(prefijo)) {
+    inputNombre = prefijo + inputNombre;
+  }
+
+  // Capitalizar al final
+  inputNombre = capitalizarTexto(inputNombre);
+
+  // Validar si el perfil ya existe
+  if (almacenObjetos[inputNombre]) {
+    mostrarVentanaEmergente('Ya existe un perfil con este nombre');
+    return;
+  }
+
+  // Crear nueva instancia
+  const nuevoObjeto = new objetoColores();
+
+  // Almacenar en el almacén global
+  almacenObjetos[inputNombre] = nuevoObjeto;
+  objetoGlobal = inputNombre;
+
+  if (!almacenObjetos[objetoGlobal]) {
+    console.error('Error: No se pudo encontrar el perfil en almacenObjetos.');
+    return;
+  }
+
+  // Asignar valores según el contenedor activo
+  if (contRGB && contRGB.style.display === 'grid') {
+    almacenObjetos[objetoGlobal].RGBA.R = parseInt(primerImputRGB.value, 10) || 0;
+    almacenObjetos[objetoGlobal].RGBA.G = parseInt(segundoImputRGB.value, 10) || 0;
+    almacenObjetos[objetoGlobal].RGBA.B = parseInt(tercerImputRGB.value, 10) || 0;
+    almacenObjetos[objetoGlobal].RGBA.A = parseInt(cuartoImputRGB.value, 10) || 0;
+  }
+
+  if (contCYMK && contCYMK.style.display === 'grid') {
+    almacenObjetos[objetoGlobal].CMYK.C = parseInt(primerImputCMYK.value, 10) || 0;
+    almacenObjetos[objetoGlobal].CMYK.M = parseInt(segundoImputCMYK.value, 10) || 0;
+    almacenObjetos[objetoGlobal].CMYK.Y = parseInt(tercerImputCMYK.value, 10) || 0;
+    almacenObjetos[objetoGlobal].CMYK.K = parseInt(cuartoImputCMYK.value, 10) || 0;
+    almacenObjetos[objetoGlobal].CMYK.A = parseInt(quintoImputCMYK.value, 10) || 0;
+  }
+
+  // Ordenar almacenObjetos alfabéticamente
+  const almacenObjetosOrdenado = Object.keys(almacenObjetos).sort().reduce((obj, key) => {obj[key] = almacenObjetos[key];return obj;}, {});
+
+  // Persistir en localStorage
+  localStorage.setItem('coloresRegistrados',JSON.stringify(almacenObjetosOrdenado) );
+
+  // Feedback visual
+  mostrarVentanaEmergente('Perfil creado y almacenado');
+
+  // Limpiar input
+  document.getElementById('nombre-Perfil').value = '';
+
+  // Refrescar estado
+  traerAlmacenObjetos();
+}
+
+
+
+
+function colorRenderizado(){
+  let padreLuz = document.querySelector('#padre-rgb')
+  let padrePigmento = document.querySelector('#padre-cmyk')
+
+  if(padreLuz.style.display = 'grid'){
+    padrePigmento.style.display = 'none'
+    padreLuz.style.display  = 'grid'
+
+    setTimeout(() => {
+      renderizaMezclaRGB()
+    }, 100);
+  }
+
+  if(padrePigmento.style.display = 'grid'){
+    padreLuz.style.display = 'none'
+    padrePigmento.style.display  = 'grid'
+
+    setTimeout(() => {
+      renderizaMezclaCMYK()
+    }, 100);
+  }
+  
+}
+function renderizaMezclaRGB() {
+  // Verificar si almacenObjetos está definido
+  if (!almacenObjetos[objetoGlobal] || !almacenObjetos[objetoGlobal].CMYK) {
+    console.warn("Error: objetoGlogal o objetoGlogal.RGBA no está definido.");
+    document.getElementById("ventanaEmergente").classList.remove("oculta");
+    document.getElementById("mensajeEmergente").textContent = "Cargue la base de datos antes de generar el perfil de color";
+  return;
+  }
+
+  console.log('almacenObjetos.objetoGlobal', almacenObjetos[objetoGlobal])
+  // Extraer valores asegurando que existen, de lo contrario asignar 0
+  let rValue = almacenObjetos[objetoGlobal].RGBA.R;
+  let gValue = almacenObjetos[objetoGlobal].RGBA.G;
+  let bValue = almacenObjetos[objetoGlobal].RGBA.B;
+  let wValue = almacenObjetos[objetoGlobal].RGBA.A;
+
+  // Verificar si los valores fueron obtenidos correctamente
+  console.log("Valores RGBA extraídos:", { R: rValue, G: gValue, B: bValue, W: wValue });
+
+  animarSlidersRGB([
+    { trackId: "slid-rojo-rgb", spanId: "c-span-rgb", channel: "R", porcentajeDestino: rValue },
+    { trackId: "slid-verde-rgb", spanId: "m-span-rgb", channel: "G", porcentajeDestino: gValue },
+    { trackId: "slid-azul-rgb", spanId: "y-span-rgb", channel: "B", porcentajeDestino: bValue },
+    { trackId: "slid-blanco-rgb", spanId: "w-span-rgb", channel: "W", porcentajeDestino: wValue }
+  ]);
+  traerAlmacenObjetos()
+}
+function renderizaMezclaCMYK() {
+  
+  // Verificar si almacenObjetos está definido
+  if (!almacenObjetos[objetoGlobal] || !almacenObjetos[objetoGlobal].CMYK) {
+    console.warn("Error: objetoGlogal o objetoGlogal.CMYK no está definido.");
+    document.getElementById("ventanaEmergente").classList.remove("oculta");
+    document.getElementById("mensajeEmergente").textContent = "Cargue la base de datos antes de generar el perfil de color";
+  return;
+  }
+
+  console.log('almacenObjetos.objetoGlobal', almacenObjetos.objetoGlobal)
+  // Extraer valores asegurando que existen, de lo contrario asignar 0
+  let cValue = almacenObjetos[objetoGlobal].CMYK.C;
+  let mValue = almacenObjetos[objetoGlobal].CMYK.M;
+  let yValue = almacenObjetos[objetoGlobal].CMYK.Y;
+  let kValue = almacenObjetos[objetoGlobal].CMYK.K;
+  let wValue = almacenObjetos[objetoGlobal].CMYK.A;
+
+
+  // Verificar si los valores fueron obtenidos correctamente
+  console.log("Valores CMYK extraídos:", { C: cValue, M: mValue, Y: yValue, K: kValue, A: wValue });
+
+  animarSlidersCMYK([
+    { trackId: "slid-cian", spanId: "c-span", channel: "C", porcentajeDestino: cValue },
+    { trackId: "slid-magenta", spanId: "m-span", channel: "M", porcentajeDestino: mValue },
+    { trackId: "slid-amarillo", spanId: "y-span", channel: "Y", porcentajeDestino: yValue },
+    { trackId: "slid-negro", spanId: "k-span", channel: "K", porcentajeDestino: kValue },
+    { trackId: "slid-blanco", spanId: "w-span", channel: "A", porcentajeDestino: wValue }
+  ]);
+  traerAlmacenObjetos()
+
+}
+configurarBoton('#boton-seis', '#padre-cmyk', () => resetBotonMezclador('padre-cmyk'));
+configurarBoton('#boton-rgb', '#padre-rgb', () => resetBotonMezclador('padre-rgb'));
+configurarBoton('#boton-cmyk','#padre-cmyk', '')
+
+configurarBoton('#boton-rgb-alternar','#padre-rgb', '') 
+configurarBoton('#boton-rgb-salir','#padre-rgb', '')
+configurarBoton('#boton-cmyk-salir','#padre-cmyk', '')
+document.querySelector('#btn-salir-perfiles').addEventListener('click', alternarOcultarBotones);
+function alternarOcultarBotones() {
+  const controlRgb = document.querySelector('#control-panel-rgb')
+  const controCmyk = document.querySelector('#control-panel-cmyk')
+  const perfiladorColor = document.querySelector('#perfiles-color')
+  const mostrarFlex = (selector) => {
+    document.querySelectorAll(selector).forEach(el => el.style.display = 'flex');
+  };
+
+  ['.lbl-cmyk', '.btnCmyk', '.lbl-opcion', '.btn-opcion'].forEach(mostrarFlex);
+  ocultarElementoProgressivo(perfiladorColor)
+  ocultarElementoProgressivo(controlRgb)
+  ocultarElementoProgressivo(controCmyk)
+
+}
+// SALIR APLICACION INFERIOR
+document.querySelectorAll('.alterna-panel').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if(btn.id === 'exit-cmyk'){
+      ocultarElementoProgressivo(panelControlCMYK)
+    }
+    if(btn.id === 'exit-rgb'){
+      ocultarElementoProgressivo(panelRgb)
+    }
+  });
+});
+
+document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{ 
+  let slidersCMYK = document.querySelector('#container-slider')
+
+  var elementosExcluidos = ['colorCMYK','container-slider','simulador','container01','links-inicialesI','links-iniciales','buscador','search-form'] 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var element = document.getElementById(allContenedores[i])
+    if (element) {
+      element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  } 
+  container1.style.display='grid'
+  slidersCMYK.style.display = 'grid';
+  aparecerElemento('padre-cmyk','grid')
+  actualizarIdsArray('padre-cmyk');
+})
+document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
+  let slidersRGB = document.querySelector('#padre-controles')
+
+  var elementosExcluidos = ['colorDisplay','padre-controles','simulador','container01','links-inicialesI','links-iniciales','buscador','search-form'] 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var element = document.getElementById(allContenedores[i])  
+    if (element) {
+      element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  } 
+  container1.style.display='grid'
+  slidersRGB.style.display = 'grid';
+  aparecerElemento('padre-rgb','grid')
+  actualizarIdsArray('padre-rgb');
+})
+
+document.querySelector('#save-tecnology').addEventListener('click', ()=>{
+  crearPerfilColor()
+})
+
+creaNombre.addEventListener('click', () => {
+  document.querySelector('#nombre-Perfil').value = ''
+  creaNombre.value = ''
+
+  botonesPerfilColor.forEach(elemento => {   
+    elemento.style.display = 'block';   
+  });
+  mostrarListaClientes('softwareColor')
+  limpiarColoresDeFondo()
+  desactivarClick(['.butt-perfiles', '.estilo-1']);  
+  mostrarNombresDeObjetos(); 
+  setTimeout(() => {
+    if (listaClientes && listaClientes.children.length === 0) {
+      mostrarVentanaMensaje('El almacenamiento y la base de datos estan vacíos')
+    }
+  }, 50);      
+
+});
+
+/* function configurarOcultarLista() {
+  let temporizador;
+  // Si el mouse entra en la lista antes de que pasen 3 segundos, cancelamos el ocultamiento
+  listaClientes.addEventListener('pointerenter', () => {
+    clearTimeout(temporizador);
+  });
+}
+
+// BOTON VERDE RGB
+configurarOcultarLista(); */
+
+function pintarColor() {
+  
+  if (!creaNombre.value.trim()) {
+      parpadearElemento("nombre-perfil-existe");
+      saltarAlerta('Cargue la base de datos antes de generar el perfil de color','vacioCmyk')
+    if (tecnologyCMYK) {
+      resetBotonMezclador('padre-cmyk');
+    }
+    if (tecnologyRGB) {
+      resetBotonMezclador('padre-rgb');
+    }
+    return;
+  }
+
+  if (tecnologyCMYK) {
+    renderizaMezclaCMYK();
+  }
+  if (tecnologyRGB) {
+    renderizaMezclaRGB();
+  }
+}
+// Función para observar cambios en el DOM
+function observarCambioDisplay() {
+  const observer = new MutationObserver(() => {
+    const rgbVisible = getComputedStyle(document.getElementById('padre-rgb')).display === 'grid';
+    const cmykVisible = getComputedStyle(document.getElementById('padre-cmyk')).display === 'grid';
+
+    if (rgbVisible) {
+      tecnologyRGB = true;
+      tecnologyCMYK = false;
+    } else if (cmykVisible) {
+      tecnologyRGB = false;
+      tecnologyCMYK = true;
+    }
+  });
+  // Observar cambios en el body y sus hijos
+  observer.observe(document.body, { attributes: true, subtree: true, attributeFilter: ['style', 'class'] });
+}
+function mostrarBarraProgres(inicio, fin) {
+  const barraProgreso = document.getElementById("barra-progreso-registro");
+  const contenedor = document.getElementById("contenedor-registro");
+
+  barraProgreso.style.width = inicio + "%";
+
+  if (intervaloProgreso) return;
+
+  contenedor.style.display = "grid";
+
+  setTimeout(() => {
+    intervaloProgreso = setInterval(() => {
+      let anchoActual = parseFloat(barraProgreso.style.width) || 0;
+      let nuevoAncho = anchoActual + 0.5;
+
+      if (nuevoAncho > fin) {
+        nuevoAncho = fin;
+        clearInterval(intervaloProgreso);
+        intervaloProgreso = null; // liberar referencia
+      }
+
+      barraProgreso.style.width = nuevoAncho + "%";
+    }, 10);
+  }, 100);
+}
+function ejecutarFase(opcion) {
+  switch (opcion) {
+    case "inicio":
+      mostrarBarraProgres(0.1, 33.5);
+      break;
+    case "medio":
+      mostrarBarraProgres(33.5, 67);
+      break;
+    case "final":
+      mostrarBarraProgres(67, 100);
+      break;
+  }
+}
+
+grupoBotsCrear.forEach(bot => {
+  bot.addEventListener('mouseleave', () => {
+    alertaTres.style.display = 'none';
+
+    if (listaClientes.children.length === 0) {
+      listaClientes.style.display = 'none';
+      alertaMSG.style.display = 'none';
+    } 
+
+    if (lineaClientes && lineaClientes.children.length === 0) {
+      lineaClientes.style.display = 'none';
+    } else {
+      alertaTres.style.display = 'none';
+    }
+
+    setTimeout(() => {
+      // Solo ocultar si el cursor NO está sobre listaClientes
+      if (!listaClientes.matches(':hover')) {
+        listaClientes.style.display = 'none';
+        restablecerClick(['.estilo-1', '.jobs']);
+      }
+    }, 300);
+  });
+});
+
+function borrrrrrrrrrrarrrrrrrrrrrrrrrrrrrr(){
+  const coleccionGraficos = document.querySelectorAll(".graphs-lines")
+  coleccionGraficos.forEach(grafico => {
+    grafico.style.display = 'flex'
+  })
+
+  const grafica9 = document.querySelector('#MiGrafica9');
+  if (grafica9) {
+    grafica9.style.opacity = 1;
+    grafica9.style.display = 'flex';
+    grafica9.style.visibility = 'visible';
+  }
+
+  const iconos = document.querySelector('#iconos');
+  const contLineas = document.querySelector('#contLineas');
+  const conteSecundario = document.querySelector('#conte-secundario');
+  const conteBotones = document.querySelector('#conte-butts-graphs');
+  const portaVisor = document.querySelector('#porta-visor');
+  const portaImagen = document.querySelector("#porta-imagen");
+
+  if (iconos) iconos.style.display = 'flex';
+  if (contLineas) contLineas.style.display = 'grid';
+  if (conteSecundario) conteSecundario.style.display = 'flex';
+  if (conteBotones) conteBotones.style.display = 'grid';
+  if (portaImagen) portaImagen.style.display = 'grid';
+
+  aparecerElemento('porta-visor', 'grid');
+
+  // ✅ Después de aparecerElemento
+  setTimeout(() => {
+    if (portaVisor && !portaVisor.classList.contains('modificarPosicion')) {
+      portaVisor.classList.add('modificarPosicion');
+    }
+  }, 50);
+
+  document.querySelector("#listaNombres").style.display = 'none';
+  document.querySelector("#buscador-empleado").classList.add("ubicacion");
+  document.querySelector("#visorImagen").classList.add('ubicar-visor');
+  document.querySelector("#porta-visor > div.visor > span").classList.add('ubicado');
+  document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');
+}
