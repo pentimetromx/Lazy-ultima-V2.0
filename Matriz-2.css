@@ -5584,8 +5584,9 @@ button:hover{
   color: #9ba3af;
   margin: 0 0 24px;
 }
-.card-outer {
+#carta-exterior{
   position: absolute;
+  display: block;  
   top: 24vh;
   left: 35vw;
   width: 30vw;
@@ -5600,11 +5601,10 @@ button:hover{
   z-index:300;
   overflow: hidden;
 
-  display: block;  
-           /* siempre en el flujo */
-  visibility: hidden;       /* oculto inicialmente */
+  display: none;
+
   transform: scale(0);
-  /* transform-origin: center; */
+  transform-origin: center; 
   transition: transform 1s ease;
 }
 .card-label {

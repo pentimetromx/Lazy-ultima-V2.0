@@ -2022,15 +2022,16 @@ width:447px ;
 #contImaginario-II.activo,
 #padre-2.activo,
 #padre-1.activo,
+#carta-exterior.activo,
 #abuelo-indicadores.activo,
 #linksMA.activo {
   display: flex; 
   transform: scale(1); 
 }
-.card-outer.activo {
+/* .card-outer.activo {
   visibility: visible;
   transform: scale(1);
-}
+} */
 #abuelo-indicadores.administrativo{
   top: 19.6vh;
   left: 35.1vw;

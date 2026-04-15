@@ -38,7 +38,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.querySelector('#porta-imagen');  
+  let contiBoton = document.querySelector('#carta-exterior');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
