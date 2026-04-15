@@ -380,9 +380,12 @@ function cargarColaboradoresDesdeStorage() {
   }));
 }
 
-const colaboradores = cargarColaboradoresDesdeStorage();
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  const colaboradores = cargarColaboradoresDesdeStorage();
+
+
   const cuartoHijo   = document.getElementById('ultimoElemento');
   const segundaLista = document.getElementById('segundaLista');
   if (!cuartoHijo || !segundaLista) return;
