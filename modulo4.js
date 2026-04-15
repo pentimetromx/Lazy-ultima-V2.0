@@ -1857,9 +1857,7 @@ function reubicarVisor(){
 
 function ingresoEmpleado(){
   calculadoraSimulador=true
-  const excluidos = [
-    'ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'
-  ];
+  const excluidos = ['ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'];
   allContenedores.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
@@ -1985,7 +1983,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mostrarEmpleadoObj(emp);
       }
     });
-  
+
 
     span.addEventListener('mouseleave', () => {
       if (fotoFijada) {
@@ -3825,6 +3823,7 @@ tercerhijoSubListaRRHH.addEventListener('click', () => {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
     }
   }
+  panelDeBajas.classList.remove('move-panel-salir')  
   panelDeBajas.classList.remove('activo')  
   container1.style.display='grid'
 
@@ -5805,10 +5804,11 @@ document.querySelector("#carta-exterior > div > div.card-left > div.card-botones
   const img = document.getElementById('imgAdministrar');
   img.src='./assets/silueta0.png'
 
-})
+}) 
 
 linkMaster.addEventListener('click', ()=>{
   panelAdministrativo.classList.remove('move-carta-exterior')
+  panelAdministrativo.classList.remove('activo')
   var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI']; 
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]) 
@@ -5818,6 +5818,7 @@ linkMaster.addEventListener('click', ()=>{
   }
   container1.style.display='grid'
   panelAdministrativo.classList.add('activo')
+  aparecerElemento("carta-exterior", "block");
   setTimeout(() => {
     document.querySelector('#carta-exterior > input').value=''    
     document.querySelector('#carta-exterior > input').focus()    
