@@ -382,10 +382,8 @@ function cargarColaboradoresDesdeStorage() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-
   const colaboradores = cargarColaboradoresDesdeStorage();
-
-
+ 
   const cuartoHijo   = document.getElementById('ultimoElemento');
   const segundaLista = document.getElementById('segundaLista');
   if (!cuartoHijo || !segundaLista) return;
@@ -494,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let fotoFijada = null;
 
   // --- construir lista dinámica ---
-  colaboradores.forEach((emp, i) => {
+  /* colaboradores.forEach((emp, i) => {
     const span = document.createElement('span');
     span.textContent = emp.nombre;
     span.dataset.img = emp.ruta; // importante para navegación
@@ -525,8 +523,71 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     listadoNombres.appendChild(span);
-  });
-  
+  }); */
+
+
+  colaboradores.forEach((emp, i) => {
+    const span = document.createElement('span');
+    span.textContent = emp.nombre;
+    span.dataset.img = emp.ruta;
+    span.dataset.index = i;
+
+    // ── Lógica compartida ──────────────────────────────────────
+    function activarEmpleado() {
+      indiceActual = i;
+      if (fotoFijada === emp) {
+        fotoFijada = null;
+        limpiarVisor();
+      } else {
+        fotoFijada = emp;
+        mostrarEmpleadoObj(emp);
+      }
+    }
+
+    // ── PC: mouse ──────────────────────────────────────────────
+    span.addEventListener('mouseenter', () => {
+      indiceActual = i;
+      if (fotoFijada === emp) {
+        fotoFijada = null;
+        limpiarVisor();
+      } else {
+        fotoFijada = emp;
+        mostrarEmpleadoObj(emp);
+      }
+    });
+
+    span.addEventListener('mouseleave', () => {
+      if (fotoFijada) {
+        mostrarEmpleadoObj(fotoFijada);
+      } else {
+        limpiarVisor();
+      }
+    });
+
+    span.addEventListener('click', activarEmpleado);
+
+    // ── Táctil ─────────────────────────────────────────────────
+    span.addEventListener('touchstart', (e) => {
+      // Guarda la posición inicial del toque
+      span._touchStartY = e.touches[0].clientY;
+      span._touchStartX = e.touches[0].clientX;
+    }, { passive: true }); // passive:true para no bloquear el scroll
+
+    span.addEventListener('touchend', (e) => {
+      const deltaY = Math.abs(e.changedTouches[0].clientY - span._touchStartY);
+      const deltaX = Math.abs(e.changedTouches[0].clientX - span._touchStartX);
+
+      // Solo activa si fue un tap, no un scroll (menos de 10px de movimiento)
+      if (deltaY < 10 && deltaX < 10) {
+        e.preventDefault(); // ahora sí cancela el click fantasma
+        activarEmpleado();
+      }
+    }, { passive: false });
+    
+
+    listadoNombres.appendChild(span);
+  });  
+    
 
   // --- navegación Prev / Next ---
   prevBtn.addEventListener('click', () => {

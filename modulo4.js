@@ -1967,7 +1967,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let fotoFijada = null;
 
   // --- construir lista dinámica ---
-  colaboradores.forEach((emp, i) => {
+/*   colaboradores.forEach((emp, i) => {
     const span = document.createElement('span');
     span.textContent = emp.nombre;
     span.dataset.img = emp.ruta; // importante para navegación
@@ -2005,7 +2005,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     listadoNombres.appendChild(span);
-  });
+  }); */
 
   // --- navegación Prev / Next ---
   prevBtn.addEventListener('click', () => {
@@ -2032,8 +2032,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    const coincidencia = colaboradores.find(c => c.nombre.toLowerCase().includes(valor)
-    );
+    const coincidencia = colaboradores.find(c => c.nombre.toLowerCase().includes(valor));
 
     if (coincidencia) {
       fotoFijada = coincidencia; // fija desde buscador
@@ -2144,7 +2143,7 @@ buscaNombre.addEventListener('blur', () => {
 }); */
 
 
-const inputsVarios = [inputNombre, buscaNombre, inputNombreMA, mejoraFichaTec, equiposMA];
+const inputsVarios = [buscaNombre, mejoraFichaTec];
 
 inputsVarios.forEach(input => {
   if (!input) return;
@@ -2269,10 +2268,6 @@ inputRRHH.addEventListener('click',() =>{
   if(!esDesktop) ubicaCalculadoraSegunContexto()
 })
 inputRRHH.addEventListener('focusin',() =>{
-  if(!esDesktop) ubicaCalculadoraSegunContexto()
-})
-
-inputDocumentoEmpleado.addEventListener('click',() =>{
   if(!esDesktop) ubicaCalculadoraSegunContexto()
 })
 
