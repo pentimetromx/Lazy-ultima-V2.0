@@ -5496,7 +5496,7 @@ listaClientes.addEventListener('mouseleave', () => {
     if (menuVisible) return;
     listaClientes.style.display = 'none';
     if (inputBuscar) inputBuscar.style.display = 'none';
-    menuContextual.style.display = 'none';
+    if(menuContextual)menuContextual.style.display = 'none';
     restablecerClick(['.base-datos']);
   }, 100);
 });
