@@ -4665,8 +4665,8 @@ function mostrarListaClientes(seccion) {
     case 'perfilesIndividual' :
       document.querySelector('#simulador').style.display='flex'
       listaClientes.style.top='35vh' 
-      listaClientes.style.left = '25vw'
-    break    
+      listaClientes.style.left = '25vw'       
+    break 
    
   }
 
