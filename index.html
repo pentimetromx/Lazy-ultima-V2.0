@@ -4,52 +4,6 @@
      
   <head>    
               
-      <!--     <style>
-            body,html{
-              margin:0;
-              padding:0;
-              height:100%;
-              overflow:hidden;
-              background-color:rgb(30,30,30);
-              font-family:'Arial',sans-serif;
-              user-select:none;
-            }
-            #img-logo{
-              position:relative;
-              left:-318px;
-              top:-1px;
-              display:none;
-            }
-            #titulo-ancho{
-              position:absolute;
-              display:flex;
-              width:0;
-              height:auto;
-              transition:width 0.7s ease;
-            }
-            .numero{
-              width:calc(10% - 2px);
-              margin:0 12px;
-              text-align:center;
-              font-family:"Courier New",Courier,monospace;
-              font-size:0.7vw;
-              color:rgb(0,255,0);
-            }
-            .contraseña{
-              position:absolute;
-              display:flex;
-              align-items:center;
-              justify-content:center;
-              color:whitesmoke;
-              background-color:#000;
-              top:60%;
-              left:-35%;
-              width:15.6%;
-              height:4vh;
-              border-radius:7px;
-              transition:transform 0.9s ease;
-            }
-          </style> -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
 
@@ -58,14 +12,15 @@
     <link rel="stylesheet" href="./Matriz-1.css">
     <link rel="stylesheet" href="./Matriz-2.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" href="./Matriz-1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">  
   </head>
 
-  <script></script> 
-
-  <div id="info" style="position:fixed;bottom:10px;left:10px;color:white;background:black;padding:5px;font-family:monospace;z-index:9999;"></div>
 
  <body onload="manejarLogica()"> 
+    <script></script> 
+
+    <div id="info" style="position:fixed;bottom:10px;left:10px;color:white;background:black;padding:5px;font-family:monospace;z-index:9999;"></div>
+
     <header class="buscador" id="buscador">
       
       <form id="search-form">
@@ -784,9 +739,9 @@
 
     <div id="container01" class="ocultos" data-display="grid">  
       <button id="bot-atras" class="entrada-empleado" onclick="irContenedorAnterior('contPortPlaca')"></button>
-      <button id="bot-inicial" class="entrada-empleado" onclick="abrirInterfaz()">Panel Inicio</buttonclass=>
-      <button id="iniciar" class="entrada-empleado" onclick="activarPantallaCompleta()">Full Screen</buttonclass=>
-      <button id="bot-atras12" class="entrada-empleado" onclick="irContenedorSiguiente()"></buttonclass=>
+      <button id="bot-inicial" class="entrada-empleado" onclick="abrirInterfaz()">Panel Inicio</button>
+      <button id="iniciar" class="entrada-empleado" onclick="activarPantallaCompleta()">Full Screen</button>
+      <button id="bot-atras12" class="entrada-empleado" onclick="irContenedorSiguiente()"></button>
     </div>
     <div id="pantalla-tintero"> 
 
@@ -820,7 +775,7 @@
           <h2 style="font-family: 'GothamRounded', sans-serif;color: yellowgreen;text-align: left; ">Acople</h2>
         </header>
         <section id="secion-1" style="position: relative;margin-top: -17px;left: 11px;">
-          <p>1. Cromita de Hierro (FeCr2O4):</pstyle=><br>
+          <p>1. Cromita de Hierro (FeCr2O4):</p><br>
           <p>2. Diametro pomo 51 mm </p>
           <p>3. Diametro eje 17 mm </p>
           <p>4. Largo total 70 mm </p>
@@ -2651,7 +2606,7 @@
     </div>
 
     <ul id="context-menu" class="context-menu">
-      <li>Historial</linclick=>
+      <li>Historial</li>
       <li onclick="secuenciaEntrena()">Profundizar</li>
       <li>Ultimo caso</li>
       <li>Ayudas</li>
@@ -2694,7 +2649,7 @@
       </ol>
     </div>
     
-    <div id="contenedor-2" class="calendar-container">
+<!--     <div id="contenedor-2" class="calendar-container">
       <h2 class="month-title">March</h2>
       
       <div class="calendar-grid">
@@ -2719,7 +2674,6 @@
         <div class="day-cell">6</div>
         <div class="day-cell">7</div>
         <div class="day-cell">8</div>
-
         <div class="day-cell">9</div>
         <div class="day-cell">10</div>
         <div class="day-cell">11</div>
@@ -2727,7 +2681,6 @@
         <div class="day-cell">13</div>
         <div class="day-cell">14</div>
         <div class="day-cell">15</div>
-
         <div class="day-cell">16</div>
         <div class="day-cell">17</div>
         <div class="day-cell">18</div>
@@ -2735,7 +2688,6 @@
         <div class="day-cell">20</div>
         <div class="day-cell">21</div>
         <div class="day-cell">22</div>
-
         <div class="day-cell">23</div>
         <div class="day-cell">24</div>
         <div class="day-cell">25</div>
@@ -2743,7 +2695,6 @@
         <div class="day-cell">27</div>
         <div class="day-cell">28</div>
         <div class="day-cell">29</div>
-
         <div class="day-cell">30</div>
         <div class="day-cell">31</div>
         <div></div>
@@ -2752,7 +2703,7 @@
         <div></div>
         <div></div>
       </div>
-    </div>
+    </div> -->
 
     <div id="blur-layer"></div>
 
@@ -3288,8 +3239,6 @@
         </div>    
       </div>
 
-
-
       <div id="lista-clientes" class="listado-clientes"></div>
       
       <div id="lista-lineas" class="listado-lineas">
@@ -3641,6 +3590,7 @@
         <div></div>
       </div>
     </div>
+
     <div id="image-uno" class="img-solid">
       <img class="lazy" data-src="./assets/Tapa rotativa.png" alt="">
     </div> 
