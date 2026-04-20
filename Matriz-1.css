@@ -7481,14 +7481,16 @@ height:100%;
 #imagenVisor-II[src=""]{
   display:none;
 }
-#visorImagen-II > #imagenVisor-II{
-  width:100%;
-  height:77%;
+#visorImagen-II > #imagenVisor-II {
+  position: absolute;
+  right: 101%;
+  width: 40%;
+  height: 77%;
   border-radius: 7px;
 }
 #listaFotos {
   border-radius: 7px;
-  background-color: rgba(0, 0, 20, 0.5);
+  background-color: rgb(0, 0, 20);
   border: 1px solid #ccc;
   color: #f4f4f4;
   width:100%;
@@ -7503,6 +7505,7 @@ height:100%;
  #listaFotos > div {
   padding: 8px 12px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 0.5em;
   cursor: pointer;
   white-space: nowrap;
 }

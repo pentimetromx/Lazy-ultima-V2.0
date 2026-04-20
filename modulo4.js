@@ -1788,7 +1788,7 @@ visor.addEventListener('click', (e) => {
     permitirEliminarImagen = true;
   }, 100);
 
-    const coleccionGraficos = document.querySelectorAll(".graphs-lines")
+  const coleccionGraficos = document.querySelectorAll(".graphs-lines")
   coleccionGraficos.forEach(grafico => {
     grafico.style.display = 'flex'
   })
@@ -2599,6 +2599,7 @@ listaFotos.addEventListener('mouseover', e => {
   const item = e.target.closest('[data-ruta]');
   if (!item) return;
   imagenVisor.src = item.dataset.ruta;
+  /* setTimeout(() => { debugger; }, 300) */
 });
 // CLCICK EN LA RUTA FOTO
 listaFotos.addEventListener('click', e => {

@@ -2,23 +2,21 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {  
       case 'Ñ':
-        /* console.log('BANDERA = ', flagEmpleado)
+        console.log('BANDERA = ', flagEmpleado)
          Object.keys(localStorage).forEach(key => {
           console.group(key);
           console.log(JSON.parse(localStorage.getItem(key)));
           console.groupEnd();
-        }); */
+        });
 
-        const datos = JSON.parse(localStorage.getItem('empleadosRegistrados'))
+        /* const datos = JSON.parse(localStorage.getItem('empleadosRegistrados'))
         const cedula = 21375808
         console.log('empleadosRegistrados : ', datos)
         console.log('primer empleado almacenado : ', datos[cedula])
 
-        /* limpiarFormulario() */
-
         document.querySelector('#iconos').style.display='flex'
         document.querySelector('#contLineas').style.display='grid'
-        borrrrrrrrrrrarrrrrrrrrrrrrrrrrrrr()
+        borrrrrrrrrrrarrrrrrrrrrrrrrrrrrrr() */
 
       
 
