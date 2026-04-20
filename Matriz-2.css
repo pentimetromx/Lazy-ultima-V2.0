@@ -2738,41 +2738,54 @@ width: 70%;
   border-top: 1px solid rgb(33,33,33);
   box-shadow: 0 0 2px rgba(200,200,200, 0.5);
 }
+
 .listado-lineas,
-.listado-clientes{
+.listado-clientes {
   position: absolute;
-  display: block;
-  flex-direction: column;
-  background-color:rgba(255,255,255,0.95);
-  overflow-y:auto;
-  overflow-x: hidden;
   display: none;
+  flex-direction: column;
+  background-color: #2d2d2d;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 9px 15px;
+
   top: 42vh;
   width: 27vw;
   left: 37.5vw;
-  height: 55vh;
+  height: auto;
+  max-height: 55vh;
   z-index: 2010;
 
-  outline: 1.5px solid #C0C0C0;
-  outline-offset: 3px;  
+  border-radius: 9px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 1px 4px rgba(0, 0, 0, 0.3);
+  padding: 4px 0;
+  border: none;
+  outline: none;
 }
+
 .listado-lineas > *,
 .listado-clientes > * {
   display: block;
-  padding: 10px;
-  background-color:rgba(255,255,255,0.95);
+  padding: 7px 16px;
+  background-color: transparent;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-
-  font-size: 0.9em;
-  color:rgb(51,55,65);
+  font-size: 0.6em;
+  color: rgba(240, 240, 240, 0.92);
   box-sizing: border-box;
   cursor: pointer;
+  white-space: nowrap;
+  border-radius: 0;
+  user-select: none;
+
+  border-radius: 6px;  
 }
+
 .listado-lineas > *:hover,
-.listado-clientes > *:hover{
-  background-color:rgba(63, 68, 85, 1);
-  color:rgba(255,255,255,0.95);
+.listado-clientes > *:hover {
+  background-color: #3b68d8;
+  color: #ffffff;
 }
+
 .alerta-perfil,
 .alerta-botones,
 .alerta-normal,
@@ -5336,7 +5349,7 @@ top: 44%;
 .estilo-empl{
   border: 1px solid gray;
   border-radius: 5px;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   height: 100%;
   width:100%;
   padding:3%;
@@ -10093,7 +10106,22 @@ button:hover{
     top: 44vh;
   }
 
-}
+  #abuelo-indicadores.administrativo {
+    top: 18.3vh;
+    height: 34vh;
+  }
+  #padre-desempeños.administrador{
+    top: 12vh;
+    height: 35vh;
+  }
+  #abuelo-grafica12.administra {
+    top: 59vh;
+    height: 34.2vh;
+  }
+  #grafico-area.administrar {
+    top: 59vh;
+    height: 34vh;
+  }}
 
   /* MEDIA QUERY PARA MINITABLET DE EMILIA */
   @media (min-width: 980px) and (max-width: 1040px) {
