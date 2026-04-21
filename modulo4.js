@@ -78,8 +78,21 @@ document.querySelector('#contenedor-botonera button:nth-child(4)').addEventListe
 
   }, 100);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 // BOTON INTERFAZ AZUL  
-document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListener('click', () => {
+/* document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListener('click', () => {
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])
@@ -94,7 +107,172 @@ document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListe
   cont.style.position = 'absolute';
   cont.style.top='-1vh'
 
-})
+}) */
+
+// ── CONFIGURACIÓN DE CATEGORÍAS ──
+// El orden de items DEBE coincidir con el orden en configIndex[]
+const NAV_CATEGORIES = [
+  {
+    key: 'sheeter', label: 'Sheeter', icon: '⚙',
+    items: [
+      'Perfil cuchillas sheeter',
+      'Montaje cuchilla sheeter',
+      'Ajuste cuchilla sheeter',
+      'Comprobacion de ajuste cuchilla',
+    ]
+  },
+  {
+    key: 'manta', label: 'Manta', icon: '🔲',
+    items: [
+      'Manta en offset', 'Manta en cilindro', 'Cotas manta',
+      'Offset 360', 'Offset estatico', 'Manta general', 'Manta al detalle',
+    ]
+  },
+  {
+    key: 'plancha', label: 'Plancha', icon: '◧',
+    items: [
+      'Plancha en cilindro', 'Plancha estructura', 'Doctor blade segmentada',
+    ]
+  },
+  {
+    key: 'tintero', label: 'Tintero', icon: '▣',
+    items: [
+      'Tintero interno', 'Tintero palancas', 'Segmento tinta',
+    ]
+  },
+  {
+    key: 'trinquete', label: 'Trinquete', icon: '⚡',
+    items: [
+      'Trinquete rodillo isometrico', 'Trinquete solo',
+      'Trinquete multi orquilla', 'Trinquete normal',
+    ]
+  },
+];
+
+// ── ESTADO ──
+let navActiveCat  = 0;
+let navActiveItem = null; // índice global en configIndex
+
+// ── REFERENCIAS DOM ──
+const navTabsStrip      = document.getElementById('navTabsStrip');
+const navCatTitle       = document.getElementById('navCatTitle');
+const navSecondaryItems = document.getElementById('navSecondaryItems');
+
+// Construye el índice global: item → índice en configIndex
+// (igual que el orden de los .etq-frm originales)
+function buildGlobalIndex() {
+  const idx = [];
+  NAV_CATEGORIES.forEach(cat => cat.items.forEach(item => idx.push(item)));
+  return idx; // ["Perfil cuchillas sheeter", "Montaje cuchilla sheeter", ...]
+}
+const GLOBAL_ORDER = buildGlobalIndex();
+
+function getGlobalIndex(catIdx, itemIdx) {
+  let count = 0;
+  for (let i = 0; i < catIdx; i++) count += NAV_CATEGORIES[i].items.length;
+  return count + itemIdx;
+}
+
+// ── RENDERS ──
+function renderTabs() {
+  navTabsStrip.innerHTML = '';
+  NAV_CATEGORIES.forEach((cat, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-tab-btn' + (i === navActiveCat ? ' activo' : '');
+    btn.innerHTML = `
+      <span class="nav-tab-icon">${cat.icon}</span>
+      <span class="nav-tab-label">${cat.label}</span>`;
+    btn.addEventListener('click', () => {
+      navActiveCat = i;
+      renderTabs();
+      renderSidebar();
+    });
+    navTabsStrip.appendChild(btn);
+  });
+}
+
+function renderSidebar() {
+  const cat = NAV_CATEGORIES[navActiveCat];
+  navCatTitle.textContent = cat.label.toUpperCase();
+  navSecondaryItems.innerHTML = '';
+
+  cat.items.forEach((itemName, localIdx) => {
+    const globalIdx = getGlobalIndex(navActiveCat, localIdx);
+    const btn = document.createElement('button');
+    btn.className = 'etq-frm' + (navActiveItem === globalIdx ? ' activo' : '');
+    btn.textContent = itemName;
+    // ← aquí disparamos exactamente la misma lógica que tenías
+    btn.addEventListener('click', () => {
+      navActiveItem = globalIdx;
+      renderSidebar(); // refresca estado activo
+
+      const cfg = configIndex[globalIdx];
+      if (!cfg) return;
+
+      ocultarTodos([cfg.id]);
+
+      document.querySelector('#formulario-cuenta').style.display = 'flex';
+      document.querySelector('#buscador').style.display = 'flex';
+      document.querySelector('#search-form').style.display = 'flex';
+      container1.style.display = 'grid';
+      linkIni1.style.display = 'block';
+      linkIni2.style.display = 'block';
+
+      const contenedor = document.querySelector(`#${cfg.id}`);
+      if (contenedor) {
+        contenedor.style.display = contenedor.tagName === 'DIV' ? 'grid' : 'block';
+        reproducirVideoSiExiste(contenedor);
+      }
+
+      if (typeof cfg.extra === 'function') cfg.extra();
+    });
+
+    navSecondaryItems.appendChild(btn);
+  });
+}
+
+// ── INICIALIZAR ──
+renderTabs();
+renderSidebar();
+
+const btnAreasNav = document.querySelector("#contenedor-botonera > button:nth-child(5)");
+
+btnAreasNav.addEventListener('click', () => {
+  const nav = document.getElementById('formulario-cuenta');
+  const estaVisible = nav.style.display === 'flex';
+
+  // Oculta todo lo demás (igual que haces con otros botones)
+  ocultarTodos(['buscador','search-form','links-inicialesI','links-iniciales','container01'])
+  container1.style.display='grid'
+  if (estaVisible) {
+    // Toggle: si ya estaba abierto, lo cierra
+    nav.style.display = 'none';
+  } else {
+    nav.style.display = 'flex'; // ← flex porque el nuevo layout es flex-direction: row
+    renderTabs();    // refresca el estado visual de las tabs
+    renderSidebar(); // refresca los items del sidebar
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function alternarImagenes() {
   const imgUno = document.getElementById("image-uno");
   const imgDos = document.getElementById("image-tres");
@@ -2561,14 +2739,11 @@ inputFoto.addEventListener('click', () => {
 });
 // ocultar lista si se hace clic fuera
 
-
 /* document.addEventListener('click', e => {
   if (!listaFotos.contains(e.target) && e.target !== inputFoto) {
     listaFotos.style.display = 'none';
   }
 }); */
-
-
 
 const visorContenedor = document.querySelector('#visorImagen-II');
 const imagenVisor = document.querySelector('#imagenVisor-II');

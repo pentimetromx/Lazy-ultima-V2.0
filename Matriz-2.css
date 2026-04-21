@@ -4104,6 +4104,22 @@ top: 44%;
   background-color: transparent;
   box-shadow: none;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* #marco-formulario{
   position: relative;
   display: flex;
@@ -4118,7 +4134,7 @@ top: 44%;
   height: 77vh;
 
   transition: background-color 2s ease, box-shadow 2s ease;
-} */
+}
 .formulario-crear-cuenta {
   position: relative;
   display: grid;
@@ -4178,6 +4194,173 @@ top: 44%;
   transition: background-color 0.3s ease;
   border: 1px solid rgb(155,155,155);
 }
+#formulario-crear-cuenta .etq-frm.activo {
+  background-color: rgb(255, 0, 0);
+  box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7);
+} */
+
+
+#formulario-cuenta.nav-industrial {
+  position: relative;
+  display: none; 
+  flex-direction: row;
+  top: 10vh;
+  left: 11vw;
+  width: 22vw;
+  height: 80vh;
+  border-radius: 13px;
+  overflow: hidden;
+  background-color: #071520;
+}
+.nav-tabs-strip {
+  display: flex;
+  flex-direction: column;
+  width: 56px;
+  background: #02080f;
+  border-right: 1px solid #0d2033;
+  padding: 8px 0;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.nav-tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  height: 56px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: #7ab3cc;
+  transition: all 0.2s ease;
+  position: relative;
+  padding: 0 4px;
+}
+.nav-tab-btn:hover {
+  color: #00cc88;
+  background: rgba(0, 204, 136, 0.06);
+}
+.nav-tab-btn.activo {
+  color: #00cc88;
+  background: rgba(0, 204, 136, 0.10);
+}
+.nav-tab-btn.activo::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: #00cc88;
+  border-radius: 2px 0 0 2px;
+}
+.nav-tab-icon {
+  font-size: 16px;
+  line-height: 1;
+}
+.nav-tab-label {
+  font-family: 'Courier New', monospace;
+  font-size: 7px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  text-align: center;
+  color: inherit;
+}
+
+.nav-secondary {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.nav-secondary-header {
+  padding: 12px 10px 8px;
+  border-bottom: 1px solid #0d2033;
+  flex-shrink: 0;
+}
+.nav-secondary-header h3 {
+  font-family: 'Courier New', monospace;
+  font-size: 0.55vw;
+  color: #00cc88;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.nav-secondary-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.nav-secondary-items::-webkit-scrollbar { width: 3px; }
+.nav-secondary-items::-webkit-scrollbar-track { background: transparent; }
+.nav-secondary-items::-webkit-scrollbar-thumb {
+  background: #1f3546;
+  border-radius: 2px;
+}
+
+.etq-frm {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 8px;
+  border-radius: 4px;
+  background: #1f3546;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: 'Courier New', monospace;
+  font-size: 0.72vw;
+  color: #a8cfe0;
+  line-height: 1.3;
+}
+.etq-frm::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2d5a78;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.etq-frm:hover {
+  background: #00cc88;
+  color: #001a0a;
+}
+.etq-frm:hover::before { background: #001a0a; }
+.etq-frm.activo {
+  background-color: rgb(255, 0, 0);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.4);
+}
+.etq-frm.activo::before { background: rgba(255,255,255,0.6); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .btn-verde {
   background-color: rgba(0,255,0,1);
   color: black;
@@ -4500,10 +4683,7 @@ top: 44%;
 .horiz-9-4 { top: 71%; }
 .horiz-9-5 { top: 93%; }
 .item-naranja .span-extension.activa,
-#formulario-cuenta .etq-frm.activo {
-  background-color: rgb(255, 0, 0);
-  box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7);
-}
+
 #botonActualizar{
   position: relative;
   display: flex;
