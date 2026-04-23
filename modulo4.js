@@ -241,16 +241,11 @@ btnAreasNav.addEventListener('click', () => {
   const nav = document.getElementById('formulario-cuenta');
   const estaVisible = nav.style.display === 'flex';
 
-  // Oculta todo lo demás (igual que haces con otros botones)
-  ocultarTodos(['buscador','search-form','links-inicialesI','links-iniciales','container01'])
-  container1.style.display='grid'
+  document.querySelector('#contenedor-botonera').style.display='grid'
   if (estaVisible) {
-    // Toggle: si ya estaba abierto, lo cierra
     nav.style.display = 'none';
   } else {
-    nav.style.display = 'flex'; // ← flex porque el nuevo layout es flex-direction: row
-    renderTabs();    // refresca el estado visual de las tabs
-    renderSidebar(); // refresca los items del sidebar
+    nav.style.display = 'flex';
   }
 });
 
@@ -323,7 +318,15 @@ const configIndex = [
     }},
   { id: 'contenedor-sheeter', extra: () => setTimeout(() => mostrarAyudas('visor'), 500) },
   { id: 'video-graduar-sheeter' },
-  { id: 'triada-videos' },
+  { id: 'triada-videos', extra: () => {
+      document.querySelector('#triada-videos').style.display = 'grid';
+      document.querySelectorAll('.ajuste-corte').forEach(el => el.style.display = 'block');
+
+      document.querySelectorAll('#triada-videos video').forEach(video => {
+        video.play().catch(e => console.warn('Autoplay bloqueado:', e));
+      });
+    }
+  },   
   { id: 'video-la-manta' },
   { id: 'video-manta-render' },
   { id: 'video-manta-dos' },
@@ -359,20 +362,6 @@ function reproducirVideoSiExiste(contenedor) {
   }
 }
 const formularioCuenta = document.getElementById('formulario-cuenta');
-function ocultarTodosExcepto(idVisible) {
-  configIndex.forEach(cfg => {
-    const el = document.getElementById(cfg.id);
-    if (!el) return;
-
-    if (cfg.id === idVisible) {
-      // nada aquí; se muestra después
-    } else {
-      el.style.display = 'none';
-      el.removeAttribute('style'); // limpia estilos inline previos si los sets
-      el.style.display = 'none';   // forzamos ocultamiento real
-    }
-  });
-}
 
 // BOTONES AZULES
 formularioCuenta.addEventListener('click', e => {
@@ -435,12 +424,15 @@ videos.forEach(video => {
 
 const alojamiento = document.getElementById("imagenes-sheeter");
 const imagenes = alojamiento.querySelectorAll("img");
+
+//PRIMER CLICK /////////////////////////////////////////////////////////////////////////////////////////////////
+
 imagenes.forEach((img, index) => {
   img.addEventListener("click", () => {
 
     if (index === 0 || index === 1) {
       ocultarTodos(['video-cuchilla','buscador','search-form','links-inicialesI','links-iniciales','container01'])
-      document.querySelector('#formulario-cuenta').style.display = 'grid'
+      document.querySelector('#formulario-cuenta').style.display = 'flex'
       const contenedor = document.querySelector('#video-cuchilla')  
       const video = contenedor.querySelector('video')
       video.dataset.clickActivated = 'true'
@@ -456,7 +448,7 @@ imagenes.forEach((img, index) => {
 
     if (index === 2 || index === 3) {
       ocultarTodos(['video-cuchilla-1','buscador','search-form','links-inicialesI','links-iniciales','container01'])
-      document.querySelector('#formulario-cuenta').style.display = 'grid'
+      document.querySelector('#formulario-cuenta').style.display = 'flex'
       const contenedor = document.querySelector('#video-cuchilla-1')  
       const video = contenedor.querySelector('video')
       video.dataset.clickActivated = 'true'
@@ -491,7 +483,7 @@ videoSheeter.forEach(video => {
     });
     /* ocultarTodos() */
     ocultarTodos(['buscador','search-form','links-inicialesI','links-iniciales','container01'])
-    document.querySelector('#formulario-cuenta').style.display = 'grid'           
+    document.querySelector('#formulario-cuenta').style.display = 'flex'           
     document.querySelector('#imagenes-sheeter').style.display = 'grid'
     document.querySelector('#img-cuchilla-1').style.display = 'flex'
     document.querySelector('#img-cuchilla-2').style.display = 'flex'
@@ -4049,7 +4041,7 @@ hijosTec.forEach((li, index) => {
 
 const mostrarRegistro = document.querySelector('#links-registro > li:nth-child(2)')
 mostrarRegistro.addEventListener('click', () =>{
-  mostrarElementos(['butts-simulador','sections-fondo','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
+  mostrarElementos(['butts-simulador','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
 })
 //*********************************************************************************************************************** */
 function aplicarColoresInputs() {
@@ -5081,7 +5073,6 @@ const idsSelect = [
 ];
 //empleados ára mostrar en los select
 function cargarEmpleados(select) {
-
   if (select.dataset.loaded === 'true') return;
 
   const empleados = JSON.parse(localStorage.getItem('listaEmpleados')) || [];
@@ -5101,6 +5092,7 @@ function cargarEmpleados(select) {
   });
 
   select.dataset.loaded = 'true';
+
 }
 function setSelectValue(id, value) {
   const select = document.getElementById(id);
@@ -5797,24 +5789,16 @@ function limpiarFormulario() {
     if (imgMa) imgMa.src = '';
   }, inputs.length * 140);
 }
-document.querySelector('#borrarBoton2').addEventListener('click', () =>{
-  panelAdministrativo.classList.remove('move-carta-exterior')
-  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI']; 
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i]) 
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-    }
-  }
-  container1.style.display='grid'
-  /* aparecerElemento('carta-exterior','block') */
-  panelAdministrativo.classList.add('activo')
-  setTimeout(() => {
-    document.querySelector('#carta-exterior > input').value=''    
-    document.querySelector('#carta-exterior > input').focus()     
-  }, 500);        
+document.querySelector('#borrarBoton2').addEventListener('click', () => {
+  document.querySelector('#triada-videos').style.display = 'grid';
+  document.querySelector('.ajuste-corte').style.display = 'block';
 
-})
+  // ← solo agrega estas líneas:
+  document.querySelectorAll('#triada-videos video').forEach(video => {
+    video.play().catch(e => console.warn('Autoplay bloqueado:', e));
+  });
+});
+
 
 /* BOTON SUPERIOR COLUMNA BOTONES */
 document.querySelector("#boton-ma-card").addEventListener('click',()=>{
