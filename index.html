@@ -2804,19 +2804,15 @@
     <img id="sql" src="./assets/sql.png" alt="">
 
 
-    <div id="simulador">  
-
-      <span id="sections-fondo" data-display="grid" class="sections-btn">
-        <span id="spn-blur-8" class="btn-sections"></span><span id="spn-blur-9" class="btn-sections"></span><span id="spn-blur-10" class="btn-sections"></span>
-        <span id="spn-blur-12" class="btn-sections"></span>
-      </span>
+    <div id="simulador"> 
 
       <div id="butts-simulador" data-display="grid" class="sections">
-        <div class="section" onclick="ocultaElementos('segunda-pantalla','container01','links-inicialesI','links-iniciales','buscador','search-form','simulador')">Section 1</div>
-        <div class="section" onclick="ocultaElementos('water-background','clock','cronometro','botonera','cronos','container01','links-inicialesI','links-iniciales','buscador','search-form')">Section 2</div> 
-        <div class="section" onclick="ocultaElementos('container01','links-inicialesI','links-iniciales','buscador','search-form','control-panel')">Section 4</div>
-        <div class="section" onclick="ocultaElementos('container01','links-inicialesI','links-iniciales','buscador','search-form','interfaz-registro')">Section 5</div>
-      </div>   
+        <div class="section">Section 1</div>
+        <div class="section">Section 2</div> 
+        <div class="section">Section 4</div>
+        <div class="section">Section 5</div>
+      </div>  
+
       <div class="digital-clock" id="clock">  
         00:00:00
       </div>       
@@ -2828,7 +2824,7 @@
           <button id="resetButton" class="butts-crono">Restablecer</button> 
         </div>
       </div>
-      <div id="water-background">
+      <div id="water-background" class="indexado">
         <div id="pantalla">
           <div id="sub-pantalla"></div>
         </div>
@@ -2865,7 +2861,8 @@
           </div>
         </div>        
       </div>
-      <div id="segunda-pantalla">
+
+      <div id="segunda-pantalla" class="indexado">
         <img id="loguito" data-src="./assets/loguito.png" class="lazy" alt="loguito">
         <div id="pantalla-1"></div>
         <div id="pantalla-2">
@@ -2935,7 +2932,8 @@
         <img id="baliza" data-src="./assets/baliza.png" class="lazy" alt="">
       </div>   
       <div class="contenedor" id="conte-colors"></div>
-      <div id="control-panel">
+
+      <div id="control-panel" class="indexado">
         <button onclick="girarElemento('top-left')">Seleccionar entrenamiento</button>
         <div class="rectangulo" id="miRectangulo">IBM 5000</div>
         <div class="rectangulo" id="miRectangulo1">IBM Infoprint</div>
@@ -2945,7 +2943,7 @@
         <div class="rectangulo" id="miRectangulo5">rotatek RK-200</div>
         <div class="rectangulo" id="miRectangulo6">rotatek RK-300</div>
       </div>
-      <div id="interfaz-registro">
+      <div id="interfaz-registro" class="indexado">
         <div id="pantalla-registro">
           <button id="alterna1" class="alternador">Registro</button>
           <div id="sub-registros">
@@ -2988,6 +2986,7 @@
           <span id="spn-blur-5" class="btn-respaldo"></span>
           <span id="spn-blur-6" class="btn-respaldo"></span>
           <span id="spn-blur-7" class="btn-respaldo"></span>
+          <span id="spn-blur-8" class="btn-respaldo"></span>
         </span>
 
         <div id="botonera-frente">
@@ -2997,6 +2996,7 @@
           <button id="butt-job-track" class="butt-perfiles">Job Track</button>
           <button id="boton-perfiles" class="butt-perfiles">Crear perfil</button>
           <button id="boton-reseteo" class="butt-perfiles">Reset perfiles</button> 
+          <button id="boton-registro" class="butt-perfiles">Zona registro</button> 
           <button id="boton-prensas" class="butt-perfiles">Salir</button> 
         </div>
   
@@ -3601,7 +3601,7 @@
       <img class="lazy" data-src="./assets/motor.png" alt="">
     </div>   
      
-    <div id="imagenes-sheeter" class="equal-position border-around">
+    <div id="imagenes-sheeter" class="border-around">
 
       <div class="imagen-sheeter">
         <img id="img-cuchilla-1" class="lazy imagenes-cortador" data-src="./assets/Cuchilla_imagen.jpg" alt="">
@@ -3679,22 +3679,19 @@
         <source data-src="./assets/Desliza plancha.mp4" type="video/mp4">
       </video>
     </div>
-    <div id="triada-videos" class="equal-position">
 
-      <div class="videos-sup">
+    <div id="triada-videos">
 
-        <div id="corte-ajuste" class="ajuste-corte">
-          <video class="lazy" autoplay loop muted playsinline>
-            <source data-src="./assets/Oscilacion.mp4" type="video/mp4">
-          </video>
-        </div>
+      <div id="corte-ajuste" class="ajuste-corte">
+        <video class="lazy" autoplay loop muted playsinline>
+          <source data-src="./assets/Oscilacion.mp4" type="video/mp4">
+        </video>
+      </div>
 
-        <div id="corte-oscilacion" class="ajuste-corte">
-          <video class="lazy" autoplay loop muted playsinline>
-            <source data-src="./assets/Oscilacion3.mp4" type="video/mp4">
-          </video>
-        </div>
-
+      <div id="corte-oscilacion" class="ajuste-corte">
+        <video class="lazy" autoplay loop muted playsinline>
+          <source data-src="./assets/Oscilacion3.mp4" type="video/mp4">
+        </video>
       </div>
 
       <div id="ajuste-corte" class="ajuste-corte">
@@ -3704,6 +3701,7 @@
       </div>
 
     </div>
+
     <div id="video-insolacion" class="border-around">
       <video class="lazy" autoplay loop muted playsinline>
         <source data-src="./assets/Insolar punto plancha.mp4" type="video/mp4">
@@ -3795,8 +3793,8 @@
         <div class="nav-secondary-header">
           <h3 id="navCatTitle">ÁREA</h3>
         </div>
-        <div class="nav-secondary-items" id="navSecondaryItems">
-          
+
+        <div class="nav-secondary-items" id="navSecondaryItems">          
         </div>
       </div>
 
@@ -3822,6 +3820,7 @@
         <img id="mainImage" src="" alt="Imagen">
       </div>
       <button class="nav right" onclick="nextImage()">&#10095;</button>
+      
     </div>
 
     <div id="abuelo-grafica4">

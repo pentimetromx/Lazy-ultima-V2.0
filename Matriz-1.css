@@ -7647,14 +7647,15 @@ background-color: #3FEF9C;
   z-index: 100;
   pointer-events: none;
 }
-.padre-inputs{
+.padre-inputs {
   position: absolute;
   display: grid;
   gap: 3%;
-  grid-template-rows: repeat(5, 1fr);
-  top: 57vh;
-  height: 35vh;
-  width:10vw;
+  grid-template-columns: repeat(5, 1fr);
+  top: 88vh;
+  left: 20vw;
+  height: 4vh;
+  width: 60vw;
   /* z-index: 9999; */
 }
 .padre-inputs > button,
@@ -8160,6 +8161,7 @@ background-color: #3FEF9C;
   border-radius: 5px;
   background-color: rgb(0, 0, 17);
   color: rgb(200,200,200);
+  font-size: 0.6em;
 }
 .lista-propuestas{
   grid-area: lista;
@@ -8181,7 +8183,7 @@ background-color: #3FEF9C;
   position: absolute;
   display: block;
   left: 3vw;
-  top: 13vh;
+  top: -6vh;
   width: 8vw;
   height: auto;
 }

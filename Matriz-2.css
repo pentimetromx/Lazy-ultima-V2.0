@@ -98,9 +98,9 @@
   color: rgb(255,255,0);
 }
 #water-background{
-  position: relative;
+  position: absolute;
   display: flex;
-  top: 12vh;
+  top: 25vh;
   left: 17vw;
   width: 37vw;
   height: 60vh;
@@ -113,6 +113,7 @@
   backdrop-filter: blur(3px);
   border-radius: 10px;
   border-radius: 10px;
+  z-index:44;
   display: none;
 }
 #water-background label{
@@ -183,8 +184,8 @@
   position:absolute;
   display: grid;
   display: none;
-  top:20vh;
-  left: 1vw;
+  top:25vh;
+  left: 5vw;
   width: 8vw;
   height:70vh;
   grid-template-rows:repeat(7 ,1fr);
@@ -206,27 +207,7 @@
   font-size: 0.9em;
   text-align: center; 
 }
-.sections-btn {
-  position: absolute;
-  display: grid;
-  display: none;
-  gap: 5px;
-  top: 20vh;
-  left: 1vw;
-  width: 8vw;
-  height: 70vh;
-  grid-template-rows: repeat(7, 1fr);
-  justify-items: center;
-  align-items: center;
-}
-.btn-sections {
-  display: flex;
-  width: 80%;
-  height: 30%;
-  background-color:#FF1836;
-  border-radius: 7px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-}
+
 #segunda-pantalla{
   position:absolute;
   display: flex;
@@ -236,6 +217,7 @@
   height: 67vh;
   border-radius: 20px 20px 0 0;
   background-color: rgb(0,0,60);
+  z-index: 47;
   display: none;
 }
 #baliza{
@@ -849,12 +831,16 @@
   background-color:rgba(255,125,0,0.3)
 }
 #control-panel{
-  position: relative;
+  position: absolute;
   display: flex;
-  top:10vh;
-  left: 22vw;
+  top:25vh;
+  left: 17vw;
   width: auto;
   height: auto;
+  z-index: 47;
+}
+#control-panel button{
+  cursor: pointer;
 }
 .rectangulo {
   position:absolute;
@@ -862,8 +848,8 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  top: 33vh;
-  left: 50vw;
+  top: 7vh;
+  
   width:12vw;
   height:5vh;
   border-radius: 10px;
@@ -875,14 +861,15 @@
   background-color: aqua;
 }
 #interfaz-registro{
-  position:relative;
+  position:absolute;
   display: flex;
-  top: 12vh;
+  top: 25vh;
   left: 17vw;
   width: 47vw;
   height: 67vh;
   border-radius: 20px 20px 0 0;
   background-color: rgb(0,0,60);
+  z-index: 47;
   display: none;
 }
 #pantalla-guias,
@@ -1173,7 +1160,7 @@
 .fondo-btn{
   position: absolute;
   display: grid;
-  grid-template-columns: repeat(7, 1fr); 
+  grid-template-columns: repeat(8, 1fr); 
   top: 9%; 
   gap: 15px;
   width:100%;
@@ -1183,7 +1170,7 @@
 #botonera-frente{
   position: absolute;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   flex-wrap: wrap;
   top: 6%;
   width: 100%;
@@ -3987,22 +3974,19 @@ top: 44%;
   border-radius: 13px;
   border-radius: 13px;
   top: 15vh;
-  left: 32vw;
+  left: 34vw;
   height: 40vh;
   width: 40vw;
 }
-.equal-position{
-  top: 16vh;
-  left: 32vw;
-}
-#corte-oscilacion,
+/* #corte-oscilacion,
 #ajuste-corte{
   position: relative;
   display: flex;
   border-radius: 13px;
   border-radius: 13px;
   width:100%;
-}
+  height: 100%;
+} */
 #tinta_segmento video,
 #trinquete video,
 #trinquete-multi video,
@@ -4200,7 +4184,7 @@ top: 44%;
 } */
 
 
-#formulario-cuenta.nav-industrial {
+/* #formulario-cuenta.nav-industrial {
   position: relative;
   display: none; 
   flex-direction: row;
@@ -4211,16 +4195,42 @@ top: 44%;
   border-radius: 13px;
   overflow: hidden;
   background-color: #071520;
+} */
+#formulario-cuenta.nav-industrial {
+  position: relative;
+  display: none;
+  flex-direction: row;
+  top: 8vh;
+  left: 11vw;
+  width: 22vw;
+  height: 80vh;
+  border-radius: 13px;
+  overflow: hidden;
+  background-color: #071520;
+
+  /* ← ESTAS DOS LÍNEAS son el fix: */
+  align-items: flex-start;  /* evita que los hijos se estiren verticalmente */
+  flex-wrap: nowrap;        /* evita que colapsen a otra fila */
+}
+.nav-left {
+  display: flex;
+  flex-direction: row;
+  width: 100%;              /* ocupa todo el ancho del nav */
+  height: 100%;             /* ← altura fija, no depende del contenido */
+  flex-shrink: 0;
+  overflow: hidden;         /* ← contiene los hijos sin desbordarse */
 }
 .nav-tabs-strip {
   display: flex;
   flex-direction: column;
   width: 56px;
+  height: 100%;             /* ← siempre ocupa el 100% del nav-left */
   background: #02080f;
   border-right: 1px solid #0d2033;
   padding: 8px 0;
   gap: 4px;
   flex-shrink: 0;
+  overflow: hidden;         /* ← los tabs no se salen */
 }
 
 .nav-tab-btn {
@@ -4258,7 +4268,7 @@ top: 44%;
   border-radius: 2px 0 0 2px;
 }
 .nav-tab-icon {
-  font-size: 16px;
+  font-size: 26px;
   line-height: 1;
 }
 .nav-tab-label {
@@ -4270,13 +4280,15 @@ top: 44%;
   text-align: center;
   color: inherit;
 }
-
 .nav-secondary {
   display: flex;
   flex-direction: column;
   flex: 1;
+  height: 100%;             /* ← anclado a la altura del padre */
   overflow: hidden;
+  min-width: 0;
 }
+
 
 .nav-secondary-header {
   padding: 12px 10px 8px;
@@ -4291,15 +4303,17 @@ top: 44%;
   text-transform: uppercase;
   margin: 0;
 }
-
 .nav-secondary-items {
   flex: 1;
-  overflow-y: auto;
+  overflow-y: auto;         /* ← scroll interno, nunca empuja hacia abajo */
   padding: 6px;
   display: flex;
   flex-direction: column;
   gap: 3px;
+  min-height: 0;            /* ← clave en flexbox: permite que el scroll funcione */
 }
+
+
 .nav-secondary-items::-webkit-scrollbar { width: 3px; }
 .nav-secondary-items::-webkit-scrollbar-track { background: transparent; }
 .nav-secondary-items::-webkit-scrollbar-thumb {
@@ -4373,6 +4387,8 @@ top: 44%;
 }
 #imagenes-sheeter {
   position: relative;
+  left: 34vw;
+  top: -1vh;
   display: none;
   margin-top: 16vh;
   grid-template-rows: repeat(2, 1fr);
@@ -4390,8 +4406,7 @@ top: 44%;
   height: 100%;
   min-height: 0;        /* ← clave para respetar el grid padre */
   overflow: hidden;
-    border-radius: 14px;
-
+  border-radius: 14px;
   gap: 1%;
 }
 #imagenes-sheeter > .imagen-sheeter img {
@@ -4438,20 +4453,18 @@ top: 44%;
   width: 86vw;
   height: 70vh;
 }
-#triada-videos{
+#triada-videos {
   position: absolute;
   display: grid;
-  grid-template-rows: 50% 50%;
+  grid-template-rows: 33% 33% 33%;
   gap: 1%;
-  left: 32vw;
-  width: 50vw;
+  left: 34vw;
+  top: 15vh;
+  width: 24.2vw;
   height: 70vh;
   display: none;
 }
-.videos-sup{
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
+
 .label-activa {
   background-color: rgb(0,255,0) !important;
   color: rgb(0,0,55) !important;
@@ -4463,7 +4476,7 @@ top: 44%;
   align-items: center;
   justify-items: center;
   top: 56vh;
-  left: 32vw;
+  left: 34vw;
   width: 40vw;
   height: 44vh;
   background-color: #fff;

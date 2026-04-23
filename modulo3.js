@@ -27,6 +27,7 @@ document.addEventListener('keydown', function(event) {
       break;  
       case 'H':
         Geometria()
+        resetearElementos()
       break;
       case 'X':
       eliminarClaveLocalStorage('empleadosRegistrados')
@@ -36,7 +37,7 @@ document.addEventListener('keydown', function(event) {
 });   
 function Geometria() {
   console.clear();  
-  let contiBoton = document.querySelector('#carta-exterior');  
+  let contiBoton = document.querySelector('#triada-videos');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -341,7 +342,6 @@ contenedorPadre.addEventListener('mousedown', (e) => {
   contenedorPadre.style.cursor = 'grabbing'; // Cambia el cursor a "grabbing" durante el arrastre
 }) */;
 
-let contenedorPanel = document.getElementById('segunda-pantalla');
 let enArrastre = false;
 let offsetXX, offsetYY;
 contenedorPanel.addEventListener('mousedown', (e) => {
@@ -382,7 +382,8 @@ function resetearElementos() {
   elementos.forEach(elemento => {
     elemento.style.transition = 'none'; // Elimina cualquier transición aplicada
     elemento.style.transform = 'none';  // Restablece la transformación (rotación, escala, etc.)
-    elemento.style.top = '';            // Restablece la posición `top` a su valor por defecto
+    elemento.style.top = ''; 
+    elemento.style.display = 'none';
   });
 }
 function animarRectangulos() {
@@ -426,6 +427,67 @@ function girarElemento(esquina) {
     animarRectangulos()
   }, 2000);
 }
+
+let btnRegistro = document.querySelector("#boton-registro")
+btnRegistro.addEventListener('click',()=>{
+  document.querySelector("#butts-simulador").style.display='grid'
+})
+
+let buttsSelectores = document.querySelectorAll('.section')
+let zonasRegistro = document.querySelectorAll('.indexado')
+buttsSelectores.forEach(boton =>{
+  resetearElementos()
+  let botonUno = buttsSelectores[0]
+  let botonDos = buttsSelectores[1]
+  let botonTres = buttsSelectores[2]
+  let botonCuatro = buttsSelectores[3]
+
+  botonUno.addEventListener('click',()=>{
+    resetearElementos()    
+    document.querySelector('#segunda-pantalla').style.display='flex'
+    zonasRegistro.forEach(zona =>{
+      if(zona === zonasRegistro[1]){
+        zona.style.display='flex'
+      }else{
+        zona.style.display='none'
+      }
+    })
+  })
+  botonDos.addEventListener('click',()=>{
+    resetearElementos()    
+    document.querySelector('#water-background').style.display='flex'
+    zonasRegistro.forEach(zona =>{
+      if(zona === zonasRegistro[3]){
+        zona.style.display='flex'
+      }else{
+        zona.style.display='none'
+      }
+    })
+  })
+  botonTres.addEventListener('click',()=>{
+    resetearElementos()    
+    document.querySelector('#interfaz-registro').style.display='flex'
+    zonasRegistro.forEach(zona =>{      
+      if(zona === zonasRegistro[0]){
+        zona.style.display='flex'
+      }else{
+        zona.style.display='none'
+      }
+    })
+  }) 
+  botonCuatro.addEventListener('click',()=>{
+    resetearElementos()    
+    document.querySelector('#control-panel').style.display='flex'
+    zonasRegistro.forEach(zona =>{
+      if(zona === zonasRegistro[2]){
+        zona.style.display='flex'
+      }else{
+        zona.style.display='none'
+      }
+    })
+  }) 
+})
+
 document.getElementById('alterna1').addEventListener('click', () =>{ 
   document.getElementById('pantalla-registro').style.zIndex=2
   document.getElementById('pantalla-guias').style.zIndex=1
@@ -3672,7 +3734,6 @@ document.querySelector('#boton-prensas').addEventListener('click', () =>{
   interfazPerfiles.classList.remove('move-perfiles-entintado')
 
   document.querySelector('.sections').style.display = 'grid' 
-  document.querySelector('#sections-fondo').style.display = 'grid'
   document.querySelector('#contenedor-botonera').style.display = 'grid'
 })
 
@@ -6098,7 +6159,9 @@ function mostrarElemento(selectores) {
     }
   }, intervalo);
 }
+
 document.querySelectorAll('.section').forEach((btn, index) => {
+
   btn.addEventListener('mouseover', () => {
     let buttBlur = document.querySelectorAll('.btn-sections')[index]
     if (buttBlur) {
@@ -6115,6 +6178,7 @@ document.querySelectorAll('.section').forEach((btn, index) => {
     }
   })
 })
+
 // mueve botones mezcladores DA COLOR NARANJA Y COLOR A PANTALLAS RGB Y CMYK
 let values = { C: 0, M: 0, Y: 0, K: 0, A: 0, R: 0, G: 0, B: 0, W:0 };
 let red = 0, green = 0, blue = 0; 
