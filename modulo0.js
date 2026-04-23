@@ -2210,7 +2210,11 @@ function limpiarEntradas() {
     }
   }, 350);
 }
-
+document.querySelectorAll('.special-text').forEach(input => {
+  input.addEventListener('input', function() {
+    this.value = this.value.replace(/\b\w/g, l => l.toUpperCase());
+  });
+});
 
 
 document.querySelector('#borrarBoton4').addEventListener('click', ()=>{
