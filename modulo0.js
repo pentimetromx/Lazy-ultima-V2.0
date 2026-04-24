@@ -499,8 +499,8 @@ const listaLocalClientes = [
 function guardarLista(clave, lista) {
   localStorage.setItem(clave, JSON.stringify(lista));
 }
-guardarLista('listaEmpleados', listaLocalEmpleados);
-guardarLista('listaClientes', listaLocalClientes);
+/* guardarLista('listaEmpleados', listaLocalEmpleados);
+guardarLista('listaClientes', listaLocalClientes); */
 /*********************************************************************************** */
 idsArray.push("cont-titulo") 
 idsArrayEliminados.push('cont-titulo')
@@ -2240,6 +2240,3 @@ document.querySelector('#borrarBoton4').addEventListener('click', ()=>{
   
 
 })
-
-
-

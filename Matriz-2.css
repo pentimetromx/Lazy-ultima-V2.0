@@ -5407,6 +5407,7 @@ top: 44%;
   transform: translateY(100vh);
   transition: transform 1s ease;
 }
+.listado-clientes.isvisible,
 #keyboard-wrapper.is-visible {
   transform: translateY(0);
 }

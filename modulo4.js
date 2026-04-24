@@ -4783,7 +4783,8 @@ function mostrarListaClientes(seccion) {
 
   listaClientes.innerHTML = '';
 
-  const almacenJSON = localStorage.getItem('coloresRegistrados');
+  const almacenJSON = localStorage.getItem('empleadosRegistrados');
+  console.table(JSON.parse(localStorage.getItem('empleadosRegistrados')));
 
   if (!almacenJSON) {
     saltarAlerta('El almacenamiento y la base de datos están vacíos','listadoClientes')
@@ -4791,32 +4792,48 @@ function mostrarListaClientes(seccion) {
   }
 
   const almacen = JSON.parse(almacenJSON);
-  const nombres = Object.keys(almacen);
+  const empleados = Object.values(almacen);
 
-  if (nombres.length === 0) {
-    saltarAlerta('El almacenamiento y la base de datos están vacíos','listadoClientes')
-    return;
-  }
+  empleados.forEach(empleado => {
+    if (!empleado) return;
 
-  nombres.forEach(nombre => {
     const item = document.createElement('div');
     item.className = 'cliente-item';
-    item.textContent = nombre;
+    item.textContent = empleado.nombre;
 
     item.addEventListener('click', () => {
-      desactivarBlur()
+      desactivarBlur();
       if (activeInput) {
-        activeInput.value = nombre;
+        activeInput.value = empleado.nombre;
       }
 
-      objetoGlobal = nombre;
+      objetoGlobal = empleado.nombre;
       listaClientes.style.display = 'none';
-
     });
 
     listaClientes.appendChild(item);
-
   });
+
+  // Cambia nombres.forEach por esto:
+  /* almacen.forEach(empleado => {
+      if (!empleado) return; // por si hay posiciones vacías en el array
+
+      const item = document.createElement('div');
+      item.className = 'cliente-item';
+      item.textContent = empleado.nombre; // ← muestra la propiedad nombre
+
+      item.addEventListener('click', () => {
+        desactivarBlur();
+        if (activeInput) {
+          activeInput.value = empleado.nombre;
+        }
+
+        objetoGlobal = empleado.nombre; // o empleado.documento si necesitas un ID único
+        listaClientes.style.display = 'none';
+      });
+
+      listaClientes.appendChild(item);
+  });  */ 
 
   switch(seccion){
     case 'listadoClientes':
@@ -5072,28 +5089,7 @@ const idsSelect = [
   'participante5'
 ];
 //empleados ára mostrar en los select
-function cargarEmpleados(select) {
-  if (select.dataset.loaded === 'true') return;
 
-  const empleados = JSON.parse(localStorage.getItem('listaEmpleados')) || [];
-
-  select.innerHTML = '';
-
-  const defaultOption = document.createElement('option');
-  defaultOption.value = '';
-  defaultOption.textContent = 'Seleccione...';
-  select.appendChild(defaultOption);
-
-  empleados.forEach(nombre => {
-    const option = document.createElement('option');
-    option.value = nombre;
-    option.textContent = nombre;
-    select.appendChild(option);
-  });
-
-  select.dataset.loaded = 'true';
-
-}
 function setSelectValue(id, value) {
   const select = document.getElementById(id);
   if (!select) return;
@@ -5199,6 +5195,28 @@ function cargarFichaTecnica(kaizen) {
   }
 
   desaparecerElemento('kaizen-buscador');
+}
+function cargarEmpleados(select) {
+  if (select.dataset.loaded === 'true') return;
+
+  const empleados = JSON.parse(localStorage.getItem('listaEmpleados')) || []; 
+
+  select.innerHTML = '';
+
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = 'Seleccione...';
+  select.appendChild(defaultOption);
+
+  empleados.forEach(nombre => {
+    const option = document.createElement('option');
+    option.value = nombre;
+    option.textContent = nombre;
+    select.appendChild(option);
+  });
+
+  select.dataset.loaded = 'true';
+
 }
 // asignar eventos por cada select
 idsSelect.forEach(id => {

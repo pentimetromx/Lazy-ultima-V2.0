@@ -646,6 +646,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if(!esDesktop) hideKeyboard()
   });
 
+  campoBusqueda.addEventListener('mouseleave', (e) => {
+    setTimeout(() => {
+      const haciaListaClientes = listaClientes.matches(':hover');
+      
+      if (!haciaListaClientes) {
+        listaClientes.style.display = 'none';
+      }
+    }, 200);
+  });
+
   // --- funciones auxiliares ---
 
   // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
