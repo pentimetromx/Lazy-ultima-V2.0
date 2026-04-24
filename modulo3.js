@@ -35,6 +35,7 @@ document.addEventListener('keydown', function(event) {
     }
   }
 });   
+
 function Geometria() {
   console.clear();  
   let contiBoton = document.querySelector('#triada-videos');  
