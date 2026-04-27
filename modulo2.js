@@ -4849,6 +4849,9 @@ contextMenu.addEventListener('mouseleave', () => {
 });
 // En moviles
 let shouldShowMenu = true;
+
+
+
 targetDiv.addEventListener('touchstart', function(event) {
   shouldShowMenu = true;
   setTimeout(() => {
@@ -4858,8 +4861,11 @@ targetDiv.addEventListener('touchstart', function(event) {
       showContextMenu(touch.clientX, touch.clientY);
     }
   }, 0);
-}, { passive: true });
+}); // sin passive:true
+
+
 document.addEventListener('touchstart', (event) => {
+  const tocado = event.target;  
   if (!contextMenu.contains(event.target) && !targetDiv.contains(event.target)) {
     contextMenu.style.display = 'none';
     shouldShowMenu = false;
@@ -4873,6 +4879,10 @@ document.addEventListener('touchstart', (event) => {
       }
     }
   }
+
+  if (!tocado.closest('#buscador-empleado') && !tocado.closest('#listaClientes')) {
+    listaClientes.style.display = 'none';
+  }  
 });
 const elementosPrePren = document.querySelectorAll('#contenedorElementos .conte-listado, #contenedorElementos .listado');
   elementosPrePren.forEach(elemento => {

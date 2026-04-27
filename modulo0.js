@@ -383,47 +383,52 @@ let esDesktop = mediaDesktop.matches;
 mediaDesktop.addEventListener('change', e => {
   esDesktop = e.matches;
 });
+
 document.addEventListener('click', (e) => {
-  const target = e.target;
-
-  const contenedor = target.closest('.cont-userI');
-
+  const contenedor = e.target.closest('.cont-userI');
+  
   if (contenedor) {
     const img = contenedor.querySelector('img');
     const span = contenedor.querySelector('.lblNombres');
+    if (!img || !span) return;
 
-    if (img && span) {
-      const porta = document.getElementById('porta-imagen');
-      const spanImg = porta.querySelector('.imagen-empleado');
-      const spanNombre = porta.querySelector('.nombre-empleado');
+    const porta = document.getElementById('porta-imagen');
+    const spanImg = porta.querySelector('.imagen-empleado');
+    const spanNombre = porta.querySelector('.nombre-empleado');
 
-      const src = img.getAttribute('data-src');
-      const nombre = span.textContent.trim();
+    const src = img.getAttribute('data-src');
+    const nombre = span.textContent.trim();
 
-      spanImg.setAttribute('data-src', src);
-      spanNombre.textContent = nombre;
-      spanImg.innerHTML = `<img src="${src}" alt="${nombre}">`;
+    spanImg.setAttribute('data-src', src);
+    spanNombre.textContent = nombre;
+    spanImg.innerHTML = `<img src="${src}" alt="${nombre}">`;
 
-      const funciones = {
-        'Carlos Mario Sanchez': 'updateCarlos',
-        'Andres Felipe Montoya': 'updateAndres',
-        'Jorge Alberto Lozada': 'updateJorge',
-        'Jesus Norvey Cordoba': 'updateJesus',
-        'Sandra Milena Alvarez': 'updateSandra',
-        'John Mario Mira Pineda': 'updateMario',
-        'Ana Maria Duarte Pineda': 'updateAna'
-      };
+    const funciones = {
+      'Carlos Mario Sanchez': 'updateCarlos',
+      'Andres Felipe Montoya': 'updateAndres',
+      'Jorge Alberto Lozada': 'updateJorge',
+      'Jesus Norvey Cordoba': 'updateJesus',
+      'Sandra Milena Alvarez': 'updateSandra',
+      'John Mario Mira Pineda': 'updateMario',
+      'Ana Maria Duarte Pineda': 'updateAna'
+    };
 
-      const functionExe = funciones[nombre];
-      if (functionExe) ejecutarFuncionEmpleado(functionExe);
-    }
+    const functionExe = funciones[nombre];
+    if (functionExe) ejecutarFuncionEmpleado(functionExe);
   }
 
-  if (calendario && inputFecha && !calendario.contains(target) && target !== inputFecha) {
+  // ocultar calendario
+  if (calendario && inputFecha && !calendario.contains(e.target) && e.target !== inputFecha) {
     calendario.style.display = 'none';
   }
 
+  // ocultar listaFotos
+  if (listaFotos && !listaFotos.contains(e.target) && e.target !== inputFoto) {
+    listaFotos.style.display = 'none';
+  }
+
 });
+
 /* listaClientes.addEventListener('mouseleave',()=>{
   listaClientes.style.display='none'
 }) */
