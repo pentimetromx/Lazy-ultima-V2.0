@@ -1757,44 +1757,6 @@ function destroyChart(chartInstance) {
   }
 }
 
-document.addEventListener('click', (e) => {
-  const contenedor = e.target.closest('.cont-userI');
-  if (!contenedor) return;
-
-  const img = contenedor.querySelector('img');
-  const span = contenedor.querySelector('.lblNombres');
-  if (!img || !span) return;
-
-  const porta = document.getElementById('porta-imagen');
-  const spanImg = porta.querySelector('.imagen-empleado');
-  const spanNombre = porta.querySelector('.nombre-empleado');
-
-  const src = img.getAttribute('data-src');
-  const nombre = span.textContent.trim();
-
-  spanImg.setAttribute('data-src', src);
-  spanNombre.textContent = nombre;  
-  spanImg.innerHTML = `<img src="${src}" alt="${nombre}">`;
-
-  // Mapeo de nombres a funciones
-  const funciones = {
-    'Carlos Mario Sanchez': 'updateCarlos',
-    'Andres Felipe Montoya': 'updateAndres',
-    'Jorge Alberto Lozada': 'updateJorge',
-    'Jesus Norvey Cordoba': 'updateJesus',
-    'Sandra Milena Alvarez': 'updateSandra',
-    'John Mario Mira Pineda': 'updateMario',
-    'Ana Maria Duarte Pineda': 'updateAna'
-  };
-
-  const functionExe = funciones[nombre];
-  if (functionExe) ejecutarFuncionEmpleado(functionExe);
-
-  if (!listaFotos.contains(e.target) && e.target !== inputFoto) {
-    listaFotos.style.display = 'none';
-  }
-});
-
 const visorI = document.getElementById('imagenVisor');
 const listado = document.getElementById('listaNombres');
 const buscador = document.getElementById('buscador-empleado');
@@ -2192,46 +2154,8 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarEmpleadoPorIndice(nuevo, { fijar: false });
   });
 
-  // --- búsqueda ---
-  campoBusqueda.addEventListener('input', () => {
-    const valor = campoBusqueda.value.trim().toLowerCase();
-
-    if (!valor) {
-      limpiarVisor();
-      fotoFijada = null;
-      return;
-    }
-
-    const coincidencia = colaboradores.find(c => c.nombre.toLowerCase().includes(valor));
-
-    if (coincidencia) {
-      fotoFijada = coincidencia; // fija desde buscador
-      mostrarEmpleadoObj(coincidencia);
-      // sincronizar índice si coincide con la lista
-      const idx = colaboradores.indexOf(coincidencia);
-      if (idx >= 0) indiceActual = idx;
-    } else {
-      limpiarVisor();
-      fotoFijada = null;
-    }
-  });
-
   const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-  if (!esDesktop && esTactil) {
-    campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
-  }
-
-
-  campoBusqueda.addEventListener('focusin', (e) => {
-    activeInput = e.target; // asignar input activo
-    mostrarListaClientes('perfilesIndividual'); // abrir lista
-  });
-
-
-  campoBusqueda.addEventListener('blur', () => {
-    if(!esDesktop) hideKeyboard()
-  });
 
   // --- funciones auxiliares ---
 
@@ -2729,14 +2653,6 @@ inputFoto.addEventListener('click', () => {
   blurOverlay.style.display = 'block';
   blurOverlay.style.zIndex = 2000;
 });
-// ocultar lista si se hace clic fuera
-
-/* document.addEventListener('click', e => {
-  if (!listaFotos.contains(e.target) && e.target !== inputFoto) {
-    listaFotos.style.display = 'none';
-  }
-}); */
-
 const visorContenedor = document.querySelector('#visorImagen-II');
 const imagenVisor = document.querySelector('#imagenVisor-II');
 
@@ -4780,14 +4696,11 @@ let activeInput = null;
 function mostrarListaClientes(seccion) {
   listaClientes.style.display = 'flex';
   listaClientes.style.zIndex = 2010;
-
   listaClientes.innerHTML = '';
 
   const almacenJSON = localStorage.getItem('empleadosRegistrados');
-  console.table(JSON.parse(localStorage.getItem('empleadosRegistrados')));
-
   if (!almacenJSON) {
-    saltarAlerta('El almacenamiento y la base de datos están vacíos','listadoClientes')
+    saltarAlerta('El almacenamiento y la base de datos están vacíos', 'listadoClientes');
     return;
   }
 
@@ -4796,44 +4709,34 @@ function mostrarListaClientes(seccion) {
 
   empleados.forEach(empleado => {
     if (!empleado) return;
-
     const item = document.createElement('div');
     item.className = 'cliente-item';
     item.textContent = empleado.nombre;
-
-    item.addEventListener('click', () => {
-      desactivarBlur();
-      if (activeInput) {
-        activeInput.value = empleado.nombre;
-      }
-
-      objetoGlobal = empleado.nombre;
-      listaClientes.style.display = 'none';
-    });
-
+    item.dataset.nombre = empleado.nombre;
     listaClientes.appendChild(item);
+
+    if (esDesktop) {
+      item.addEventListener('click', () => {
+        alert('click PC');
+      });
+    } else {
+      item.addEventListener('touchend', () => {
+        campoBusqueda.value = item.dataset.nombre 
+
+      });
+    }
   });
 
-  // Cambia nombres.forEach por esto:
-  /* almacen.forEach(empleado => {
-      if (!empleado) return; // por si hay posiciones vacías en el array
+  // UN SOLO listener en el contenedor, no en cada item
+  listaClientes.onclick = (e) => {
+    const item = e.target.closest('.cliente-item');
+    if (!item) return;
+    desactivarBlur();
+    if (activeInput) activeInput.value = item.dataset.nombre;    
+    objetoGlobal = item.dataset.nombre;
 
-      const item = document.createElement('div');
-      item.className = 'cliente-item';
-      item.textContent = empleado.nombre; // ← muestra la propiedad nombre
-
-      item.addEventListener('click', () => {
-        desactivarBlur();
-        if (activeInput) {
-          activeInput.value = empleado.nombre;
-        }
-
-        objetoGlobal = empleado.nombre; // o empleado.documento si necesitas un ID único
-        listaClientes.style.display = 'none';
-      });
-
-      listaClientes.appendChild(item);
-  });  */ 
+    listaClientes.style.display = 'none';
+  };
 
   switch(seccion){
     case 'listadoClientes':
@@ -4850,7 +4753,7 @@ function mostrarListaClientes(seccion) {
     case 'perfilesIndividual' :
       document.querySelector('#simulador').style.display='flex'
       listaClientes.style.top='35vh' 
-      listaClientes.style.left = '25vw'       
+      listaClientes.style.left = '25vw'
     break 
    
   }

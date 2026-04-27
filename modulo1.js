@@ -604,57 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarEmpleadoPorIndice(nuevo, { fijar: false });
   });
 
-  // --- búsqueda ---
-  campoBusqueda.addEventListener('input', () => {
-    const valor = campoBusqueda.value.trim().toLowerCase();
-
-    if (!valor) {
-      limpiarVisor();
-      fotoFijada = null;
-      return;
-    }
-
-    const coincidencia = colaboradores.find(c => c.nombre.toLowerCase().includes(valor)
-    );
-
-    if (coincidencia) {
-      fotoFijada = coincidencia; // fija desde buscador
-      mostrarEmpleadoObj(coincidencia);
-      // sincronizar índice si coincide con la lista
-      const idx = colaboradores.indexOf(coincidencia);
-      if (idx >= 0) indiceActual = idx;
-    } else {
-      limpiarVisor();
-      fotoFijada = null;
-    }
-  });
-
   const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-  if (!esDesktop && esTactil) {
-    campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
-  }
-
-
-  campoBusqueda.addEventListener('pointerdown', (e) => {
-    activeInput = e.target;
-    mostrarListaClientes('perfilesIndividual');
-  });
-
-
-  campoBusqueda.addEventListener('blur', () => {
-    if(!esDesktop) hideKeyboard()
-  });
-
-  campoBusqueda.addEventListener('mouseleave', (e) => {
-    setTimeout(() => {
-      const haciaListaClientes = listaClientes.matches(':hover');
-      
-      if (!haciaListaClientes) {
-        listaClientes.style.display = 'none';
-      }
-    }, 200);
-  });
 
   // --- funciones auxiliares ---
 
@@ -692,7 +642,50 @@ document.addEventListener('DOMContentLoaded', () => {
     img.src = '';
     nombre.textContent = '';
   }
+  campoBusqueda.addEventListener('input', () => {
+    const valor = campoBusqueda.value.trim().toLowerCase();
+    if (!valor) {
+      limpiarVisor();
+      fotoFijada = null;
+      return;
+    }
+    const coincidencia = colaboradores.find(c => c.nombre.toLowerCase().includes(valor));
+    if (coincidencia) {
+      fotoFijada = coincidencia;
+      mostrarEmpleadoObj(coincidencia);
+      const idx = colaboradores.indexOf(coincidencia);
+      if (idx >= 0) indiceActual = idx;
+    } else {
+      limpiarVisor();
+      fotoFijada = null;
+    }
+  });
 
+  campoBusqueda.addEventListener('click', (e) => {
+    console.log('click en input');    
+    activeInput = e.target;
+    mostrarListaClientes('perfilesIndividual');
+  });
+
+  campoBusqueda.addEventListener('mouseenter', () => {
+    mostrarListaClientes('perfilesIndividual');
+  });
+
+  campoBusqueda.addEventListener('mouseleave', () => {
+    setTimeout(() => {
+      if (!listaClientes.matches(':hover')) {
+        listaClientes.style.display = 'none';
+      }
+    }, 200);
+  });
+
+  campoBusqueda.addEventListener('blur', () => {
+    if (!esDesktop) hideKeyboard();
+  });
+
+if (!esDesktop && esTactil) {
+  campoBusqueda.setAttribute('readonly', true);
+}
   
 });
 function showNextInputChec() {

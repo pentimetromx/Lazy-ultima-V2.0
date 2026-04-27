@@ -4910,7 +4910,6 @@ contenedorClientes.addEventListener('click', (e) => {
 
   arriba.textContent = cliente.textContent;
   contenedorClientes.style.display = 'none';
-
   restablecerClick(['.butt-perfiles', '.estilo-1']);
   blurOverlay.style.display = 'none';
 });
