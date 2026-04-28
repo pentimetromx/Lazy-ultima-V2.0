@@ -411,6 +411,7 @@ color: white;
 .ficha-tecnica.activo,
 .ventana-mensaje.activo,
 #panel-admon.activo,
+#carta-exterior.activo,
 #torre-imp.activo{
   display: grid;          /* muestra el contenedor */
   transform: scale(1);    /* escala al tamaño definido en CSS */
@@ -2022,7 +2023,6 @@ width:447px ;
 #contImaginario-II.activo,
 #padre-2.activo,
 #padre-1.activo,
-#carta-exterior.activo,
 #abuelo-indicadores.activo,
 #linksMA.activo {
   display: flex; 

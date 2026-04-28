@@ -4693,6 +4693,7 @@ activarGrid(document.getElementById('grilla-frena'));
 /* ***************************************************************************************************************************************** */
 let activeInput = null;
 
+
 function mostrarListaClientes(seccion) {
   listaClientes.style.display = 'flex';
   listaClientes.style.zIndex = 2010;
@@ -4707,6 +4708,7 @@ function mostrarListaClientes(seccion) {
   const almacen = JSON.parse(almacenJSON);
   const empleados = Object.values(almacen);
 
+  // ✅ Solo crear los items, sin listeners individuales
   empleados.forEach(empleado => {
     if (!empleado) return;
     const item = document.createElement('div');
@@ -4714,50 +4716,48 @@ function mostrarListaClientes(seccion) {
     item.textContent = empleado.nombre;
     item.dataset.nombre = empleado.nombre;
     listaClientes.appendChild(item);
-
-    if (esDesktop) {
-      item.addEventListener('click', () => {
-        alert('click PC');
-      });
-    } else {
-      item.addEventListener('touchend', () => {
-        campoBusqueda.value = item.dataset.nombre 
-
-      });
-    }
   });
 
-  // UN SOLO listener en el contenedor, no en cada item
-  listaClientes.onclick = (e) => {
+  // ✅ Un solo listener para táctil
+  listaClientes.addEventListener('touchend', (e) => {
     const item = e.target.closest('.cliente-item');
     if (!item) return;
+    e.stopPropagation();
+    e.preventDefault();
     desactivarBlur();
-    if (activeInput) activeInput.value = item.dataset.nombre;    
+    if (activeInput) activeInput.value = item.dataset.nombre;
     objetoGlobal = item.dataset.nombre;
-
     listaClientes.style.display = 'none';
-  };
+  });
+
+  // ✅ Un solo listener para desktop
+  listaClientes.addEventListener('click', (e) => {
+    const item = e.target.closest('.cliente-item');
+    if (!item) return;
+    e.stopPropagation();
+    desactivarBlur();
+    if (activeInput) activeInput.value = item.dataset.nombre;
+    objetoGlobal = item.dataset.nombre;
+    listaClientes.style.display = 'none';
+  });
 
   switch(seccion){
     case 'listadoClientes':
-      
     break
-    case 'jobTrack' :
+    case 'jobTrack':
       listaClientes.style.top = '42vh';
-      listaClientes.style.left = '38vw';          
+      listaClientes.style.left = '38vw';
     break
-    case 'softwareColor' :
-      listaClientes.style.top='39vh' 
-      listaClientes.style.left = '70vw'
+    case 'softwareColor':
+      listaClientes.style.top = '39vh';
+      listaClientes.style.left = '70vw';
     break
-    case 'perfilesIndividual' :
-      document.querySelector('#simulador').style.display='flex'
-      listaClientes.style.top='35vh' 
-      listaClientes.style.left = '25vw'
-    break 
-   
+    case 'perfilesIndividual':
+      document.querySelector('#simulador').style.display = 'flex';
+      listaClientes.style.top = '35vh';
+      listaClientes.style.left = '25vw';
+    break
   }
-
 }
 
 function capturarInput(e){
@@ -5729,13 +5729,14 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
     return
   }
 
-  var elementosExcluidos = ['links-inicialesI','links-iniciales','buscador','search-form','carta-exterior'] 
+  var elementosExcluidos = ['links-inicialesI','links-iniciales','buscador','search-form'] 
   for (var i = 0; i < allContenedores.length; i++) { 
     var element = document.getElementById(allContenedores[i])  
     if (element) {
       element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   } 
+  document.querySelector('#carta-exterior').style.display='grid'
 
   container1.style.display='grid'
   activarBlur(0,255)
@@ -5894,7 +5895,7 @@ linkMaster.addEventListener('click', ()=>{
   }
   container1.style.display='grid'
   panelAdministrativo.classList.add('activo')
-  aparecerElemento("carta-exterior", "block");
+  aparecerElemento("carta-exterior", "grid");
   setTimeout(() => {
     document.querySelector('#carta-exterior > input').value=''    
     document.querySelector('#carta-exterior > input').focus()    

@@ -660,9 +660,21 @@ document.addEventListener('DOMContentLoaded', () => {
       fotoFijada = null;
     }
   });
+let touched = false;
+
+  campoBusqueda.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    touched = true;
+    activeInput = e.target;
+    mostrarListaClientes('perfilesIndividual');
+  }, { passive: false });
 
   campoBusqueda.addEventListener('click', (e) => {
-    console.log('click en input');    
+    if (touched) {
+      touched = false;
+      return; // ya fue manejado por touchstart
+    }
+    e.preventDefault();
     activeInput = e.target;
     mostrarListaClientes('perfilesIndividual');
   });
