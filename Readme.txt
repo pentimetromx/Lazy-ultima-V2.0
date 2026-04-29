@@ -1,5 +1,25 @@
 ||
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+toogle botón:
+
+const btnAreasNav = document.querySelector("#contenedor-botonera > button:nth-child(5)");
+
+btnAreasNav.addEventListener('click', () => {
+  const nav = document.getElementById('formulario-cuenta');
+  const estaVisible = nav.style.display === 'flex';
+
+  document.querySelector('#contenedor-botonera').style.display='grid'
+  if (estaVisible) {
+    nav.style.display = 'none';
+  } else {
+    nav.style.display = 'flex';
+  }
+});
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+COLOR COMFAMA :     background: rgb(255, 13, 89);
+
 “Respóndeme solo con la causa directa y la corrección mínima.
 No enumeres opciones, no des contexto adicional.”
 
@@ -13,9 +33,6 @@ dame lista indexada con cada palabra (explicando en maximo 20 caracteres)para qu
 actualizarIdsArray('padre-cmyk');
 
 
-
-OBJETOS EN LOCAL STORAGE:
-- empleadosRegistrados
 
 1. incrementar tamaño de mínimo a máximo:
 	aparecerElemento("troubleshooting", "grid") - 	en parámetros se pasa el contenedor del elemento y el tipo de display , hay que aplicar la clase (.activo)
@@ -37,9 +54,6 @@ function mostrarConstellation(coleccion) {
     });
   });
 }
-
-
->>>>>>>>>>>>>>>   mostrarConstellation(padres);
 
 
 
@@ -122,29 +136,6 @@ A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspec
 
 
 
-
-
-
-
-let inputActivo = null; INPUTS VERTICALES
-
-4:3808 function onGridClick(e) CLICKS DE CALCULADORA EN TACTILES
-
-document.addEventListener('pointerdown'  ====> CLICK FUERA PARA OCULTAR
-
-4:1927 function ingresoEmpleadoMA()
-
-4:1903 function ingresoEmpleado()
-
-3:4977 digitos.forEach((elemento
-
-3:5291 btnEntrar.addEventListener('click', (
-
-4:3510 aplicarColoresInputs() COLORES INPUTS VERTICALES
-
-4:3872 avanzarFoco() 
-
-
 inputPerfil.addEventListener('focusin',() =>{
   if(!esDesktop) showKeyboard()
 })
@@ -153,10 +144,6 @@ inputPerfil.addEventListener('blur', () => {
 });
 
 
-OJO !!!!!!!!!!!!!!!!  TENGO COMENTADAS LINEAS AL INICIO DE LOS DOS .CSS  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-PARA MIRAR SI SE BORRA function mostrarVentanaEmergente(mensaje) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 !!!!!!!!!!!!!!! function mostrarTablaLocalStorage(clave) =>  mostrarTablaLocalStorage('Empleados');   !!!!!!!
@@ -164,9 +151,19 @@ PARA MIRAR SI SE BORRA function mostrarVentanaEmergente(mensaje) !!!!!!!!!!!!!!!
 !!!!!!!!!!!!!!! function function eliminarClaveLocalStorage(clave) => function eliminarClaveLocalStorage('Empleados')
 
 
-#linkList > li:nth-child(2)::after,
-padding-left: 23px;
 
+setTimeout(() => { debugger; }, 300)   
+
+
+
+git checkout main
+
+git checkout a42cb5b6bb478fea118b6f8181d37762b9dfbcec -- .
+
+git status
+git add .
+git commit -m "recuperando modulo4.js desde commit a42cb5b6"
+git push
 
 
 

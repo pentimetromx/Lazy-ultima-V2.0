@@ -2,23 +2,11 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {  
       case 'Ñ':
-        console.log('BANDERA = ', flagEmpleado)
-         Object.keys(localStorage).forEach(key => {
-          console.group(key);
-          console.log(JSON.parse(localStorage.getItem(key)));
-          console.groupEnd();
-        });
 
-        /* const datos = JSON.parse(localStorage.getItem('empleadosRegistrados'))
-        const cedula = 21375808
-        console.log('empleadosRegistrados : ', datos)
-        console.log('primer empleado almacenado : ', datos[cedula])
-
-        document.querySelector('#iconos').style.display='flex'
-        document.querySelector('#contLineas').style.display='grid'
-        borrrrrrrrrrrarrrrrrrrrrrrrrrrrrrr() */
-
-      
+      /* vaciarPorClaveLocalStore('empleadosRegistrados', 'object'); */
+      setTimeout(() => {
+        mostrarPorClaveLocalStore('empleadosRegistrados')        
+      }, 200);
 
       break
       case 'Z':
@@ -431,6 +419,15 @@ function girarElemento(esquina) {
 
 let btnRegistro = document.querySelector("#boton-registro")
 btnRegistro.addEventListener('click',()=>{
+var elementosExcluidos = ['simulador','interfaz-perfiles','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    }
+  }
+  container1.style.display = 'none'
+
   document.querySelector("#butts-simulador").style.display='grid'
 })
 
@@ -2651,6 +2648,7 @@ function renderObjeto() {
   const porcentaje = Math.min(cantidad, elementos.length) * 100 / elementos.length; // Calcula el porcentaje (0-100)
   porcentajeTinta.textContent = `${Math.round(porcentaje)}%`;  
 }  
+
 document.getElementById('butt-perfil-tinta').addEventListener('click', () =>{ 
   nombreCliente.style.top=''
   let nombreDatos = document.querySelector('#cliente-nombre')

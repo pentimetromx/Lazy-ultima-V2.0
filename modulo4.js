@@ -1770,14 +1770,12 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 let permitirEliminarImagen = true;
 
-
 const spansI = document.querySelector('.nombre-empleado');
 if (spansI) {
   spansI.addEventListener('click', () => {
     spansI.textContent = '';
   });
 }
-
 
 function mostrarEmpleado(index) {
   const listado = document.getElementById('listaNombres');
@@ -1804,14 +1802,11 @@ function mostrarEmpleado(index) {
 }
 indiceActual = index;
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CLICK / MOUSELEAVE EN LISTADO DE NOMBRES / M.A
 
 let fotoFijada = null;
  
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const imagennesColaboradores = [
   { ruta: "./assets/cadena logo.png", nombre: "Monica Muñoz Sepulveda" },
@@ -1827,41 +1822,11 @@ const imagennesColaboradores = [
   { ruta: "./assets/icono1.png", nombre: "Paola Herrera" }
 ]
 
-
-/* function cargarColaboradoresDesdeStorage() {
-  const almacenJSON = localStorage.getItem('empleadosRegistrados');
-  if (!almacenJSON) return [];
-
-  const almacen = JSON.parse(almacenJSON);
-
-  const almacenArray = Array.isArray(almacen) 
-    ? almacen 
-    : Object.values(almacen);
-
-  return almacenArray.map(empleado => ({
-    ruta: empleado.imagen || "./assets/silueta.png",
-    nombre: empleado.nombre || "Sin nombre"
-  }));
-}
-
-const colaboradores = cargarColaboradoresDesdeStorage(); */
-
 const imgEmpleado = document.getElementById('empleadoImg');
 const btnMostrar = document.getElementById('btnMostrar');
 const inputFoto = document.getElementById('input-foto-empl'); 
 const previewFoto = document.getElementById('empleadoImg'); 
 
-prevBtn.addEventListener('click', () => {
-  if (indiceActual > 0) {
-    mostrarEmpleado(indiceActual - 1);
-  }
-});
-
-nextBtn.addEventListener('click', () => {
-  if (indiceActual < nombres.length - 1) {
-    mostrarEmpleado(indiceActual + 1);
-  }
-});
 // CLICK EN IMAGEN EN SOLITARIO INICIAL
 visor.addEventListener('click', (e) => {
 
@@ -2650,8 +2615,21 @@ function insertarGrafico(idContenedor, idCanvas) {
 // CLICK EN EL INPUT REGISTRO FOTOGRAFICO
 inputFoto.addEventListener('click', () => {
   generarListaFotos()
-  blurOverlay.style.display = 'block';
-  blurOverlay.style.zIndex = 2000;
+  // En consola de DevTools:
+
+  // 1. ¿Existe el elemento listaFotos?
+  console.log(document.querySelector('#listaFotos'));
+
+  // 2. ¿Tiene items después de llamar la función?
+  generarListaFotos();
+  console.log(document.querySelector('#listaFotos').children.length);
+
+  // 3. ¿Está visible?
+  console.log(document.querySelector('#listaFotos').style.display);
+  console.log(document.querySelector('.almacen-fotos').style.display);
+
+  /* blurOverlay.style.display = 'block';
+  blurOverlay.style.zIndex = 2000; */
 });
 const visorContenedor = document.querySelector('#visorImagen-II');
 const imagenVisor = document.querySelector('#imagenVisor-II');
@@ -2666,6 +2644,8 @@ function generarListaFotos() {
   document.querySelector('#visorImagen-II').classList.remove('oculto');
 
   listaFotos.innerHTML = "";
+  listaFotos.style.display = 'grid'; // ✅ esto faltaba
+  listaFotos.classList.remove('oculto');
 
   imagennesColaboradores.forEach(colaborador => {
     const item = document.createElement('div');
@@ -4718,7 +4698,7 @@ function mostrarListaClientes(seccion) {
     listaClientes.appendChild(item);
   });
 
-  // ✅ Un solo listener para táctil
+
   listaClientes.addEventListener('touchend', (e) => {
     const item = e.target.closest('.cliente-item');
     if (!item) return;
@@ -4728,10 +4708,20 @@ function mostrarListaClientes(seccion) {
     if (activeInput) activeInput.value = item.dataset.nombre;
     objetoGlobal = item.dataset.nombre;
     listaClientes.style.display = 'none';
+
+    // ✅ Buscar empleado en localStorage y mostrar imagen
+    const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+    const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
+    if (empleado?.imagen) {
+      document.querySelector('#imagenVisor').src = empleado.imagen;
+      document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
+    }
   });
 
+
+
   // ✅ Un solo listener para desktop
-  listaClientes.addEventListener('click', (e) => {
+  /* listaClientes.addEventListener('click', (e) => {
     const item = e.target.closest('.cliente-item');
     if (!item) return;
     e.stopPropagation();
@@ -4739,7 +4729,26 @@ function mostrarListaClientes(seccion) {
     if (activeInput) activeInput.value = item.dataset.nombre;
     objetoGlobal = item.dataset.nombre;
     listaClientes.style.display = 'none';
-  });
+  }); */
+
+  listaClientes.addEventListener('click', (e) => {
+    const item = e.target.closest('.cliente-item');
+    if (!item) return;
+    e.stopPropagation();
+    e.preventDefault();
+    desactivarBlur();
+    if (activeInput) activeInput.value = item.dataset.nombre;
+    objetoGlobal = item.dataset.nombre;
+    listaClientes.style.display = 'none';
+
+    // ✅ Buscar empleado en localStorage y mostrar imagen
+    const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+    const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
+    if (empleado?.imagen) {
+      document.querySelector('#imagenVisor').src = empleado.imagen;
+      document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
+    }
+  });  
 
   switch(seccion){
     case 'listadoClientes':
@@ -4769,6 +4778,7 @@ function capturarInput(e){
 }
 fichaGrid.addEventListener('focusin', capturarInput);   // teclado / foco real
 fichaGrid.addEventListener('pointerdown', capturarInput); // mouse + touch
+
 function configurarInput(input) {
   var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','simulador','conti-boton-kaizen']; 
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -5473,7 +5483,7 @@ const accionesAceptar = {
     document.querySelector('#padre-evento').style.display='none'
   },
   docuMaster: () => {
-    document.querySelector("#carta-exterior > input").focus()
+    document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
   },
 
   
@@ -5819,7 +5829,7 @@ btnActivar.addEventListener('click', function () {
 
   if (empleadoEncontrado) {
 
-    document.getElementById('numDoc').value = empleadoEncontrado.nombre;
+    document.getElementById('input-nombre').value = empleadoEncontrado.nombre;    
     document.getElementById('numDoc1').value = empleadoEncontrado.documento;
     document.getElementById('numDoc2').value = empleadoEncontrado.area;
     document.getElementById('numDoc3').value = empleadoEncontrado.equipo;
@@ -5897,8 +5907,8 @@ linkMaster.addEventListener('click', ()=>{
   panelAdministrativo.classList.add('activo')
   aparecerElemento("carta-exterior", "grid");
   setTimeout(() => {
-    document.querySelector('#carta-exterior > input').value=''    
-    document.querySelector('#carta-exterior > input').focus()    
+    document.querySelector('#carta-exterior > .ident-empleado > input').value=''    
+    document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
   }, 500);
 })
 

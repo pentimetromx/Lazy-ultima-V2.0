@@ -4374,13 +4374,13 @@
 
     <form id="formulario-empleado" class="form-empleado">
 
-      <h2>Registro nuevo Empleado</h2>
+      <h2>Registro Empleados</h2>
 
       <div id="panel-empleado" class="grid">
 
         <div class="campo">
           <label>Nombre</label>
-          <input id="nom-empl" name="nombre" class="estilo-empl" required>
+          <input id="nom-empl" name="nombre" class="estilo-empl special-text" required>
         </div>
 
         <div class="campo">
@@ -4511,8 +4511,9 @@
       </div>
 
       <div class="controller">
-        <button type="submit">Registrar Empleado</button>
-        <button type="button" id="limpiar">Limpiar Campos</button>
+        <button type="submit">Registrar</button>
+        <button type="submit">Buscar</button>
+        <button type="button" id="limpiar">Limpiar</button>
         <button type="button" id="salir">Salir</button>
       </div>
 
@@ -4592,13 +4593,13 @@
     <div id="carta-exterior" class="card-outer">
 
       <div class="ident-empleado">
-        <input type="text" class="card-header only-numbers"> </input>
-        <label class="card-label">Documento del empleado</label>
+        <label class="card-label">Documento</label>
+        <input type="text" id="input-documento" class="card-header only-numbers">
       </div>
 
       <div class="ident-empleado">
-        <input type="text" class="card-header only-numbers"> </input>     
         <label class="card-label">Empleado</label>
+        <input type="text" id="input-nombre" class="card-header only-numbers">
       </div>
 
 
