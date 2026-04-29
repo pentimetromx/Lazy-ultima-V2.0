@@ -534,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Lógica compartida ──────────────────────────────────────
     function activarEmpleado() {
-      indiceActual = i;
+      /* indiceActual = i; */
       if (fotoFijada === emp) {
         fotoFijada = null;
         limpiarVisor();
@@ -587,22 +587,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     listadoNombres.appendChild(span);
   });  
-    
-
-  // --- navegación Prev / Next ---
-  prevBtn.addEventListener('click', () => {
-    const spans = listadoNombres.querySelectorAll('span');
-    if (!spans.length) return;
-    const nuevo = Math.max(0, indiceActual - 1);
-    mostrarEmpleadoPorIndice(nuevo, { fijar: false });
-  });
-
-  nextBtn.addEventListener('click', () => {
-    const spans = listadoNombres.querySelectorAll('span');
-    if (!spans.length) return;
-    const nuevo = Math.min(spans.length - 1, indiceActual + 1);
-    mostrarEmpleadoPorIndice(nuevo, { fijar: false });
-  });
 
   const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 

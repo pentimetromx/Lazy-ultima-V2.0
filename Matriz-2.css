@@ -5537,7 +5537,7 @@ top: 44%;
   top: 85%;
   width: 95%;
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(4,1fr);
   gap: 15px;
 }
 .estilo-empl{
@@ -5915,16 +5915,20 @@ button:hover{
   width: auto;
 }
 .card-header {
-  height: 43%;
-  width: 36%;
-  border-radius: 6px;
+  height: 96%;
+  width: 60%;
+  border-radius: 4px;
   background: #1e2128;
   border: 0.5px solid #3e4451;
+  font-size: 0.5em;
   color: #c8cdd6;
   outline: none;
-  transition: border-color 0.2s;  
+  transition: border-color 0.2s;
+  padding-left: 8px;
+  box-sizing: border-box;
 }
 .card-label{
+  margin-top: 6px;
   font-size: 0.5em;
   color: rgba(255,255,255,0.8);
 }
@@ -5937,6 +5941,7 @@ button:hover{
   padding: 19px;
   gap: 13px;
   border-radius: 6px;
+  height: 82%;
 }
 .card-botones {
   position: relative;
@@ -5955,12 +5960,6 @@ button:hover{
   border-radius: 6px;
 }
 .boton-seccion {
-  width: 88%;
-  height: 80%;
-  margin-left: 6%;
-  border-radius: 4px;
-}
-.boton-seccion {
   background: #1e2128;
   cursor: pointer;
   width: 88%;
@@ -5968,10 +5967,12 @@ button:hover{
   margin-left: 6%;
   border-radius: 4px;
   color: #9ba3af;
-  font-size: 10px;
+  font-size: 0.6em;
 }
-.ident-empleado{
+.ident-empleado {
   position: relative;
+  display: grid;
+  grid-template-rows: 50% 50%;
 }
 .btn-primario {
    background: #7f1d1d;
