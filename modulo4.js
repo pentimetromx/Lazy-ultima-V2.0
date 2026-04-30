@@ -2631,6 +2631,7 @@ inputFoto.addEventListener('click', () => {
   /* blurOverlay.style.display = 'block';
   blurOverlay.style.zIndex = 2000; */
 });
+
 const visorContenedor = document.querySelector('#visorImagen-II');
 const imagenVisor = document.querySelector('#imagenVisor-II');
 
