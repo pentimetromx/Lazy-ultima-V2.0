@@ -4549,6 +4549,7 @@ function hideCalculator() {
   calculadora.classList.add('move-calculadora-down');  
   detenerParpadeo()
 }
+
 function ubicaCalculadoraSegunContexto(){
   restablecerEstilos('calculadora');
   calculadora.classList.remove('move-calculadora')
@@ -4605,7 +4606,21 @@ function ubicaCalculadoraSegunContexto(){
     setTimeout(() => {
       calculadora.classList.add('move-calculadora-up');
     }, 100);
-  }  
+  } 
+
+  if(!esDesktop && panelDeBajas.style.display==='block'){
+    document.querySelector("#simulador").style.display='flex'    
+    calculadora.classList.remove('move-calculadora-up-eliminar')
+    calculadora.style.display='grid'
+    calculadora.style.left='47vw'
+    calculadora.style.top='102vh' 
+    calculadora.style.height='45vh'
+    calculadora.style.width='40vw'
+    calculadora.zindex=100
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up-eliminar');
+    }, 100);
+  } 
 
 }
 
@@ -5478,16 +5493,14 @@ const accionesAceptar = {
   eliminarEmpl: () =>{
     panelAdministrativo.classList.remove('move-carta-exterior')
     document.querySelector('.panel-monitor').classList.remove('activo')    
-  },
+  },  
   baja: () => {
     documentoEmplEliminar.focus()
     document.querySelector('#padre-evento').style.display='none'
   },
   docuMaster: () => {
     document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
-  },
-
-  
+  },  
 };
 const accionesCancelar = {
   contenedor: () => {
@@ -5731,6 +5744,11 @@ document.querySelector('#borrarBoton2').addEventListener('click', () => {
   });
 });
 
+documentoEmplEliminar.addEventListener('click', (e) => {
+  calculadoraSimulador = true
+  documentoEmplEliminar.focus() 
+  if(!esDesktop){ubicaCalculadoraSegunContexto()}
+});
 
 /* BOTON SUPERIOR COLUMNA BOTONES */
 document.querySelector("#boton-ma-card").addEventListener('click',()=>{

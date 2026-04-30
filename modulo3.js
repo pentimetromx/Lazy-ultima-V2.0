@@ -15,7 +15,7 @@ document.addEventListener('keydown', function(event) {
       break;  
       case 'H':
         Geometria()
-        resetearElementos()
+        
       break;
       case 'X':
       eliminarClaveLocalStorage('empleadosRegistrados')
@@ -26,7 +26,7 @@ document.addEventListener('keydown', function(event) {
 
 function Geometria() {
   console.clear();  
-  let contiBoton = document.querySelector('#triada-videos');  
+  let contiBoton = document.querySelector('#calculadora');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -4943,7 +4943,8 @@ digitos.forEach((elemento) => {
   elemento.addEventListener('click', (e) => {
     e.stopPropagation();
 
-    if (!calculadoraSimulador) {  // CALCULADORA NORMAL
+    if (!calculadoraSimulador) {  // CALCULADORA HEIDELBERG
+      console.warn('HEIDELBERG')
 
       digitos.forEach(d => d.style.pointerEvents = 'none');
 
@@ -4995,10 +4996,8 @@ digitos.forEach((elemento) => {
         digitos.forEach(d => d.style.pointerEvents = 'auto');
       }, 200);
 
-    } 
-
-    else { // CALCULADORA ESPECIAL
-
+    }else { // CALCULADORA ESPECIAL
+      console.warn('NO ES HEIDELBERG')
       if (!lastFocusedInput) return;
 
       const input = lastFocusedInput;
@@ -5027,7 +5026,7 @@ digitos.forEach((elemento) => {
 
         input.value = input.value.replace(/\D/g, '');
 
-        if (input.value !== '') {
+        if (input.value !== '' && input.id !== 'input-baja') {
           const min = Number(input.min) || 0;
           const max = Number(input.max) || 100;
           input.value = clamp(parseInt(input.value, 10), min, max);
