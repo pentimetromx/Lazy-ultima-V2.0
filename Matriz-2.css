@@ -5495,6 +5495,11 @@ top: 44%;
   transform: translateY(-51vh);
   transition: transform 0.4s ease;
 }
+.move-calculadora-up-eliminar{
+  transform: translateY(-57vh);
+  transition: transform 0.4s ease;
+}
+
 .move-calculadora-down{
   transform: translateY(51vh);
   transition: transform 0.4s ease;
