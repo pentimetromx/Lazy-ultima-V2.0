@@ -4704,7 +4704,6 @@ function mostrarListaClientes(seccion) {
   const almacen = JSON.parse(almacenJSON);
   const empleados = Object.values(almacen);
 
-  // ✅ Solo crear los items, sin listeners individuales
   empleados.forEach(empleado => {
     if (!empleado) return;
     const item = document.createElement('div');
@@ -4714,8 +4713,12 @@ function mostrarListaClientes(seccion) {
     listaClientes.appendChild(item);
   });
 
+  // ✅ Limpiar listeners anteriores clonando el nodo
+  const nuevoLista = listaClientes.cloneNode(true);
+  listaClientes.parentNode.replaceChild(nuevoLista, listaClientes);
+  listaClientes = nuevoLista; // asegúrate de que listaClientes sea let/var
 
-  listaClientes.addEventListener('touchend', (e) => {
+  function manejarSeleccion(e) {
     const item = e.target.closest('.cliente-item');
     if (!item) return;
     e.stopPropagation();
@@ -4725,46 +4728,20 @@ function mostrarListaClientes(seccion) {
     objetoGlobal = item.dataset.nombre;
     listaClientes.style.display = 'none';
 
-    // ✅ Buscar empleado en localStorage y mostrar imagen
     const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
-    const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
+    const empleado = Object.values(almacen).find(emp => emp.nombre === objetoGlobal);
     if (empleado?.imagen) {
       document.querySelector('#imagenVisor').src = empleado.imagen;
       document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
     }
+  }
+
+  nuevoLista.addEventListener('touchend', manejarSeleccion);
+  nuevoLista.addEventListener('click', (e) => {
+    // Evitar doble disparo en táctil (touchend ya lo manejó)
+    if (e.sourceCapabilities?.firesTouchEvents) return;
+    manejarSeleccion(e);
   });
-
-
-
-  // ✅ Un solo listener para desktop
-  /* listaClientes.addEventListener('click', (e) => {
-    const item = e.target.closest('.cliente-item');
-    if (!item) return;
-    e.stopPropagation();
-    desactivarBlur();
-    if (activeInput) activeInput.value = item.dataset.nombre;
-    objetoGlobal = item.dataset.nombre;
-    listaClientes.style.display = 'none';
-  }); */
-
-  listaClientes.addEventListener('click', (e) => {
-    const item = e.target.closest('.cliente-item');
-    if (!item) return;
-    e.stopPropagation();
-    e.preventDefault();
-    desactivarBlur();
-    if (activeInput) activeInput.value = item.dataset.nombre;
-    objetoGlobal = item.dataset.nombre;
-    listaClientes.style.display = 'none';
-
-    // ✅ Buscar empleado en localStorage y mostrar imagen
-    const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
-    const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
-    if (empleado?.imagen) {
-      document.querySelector('#imagenVisor').src = empleado.imagen;
-      document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
-    }
-  });  
 
   switch(seccion){
     case 'listadoClientes':
@@ -5823,7 +5800,7 @@ document.querySelector("#borrarBoton5").addEventListener('click',()=>{
   container1.style.display='grid'
   panelAdministrativo.classList.remove('move-carta-exterior')
   document.querySelector('.panel-monitor').classList.remove('activo')  
-        resultadosMA('interfaz-mtto')
+  resultadosMA('interfaz-mtto')
   
 })
 const btnActivar = document.querySelector('#carta-exterior .btn-primario');
