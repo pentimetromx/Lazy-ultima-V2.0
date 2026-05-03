@@ -4221,6 +4221,16 @@ mediaDesktop.addEventListener('change', e => {
   }
 });
 // Orden lógico deseado (independiente del DOM)
+const ordenInputsNuevoIngreso = [
+  '[name="identificados"]',
+  '[name="corregidos"]',
+  '[name="tipoA"]',
+  '[name="tipoB"]',
+  '[name="kaizen"]',
+  '[name="adas"]',
+  '[name="adt"]',
+  '[name="lup"]',
+];
 const ordenInputsRGB = [
   'animate-btn',
   'input-r',
@@ -4300,6 +4310,20 @@ function avanzarFoco() {
     siguienteInput.focus();
     siguienteInput.value=0
     parpadearElemento(siguienteInput.id,150,2500);
+
+  } 
+  if (formularioNuevoIngreso.style.display === 'block') {
+
+    if (indiceFoco >= ordenInputsNuevoIngreso.length) {
+      indiceFoco = 0;
+    }
+
+    const siguienteInput = document.querySelector(ordenInputsNuevoIngreso[indiceFoco]);
+
+    if (!siguienteInput) return;
+
+    siguienteInput.focus();
+    parpadearElemento(siguienteInput.name, 150, 2500);
 
   }  
 }  
