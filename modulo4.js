@@ -4556,6 +4556,7 @@ function ubicaCalculadoraSegunContexto(){
   calculadora.classList.remove('move-calculadora-1')
   calculadora.classList.remove('move-calculadora-up');
   calculadora.classList.remove('move-calculadora-down');
+  calculadora.classList.remove('move-calculadora-up-ingreso');
 
   if(!esDesktop && interfazRRHH.style.display==='grid'){
     simulador.style.display='flex'
@@ -4607,7 +4608,6 @@ function ubicaCalculadoraSegunContexto(){
       calculadora.classList.add('move-calculadora-up');
     }, 100);
   } 
-
   if(!esDesktop && panelDeBajas.style.display==='block'){
     document.querySelector("#simulador").style.display='flex'    
     calculadora.classList.remove('move-calculadora-up-eliminar')
@@ -4621,7 +4621,19 @@ function ubicaCalculadoraSegunContexto(){
       calculadora.classList.add('move-calculadora-up-eliminar');
     }, 100);
   } 
-
+  if(!esDesktop && formularioNuevoIngreso.style.display==='block'){  
+    document.querySelector("#simulador").style.display='flex'    
+    calculadora.classList.remove('move-calculadora-up-ingreso')
+    calculadora.style.display='grid'
+    calculadora.style.left='47vw'
+    calculadora.style.top='102vh' 
+    calculadora.style.height='45vh'
+    calculadora.style.width='40vw'
+    calculadora.Zindex=100
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up-ingreso');
+    }, 100);
+  } 
 }
 
 const clamp = (val, min, max) =>
@@ -4704,6 +4716,7 @@ function mostrarListaClientes(seccion) {
   const almacen = JSON.parse(almacenJSON);
   const empleados = Object.values(almacen);
 
+  // ✅ Solo crear los items, sin listeners individuales
   empleados.forEach(empleado => {
     if (!empleado) return;
     const item = document.createElement('div');
@@ -4713,12 +4726,8 @@ function mostrarListaClientes(seccion) {
     listaClientes.appendChild(item);
   });
 
-  // ✅ Limpiar listeners anteriores clonando el nodo
-  const nuevoLista = listaClientes.cloneNode(true);
-  listaClientes.parentNode.replaceChild(nuevoLista, listaClientes);
-  listaClientes = nuevoLista; // asegúrate de que listaClientes sea let/var
 
-  function manejarSeleccion(e) {
+  listaClientes.addEventListener('touchend', (e) => {
     const item = e.target.closest('.cliente-item');
     if (!item) return;
     e.stopPropagation();
@@ -4728,20 +4737,33 @@ function mostrarListaClientes(seccion) {
     objetoGlobal = item.dataset.nombre;
     listaClientes.style.display = 'none';
 
+    // ✅ Buscar empleado en localStorage y mostrar imagen
     const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
-    const empleado = Object.values(almacen).find(emp => emp.nombre === objetoGlobal);
+    const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
     if (empleado?.imagen) {
       document.querySelector('#imagenVisor').src = empleado.imagen;
       document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
     }
-  }
-
-  nuevoLista.addEventListener('touchend', manejarSeleccion);
-  nuevoLista.addEventListener('click', (e) => {
-    // Evitar doble disparo en táctil (touchend ya lo manejó)
-    if (e.sourceCapabilities?.firesTouchEvents) return;
-    manejarSeleccion(e);
   });
+
+  listaClientes.addEventListener('click', (e) => {
+    const item = e.target.closest('.cliente-item');
+    if (!item) return;
+    e.stopPropagation();
+    e.preventDefault();
+    desactivarBlur();
+    if (activeInput) activeInput.value = item.dataset.nombre;
+    objetoGlobal = item.dataset.nombre;
+    listaClientes.style.display = 'none';
+
+    // ✅ Buscar empleado en localStorage y mostrar imagen
+    const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+    const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
+    if (empleado?.imagen) {
+      document.querySelector('#imagenVisor').src = empleado.imagen;
+      document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
+    }
+  });  
 
   switch(seccion){
     case 'listadoClientes':
@@ -5908,8 +5930,17 @@ linkMaster.addEventListener('click', ()=>{
   }, 500);
 })
 
-
-
+document.querySelectorAll(".input-especial").forEach(input => {
+  input.addEventListener('click', (e) => {
+    calculadoraSimulador = true;
+    if (!esDesktop) {
+      e.currentTarget.setAttribute('readonly', true);
+      ubicaCalculadoraSegunContexto();
+    } else {
+      e.currentTarget.removeAttribute('readonly');
+    }
+  });
+});
 
 function borrrrrrarrrr(){
     ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
