@@ -5499,9 +5499,16 @@ top: 44%;
   transform: translateY(-57vh);
   transition: transform 0.4s ease;
 }
-
+.move-calculadora-up-nuevo{
+  transform: translateY(-75vh);
+  transition: transform 0.4s ease;
+}
 .move-calculadora-down{
   transform: translateY(51vh);
+  transition: transform 0.4s ease;
+}
+.move-calculadora-up-ingreso {
+  transform: translateY(-75vh) translateX(12vw);
   transition: transform 0.4s ease;
 }
 .form-empleado{

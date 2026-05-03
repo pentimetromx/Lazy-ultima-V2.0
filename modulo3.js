@@ -5026,7 +5026,7 @@ digitos.forEach((elemento) => {
 
         input.value = input.value.replace(/\D/g, '');
 
-        if (input.value !== '' && input.id !== 'input-baja') {
+        if (input.value !== '' && input.id !== 'input-baja' && input.id !== 'doc-empl' && !input.classList.contains('input-especial')) {
           const min = Number(input.min) || 0;
           const max = Number(input.max) || 100;
           input.value = clamp(parseInt(input.value, 10), min, max);
