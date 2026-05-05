@@ -381,9 +381,10 @@ function cargarColaboradoresDesdeStorage() {
 }
 
 
+
 document.addEventListener('DOMContentLoaded', () => {
   const colaboradores = cargarColaboradoresDesdeStorage();
- 
+
   const cuartoHijo   = document.getElementById('ultimoElemento');
   const segundaLista = document.getElementById('segundaLista');
   if (!cuartoHijo || !segundaLista) return;
@@ -425,16 +426,13 @@ document.addEventListener('DOMContentLoaded', () => {
       scheduleHide();
     }
   });
-
   const contene = document.getElementById('info-interna');
   const nombres = ['Ana', 'Luis', 'María', 'José', 'Elena', 'Pedro', 'Lucía', 'Carlos','Juan','Mario','Fredy','Fernando','Olga','Marta','Olga','Jose'];
-
   for (let i = 0; i < 64; i++) {
     const celda = document.createElement('div');
     celda.classList.add('col');
     celda.style.cursor='pointer'
     celda.textContent = nombres[i] || `Persona ${i + 1}`;
-
     // 👉 Primera columna (nombres destacados)
     if (i % 8 === 0) {
       celda.style.backgroundColor = 'rgb(0, 0, 20)';
@@ -446,13 +444,11 @@ document.addEventListener('DOMContentLoaded', () => {
       celda.style.justifyContent = 'flex-start';
       celda.style.paddingLeft = '5px';
     }
-
     // 👉 Últimas dos columnas → insertar span azul
     if (i % 8 === 6 || i % 8 === 7) {
       // Limpiar el texto por defecto
       celda.textContent = '';
       celda.style.border='none'
-
       const span = document.createElement('span');
       span.style.display = 'block';
       span.style.width = '27%';
@@ -461,48 +457,37 @@ document.addEventListener('DOMContentLoaded', () => {
       span.style.borderRadius = '4px';
       span.style.margin = '0 auto';
       span.style.textAlign = 'center';
-
       celda.style.display = 'flex';
       celda.style.alignItems = 'center';
       celda.style.justifyContent = 'flex-end';
-
       celda.appendChild(span);
     }
     contene.appendChild(celda);
   }
-
   const celda40 = contene.children[39];
   const spanInterno = celda40.querySelector('span');
-
   if (spanInterno) {
     spanInterno.style.backgroundColor = 'red'; 
     spanInterno.textContent = 'VER';
   }
-
-
   const listadoNombres = document.getElementById('listaNombres');
   const img = document.getElementById('imagenVisor');
   const nombre = document.querySelector('.visor > span');
-
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
-
   // estado
   let indiceActual = 0;
   let fotoFijada = null;
-
   // --- construir lista dinámica ---
-  /* colaboradores.forEach((emp, i) => {
+  colaboradores.forEach((emp, i) => {
     const span = document.createElement('span');
     span.textContent = emp.nombre;
     span.dataset.img = emp.ruta; // importante para navegación
     span.dataset.index = i;
-
     span.addEventListener('mouseenter', () => {
       indiceActual = i;
       mostrarEmpleadoPorIndice(i, { fijar: false });
     });
-
     span.addEventListener('mouseleave', () => {
       if (fotoFijada) {
         mostrarEmpleadoObj(fotoFijada);
@@ -510,7 +495,6 @@ document.addEventListener('DOMContentLoaded', () => {
         limpiarVisor();
       }
     });
-
     span.addEventListener('click', () => {
       indiceActual = i;
       if (fotoFijada === emp) {
@@ -521,77 +505,54 @@ document.addEventListener('DOMContentLoaded', () => {
         mostrarEmpleadoObj(emp);
       }
     });
-
     listadoNombres.appendChild(span);
-  }); */
-
-
-  colaboradores.forEach((emp, i) => {
-    const span = document.createElement('span');
-    span.textContent = emp.nombre;
-    span.dataset.img = emp.ruta;
-    span.dataset.index = i;
-
-    // ── Lógica compartida ──────────────────────────────────────
-    function activarEmpleado() {
-      /* indiceActual = i; */
-      if (fotoFijada === emp) {
-        fotoFijada = null;
-        limpiarVisor();
-      } else {
-        fotoFijada = emp;
-        mostrarEmpleadoObj(emp);
-      }
+  });
+  // --- navegación Prev / Next ---
+  prevBtn.addEventListener('click', () => {
+    const spans = listadoNombres.querySelectorAll('span');
+    if (!spans.length) return;
+    const nuevo = Math.max(0, indiceActual - 1);
+    mostrarEmpleadoPorIndice(nuevo, { fijar: false });
+  });
+  nextBtn.addEventListener('click', () => {
+    const spans = listadoNombres.querySelectorAll('span');
+    if (!spans.length) return;
+    const nuevo = Math.min(spans.length - 1, indiceActual + 1);
+    mostrarEmpleadoPorIndice(nuevo, { fijar: false });
+  });
+  // --- búsqueda ---
+  campoBusqueda.addEventListener('input', () => {
+    const valor = campoBusqueda.value.trim().toLowerCase();
+    if (!valor) {
+      limpiarVisor();
+      fotoFijada = null;
+      return;
     }
-
-    // ── PC: mouse ──────────────────────────────────────────────
-    span.addEventListener('mouseenter', () => {
-      indiceActual = i;
-      if (fotoFijada === emp) {
-        fotoFijada = null;
-        limpiarVisor();
-      } else {
-        fotoFijada = emp;
-        mostrarEmpleadoObj(emp);
-      }
-    });
-
-    span.addEventListener('mouseleave', () => {
-      if (fotoFijada) {
-        mostrarEmpleadoObj(fotoFijada);
-      } else {
-        limpiarVisor();
-      }
-    });
-
-    span.addEventListener('click', activarEmpleado);
-
-    // ── Táctil ─────────────────────────────────────────────────
-    span.addEventListener('touchstart', (e) => {
-      // Guarda la posición inicial del toque
-      span._touchStartY = e.touches[0].clientY;
-      span._touchStartX = e.touches[0].clientX;
-    }, { passive: true }); // passive:true para no bloquear el scroll
-
-    span.addEventListener('touchend', (e) => {
-      const deltaY = Math.abs(e.changedTouches[0].clientY - span._touchStartY);
-      const deltaX = Math.abs(e.changedTouches[0].clientX - span._touchStartX);
-
-      // Solo activa si fue un tap, no un scroll (menos de 10px de movimiento)
-      if (deltaY < 10 && deltaX < 10) {
-        e.preventDefault(); // ahora sí cancela el click fantasma
-        activarEmpleado();
-      }
-    }, { passive: false });
-    
-
-    listadoNombres.appendChild(span);
-  });  
-
+    const coincidencia = colaboradores.find(c => c.nombre.toLowerCase().includes(valor)
+    );
+    if (coincidencia) {
+      fotoFijada = coincidencia; // fija desde buscador
+      mostrarEmpleadoObj(coincidencia);
+      // sincronizar índice si coincide con la lista
+      const idx = colaboradores.indexOf(coincidencia);
+      if (idx >= 0) indiceActual = idx;
+    } else {
+      limpiarVisor();
+      fotoFijada = null;
+    }
+  });
   const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
+  if (!esDesktop && esTactil) {
+    campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
+  }
+  campoBusqueda.addEventListener('focusin', (e) => {
+    activeInput = e.target; // asignar input activo
+    mostrarListaClientes('perfilesIndividual'); // abrir lista
+  });
+  campoBusqueda.addEventListener('blur', () => {
+    if(!esDesktop) hideKeyboard()
+  });
   // --- funciones auxiliares ---
-
   // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
   function mostrarEmpleadoPorIndice(index, opts = { fijar: false }) {
     const spans = listadoNombres.querySelectorAll('span');
@@ -599,19 +560,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!span) return;
     const imgSrc = span.dataset.img;
     if (!imgSrc) return;
-
     // actualizar visor
     img.src = imgSrc;
     nombre.textContent = span.textContent;
     indiceActual = Number(span.dataset.index ?? index);
-
     if (opts.fijar) {
       // fijar objeto si existe en colaboradores
       const emp = colaboradores[indiceActual];
       if (emp) fotoFijada = emp;
     }
   }
-
   // muestra usando el objeto de colaboradores (click o buscador)
   function mostrarEmpleadoObj(emp) {
     if (!emp) return;
@@ -621,69 +579,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const idx = colaboradores.indexOf(emp);
     if (idx >= 0) indiceActual = idx;
   }
-
   function limpiarVisor() {
     img.src = '';
     nombre.textContent = '';
-  }
-  campoBusqueda.addEventListener('input', () => {
-    const valor = campoBusqueda.value.trim().toLowerCase();
-    if (!valor) {
-      limpiarVisor();
-      fotoFijada = null;
-      return;
-    }
-    const coincidencia = colaboradores.find(c => c.nombre.toLowerCase().includes(valor));
-    if (coincidencia) {
-      fotoFijada = coincidencia;
-      mostrarEmpleadoObj(coincidencia);
-      const idx = colaboradores.indexOf(coincidencia);
-      if (idx >= 0) indiceActual = idx;
-    } else {
-      limpiarVisor();
-      fotoFijada = null;
-    }
-  });
-let touched = false;
-
-  campoBusqueda.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    touched = true;
-    activeInput = e.target;
-    mostrarListaClientes('perfilesIndividual');
-  }, { passive: false });
-
-  campoBusqueda.addEventListener('click', (e) => {
-    if (touched) {
-      touched = false;
-      return; // ya fue manejado por touchstart
-    }
-    e.preventDefault();
-    activeInput = e.target;
-    mostrarListaClientes('perfilesIndividual');
-  });
-
-  campoBusqueda.addEventListener('mouseenter', () => {
-    mostrarListaClientes('perfilesIndividual');
-  });
-
-  campoBusqueda.addEventListener('mouseleave', () => {
-    setTimeout(() => {
-      if (!listaClientes.matches(':hover')) {
-        listaClientes.style.display = 'none';
-      }
-    }, 200);
-  });
-
-  campoBusqueda.addEventListener('blur', () => {
-    if (!esDesktop) hideKeyboard();
-  });
-
-if (!esDesktop && esTactil) {
-  campoBusqueda.setAttribute('readonly', true);
-}
-  
+  }  
 });
+
+
 function showNextInputChec() {
 var conteneChecks = document.getElementById('contChecks')
 if (conteneChecks.style.display === 'block') {

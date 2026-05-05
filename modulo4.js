@@ -2051,7 +2051,7 @@ function ingresoEmpleadoMA(){
   }, 350); 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+/* document.addEventListener('DOMContentLoaded', () => {
   const listadoNombres = document.getElementById('listaNombres');
   const img = document.getElementById('imagenVisor');
   const nombre = document.querySelector('.visor > span');
@@ -2062,47 +2062,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // estado
   let indiceActual = 0;
   let fotoFijada = null;
-
-  // --- construir lista dinámica ---
-/*   colaboradores.forEach((emp, i) => {
-    const span = document.createElement('span');
-    span.textContent = emp.nombre;
-    span.dataset.img = emp.ruta; // importante para navegación
-    span.dataset.index = i;
-
-    span.addEventListener('mouseenter', () => {
-      indiceActual = i;
-      if (fotoFijada === emp) {
-        fotoFijada = null;
-        limpiarVisor();
-      } else {
-        fotoFijada = emp;
-        mostrarEmpleadoObj(emp);
-      }
-    });
-
-
-    span.addEventListener('mouseleave', () => {
-      if (fotoFijada) {
-        mostrarEmpleadoObj(fotoFijada);
-      } else {
-        limpiarVisor();
-      }
-    });
-
-    span.addEventListener('click', () => {
-      indiceActual = i;
-      if (fotoFijada === emp) {
-        fotoFijada = null;
-        limpiarVisor();
-      } else {
-        fotoFijada = emp;
-        mostrarEmpleadoObj(emp);
-      }
-    });
-
-    listadoNombres.appendChild(span);
-  }); */
 
   // --- navegación Prev / Next ---
   prevBtn.addEventListener('click', () => {
@@ -2158,7 +2117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     img.src = '';
     nombre.textContent = '';
   }
-});
+}); */
 
 /*********************************************************************************************************************************************** */
 const soloNumerosInputs = [

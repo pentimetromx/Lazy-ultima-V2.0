@@ -1014,7 +1014,9 @@ if ("IntersectionObserver" in window) {
     alertaCrearPerfil()
   }
   })  
-  function manejoGeneralIndividual(grilla,botoneraDinamica,actualBalanceColor,botonActual,claseColor,textoSpan,banderaActiva,index,indexSelector){
+
+
+    function manejoGeneralIndividual(grilla,botoneraDinamica,actualBalanceColor,botonActual,claseColor,textoSpan,banderaActiva,index,indexSelector){
     const lineaLeds = document.querySelectorAll(`.grilla-${grilla}`);
     lineaLeds.forEach((elto, index) => { 
       setTimeout(() => {
@@ -1088,7 +1090,10 @@ if ("IntersectionObserver" in window) {
         boton.style.backgroundColor = ''; // Restablecer color para los demás botones
       }
     });
-  }      
+  }
+  
+  
+
   function mostrarSecuenciaPerfiles(){
     manejoGeneralIndividual('negro',negro,estadoBalanceNegro,negroGeneral,'negro','NEGRO','flagNegro',1,0)  
     muestraRenderObjetoGlobal(objetoGlobal, 'negro', 'linea', 'lineaSeguidor', 'lineaGrilla', 'tanque-tinta', 'nivelTinta', 'nivelAgua', 1,2);  
@@ -1116,6 +1121,7 @@ if ("IntersectionObserver" in window) {
   }
 
 
+
   irAconsola.addEventListener('click', () =>{
     nombreCliente.style.top=''
     let nombreDatos = document.querySelector('#cliente-nombre')
@@ -1133,6 +1139,12 @@ if ("IntersectionObserver" in window) {
     elementos.forEach(elemento => {
       elemento.style.color = 'transparent'
     });
+
+    const elementosPanel = document.querySelectorAll('.led-general');
+    elementosPanel.forEach(elementoPanel => {
+      elementoPanel.style.backgroundColor = 'transparent'
+    });    
+
     container1.style.display = 'none'
     if(objetoGlobal === null || objetoGlobal === ''){nombreDatos.textContent = ''}
     setTimeout(() => {
@@ -1141,10 +1153,14 @@ if ("IntersectionObserver" in window) {
     setTimeout(() => {
       document.querySelector('.nombre-cliente').style.display='flex'
     }, 1500);
-    setTimeout(() =>{
-      mostrarSecuenciaPerfiles() 
-      restablecerClick(['.butt-perfiles', '.cabeza', '.mod-tinta']);                       
-    },1550);
+
+setTimeout(() =>{
+  objetoGlobal = document.querySelector('#cliente-nombre').textContent.trim();
+  
+  mostrarSecuenciaPerfiles(); 
+  restablecerClick(['.butt-perfiles', '.cabeza', '.mod-tinta']);                     
+}, 1550);
+
       botonesPerfilColor.forEach(elemento => {
       elemento.style.display = 'flex'; 
     });    
