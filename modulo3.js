@@ -14,8 +14,8 @@ document.addEventListener('keydown', function(event) {
       
       break;  
       case 'H':
-        Geometria()
-        
+        /* Geometria() */
+        console.log('OBJETO GLOBAL', objetoGlobal)
       break;
       case 'X':
       eliminarClaveLocalStorage('empleadosRegistrados')
@@ -4840,7 +4840,7 @@ buttsJobs.forEach(boton => {
   //CALCULADORA SIMULADOR
   boton.addEventListener('click', () => {
     restablecerEstilos('calculadora');
-    calculadora.classList.remove('subir');
+    calculadora.classList.remove('subir');   
     
     switch(boton.id) {
       case 'clientes':
@@ -4870,6 +4870,8 @@ buttsJobs.forEach(boton => {
         restablecerEstilos('calculadora');
         calculadora.classList.remove('move-calculadora-up')
         calculadora.classList.remove('move-calculadora-down')
+        calculadora.classList.remove('move-calculadora-up-ingreso')
+        calculadora.classList.remove('move-calculadora-1')
 
         calculadoraSimulador=false
         if(!calculadoraSimulador){
@@ -5290,8 +5292,12 @@ btnEntrar.addEventListener('click', () => {
     }
   }else{
     if(!esDesktop)avanzarFoco();
-    /* if(interfazRRHH)calculadora.classList.add('move-calculadora-down') */
   }
+});
+
+document.querySelectorAll('.input-especial').forEach(input => {
+  /* input.addEventListener('focus', manejarEntrar); */
+  console.warn()
 });
 
 function sumarPorcentaje() {
@@ -5312,8 +5318,12 @@ function sumarPorcentaje() {
   // Para depuración (opcional)
   console.log('Nuevo porcentaje:', porcentajeCurrent + '%');
 }
+
+
+
 //APLICA A leds, led, grilla
 function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propiedadIII, propiedadIV, propiedadV, propiedadVI, footer, foot){
+  
   // Mapeo de nombres de colores a valores CSS válidos
   const colorMap = {
     negro: 'black',
@@ -5331,7 +5341,28 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
   let displaySolucion = document.querySelector('#ctrl-gral .div-ctrl #solucion-porcentaje');  
   let displayTintaGral = document.querySelector(`#gral-display-${color}`)
   let displaySolucionGral = document.querySelector(`#display-general-${color}`)
+
+
+  /* console.log('OBJETO GLOBAL', objetoGlobal)
+  console.group('Nueva Empresa');
+  const obj = almacenObjetos['Nueva Empresa'];
+  Object.entries(obj).forEach(([propiedad, valor]) => {
+    console.group(propiedad);
+    console.log(valor);
+    console.groupEnd();
+  });
+  console.groupEnd(); */
+
+  console.log('objetoGlobal:', objetoGlobal);
+  console.log('almacenObjetos:', almacenObjetos);
+  console.log('existe clave:', almacenObjetos[objetoGlobal]);
+  console.log('color:', color);
+
+
+
   displaySolucion.textContent = almacenObjetos[objetoGlobal][color].nivelAgua.length + '%';
+
+
   displayTinta.textContent = almacenObjetos[objetoGlobal][color].nivelTinta.length + '%';
   // Primera iteración: Aplicar lógica a `#columna-70`
   for (let i = 1; i <= 22; i++) {
@@ -5388,58 +5419,50 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
       } 
     }
   }  
+
+
   // Cuarta iteración: Aplicar lógica a `#tanque-tinta y tanque general`
-  for (let i = 1; i <= 100; i++) {
-    const rutaEntregaIII = almacenObjetos[objetoGlobal][color][propiedadV];
-    if (!rutaEntregaIII) {
-      console.error(`No se encontró la propiedad '${propiedadV}' en el color '${color}'.`); 
-      return;
-    }
-    const rutaClona = document.querySelectorAll(`#ctrl-gral #tanque-tinta .lineas-tinta`);
-    const rutaClonaGral = document.querySelectorAll(`#footer-perfiles #footer-${color} #footer-${footer} .divs-grales-tinta-${color}`);
-    if (rutaClona.length > 0) {
-      const elementosAColorear = rutaEntregaIII.length;
-      for (let index = rutaClona.length - 1; index >= rutaClona.length - elementosAColorear; index--) {          
-        if (index >= 0 && index < rutaClona.length) { // Verificar que el índice es válido
-          rutaClona[index].style.backgroundColor = amarillo; // Aplicar el color CSS
-        }
-      }
-    }
-    if (rutaClonaGral.length > 0) {
-      const elementosAColorear = rutaEntregaIII.length;
-      for (let index = rutaClonaGral.length - 1; index >= rutaClonaGral.length - elementosAColorear; index--) {          
-        if (index >= 0 && index < rutaClonaGral.length) { // Verificar que el índice es válido
-          rutaClonaGral[index].style.backgroundColor = colorCSS;
-        }
-      }
-    }else{console.log()}
-  }  
-  // Quinta iteración: Aplicar lógica a `#tanque-agua y tanque general`  
-  for (let i = 1; i <= 100; i++) {
-    const rutaEntregaIII = almacenObjetos[objetoGlobal][color][propiedadVI];
-    if (!rutaEntregaIII) {
-      console.error(`No se encontró la propiedad '${propiedadVI}' en el color '${color}'.`);
-      return;
-    }
-    const rutaClona = document.querySelectorAll(`#ctrl-gral #tanque-solucion .lineas-solucion`);
-    const rutaClonaGral = document.querySelectorAll(`#footer-perfiles #footer-${color} #footer-${foot} .divs-grales-solucion-${color}`);
-    if (rutaClona.length > 0) {
-      const elementosAColorear = rutaEntregaIII.length;
-      for (let index = rutaClona.length - 1; index >= rutaClona.length - elementosAColorear; index--) {          
-        if (index >= 0) { // Asegurarnos de no acceder a índices negativos
-          rutaClona[index].style.backgroundColor = amarillo; // Aplicar el color CSS
-        }
-      }
-    }
-    if (rutaClonaGral.length > 0) {
-      const elementosAColorear = rutaEntregaIII.length;
-      for (let index = rutaClonaGral.length - 1; index >= rutaClonaGral.length - elementosAColorear; index--) {          
-        if (index >= 0) { // Asegurarnos de no acceder a índices negativos
-          rutaClonaGral[index].style.backgroundColor = verdeAgua;
-        }
-      }  
-    }
+  const rutaEntregaIV = almacenObjetos[objetoGlobal][color][propiedadV];
+  if (!rutaEntregaIV) {
+    console.error(`No se encontró '${propiedadV}' en '${color}'`);
+    return;
   }
+  const rutaClonaTinta = document.querySelectorAll(`#ctrl-gral #tanque-tinta .lineas-tinta`);
+  const rutaClonaGralTinta = document.querySelectorAll(`#footer-perfiles #footer-${color} #footer-${footer} .divs-grales-tinta-${color}`);
+
+  // ← limpiar todo primero
+  rutaClonaTinta.forEach(el => el.style.backgroundColor = '');
+  rutaClonaGralTinta.forEach(el => el.style.backgroundColor = '');
+
+  const elementosATintear = rutaEntregaIV.length;
+  for (let index = rutaClonaTinta.length - 1; index >= rutaClonaTinta.length - elementosATintear && index >= 0; index--) {
+    rutaClonaTinta[index].style.backgroundColor = amarillo;
+  }
+  for (let index = rutaClonaGralTinta.length - 1; index >= rutaClonaGralTinta.length - elementosATintear && index >= 0; index--) {
+    rutaClonaGralTinta[index].style.backgroundColor = colorCSS;
+  }
+
+  // Quinta iteración: Aplicar lógica a `#tanque-agua y tanque general`  
+  const rutaEntregaV = almacenObjetos[objetoGlobal][color][propiedadVI];
+  if (!rutaEntregaV) {
+    console.error(`No se encontró '${propiedadVI}' en '${color}'`);
+    return;
+  }
+  const rutaClonaAgua = document.querySelectorAll(`#ctrl-gral #tanque-solucion .lineas-solucion`);
+  const rutaClonaGralAgua = document.querySelectorAll(`#footer-perfiles #footer-${color} #footer-${foot} .divs-grales-solucion-${color}`);
+
+  // ← limpiar todo primero
+  rutaClonaAgua.forEach(el => el.style.backgroundColor = '');
+  rutaClonaGralAgua.forEach(el => el.style.backgroundColor = '');
+
+  const elementosAAguar = rutaEntregaV.length;
+  for (let index = rutaClonaAgua.length - 1; index >= rutaClonaAgua.length - elementosAAguar && index >= 0; index--) {
+    rutaClonaAgua[index].style.backgroundColor = amarillo;
+  }
+  for (let index = rutaClonaGralAgua.length - 1; index >= rutaClonaGralAgua.length - elementosAAguar && index >= 0; index--) {
+    rutaClonaGralAgua[index].style.backgroundColor = verdeAgua;
+  }
+
   setTimeout(() => {
     displayTintaGral.textContent = almacenObjetos[objetoGlobal][color].nivelTinta.length + '%';
     displayTintaGral.style.top = 87 - (almacenObjetos[objetoGlobal][color].nivelTinta.length) + '%';
@@ -5451,6 +5474,9 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
     });
   }, 1000);
 }
+
+
+
 function eliminarColores(){
   const lineasSolucion = document.querySelectorAll('.lineas-solucion');
   const lineasTinta = document.querySelectorAll('.lineas-tinta');
