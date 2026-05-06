@@ -2141,33 +2141,13 @@ function limpiarYCapitalizar(e) {
   e.target.value = valor;
 }
 
-// Aplicarlo a ambos inputs
-/*[inputNombre, inputNombreMA].forEach(input => {
-  if (input) input.addEventListener('input', limpiarYCapitalizar);
-});
-
-inputNombre.addEventListener('focusin',() =>{
-  if(!esDesktop) showKeyboard()
-})
-inputNombre.addEventListener('blur', () => {
-  if(!esDesktop) hideKeyboard()
-});
-
-buscaNombre.addEventListener('focusin',() =>{
-  if(!esDesktop) showKeyboard()
-})
-buscaNombre.addEventListener('blur', () => {
-  if(!esDesktop) hideKeyboard()
-}); */
-
-
 const inputsVarios = [buscaNombre, mejoraFichaTec, nombreNuevo];
 
 inputsVarios.forEach(input => {
   if (!input) return;
 
-  if (!esDesktop) nombreNuevo.classList.add('readOnly');
-  
+  if (!esDesktop) nombreNuevo.setAttribute('readonly', true);
+
   input.addEventListener('focusin', () => {
     if (!esDesktop) showKeyboard();
   });
@@ -5211,6 +5191,7 @@ document.querySelector('#btn-confirmar-baja').addEventListener('click', () => {
 document.querySelector("#btn-mostrar-baja").addEventListener('click', () => {
   traerEmpleadoaEliminar()
 });
+
 function traerEmpleadoaEliminar(){
   let valor = documentoEmplEliminar.value
 
@@ -5234,10 +5215,10 @@ function traerEmpleadoaEliminar(){
         return
       }else{
 
-  ["padre-ingresos", "ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
-  interfazRRHH.style.left = '53vw';
-  document.querySelector("#nomEmpl").value = valor;
-  calculadora.classList.remove('move-calculadora-up');
+    ["padre-ingresos", "ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
+    interfazRRHH.style.left = '53vw';
+    document.querySelector("#nomEmpl").value = valor;
+    calculadora.classList.remove('move-calculadora-up');
 
     document.getElementById('numDoc').value = empleadoEncontrado.nombre;
     document.getElementById('numDoc1').value = empleadoEncontrado.documento;
@@ -5277,6 +5258,7 @@ function traerEmpleadoaEliminar(){
   }
 
 }
+
 const accionesAceptar = {
   contenedor: () => {
     console.log('logica muy extensa para contenedor');
@@ -5747,11 +5729,15 @@ document.querySelector('#borrarBoton2').addEventListener('click', () => {
 });
 
 
-documentoEmplEliminar.addEventListener('click', (e) => {
-  calculadoraSimulador = true
-  documentoEmplEliminar.focus() 
-  if(!esDesktop){ubicaCalculadoraSegunContexto()}
-});
+documentoEmplEliminar.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  calculadoraSimulador = true;
+  documentoEmplEliminar.focus();
+  if (!esDesktop) {
+    ubicaCalculadoraSegunContexto();
+  }
+}, { passive: false });
+
 
 /* BOTON SUPERIOR COLUMNA BOTONES */
 document.querySelector("#boton-ma-card").addEventListener('click',()=>{
