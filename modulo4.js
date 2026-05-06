@@ -2161,11 +2161,13 @@ buscaNombre.addEventListener('blur', () => {
 }); */
 
 
-const inputsVarios = [buscaNombre, mejoraFichaTec];
+const inputsVarios = [buscaNombre, mejoraFichaTec, nombreNuevo];
 
 inputsVarios.forEach(input => {
   if (!input) return;
 
+  if (!esDesktop) nombreNuevo.classList.add('readOnly');
+  
   input.addEventListener('focusin', () => {
     if (!esDesktop) showKeyboard();
   });
@@ -4932,7 +4934,7 @@ function mostrarInterfazIngreso(){
   ["formulario-empleado"].forEach(id => aparecerElemento(id, "block"));
   
   setTimeout(() => {
-    document.querySelector('#nom-empl').focus();
+    nombreNuevo.focus();
   }, 100);
 
   activarBlur(0,20)
@@ -5969,3 +5971,4 @@ function borrrrrrarrrr(){
     conteJobTrack.classList.add('move-job-track') 
   }, 100);
 }
+
