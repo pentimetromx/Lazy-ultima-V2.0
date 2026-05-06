@@ -111,6 +111,7 @@ let arrayButtsKaizen = ['btn10','btn11','btn12','btn17']
 let padreManometro = document.getElementById('padre-1')
 let contVid = document.getElementById('videosTraining')
 const fichaGrid = document.querySelector('.ficha-grid');
+const nombreNuevo = document.querySelector("#nom-empl")
 let container1 = document.getElementById('container01')
 let botIzquierda = document.getElementById('bot-atras')
 let botDerecha = document.getElementById('bot-atras12')
