@@ -2622,7 +2622,6 @@ listaFotos.addEventListener('mouseover', e => {
   const item = e.target.closest('[data-ruta]');
   if (!item) return;
   imagenVisor.src = item.dataset.ruta;
-  /* setTimeout(() => { debugger; }, 300) */
 });
 // CLCICK EN LA RUTA FOTO
 listaFotos.addEventListener('click', e => {
@@ -5716,15 +5715,35 @@ function limpiarFormulario() {
     if (imgMa) imgMa.src = '';
   }, inputs.length * 140);
 }
-document.querySelector('#borrarBoton2').addEventListener('click', () => {
-  document.querySelector('#triada-videos').style.display = 'grid';
-  document.querySelector('.ajuste-corte').style.display = 'block';
 
-  // ← solo agrega estas líneas:
-  document.querySelectorAll('#triada-videos video').forEach(video => {
-    video.play().catch(e => console.warn('Autoplay bloqueado:', e));
-  });
+document.querySelector('#borrarBoton2').addEventListener('click', () => {
+
+    ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
+  const padreBotonera = document.querySelector('#botonera-frente')
+  padreBotonera.style.display='grid'
+  conteJobTrack.classList.remove('move-job-track')
+  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
+    }
+  }
+  container1.style.display = 'none'
+  desactivarClick(['.butt-perfiles'])
+  restablecerClick(['.estilo-1', '.butt-revierte'])
+  document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
+  
+  conteJobTrack.style.display='flex'
+  document.querySelectorAll('.datos-base').forEach((elemento) => { 
+    elemento.textContent = ''
+  });  
+  setTimeout(() => {
+    conteJobTrack.classList.add('move-job-track') 
+  }, 100);
+
 });
+
 
 documentoEmplEliminar.addEventListener('click', (e) => {
   calculadoraSimulador = true
