@@ -4607,6 +4607,7 @@ function ajustarContenedorGrafs() {
 
 // ULTIMO BOTON M.A 
 function resultadosMA(identificador){
+  console.log('HOLA')
   restablecerPosiciones(['.ocultos'])      
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','conte-secundario','conte-maquinas','title-interfaz']  
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -4621,6 +4622,7 @@ function resultadosMA(identificador){
   document.querySelector("#visorImagen").classList.remove('ubicar-visor') 
   document.querySelector("#porta-visor > div.visor > span").classList.remove('ubicado')
   document.querySelector("#porta-visor > div.visor > div.navegacion").classList.remove('ancho')
+
   /* rutasFotos.forEach(ruta => {
     const span = document.createElement('span');
     span.textContent = ruta;
@@ -4646,7 +4648,8 @@ function resultadosMA(identificador){
     var label = usuario.querySelector('label');
     clearInterval(intervaloColor);
   }
-  if(screenWidth < 500){
+
+  /* if(screenWidth < 500){
     document.getElementById('gran-cortina').style.display='flex'
     setTimeout(() => {
       document.getElementById('gran-cortina').style.display='none'
@@ -4659,7 +4662,8 @@ function resultadosMA(identificador){
         labelIcon.style.color = 'yellow';
       }    
     }
-  }
+  } */
+
   const imgDinamica = document.querySelector('#img-dinamica');
   if (imgDinamica) imgDinamica.remove();
   actualizarIdsArray(identificador);      
