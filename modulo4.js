@@ -4709,7 +4709,7 @@ function mostrarListaClientes(seccion) {
   });
 
 
-  listaClientes.addEventListener('touchend', (e) => {
+  listaClientes.addEventListener('touchstart', (e) => {
     const item = e.target.closest('.cliente-item');
     if (!item) return;
     e.stopPropagation();
@@ -4719,14 +4719,13 @@ function mostrarListaClientes(seccion) {
     objetoGlobal = item.dataset.nombre;
     listaClientes.style.display = 'none';
 
-    // ✅ Buscar empleado en localStorage y mostrar imagen
     const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
     const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
     if (empleado?.imagen) {
       document.querySelector('#imagenVisor').src = empleado.imagen;
       document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
     }
-  });
+  }, { passive: false });
 
   listaClientes.addEventListener('click', (e) => {
     const item = e.target.closest('.cliente-item');
@@ -4749,6 +4748,7 @@ function mostrarListaClientes(seccion) {
 
   switch(seccion){
     case 'listadoClientes':
+
     break
     case 'jobTrack':
       listaClientes.style.top = '42vh';
