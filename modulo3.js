@@ -4839,15 +4839,16 @@ buttsJobs.forEach(boton => {
 
   //CALCULADORA SIMULADOR
   boton.addEventListener('click', () => {
+    
     restablecerEstilos('calculadora');
     calculadora.classList.remove('subir');   
     
     switch(boton.id) {
       case 'clientes':
-        /* listaClientes.removeAttribute('style'); */      
+        listaClientes.removeAttribute('style');     
         desactivarClick(['.butt-perfiles', '.estilo-1']);  
-        mostrarListaClientes('jobTrack')
-        mostrarNombresDeObjetos(); 
+        mostrarListaClientes('jobTrack')        
+        mostrarNombresDeObjetos();       
       break;
       case 'lineas':
         irAconsola.style.display='none'
@@ -5655,7 +5656,7 @@ function mostrarNombresDeObjetos() {
     nuevoDiv.textContent = nombreCapitalizado;  
     nuevoDiv.style.fontSize = '0.7em';
 
-    nuevoDiv.addEventListener('click', () => {
+    /* nuevoDiv.addEventListener('click', () => {
       restablecerClick(['.estilo-1']);
       const panelUno = document.getElementById('panel-uno');
       const perfilador = document.querySelector('#perfiles-color');
@@ -5694,7 +5695,56 @@ function mostrarNombresDeObjetos() {
         }, duracion);
       }
       parpadearBoton(btn);
-    });
+    }); */
+
+
+function manejarSeleccionItem() {
+  restablecerClick(['.estilo-1']);
+  const panelUno = document.getElementById('panel-uno');
+  const perfilador = document.querySelector('#perfiles-color');
+
+  creaNombre.value = nombreCapitalizado;         
+  const nombreCliente = document.querySelector('.nombre-cliente');
+  nombreCliente.textContent = nombreCapitalizado;
+  panelUno.textContent = nombreCapitalizado;
+  panelUno.style.backgroundColor = 'rgb(0,0,23)';
+  panelUno.style.color = 'rgb(200,200,200)';
+  objetoGlobal = nombreCapitalizado;
+  console.log('OBJETO GLOBAL :', objetoGlobal);
+  listaClientes.style.display = 'none';
+
+  if (!perfilador || getComputedStyle(perfilador).display === 'none') {
+    mostrarBarraProgres(0.1, 33.5);
+  }
+
+  const btn = document.querySelector('#btn-execute');
+  function parpadearBoton(elemento, duracion = 1000, intervalo = 50) {
+    let encendido = false;
+    const originalColor = elemento.style.backgroundColor;
+    const originalTransform = elemento.style.transform;
+    const originalTransition = elemento.style.transition;
+    elemento.style.transition = `transform ${duracion}ms ease, background-color ${intervalo}ms linear`;
+    elemento.style.transform = 'scale(1.3)';
+    const intervalID = setInterval(() => {
+      elemento.style.backgroundColor = encendido ? 'white' : 'green';
+      encendido = !encendido;
+    }, intervalo);
+    setTimeout(() => {
+      clearInterval(intervalID);
+      elemento.style.backgroundColor = originalColor;
+      elemento.style.transform = originalTransform;
+      elemento.style.transition = originalTransition;
+    }, duracion);
+  }
+  parpadearBoton(btn);
+}
+
+nuevoDiv.addEventListener('click', manejarSeleccionItem);
+nuevoDiv.addEventListener('touchend', (e) => {
+  e.preventDefault();
+  manejarSeleccionItem();
+});
+
 
     nuevoDiv.addEventListener('contextmenu', (event) => {
       event.preventDefault();

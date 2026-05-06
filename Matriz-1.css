@@ -7656,7 +7656,7 @@ background-color: #3FEF9C;
   left: 20vw;
   height: 4vh;
   width: 60vw;
-  /* z-index: 9999; */
+  z-index: 9999;
 }
 .padre-inputs > button,
 .padre-inputs > input{
