@@ -2249,6 +2249,9 @@ document.querySelector('#borrarBoton4').addEventListener('click', ()=>{
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
     }
   }
+  
+  if(!esDesktop)documentoEmplEliminar.setAttribute('readonly', true);
+
   panelDeBajas.classList.remove('activo')
   panelDeBajas.classList.remove('move-panel-salir')
   container1.style.display='grid'
