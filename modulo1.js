@@ -4716,8 +4716,9 @@ function graficosAutomaticos(idGrafico){
 
 document.getElementById('titleContainerI').addEventListener('mouseenter', () => {
   let padreLinks = document.getElementById('links-inicialesI');
+  let conteLinks = document.getElementById('linkListI')
 
-  if (screenWidth < 500) {
+  if(!esDesktop){
     var elementosNoIncluidos = ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'linkList', 'linkListI'];  
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i]);
@@ -4746,7 +4747,7 @@ document.getElementById('titleContainer').addEventListener('mouseenter', () => {
   let padreLinks = document.getElementById('links-iniciales')
   let conteLinks = document.getElementById('linkList')
 
-  if(screenWidth < 500){
+  if(!esDesktop){
     var elementosNoIncluidos = ['buscador','search-form','links-inicialesI', 'links-iniciales','linkList','linkListI'];  
     for (var i = 0; i < allContenedores.length; i++) { 
       var elemento = document.getElementById(allContenedores[i]);
