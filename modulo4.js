@@ -4978,7 +4978,8 @@ const idsSelect = [
   'participante2',
   'participante3',
   'participante4',
-  'participante5'
+  'participante5',
+  'lider'
 ];
 //empleados ára mostrar en los select
 
@@ -5088,10 +5089,14 @@ function cargarFichaTecnica(kaizen) {
 
   desaparecerElemento('kaizen-buscador');
 }
+
 function cargarEmpleados(select) {
   if (select.dataset.loaded === 'true') return;
 
-  const empleados = JSON.parse(localStorage.getItem('listaEmpleados')) || []; 
+  const raw = JSON.parse(localStorage.getItem('empleadosRegistrados'));
+  
+  // Convertir a array sin importar cómo esté guardado
+  const empleados = Array.isArray(raw) ? raw : Object.values(raw || {});
 
   select.innerHTML = '';
 
@@ -5100,31 +5105,39 @@ function cargarEmpleados(select) {
   defaultOption.textContent = 'Seleccione...';
   select.appendChild(defaultOption);
 
-  empleados.forEach(nombre => {
+  empleados.forEach(empleado => {
     const option = document.createElement('option');
-    option.value = nombre;
-    option.textContent = nombre;
+    option.value = empleado.nombre;
+    option.textContent = empleado.nombre;
     select.appendChild(option);
   });
-
   select.dataset.loaded = 'true';
-
 }
-// asignar eventos por cada select
+
 idsSelect.forEach(id => {
   const select = document.getElementById(id);
   if (!select) return;
 
-  // cargar lista
-  select.addEventListener('click', () => cargarEmpleados(select));
+  switch (id) {
 
-  // SOLO para propositores: filtrar kaizen
-  if (id === 'propositores') {
-    select.addEventListener('change', (e) => {
-      const nombre = e.target.value;
-      if (!nombre) return;
-      mostrarPropuestas(nombre);
-    });
+    case 'propositores':
+      select.addEventListener('click', () => cargarEmpleados(select));
+      select.addEventListener('change', (e) => {
+        const nombre = e.target.value;
+        if (!nombre) return;
+        mostrarPropuestas(nombre);
+      });
+      break;
+
+    case 'participante1':
+    case 'participante2':
+    case 'participante3':
+    case 'participante4':
+    case 'participante5':
+    case 'lider':
+    case 'empleado':
+      select.addEventListener('click', () => cargarEmpleados(select));
+      break;
   }
 });
 
@@ -5702,32 +5715,9 @@ function limpiarFormulario() {
 
 document.querySelector('#borrarBoton2').addEventListener('click', () => {
 
-    ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
-  const padreBotonera = document.querySelector('#botonera-frente')
-  padreBotonera.style.display='grid'
-  conteJobTrack.classList.remove('move-job-track')
-  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
-  for (var i = 0; i < allContenedores.length; i++) {
-    var elemento = document.getElementById(allContenedores[i])  
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-    }
-  }
-  container1.style.display = 'none'
-  desactivarClick(['.butt-perfiles'])
-  restablecerClick(['.estilo-1', '.butt-revierte'])
-  document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
-  
-  conteJobTrack.style.display='flex'
-  document.querySelectorAll('.datos-base').forEach((elemento) => { 
-    elemento.textContent = ''
-  });  
-  setTimeout(() => {
-    conteJobTrack.classList.add('move-job-track') 
-  }, 100);
+  rodillosKaizen('btn17','')
 
 });
-
 
 documentoEmplEliminar.addEventListener('touchstart', (e) => {
   e.preventDefault();

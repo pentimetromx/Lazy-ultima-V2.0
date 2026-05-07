@@ -7652,7 +7652,7 @@ background-color: #3FEF9C;
   display: grid;
   gap: 3%;
   grid-template-columns: repeat(5, 1fr);
-  top: 88vh;
+  top: 14vh;
   left: 20vw;
   height: 4vh;
   width: 60vw;

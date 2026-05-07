@@ -4244,7 +4244,9 @@
           </select>
 
           <label for="lider">Líder de área</label>
-          <input id="lider" class="opcion-empleado current-focus special-text" type="text">
+          <select id="lider" class="opcion-empleado current-focus special-text">
+            <option value="">Seleccione...</option>
+          </select>          
 
           <label for="equipo">Equipo M.A</label>
           <input id="equipo" class="opcion-empleado current-focus special-text" type="text">
@@ -4536,7 +4538,13 @@
       <h3>Kaizen propuestos</h3>
 
       <div class="input-propositor">
-        <select name="" id="propositores"></select>
+        <!-- <select name="" id="propositores"></select> -->
+
+          <select id="propositores" class="opcion-empleado current-focus special-text">
+            <option value="">Seleccione...</option>
+          </select>
+
+
       </div>
 
       <div class="lista-propuestas">
