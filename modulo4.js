@@ -4730,6 +4730,9 @@ function mostrarListaClientes(seccion) {
 
   switch(seccion){
     case 'listadoClientes':
+            listaClientes.style.top = '42vh';
+      listaClientes.style.left = '38vw';
+
 
     break
     case 'jobTrack':
@@ -5203,6 +5206,7 @@ document.querySelector('#btn-confirmar-baja').addEventListener('click', () => {
 // BOTON MOSTRAR EN INTERFAZ BONITA
 document.querySelector("#btn-mostrar-baja").addEventListener('click', () => {
   traerEmpleadoaEliminar()
+  calculadora.classList.remove('move-calculadora-up-eliminar')
 });
 
 function traerEmpleadoaEliminar(){
@@ -5725,6 +5729,8 @@ documentoEmplEliminar.addEventListener('touchstart', (e) => {
   documentoEmplEliminar.focus();
   if (!esDesktop) {
     ubicaCalculadoraSegunContexto();
+    documentoEmplEliminar.setAttribute('readonly', true);
+
   }
 }, { passive: false });
 
