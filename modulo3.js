@@ -11,7 +11,7 @@ document.addEventListener('keydown', function(event) {
       break
       case 'Z':
       localStorage.removeItem('kaizenRegistrados');
-      
+            
       break;  
       case 'H':
         /* Geometria() */
@@ -7325,7 +7325,6 @@ document.querySelectorAll('.alterna-panel').forEach(btn => {
     }
   });
 });
-
 document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{ 
   let slidersCMYK = document.querySelector('#container-slider')
 
@@ -7356,11 +7355,9 @@ document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
   aparecerElemento('padre-rgb','grid')
   actualizarIdsArray('padre-rgb');
 })
-
 document.querySelector('#save-tecnology').addEventListener('click', ()=>{
   crearPerfilColor()
 })
-
 creaNombre.addEventListener('click', () => {
   document.querySelector('#nombre-Perfil').value = ''
   creaNombre.value = ''
@@ -7379,7 +7376,6 @@ creaNombre.addEventListener('click', () => {
   }, 50);      
 
 });
-
 /* function configurarOcultarLista() {
   let temporizador;
   // Si el mouse entra en la lista antes de que pasen 3 segundos, cancelamos el ocultamiento
@@ -7390,7 +7386,6 @@ creaNombre.addEventListener('click', () => {
 
 // BOTON VERDE RGB
 configurarOcultarLista(); */
-
 function pintarColor() {
   
   if (!creaNombre.value.trim()) {
@@ -7467,7 +7462,6 @@ function ejecutarFase(opcion) {
       break;
   }
 }
-
 grupoBotsCrear.forEach(bot => {
   bot.addEventListener('mouseleave', () => {
     alertaTres.style.display = 'none';
@@ -7492,6 +7486,8 @@ grupoBotsCrear.forEach(bot => {
     }, 300);
   });
 });
+
+
 
 function borrrrrrrrrrrarrrrrrrrrrrrrrrrrrrr(){
   const coleccionGraficos = document.querySelectorAll(".graphs-lines")
