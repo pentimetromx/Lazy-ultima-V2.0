@@ -7653,7 +7653,7 @@ background-color: #3FEF9C;
   gap: 3%;
   grid-template-columns: repeat(5, 1fr);
   top: 14vh;
-  left: 20vw;
+  left: 2vw;
   height: 4vh;
   width: 60vw;
   z-index: 9999;

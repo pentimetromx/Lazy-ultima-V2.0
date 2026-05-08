@@ -2277,38 +2277,6 @@ inputMA.addEventListener('click', (e) => {
   if(!esDesktop){ubicaCalculadoraSegunContexto()}
 });
 
-
-/* const inputsColorGeneral = document.querySelectorAll('.panel-color > input');
-
-const soloNumeros = (value) => value.replace(/\D/g, '');
-
-inputsColorGeneral.forEach(input => {
-
-  input.addEventListener('click', (e) => {
-  
-    e.target.value = e.target.value.replace(/[^0-9]/g, '');
-
-    const target = e.target;
-
-    target.value = soloNumeros(target.value);
-
-    if (!esDesktop) {
-      ubicaCalculadoraSegunContexto();
-    }
-  });
-
-  input.addEventListener('input', (e) => {
-    const target = e.target;
-
-    target.value = soloNumeros(target.value);
-
-    if (!esDesktop) {
-      ubicaCalculadoraSegunContexto();
-    }
-  });
-
-}); */
-
 const inputsColorGeneral = document.querySelectorAll('.panel-color > input');
 
 const soloNumeros = (value) => value.replace(/\D/g, '');
@@ -2354,7 +2322,6 @@ inputsColorGeneral.forEach(input => {
   });
 
   input.addEventListener('blur', (e) => {
-
     const next = document.activeElement;
 
     // Si el foco quedó dentro de la calculadora no ocultar
@@ -3803,6 +3770,7 @@ primerhijoSubListaRRHH.addEventListener('click', () => {
   linkListI.style.display='none'  
   mostrarInterfazIngreso()
 });
+
 segundohijoSubListaRRHH.addEventListener('click', () => {
   linkListI.style.display='none'  
   ingresoEmpleado()
@@ -4521,6 +4489,7 @@ function ubicaCalculadoraSegunContexto(){
   calculadora.classList.remove('move-calculadora-up');
   calculadora.classList.remove('move-calculadora-down');
   calculadora.classList.remove('move-calculadora-up-ingreso');
+  calculadora.classList.remove('move-calculadora-up-eliminar');
 
   if(!esDesktop && interfazRRHH.style.display==='grid'){
     simulador.style.display='flex'
@@ -4730,9 +4699,6 @@ function mostrarListaClientes(seccion) {
 
   switch(seccion){
     case 'listadoClientes':
-            listaClientes.style.top = '42vh';
-      listaClientes.style.left = '38vw';
-
 
     break
     case 'jobTrack':
@@ -4915,10 +4881,6 @@ function mostrarInterfazIngreso(){
 
   inputNuevoEmpl.forEach(input => input.value = '');
   ["formulario-empleado"].forEach(id => aparecerElemento(id, "block"));
-  
-  setTimeout(() => {
-    nombreNuevo.focus();
-  }, 100);
 
   activarBlur(0,20)
   blurOverlay.zindex=1
@@ -5139,7 +5101,7 @@ idsSelect.forEach(id => {
     case 'participante5':
     case 'lider':
     case 'empleado':
-      select.addEventListener('click', () => cargarEmpleados(select));
+      select.addEventListener('click', () => cargarEmpleados(select));      
       break;
   }
 });
@@ -5157,6 +5119,7 @@ function scrollToTopById(id) {
 document.querySelector('#btn-abandonar').addEventListener('click', () => {
   desaparecerElemento(panelDeBajas.id, 'block')
   desaparecerElemento(interfazRRHH.id, 'grid')
+  cortina.classList.remove('overlayBaja')
   cortina.style.display='none'
 });
 //BOTON ROJO DAR DE BAJA
@@ -5207,6 +5170,7 @@ document.querySelector('#btn-confirmar-baja').addEventListener('click', () => {
 document.querySelector("#btn-mostrar-baja").addEventListener('click', () => {
   traerEmpleadoaEliminar()
   calculadora.classList.remove('move-calculadora-up-eliminar')
+  cortina.classList.add('overlayBaja')
 });
 
 function traerEmpleadoaEliminar(){
@@ -5718,9 +5682,7 @@ function limpiarFormulario() {
 }
 
 document.querySelector('#borrarBoton2').addEventListener('click', () => {
-
   rodillosKaizen('btn17','')
-
 });
 
 documentoEmplEliminar.addEventListener('touchstart', (e) => {
@@ -5730,9 +5692,19 @@ documentoEmplEliminar.addEventListener('touchstart', (e) => {
   if (!esDesktop) {
     ubicaCalculadoraSegunContexto();
     documentoEmplEliminar.setAttribute('readonly', true);
+    documentoEmplEliminar.setAttribute('inputmode', 'none'); // ← agregado
 
+   /*  setTimeout(() => {
+      {debugger}
+    }, 500); */
   }
 }, { passive: false });
+
+documentoEmplEliminar.addEventListener('blur', () => {
+  if (!esDesktop) {
+    hideCalculator();
+  }
+});
 
 
 /* BOTON SUPERIOR COLUMNA BOTONES */
@@ -5921,12 +5893,47 @@ document.querySelectorAll(".input-especial").forEach(input => {
     calculadoraSimulador = true;
     if (!esDesktop) {
       e.currentTarget.setAttribute('readonly', true);
-      ubicaCalculadoraSegunContexto();
+      /* ubicaCalculadoraSegunContexto(); */
     } else {
       e.currentTarget.removeAttribute('readonly');
     }
   });
 });
+
+document.querySelector("#doc-empl").addEventListener('click', () => {
+  if (!esDesktop) {
+    ubicaCalculadoraSegunContexto();
+  }
+});
+document.querySelector("#doc-empl").addEventListener('blur', () => {
+  if (!esDesktop) {
+    calculadora.classList.remove('move-calculadora-up-ingreso')
+    calculadora.classList.remove('move-calculadora-down')
+    hideCalculator();
+  }
+});
+
+inputsMA.forEach(el => {
+  el.addEventListener('focus', () => {
+    if (!esDesktop) {
+      ubicaCalculadoraSegunContexto();
+    }
+  });
+  el.addEventListener('input', () => {
+    if (!esDesktop) {
+      ubicaCalculadoraSegunContexto();
+    }
+  });
+  el.addEventListener('blur', () => {
+    if (!esDesktop) {
+      calculadora.classList.remove('move-calculadora-up-ingreso')
+      calculadora.classList.remove('move-calculadora-down')
+      hideCalculator()
+    }
+  });  
+
+});
+
 
 function borrrrrrarrrr(){
     ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
