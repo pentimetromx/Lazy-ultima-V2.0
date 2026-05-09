@@ -5893,9 +5893,13 @@ document.querySelectorAll(".input-especial").forEach(input => {
     calculadoraSimulador = true;
     if (!esDesktop) {
       e.currentTarget.setAttribute('readonly', true);
+      e.currentTarget.setAttribute('inputmode', 'none');
+
       /* ubicaCalculadoraSegunContexto(); */
     } else {
       e.currentTarget.removeAttribute('readonly');
+      e.currentTarget.setAttribute('inputmode', 'none');
+
     }
   });
 });
