@@ -5276,7 +5276,6 @@ btnEntrar.addEventListener('click', () => {
       document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {  
         elemento.style.display = 'none';
         document.querySelector('#abandonar-perfiles').style.display = 'none'
-
       }); 
       coleccionNumeros.length = 0;        
       document.querySelectorAll('#resultado-calculadora .number').forEach(elemento => elemento.textContent = '');

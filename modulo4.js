@@ -4884,6 +4884,11 @@ function mostrarInterfazIngreso(){
 
   activarBlur(0,20)
   blurOverlay.zindex=1
+
+  document.querySelectorAll(".input-especial").forEach(input => {
+    input.setAttribute('readonly', true);
+    input.setAttribute('inputmode', 'none');
+  });  
 }
 /* **********************************************************************************************************************/
 function bloquearEdicion(){
@@ -5888,21 +5893,19 @@ linkMaster.addEventListener('click', ()=>{
   }, 500);
 })
 
-document.querySelectorAll(".input-especial").forEach(input => {
+/* document.querySelectorAll(".input-especial").forEach(input => {
   input.addEventListener('click', (e) => {
     calculadoraSimulador = true;
     if (!esDesktop) {
       e.currentTarget.setAttribute('readonly', true);
       e.currentTarget.setAttribute('inputmode', 'none');
-
-      /* ubicaCalculadoraSegunContexto(); */
     } else {
       e.currentTarget.removeAttribute('readonly');
       e.currentTarget.setAttribute('inputmode', 'none');
 
     }
   });
-});
+}); */
 
 document.querySelector("#doc-empl").addEventListener('click', () => {
   if (!esDesktop) {
