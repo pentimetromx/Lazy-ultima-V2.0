@@ -4130,6 +4130,7 @@ mediaDesktop.addEventListener('change', e => {
 });
 // Orden lógico deseado (independiente del DOM)
 const ordenInputsNuevoIngreso = [
+    '[name="documento"]',
   '[name="identificados"]',
   '[name="corregidos"]',
   '[name="tipoA"]',
@@ -5931,20 +5932,6 @@ linkMaster.addEventListener('click', ()=>{
   }, 500);
 })
 
-/* document.querySelectorAll(".input-especial").forEach(input => {
-  input.addEventListener('click', (e) => {
-    calculadoraSimulador = true;
-    if (!esDesktop) {
-      e.currentTarget.setAttribute('readonly', true);
-      e.currentTarget.setAttribute('inputmode', 'none');
-    } else {
-      e.currentTarget.removeAttribute('readonly');
-      e.currentTarget.setAttribute('inputmode', 'none');
-
-    }
-  });
-}); */
-
 document.querySelector("#doc-empl").addEventListener('click', () => {
   if (!esDesktop) {
     ubicaCalculadoraSegunContexto();
@@ -5979,6 +5966,9 @@ inputsMA.forEach(el => {
   el.addEventListener('touchstart', () => {
     if (!esDesktop) {
       ubicaCalculadoraSegunContexto()
+      /* setTimeout(() => {
+        {debugger}
+      }, 500); */
     }
   });   
 
