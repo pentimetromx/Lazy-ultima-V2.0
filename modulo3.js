@@ -4947,7 +4947,7 @@ digitos.forEach((elemento) => {
     e.stopPropagation();
 
     if (!calculadoraSimulador) {  // CALCULADORA HEIDELBERG
-      console.warn('HEIDELBERG')
+      console.warn('Es HEIDELBERG')
 
       digitos.forEach(d => d.style.pointerEvents = 'none');
 

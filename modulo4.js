@@ -4231,7 +4231,7 @@ function avanzarFoco() {
     if (!siguienteInput) return;
 
     siguienteInput.focus();
-    parpadearElemento(siguienteInput.name, 150, 2500);
+    /* parpadearElemento(siguienteInput.name, 150, 2500); */
 
   }  
 }  
@@ -4870,6 +4870,7 @@ document.querySelector('#salir').addEventListener('click',()=>{
 })
 function mostrarInterfazIngreso(){
   activarPantallaCompleta()
+  calculadoraSimulador = true
   elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut']  
   for (let i = 0; i < allContenedores.length; i++) { 
     let elemento = document.getElementById(allContenedores[i])  
@@ -4885,10 +4886,47 @@ function mostrarInterfazIngreso(){
   activarBlur(0,20)
   blurOverlay.zindex=1
 
-  document.querySelectorAll(".input-especial").forEach(input => {
-    input.setAttribute('readonly', true);
-    input.setAttribute('inputmode', 'none');
-  });  
+  setTimeout(() => {
+    if (!esDesktop) {
+      inputsMA.forEach(input => {                                                                                                                             
+        if (input.tagName === 'INPUT') {
+          input.readOnly = true; 
+        }
+      });      
+
+      calculadora.classList.remove('move-calculadora-1')
+      calculadora.classList.remove('move-calculadora')
+      calculadora.classList.remove('move-calculadora-up')
+
+      reUbicarElemento('calculadora', {
+        display: 'grid',
+        left: '40vw',
+        width: '40vw',
+        top: '102vh',
+        height: '45vh',
+        parentSelector: '#simulador'
+      });
+
+    } else{
+      inputsMA.forEach(input => {
+        if (input.tagName === 'INPUT' && input.id !== 'numDoc' && input.id !== 'numDoc1') {
+          input.readOnly = false;
+        }
+      });      
+    }    
+  }, 350);  
+
+
+  /* if (!esDesktop) {
+    document.querySelectorAll(".input-especial").forEach(input => {
+      input.setAttribute('readonly', true);
+      input.setAttribute('inputmode', 'none');
+
+      input.addEventListener('mousedown', (e) => e.preventDefault());
+      input.addEventListener('focus', () => input.blur());
+    });
+  }  */ 
+ 
 }
 /* **********************************************************************************************************************/
 function bloquearEdicion(){
@@ -5938,6 +5976,11 @@ inputsMA.forEach(el => {
       hideCalculator()
     }
   });  
+  el.addEventListener('touchstart', () => {
+    if (!esDesktop) {
+      ubicaCalculadoraSegunContexto()
+    }
+  });   
 
 });
 
