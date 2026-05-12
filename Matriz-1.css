@@ -303,7 +303,7 @@ color: white;
   height: 6%;
   background-color: #333333;
   display: none;
-  z-index: 200;
+  z-index: 7;
 }
 #search-form{
   position:relative;
