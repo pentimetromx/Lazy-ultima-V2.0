@@ -4843,15 +4843,15 @@ function configurarInput(input) {
 }
 
 /* ***************************************************************************************************************************************** */
-formularioNuevoIngreso.addEventListener('submit', (e) => {
-  e.preventDefault();
 
-  const inputsIngresoEmpl = document.querySelectorAll('.dato-ma');
+document.querySelector('#registro-baja').addEventListener('click', () => {
+  const inputsIngresoEmpl = formularioNuevoIngreso.querySelectorAll('.dato-ma, select[required]');
+
   const existeVacio = [...inputsIngresoEmpl].some(input => input.value.trim() === '');
   if (existeVacio) {
     saltarAlerta('Existen campos sin diligenciar', 'nuevoEmpleado');
     return;
-  }
+  }  
 
   const datos = new FormData(formularioNuevoIngreso);
   const documento = String(datos.get('documento')).trim();
@@ -4883,6 +4883,7 @@ formularioNuevoIngreso.addEventListener('submit', (e) => {
 
   guardarEmpleado(empleado);
 });
+
 function guardarEmpleado(empleado){
   const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
   empleados[empleado.documento] = empleado;
