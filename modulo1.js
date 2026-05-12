@@ -4714,64 +4714,106 @@ function graficosAutomaticos(idGrafico){
   }
 }
 
-document.getElementById('titleContainerI').addEventListener('mouseenter', () => {
-  let padreLinks = document.getElementById('links-inicialesI');
-  let conteLinks = document.getElementById('linkListI')
+const eventoEntradaI = esDesktop ? 'mouseenter' : 'touchstart';
 
-  if(!esDesktop){
-    var elementosNoIncluidos = ['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'linkList', 'linkListI'];  
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var elemento = document.getElementById(allContenedores[i]);
-      if (elemento) {
-        if (elementosNoIncluidos.includes(allContenedores[i])) {
-          elemento.style.filter = '';
-        } else {
-          if (screenWidth < 500) {
-            elemento.style.filter = 'blur(6px)';
-          }
+document.getElementById('titleContainerI').addEventListener(eventoEntradaI, () => {
+
+  let padreLinks = document.getElementById('links-inicialesI');
+  let conteLinks = document.getElementById('linkListI');
+
+  if (!esDesktop) {
+
+    const elementosNoIncluidos = [
+      'buscador',
+      'search-form',
+      'links-inicialesI',
+      'links-iniciales',
+      'linkList',
+      'linkListI'
+    ];
+
+    for (let i = 0; i < allContenedores.length; i++) {
+
+      const elemento = document.getElementById(allContenedores[i]);
+
+      if (!elemento) continue;
+
+      if (elementosNoIncluidos.includes(allContenedores[i])) {
+        elemento.style.filter = '';
+      } else {
+        if (screenWidth < 500) {
+          elemento.style.filter = 'blur(6px)';
         }
       }
     }
+
     container1.style.display = 'grid';
+
     setTimeout(() => {
       padreLinks.style.display = 'block';
       conteLinks.style.display = 'block';
     }, 400);
+
   } else {
+
     padreLinks.style.display = 'block';
     linkListI.style.display = 'block';
-    padre.style.display='block'  
-  }
-});
-document.getElementById('titleContainer').addEventListener('mouseenter', () => {
-  let padreLinks = document.getElementById('links-iniciales')
-  let conteLinks = document.getElementById('linkList')
+    padre.style.display = 'block';
 
-  if(!esDesktop){
-    var elementosNoIncluidos = ['buscador','search-form','links-inicialesI', 'links-iniciales','linkList','linkListI'];  
-    for (var i = 0; i < allContenedores.length; i++) { 
-      var elemento = document.getElementById(allContenedores[i]);
-      if (elemento) {
-        if (elementosNoIncluidos.includes(allContenedores[i])) {
-          elemento.style.filter = '';
-        } else {
-          if(screenWidth < 500){
-            elemento.style.filter = 'blur(6px)';
-          }
+  }
+
+});
+
+const eventoEntrada = esDesktop ? 'mouseenter' : 'touchstart';
+
+document.getElementById('titleContainer').addEventListener(eventoEntrada, () => {
+
+  let padreLinks = document.getElementById('links-iniciales');
+  let conteLinks = document.getElementById('linkList');
+
+  if (!esDesktop) {
+    console.warn('aquie')
+
+    const elementosNoIncluidos = [
+      'buscador',
+      'search-form',
+      'links-inicialesI',
+      'links-iniciales',
+      'linkList',
+      'linkListI'
+    ];
+
+    for (let i = 0; i < allContenedores.length; i++) {
+
+      const elemento = document.getElementById(allContenedores[i]);
+
+      if (!elemento) continue;
+
+      if (elementosNoIncluidos.includes(allContenedores[i])) {
+        elemento.style.filter = '';
+      } else {
+        if (screenWidth < 500) {
+          elemento.style.filter = 'blur(6px)';
         }
       }
     }
-    container1.style.display='grid'
+
+    container1.style.display = 'grid';
+
     setTimeout(() => {
-      padreLinks.style.display='block'
-      conteLinks.style.display='block'
+      padreLinks.style.display = 'block';
+      conteLinks.style.display = 'block';
     }, 400);
-  }else{
-    padreLinks.style.display='block'
-    conteLinks.style.display='block'   
+
+  } else {
+
+    padreLinks.style.display = 'block';
+    conteLinks.style.display = 'block';
+
   }
-}
-);
+
+});
+
 let intervaloAltura = null; 
 let intervaloAlturaI = null;
 let alturaObjetivoAlcanzada = false;
