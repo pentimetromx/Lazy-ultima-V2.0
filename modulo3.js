@@ -10,7 +10,9 @@ document.addEventListener('keydown', function(event) {
 
       break
       case 'Z':
-      localStorage.removeItem('kaizenRegistrados');
+      /* localStorage.removeItem('kaizenRegistrados'); */
+      let input = document.querySelector("#nomEmpl")
+      input.disabled = true;
             
       break;  
       case 'H':

@@ -5649,6 +5649,15 @@ button:hover{
   height: 96vh;
   z-index: 200;
 }
+.overlayRRHH {
+  position: absolute;
+  display: block !important;
+  top: 2vh;
+  left: 1vw;
+  width: 98vw;
+  height: 96vh;
+  z-index: 9;
+}
 #panel-principal {
   --escala: 0;
   --mover: 0%;
