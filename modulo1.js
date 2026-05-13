@@ -380,7 +380,7 @@ function cargarColaboradoresDesdeStorage() {
   })); */
 
   return almacenArray
-    .filter(empleado => empleado.nombre) // ← filtra objetos sin nombre
+    .filter(empleado => empleado && empleado.nombre)
     .map(empleado => ({
       imagen: empleado.imagen || "./assets/silueta.png",
       ruta: empleado.imagen || "./assets/silueta.png",
@@ -584,15 +584,15 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarListaClientes('perfilesIndividual'); // abrir lista
   });
   campoBusqueda.addEventListener('pointerdown', (e) => {
-    alert()
     activeInput = e.target; // asignar input activo
     mostrarListaClientes('perfilesIndividual'); // abrir lista
   });
+
   campoBusqueda.addEventListener('blur', () => {
     if(!esDesktop) hideKeyboard()
   });
 
-  
+
   // --- funciones auxiliares ---
   // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
   
