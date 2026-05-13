@@ -4699,6 +4699,8 @@ let activeInput = null;
 
 // ── Fuera de mostrarListaClientes, solo una vez ──────────────
 listaClientes.addEventListener('pointerdown', (e) => {
+  cortina.style.display = 'block';
+  cortina.classList.add('overlayRRHH');
   const item = e.target.closest('.cliente-item');
   if (!item) return;
   e.stopPropagation();
@@ -4714,6 +4716,10 @@ listaClientes.addEventListener('pointerdown', (e) => {
     document.querySelector('#imagenVisor').src = empleado.imagen;
     document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
   }
+  setTimeout(() => {
+    cortina.classList.remove('overlayRRHH');
+    cortina.style.display = 'none';
+  }, 500);
 });
 
 listaClientes.addEventListener('click', (e) => {
