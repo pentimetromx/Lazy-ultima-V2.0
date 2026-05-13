@@ -11,8 +11,11 @@ document.addEventListener('keydown', function(event) {
       break
       case 'Z':
       /* localStorage.removeItem('kaizenRegistrados'); */
-      let input = document.querySelector("#nomEmpl")
-      input.disabled = true;
+  const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+  empleados[empleado.documento] = empleado;
+  localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
+  console.log(empleados)
+
             
       break;  
       case 'H':

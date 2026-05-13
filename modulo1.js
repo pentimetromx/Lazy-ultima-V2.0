@@ -374,16 +374,24 @@ function cargarColaboradoresDesdeStorage() {
     ? almacen 
     : Object.values(almacen);
 
-  return almacenArray.map(empleado => ({
+  /* return almacenArray.map(empleado => ({
     ruta: empleado.imagen || "./assets/silueta.png",
     nombre: empleado.nombre || "Sin nombre"
-  }));
+  })); */
+
+  return almacenArray
+    .filter(empleado => empleado.nombre) // ← filtra objetos sin nombre
+    .map(empleado => ({
+      imagen: empleado.imagen || "./assets/silueta.png",
+      ruta: empleado.imagen || "./assets/silueta.png",
+      nombre: empleado.nombre || "Sin nombre"
+    }));
 }
 
+ const colaboradores = cargarColaboradoresDesdeStorage();
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const colaboradores = cargarColaboradoresDesdeStorage();
 
   const cuartoHijo   = document.getElementById('ultimoElemento');
   const segundaLista = document.getElementById('segundaLista');
@@ -479,11 +487,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let indiceActual = 0;
   let fotoFijada = null;
   // --- construir lista dinámica ---
+
   colaboradores.forEach((emp, i) => {
     const span = document.createElement('span');
     span.textContent = emp.nombre;
-    span.dataset.img = emp.ruta; // importante para navegación
+    span.dataset.img = emp.ruta;
     span.dataset.index = i;
+
     span.addEventListener('mouseenter', () => {
       indiceActual = i;
       mostrarEmpleadoPorIndice(i, { fijar: false });
@@ -505,8 +515,31 @@ document.addEventListener('DOMContentLoaded', () => {
         mostrarEmpleadoObj(emp);
       }
     });
-    listadoNombres.appendChild(span);
+
+    listadoNombres.appendChild(span); // ← primero agrega al DOM
   });
+
+  // ✅ Fuera del forEach — todos los spans ya están en el DOM
+  document.querySelector('#listaNombres').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    const span = e.target.closest('span');
+    if (!span) return;
+
+    const i = Number(span.dataset.index);
+    indiceActual = i;
+
+    // ✅ Lee de colaboradores directamente
+    const emp = colaboradores[i];
+    if (!emp) return;
+
+    const imgEl = document.getElementById('imagenVisor');
+    imgEl.src = emp.ruta || emp.imagen || '';
+
+    mostrarEmpleadoPorIndice(i, { fijar: false });
+  }, { passive: false });
+  
+
+
   // --- navegación Prev / Next ---
   prevBtn.addEventListener('click', () => {
     const spans = listadoNombres.querySelectorAll('span');
@@ -554,22 +587,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   // --- funciones auxiliares ---
   // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
+  
   function mostrarEmpleadoPorIndice(index, opts = { fijar: false }) {
     const spans = listadoNombres.querySelectorAll('span');
     const span = spans[index];
     if (!span) return;
-    const imgSrc = span.dataset.img;
+
+    // ✅ Lee directamente de colaboradores en lugar del dataset
+    const emp = colaboradores[index];
+    if (!emp) return;
+    
+    const imgSrc = emp.ruta || emp.imagen;
     if (!imgSrc) return;
-    // actualizar visor
+
     img.src = imgSrc;
     nombre.textContent = span.textContent;
     indiceActual = Number(span.dataset.index ?? index);
+
     if (opts.fijar) {
-      // fijar objeto si existe en colaboradores
-      const emp = colaboradores[indiceActual];
       if (emp) fotoFijada = emp;
     }
-  }
+  }  
+
   // muestra usando el objeto de colaboradores (click o buscador)
   function mostrarEmpleadoObj(emp) {
     if (!emp) return;
@@ -4606,7 +4645,8 @@ function ajustarContenedorGrafs() {
 }
 
 // ULTIMO BOTON M.A 
-function resultadosMA(identificador){
+/* function resultadosMA(identificador){
+  console.log('HOLA')
   restablecerPosiciones(['.ocultos'])      
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','conte-secundario','conte-maquinas','title-interfaz']  
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -4622,11 +4662,47 @@ function resultadosMA(identificador){
   document.querySelector("#porta-visor > div.visor > span").classList.remove('ubicado')
   document.querySelector("#porta-visor > div.visor > div.navegacion").classList.remove('ancho')
 
-  /* rutasFotos.forEach(ruta => {
-    const span = document.createElement('span');
-    span.textContent = ruta;
-    contenedor.appendChild(span);
-  }); */
+  const padre = document.querySelector('.contenedor-visor');
+  // elimina todos los estilos en línea del padre y sus hijos
+  padre.removeAttribute('style');
+  padre.querySelectorAll('*').forEach(hijo => hijo.removeAttribute('style'));
+  document.body.style.zoom = "100%";
+  ["porta-visor"].forEach(id => aparecerElemento(id, "flex"));
+
+  var contiUsers = document.getElementsByClassName('cont-user'); 
+  for (var i = 0; i < contiUsers.length; i++) {
+    var usuario = contiUsers[i];
+    usuario.style.top = '';
+    usuario.style.display = 'flex';
+    usuario.style.position = '';
+    usuario.style.height = '';
+    usuario.style.width = '';
+    usuario.style.left = '';
+    var label = usuario.querySelector('label');
+    clearInterval(intervaloColor);
+  }
+
+  const imgDinamica = document.querySelector('#img-dinamica');
+  if (imgDinamica) imgDinamica.remove();
+  actualizarIdsArray(identificador);      
+} */
+
+function resultadosMA(identificador){
+  console.log('HOLA')
+  restablecerPosiciones(['.ocultos'])      
+  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','conte-secundario','conte-maquinas','title-interfaz']  
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
+    } 
+  }
+  container1.style.display='grid'
+  document.querySelector("#porta-visor").classList.remove('modificarPosicion')
+  document.querySelector("#buscador-empleado").classList.remove("ubicacion"); 
+  document.querySelector("#visorImagen").classList.remove('ubicar-visor') 
+  document.querySelector("#porta-visor > div.visor > span").classList.remove('ubicado')
+  document.querySelector("#porta-visor > div.visor > div.navegacion").classList.remove('ancho')
 
   const padre = document.querySelector('.contenedor-visor');
   // elimina todos los estilos en línea del padre y sus hijos
@@ -4670,6 +4746,9 @@ function resultadosMA(identificador){
     }
   }
 
+  const imgDinamica = document.querySelector('#img-dinamica');
+  if (imgDinamica) imgDinamica.remove();
+  actualizarIdsArray(identificador);      
 }
 
 
