@@ -5885,7 +5885,8 @@ document.querySelector("#borrarBoton5").addEventListener('click',()=>{
   container1.style.display='grid'
   panelAdministrativo.classList.remove('move-carta-exterior')
   document.querySelector('.panel-monitor').classList.remove('activo')  
-  resultadosMA('interfaz-mtto')  
+  resultadosMA('interfaz-mtto')
+  
 })
 const btnActivar = document.querySelector('#carta-exterior .btn-primario');
 const cardInput = document.querySelector('#carta-exterior .card-header');
