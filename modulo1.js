@@ -553,6 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nuevo = Math.min(spans.length - 1, indiceActual + 1);
     mostrarEmpleadoPorIndice(nuevo, { fijar: false });
   });
+
   // --- búsqueda ---
   campoBusqueda.addEventListener('input', () => {
     const valor = campoBusqueda.value.trim().toLowerCase();
@@ -578,21 +579,20 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!esDesktop && esTactil) {
     campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
   }
-
-  /*campoBusqueda.addEventListener('focusin', (e) => {
-      activeInput = e.target; // asignar input activo
-      mostrarListaClientes('perfilesIndividual'); // abrir lista
-    }); */
-
+  campoBusqueda.addEventListener('focusin', (e) => {
+    activeInput = e.target; // asignar input activo
+    mostrarListaClientes('perfilesIndividual'); // abrir lista
+  });
   campoBusqueda.addEventListener('pointerdown', (e) => {
     alert()
     activeInput = e.target; // asignar input activo
     mostrarListaClientes('perfilesIndividual'); // abrir lista
   });
-
   campoBusqueda.addEventListener('blur', () => {
     if(!esDesktop) hideKeyboard()
   });
+
+  
   // --- funciones auxiliares ---
   // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
   
