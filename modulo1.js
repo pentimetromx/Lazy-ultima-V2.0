@@ -4745,12 +4745,14 @@ function resultadosMA(identificador){
         ? empleados 
         : Object.values(empleados);
 
-      lista_empleados.forEach((empleado, index) => {
-        const span = document.createElement('span');
-        span.textContent = empleado.nombre;
-        span.dataset.index = index;
-        lista.appendChild(span);
-      });
+      lista_empleados
+        .filter(empleado => empleado && empleado.nombre)
+        .forEach((empleado, index) => {
+          const span = document.createElement('span');
+          span.textContent = empleado.nombre;
+          span.dataset.index = index;
+          lista.appendChild(span);
+       });
     }
   }
 
