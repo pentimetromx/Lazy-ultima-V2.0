@@ -5196,25 +5196,6 @@ top: 44%;
   background: #3a4c70;
 }
 .panel-nombres {
-  position: relative;
-  display: flex;
-  top: 14%;
-  flex-direction: column;
-  border-left: 2px solid #1e90ff;
-  gap: 8px;
-  width: 40%;
-  padding: 10px;  
-  background: rgba(10, 15, 25, 0.9);
-  max-height: 70%;
-  overflow-y: auto;
-  padding-right: 10px;
-
-  /* ── Táctil ── */
-  -webkit-overflow-scrolling: touch; /* iOS Safari */
-  touch-action: pan-y;               /* permite scroll vertical con el dedo */
-  overscroll-behavior: contain;      /* evita que el scroll se "escape" al padre */
-}
-/* .panel-nombres {
   position: fixed; 
   top: 14%;
   left: 10px; 
@@ -5235,7 +5216,7 @@ top: 44%;
   -webkit-overflow-scrolling: touch; 
   touch-action: pan-y; 
   overscroll-behavior: contain;  
-} */
+}
 .panel-nombres::-webkit-scrollbar {
   width: 22px;
 }
