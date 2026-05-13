@@ -4696,6 +4696,45 @@ activarGrid(document.getElementById('grilla-frena'));
 let activeInput = null;
 
 
+
+// ── Fuera de mostrarListaClientes, solo una vez ──────────────
+listaClientes.addEventListener('touchstart', (e) => {
+  const item = e.target.closest('.cliente-item');
+  if (!item) return;
+  e.stopPropagation();
+  e.preventDefault();
+  desactivarBlur();
+  if (activeInput) activeInput.value = item.dataset.nombre;
+  objetoGlobal = item.dataset.nombre;
+  listaClientes.style.display = 'none';
+
+  const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+  const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
+  if (empleado?.imagen) {
+    document.querySelector('#imagenVisor').src = empleado.imagen;
+    document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
+  }
+}, { passive: false });
+
+listaClientes.addEventListener('click', (e) => {
+  const item = e.target.closest('.cliente-item');
+  if (!item) return;
+  e.stopPropagation();
+  e.preventDefault();
+  desactivarBlur();
+  if (activeInput) activeInput.value = item.dataset.nombre;
+  objetoGlobal = item.dataset.nombre;
+  listaClientes.style.display = 'none';
+
+  const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+  const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
+  if (empleado?.imagen) {
+    document.querySelector('#imagenVisor').src = empleado.imagen;
+    document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
+  }
+});
+
+
 function mostrarListaClientes(seccion) {
   listaClientes.style.display = 'flex';
   listaClientes.style.zIndex = 2010;
@@ -4710,7 +4749,6 @@ function mostrarListaClientes(seccion) {
   const almacen = JSON.parse(almacenJSON);
   const empleados = Object.values(almacen);
 
-  // ✅ Solo crear los items, sin listeners individuales
   empleados.forEach(empleado => {
     if (!empleado) return;
     const item = document.createElement('div');
@@ -4720,47 +4758,8 @@ function mostrarListaClientes(seccion) {
     listaClientes.appendChild(item);
   });
 
-
-  listaClientes.addEventListener('touchstart', (e) => {
-    const item = e.target.closest('.cliente-item');
-    if (!item) return;
-    e.stopPropagation();
-    e.preventDefault();
-    desactivarBlur();
-    if (activeInput) activeInput.value = item.dataset.nombre;
-    objetoGlobal = item.dataset.nombre;
-    listaClientes.style.display = 'none';
-
-    const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
-    const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
-    if (empleado?.imagen) {
-      document.querySelector('#imagenVisor').src = empleado.imagen;
-      document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
-    }
-  }, { passive: false });
-
-  listaClientes.addEventListener('click', (e) => {
-    const item = e.target.closest('.cliente-item');
-    if (!item) return;
-    e.stopPropagation();
-    e.preventDefault();
-    desactivarBlur();
-    if (activeInput) activeInput.value = item.dataset.nombre;
-    objetoGlobal = item.dataset.nombre;
-    listaClientes.style.display = 'none';
-
-    // ✅ Buscar empleado en localStorage y mostrar imagen
-    const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
-    const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
-    if (empleado?.imagen) {
-      document.querySelector('#imagenVisor').src = empleado.imagen;
-      document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
-    }
-  });  
-
   switch(seccion){
     case 'listadoClientes':
-
     break
     case 'jobTrack':
       listaClientes.style.top = '42vh';

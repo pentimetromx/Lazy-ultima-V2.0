@@ -11,10 +11,7 @@ document.addEventListener('keydown', function(event) {
       break
       case 'Z':
       /* localStorage.removeItem('kaizenRegistrados'); */
-  const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
-  empleados[empleado.documento] = empleado;
-  localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
-  console.log(empleados)
+      mostrarPorClaveLocalStore('empleadosRegistrados')
 
             
       break;  
