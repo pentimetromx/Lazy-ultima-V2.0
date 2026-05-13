@@ -4698,7 +4698,7 @@ let activeInput = null;
 
 
 // ── Fuera de mostrarListaClientes, solo una vez ──────────────
-listaClientes.addEventListener('touchstart', (e) => {
+listaClientes.addEventListener('pointerdown', (e) => {
   const item = e.target.closest('.cliente-item');
   if (!item) return;
   e.stopPropagation();
@@ -4714,7 +4714,7 @@ listaClientes.addEventListener('touchstart', (e) => {
     document.querySelector('#imagenVisor').src = empleado.imagen;
     document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
   }
-}, { passive: false });
+});
 
 listaClientes.addEventListener('click', (e) => {
   const item = e.target.closest('.cliente-item');
@@ -4733,7 +4733,6 @@ listaClientes.addEventListener('click', (e) => {
     document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
   }
 });
-
 
 function mostrarListaClientes(seccion) {
   listaClientes.style.display = 'flex';
@@ -4776,6 +4775,12 @@ function mostrarListaClientes(seccion) {
     break
   }
 }
+
+
+
+
+
+
 
 function capturarInput(e){
   console.log('ARCHIV O4: function capturarInput(e)')
