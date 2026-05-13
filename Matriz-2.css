@@ -5195,10 +5195,28 @@ top: 44%;
 .navegacion button:hover {
   background: #3a4c70;
 }
+/* .panel-nombres {
+  position: relative;
+  display: flex;
+  top: 14%;
+  flex-direction: column;
+  border-left: 2px solid #1e90ff;
+  gap: 8px;
+  width: 40%;
+  padding: 10px;  
+  background: rgba(10, 15, 25, 0.9);
+  max-height: 70%;
+  overflow-y: auto;
+  padding-right: 10px;
+
+  -webkit-overflow-scrolling: touch; 
+  touch-action: pan-y;
+  overscroll-behavior: contain; 
+} */
 .panel-nombres {
   position: fixed; 
   top: 14%;
-  left: 10px; 
+  left: calc(25% + 10px);
   width: 40%;
 
 
