@@ -579,11 +579,13 @@ document.addEventListener('DOMContentLoaded', () => {
     campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
   }
 
-  campoBusqueda.addEventListener('focusin', (e) => {
-    activeInput = e.target; // asignar input activo
-    mostrarListaClientes('perfilesIndividual'); // abrir lista
-  });
-    campoBusqueda.addEventListener('pointerdown', (e) => {
+  /*campoBusqueda.addEventListener('focusin', (e) => {
+      activeInput = e.target; // asignar input activo
+      mostrarListaClientes('perfilesIndividual'); // abrir lista
+    }); */
+
+  campoBusqueda.addEventListener('pointerdown', (e) => {
+    alert()
     activeInput = e.target; // asignar input activo
     mostrarListaClientes('perfilesIndividual'); // abrir lista
   });
