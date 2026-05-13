@@ -3819,7 +3819,7 @@ hijos.forEach((li, index) => {
       ingresoEmpleadoMA()
     }
     if (index === 3) {
-      resultadosMA('interfaz-mtto')
+      /* resultadosMA('interfaz-mtto') */
     }
     if (index === 4) {
       panelAdministrativo.classList.remove('move-carta-exterior')
