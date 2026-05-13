@@ -4607,7 +4607,6 @@ function ajustarContenedorGrafs() {
 
 // ULTIMO BOTON M.A 
 function resultadosMA(identificador){
-  console.log('HOLA')
   restablecerPosiciones(['.ocultos'])      
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','conte-secundario','conte-maquinas','title-interfaz']  
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -4649,24 +4648,28 @@ function resultadosMA(identificador){
     clearInterval(intervaloColor);
   }
 
-  /* if(screenWidth < 500){
-    document.getElementById('gran-cortina').style.display='flex'
-    setTimeout(() => {
-      document.getElementById('gran-cortina').style.display='none'
-    }, 500);
-    var etiquetasIconos = document.getElementsByClassName('lblNombres');
-    for(var i = 0; i < etiquetasIconos.length; i++){
-      var labelIcon = etiquetasIconos[i];
-      clearInterval(intervaloColor);
-      if(labelIcon){
-        labelIcon.style.color = 'yellow';
-      }    
-    }
-  } */
+  if(!esDesktop){
+    const almacenJSON = localStorage.getItem('empleadosRegistrados');
 
-  const imgDinamica = document.querySelector('#img-dinamica');
-  if (imgDinamica) imgDinamica.remove();
-  actualizarIdsArray(identificador);      
+    if (almacenJSON) {
+      const empleados = JSON.parse(almacenJSON);
+      const lista = document.querySelector('#listaNombres');
+      lista.innerHTML = '';
+
+      // Funciona tanto para objeto {} como array []
+      const lista_empleados = Array.isArray(empleados) 
+        ? empleados 
+        : Object.values(empleados);
+
+      lista_empleados.forEach((empleado, index) => {
+        const span = document.createElement('span');
+        span.textContent = empleado.nombre;
+        span.dataset.index = index;
+        lista.appendChild(span);
+      });
+    }
+  }
+
 }
 
 
