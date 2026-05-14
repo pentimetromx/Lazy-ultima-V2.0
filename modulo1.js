@@ -4500,29 +4500,6 @@ document.querySelectorAll('.maquina').forEach((maquina, index) => {
 
 let imagenSeleccionada = null;
 let nombreSeleccionado = null;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
 // CICK IMAGENES VERTICALES
 function resultadosEmpleado(idEmpleado, functionExe, icono, state) {
@@ -4585,9 +4562,6 @@ document.querySelector("#porta-imagen > img").addEventListener('click', () => {
   mostrarImagenSuperior();
   handleSpanImagenClick()
 });
-
-
-
 
 function alternarContenedores() {
   const excluidos = [

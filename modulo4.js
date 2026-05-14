@@ -2612,25 +2612,8 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
   ingresoEmpleado()
 })
 
-
-
 const wrapper = document.querySelector('#calculadora');
 
-/* botoni.addEventListener('click', () => {
-  alert()
-  const visible = getComputedStyle(wrapper).display !== 'none';
-
-  if (!visible) {
-    // elimina TODOS los estilos en línea antes de mostrar
-    wrapper.removeAttribute('style');
-    wrapper.style.display = 'grid';
-    wrapper.style.left='10vw'
-    botoni.style.backgroundColor = 'orange';
-  } else {
-    wrapper.style.display = 'none';
-    botoni.style.backgroundColor = 'green'
-  }
-}); */
 
 /******************************************************************************************************************** */
 
@@ -3883,12 +3866,6 @@ document.querySelector("#input-documento").addEventListener('click',()=>{
   }
 
 })
-/* document.querySelector("#input-documento").addEventListener('blur',()=>{
-  if (!esDesktop) {
-    alert()
-  }
-
-}) */
 
 document.querySelector("#input-documento").addEventListener('blur', () => {
   if (!esDesktop) {
@@ -4723,7 +4700,6 @@ listaClientes.addEventListener('pointerdown', (e) => {
     document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
   }
   setTimeout(() => {
-    alert('MOMENTO PARA ELIMINAR LA CORTNA')
     cortina.classList.remove('overlayRRHH');
     cortina.style.display = 'none';
   }, 500);

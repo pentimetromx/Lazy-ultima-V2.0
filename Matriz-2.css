@@ -5674,7 +5674,7 @@ button:hover{
 .overlayRRHH {
   position: absolute;
   display: block !important;
-  background-color: orange;
+  /* background-color: orange; */
   top: 2vh;
   left: 1vw;
   width: 98vw;
