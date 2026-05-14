@@ -2356,8 +2356,14 @@ document.addEventListener('pointerdown', (e) => {
   if (!clickDentroCalculadora && !clickEnItemsMA && !clickEnInputColor) {
     hideCalculator();
   }
-});
 
+  // ── Cerrar cortina si click fuera de listaClientes ──
+  if (!listaClientes.contains(e.target)) {
+    cortina.classList.remove('overlayRRHH');
+    cortina.style.display = 'none';
+    listaClientes.style.display = 'none';
+  }
+});
 
 document.querySelector('#recarga').addEventListener('click', ingresoEmpleado);
 document.querySelector('#recargaMA').addEventListener('click', ingresoEmpleadoMA);
