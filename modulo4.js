@@ -2407,7 +2407,6 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
 
   for (const input of inputs) {
     if (input.value==='') {
-      /* mostrarVentanaMensaje('Hay campos sin diligenciar.'); */
       parpadearElemento('nomEmpl');
       saltarAlerta('Hay campos sin diligenciar.', 'moverRrhh')
       flagEmpleado = true
@@ -2432,7 +2431,6 @@ document.querySelector('.metricas-empleado').addEventListener('click', ()=>{
   const inputs = document.querySelectorAll('.fila-ingreso .storeText');
   for (const input of inputs) {
     if (input.value==='') {
-      /* mostrarVentanaMensaje('Hay campos sin diligenciar.'); */
       parpadearElemento('nomEmpl');
       saltarAlerta('Hay campos sin diligenciar.', 'moverRrhh')
       flagEmpleado = true
@@ -2548,9 +2546,6 @@ inputFoto.addEventListener('click', () => {
   // 3. ¿Está visible?
   console.log(document.querySelector('#listaFotos').style.display);
   console.log(document.querySelector('.almacen-fotos').style.display);
-
-  /* blurOverlay.style.display = 'block';
-  blurOverlay.style.zIndex = 2000; */
 });
 
 const visorContenedor = document.querySelector('#visorImagen-II');
@@ -2607,7 +2602,6 @@ listaFotos.addEventListener('mouseleave', () => {
 });
 
 /**************************************************************************************************************** */ 
-/*  */
 document.querySelector('#borrarBoton').addEventListener('click', () =>{
   activarPantallaCompleta()
   ingresoEmpleado()
@@ -2704,10 +2698,10 @@ btnAreas.addEventListener('click', () => {
   }
 });
 
-btnAreas.addEventListener('mouseleave', () => {
+/* btnAreas.addEventListener('mouseleave', () => {
   dentro = false;
   ocultar();
-});
+}); */
 
 padreLinks.addEventListener('mouseenter', () => {
   dentro = true;
@@ -2895,13 +2889,7 @@ function   cargarEmpleadoMA() {
     console.log('Ruta sin prefijo. Ajustando:', rutaImagen);
     rutaImagen = `./assets/${rutaImagen}`;
   }
-
   console.log('Ruta final que intenta cargar:', rutaImagen);
-
-  /* imgElemento.onerror = () => { 
-    console.warn('ERROR cargando imagen. Colocando silueta por fallback.');
-    imgElemento.src = './assets/silueta.png';
-  }; */
   imgElemento.src = rutaImagen;
 }
 
@@ -2942,7 +2930,6 @@ function infoEmpleadoPorSector(infoSector) {
         
         // Validación inicial
         if (!valor) {
-          /* mostrarVentanaMensaje('Debe ingresar un número de documento.', 'padre-ingresos'); */
           saltarAlerta('Debe ingresar un número de documento.', 'recursoDocumento')
           parpadearElemento('nomEmpl');
           restaurarPosicionPadreIngresos();
@@ -2986,7 +2973,6 @@ function infoEmpleadoPorSector(infoSector) {
             }
 
           } else {
-            /* mostrarVentanaMensaje('Empleado no encontrado en la BD.'); */
             saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn')
           }
           empleadoGlobal = empleadoEncontrado
@@ -4114,17 +4100,7 @@ const CATEGORY_LABELS = {
   D: 'Desarrollo',
   E: 'Cumplimiento'
 };
-/* function mostrarAlertaEnElemento(mensaje, top, left) {
-  const alerta = document.getElementById('alerta-ui');
-  const texto = alerta.querySelector('.texto');
 
-  texto.textContent = mensaje;
-  alerta.hidden = false;
-
-  alerta.style.top = typeof top === 'number' ? `${top}px` : top;
-  alerta.style.left = typeof left === 'number' ? `${left}px` : left;
-}
-mostrarAlertaEnElemento({mensaje: 'Ingrese solo valores numéricos',top: '70%',left: '40%'}); */
 let inputActivo = null;
 function onFocusIn(e) {
   if (e.target.matches('.columna-izq-ma input, .columna-derecha input')) {
