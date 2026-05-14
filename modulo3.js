@@ -6452,49 +6452,6 @@ function updateColorRGB() {
   document.getElementById("input-w").value = values.W;
 }
 
-/* const clamp = (value, min, max) =>
-  Math.min(max, Math.max(min, value));
-
-panelRGB
-  .querySelectorAll('input[type="number"]')
-  .forEach(input => {
-    input.addEventListener('input', () => {
-      if (input.value === '') return;
-
-      const min = Number(input.min);
-      const max = Number(input.max);
-
-      let value = parseInt(input.value, 10);
-
-      if (isNaN(value)) {
-        input.value = '';
-        return;
-      }
-
-      input.value = clamp(value, min, max);
-    });
-});
-
-panelControlCMYK
-  .querySelectorAll('input[type="number"]')
-  .forEach(input => {
-    input.addEventListener('input', () => {
-      if (input.value === '') return;
-
-      const min = Number(input.min);
-      const max = Number(input.max);
-
-      let value = parseInt(input.value, 10);
-
-      if (isNaN(value)) {
-        input.value = '';
-        return;
-      }
-
-      input.value = clamp(value, min, max);
-    });
-}); */  
-
 function animarSlidersRGB(sliderConfigs, duracion = 1000) {
   let startTime = null;
 
@@ -7322,7 +7279,7 @@ document.querySelectorAll('.alterna-panel').forEach(btn => {
       ocultarElementoProgressivo(panelControlCMYK)
     }
     if(btn.id === 'exit-rgb'){
-      ocultarElementoProgressivo(panelRgb)
+      ocultarElementoProgressivo(panelControlRGB)
     }
   });
 });
