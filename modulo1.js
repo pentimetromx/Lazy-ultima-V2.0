@@ -374,12 +374,7 @@ function cargarColaboradoresDesdeStorage() {
     ? almacen 
     : Object.values(almacen);
 
-  /* return almacenArray.map(empleado => ({
-    ruta: empleado.imagen || "./assets/silueta.png",
-    nombre: empleado.nombre || "Sin nombre"
-  })); */
-
-  return almacenArray
+    return almacenArray
     .filter(empleado => empleado && empleado.nombre)
     .map(empleado => ({
       imagen: empleado.imagen || "./assets/silueta.png",
@@ -587,7 +582,6 @@ document.addEventListener('DOMContentLoaded', () => {
   campoBusqueda.addEventListener('pointerdown', (e) => {
     activeInput = e.target; // asignar input activo
     mostrarListaClientes('perfilesIndividual');
-    /* {debugger} */
   });
 
   campoBusqueda.addEventListener('blur', () => {
@@ -1842,7 +1836,7 @@ function abrirSeccionVariable(elementId){
   }
   container1.style.display='grid'
   document.getElementById('cont-variable').style.display='grid'
-  /* manejarTransicion('child-move-variable', 'padre-variable', 'marco-variable',1200); */
+
   setTimeout(() => {
     resaltarSecuencialVariable()
   }, 1100);
@@ -1867,7 +1861,6 @@ function abrirSeccionPlanas(elementId){
   }
   container1.style.display='grid'
   document.getElementById('cont-plana').style.display='grid'
-  /* manejarTransicion('child-move-plana', 'padre-plana', 'marco-plana',1200); */
   if (typeof elementId !== 'undefined') {
     const index = idsArray.indexOf(elementId);
     if (index !== -1) {
@@ -1908,7 +1901,6 @@ function abrirSeccionDemo(elementId) {
     }
   }
   container1.style.display='grid'
-  /* manejarTransicion('child-move-naranja', 'tendencia-naranja', 'marco-planetario',1000); */
   setTimeout(() => {
     resaltarSecuencialDemo()
   }, 800);
@@ -3124,7 +3116,6 @@ function listaEntrenamientosII(btnList) {
       const boton = document.getElementById(id);
       if (!boton) return;
       boton.classList.toggle('activo', id === btnActivo);
-      /* boton.style.borderRadius='7px' */
     });
   };
 
@@ -3282,8 +3273,6 @@ function imagenesPasoApaso(id) {
     const el = document.getElementById(elId);
     if (el) el.style.display = paso.excluidos.includes(elId) ? 'flex' : 'none';
   });
-
-  /* container1.style.display = 'grid'; */
   botoneras.style.display = 'grid';
   botoneras.style.top='14vh'
   troublesh.style.display = 'grid';
@@ -3554,7 +3543,6 @@ function LubricaDesbobinador(idButt) {
       gridFreno.style.display='grid'
       container1.style.display='grid'
       alternarButtsFreno(idButt)
-      /* manejarTransicion('child-move-II', 'abuelo-grilla','marco-freno',1000); */
       if(screenWidth < 500){
         let boton = document.getElementById('butt-links-II')
         boton.style .display='flex'
@@ -4629,48 +4617,6 @@ function ajustarContenedorGrafs() {
 }
 
 // ULTIMO BOTON M.A 
-/* function resultadosMA(identificador){
-  console.log('HOLA')
-  restablecerPosiciones(['.ocultos'])      
-  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos','conte-secundario','conte-maquinas','title-interfaz']  
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i])  
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-    } 
-  }
-  container1.style.display='grid'
-  document.querySelector("#porta-visor").classList.remove('modificarPosicion')
-  document.querySelector("#buscador-empleado").classList.remove("ubicacion"); 
-  document.querySelector("#visorImagen").classList.remove('ubicar-visor') 
-  document.querySelector("#porta-visor > div.visor > span").classList.remove('ubicado')
-  document.querySelector("#porta-visor > div.visor > div.navegacion").classList.remove('ancho')
-
-  const padre = document.querySelector('.contenedor-visor');
-  // elimina todos los estilos en línea del padre y sus hijos
-  padre.removeAttribute('style');
-  padre.querySelectorAll('*').forEach(hijo => hijo.removeAttribute('style'));
-  document.body.style.zoom = "100%";
-  ["porta-visor"].forEach(id => aparecerElemento(id, "flex"));
-
-  var contiUsers = document.getElementsByClassName('cont-user'); 
-  for (var i = 0; i < contiUsers.length; i++) {
-    var usuario = contiUsers[i];
-    usuario.style.top = '';
-    usuario.style.display = 'flex';
-    usuario.style.position = '';
-    usuario.style.height = '';
-    usuario.style.width = '';
-    usuario.style.left = '';
-    var label = usuario.querySelector('label');
-    clearInterval(intervaloColor);
-  }
-
-  const imgDinamica = document.querySelector('#img-dinamica');
-  if (imgDinamica) imgDinamica.remove();
-  actualizarIdsArray(identificador);      
-} */
-
 function resultadosMA(identificador){
   console.log('HOLA')
   restablecerPosiciones(['.ocultos'])      

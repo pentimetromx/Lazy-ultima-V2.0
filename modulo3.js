@@ -3735,7 +3735,7 @@ document.querySelector('#boton-prensas').addEventListener('click', () =>{
   interfazPerfiles.classList.remove('move-perfiles-entintado')
 
   document.querySelector('.sections').style.display = 'grid' 
-  document.querySelector('#contenedor-botonera').style.display = 'grid'
+  /* document.querySelector('#contenedor-botonera').style.display = 'grid' */
 })
 
 // CREACION DE PERFILES
