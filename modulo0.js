@@ -251,7 +251,6 @@ const interfazMA = document.querySelector('#padre-ingresos-ma')
 const inputDocumentoEmpleado = document.querySelector('#numDoc1')
 const entradas = document.querySelectorAll('.entrada-empleado');
 const botonBorrar = document.querySelector('#grid-numbers > div:nth-child(11)');
-const panelRGB = document.querySelector('#control-panel-rgb');
 const panelControlRGB = document.querySelector('#control-panel-rgb');
 const panelControlCMYK =  document.querySelector('#control-panel-cmyk')
 const grid = document.getElementById('grilla-entintado');
