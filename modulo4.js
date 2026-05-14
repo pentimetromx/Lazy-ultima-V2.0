@@ -2698,10 +2698,10 @@ btnAreas.addEventListener('click', () => {
   }
 });
 
-/* btnAreas.addEventListener('mouseleave', () => {
+btnAreas.addEventListener('mouseleave', () => {
   dentro = false;
   ocultar();
-}); */
+});
 
 padreLinks.addEventListener('mouseenter', () => {
   dentro = true;
@@ -3776,11 +3776,14 @@ tercerhijoSubListaRRHH.addEventListener('click', () => {
   panelDeBajas.classList.remove('move-panel-salir')  
   panelDeBajas.classList.remove('activo')  
   container1.style.display='grid'
-
-
   linkListI.style.display='none'  
   panelDeBajas.classList.add('activo')
   aparecerElemento(panelDeBajas.id, 'block') 
+
+  if (!esDesktop) {
+    documentoEmplEliminar.setAttribute('inputmode', 'none');
+    documentoEmplEliminar.setAttribute('readonly', true);
+  }  
 });
 // SEGUNDO NIVEL DE LISTAS
 hijos.forEach((li, index) => {
@@ -5760,11 +5763,7 @@ documentoEmplEliminar.addEventListener('touchstart', (e) => {
   e.preventDefault();
   calculadoraSimulador = true;
   documentoEmplEliminar.focus();
-  if (!esDesktop) {
-    ubicaCalculadoraSegunContexto();
-    documentoEmplEliminar.setAttribute('readonly', true);
-    documentoEmplEliminar.setAttribute('inputmode', 'none'); // ← agregado
-  }
+  if(!esDesktop)ubicaCalculadoraSegunContexto();
 }, { passive: false });
 
 documentoEmplEliminar.addEventListener('blur', () => {
