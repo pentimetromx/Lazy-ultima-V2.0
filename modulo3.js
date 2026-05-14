@@ -6991,6 +6991,9 @@ function secuenciaAparicion(canal) {
 
     if (esDesktop) {
       buscaNombre.focus();
+    }else{
+      creaNombre.setAttribute('readonly', '')
+      creaNombre.setAttribute('inputmode', 'none');
     }
   }, 100);
   
