@@ -4717,6 +4717,7 @@ listaClientes.addEventListener('pointerdown', (e) => {
     document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
   }
   setTimeout(() => {
+    alert('MOMENTO PARA ELIMINAR LA CORTNA')
     cortina.classList.remove('overlayRRHH');
     cortina.style.display = 'none';
   }, 500);
@@ -4781,12 +4782,6 @@ function mostrarListaClientes(seccion) {
     break
   }
 }
-
-
-
-
-
-
 
 function capturarInput(e){
   console.log('ARCHIV O4: function capturarInput(e)')

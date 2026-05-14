@@ -583,9 +583,11 @@ document.addEventListener('DOMContentLoaded', () => {
     activeInput = e.target; // asignar input activo
     mostrarListaClientes('perfilesIndividual'); // abrir lista
   });
+
   campoBusqueda.addEventListener('pointerdown', (e) => {
     activeInput = e.target; // asignar input activo
     mostrarListaClientes('perfilesIndividual');
+    /* {debugger} */
   });
 
   campoBusqueda.addEventListener('blur', () => {
