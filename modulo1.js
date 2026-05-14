@@ -585,8 +585,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   campoBusqueda.addEventListener('pointerdown', (e) => {
     activeInput = e.target; // asignar input activo
-    mostrarListaClientes('perfilesIndividual'); // abrir lista
-    /* {debugger} */
+    mostrarListaClientes('perfilesIndividual');
   });
 
   campoBusqueda.addEventListener('blur', () => {

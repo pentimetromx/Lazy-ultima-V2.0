@@ -5810,10 +5810,6 @@ documentoEmplEliminar.addEventListener('touchstart', (e) => {
     ubicaCalculadoraSegunContexto();
     documentoEmplEliminar.setAttribute('readonly', true);
     documentoEmplEliminar.setAttribute('inputmode', 'none'); // ← agregado
-
-   /*  setTimeout(() => {
-      {debugger}
-    }, 500); */
   }
 }, { passive: false });
 
@@ -6019,9 +6015,6 @@ inputsMA.forEach(el => {
   el.addEventListener('touchstart', () => {
     if (!esDesktop) {
       ubicaCalculadoraSegunContexto()
-      /* setTimeout(() => {
-        {debugger}
-      }, 500); */
     }
   });   
 
