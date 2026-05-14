@@ -5185,12 +5185,14 @@ function cargarEmpleados(select) {
   defaultOption.textContent = 'Seleccione...';
   select.appendChild(defaultOption);
 
-  empleados.forEach(empleado => {
-    const option = document.createElement('option');
-    option.value = empleado.nombre;
-    option.textContent = empleado.nombre;
-    select.appendChild(option);
-  });
+  empleados
+    .filter(empleado => empleado && empleado.nombre)
+    .forEach(empleado => {
+      const option = document.createElement('option');
+      option.value = empleado.nombre;
+      option.textContent = empleado.nombre;
+      select.appendChild(option);
+    });
   select.dataset.loaded = 'true';
 }
 
