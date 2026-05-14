@@ -2346,6 +2346,14 @@ const slidersRGB = document.querySelector('#padre-rgb')
 const contextoActivo = () =>[interfazRRHH, interfazMA,slidersCMYK,slidersRGB].some(el => el && el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0);
 
 document.addEventListener('pointerdown', (e) => {
+  // ── Cerrar cortina si click fuera de listaClientes ──
+  if (!listaClientes.contains(e.target)) {
+    cortina.classList.remove('overlayRRHH');
+    cortina.style.display = 'none';
+    listaClientes.style.display = 'none';
+    console.warn('CORTINA ELIMINADA');
+  }
+
   if (esDesktop) return;
   if (!contextoActivo()) return;
 
@@ -2355,13 +2363,6 @@ document.addEventListener('pointerdown', (e) => {
 
   if (!clickDentroCalculadora && !clickEnItemsMA && !clickEnInputColor) {
     hideCalculator();
-  }
-
-  // ── Cerrar cortina si click fuera de listaClientes ──
-  if (!listaClientes.contains(e.target)) {
-    cortina.classList.remove('overlayRRHH');
-    cortina.style.display = 'none';
-    listaClientes.style.display = 'none';
   }
 });
 
