@@ -1908,6 +1908,7 @@
   transform: translateX(-12vw);
   transition: transform 1.4s ease-in-out, opacity 0.8s ease-in-out;
 }
+
 #carta-exterior.move-carta-exterior {
   visibility: visible;
   transform: translate3d(-110%, -18%, 0) scale(1);

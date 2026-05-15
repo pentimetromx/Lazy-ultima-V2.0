@@ -4434,6 +4434,7 @@ function resultadosMaquina(){
   ["lista-maquinas", "meses", "calendario-mes", "cont-span-semanas", "titulo-calendar", "titulo-mes", "contenedor-global"].forEach(id => aparecerElemento(id, "grid"));
   destruirCharts()
   container1.style.display='grid'
+  document.querySelector("#contenedor-global").classList.remove('move-panel-ma')
 }
 
 document.querySelectorAll('.maquina').forEach((maquina, index) => {

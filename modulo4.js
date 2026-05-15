@@ -1453,19 +1453,24 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
 
     switch (index) {
       case 0: {
-        const pasos = [
-          crearGraficoMes,
-          crearGraficoSemana,
-          crearGraficoParticipacion,
-          crearGraficoApilado,
-          crearGraficoOperadores,
-          crearGraficoLleno
-        ];
-        let delay = 0;
-        for (const fn of pasos) {
-          setTimeout(fn, delay);
-          delay += 150;
-        }
+        document.querySelector("#contenedor-global").classList.add('move-panel-ma')
+
+        setTimeout(() => {
+          const pasos = [
+            crearGraficoMes,
+            crearGraficoSemana,
+            crearGraficoParticipacion,
+            crearGraficoApilado,
+            crearGraficoOperadores,
+            crearGraficoLleno
+          ];
+          let delay = 0;
+          for (const fn of pasos) {
+            setTimeout(fn, delay);
+            delay += 150;
+          }
+          
+        }, 1000);
         break;
       }
       case 1:
@@ -5844,9 +5849,7 @@ document.querySelector("#borrarBoton5").addEventListener('click',()=>{
     }
   } 
   container1.style.display='grid'
-  panelAdministrativo.classList.remove('move-carta-exterior')
-  document.querySelector('.panel-monitor').classList.remove('activo')  
-  resultadosMA('interfaz-mtto')
+  resultadosMaquina()
   
 })
 const btnActivar = document.querySelector('#carta-exterior .btn-primario');
