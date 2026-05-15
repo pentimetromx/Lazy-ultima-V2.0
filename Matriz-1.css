@@ -1840,7 +1840,7 @@ width:447px ;
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-.sup-level {
+/*.sup-level {
   display: grid;
   grid-template-rows: 7% 86% 7%;
   position: absolute;
@@ -1853,12 +1853,31 @@ width:447px ;
   width: 31.5vw;
   height: 29vh;
 
-  transition: transform 0.5s ease; /* 501 ms */
+  transition: transform 0.5s ease;
   z-index: 2;
-  display: none; /* inicialmente oculto */
-  transform: scale(0); /* inicia reducido */
-  transform-origin: center; /* crece desde el centro */     
+  display: none;
+  transform: scale(0);
+  transform-origin: center;   
+}*/
+.sup-level {
+  display: grid;
+  grid-template-rows: 7% 86% 7%;
+  position: absolute;
+  display: none;
+  background-color: rgba(130,125,133,0.1);
+  border: 1px solid;
+  border-radius: 13px;
+  top: 51%;
+  left: 40%;
+  width: 31.5vw;
+  height: 29vh;
+  transition: transform 0.5s ease;
+  z-index: 2;
+  display: none;
+  transform: scale(0);
+  transform-origin: center;
 }
+
 .sup-level > :nth-child(3){
   width: 90%;
 }
@@ -2010,7 +2029,6 @@ width:447px ;
 #padre-ingresos-ma.activo,
 #padre-ingresos.activo,
 .form-empleado.activo,
-#contenedor-global.activo,
 #titulo-mes.activo,
 #titulo-calendar.activo,
 #meses.activo,
@@ -2024,7 +2042,8 @@ width:447px ;
 #padre-2.activo,
 #padre-1.activo,
 #abuelo-indicadores.activo,
-#linksMA.activo {
+#linksMA.activo ,
+#contenedor-global.activo{
   display: flex; 
   transform: scale(1); 
 }
@@ -7225,7 +7244,7 @@ height:100%;
   border: 1px solid rgba(155,155,155,0.2);
   border-radius: 5px;
 }
-#contenedor-global {
+/* #contenedor-global {
   position: relative;
   display: block;
   top: 6.5vh;
@@ -7235,6 +7254,21 @@ height:100%;
   transform: scale(0);
   transform-origin: center; 
   transition: transform 1s ease;
+} */
+ #contenedor-global {
+  position: relative;
+  display: block;
+  top: 20vh;
+  left: 23vw;
+  width: 55vw;
+  height: 60vh;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 1s ease;
+}
+#contenedor-global.activo.move-panel-ma {
+  transform: scale(1) translateX(-23vw) translateY(-7vw);
+  transition: transform 1.4s ease-in-out;
 }
 #lista-maquinas{
   position:absolute;

@@ -225,6 +225,8 @@ const btnEntrar = document.querySelector('#entrar-cantidad')
 const btnLimpiarMA = document.querySelector('#limpia-ingreso-ma')
 let inputPerfil = document.getElementById('nombreCliente')
 let listaClientes = document.getElementById('lista-clientes')
+let listaColores = document.getElementById('lista-colores')
+
 const btnModificar = document.querySelector('#modifica-ingreso')
 const btnLimpiar = document.querySelector('#limpia-ingreso')
 const btnSalirRH = document.querySelector('#salir-ingreso')
