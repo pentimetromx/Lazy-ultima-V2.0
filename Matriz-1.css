@@ -1840,25 +1840,6 @@ width:447px ;
   transform: scale(0); /* inicia reducido */
   transform-origin: center; /* crece desde el centro */   
 }
-/*.sup-level {
-  display: grid;
-  grid-template-rows: 7% 86% 7%;
-  position: absolute;
-  display: none;
-  background-color: rgba(130,125,133,0.1);
-  border:1px solid;
-  border-radius: 13px;
-  top: 42vh;
-  left: 40vh;
-  width: 31.5vw;
-  height: 29vh;
-
-  transition: transform 0.5s ease;
-  z-index: 2;
-  display: none;
-  transform: scale(0);
-  transform-origin: center;   
-}*/
 .sup-level {
   display: grid;
   grid-template-rows: 7% 86% 7%;
@@ -1867,10 +1848,10 @@ width:447px ;
   background-color: rgba(130,125,133,0.1);
   border: 1px solid;
   border-radius: 13px;
-  top: 51%;
-  left: 40%;
-  width: 31.5vw;
-  height: 29vh;
+  top: 52%;
+  left: 42%;
+  width: 30.5vw;
+  height: 27vh;
   transition: transform 0.5s ease;
   z-index: 2;
   display: none;
