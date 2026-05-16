@@ -17,98 +17,6 @@ function mostrarTodos() {
   }
 }  
 
-document.querySelector('#contenedor-botonera button:nth-child(2)').addEventListener('click', () => {
-  mostrarElementos(['contenedor-sheeter','butts-simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
-  const contenedor = document.querySelector('#contenedor-sheeter')
-  contenedor.style.top='15vh'
-  contenedor.style.left='25vw'
-  const video = contenedor.querySelector('video')
-
-  video.pause();
-  video.currentTime = 0
-  if (video.readyState >= 4) {
-    video.play().catch(err => {
-      console.log('Error al reproducir video:', err);
-    });
-  } else {
-    // Si aún no está listo, esperamos el evento canplaythrough:
-    const reproducirCuandoListo = () => {
-      video.removeEventListener('canplaythrough', reproducirCuandoListo);
-      video.play().catch(err => {
-        console.log('Error al reproducir video:', err);
-      });
-    };
-    video.addEventListener('canplaythrough', reproducirCuandoListo);
-  }
-
-})
-document.querySelector('#contenedor-botonera button:nth-child(3)').addEventListener('click', () =>{
-  mostrarElementos(['image-uno','butts-simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
-})
-document.querySelector('#contenedor-botonera button:nth-child(4)').addEventListener('click', () => {
-  ocultarTodos(['image-tres', 'image-cuatro']);
-
-  setTimeout(() => {
-    const contenedor = document.querySelector("#image-cuatro");
-    const img = contenedor.querySelector("img");
-
-    if (!img.src) {
-      img.src = img.dataset.src;
-    }
-
-    if (!contenedor.classList.contains("rotando")) {
-      contenedor.classList.add("rotando");
-
-      setTimeout(() => {
-        contenedor.classList.remove("rotando");
-      }, 1000);
-    }
-
-    setTimeout(() => {
-      let escala = 1;
-      const intervalo = setInterval(() => {
-        if (escala >= 3) {
-          clearInterval(intervalo);
-        } else {
-          escala += 0.1;
-          contenedor.style.transform = `scale(${escala})`;
-        }
-      }, 50);
-    }, 1000);
-
-  }, 100);
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-// BOTON INTERFAZ AZUL  
-/* document.querySelector('#contenedor-botonera button:nth-child(5)').addEventListener('click', () => {
-  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']
-  for (var i = 0; i < allContenedores.length; i++) {
-    var elemento = document.getElementById(allContenedores[i])
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-      document.querySelector('#formulario-cuenta').style.display = 'grid'
-    }
-  }
-  container1.style.display='grid'
-  container1.style.display='grid'
-  const cont = document.querySelector('#imagenes-sheeter');
-  cont.style.position = 'absolute';
-  cont.style.top='-1vh'
-
-}) */
-
 // ── CONFIGURACIÓN DE CATEGORÍAS ──
 // El orden de items DEBE coincidir con el orden en configIndex[]
 const NAV_CATEGORIES = [
@@ -214,6 +122,8 @@ function renderSidebar() {
       document.querySelector('#formulario-cuenta').style.display = 'flex';
       document.querySelector('#buscador').style.display = 'flex';
       document.querySelector('#search-form').style.display = 'flex';
+      document.querySelector('#contenedor-botonera').style.display = 'flex';
+
       container1.style.display = 'grid';
       linkIni1.style.display = 'block';
       linkIni2.style.display = 'block';
@@ -235,37 +145,28 @@ function renderSidebar() {
 renderTabs();
 renderSidebar();
 
-const btnAreasNav = document.querySelector("#contenedor-botonera > button:nth-child(5)");
+document.querySelectorAll('.btn-torre').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.btn-torre').forEach(b => b.classList.remove('activo'));
+    btn.classList.add('activo');
+  });
+});
+
+const btnAreasNav = document.querySelector("#contenedor-botonera > button:nth-child(1)");
 
 btnAreasNav.addEventListener('click', () => {
   const nav = document.getElementById('formulario-cuenta');
   const estaVisible = nav.style.display === 'flex';
-
-  document.querySelector('#contenedor-botonera').style.display='grid'
-  if (estaVisible) {
-    nav.style.display = 'none';
-  } else {
-    nav.style.display = 'flex';
+  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','contenedor-botonera']; 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var elemento = document.getElementById(allContenedores[i]);
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
+    }
   }
+  container1.style.display = 'grid';
+  nav.style.display = estaVisible ? 'none' : 'flex';
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function alternarImagenes() {
@@ -591,6 +492,8 @@ function mostrarAyudas(parametro) {
   showImage(actualPosicion, selectedArray);
 }
 function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
+  container1.style.display = 'grid';
+
   activarPantallaCompleta();
   allContenedores.forEach(id => {
     const elem = document.getElementById(id);
@@ -3871,7 +3774,7 @@ document.querySelector("#input-documento").addEventListener('blur', () => {
 
 const mostrarRegistro = document.querySelector('#links-registro > li:nth-child(2)')
 mostrarRegistro.addEventListener('click', () =>{
-  mostrarElementos(['butts-simulador','simulador', 'contenedor-botonera','search-form','buscador','links-inicialesI','links-iniciales'])
+  mostrarElementos(['butts-simulador','simulador','search-form','buscador','links-inicialesI','links-iniciales'])
 })
 //*********************************************************************************************************************** */
 function aplicarColoresInputs() {
@@ -5975,6 +5878,18 @@ inputsMA.forEach(el => {
   });   
 
 });
+
+document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',()=>{
+   var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','contenedor-botonera']; 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var elemento = document.getElementById(allContenedores[i]);
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
+    }
+  }
+  container1.style.display = 'grid'; 
+})
+ 
 
 
 function borrrrrrarrrr(){
