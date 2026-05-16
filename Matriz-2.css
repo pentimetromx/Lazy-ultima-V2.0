@@ -2747,6 +2747,14 @@ width: 70%;
   border: none;
   outline: none;
 }
+#lista-lineas{
+  top: 55vh;
+  left: 35.5vw;
+}
+.listado-clientes.posicion-simulador{
+  left: 35.5vw;
+  top: 42vh;
+}
 
 .listado-lineas > *,
 .listado-clientes > * {
@@ -3801,7 +3809,7 @@ top: 44%;
 .title {
   color: rgba(255,255,255,0.85);
   font-family: Arial, sans-serif;
-  font-size: 0.8em;
+  font-size: 0.5em;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -3815,7 +3823,7 @@ top: 44%;
   position: relative;
   color: rgba(255,255,255,0.5);
   font-family: Arial, sans-serif;
-  font-size: 0.7em;
+  font-size: 0.6em;
   font-weight: bold;
   text-align: right;
   padding-left: 10px;
@@ -3842,7 +3850,7 @@ top: 44%;
 .bar {
   width: 100%;
   background-color: rgba(255, 255, 0, 0.8);
-  border-radius: 9px 9px 0 0;
+  border-radius: 4px 4px 0 0;
 }
 .calendar-container {
   position: relative;
@@ -4204,10 +4212,10 @@ top: 44%;
   display: flex;
   display: none;
   flex-direction: row;
-  top: 17vh;
+  top: 18vh;
   left: 6vw;
   width: 22vw;
-  height: 80vh;
+  height: 63vh;
   border-radius: 13px;
   overflow: hidden;
   background-color: #071520;
@@ -4714,16 +4722,22 @@ top: 44%;
   position: absolute;
   display: grid;
   display: none;
-  grid-template-columns:50% 50%;
+  grid-template-columns: 50% 50%;
   grid-template-rows: repeat(3, 1fr);
-  width: 42vw;
+  width: 54vw;
   height: 80vh;
   background-color: #000;
-  border-radius: 7px;
+  border-radius: 21px;
   top: 12.2vh;
-  left: 56vw;
-  box-sizing: border-box;  
-  transition: filter 0.5s ease;
+  left: 45vw;
+  box-sizing: border-box;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 1s ease, filter 0.5s ease;
+  overflow: hidden;
+  border: 1px solid rgba(111,111,111,0.5);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.55);
+  z-index: 500;
 }
 #abuelo-grafica4::before {
   content: "";
