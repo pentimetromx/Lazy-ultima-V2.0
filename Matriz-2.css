@@ -2726,7 +2726,6 @@ width: 70%;
   border-top: 1px solid rgb(33,33,33);
   box-shadow: 0 0 2px rgba(200,200,200, 0.5);
 }
-
 .listado-lineas,
 .listado-clientes {
   position: absolute;
@@ -2736,14 +2735,12 @@ width: 70%;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 9px 15px;
-
-  top: 42vh;
+  top: 38vh;
   width: 27vw;
-  left: 37.5vw;
+  left: 71.5vw;
   height: auto;
   max-height: 55vh;
   z-index: 2010;
-
   border-radius: 9px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45), 0 1px 4px rgba(0, 0, 0, 0.3);
   padding: 4px 0;
@@ -3903,9 +3900,6 @@ top: 44%;
     transform: rotate(0deg);
   }
 }
-#image-cuatro.rotando {
-  animation: girar 1s linear infinite;
-}
 .img-solid {
   position: absolute;
   display: flex;
@@ -3922,16 +3916,7 @@ top: 44%;
   overflow: hidden;
   display: none;
 }
-#image-cuatro{
-  top: 45vh;
-  left: 38vw;
-  opacity: 1;
-  height: 22.5vh;
-  width: 7.2vw;
-  overflow: hidden;
-  display: none;
-  transition: transform 0.1s ease-in-out;
-}
+
 #image-uno {
   top: 13vh;
   left: 37vw;
@@ -3942,7 +3927,6 @@ top: 44%;
   overflow: hidden;
   display: none;
 }
-#image-cuatro img,
 #image-tres img,
 #image-uno img {
   width: 100%;
@@ -3976,7 +3960,7 @@ top: 44%;
   border-radius: 13px;
   border-radius: 13px;
   top: 15vh;
-  left: 34vw;
+  left: 58vw;
   height: 40vh;
   width: 40vw;
 }
@@ -4019,29 +4003,46 @@ top: 44%;
   border-radius: 13px;
   cursor: pointer;
 }
-#contenedor-botonera{
-  position: fixed;
-  display: grid;
+#contenedor-botonera {
+  position: absolute;
+  left: 2vw;
+  top: 14vh;
+  display: flex;
+  gap: 3px;
+  width: 31vw;
+  height: 7vh;
   display: none;
-  grid-template-rows: repeat(7, 1fr);
-  height: 50vh;
-  width: 10vw;
-  left: 89vw;
-  top: 20vh;
-  z-index: 7;
 }
-#contenedor-botonera button{
-  background-color: aquamarine;
-  color: black;
-  border-radius: 7px;
+.btn-torre {
+  flex: 1;
+  transform: skewX(-8deg);
+  background: #e8e8e6;
+  border: 0.5px solid #c4c4c0;
+  border-radius: 3px;
   cursor: pointer;
+  font-size: 13px;
+  color: #666663;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 0 #a0a09e, 0 5px 3px rgba(0,0,0,0.2);
+  position: relative;
+  top: 0;
 }
-#contenedor-botonera button:hover {
-  scale: 1.1;
-  background-color: rgb(6, 31, 223);
-  color: #fff;
-  transition: background-color 0.6s ease, color 0.4s ease;  
+.btn-torre:hover {
+  background: #1e3aff;
+  border-color: #888885;
+  color: #e8e8e6;
+  transform: skewX(-8deg) scaleY(1.08);
+  box-shadow: 0 4px 0 #0a1fa8, 0 5px 3px rgba(0,0,0,0.2);
 }
+.btn-torre.activo {
+  box-shadow: 0 0px 0 #a0a09e;
+  top: 4px;
+  background: #1e3aff;
+  color: #e8e8e6;
+  transform: skewX(-8deg) scaleY(0.97);
+  font-size: 15px;
+}
+
 .marco {
   position: absolute;
   left: 29vw;
@@ -4200,10 +4201,11 @@ top: 44%;
 } */
 #formulario-cuenta.nav-industrial {
   position: relative;
+  display: flex;
   display: none;
   flex-direction: row;
   top: 8vh;
-  left: 11vw;
+  left: 34vw;
   width: 22vw;
   height: 80vh;
   border-radius: 13px;
@@ -4389,7 +4391,7 @@ top: 44%;
 }
 #imagenes-sheeter {
   position: relative;
-  left: 34vw;
+  left: 58vw;
   top: -1vh;
   display: none;
   margin-top: 16vh;
@@ -4460,7 +4462,7 @@ top: 44%;
   display: grid;
   grid-template-rows: 33% 33% 33%;
   gap: 1%;
-  left: 34vw;
+  left: 58vw;
   top: 15vh;
   width: 24.2vw;
   height: 70vh;
@@ -4478,7 +4480,7 @@ top: 44%;
   align-items: center;
   justify-items: center;
   top: 56vh;
-  left: 34vw;
+  left: 58vw;
   width: 40vw;
   height: 44vh;
   background-color: #fff;

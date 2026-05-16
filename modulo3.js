@@ -3735,7 +3735,6 @@ document.querySelector('#boton-prensas').addEventListener('click', () =>{
   interfazPerfiles.classList.remove('move-perfiles-entintado')
 
   document.querySelector('.sections').style.display = 'grid' 
-  /* document.querySelector('#contenedor-botonera').style.display = 'grid' */
 })
 
 // CREACION DE PERFILES
@@ -7284,27 +7283,11 @@ creaNombre.addEventListener('click', () => {
   botonesPerfilColor.forEach(elemento => {   
     elemento.style.display = 'block';   
   });
-  mostrarListaClientes('softwareColor')
   limpiarColoresDeFondo()
   desactivarClick(['.butt-perfiles', '.estilo-1']);  
-  mostrarNombresDeObjetos(); 
-  setTimeout(() => {
-    if (listaClientes && listaClientes.children.length === 0) {
-      mostrarVentanaMensaje('El almacenamiento y la base de datos estan vacíos')
-    }
-  }, 50);      
-
+  mostrarNombresDeObjetos();  
 });
-/* function configurarOcultarLista() {
-  let temporizador;
-  // Si el mouse entra en la lista antes de que pasen 3 segundos, cancelamos el ocultamiento
-  listaClientes.addEventListener('pointerenter', () => {
-    clearTimeout(temporizador);
-  });
-}
 
-// BOTON VERDE RGB
-configurarOcultarLista(); */
 function pintarColor() {
   
   if (!creaNombre.value.trim()) {

@@ -7663,15 +7663,15 @@ background-color: #3FEF9C;
   pointer-events: none;
 }
 .padre-inputs {
-  position: absolute;
-  display: grid;
-  gap: 3%;
-  grid-template-columns: repeat(5, 1fr);
-  top: 14vh;
-  left: 2vw;
-  height: 4vh;
-  width: 36vw;
-  z-index: 9999;
+    position: absolute;
+    display: grid;
+    gap: 3%;
+    grid-template-columns: repeat(5, 1fr);
+    top: 89vh;
+    left: -2vw;
+    height: 4vh;
+    width: 36vw;
+    z-index: 9999;
 }
 .padre-inputs > button,
 .padre-inputs > input{
