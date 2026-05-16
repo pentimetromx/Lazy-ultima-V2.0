@@ -3960,7 +3960,7 @@ top: 44%;
   border-radius: 13px;
   border-radius: 13px;
   top: 15vh;
-  left: 58vw;
+  left: 36vw;
   height: 40vh;
   width: 40vw;
 }
@@ -4204,17 +4204,15 @@ top: 44%;
   display: flex;
   display: none;
   flex-direction: row;
-  top: 8vh;
-  left: 34vw;
+  top: 17vh;
+  left: 6vw;
   width: 22vw;
   height: 80vh;
   border-radius: 13px;
   overflow: hidden;
   background-color: #071520;
-
-  /* ← ESTAS DOS LÍNEAS son el fix: */
-  align-items: flex-start;  /* evita que los hijos se estiren verticalmente */
-  flex-wrap: nowrap;        /* evita que colapsen a otra fila */
+  align-items: flex-start;
+  flex-wrap: nowrap;
 }
 .nav-left {
   display: flex;
@@ -4391,7 +4389,7 @@ top: 44%;
 }
 #imagenes-sheeter {
   position: relative;
-  left: 58vw;
+  left: 36vw;
   top: -1vh;
   display: none;
   margin-top: 16vh;
@@ -4462,7 +4460,7 @@ top: 44%;
   display: grid;
   grid-template-rows: 33% 33% 33%;
   gap: 1%;
-  left: 58vw;
+  left: 36vw;
   top: 15vh;
   width: 24.2vw;
   height: 70vh;
@@ -4480,7 +4478,7 @@ top: 44%;
   align-items: center;
   justify-items: center;
   top: 56vh;
-  left: 58vw;
+  left: 36vw;
   width: 40vw;
   height: 44vh;
   background-color: #fff;
