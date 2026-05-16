@@ -421,7 +421,7 @@ function girarElemento(esquina) {
 
 let btnRegistro = document.querySelector("#boton-registro")
 btnRegistro.addEventListener('click',()=>{
-var elementosExcluidos = ['simulador','interfaz-perfiles','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
+var elementosExcluidos = ['simulador','interfaz-perfiles','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8'] 
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -2656,7 +2656,7 @@ document.getElementById('butt-perfil-tinta').addEventListener('click', () =>{
   let nombreDatos = document.querySelector('#cliente-nombre')
   interfazPerfiles.classList.remove('move-perfiles-entintado')
   desactivarClick(['.butt-perfiles', '.cabeza', '.mod-tinta']); 
-  var elementosExcluidos = ['simulador','interfaz-perfiles','perfiles-entintado','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
+  var elementosExcluidos = ['simulador','interfaz-perfiles','perfiles-entintado','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8'] 
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -2679,7 +2679,7 @@ document.getElementById('butt-perfil-tinta').addEventListener('click', () =>{
   });
 })
 document.getElementById('butt-perfil').addEventListener('click', () =>{
-  var elementosExcluidos = ['simulador','inerfaz-ajuste-fino','perfil-individual','control-perfiles','admin-perfiles','texto-perf-indiv','blur-interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  var elementosExcluidos = ['simulador','inerfaz-ajuste-fino','perfil-individual','control-perfiles','admin-perfiles','texto-perf-indiv','blur-interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8']  
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -2706,7 +2706,7 @@ document.getElementById('butt-perfil').addEventListener('click', () =>{
 let primerClickRealizado = false;
 document.getElementById('butt-control-tinta').addEventListener('click', () =>{ 
   const colorPerfilador = document.querySelector('#current-Color');   
-  var elementosExcluidos = ['simulador','inerfaz-ajuste-fino','perfil-individual','control-perfiles','interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  var elementosExcluidos = ['simulador','inerfaz-ajuste-fino','perfil-individual','control-perfiles','interfaz-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8']  
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -2851,7 +2851,7 @@ document.getElementById('butt-job-track').addEventListener('click', () =>{
   const padreBotonera = document.querySelector('#botonera-frente')
   padreBotonera.style.display='grid'
   conteJobTrack.classList.remove('move-job-track')
-  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
+  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8'] 
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -2873,7 +2873,7 @@ document.getElementById('butt-job-track').addEventListener('click', () =>{
 })
 
 document.getElementById('conte-img').addEventListener('click', () =>{
-  var elementosExcluidos = ['simulador','interfaz-perfiles','inerfaz-ajuste-fino','perfil-individual','control-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  var elementosExcluidos = ['simulador','interfaz-perfiles','inerfaz-ajuste-fino','perfil-individual','control-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8']  
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -3711,7 +3711,7 @@ function vaciarObjetosPerfiles() {
 }
 document.querySelector('#boton-reseteo').addEventListener('click', () =>{
   alertaGlobal='boton-reseteo'
-  var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8']  
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -3739,7 +3739,7 @@ document.querySelector('#boton-prensas').addEventListener('click', () =>{
 
 // CREACION DE PERFILES
 document.querySelector('#boton-perfiles').addEventListener('click', () =>{
-  var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles', 'boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7']  
+  var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles', 'boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8']  
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
@@ -4852,22 +4852,20 @@ buttsJobs.forEach(boton => {
       break;
       case 'lineas':
         irAconsola.style.display='none'
-        let lineaClientes = document.querySelector('#lista-lineas')
-        lineaClientes.style.top='56vh'
-        lineaClientes.style.height = '39vh'
         lineaClientes.addEventListener('mouseleave', () => {
           lineaClientes.style.display = 'none'
           restablecerClick(['.butt-perfiles', '.estilo-1']);
         })
         desactivarClick(['.butt-perfiles', '.estilo-1']);
-        if(panelUno.textContent === ''){alertaTres.style.display = 'flex';} 
-        else{
-          document.querySelector('#lista-lineas').style.display = 'block'
+        if(panelUno.textContent === ''){
+          alertaTres.style.display = 'flex';
+        }else{
+          lineaClientes.style.display = 'block'
           listaClientes.style.display = 'none'
         }
       break;
       case 'tirajes':
-        if (getComputedStyle(padreLineas).isVisible === 'true') return;
+        if (getComputedStyle(lineaClientes).isVisible === 'true') return;
         restablecerEstilos('calculadora');
         calculadora.classList.remove('move-calculadora-up')
         calculadora.classList.remove('move-calculadora-down')
@@ -4917,11 +4915,10 @@ contenedorClientes.addEventListener('click', (e) => {
 
 
 // LINEAS
-const contenedorLineas = document.getElementById('lista-lineas');
 const panelDos = document.getElementById('panel-dos');
 const destinoLinea = document.querySelector('#job-files > .jobs:nth-child(2) > .base-datos:nth-child(2)');
 
-contenedorLineas.addEventListener('click', (e) => {
+lineaClientes.addEventListener('click', (e) => {
   const linea = e.target.closest('div');
   if (!linea) return;
 
@@ -4929,7 +4926,7 @@ contenedorLineas.addEventListener('click', (e) => {
   panelDos.style.color = 'rgb(200,200,200)';
 
   destinoLinea.textContent = linea.textContent;
-  contenedorLineas.style.display = 'none';
+  lineaClientes.style.display = 'none';
 
   restablecerClick(['.jobs', '.estilo-1']);
   mostrarBarraProgres(33.5, 67);
@@ -5587,6 +5584,10 @@ const jobs = document.querySelectorAll('.jobs');
 function mostrarNombresDeObjetos() {
   flagAplicacion = true;
   listaColores.style.display = 'flex';
+  listaColores.classList.remove('posicion-simulador')
+  if(getComputedStyle(conteJobTrack).display === 'flex'){
+    listaColores.classList.add('posicion-simulador')
+  }
   
   const almacenJSON = localStorage.getItem('coloresRegistrados');
   if (!almacenJSON) {
@@ -5749,7 +5750,6 @@ function mostrarNombresDeObjetos() {
     menuContextual.style.display = 'none';
     restablecerClick(['.base-datos']);
   });
-
   console.log('Nombres de objetos mostrados en lista-clientes:', Object.keys(almacenCapitalizado));
 }
 
@@ -6498,10 +6498,9 @@ document.getElementById("animate-btn-cmyk").addEventListener("mouseup", () => {
   ]);
 });
 function animarColorSecuencia() {
-  desactivarClick(['.butt-perfiles']);
-  
-  const botones = document.querySelectorAll(".btn-respaldo");
-  const perfiles = document.querySelectorAll(".btn-respaldo"); // Selecciona los botones de perfil  
+  desactivarClick(['.butt-botones']);
+
+  const botones = document.querySelectorAll(".btn-respaldo"); // Selecciona los botones de perfil  
 
   if (botones.length === 0) return;
 
@@ -6563,10 +6562,10 @@ function animarColorSecuencia() {
 
   ejecutarFase(); // Iniciar la secuencia
   setTimeout(() => {
-    perfiles.forEach(btn => {
+    botones.forEach(btn => {
       btn.style.backgroundColor = `rgb(0,255,0)`;
     });
-    restablecerClick(['.butt-perfiles'])
+    restablecerClick(['.butt-botones'])
   }, 1010);
 }
 function animarSecuenciaPerfiles() {

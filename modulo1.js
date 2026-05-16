@@ -1543,7 +1543,7 @@ function videosImpresor(videoId) {
 } 
 function iniciarAnimaciones(){
   revertirInterfazPerfiles()
-  var elementosExcluidos = ['simulador','botonera-frente','boton-perfiles','boton-reseteo','butt-perfil','butt-control','butt-perfil-tinta','butt-job-track','boton-prensas','bot-revertir','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
+  var elementosExcluidos = ['simulador','botonera-frente','boton-perfiles','boton-reseteo','butt-perfil','butt-control','butt-perfil-tinta','butt-job-track','boton-prensas','bot-revertir','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8'] 
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {

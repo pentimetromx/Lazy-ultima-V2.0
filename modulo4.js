@@ -1347,7 +1347,7 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
 
     // --- lógica original
     const abueloGrafica = document.querySelector('#abuelo-grafica4');
-    abueloGrafica.style.display = 'grid';
+    
     Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
       hijo.style.display = '';
       hijo.style.visibility = 'visible';
@@ -1358,6 +1358,9 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
       case 0: {
         document.querySelector("#contenedor-global").classList.add('move-panel-ma')
 
+        setTimeout(() => {
+          aparecerElemento('abuelo-grafica4', 'grid');          
+        }, 400);
         setTimeout(() => {
           const pasos = [
             crearGraficoMes,
@@ -1372,8 +1375,7 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
             setTimeout(fn, delay);
             delay += 150;
           }
-          
-        }, 1000);
+        }, 1100);
         break;
       }
       case 1:
