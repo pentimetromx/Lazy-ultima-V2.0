@@ -51,6 +51,7 @@ function cierraContenedores(elementId, buttonID) {
   }
 }
 function muestraRodillo (vidElem, imgCont){
+  activarPantallaCompleta()
   document.querySelector('.contene-botones').style.top='-0.8vh'
   switch(vidElem){
   case 'videoElement2':
@@ -294,6 +295,7 @@ function showNextGraf() {
   }
 }
 function showRepuesto(elementId) {
+  activarPantallaCompleta()
   const config = {
     contImgDistribuidor: {
       excluidos: ['buscador','search-form','links-iniciales','links-inicialesI','frame-rollers','grilla-entintado'],
@@ -817,32 +819,7 @@ function cambiaColorBotones(){
   });
 }
 function resetBotns() {  
-  clearAllIntervals()
-  var elementosExcluidos = ['nicho_spans','pantalla','conteneMantaut','buscador','search-form','links-inicialesI','links-iniciales'];          
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i]);
-    if (elemento) {
-      if (elementosExcluidos.includes(allContenedores[i])) {
-        elemento.style.display = 'flex';
-      } else {
-        elemento.style.display = 'none';
-      }
-    }
-  } 
-  container1.style.display='grid'
-  document.querySelector('#conti-boton').style.display='grid'        
-  document.getElementById('conti-boton').style.top=''
-  linkIni1.style.left= ''  
-  linkIni2.style.left = ''   
-  if (document.body.style.zoom !== "100%") {
-    document.body.style.zoom = "100%";
-  }
-  console.log(arrayPosicionnador)
-  arrayPosicionnador = []
-  container1.style.left = ''
-  destino = 257;
-  arrayPosicionnador = []
-  console.log(arrayPosicionnador)
+  activarPantallaCompleta()
 }
 function deslizarTrouble(idElemento) {
   if (!arrayPosicionnador.includes(idElemento)) {
@@ -1092,6 +1069,7 @@ function crearOblicuos(contenedorId) {
 
     if (botonPrincipal) {
       botonPrincipal.addEventListener('click', () => {
+        activarPantallaCompleta()
         // Guardar colores originales del boton principal
         const estiloPrincipal = getComputedStyle(botonPrincipal);
         const colorOriginal = estiloPrincipal.backgroundColor;
@@ -1216,6 +1194,7 @@ function crearOblicuosPlaca(contenedorId) {
 
     if (botonPrincipal) {
       botonPrincipal.addEventListener('click', () => {
+        activarPantallaCompleta()
         // Guardar colores originales
         const estiloPrincipal = getComputedStyle(botonPrincipal);
         const colorOriginal = estiloPrincipal.backgroundColor;
@@ -1312,6 +1291,7 @@ function crearOblicuosMantilla(contenedorId) {
 
     if (botonPrincipal) {
       botonPrincipal.addEventListener('click', () => {
+        activarPantallaCompleta()        
         // Guardar colores originales
         const estiloPrincipal = getComputedStyle(botonPrincipal);
         const colorOriginal = estiloPrincipal.backgroundColor;
@@ -1429,6 +1409,7 @@ function crearOblicuosImpresor(contenedorId) {
 
     if (botonPrincipal) {
       botonPrincipal.addEventListener('click', () => {
+        activarPantallaCompleta()        
         // Guardar colores originales
         const estiloPrincipal = getComputedStyle(botonPrincipal);
         const colorOriginal = estiloPrincipal.backgroundColor;
@@ -1825,6 +1806,7 @@ function devolverColoresConRetrasoIII() {
 }
 
 function abrirSeccionVariable(elementId){
+  activarPantallaCompleta()
   clearAllIntervals()
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','abuelo-variable','padre-variable'];
   document.getElementById('linkList').style.display = 'none'
@@ -1850,6 +1832,7 @@ function abrirSeccionVariable(elementId){
   }
 } 
 function abrirSeccionPlanas(elementId){
+  activarPantallaCompleta()
   clearAllIntervals()
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','abuelo-plana','padre-plana'];
   document.getElementById('linkList').style.display = 'none'
@@ -1871,6 +1854,7 @@ function abrirSeccionPlanas(elementId){
   }
 }
 function abrirSeccionCurado(elementId){
+  activarPantallaCompleta()
   var elementosExcluidos = ['buscador','search-form','cont-secador','video-container','curado-uv','links-inicialesI','links-iniciales'];  
   document.getElementById('linkList').style.display = 'none'
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -1892,6 +1876,7 @@ function abrirSeccionCurado(elementId){
   }  
 }
 function abrirSeccionDemo(elementId) {
+  activarPantallaCompleta()
   var elementosExcluidos = ['buscador','search-form', 'links-inicialesI', 'links-iniciales', 'planetary', 'tendencia-naranja','padre-naranja'];
   document.getElementById('linkList').style.display = 'none';
   for (var i = 0; i < allContenedores.length; i++) {
@@ -3087,6 +3072,7 @@ function irContenedorSiguiente() {
 
 
 function listaEntrenamientosII(btnList) {
+  activarPantallaCompleta()
   restablecerPosiciones(['.ocultos']);
   const conteLink = document.querySelector('#linksMA');
   conteLink.style = '';
@@ -3196,6 +3182,7 @@ function toggleFullScreen(element) {
 }
 
 function imagenesPasoApaso(id) {
+  activarPantallaCompleta()
   desactivarClicsPorUnTiempo(500);
   const botoneras = document.querySelector('#conti-boton')
   const conteLink = document.getElementById('linksMA');
@@ -4732,6 +4719,7 @@ function graficosAutomaticos(idGrafico){
 const eventoEntradaI = esDesktop ? 'mouseenter' : 'touchstart';
 
 document.getElementById('titleContainerI').addEventListener(eventoEntradaI, () => {
+  /* activarPantallaCompleta() */
 
   let padreLinks = document.getElementById('links-inicialesI');
   let conteLinks = document.getElementById('linkListI');

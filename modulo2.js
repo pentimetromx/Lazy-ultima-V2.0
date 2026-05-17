@@ -70,6 +70,7 @@ salirPadreRgb.addEventListener('click', () => {
 })
 
 function deslizaContenedor(identificador, idButton) {
+  activarPantallaCompleta()
   restablecerPosiciones(['.ocultos', '.class-line']);
   troublesh.removeAttribute('style');
   
@@ -4597,17 +4598,6 @@ function moveElement(element, parent,frame) {
 }
 
 document.getElementById('butt-sitio').addEventListener('click', () => {
-  /* let elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']
-  for (let i = 0; i < allContenedores.length; i++) { 
-    let elemento = document.getElementById(allContenedores[i])  
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-    }
-  }
-  container1.style.display='grid' 
-    document.getElementById('conti-boton').style.top=''
-  document.getElementById('butt-sitio').style.display='none'
-  ElementosMaII('conteneMantaut') */
   mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])  
 })
 

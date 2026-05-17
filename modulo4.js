@@ -3529,8 +3529,7 @@ function decisionesEstrategicas(){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
     }
   }
-
-
+  activarPantallaCompleta()
 }
 /******************************************************************************************************************************************************* */
 //CONTROLA DESAPARICION NO DESEADA DE LISTAS DESPLEGABLES                            
@@ -3591,6 +3590,7 @@ const linksTec = cuartoDerecha.querySelector('.submenu-colorimetria');
 let sobreTiempo = null;
 
 simulador.addEventListener('click', (e) => {
+  activarPantallaCompleta()
   document.querySelector('#calculadora').style.display='none'
   restablecerClick(['.butt-perfiles']);
   // solo se ejecuta si el click fue directamente en el li padre
@@ -3659,15 +3659,16 @@ primerSubListaRRHH.addEventListener('mouseleave', () => {
 });
 
 primerhijoSubListaRRHH.addEventListener('click', () => {
-  linkListI.style.display='none'  
+  activarPantallaCompleta()
   mostrarInterfazIngreso()
 });
 
 segundohijoSubListaRRHH.addEventListener('click', () => {
-  linkListI.style.display='none'  
+  activarPantallaCompleta()
   ingresoEmpleado()
 });
 tercerhijoSubListaRRHH.addEventListener('click', () => {
+  activarPantallaCompleta()
   setTimeout(() => {
     const inputBaja = document.querySelector("#input-baja");
     if (inputBaja){
@@ -3702,15 +3703,19 @@ hijos.forEach((li, index) => {
     if (index === 1) {
     }  
     if (index === 0) {
+      activarPantallaCompleta()
       resultadosMaquina()
     }
     if (index === 2) {
+      activarPantallaCompleta()
       ingresoEmpleadoMA()
     }
     if (index === 3) {
+      activarPantallaCompleta()
       resultadosMA('interfaz-mtto')
     }
     if (index === 4) {
+      activarPantallaCompleta()      
       panelAdministrativo.classList.remove('move-carta-exterior')
       panelAdministrativo.classList.remove('activo')
       var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI']; 
@@ -3739,9 +3744,11 @@ hijosColor.forEach((li, index) => {
     e.stopPropagation();
 
     if (index === 0) {
+      activarPantallaCompleta()
       abrirDensitometria('densitometria')
     }
     if (index === 1) {
+      activarPantallaCompleta()
       abrirPrepress('pre-prensa')
     }
   });
@@ -3752,9 +3759,11 @@ hijosTec.forEach((li, index) => {
     e.stopPropagation();
 
     if (index === 0) {
+      activarPantallaCompleta()
        ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
     }
     if (index === 1) {
+      activarPantallaCompleta()      
       ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form')
     }
   });
@@ -5881,6 +5890,7 @@ inputsMA.forEach(el => {
 });
 
 document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',()=>{
+  activarPantallaCompleta()
    var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','contenedor-botonera']; 
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]);
@@ -5888,6 +5898,7 @@ document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',(
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
+  
   container1.style.display = 'grid'; 
 })
  

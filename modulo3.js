@@ -20,10 +20,10 @@ document.addEventListener('keydown', function(event) {
       break;
       case 'X':
       eliminarClaveLocalStorage('empleadosRegistrados')
-      break;                  
+      break;                
     }
   }
-});   
+}); 
 
 function Geometria() {
   console.clear();  

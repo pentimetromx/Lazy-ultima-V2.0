@@ -4653,6 +4653,9 @@ h4{
 
   border-radius: 15px;
   background-color: RGB(0,0,10);
+
+  outline: 1.1px solid #C0C0C0;
+  outline-offset: 3px;    
 }
 #cont-plana,
 #cont-variable{
@@ -4662,14 +4665,14 @@ h4{
   grid-template-rows: 33% 33% 33%;
   border-radius: 9px;
   gap: 1px;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;  
+  top: 1.5%;
+  left: 1.5%;
+  width: 96.5%;
+  height: 97%;  
   display: none;
 
-  outline: 1.1px solid #C0C0C0;
-  outline-offset: 3px;  
+  /* outline: 1.1px solid #C0C0C0;
+  outline-offset: 3px; */  
 }
 #cont-plana .child-section,
 #cont-variable .child-section{
