@@ -5240,7 +5240,7 @@ const accionesAceptar = {
 
     vaciarObjeto()
     vaciarAlmacenObjetos()
-    const colecciones = document.querySelectorAll('.lineas-tinta, .lineas-solucion, .leds, .led, .led-general, .clase-dos');
+
     colecciones.forEach((elemento) => {
       elemento.style.backgroundColor = '';
     });
@@ -5443,7 +5443,6 @@ const accionesCancelar = {
     console.log('logica muy extensa para lithografia');            
   },
   reseteo: () => {
-    const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
 
     alertasPerfiles.forEach(alertaPerfiles => {
       alertaPerfiles.style.opacity = '0';
