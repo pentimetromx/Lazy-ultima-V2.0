@@ -9,6 +9,7 @@ let idsMAhijos = ['contBotCasos','materiales-kaizen','troubleshooting','canvasCo
 let arrayButtsRutilantes = ['butt-113','butt-12','butt-16','butt-21','butt-22','butt-1130','butt-120','butt-160','butt-210','butt-220']
 let allContTintero = ['pantalla-tintero','cont-links','imgTorre','vidTintero','imgsRepuestos','agrupaOblicuos-II','container2']
 let contenedoresMA = ['troubleshooting','canvasContainer2','canvasContainer3','contImagNeg','contImagGraf','kaizenCont']
+const colecciones = document.querySelectorAll('.lineas-tinta, .lineas-solucion, .leds, .led, .led-general, .clase-dos');
 let arrayButtsRutilantesI = ['butt-024000','butt-020000','butt-023000','butt-015000','butt-013000','butt-7112000']
 let arrayButtsRutilantesII = ['butt-01130','butt-012','butt-016','butt-021','butt-0202','butt-011300','butt-0120']
 let contenedoresHijo = ['contImgDistribuidor','rodillForma','portaPlancha','portaMantilla','cilindroImpresor']
@@ -25,6 +26,8 @@ const firstMachine = document.querySelector('#lista-maquinas span:nth-child(1)')
 const mediaDesktop = window.matchMedia('(pointer: fine) and (min-width: 1025px)');
 const linkMaster = document.querySelector("#links-auxiliar > li:nth-child(5)")
 const panelAdministrador = document.querySelector("#panel-admon")
+const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
+
 
 let contiVidDistribuidor = document.getElementById('conti-video-distribuidor')  
 let arrayButtsIniciales = ['bot-atras','bot-inicial','iniciar','bot-atras12']

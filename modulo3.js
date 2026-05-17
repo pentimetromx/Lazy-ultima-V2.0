@@ -11,9 +11,8 @@ document.addEventListener('keydown', function(event) {
       break
       case 'Z':
       /* localStorage.removeItem('kaizenRegistrados'); */
-      mostrarPorClaveLocalStore('empleadosRegistrados')
+      /* mostrarPorClaveLocalStore('empleadosRegistrados') */
 
-            
       break;  
       case 'H':
         /* Geometria() */
@@ -1639,6 +1638,7 @@ function aumentarBalanceSolucion(estado, lineasSelector, footerSelector, colorTi
     }, 77);
   }
 }
+
 function aumentarBalanceTinta(estado, lineasSelector, footerSelector, colorTinta, colorAgua, gama) { 
   const lineasTinta = document.querySelectorAll(lineasSelector);
   const lineasGrales = document.querySelectorAll(footerSelector);
@@ -1678,7 +1678,7 @@ function aumentarBalanceTinta(estado, lineasSelector, footerSelector, colorTinta
       if (actualIndex < 0 || actualIndex >= totalElementos) {
         clearInterval(estado.intervalo);
         estado.intervalo = null;
-        return;s
+        return
       }      
       let lineaActual = lineasTinta[actualIndex];
       let lineaGral = lineasGrales[actualIndex];
@@ -1728,7 +1728,7 @@ function aumentarBalanceTinta(estado, lineasSelector, footerSelector, colorTinta
       if (actualIndex < 0 || actualIndex >= totalElementos) {
         clearInterval(estado.intervalo);
         estado.intervalo = null;
-        return;s
+        return
       }
       let lineaActual = lineasTinta[actualIndex];
       let lineaGral = lineasGrales[actualIndex];
@@ -1777,7 +1777,7 @@ function aumentarBalanceTinta(estado, lineasSelector, footerSelector, colorTinta
       if (actualIndex < 0 || actualIndex >= totalElementos) {
         clearInterval(estado.intervalo);
         estado.intervalo = null;
-        return;s
+        return
       }
       let lineaActual = lineasTinta[actualIndex];
       let lineaGral = lineasGrales[actualIndex];
@@ -1796,6 +1796,7 @@ function aumentarBalanceTinta(estado, lineasSelector, footerSelector, colorTinta
     }, 77);
   }
 }
+
 function disminuirBalanceTinta(estado, lineasSelector, footerSelector, uno, dos, gama) {
   const lineasTinta = document.querySelectorAll(lineasSelector);
   const lineasGrales = document.querySelectorAll(footerSelector);
@@ -1955,7 +1956,6 @@ function disminuirBalanceTinta(estado, lineasSelector, footerSelector, uno, dos,
     }, 77);
   }
 }
-
 function darColorVerdeCabeza() {
   const elementosCabeza = document.querySelectorAll('.cabeza');
   let index = 0;
@@ -1984,7 +1984,6 @@ function darColorVerdeCabeza() {
     }
   }, 17);
 }
-
 let indexSolucion = 99;
 let intervaloSolucion = null; 
 const controlSolucion = [];   
@@ -1995,6 +1994,57 @@ let indexAumento = 0
 const lineasTinta = document.querySelectorAll('.lineas-tinta');
 const contenedor = document.getElementById('butts-selectores');
 
+
+function resetearBalanceTinta(lineasSelector, footerSelector, gama) {
+  // 1. Detener intervalo
+  if (estadoIntervaloTinta.intervalo) {
+    clearInterval(estadoIntervaloTinta.intervalo);
+    estadoIntervaloTinta.intervalo = null;
+  }
+
+  // 2. Limpiar colores
+  document.querySelectorAll(lineasSelector).forEach(el => el.style.backgroundColor = '');
+  document.querySelectorAll(footerSelector).forEach(el => el.style.backgroundColor = '');
+
+  // 3. Limpiar displays
+  const displays = document.querySelector('#ctrl-gral .div-ctrl #tinta-perc');
+  const displayGral = document.querySelector(`#gral-display-${gama}`);
+  if (displays) displays.textContent = '';
+  if (displayGral) {
+    displayGral.textContent = '';
+    displayGral.style.top = '';
+  }
+
+  // 4. Resetear array
+  /* if (almacenObjetos[objetoGlobal]?.[gama]) {
+    almacenObjetos[objetoGlobal][gama].nivelTinta = [];
+  } */
+}
+function resetearBalanceSolucion(lineasSelector, footerSelector, gama) {
+  // 1. Detener intervalo
+  if (estadoIntervaloSolucion.intervalo) {
+    clearInterval(estadoIntervaloSolucion.intervalo);
+    estadoIntervaloSolucion.intervalo = null;
+  }
+
+  // 2. Limpiar colores
+  document.querySelectorAll(lineasSelector).forEach(el => el.style.backgroundColor = '');
+  document.querySelectorAll(footerSelector).forEach(el => el.style.backgroundColor = '');
+
+  // 3. Limpiar displays
+  const displays = document.querySelector('#ctrl-gral .div-ctrl #solucion-porcentaje');
+  const displayGeneral = document.querySelector(`#display-general-${gama}`);
+  if (displays) displays.textContent = '';
+  if (displayGeneral) {
+    displayGeneral.textContent = '';
+    displayGeneral.style.top = '';
+  }
+
+  // 4. Resetear array
+  /* if (almacenObjetos[objetoGlobal]?.[gama]) {
+    almacenObjetos[objetoGlobal][gama].nivelAgua = [];
+  } */
+}
 
 // 🔸 Se agrupa la lógica de inicio en una función reutilizable
 const iniciarMasSolucion = () => {
@@ -3067,6 +3117,7 @@ function clasePadreCantidadClaseTextId(contPadre, numeroDeLineas, classElto, tex
     }
   });
 }
+
 function idPadreCantidadClaseTextId(contPadre, numeroDeLineas, classElto, claseDos = '', texts = [], prefixId = '', padreEtiqueta, color, padreEtiquetaTinta) {   
   const contenedorPrincipal = document.getElementById(contPadre);  
   // Limpiar el contenedor para evitar acumulación de elementos
@@ -3733,8 +3784,30 @@ document.querySelector('#boton-prensas').addEventListener('click', () =>{
     }
   }
   interfazPerfiles.classList.remove('move-perfiles-entintado')
-
   document.querySelector('.sections').style.display = 'grid' 
+
+  const clasesALimpiar = ['.led', '.leds', '.led-general', '.clase-dos', '.lineas-tinta', '.lineas-solucion'];
+  clasesALimpiar.forEach(clase => {
+    document.querySelectorAll(clase).forEach(el => {
+      el.style.color = '';
+      el.style.backgroundColor = '';
+      el.style.borderColor = '';
+    });
+  });
+    document.querySelector('#cliente-nombre').textContent=''
+    resetearBalanceTinta('.lineas-tinta','#footer-negro #footer-1 .divs-grales-tinta-negro','negro');
+    resetearBalanceTinta('.lineas-tinta','#footer-amarillo #footer-7 .divs-grales-tinta-amarillo','amarillo');    
+    resetearBalanceTinta('.lineas-tinta','#footer-magenta #footer-5 .divs-grales-tinta-magenta','magenta'); 
+    resetearBalanceTinta('.lineas-tinta','#footer-azul #footer-3 .divs-grales-tinta-azul','azul');
+    resetearBalanceTinta('.lineas-tinta','#footer-especial #footer-9 .divs-grales-tinta-especial','especial');
+    resetearBalanceTinta('.lineas-tinta','#footer-barniz #footer-11 .divs-grales-tinta-barniz','barniz'); 
+    resetearBalanceSolucion('.lineas-solucion','#footer-negro #footer-2 .divs-grales-solucion-negro','negro');     
+    resetearBalanceSolucion('.lineas-solucion','#footer-azul #footer-4 .divs-grales-solucion-azul','azul');
+    resetearBalanceSolucion('.lineas-solucion','#footer-magenta #footer-6 .divs-grales-solucion-magenta','magenta');     
+    resetearBalanceSolucion('.lineas-solucion','#footer-amarillo #footer-8 .divs-grales-solucion-amarillo','amarillo');
+    resetearBalanceSolucion('.lineas-solucion','#footer-especial #footer-10 .divs-grales-solucion-especial','especial');     
+    resetearBalanceSolucion('.lineas-solucion','#footer-barniz #footer-12 .divs-grales-solucion-barniz','barniz');      
+  objetoGlobal={}  
 })
 
 // CREACION DE PERFILES
@@ -5355,10 +5428,7 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
   console.log('existe clave:', almacenObjetos[objetoGlobal]);
   console.log('color:', color);
 
-
-
   displaySolucion.textContent = almacenObjetos[objetoGlobal][color].nivelAgua.length + '%';
-
 
   displayTinta.textContent = almacenObjetos[objetoGlobal][color].nivelTinta.length + '%';
   // Primera iteración: Aplicar lógica a `#columna-70`
