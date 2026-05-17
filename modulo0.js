@@ -1309,7 +1309,6 @@ function ejecutarSecuencia(funciones, tiempos) {
   });
 }
 function activarPantallaCompleta() {
-  // Si ya está en pantalla completa, no hacer nada
   if (
     document.fullscreenElement ||
     document.mozFullScreenElement ||
@@ -1583,6 +1582,7 @@ function ejecutarVideo(idVideo, tiempoOcultar = null) {
   });
 }
 function changeButtonStyles(elementId, imgCont) {
+  activarPantallaCompleta()
   const baseMostrar = (excluidos) => {
     mostrarOcultar(excluidos);
     container1.style.display = 'grid';
@@ -1760,6 +1760,7 @@ function cambioContenedor(elementId){
   }  
 }
 function building(){
+  activarPantallaCompleta()
   let elementosExcluidos = ['buscador','search-form','sitema-humedad','links-inicialesI','links-iniciales','sitio-en-construccion']
   for (let i = 0; i < allContenedores.length; i++) { 
     let elemento = document.getElementById(allContenedores[i])  
