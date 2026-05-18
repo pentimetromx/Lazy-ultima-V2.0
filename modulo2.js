@@ -72,6 +72,7 @@ salirPadreRgb.addEventListener('click', () => {
 function deslizaContenedor(identificador, idButton) {
   activarPantallaCompleta()
   restablecerPosiciones(['.ocultos', '.class-line']);
+  document.querySelector("#conti-boton").removeAttribute("style");  
   troublesh.removeAttribute('style');
   
   clearAllIntervals();
@@ -103,14 +104,11 @@ function deslizaContenedor(identificador, idButton) {
 
   const activarLayout = () => {
     container1.style.display = 'grid';
-    contiButtRepuest.style.display = 'grid';
-    contiButtRepuest.removeAttribute('style');
-
   };
 
   switch (identificador) {
     case 'troubleshooting':
-      setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut']);
+      setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut','conti-boton']);
       activarLayout();
       aparecerElemento("troubleshooting", "grid");
       setTimeout(cambiaColorBotones, 510);
@@ -4598,7 +4596,7 @@ function moveElement(element, parent,frame) {
 }
 
 document.getElementById('butt-sitio').addEventListener('click', () => {
-  mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])  
+  ElementosMaII('conteneMantaut')  
 })
 
 function isVisible(element) {
@@ -4611,9 +4609,8 @@ function isVisible(element) {
   );
 }
 function cerrarVentanasII() {
-  const botonVuelve = document.querySelector('#butt-links-II');
-  botonVuelve.style.left = '';
-  botonVuelve.style.top = '';
+  botonVolver.style.left = '';
+  botonVolver.style.top = '';
 
   if (screenWidth < 500) {
     // Mapeo de secciones y acciones en móvil
@@ -4651,8 +4648,9 @@ function cerrarVentanasII() {
 
     document.body.style.zoom = "100%";
     container1.style.display = 'grid';
-    document.querySelector('#conti-boton').style.display='grid'
-    document.querySelector('#conti-boton').style.top=''
+    contiButtRepuest.style.display='flex'
+    contiButtRepuest.style.top=''
+    document.querySelector("#linksMA").removeAttribute("style");
 
     const troubleshooting = document.getElementById('troubleshooting');
     if (troubleshooting) {
@@ -4763,8 +4761,8 @@ function reponerEstilos(){
   document.getElementById('contenedor_padre_3').style.top=''
   document.getElementById('contenedor_padre_2').style.top=''
   document.getElementById('contenedor_padre').style.top=''
-  document.getElementById('butt-links-II').style.top=''
-  document.getElementById('butt-links-II').style.left=''
+  botonVolver.style.top=''
+  botonVolver.style.left=''
   padreVideos.classList.remove('move_vid_pre')
   padreVideos.classList.remove('move-vid-dens-up')
   let padreImgs = document.getElementById('imgs-prepress')
@@ -4827,8 +4825,8 @@ targetDiv.addEventListener('click', (event) => {
   if(screenWidth > 500){
     contextMenu.style.display='block'
     contextMenu.style.position='absolute'
-    contextMenu.style.top='27vh'
-    contextMenu.style.left='82vw'
+    contextMenu.style.top= '28vh';
+    contextMenu.style.left='79vw'
     contextMenu.style.width='10vw'
   }else{
     showContextMenu(event.clientX, event.clientY);

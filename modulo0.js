@@ -27,6 +27,8 @@ const mediaDesktop = window.matchMedia('(pointer: fine) and (min-width: 1025px)'
 const linkMaster = document.querySelector("#links-auxiliar > li:nth-child(5)")
 const panelAdministrador = document.querySelector("#panel-admon")
 const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
+const botonVolver = document.getElementById('butt-links-II')
+
 
 
 let contiVidDistribuidor = document.getElementById('conti-video-distribuidor')  
@@ -1335,7 +1337,7 @@ function VolveraInicio(){
   idsArrayEliminados = []
 }
 function ElementosMaII(elementId){
-  let elementosExcluidos = ['buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales'];
+  let elementosExcluidos = ['buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales','conti-boton'];
 
   allContenedores.forEach(id => {
     const elemento = document.getElementById(id);
@@ -1350,24 +1352,23 @@ function ElementosMaII(elementId){
     }
   });
   activarPantallaCompleta();
-    document.querySelector('#conti-boton').style.display='grid'
   container1.style.display='grid'
-    setTimeout(() => {
-      document.body.style.zoom = "100%"    
-    }, 10);
-    setTimeout(() => {
-      showButtonsMAconRetraso()  
-    }, 20);  
-    arrayIdButtsMA .forEach(function (elto) {
-      let elemento = document.getElementById(elto)    
-      if (elemento) {
-        elemento.style.backgroundColor = 'rgba(83, 82, 82, 0.678)'
-        elemento.style.color = ''
-      }
-    })
-    if(screenWidth < 500){
-      document.getElementById('conti-boton').style.top=''
+  setTimeout(() => {
+    document.body.style.zoom = "100%"    
+  }, 10);
+  setTimeout(() => {
+    showButtonsMAconRetraso()  
+  }, 20);  
+  arrayIdButtsMA .forEach(function (elto) {
+    let elemento = document.getElementById(elto)    
+    if (elemento) {
+      elemento.style.backgroundColor = 'rgba(83, 82, 82, 0.678)'
+      elemento.style.color = ''
     }
+  })
+  if(screenWidth < 500){
+    document.getElementById('conti-boton').style.top=''
+  }
   if (typeof elementId !== 'undefined') {
     const index = idsArray.indexOf(elementId)
     if (index !== -1) {
@@ -1795,12 +1796,12 @@ function secuenciaEntrena(){
   padre.style.top='9.3vh'
   padre.style.left='40vw'
 
-  document.getElementById('butt-links-II').style.display='flex'
-  document.getElementById('butt-links-II').style.left='68vw'
-  document.getElementById('butt-links-II').style.top='95vh'
+  botonVolver.style.display='flex'
+  botonVolver.style.left='68vw'
+  botonVolver.style.top='95vh'
   if(screenWidth < 500){
-    document.getElementById('butt-links-II').style.display='flex'
-    document.getElementById('butt-links-II').style.left=''
+    botonVolver.style.display='flex'
+    botonVolver.style.left=''
     let etiquetas = document.getElementById('etqts-festo')
     etiquetas.style.display='flex'
 
@@ -2202,7 +2203,7 @@ btnSalirRH.addEventListener('click',()=>{
   desactivarClick(['.btn-baja']);
   desaparecerElemento(interfazRRHH.id, 'grid')
   panelDeBajas.classList.remove('move-panel-salir')
-  cortina.style.display='none'
+  blurOverlay.style.display='none'
 
 })
 btnAgregar.addEventListener('click', agregarEmpleado);

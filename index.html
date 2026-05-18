@@ -921,17 +921,17 @@
     </div>
     <div id="conteneMantaut" class="mantAuto">
       <div id="conti-boton">
-        <button class="butt-mautonomo" onclick="deslizaContenedor('troubleshooting','troubleshoot')">TROUBLESHOOTING</button>
-        <button class="butt-mautonomo" onclick="deslizaContenedor('canvasContainer2','def1')">DEFECTOS TIPO 1</button>
-        <button class="butt-mautonomo" onclick="deslizaContenedor('contChecks','def2')">DEFECTOS TIPO 2</button>
-        <button class="butt-mautonomo" onclick="deslizaContenedor('canvasContainer3','adtBut')">ADT</button>
-        <button class="butt-mautonomo" onclick="deslizaContenedor('contImagNeg','fua1')">FUA</button>         
-        <button class="butt-mautonomo" onclick="deslizaContenedor('contImagGraf','lup')">LUP</button>
-        <button class="butt-mautonomo" onclick="deslizaContenedor('conti-boton-kaizen','kaizen')">KAIZEN</button>
-        <button class="butt-mautonomo" onclick="resetBotns('troubleshoot')" style="background-color: red;color: white;">Reset</button>
-        <button class="butt-mautonomo" onclick="building()" style="background-color: red;color: white;">Show everything</button>
-        <!-- <button class="butt-mautonomo" onclick="resultadosMA('interfaz-mtto')">TRACKING DASHBOARD</button>
-        <button class="butt-mautonomo" onclick="ingresoEmpleadoMA()">REGISTRO</button> -->               
+        <button class="btn-torre" onclick="deslizaContenedor('troubleshooting','troubleshoot')">SOLUCIONADOR</button>
+        <button class="btn-torre" onclick="deslizaContenedor('canvasContainer2','def1')">DEF. TIPO 1</button>
+        <button class="btn-torre" onclick="deslizaContenedor('contChecks','def2')">DEF. TIPO 2</button>
+        <button class="btn-torre" onclick="deslizaContenedor('canvasContainer3','adtBut')">ADT</button>
+        <button class="btn-torre" onclick="deslizaContenedor('contImagNeg','fua1')">FUA</button>         
+        <button class="btn-torre" onclick="deslizaContenedor('contImagGraf','lup')">LUP</button>
+        <button class="btn-torre" onclick="deslizaContenedor('conti-boton-kaizen','kaizen')">KAIZEN</button>
+        <button class="btn-torre" onclick="resetBotns('troubleshoot')" style="background-color: red;color: white;">Reset</button>
+        <button class="btn-torre" onclick="building()" style="background-color: red;color: white;">Show everything</button>
+        <!-- <button onclick="resultadosMA('interfaz-mtto')">TRACKING DASHBOARD</button>
+        <button onclick="ingresoEmpleadoMA()">REGISTRO</button> -->               
       </div> 
 
       <div id="troubleshooting" class="contenedor-pariente class-line">
@@ -3768,14 +3768,6 @@
 
     </nav>
 
-    <!-- <div id="contenedor-botonera" data-display="grid">
-      <button>Interfaz azul</button>
-      <button>Barras amarillas</button>
-      <button>Sheeter</button>
-      <button>Tapa lateral</button>
-      <button>Cureña</button>
-    </div>  --> 
-
     <div id="contenedor-botonera" data-display="flex">
       <button class="btn-torre">Torre 1</button>
       <button class="btn-torre">Torre 2</button>
@@ -4023,6 +4015,7 @@
 
           <button for="numDoc" id="limpia-ingreso-ma" class="entrada-empleado">Limpiar campos</button>
           <button for="numDoc" id="nuevo-ingreso-ma" class="entrada-empleado" tabindex="11">Actualizar</button>
+          <button for="numDoc" id="salir-ma" class="entrada-empleado" tabindex="11">Salir</button>
 
         </div>
 
@@ -4465,46 +4458,46 @@
           <input id="input-foto-empl" type="text" class="entrada-empleado storeText estilo-empl" value="" name="imagen" required readonly inputmode="none">                  
         </div>
 
-<div class="campo">
-  <label>Identificados</label>
-  <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="identificados">
-</div>
+        <div class="campo">
+          <label>Identificados</label>
+          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="identificados">
+        </div>
 
-<div class="campo">
-  <label>Corregidos</label>
-  <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="corregidos">
-</div>
+        <div class="campo">
+          <label>Corregidos</label>
+          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="corregidos">
+        </div>
 
-<div class="campo">
-  <label>Tipo A</label>
-  <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="tipoA">
-</div>
+        <div class="campo">
+          <label>Tipo A</label>
+          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="tipoA">
+        </div>
 
-<div class="campo">
-  <label>Tipo B</label>
-  <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="tipoB">
-</div>
+        <div class="campo">
+          <label>Tipo B</label>
+          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="tipoB">
+        </div>
 
-<div class="campo">
-  <label>Kaizen</label>
-  <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="kaizen">
-</div>
+        <div class="campo">
+          <label>Kaizen</label>
+          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="kaizen">
+        </div>
 
-<div class="campo">
-  <label>ADAS</label>
-  <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="adas">
-</div>
+        <div class="campo">
+          <label>ADAS</label>
+          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="adas">
+        </div>
 
-<div class="campo">
-  <label>ADT</label>
-  <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="adt">
-</div>
+        <div class="campo">
+          <label>ADT</label>
+          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="adt">
+        </div>
 
-<div class="campo">
-  <label>LUP</label>
-  <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="lup">
-</div>
-        
+        <div class="campo">
+          <label>LUP</label>
+          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="lup">
+        </div>
+                
       </div>
 
       <div class="controller">
