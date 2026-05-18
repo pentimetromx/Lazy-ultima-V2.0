@@ -3091,9 +3091,9 @@ function listaEntrenamientosII(btnList) {
       if (el) el.style.display = excluidos.includes(id) ? 'flex' : 'none';
     });
     container1.style.display = 'grid';
-    document.querySelector('#conti-boton').style.display = 'grid';
-    document.querySelector('#conti-boton').style.top=''
-    document.getElementById('troubleshooting').style.display = 'grid';
+    contiButtRepuest.style.display = 'flex';
+    contiButtRepuest.style.top=''
+    troublesh.style.display = 'grid';
   };
 
 
@@ -3184,38 +3184,40 @@ function toggleFullScreen(element) {
 function imagenesPasoApaso(id) {
   activarPantallaCompleta()
   desactivarClicsPorUnTiempo(500);
-  const botoneras = document.querySelector('#conti-boton')
   const conteLink = document.getElementById('linksMA');
   const botones = document.getElementsByClassName('colorClick');
   const padre1 = document.getElementById('padre-1');
   const padre2 = document.getElementById('padre-2');
   const padre3 = document.getElementById('contImaginario');
-
+  const padre4 = document.getElementById('contImaginario-II');
+  const padre5 = document.getElementById('padre-instrucciones');
+  aparecerElemento("butt-links-II", "flex");
   // Reinicio de clases activas
-  [padre1, padre2, padre3].forEach(p => p.classList.remove("activo"));
+  [padre1, padre2, padre3, botonVolver].forEach(p => p.classList.remove("activo"));
 
   // Ajuste general de zoom y posición
   document.body.style.zoom = (screenWidth < 500) ? "100%" : "67%";
-  conteLink.style.left = '43.5vw';
-  conteLink.style.top = '12vh';
+  conteLink.style.left = '30.5vw';
+  conteLink.style.top = '22vh';
 
   const pasos = {
     link1: {
       excluidos: [ 'conteneMantaut', 'butt-links-II', 'largoImpresion', 'linksMA', 'linkLis', 'imag1', 'contImgEntrenos', 'control-neumatico', 'padre-1'],
       scroll: 'control-neumatico',
       accion: () => {
-        padre1.style.top = '20vh';
-        padre1.style.left = '77vw';
+        padre1.style.top = '30vh';
+        padre1.style.left = '62vw';
         aparecerElemento("padre-1", "flex");
         setTimeout(() => animateScroll('control-neumatico'), 800);
       }
+      
     },
     link2: {
       excluidos: ['linksMA', 'butt-links-II', 'linkLis', 'conteneMantaut', 'largoImpresion', 'contImgEntrenos', 'padre-2', 'imag2', 'pneumatico', 'contImaginario-III'],
       scroll: 'pneumatico',
       accion: () => {
-        padre2.style.top = '20vh';
-        padre2.style.left = '77vw';
+        padre2.style.top = '30vh';
+        padre2.style.left = '62vw';
         aparecerElemento("padre-2", "flex");
         setTimeout(() => animateScroll('pneumatico'), 1000);
       }
@@ -3225,16 +3227,16 @@ function imagenesPasoApaso(id) {
       scroll: 'bailarina',
       accion: () => {
         aparecerElemento("contImaginario", "flex");
-        padre3.style.top = '20vh';
-        padre3.style.left = '77vw';
+        padre3.style.top = '30vh';
+        padre3.style.left = '62vw';
       }
     },
     'contImaginario-II': {
       excluidos: [ 'largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'imag4', 'rodillo-infeed', 'contImaginario-II'],
       scroll: 'rodillo-infeed',
       accion: () => {
-        padre3.style.top = '20vh';
-        padre3.style.left = '77vw';
+        padre4.style.top = '30vh';
+        padre4.style.left = '62vw';
         aparecerElemento("contImaginario-II", "flex");
         setTimeout(() => animateScroll('rodillo-infeed'), 1000);
       }
@@ -3243,8 +3245,8 @@ function imagenesPasoApaso(id) {
       excluidos: ['largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'puesta-punto'],
       scroll: 'puesta-punto',
       accion: () => {
-        padre3.style.top = '20vh';
-        padre3.style.left = '77vw';
+        padre5.style.top = '30vh';
+        padre5.style.left = '62vw';
         aparecerElemento("puesta-punto", "flex");
         aparecerElemento("padre-instrucciones", "flex");
         setTimeout(() => animateScroll('puesta-punto'), 1000);
@@ -3260,11 +3262,11 @@ function imagenesPasoApaso(id) {
     const el = document.getElementById(elId);
     if (el) el.style.display = paso.excluidos.includes(elId) ? 'flex' : 'none';
   });
-  botoneras.style.display = 'grid';
-  botoneras.style.top='14vh'
+  contiButtRepuest.style.display = 'flex';
+  contiButtRepuest.style.top='14vh'
   troublesh.style.display = 'grid';
-  troublesh.style.left = (screenWidth < 500) ? '2px' : '11.5%';
-  troublesh.style.top='15vh'
+  troublesh.style.left = (screenWidth < 500) ? '2px' : '1.5%';
+  troublesh.style.top='25vh'
   // Ejecutar acción específica del paso
   paso.accion();
 
@@ -3474,8 +3476,8 @@ function LubricaDesbobinador(idButt) {
       manejarTransicion('child-div', 'inicio', 'marco-lubrica',1200);
       alternarButtsFreno(idButt)
       if(screenWidth < 500){
-        document.getElementById('butt-links-II').style.display='flex'
-        document.getElementById('butt-links-II').style.top='64vh'
+        botonVolver.style.display='flex'
+        botonVolver.style.top='64vh'
       }
 
     break; 
@@ -3531,9 +3533,8 @@ function LubricaDesbobinador(idButt) {
       container1.style.display='grid'
       alternarButtsFreno(idButt)
       if(screenWidth < 500){
-        let boton = document.getElementById('butt-links-II')
-        boton.style .display='flex'
-        boton.style.left='33vw'
+        botonVolver.style .display='flex'
+        botonVolver.style.left='33vw'
       }
     break;
     case 'btn70': 
@@ -4223,9 +4224,8 @@ function rodillosTeñido(botId) {
       reproducirVideo('rodilleria-vid');
       manejarTransicion('child-div-I', 'abuelo-cuadricula', 'marco-repuestos',1100);
       if(screenWidth < 500){
-        let boton = document.getElementById('butt-links-II')
-        boton.style.display='flex'
-        boton.style.top='88vh'
+        botonVolver.style.display='flex'
+        botonVolver.style.top='88vh'
       }
     break;
     case 'btn07':
@@ -4241,9 +4241,8 @@ function rodillosTeñido(botId) {
       alternarButtsnRodilleria(botId)
       manejarTransicion('item-movil', 'grilla-durezas', 'marco-durezas',1100);
       if(screenWidth < 500){
-        let boton = document.getElementById('butt-links-II')
-        boton.style.display='flex'
-        boton.style.top='77vh'
+        botonVolver.style.display='flex'
+        botonVolver.style.top='77vh'
       }
       
     break;
@@ -4314,8 +4313,8 @@ function lubricaDiario(butId,labelId){
       }
       manejarTransicion('child-move', 'lubricantes', 'marco-lubricantes',1200);
       if(screenWidth < 500){
-        document.getElementById('butt-links-II').style.display='flex'
-        document.getElementById('butt-links-II').style.top='64%'
+        botonVolver.style.display='flex'
+        botonVolver.style.top='64%'
       }
     break;
     case 'lub-semanal':

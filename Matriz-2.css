@@ -4026,14 +4026,19 @@ top: 44%;
   transform: skewX(-8deg);
   background: #e8e8e6;
   border: 0.5px solid #c4c4c0;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 0.5em;
   color: #666663;
   transition: all 0.15s ease;
   box-shadow: 0 4px 0 #a0a09e, 0 5px 3px rgba(0,0,0,0.2);
   position: relative;
   top: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  min-width: 0;
+  padding: 0 2px;
 }
 .btn-torre:hover {
   background: #1e3aff;
@@ -4048,7 +4053,6 @@ top: 44%;
   background: #1e3aff;
   color: #e8e8e6;
   transform: skewX(-8deg) scaleY(0.97);
-  font-size: 15px;
 }
 
 .marco {

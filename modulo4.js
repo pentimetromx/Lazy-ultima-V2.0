@@ -1869,6 +1869,9 @@ function ingresoEmpleado(){
     const el = document.getElementById(id);
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
   });
+
+  activarBlur(0,8)
+
   inputRRHH.disabled = false;
   cortina.classList.remove('overlayRRHH')
   const inputs = document.querySelectorAll('.verGraficos');
@@ -1925,6 +1928,7 @@ function ingresoEmpleadoMA(){
   inputs.forEach(input => {
     input.style.backgroundColor = '';
   });
+  activarBlur(0,9)
 
   flagEmpleado = true
   interfazMA.removeAttribute('style');
