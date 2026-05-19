@@ -1351,6 +1351,11 @@ function ElementosMaII(elementId){
       elemento.style.top = "";
     }
   });
+
+  document.querySelectorAll('.btn-torre').forEach(btn => {
+    document.querySelectorAll('.btn-torre').forEach(b => b.classList.remove('activo'));
+  });
+
   activarPantallaCompleta();
   container1.style.display='grid'
   setTimeout(() => {
