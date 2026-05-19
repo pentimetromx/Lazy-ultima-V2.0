@@ -3092,7 +3092,6 @@ function listaEntrenamientosII(btnList) {
     });
     container1.style.display = 'grid';
     contiButtRepuest.style.display = 'flex';
-    contiButtRepuest.style.top=''
     troublesh.style.display = 'grid';
   };
 
@@ -3108,10 +3107,14 @@ function listaEntrenamientosII(btnList) {
 
   switch (btnList) {
     case 'archivo':
-      mostrarElementos(['buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos','linksMA','linkLis']);
+      mostrarElementos(['buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos','linksMA','linkLis','conti-boton']);
       aparecerElemento("linksMA", "flex");
       actualizarBotones(btnList);
-      if (screenWidth < 500) {  }
+      if (!esDesktop) {
+        document.querySelector('#conti-boton').removeAttribute('style');      
+        document.querySelector("#linksMA").style.top='22vh'
+        document.querySelector('#conti-boton').style.display='flex';      
+      }
       break;
     case 'btt2':
     case 'btt3':
@@ -3199,6 +3202,14 @@ function imagenesPasoApaso(id) {
   document.body.style.zoom = (screenWidth < 500) ? "100%" : "67%";
   conteLink.style.left = '30.5vw';
   conteLink.style.top = '22vh';
+    // Reajuste móvil
+  if (!esDesktop) {
+    Object.assign(troublesh.style, {
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gridTemplateRows: 'repeat(4, 1fr)'
+    });
+      document.querySelector("#linksMA").style.top='24vh'
+  }
 
   const pasos = {
     link1: {
@@ -3223,7 +3234,7 @@ function imagenesPasoApaso(id) {
       }
     },
     contImaginario: {
-      excluidos: ['largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'contImaginario', 'imag3', 'bailarina'],
+      excluidos: ['largoImpresion', 'linksMA', 'linkLis', 'butt-links-II', 'conteneMantaut', 'contImgEntrenos', 'padre-neumat', 'contImaginario', 'imag3', 'bailarina','conti-boton'],
       scroll: 'bailarina',
       accion: () => {
         aparecerElemento("contImaginario", "flex");
@@ -3270,13 +3281,7 @@ function imagenesPasoApaso(id) {
   // Ejecutar acción específica del paso
   paso.accion();
 
-  // Reajuste móvil
-  if (screenWidth < 500) {
-    Object.assign(troublesh.style, {
-      gridTemplateColumns: 'repeat(2, 1fr)',
-      gridTemplateRows: 'repeat(4, 1fr)'
-    });
-  }
+
 
   // Resaltar botón activo
   Array.from(botones).forEach(b => b.style.color = (b.id === id) ? '#28a745' : '');
