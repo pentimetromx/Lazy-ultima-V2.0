@@ -72,7 +72,7 @@ salirPadreRgb.addEventListener('click', () => {
 function deslizaContenedor(identificador, idButton) {
   activarPantallaCompleta()
   restablecerPosiciones(['.ocultos', '.class-line']);
-  /* document.querySelector("#conti-boton").removeAttribute("style"); */  
+  document.querySelector('#conti-boton').setAttribute('style', '');
   troublesh.removeAttribute('style');
   
   clearAllIntervals();
@@ -145,9 +145,8 @@ function deslizaContenedor(identificador, idButton) {
       if (screenWidth < 500) {
         const canvas3 = document.getElementById(identificador);
         if (canvas3) canvas3.style.marginTop = '12%';
-        const conti = document.getElementById('conti-boton');
-        conti.style.top = '20vh';
-        conti.style.display = 'flex';
+        contiButtRepuest.style.top = '20vh';
+        contiButtRepuest.style.display = 'flex';
       }
       actualizarIdsArray(identificador);
       break;
@@ -1092,7 +1091,7 @@ function rodillosKaizen(idButton,vidElem) {
       })
     break;
     case 'btn17':
-      elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen','conti-boton']  
+      elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-kaizen']  
       for (let i = 0; i < allContenedores.length; i++) { 
         let elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
