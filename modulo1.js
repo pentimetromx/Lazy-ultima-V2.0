@@ -3103,7 +3103,7 @@ function listaEntrenamientosII(btnList) {
       boton.classList.toggle('activo', id === btnActivo);
     });
   };
-
+  document.querySelector('#conti-boton').removeAttribute('style');      
 
   switch (btnList) {
     case 'archivo':

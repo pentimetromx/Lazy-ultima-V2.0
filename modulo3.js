@@ -5731,6 +5731,7 @@ function mostrarNombresDeObjetos() {
     restablecerClick(['.estilo-1']);
     const panelUno = document.getElementById('panel-uno');
     const perfilador = document.querySelector('#perfiles-color');
+    blurOverlay.style.display='none'
 
     creaNombre.value = nombreCapitalizado;         
     const nombreCliente = document.querySelector('.nombre-cliente');
@@ -5819,6 +5820,8 @@ function mostrarNombresDeObjetos() {
     if(inputBuscar)inputBuscar.style.display='none'
     menuContextual.style.display = 'none';
     restablecerClick(['.base-datos']);
+    blurOverlay.style.display='none'
+    
   });
   console.log('Nombres de objetos mostrados en lista-clientes:', Object.keys(almacenCapitalizado));
 }
@@ -7348,13 +7351,13 @@ document.querySelector('#save-tecnology').addEventListener('click', ()=>{
 creaNombre.addEventListener('click', () => {
   document.querySelector('#nombre-Perfil').value = ''
   creaNombre.value = ''
-
+  activarBlur(0,220)
   botonesPerfilColor.forEach(elemento => {   
     elemento.style.display = 'block';   
   });
   limpiarColoresDeFondo()
   desactivarClick(['.butt-perfiles', '.estilo-1']);  
-  mostrarNombresDeObjetos();  
+  mostrarNombresDeObjetos();
 });
 
 function pintarColor() {

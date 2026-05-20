@@ -1869,9 +1869,7 @@ function ingresoEmpleado(){
     const el = document.getElementById(id);
     if (el) el.style.display = excluidos.includes(id) ? 'grid' : 'none';
   });
-
   activarBlur(0,8)
-
   inputRRHH.disabled = false;
   cortina.classList.remove('overlayRRHH')
   const inputs = document.querySelectorAll('.verGraficos');
@@ -1890,11 +1888,9 @@ function ingresoEmpleado(){
           input.readOnly = true; 
         }
       });      
-
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
       calculadora.classList.remove('move-calculadora-up')
-
       reUbicarElemento('calculadora', {
         display: 'grid',
         left: '40vw',
@@ -3773,6 +3769,11 @@ hijosTec.forEach((li, index) => {
   });
 });
 
+document.querySelector("#salir-ma").addEventListener('click',()=>{
+  desaparecerElemento(interfazMA.id, 'grid')
+  blurOverlay.style.display='none'
+})
+
 document.querySelector("#input-documento").addEventListener('click',()=>{
   if (!esDesktop) {
     ubicaCalculadoraSegunContexto();
@@ -3964,9 +3965,9 @@ imgsKaizen.addEventListener('click', (e) => {
     if(turnGraphic === false){
       turnGraphic = true
     }
-      cortina.classList.remove('overlayKaizen')
-      cortina.style.display = '';
-      cortina.classList.add('overlayImagenesKaizen');
+    cortina.classList.remove('overlayKaizen')
+    cortina.style.display = '';
+    cortina.classList.add('overlayImagenesKaizen');
 
   }, 500); 
 
@@ -4735,7 +4736,8 @@ function configurarInput(input) {
 /* ***************************************************************************************************************************************** */
 
 document.querySelector('#registro-baja').addEventListener('click', () => {
-  const inputsIngresoEmpl = formularioNuevoIngreso.querySelectorAll('.dato-ma, select[required]');
+
+  const inputsIngresoEmpl = formularioNuevoIngreso.querySelectorAll('input, select');
 
   const existeVacio = [...inputsIngresoEmpl].some(input => input.value.trim() === '');
   if (existeVacio) {
@@ -4894,7 +4896,9 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
     btn.removeAttribute('style');
 
     if (index === 0) {
-      bloqueador.style.display = 'none';
+      cortina.classList.remove('overlayKaizen')
+      cortina.style.display = '';
+      cortina.classList.add('overlayImagenesKaizen');
       fichasTecnicas.classList.remove('activo')
       setTimeout(() => {
         fichasTecnicas.classList.add('activo')
