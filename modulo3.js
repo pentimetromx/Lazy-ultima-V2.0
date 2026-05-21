@@ -12,6 +12,7 @@ document.addEventListener('keydown', function(event) {
       case 'Z':
       /* localStorage.removeItem('kaizenRegistrados'); */
       /* mostrarPorClaveLocalStore('empleadosRegistrados') */
+            desactivarBlur()      
 
       break;  
       case 'H':
