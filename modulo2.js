@@ -13,6 +13,7 @@
 }
 // CLICK EN CUARTO BOTON DE BUSCADOR
 function aparecerElemento(id, display = "grid") {
+
   const contenedor = document.getElementById(id);
   if (!contenedor) return;
   if(id==='fichas-tecnicas')bloqueador.style.display='block'
@@ -125,14 +126,20 @@ function deslizaContenedor(identificador, idButton) {
       break;
 
     case 'contChecks':
+      console.warn('CONTcHECKS');
+      
       setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'general', 'first_half','conti-boton']);
       activarLayout();
       stopWidth = false;
       document.getElementById('general').style.display = 'block';
       document.getElementById('first_half').style.display = 'grid';
-      setTimeout(firstMovement, 7);
-      setTimeout(secondMovement, 117);
+      /* setTimeout(firstMovement, 7); */
+      setTimeout(secondMovement, 400);
       actualizarIdsArray(identificador);
+
+      /* setTimeout(() => {
+        debugger
+      }, 1000); */
       break;
 
     case 'canvasContainer3':
@@ -862,6 +869,8 @@ function ocultarIndicaciones(idIndicador) {
 
 function rodillosKaizen(idButton,vidElem) {
   let buttsTerceros = document.getElementsByClassName('butt-mautonomo-planos') 
+  let casoEstudio = document.getElementById('casos-kaizen')
+  
   let imgsEstudio = document.getElementById('mejoras-kai')
   let contMateriales = document.getElementById('materiales-kaizen')
   let contplanosKaizen = document.getElementById('planos-kaizen')
@@ -887,38 +896,10 @@ function rodillosKaizen(idButton,vidElem) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
         }
       } 
+      activarBlur(0,115,null,null,null,null)
       container1.style.display='grid'
       contiButtRepuest.style.display='flex'
-      if(screenWidth < 500){
-        for (let i = 0; i < buttsToyota.length; i++) {
-          let elemento = document.getElementById(buttsToyota[i])      
-          let estiloDisplay = window.getComputedStyle(elemento).getPropertyValue('display')
-          elemento.style.display = 'none'
-        }
-        imgsEstudio.classList.remove('move-casos')        
-        casoEstudio.removeAttribute('style')
-        casoEstudio.style.display = 'none' 
-        casoEstudio.style.left=''
-        imgsEstudio.style.display = 'none'       
-        const imagenes = document.querySelectorAll('.imgs-toyota');
-        imagenes.forEach((imagen, index) => {
-          setTimeout(() => {
-              imagen.style.display = 'block';
-          }, 400 + index * 177);
-          desactivarClicsPorUnTiempo(3000)
-          setTimeout(() => {
-            imgsEstudio.style.display = 'flex'       
-            casoEstudio.style.display = 'flex'  
-            casoEstudio.classList.remove('move-label')    
-          }, 1700);
-          setTimeout(() => {
-            casoEstudio.classList.add('move-label')         
-          }, 1710);
-          setTimeout(() => {
-            imgsEstudio.classList.add('move-casos')         
-          }, 1910);  
-        });
-      } else{               
+
       for (let i = 0; i < buttsToyota.length; i++) {
         let elemento = document.getElementById(buttsToyota[i])      
         if (elemento) {
@@ -930,11 +911,14 @@ function rodillosKaizen(idButton,vidElem) {
           }
         }
       }
+
       transicionImagenes()
       setTimeout(() => {
-      apilarCasos()        
+        apilarCasos()  
       }, 1500);
-    } 
+      setTimeout(() => {
+        desactivarBlur() 
+      }, 2500);
     break;
     case 'btn11':
       elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut','conti-boton-planos','conti-boton-kaizen']  
@@ -1099,7 +1083,8 @@ function rodillosKaizen(idButton,vidElem) {
         }
       };
       container1.style.display='grid'
-      document.querySelector('#fichas-tecnicas').style.display='flex'
+      fichasTecnicas.style.display='flex'
+      imgsKaizen.classList.remove('ocultar-padre');
       const cells = document.querySelectorAll('#kaizen-propuestos > .cell');
       cells.forEach((cell, index) => {
         if (index === 0) {
@@ -4367,13 +4352,11 @@ function showMetrics(){
   }, 907);
 }   
 function firstMovement(){
-  stopWidth = false
-  let slider1 = document.getElementById('first_half')
-  let estilosAplicados = window.getComputedStyle(slider1)
-  for (let i = 0; i < estilosAplicados.length; i++) {
-    let propiedad = estilosAplicados[i];
-    slider1.style[propiedad] = ""; // Establecer el estilo en una cadena vacía
-  }
+  stopWidth = false;
+  let slider1 = document.getElementById('first_half');
+  
+  // Solo eliminar estilos inline, no todos los computados
+  slider1.setAttribute('style', '');
 
   clearAllIntervals(firstMid) 
   removeInlineStyles(imgWallStreetI); 
@@ -4408,6 +4391,7 @@ function secondMovement(){
   clearInterval(INTERVALOS.intervaloXXXIII);
   removeInlineStyles(imgWallStreet); 
 
+
   function makeElementsVisibleSimultaneously(parentId1, parentId2) {
     let parentElement1 = document.getElementById(parentId1);
     let parentElement2 = document.getElementById(parentId2);
@@ -4420,21 +4404,19 @@ function secondMovement(){
 
     let maxLength = Math.max(childElements1.length, childElements2.length);
 
-    let intervaloNichos = null
-
     for (let i = 0; i < maxLength; i++) {
-       intervaloNichos = setInterval(() => {
-        if (i < childElements1.length) {
-          childElements1[i].style.display = 'inline-block';
-          childElements1[i].style.visibility = 'visible';
-      }
-      if (i < childElements2.length) {
-          childElements2[i].style.display = 'inline-block';
-          childElements2[i].style.visibility = 'visible';
-      }        
-      }, 100);
+        setTimeout(() => {
+            if (i < childElements1.length) {
+                childElements1[i].style.display = 'inline-block';
+                childElements1[i].style.visibility = 'visible';
+            }
+            if (i < childElements2.length) {
+                childElements2[i].style.display = 'inline-block';
+                childElements2[i].style.visibility = 'visible';
+            }
+        }, i * 100); // cada hijo aparece 100ms después del anterior
     }
-  }
+  }  
 
   // Hacer visibles los hijos de 'second_half' y 'nicho_spans' simultáneamente
   makeElementsVisibleSimultaneously('second_half', 'nicho_spans');

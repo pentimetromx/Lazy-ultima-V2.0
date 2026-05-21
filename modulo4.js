@@ -1167,11 +1167,15 @@ function obtenerDiasDelMes(nombreMes) {
 }
 
 
-function activarBlur(nivelBlur = 1, nivelZ = 2005) {
+function activarBlur(nivelBlur = 1, nivelZ = 2005, top = null, left = null, ancho = null, alto = null) {
   blurOverlay.style.display = 'block';
   blurOverlay.style.backdropFilter = `blur(${nivelBlur}px)`;
   blurOverlay.style.webkitBackdropFilter = `blur(${nivelBlur}px)`;
   blurOverlay.style.zIndex = nivelZ;
+  if (top !== null) blurOverlay.style.top = top;
+  if (left !== null) blurOverlay.style.left = left;
+  if (ancho !== null) blurOverlay.style.width = ancho;
+  if (alto !== null) blurOverlay.style.height = alto;
 }
 
 
@@ -3947,7 +3951,7 @@ kaizens.forEach((grafico, index) => {
 imgsKaizen.addEventListener('click', (e) => {
   const focusables = document.querySelectorAll('.current-focus')
   focusables.forEach(focusable =>{focusable.value=''})
-
+  imgsKaizen.classList.add('ocultar-padre');
   imgsKaizen.style.zIndex = '100';
   const cellSeleccionada = e.target.closest('.cell');
   if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;
@@ -4891,7 +4895,6 @@ function habilitarEdicion(){
 }
 
 document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
-
   btn.addEventListener('click', () => {
     btn.removeAttribute('style');
 
@@ -4922,14 +4925,15 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
       fichaGrid.reset();
       desaparecerElemento("fichas-tecnicas")
       bloqueador.style.display='none' 
-      rodillosKaizen('btn17','')    
+      rodillosKaizen('btn17','')   
+      imgsKaizen.classList.remove('ocultar-padre');
     }
     if (index === 3) {
       fichaGrid.reset();  
     }
     if (index === 4) {
       aparecerElemento("kaizen-buscador",'grid')
-      /* document.querySelector('.lista-propuestas').innerHTML = ''; */
+      contenedorPropuesta.innerHTML = '';
     }    
   });
 

@@ -5663,15 +5663,17 @@ button:hover{
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(8px);
 }
-.overlayImagenesKaizen{
+.overlayBenchMark{
   position: absolute;
   display: block;
-  top:15%;
-  right: 0;
-  width: 72vw;
-  height: 80vh;
+  top:1%;
+  left: 13vw;
+  width: 90vw;
+  height: 87vh;
   z-index: 1001;
+  background:yellow;
 }
+
 .overlayVisor{
   position: absolute;
   display: block !important;
@@ -8872,6 +8874,7 @@ button:hover{
     z-index: 7;
     display: none;
     padding: 0;
+    z-index: 100;
   }
   #toyota-kaizen{
     position: relative;
