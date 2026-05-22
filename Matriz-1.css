@@ -1957,6 +1957,7 @@ width:447px ;
   transform: scale(0);
   transform-origin: center;
   transition: transform 1s ease;
+  z-index: 110;
 }
 #abuelo-grafica12{
   position: absolute;
@@ -2329,9 +2330,10 @@ header {
   align-items: center;
   border-radius: 21px; 
   background-color: black;
-  transform: scale(0);          /* empieza reducido */
-  transform-origin: center;     /* crece desde el centro */
-  transition: transform 1s ease; /* animación de 1000ms */
+  transform: scale(0); 
+  transform-origin: center; 
+  z-index: 110;
+  transition: transform 1s ease; 
 
   outline: 2px solid #C0C0C0;
   outline-offset: 3px;
@@ -5831,74 +5833,7 @@ input.numero:focus {
   transform: translate3d(-208%, -151%, 0);
   transition: transform 0.9s ease;
 }
-#first_half {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  left: 2%;
-  top: -54.5%;
-  height: 23%;
-  width: 31%;
-  display: none;
-  align-items: flex-end;
-}
-#first_half .first_table {
-  position: relative;
-  top: 100%;
-  display: inline-block;
-  width: 100%;
-  background-color: #adff2f;
-  border-radius: 5px 5px 0 0;
-}
 
-#cortina{
-  position: absolute;
-  display: flex;
-  left: 19%;
-  top: 45.3%;
-  width: 31vw;
-  height: 1px;
-  object-fit: fill;
-  opacity: 0.7;
-  background-image: url('./assets/grafico\ avanzado.png');
-  background-size: cover;
-  background-position: center;  
-  z-index: 4;
-  display: none;
-}
- #cortina_II{
-  position: absolute;
-  display: flex;
-  top: -7.5%;
-  width:0.1px;
-  height: 107.5%;
-  opacity: 0.7;
-  background-image: url('./assets/grafico\ lineasIII.png');
-  background-size: cover;
-  background-position: center; 
-  z-index: 4;
-  display: none;
-}
-#second_half {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  left: -29%;
-  top: -31.3%;
-  height: 14%;
-  width: 31%;
-  display: none;
-}
-#second_half .iniciadores{
-  top: 0;
-  display: inline-block;
-  width: 100%;
-  background-color: #adff2f;
-  border-radius: 0 0 5px 5px;
-  display: none;
-}
 #nicho_spans{
   position: relative;
   display: grid;
@@ -8110,7 +8045,6 @@ background-color: #3FEF9C;
   align-items: center;
   justify-content: center;
 }
-
 .btn-volver::after {
   content: "\25C0";
   color: white;
@@ -8120,7 +8054,6 @@ background-color: #3FEF9C;
   top: 45%;
   transform: translateY(-50%);
 }
-
 .buscador-kaizen h3{
   grid-area: titulo;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -8129,12 +8062,10 @@ background-color: #3FEF9C;
   margin: auto;
   align-self: center;
 }
-
 .input-propositor{
   grid-area: input;
   width: 100%;
 }
-
 #propositores{
   width: 100%;
   height: 7%;
@@ -8166,4 +8097,48 @@ background-color: #3FEF9C;
   top: -6vh;
   width: 8vw;
   height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+#nivel-superior {
+    position: absolute;
+    width: 30vw;
+    height: 27vh;
+    left: 3vw;
+    top: 29vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+.first_table {
+  flex: 1;
+  height: 0; /* inicia en 0, se anima a 100% */
+  margin-left: 1px;
+  border-radius: 4px 4px 0 0;
+  background-color: yellow;
+}
+#nivel-inferior {
+    position: absolute;
+    width: 30vw;
+    height: 27vh;
+    left: 3vw;
+    top: 56vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+}
+.second_table {
+  flex: 1;
+  margin-left: 1px;
+  height: 0;
+  border-radius: 0 0 4px 4px;
+  background: #C8A84B;
 }

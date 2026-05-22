@@ -75,6 +75,8 @@ function deslizaContenedor(identificador, idButton) {
   restablecerPosiciones(['.ocultos', '.class-line']);
   document.querySelector('#conti-boton').setAttribute('style', '');
   troublesh.removeAttribute('style');
+  stopAnim()
+  stopAnimB() 
   
   clearAllIntervals();
   desactivarClicsPorUnTiempo(500);
@@ -115,7 +117,6 @@ function deslizaContenedor(identificador, idButton) {
       setTimeout(cambiaColorBotones, 510);
       actualizarIdsArray(identificador);
       break;
-
     case 'canvasContainer2':
       setDisplay(['def2', 'buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'MiGrafica', 'general','conti-boton']);
       activarLayout();
@@ -124,24 +125,15 @@ function deslizaContenedor(identificador, idButton) {
       incrementoHeightVII();
       actualizarIdsArray(identificador);
       break;
-
     case 'contChecks':
-      console.warn('CONTcHECKS');
-      
-      setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'general', 'first_half','conti-boton']);
+      setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'general','conti-boton','nivel-superior','nivel-inferior']);
       activarLayout();
       stopWidth = false;
-      document.getElementById('general').style.display = 'block';
-      document.getElementById('first_half').style.display = 'grid';
-      /* setTimeout(firstMovement, 7); */
-      setTimeout(secondMovement, 400);
+      startAnim()
+      startAnimB() 
+      activarBlur(0,29,null,null,null,null)     
       actualizarIdsArray(identificador);
-
-      /* setTimeout(() => {
-        debugger
-      }, 1000); */
       break;
-
     case 'canvasContainer3':
       setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'general','conti-boton']);
       activarLayout();
@@ -157,7 +149,6 @@ function deslizaContenedor(identificador, idButton) {
       }
       actualizarIdsArray(identificador);
       break;
-
     case 'contImagNeg':
       setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'conti-boton', 'general']);
       activarLayout();
@@ -168,7 +159,6 @@ function deslizaContenedor(identificador, idButton) {
       document.querySelectorAll('.column_spans').forEach(n => n.style.marginTop = '260%');
       actualizarIdsArray(identificador);
       break;
-
     case 'contImagGraf':
       setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'conti-boton', 'general']);
       activarLayout();
@@ -177,7 +167,6 @@ function deslizaContenedor(identificador, idButton) {
       setTimeout(changeColors, 150);
       actualizarIdsArray(identificador);
       break;
-
     case 'conti-boton-kaizen':
       setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut', 'conti-boton']);
       activarLayout();
@@ -185,9 +174,8 @@ function deslizaContenedor(identificador, idButton) {
       showButtonsKaizenRetraso()
       actualizarIdsArray(identificador);
       break;
-
     default:
-      break;
+    break;
   }
 }
 
@@ -4343,91 +4331,7 @@ function detenerCicodelia() {
     intervaloColorsI = null; // Resetea la variable para evitar problemas
   }
 }
-function showMetrics(){
-  setTimeout(() => {
-    firstMovement()
-  }, 7);
-  setTimeout(() => {
-    secondMovement()
-  }, 907);
-}   
-function firstMovement(){
-  stopWidth = false;
-  let slider1 = document.getElementById('first_half');
-  
-  // Solo eliminar estilos inline, no todos los computados
-  slider1.setAttribute('style', '');
 
-  clearAllIntervals(firstMid) 
-  removeInlineStyles(imgWallStreetI); 
-  incrementoHeightXI()  
-  incrementoHeightXII()
-  incrementoHeightXIII()
-  incrementoHeightXIV() 
-  incrementoHeightXV()
-}
-function secondMovement(){
-  let padre = document.getElementById('nicho_spans');    
-  if (padre) {
-    padre.style.display = 'none';
-      let hijos = padre.children;
-    for (let i = 0; i < hijos.length; i++) {
-      hijos[i].style.display = 'none';
-    }
-  }
-  let elementosExcluidos = ['def2','general','first_half','second_half','nicho_spans','buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales','conti-boton']  
-  for (let i = 0; i < allContenedores.length; i++) { 
-    let elemento = document.getElementById(allContenedores[i])  
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-    }
-  }
-  container1.style.display='grid'
-  clearInterval(INTERVALOS.intervaloI);
-  clearInterval(INTERVALOS.intervaloII);
-  clearInterval(INTERVALOS.intervaloIII);
-  clearInterval(INTERVALOS.intervaloIV);
-  clearInterval(INTERVALOS.intervaloV);
-  clearInterval(INTERVALOS.intervaloXXXIII);
-  removeInlineStyles(imgWallStreet); 
-
-
-  function makeElementsVisibleSimultaneously(parentId1, parentId2) {
-    let parentElement1 = document.getElementById(parentId1);
-    let parentElement2 = document.getElementById(parentId2);
-
-    parentElement1.style.display = 'grid';
-    parentElement2.style.display = 'grid';
-
-    let childElements1 = parentElement1.children;
-    let childElements2 = parentElement2.children;
-
-    let maxLength = Math.max(childElements1.length, childElements2.length);
-
-    for (let i = 0; i < maxLength; i++) {
-        setTimeout(() => {
-            if (i < childElements1.length) {
-                childElements1[i].style.display = 'inline-block';
-                childElements1[i].style.visibility = 'visible';
-            }
-            if (i < childElements2.length) {
-                childElements2[i].style.display = 'inline-block';
-                childElements2[i].style.visibility = 'visible';
-            }
-        }, i * 100); // cada hijo aparece 100ms después del anterior
-    }
-  }  
-
-  // Hacer visibles los hijos de 'second_half' y 'nicho_spans' simultáneamente
-  makeElementsVisibleSimultaneously('second_half', 'nicho_spans');
-
-  incrementoHeight(barraI, pantallaI,'intervaloI',1);
-  incrementoHeight(barraII, pantallaII,'intervaloII',15);
-  incrementoHeight(barraIII, pantallaIII,'intervaloIII',25);
-  incrementoHeight(barraIV, pantallaIV,'intervaloIV',35);
-  incrementoHeight(barraV, pantallaV,'intervaloV',45)    
-  incrementoWidthI()
-}  
 function thirdMovement(){
   let slider1 = document.getElementById('wall_street_II')
   let estilosAplicados = window.getComputedStyle(slider1)

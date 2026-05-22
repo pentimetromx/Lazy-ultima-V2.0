@@ -12,7 +12,9 @@ document.addEventListener('keydown', function(event) {
       case 'Z':
       /* localStorage.removeItem('kaizenRegistrados'); */
       /* mostrarPorClaveLocalStore('empleadosRegistrados') */
-            desactivarBlur()      
+            desactivarBlur() 
+            stopAnim()
+            stopAnimB()     
 
       break;  
       case 'H':
@@ -4356,6 +4358,7 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
     let cmykVisible = window.getComputedStyle(conteCMYK).display === 'grid';
     let rgbVisible = window.getComputedStyle(conteRGB).display === 'grid';
     buscaNombre.focus()
+    listaColores.removeAttribute('style')
 
 
     if (!cmykVisible && !rgbVisible) { 
@@ -5335,6 +5338,13 @@ document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
 btnEntrar.addEventListener('click', () => {  
   detenerParpadeo()
 
+  let padreRGB = document.getElementById('padre-rgb')
+  let padreCMYK = document.getElementById('padre-cmyk')
+
+  if (padreRGB.style.display==='grid' || padreCMYK.style.display==='grid') {
+    calculadoraSimulador = true
+  }
+
   if(!calculadoraSimulador){
     desactivarClick(['.butt-perfiles','.digit', '.estilo-1','digito']);
     detenerAlternarColor()
@@ -5654,7 +5664,14 @@ listaClientes.addEventListener('mouseleave', () => {
 const jobs = document.querySelectorAll('.jobs');
 function mostrarNombresDeObjetos() {
   flagAplicacion = true;
-  listaColores.style.display = 'flex';
+
+  if(interfazColor.style.display==='flex'){
+    listaColores.style.display = 'flex';
+    listaColores.style.left='37vw'
+  }else{
+    listaColores.style.display = 'flex';
+    listaColores.style.left='76vw'
+  }
   listaColores.classList.remove('posicion-simulador')
   if(getComputedStyle(conteJobTrack).display === 'flex'){
     listaColores.classList.add('posicion-simulador')
@@ -5824,7 +5841,10 @@ function mostrarNombresDeObjetos() {
     blurOverlay.style.display='none'
     
   });
-  console.log('Nombres de objetos mostrados en lista-clientes:', Object.keys(almacenCapitalizado));
+  console.log('Nombres de objetos mostrados en lista-clientes:', Object.keys(almacenCapitalizado));      
+    
+
+
 }
 
 function buscarPerfil(event) {
@@ -6729,17 +6749,6 @@ function initDrag(elemento) {
     });
   });
 }
-
-/* initDrag(document.getElementById("padre-rgb"));
-initDrag(document.getElementById("padre-cmyk"));
-initResize(
-  document.querySelector("#padre-rgb"),
-  document.querySelector(".esquina-rgb")
-);
-initResize(
-  document.querySelector("#padre-cmyk"),
-  document.querySelector(".esquina-cmyk")
-); */
 function cmykFlotante() { // botones rojos
   var elementosExcluidos = ['colorCMYK','container-slider','simulador','boton-perfiles','boton-reseteo'] 
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -7196,6 +7205,7 @@ function crearPerfilColor() { // crear nuevo desde botón blanco
 
   // Refrescar estado
   traerAlmacenObjetos();
+  debugger
 }
 
 

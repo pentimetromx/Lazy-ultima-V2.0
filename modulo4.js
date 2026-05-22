@@ -4829,7 +4829,7 @@ document.querySelector('#salir').addEventListener('click',()=>{
 function mostrarInterfazIngreso(){
   activarPantallaCompleta()
   calculadoraSimulador = true
-  elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conteneMantaut']  
+  elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']  
   for (let i = 0; i < allContenedores.length; i++) { 
     let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
