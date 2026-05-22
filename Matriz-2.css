@@ -2747,13 +2747,17 @@ width: 70%;
   border: none;
   outline: none;
 }
+.listado-clientes.simulador{
+  display: flex;
+  left: 22vw;
+}
 #lista-lineas{
   top: 55vh;
   left: 35.5vw;
 }
 .listado-clientes.posicion-simulador{
-  left: 35.5vw;
-  top: 42vh;
+  left:69.5vw;
+  top: 40vh;
 }
 
 .listado-lineas > *,
@@ -5379,9 +5383,9 @@ top: 44%;
 .submenu-colorimetria{
   position: absolute;
   top: -7%;
-  left: -50%;
+  left: -100%;
 
-  width: 50%;
+  width: 100%;
   height: 100%;
 
   margin: 0;
@@ -5398,8 +5402,7 @@ top: 44%;
   background-color: #e0e0e0;
   border-bottom: 2px solid #aaa;
   border-top: 2px solid #fff;
-  transition: background-color 0.5s ease, color 0.8s ease;  
-
+  transition: background-color 0.5s ease, color 0.8s ease; 
 }
 .treemap-wrapper {
   position: absolute;
@@ -10047,40 +10050,6 @@ button:hover{
     margin-top:5%;
     transition: left 1.007s ease;
   }
-  #first_half{
-    position: absolute;
-    display:flex;
-    gap:1px;           
-    left:38%;
-    top:10%;
-    height:22.2%;
-    width:55%;
-  }
-  #cortina{
-    position: absolute;
-    display: flex;
-    left:38%;
-    top:32%;
-    width:55%;
-    height: 1%;
-    display:none;
-  }
-  #second_half{
-    position:absolute;
-    display: flex;
-    gap: 1px;
-    left:38%;
-    top:32%;
-    height:22%;
-    width:55%;
-  }
-  #cortina_II{
-    position: absolute;
-    display: flex;
-    top: -7.5%;
-    width:0.1px;
-    height: 107.5%;
-  } 
   #nicho_spans{
     position:absolute;
     display: flex;
