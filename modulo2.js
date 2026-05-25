@@ -4691,36 +4691,92 @@ function reponerEstilos(){
     }
   }
 }
+
+
+
+
 const targetDiv = document.querySelector('.img1');
 const contextMenu = document.getElementById('context-menu');
 
-/* function showContextMenu(x, y) {
-  contextMenu.style.left = `${x - 5}px`;
-  contextMenu.style.top = `${y - 5}px`;
-  contextMenu.style.display = 'block';
-} */
 
-// Menú en PC
-targetDiv.addEventListener('click', (event) => {
-  if(screenWidth > 500){
-    contextMenu.style.display='block'
-    contextMenu.style.position='absolute'
-    contextMenu.style.top= '29vh';
-    contextMenu.style.left='78vw'
-    contextMenu.style.width='10vw'
-  }else{
-    showContextMenu(event.clientX, event.clientY)   
+
+
+
+let timeoutOcultar;
+const esTouch = 'ontouchstart' in window;
+
+function ocultarMenu() {
+  if (esTouch) return; // en táctil nunca ocultar por mouseleave/touchend de targetDiv
+  timeoutOcultar = setTimeout(() => {
+    contextMenu.style.display = 'none';
+  }, 100);
+}
+
+function cancelarOcultar() {
+  clearTimeout(timeoutOcultar);
+}
+
+function mostrarMenu() {
+  if (document.querySelector("#vid_festo").style.display === 'flex') return;
+  if (!esDesktop) {
+    contextMenu.style.display = 'block';
+    contextMenu.style.position = 'absolute';
+    contextMenu.style.top = '49vh';
+    contextMenu.style.left = '61vw';
+    contextMenu.style.width = '20vw';
+  } else {
+    contextMenu.style.display = 'block';
+    contextMenu.style.position = 'absolute';
+    contextMenu.style.top = '29vh';
+    contextMenu.style.left = '78vw';
+    contextMenu.style.width = '20vw';
   }
-}); 
+}
+
+// ── PC ──────────────────────────────────────────
+targetDiv.addEventListener('click', mostrarMenu);
+targetDiv.addEventListener('mouseleave', ocultarMenu);
+contextMenu.addEventListener('mouseenter', cancelarOcultar);
+contextMenu.addEventListener('mouseleave', () => {
+  if (esTouch) return;
+  contextMenu.style.display = 'none';
+});
+
+// ── Táctil ──────────────────────────────────────
+targetDiv.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  mostrarMenu();
+});
+
+// en táctil el menú se cierra solo al tocar fuera de él
+document.addEventListener('touchstart', (e) => {
+  if (!esTouch) return;
+  const dentroMenu = contextMenu.contains(e.target) || e.target === contextMenu;
+  const dentroTarget = targetDiv.contains(e.target) || e.target === targetDiv;
+  if (!dentroMenu && !dentroTarget) {
+    contextMenu.style.display = 'none';
+  }
+});
 contextMenu.addEventListener('mouseleave', () => {
   contextMenu.style.display = 'none';
+});
+contextMenu.addEventListener('touchmove', (e) => {
+  const touch = e.touches[0];
+  const elementoBajo = document.elementFromPoint(touch.clientX, touch.clientY);
+  const sigueEnMenu = contextMenu.contains(elementoBajo) || elementoBajo === contextMenu;
+  if (!sigueEnMenu) {
+    contextMenu.style.display = 'none';
+  }
 });
 // En moviles
 let shouldShowMenu = true;
 
 
 
-targetDiv.addEventListener('touchstart', function(event) {
+
+
+
+/* targetDiv.addEventListener('touchstart', function(event) {
   shouldShowMenu = true;
   setTimeout(() => {
     if (shouldShowMenu) {
@@ -4728,8 +4784,7 @@ targetDiv.addEventListener('touchstart', function(event) {
       const touch = event.touches[0];      
     }
   }, 0);
-}); // sin passive:true
-
+}); */
 
 document.addEventListener('touchstart', (event) => {
   const tocado = event.target;  
@@ -4781,11 +4836,9 @@ subMenu.addEventListener('mouseleave',() =>{
   subMenu.style.display='none'
 })
 
-
 function muestraMenu(){
   document.getElementById('segundaLista').style.display='block'
-}
-  
+}  
 
 let intervalEnEjecucion = false;
 

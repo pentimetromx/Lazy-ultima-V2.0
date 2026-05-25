@@ -1361,7 +1361,6 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
     switch (index) {
       case 0: {
         document.querySelector("#contenedor-global").classList.add('move-panel-ma')
-
         setTimeout(() => {
           aparecerElemento('abuelo-grafica4', 'grid');          
         }, 400);
@@ -2265,7 +2264,6 @@ document.addEventListener('pointerdown', (e) => {
     cortina.classList.remove('overlayRRHH');
     cortina.style.display = 'none';
     listaClientes.style.display = 'none';
-    console.warn('CORTINA ELIMINADA');
   }
 
   if (esDesktop) return;
@@ -3949,6 +3947,7 @@ kaizens.forEach((grafico, index) => {
 });
 //CLICK EN LAS 6 IMAGENES KAIZEN
 imgsKaizen.addEventListener('click', (e) => {
+  document.querySelector("#overlay-kaizen").style.display='block'
   const focusables = document.querySelectorAll('.current-focus')
   focusables.forEach(focusable =>{focusable.value=''})
   imgsKaizen.classList.add('ocultar-padre');
@@ -4895,13 +4894,14 @@ function habilitarEdicion(){
 }
 
 document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
+  const cells = imgsKaizen.querySelectorAll('.cell');
+  const lbl = pantallaKaizen.querySelector('label');
+  const img = pantallaKaizen.querySelector('img');
   btn.addEventListener('click', () => {
     btn.removeAttribute('style');
 
     if (index === 0) {
-      cortina.classList.remove('overlayKaizen')
-      cortina.style.display = '';
-      cortina.classList.add('overlayImagenesKaizen');
+      document.querySelector("#overlay-kaizen").style.display='none'
       fichasTecnicas.classList.remove('activo')
       setTimeout(() => {
         fichasTecnicas.classList.add('activo')
@@ -4927,13 +4927,19 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
       bloqueador.style.display='none' 
       rodillosKaizen('btn17','')   
       imgsKaizen.classList.remove('ocultar-padre');
+      
     }
     if (index === 3) {
+   
       fichaGrid.reset();  
     }
     if (index === 4) {
-      aparecerElemento("kaizen-buscador",'grid')
+      document.querySelector("#kaizen-buscador").style.display='grid'
       contenedorPropuesta.innerHTML = '';
+      propositores.selectedIndex = 0;;
+      lbl.textContent=''
+      img.removeAttribute('src');
+      img.dataset.src = '';
     }    
   });
 
@@ -4987,21 +4993,18 @@ function mostrarPropuestas(nombre) {
 
   if (filtrados.length === 0) {
     const div = document.createElement('div');
-    div.textContent = 'No se encontraron propuestas de mejora';
+    div.className = 'propuesta-vacia';  // ← clase para el estado vacío
+    div.textContent = 'Sin propuestas de mejora';
     contenedorPropuesta.appendChild(div);
     return;
   }
 
   filtrados.forEach(k => {
-
     const div = document.createElement('div');
+    div.className = 'propuesta-item';   // ← clase agregada
     div.textContent = k.propuesta;
-
-    // evento click para cargar ficha técnica
     div.addEventListener('click', () => cargarFichaTecnica(k));
-
     contenedorPropuesta.appendChild(div);
-
   });
 }
 cortinaBloqueo.addEventListener('click',()=>{
@@ -5913,7 +5916,63 @@ document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',(
   
   container1.style.display = 'grid'; 
 })
- 
+
+
+let panelAbierto = false;
+document.querySelector("#contenedor-global .but-job").addEventListener('click', () => {
+
+  if (panelAbierto) {
+    desaparecerElemento('abuelo-grafica4', 'grid');
+    document.querySelector("#contenedor-global").classList.remove('move-panel-ma');
+    panelAbierto = false;
+    return;
+  }
+
+  document.querySelectorAll('.span-semana').forEach(s => {
+    s.style.backgroundColor = '';
+  });
+
+  const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
+  const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';
+
+  if (!hayMesActivo || !hayMaquinaActiva) {
+    alternarColor(firstMachine, secondMachine, 2000);
+    saltarAlerta('Seleccione una Maquina y el Mes', 'lanzaGrafos');
+    return;
+  }
+
+  const abueloGrafica = document.querySelector('#abuelo-grafica4');
+  Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
+    hijo.style.display = '';
+    hijo.style.visibility = 'visible';
+    hijo.style.opacity = '1';
+  });
+
+  document.querySelector("#contenedor-global").classList.add('move-panel-ma');
+
+  setTimeout(() => {
+    aparecerElemento('abuelo-grafica4', 'grid');
+  }, 400);
+
+  setTimeout(() => {
+    const pasos = [
+      crearGraficoMes,
+      crearGraficoSemana,
+      crearGraficoParticipacion,
+      crearGraficoApilado,
+      crearGraficoOperadores,
+      crearGraficoLleno
+    ];
+    let delay = 0;
+    for (const fn of pasos) {
+      setTimeout(fn, delay);
+      delay += 150;
+    }
+  }, 1100);
+
+  panelAbierto = true;
+});
+
 
 
 function borrrrrrarrrr(){

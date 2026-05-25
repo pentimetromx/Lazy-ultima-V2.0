@@ -133,6 +133,7 @@ function restablecerClick(classElements) {
 4. PROMPT PARA GEMINI:
 
 A candid portrait in the style of an old Polaroid photograph, vertical 2:3 aspect ratio. Two individuals are shown from the waist up, one with their arm around the other, looking relaxed and natural. Behind them are plain white curtains. The image exhibits a subtle blur and diffused light as if captured by a flash in a dimly lit space. The overall look should replicate the authentic, slightly faded and light-streaked appearance of a vintage Polaroid, capturing a simple, unposed moment.
+Remove the red flashes visible on the sides of the photograph and do not add any text at the bottom.
 
 
 
@@ -166,6 +167,35 @@ git commit -m "recuperando modulo4.js desde commit a42cb5b6"
 git push
 
 
+
+
+
+PREGUNTAS PARA MI SENIOR ENGINEER IN TO AUTOMATION:
+
+- Es posible conectar con una API de un reproductor de musica y setearlo para que disminuya la velocidad de las canciones según los beats o o mejor los BPM para que reconozca mis gustos y acomode la velocidad de la musica a mi gusto
+ -  
+
+
+
+
+
+element.style {
+    position: absolute;
+    top: 87%;
+    left: 57%;
+    border-radius: 7px;
+    border: 1px solid white;
+    width: 25%;
+    height: 10%;
+    background-image: url("./assets/doubble arrow.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    background-color:#1e3aff;
+}
+
+#1e3aff;
 
 
 

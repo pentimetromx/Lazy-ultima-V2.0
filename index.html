@@ -485,6 +485,7 @@
     </div>
 
     <div id="overlay-cortina" class="overlay"></div>
+    <div id="overlay-kaizen"></div>
 
     <video class="lazy" id="video-background" autoplay loop muted playsinline>
       <source data-src="./assets/galaxy.mp4" type="video/mp4">
@@ -1010,6 +1011,7 @@
         <label class="label">Salva manos en maquina colectora</label>
         <img data-src="./assets/kaizen colectora.jpg" class="lazy kaizen-img" alt="colectora">
       </div>
+      
       <div class="cell" data-index="1">
         <label class="label">Mejora en linea de ensamble</label>
         <img data-src="./assets/kaizen fresa.jpg" class="lazy kaizen-img" alt="colectora">
@@ -1841,6 +1843,7 @@
       <span class="etiqueta-mano">Puesta a punto en equilibrio</span>
       <span class="etiqueta-mano">Mantenimiento del circuito neumatico</span>
     </div>
+
     <div id="padre-1" class="ventana">
       <div id="imag1" class="img1">
         <img data-src="./assets/neumatica.jpg" class="lazy menu" id="image-1" alt="neuma1">
@@ -1850,6 +1853,7 @@
         <h6>PRESIÓN NEUMÁTICA 90 PSI</h6>
         <img data-src="./assets/neumatica2.jpg" class="lazy" id="image-2" alt="neuma2">
       </div>
+
       <div id="control-neumatico" class="guia-neumatica">
         <h1 class="casos-h1" >Estándar 1: Presión Nominal</h1>
         <p class="parrafo-casos">
@@ -1868,7 +1872,9 @@
           Se recomienda realizar un mantenimiento preventivo periódico para verificar y ajustar la presión neumática, asegurando un funcionamiento eficiente del cilindro y evitando posibles fallas y desgastes prematuros.
         </p>
       </div>
+
     </div>
+
     <div id="contBotCasos" class="contOblicuosTorre">
       <button class="Bot-inicio33" id="butt-17" onclick="tamaño100()">Cerrar</button>
       <button class="Bot-inicio33-fondo" id="butt-18"></button>  
@@ -2829,7 +2835,7 @@
         
       </div>
 
-
+      <button class="but-job"></button>  
 
     </div>
 
@@ -3543,9 +3549,9 @@
         <input id="input-a" type="text" inputmode="numeric" autocomplete="off" min="0" max="100">
         
       </div>  
+
       
-      
-    </div>
+    </div>  
 
 
     <div id="contenedor-2" class="calendar-container">
@@ -4531,18 +4537,22 @@
 
     <div id="kaizen-buscador" class="buscador-kaizen">
 
-      <button class="btn-volver">Volver</button>
+      <div class="col-lista">
+        <button class="btn-volver">Volver</button>
 
-      <h3>Kaizen propuestos</h3>
+        <div class="input-propositor">
+            <select id="propositores" class="opcion-empleado current-focus special-text">
+              <option value="">Seleccione...</option>
+            </select>
+        </div>        
 
-      <div class="input-propositor">
-          <select id="propositores" class="opcion-empleado current-focus special-text">
-            <option value="">Seleccione...</option>
-          </select>
       </div>
 
-      <div class="lista-propuestas"></div>
-      
+      <div class="col-titulo">
+        <h3>Kaizen propuestos</h3>
+        <div class="lista-propuestas"></div>
+      </div>
+
     </div>
 
     <div id="panel-principal" class="panel-baja">
