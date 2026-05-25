@@ -387,7 +387,6 @@ color: white;
 #barras-inicio.activo,
 #barras-contenedor.activo,
 #visor-tools.activo,
-.buscador-kaizen.activo,
 #agrupaOblicuos-C.activo,
 #agrupaOblicuos-XC.activo,
 #agrupaOblicuos-DXXX.activo,
@@ -1829,10 +1828,10 @@ width:447px ;
   background-color: rgba(130,125,133,0.1);
   border: 1px solid rgb(111,111,111);
   border-radius: 13px;
-  top: 53%;
+  top: 44%;
   left: 42%;
   width: 24.5vw;
-  height: 27vh;
+  height: 24vh;
   transition: transform 0.5s ease;
   z-index: 2;
   display: none;
@@ -2010,10 +2009,7 @@ width:447px ;
   display: flex; 
   transform: scale(1); 
 }
-/* .card-outer.activo {
-  visibility: visible;
-  transform: scale(1);
-} */
+
 #abuelo-indicadores.administrativo{
   top: 19.6vh;
   left: 35.1vw;
@@ -7157,7 +7153,7 @@ height:100%;
   position:absolute;
   display: grid;
   grid-template-rows: repeat(11, 1fr);
-  top:10%;
+  top:2%;
   left:1%;
   width: 11vw;
   height: 30vh;
@@ -7176,7 +7172,7 @@ height:100%;
 #titulo-calendar{
   position: absolute;
   display: flex;
-  top:10%;
+  top:2%;
   left:43%;
   width: 11vw;
   height: 3vh;
@@ -7198,7 +7194,7 @@ height:100%;
 #titulo-mes{
   position: absolute;
   display: flex;
-  top:10%;
+  top:2%;
   left:65%;
   width: 11vw;
   height: 3vh;
@@ -7221,7 +7217,7 @@ height:100%;
   position: absolute;   
   display: flex;
   flex-direction: column;
-  top:16%;
+  top:8%;
   left:42%;
   gap: 5px;
   width:44%;
@@ -7241,7 +7237,7 @@ height:100%;
   position: absolute;
   display: grid;
   grid-template-rows: repeat(7, 1fr);
-  top: 16%;
+  top: 9%;
   left: 88%;
   width: 4vw;
   height: 20vh;
@@ -7254,18 +7250,18 @@ height:100%;
   transition: transform 1s ease, filter 0.5s ease;
 }
 #meses {
-  position: absolute;
-  top: 10%;
-  left: 27.4%;
-  display: grid;
-  grid-template-rows: repeat(12, 1fr);
-  gap: 5px;
-  height: 51vh;
-  width: 6vw;
-  display: none;
-  transform: scale(0);
-  transform-origin: center;
-  transition: transform 1s ease, filter 0.5s ease;
+    position: absolute;
+    top: 2%;
+    left: 27.4%;
+    display: grid;
+    grid-template-rows: repeat(12, 1fr);
+    gap: 5px;
+    height: 49vh;
+    width: 6vw;
+    display: none;
+    transform: scale(0);
+    transform-origin: center;
+    transition: transform 1s ease, filter 0.5s ease;
 }
 #padre-ingresos-ma,
 #padre-ingresos{
@@ -8003,93 +7999,6 @@ background-color: #3FEF9C;
 .input-activo {
   background-color: #fff3b0; /* amarillo suave profesional */
 }
-.buscador-kaizen{
-  position: absolute;
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr;
-
-  grid-template-areas:
-    "boton titulo"
-    "input lista";
-
-  top: 31vh;
-  left: 25vw;
-  height: 62vh;
-  width: 47vw;
-
-  border: 1px solid rgb(178,179,179);
-  gap: 12px;
-  padding: 11px;
-  background-color: rgba(20, 30, 50, 0.95);
-  border-radius: 7px;
-  z-index: 9999;
-
-  transform: scale(0);
-  transform-origin: center; 
-  transition: transform 1s ease;
-}
-.btn-volver{
-  position: relative;
-  grid-area: boton;
-  width: 30%;
-  height: 75%;
-  border-radius: 5px;
-  margin: auto;
-  cursor: pointer;
-  color: white;
-  font-size: 0.6em;
-  background-color: rgb(6, 31, 223);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.btn-volver::after {
-  content: "\25C0";
-  color: white;
-  font-size: 0.7em;
-  position: absolute;
-  left:3%;
-  top: 45%;
-  transform: translateY(-50%);
-}
-.buscador-kaizen h3{
-  grid-area: titulo;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  font-size: 0.9em;
-  color: white;
-  margin: auto;
-  align-self: center;
-}
-.input-propositor{
-  grid-area: input;
-  width: 100%;
-}
-#propositores{
-  width: 100%;
-  height: 7%;
-  border-radius: 5px;
-  background-color: rgb(0, 0, 17);
-  color: rgb(200,200,200);
-  font-size: 0.6em;
-}
-.lista-propuestas{
-  grid-area: lista;
-  background-color: rgb(0, 0, 17);
-  border-radius: 6px;
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-}
-.lista-propuestas > div{
-  padding: 2px;
-  color: #3FE0C5;
-  font-size: 0.8em;
-  text-align:left;
-  padding: 3%;
-  cursor: pointer;
-}
 #sql {
   position: absolute;
   display: block;
@@ -8098,47 +8007,72 @@ background-color: #3FEF9C;
   width: 8vw;
   height: auto;
 }
-
-
-
-
-
-
-
-
-
-
 #nivel-superior {
-    position: absolute;
-    width: 30vw;
-    height: 27vh;
-    left: 3vw;
-    top: 29vh;
-    display: flex;
-    align-items: flex-end;
-    overflow: hidden;
+  position: absolute;
+  width: 30vw;
+  height: 27vh;
+  left: 3vw;
+  top: 29vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
 }
 .first_table {
   flex: 1;
   height: 0; /* inicia en 0, se anima a 100% */
   margin-left: 1px;
   border-radius: 4px 4px 0 0;
-  background-color: yellow;
+  background-color: rgba(255,255,0,99);
 }
 #nivel-inferior {
-    position: absolute;
-    width: 30vw;
-    height: 27vh;
-    left: 3vw;
-    top: 56vh;
-    overflow: hidden;
-    display: flex;
-    align-items: flex-start;
+  position: absolute;
+  width: 30vw;
+  height: 27vh;
+  left: 3vw;
+  top: 56vh;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
 }
 .second_table {
   flex: 1;
   margin-left: 1px;
   height: 0;
   border-radius: 0 0 4px 4px;
-  background: #C8A84B;
+  background-color: rgba(0,255,0,44);
+}
+.but-job {
+  display: block;
+  position: absolute;
+  top: 87%;
+  left: 37%;
+  border-radius: 7px;
+  width: 25%;
+  height: 10%;
+  background-color: #1e3aff;
+  background-image: url('./assets/doubble arrow.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  border: none;
+}
+.but-job:hover{
+  background-color: transparent;
+  background-image: url('./assets/doubble arrow.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #1e3aff;
+}
+.propuesta-item{
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8em;
+  cursor: pointer;
+}
+.propuesta-item:hover{
+  border: 1px solid white;
+  border-radius: 5px;
+  background: rgb(6, 31, 223);
+  color: whitesmoke;
 }

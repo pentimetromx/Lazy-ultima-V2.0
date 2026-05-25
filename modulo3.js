@@ -4923,11 +4923,13 @@ buttsJobs.forEach(boton => {
     
     switch(boton.id) {
       case 'clientes':
+        if(lineaClientes.style.display==='block') lineaClientes.style.display='none'
         listaClientes.removeAttribute('style');     
         desactivarClick(['.butt-perfiles', '.estilo-1']);       
-        mostrarNombresDeObjetos();      
+        mostrarNombresDeObjetos();           
       break;
       case 'lineas':
+        if(listaColores.style.display==='flex') listaColores.style.display='none'
         irAconsola.style.display='none'
         lineaClientes.addEventListener('mouseleave', () => {
           lineaClientes.style.display = 'none'
@@ -4942,6 +4944,8 @@ buttsJobs.forEach(boton => {
         }
       break;
       case 'tirajes':
+        if(listaColores.style.display==='flex') listaColores.style.display='none'
+        if(lineaClientes.style.display==='block') lineaClientes.style.display='none'
         if (getComputedStyle(lineaClientes).isVisible === 'true') return;
         restablecerEstilos('calculadora');
         calculadora.classList.remove('move-calculadora-up')
@@ -5010,15 +5014,11 @@ lineaClientes.addEventListener('click', (e) => {
 });
 
 // BOTONES DE LA CALCULADORA
-
-// BOTONES DE LA CALCULADORA
-
 digitos.forEach((elemento) => {
-
   elemento.addEventListener('mousedown', (e) => e.preventDefault());
-
   elemento.addEventListener('click', (e) => {
-    e.stopPropagation();
+  e.stopPropagation();
+  if(panelControlRGB.style.display==='grid')calculadoraSimulador=true
 
     if (!calculadoraSimulador) {  // CALCULADORA HEIDELBERG
       console.warn('Es HEIDELBERG')
@@ -7205,7 +7205,6 @@ function crearPerfilColor() { // crear nuevo desde botón blanco
 
   // Refrescar estado
   traerAlmacenObjetos();
-  debugger
 }
 
 
