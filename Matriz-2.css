@@ -5688,9 +5688,8 @@ button:hover{
   width: 100vw;
   height: 100vh;
   z-index: 1001;
-  background-color: rgb(30,30,30);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(8px);
+  /* background-color: rgb(30,30,30); */
+  display: none;
 }
 #overlay-kaizen {
   position: absolute;

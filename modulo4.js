@@ -2259,7 +2259,6 @@ const slidersRGB = document.querySelector('#padre-rgb')
 const contextoActivo = () =>[interfazRRHH, interfazMA,slidersCMYK,slidersRGB].some(el => el && el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0);
 
 document.addEventListener('pointerdown', (e) => {
-  // ── Cerrar cortina si click fuera de listaClientes ──
   if (!listaClientes.contains(e.target)) {
     cortina.classList.remove('overlayRRHH');
     cortina.style.display = 'none';
@@ -3103,6 +3102,21 @@ const series = [
   [95, 57, 68, 82],
   [98, 62, 73, 80]
 ];
+function crearLedsOne(contenedorLeds) {
+  const container = document.getElementById(contenedorLeds);
+  container.innerHTML = '';
+
+  for (let i = 0; i < 7; i++) {
+    const led = document.createElement('div');
+    if(contenedorLeds === 'ledContainer'){
+      led.classList.add('led-graphs');
+    }else{
+      led.classList.add('led-treemap');
+    } 
+    
+    container.appendChild(led);
+  }
+}
 function crearLeds(contenedorLeds) {
   const container = document.getElementById(contenedorLeds);
   container.innerHTML = '';
@@ -3124,6 +3138,19 @@ function crearDias(contenedorDias) {
   container.innerHTML = '';
 
   for (let i = 1; i <= 30; i++) {
+    const day = document.createElement('div');
+    if(contenedorDias === 'daysContainer')day.classList.add('day-number');
+    if(contenedorDias === 'dias-grafico')day.classList.add('day-treemap');
+
+    day.textContent = i;
+    container.appendChild(day);
+  }
+}
+function crearDiasOne(contenedorDias) {
+  const container = document.getElementById(contenedorDias);
+  container.innerHTML = '';
+
+  for (let i = 1; i <= 7; i++) {
     const day = document.createElement('div');
     if(contenedorDias === 'daysContainer')day.classList.add('day-number');
     if(contenedorDias === 'dias-grafico')day.classList.add('day-treemap');
@@ -3173,7 +3200,9 @@ function actualizarDiasYLeds(valor) {
 
 // GRAFICO TREEMAP
 crearLeds('leds-grafico')
+crearLedsOne('leds-grafico')
 crearDias('dias-grafico')
+crearDiasOne('dias-grafico')
 
 // GRAFICO BARRAS
 crearLeds('ledContainer')
