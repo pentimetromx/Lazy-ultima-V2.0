@@ -12,9 +12,11 @@ document.addEventListener('keydown', function(event) {
       case 'Z':
       /* localStorage.removeItem('kaizenRegistrados'); */
       /* mostrarPorClaveLocalStore('empleadosRegistrados') */
-            desactivarBlur() 
-            stopAnim()
-            stopAnimB()     
+const valor = document.querySelector('#nombre-perfil-existe').value;
+
+if (valor.startsWith('CMYK')) {
+  console.warn('⚠️ El perfil inicia con CMYK:', valor);
+}     
 
       break;  
       case 'H':
@@ -7384,12 +7386,26 @@ function pintarColor() {
     return;
   }
 
-  if (tecnologyCMYK) {
+  const valor = creaNombre.value;
+
+  if (valor.startsWith('CMYK')) {
+    alternarTeccnologia('cmyk')
+    setTimeout(() => {
+      renderizaMezclaCMYK();      
+    }, 500);
+  }else{
+    alternarTeccnologia('rgb')
+    setTimeout(() => {
+      renderizaMezclaRGB();      
+    }, 500);
+  }
+
+  /* if (tecnologyCMYK) {
     renderizaMezclaCMYK();
   }
   if (tecnologyRGB) {
     renderizaMezclaRGB();
-  }
+  } */
 }
 // Función para observar cambios en el DOM
 function observarCambioDisplay() {

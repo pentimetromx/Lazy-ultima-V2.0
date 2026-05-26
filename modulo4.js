@@ -5038,7 +5038,6 @@ function mostrarPropuestas(nombre) {
 }
 cortinaBloqueo.addEventListener('click',()=>{
   const primerBotonFicha = document.querySelector('.controller-fichas .fichas-butts');
-  parpadearElemento(primerBotonFicha.id, 150, 2500);
 })
 botonesFicha.forEach(btn => {
   btn.addEventListener('mouseenter', () => {
@@ -5276,7 +5275,7 @@ function traerEmpleadoaEliminar(){
   }
 
 }
-
+const btnAdministrador = document.querySelector("#boton-administrador")
 const accionesAceptar = {
   contenedor: () => {
     console.log('logica muy extensa para contenedor');
@@ -5483,7 +5482,10 @@ const accionesAceptar = {
   },
   docuMaster: () => {
     document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
-  },  
+  }, 
+  /* fichasTecnicas: () => {
+    document.querySelector("#overlay-kaizen").style.display='none'
+  }  */
 };
 const accionesCancelar = {
   contenedor: () => {
@@ -5522,7 +5524,10 @@ const accionesCancelar = {
   setTimeout(() => {
     aplicarColoresInputs();
   }, 250);    
-  }  
+  },
+  fichasTecnicas: () => {
+    detenerAlternarColor(btnAdministrador)
+  } 
 };
 function saltarAlerta(texto, padre) {
   const modal = document.querySelector('#padre-evento');
@@ -5668,6 +5673,10 @@ function saltarAlerta(texto, padre) {
     cancelar.style.display='none'
   } 
   if (alertaGlobal === 'docuMaster') {        
+    cancelar.style.display='none'
+  } 
+  if (alertaGlobal === 'fichasTecnicas') {
+    alternarColor(btnAdministrador, '',10000);    
     cancelar.style.display='none'
   } 
 
@@ -5906,7 +5915,6 @@ document.querySelector("#doc-empl").addEventListener('blur', () => {
     hideCalculator();
   }
 });
-
 inputsMA.forEach(el => {
   el.addEventListener('focus', () => {
     if (!esDesktop) {
@@ -5932,7 +5940,6 @@ inputsMA.forEach(el => {
   });   
 
 });
-
 document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',()=>{
   activarPantallaCompleta()
    var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','contenedor-botonera']; 
@@ -5945,8 +5952,6 @@ document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',(
   
   container1.style.display = 'grid'; 
 })
-
-
 let panelAbierto = false;
 document.querySelector("#contenedor-global .but-job").addEventListener('click', () => {
 
@@ -6001,6 +6006,9 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
 
   panelAbierto = true;
 });
+document.querySelector("#overlay-kaizen").addEventListener('click',()=>{
+  saltarAlerta('Ejecutar como administrador','fichasTecnicas')
+})
 
 
 
