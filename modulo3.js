@@ -12,11 +12,7 @@ document.addEventListener('keydown', function(event) {
       case 'Z':
       /* localStorage.removeItem('kaizenRegistrados'); */
       /* mostrarPorClaveLocalStore('empleadosRegistrados') */
-const valor = document.querySelector('#nombre-perfil-existe').value;
-
-if (valor.startsWith('CMYK')) {
-  console.warn('⚠️ El perfil inicia con CMYK:', valor);
-}     
+      console.warn('OBJETO GLOBAL', objetoGlobal)   
 
       break;  
       case 'H':
@@ -3396,6 +3392,20 @@ function crearBotonSuma(color, linea1, linea2, linea3) {
 
     // 🔸 Lógica de inicio común para mouse y táctil
     const iniciarAccion = () => {
+      
+if (Object.keys(objetoGlobal).length === 0) {
+  console.warn('No hay datos');
+  alertaSeis.classList.remove('move-alerta')
+  alertaSeis.style.display='grid'
+  granCortina.style.display='block'
+
+  return;
+}
+
+
+
+
+  
       if (!flagAplicacion) {
         alertaBotones.style.display = 'flex';
         alertaBotones.style.backgroundColor = verde;
@@ -5133,6 +5143,7 @@ btnSalir.addEventListener('mouseleave', () => {
 document.getElementById('alerta-seis').children[2].addEventListener('click', () => {
   alertaSeis.classList.add('move-alerta')
   restablecerClick(['.mod-tinta','.div-ctrl','.butt-perfiles', '.butt-selector', '.cabeza', '.estilo-1', '.digit', '.digito']);
+  if(granCortina.style.display==='block')granCortina.style.display='none'
   setTimeout(() => {
     alertaSeis.classList.remove('move-alerta')
     alertaSeis.style.display='none'
@@ -5917,21 +5928,6 @@ function buscarPerfil(event) {
     restablecerClick(['.cliente-item']);
   }, 500);
 }
-/* function guardarObjetoEnAlmacen(nombreObjeto, datosObjeto) {
-  // Capitalizar el nombre antes de guardar
-  const nombreCapitalizado = capitalizarTexto(nombreObjeto);
-
-  // Obtener el objeto almacenado en localStorage
-  almacenObjetos = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
-
-  // Guardar o actualizar el objeto con el nombre capitalizado
-  almacenObjetos[nombreCapitalizado] = datosObjeto;
-
-  // Actualizar el almacenamiento en localStorage
-  localStorage.setItem('coloresRegistrados', JSON.stringify(almacenObjetos));
-
-  console.log(`Guardado en almacenObjetos:`, almacenObjetos);
-} */
 
 function eliminarObjeto(nombreObjeto) {
   desactivarClick(['.cliente-item']);
