@@ -2876,7 +2876,7 @@ width: 70%;
 #alerta-tres,
 #alerta-cinco,
 #alerta-seis{
-  z-index: 40;
+  z-index: 41;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -5729,6 +5729,24 @@ button:hover{
   width: 98vw;
   height: 96vh;
   z-index: 9;
+}
+#overlay-cortina.overlayTotal{
+  display: block;
+  top: 1%;
+  left: 1vw;
+  width: 99vw;
+  height: 99vh;
+  z-index:40;
+  background-color: #00cc88;
+}
+#overlay-general{
+  position: absolute;
+  display: block;
+  top: 1%;
+  left: 1vw;
+  width: 99vw;
+  height: 99vh;
+  z-index:40;
 }
 #panel-principal {
   --escala: 0;
