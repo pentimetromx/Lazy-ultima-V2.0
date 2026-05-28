@@ -145,6 +145,17 @@ function renderSidebar() {
 renderTabs();
 renderSidebar();
 
+document.querySelectorAll('.alternador').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.alternador').forEach(b => {
+      b.classList.remove('activo');
+      b.style.backgroundColor = ''; // ← limpia el inline
+    });
+    btn.classList.add('activo');
+    btn.blur();
+  });
+});
+
 document.querySelectorAll('.btn-torre').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.btn-torre').forEach(b => b.classList.remove('activo'));
@@ -1342,14 +1353,12 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
     const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
     const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
 
-
     if (!hayMesActivo || !hayMaquinaActiva){
       alternarColor(firstMachine,secondMachine,2000)
       saltarAlerta('Seleccione una Maquina y el Mes', 'lanzaGrafos')
       return;
     }  // corta la ejecución
 
-    // --- lógica original
     const abueloGrafica = document.querySelector('#abuelo-grafica4');
     
     Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
@@ -1360,6 +1369,7 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
 
     switch (index) {
       case 0: {
+        panelAbierto = true
         document.querySelector("#contenedor-global").classList.add('move-panel-ma')
         setTimeout(() => {
           aparecerElemento('abuelo-grafica4', 'grid');          
@@ -2253,20 +2263,16 @@ inputsColorGeneral.forEach(input => {
 
 });
 
-
-const slidersCMYK = document.querySelector('#padre-cmyk')
-const slidersRGB = document.querySelector('#padre-rgb')
-const contextoActivo = () =>[interfazRRHH, interfazMA,slidersCMYK,slidersRGB].some(el => el && el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0);
-
+const contextoActivo = () =>[interfazRRHH, interfazMA,mezcladorColor,mezcladorColorRGB].some(el => el && el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0);
 
 document.addEventListener('pointerdown', (e) => {
+  if (esDesktop) return;
   if (!listaClientes.contains(e.target)) {
     cortina.classList.remove('overlayRRHH');
     cortina.style.display = 'none';
     listaClientes.style.display = 'none';
   }
 
-  if (esDesktop) return;
   if (!contextoActivo()) return;
 
   const clickDentroCalculadora = calculadora.contains(e.target);
@@ -3209,6 +3215,7 @@ crearDiasOne('dias-grafico')
 crearLeds('ledContainer')
 crearDias('daysContainer')
 crearGraficoOperacion()
+
 sliderTree.addEventListener('input', () => {
   if (!chart21) return;
 
@@ -3218,6 +3225,7 @@ sliderTree.addEventListener('input', () => {
   actualizarTreeMapPorSlider(valor);
   actualizarDiasYLedsTreeMap(valor);
 });
+
 let chart21 = null;
 function crearGraficoTreeMap() {
   const ctx = document.getElementById('MiGrafica20').getContext('2d');
@@ -3791,10 +3799,14 @@ hijosTec.forEach((li, index) => {
     e.stopPropagation();
 
     if (index === 0) {
+      mezcladorColor.classList.remove('move-padre-cmyk')
+      creadorPerfiles.classList.remove('move-mezclador')
       activarPantallaCompleta()
        ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
     }
     if (index === 1) {
+      mezcladorColor.classList.remove('move-padre-cmyk')
+      creadorPerfiles.classList.remove('move-mezclador')
       activarPantallaCompleta()      
       ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form')
     }

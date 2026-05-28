@@ -177,14 +177,11 @@ function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13
       }
     break;
     case 'colorCMYK':
-      const almacenCmyk = document.querySelector('#padre-cmyk')
-      mostrarElementoProgressivo(almacenCmyk);
+      mostrarElementoProgressivo(mezcladorColor);
     
     break;
     case 'colorDisplay':
-      const almacenRgb = document.querySelector('#padre-rgb')
-      mostrarElementoProgressivo(almacenRgb);  
-          
+      mostrarElementoProgressivo(mezcladorColorRGB);            
     break;
   }  
 }
@@ -3393,31 +3390,31 @@ function crearBotonSuma(color, linea1, linea2, linea3) {
     // 🔸 Lógica de inicio común para mouse y táctil
     const iniciarAccion = () => {
       
-if (Object.keys(objetoGlobal).length === 0) {
-  console.warn('No hay datos');
-  alertaSeis.classList.remove('move-alerta')
-  alertaSeis.style.display='grid'
-  granCortina.style.display='block'
+  if (Object.keys(objetoGlobal).length === 0) {
+    console.warn('No hay datos');
+    alertaSeis.classList.remove('move-alerta')
+    alertaSeis.style.display='grid'
+    granCortina.style.display='block'
 
-  return;
-}
+    return;
+  }
 
 
 
 
   
-      if (!flagAplicacion) {
-        alertaBotones.style.display = 'flex';
-        alertaBotones.style.backgroundColor = verde;
-        alertaBotones.style.color = 'black';
-        alertaBotones.style.top = '20vh';
-        desactivarClicEnElementos(buttSelector, buttSelector, botonesPerfilColor, buttsControl, buttsColores, buttSuma, buttResta);
-        setTimeout(() => {
-          alertaBotones.style.backgroundColor = '';
-          alertaBotones.style.color = '';
-        }, 500);
-        return;
-      }
+  if (!flagAplicacion) {
+    alertaBotones.style.display = 'flex';
+    alertaBotones.style.backgroundColor = verde;
+    alertaBotones.style.color = 'black';
+    alertaBotones.style.top = '20vh';
+    desactivarClicEnElementos(buttSelector, buttSelector, botonesPerfilColor, buttsControl, buttsColores, buttSuma, buttResta);
+    setTimeout(() => {
+      alertaBotones.style.backgroundColor = '';
+      alertaBotones.style.color = '';
+    }, 500);
+    return;
+  }
 
       const numeroBoton = elementoSuma.id.match(/\d+/)?.[0];
       elementoSuma.style.backgroundColor = 'rgb(0, 250, 254)';
@@ -4357,8 +4354,6 @@ function mostrarVentanaEmergente(mensaje) {
 }
 
 document.getElementById('cerrarEmergente').addEventListener('click', () => {
-  let conteCMYK = document.querySelector('#padre-cmyk');
-  let conteRGB = document.querySelector('#padre-rgb');
   const mensajeEmergente = document.getElementById('mensajeEmergente');
   conteJobTrack.classList.remove('move-job-track')
 
@@ -4367,8 +4362,8 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
     document.querySelector('#unit-job-track').style.display = 'flex';
 
     // Verificar si alguno de los dos contenedores tiene display "grid"
-    let cmykVisible = window.getComputedStyle(conteCMYK).display === 'grid';
-    let rgbVisible = window.getComputedStyle(conteRGB).display === 'grid';
+    let cmykVisible = window.getComputedStyle(mezcladorColor).display === 'grid';
+    let rgbVisible = window.getComputedStyle(mezcladorColorRGB).display === 'grid';
     buscaNombre.focus()
     listaColores.removeAttribute('style')
 
@@ -5352,9 +5347,8 @@ btnEntrar.addEventListener('click', () => {
   detenerParpadeo()
 
   let padreRGB = document.getElementById('padre-rgb')
-  let padreCMYK = document.getElementById('padre-cmyk')
 
-  if (padreRGB.style.display==='grid' || padreCMYK.style.display==='grid') {
+  if (padreRGB.style.display==='grid' || mezcladorColor.style.display==='grid') {
     calculadoraSimulador = true
   }
 
@@ -5683,7 +5677,7 @@ function mostrarNombresDeObjetos() {
     listaColores.style.left='37vw'
   }else{
     listaColores.style.display = 'flex';
-    listaColores.style.left='76vw'
+    listaColores.style.left='62vw'
   }
   listaColores.classList.remove('posicion-simulador')
   if(getComputedStyle(conteJobTrack).display === 'flex'){
@@ -5856,8 +5850,7 @@ function mostrarNombresDeObjetos() {
   });
   console.log('Nombres de objetos mostrados en lista-clientes:', Object.keys(almacenCapitalizado));      
     
-
-
+  cortina.classList.remove('overlayRRHH')    
 }
 
 function buscarPerfil(event) {
@@ -6759,13 +6752,12 @@ function cmykFlotante() { // botones rojos
     el.style.display = 'block';
   });     
 
-  let padreCmyk = document.querySelector("#padre-cmyk");
   let padreControles = document.querySelector("#container-slider");
   let perfilador = document.querySelector('#perfiles-color')
 
-  padreCmyk.style.display = "grid";
+  mezcladorColor.style.display = "grid";
   padreControles.style.display = 'grid';
-  padreCmyk.style.zIndex = 200
+  mezcladorColor.style.zIndex = 200
   perfilador.removeAttribute("style");
 }
 function rgbFlotante() { // botones rojos
@@ -6822,51 +6814,48 @@ function initResize(contenedor, esquina) {
     document.removeEventListener("mouseup", stopResize);
   }
 }
+
+
 function resetBotonMezclador(parentContiner) {
   if (typeof parentContiner !== "string") return;
   parentContiner = parentContiner.trim().toLowerCase();
 
-  let isCMYK = parentContiner === 'padre-cmyk';
-  let sliders = document.querySelectorAll(isCMYK ? ".slider-thumb-cmyk" : ".slider-thumb-rgb");
+  // ✅ Usar el parámetro, no mezcladorColor
+  const esCmyk = parentContiner === 'padre-cmyk';
+
+  let sliders = document.querySelectorAll(esCmyk ? ".slider-thumb-cmyk" : ".slider-thumb-rgb");
   
   sliders.forEach(mezclador => {
     mezclador.style.transition = "bottom 0.8s ease"; 
     mezclador.style.bottom = "0%"; 
-
-    setTimeout(() => {
-      mezclador.style.transition = "";
-    }, 800);
+    setTimeout(() => { mezclador.style.transition = ""; }, 800);
   });
 
-  let colorElement = document.querySelector(isCMYK ? "#colorCMYK" : "#colorDisplay");
+  let colorElement = document.querySelector(esCmyk ? "#colorCMYK" : "#colorDisplay");
   if (colorElement) colorElement.style.backgroundColor = "";  
 
-  // Reseteo de los valores de mezcla
   if (typeof values !== "object") values = {};
-  Object.assign(values, isCMYK ? 
+  Object.assign(values, esCmyk ? 
     { C: 0, M: 0, Y: 0, K: 0, A: 0 } : 
     { R: 0, G: 0, B: 0, W: 0 }
   );
 
-  // **Aquí se restablece el degradado en el slider-track**
-  let sliderTracks = document.querySelectorAll(isCMYK ? ".slider-track" : ".slider-track-rgb");
+  let sliderTracks = document.querySelectorAll(esCmyk ? ".slider-track" : ".slider-track-rgb");
   sliderTracks.forEach(track => {
     track.style.transition = "background 0.8s ease";
     track.style.background = `linear-gradient(to top, rgb(255,120,0) 0%, rgb(0,0,17) 0%)`;
-
-    setTimeout(() => {
-      track.style.transition = "";
-    }, 800);
+    setTimeout(() => { track.style.transition = ""; }, 800);
   });
 
-  // Llamar a la función de actualización correspondiente
-  if (isCMYK) {
+  if (esCmyk) {
     updateColorCMYK();  
   } else {
     values.A = parseFloat(values.A) || 0;  
     updateColorRGB();
   }
 }
+
+
 function configurarBoton(selector, contenedor, callback) {
   const boton = document.querySelector(selector);
   const padre = document.querySelector(contenedor);
@@ -6894,35 +6883,52 @@ function configurarBoton(selector, contenedor, callback) {
     boton.style.backgroundColor = ''; 
   });
 }
+
 // RGB CMYK
 function alternarTeccnologia(tecnologia) {
-  const padreCmyk = document.getElementById('padre-cmyk');
-  const controlCmyk = document.getElementById('control-panel-cmyk');
-
-  const padreRgb = document.getElementById('padre-rgb');
-  const controlRgb = document.getElementById('control-panel-rgb');
-
   switch (tecnologia) {
     case 'rgb':
-      if (padreCmyk) {
-        ocultarElementoProgressivo(padreCmyk)
-        ocultarElementoProgressivo(controlCmyk)
-        mostrarElementoProgressivo(padreRgb);
-        mostrarElementoProgressivo(controlRgb);
+      if (mezcladorColor) {
+        desaparecerElemento(panelControlCMYK.id)
+        aparecerElemento(panelControlRGB.id)
+        
+        if(mezcladorColor.style.display==='grid'){
+          mezcladorColor.style.display='none'
+          mezcladorColorRGB.style.display='grid'
+          mezcladorColorRGB.classList.add('move-padre-cmyk')
+          mostrarElementoProgressivo(mezcladorColorRGB);
+        }
+
+        /* ocultarElementoProgressivo(mezcladorColor)
+        ocultarElementoProgressivo(panelControlCMYK)
+        mostrarElementoProgressivo(mezcladorColorRGB);
+        mostrarElementoProgressivo(panelControlRGB); */
       
       }
     break;
 
     case 'cmyk':
-      if (padreRgb) {
-        ocultarElementoProgressivo(padreRgb)
-        ocultarElementoProgressivo(controlRgb)
-        mostrarElementoProgressivo(padreCmyk);
-        mostrarElementoProgressivo(controlCmyk);
+      if (mezcladorColorRGB) {
+        desaparecerElemento(panelControlRGB.id)
+        aparecerElemento(panelControlCMYK.id)
+
+        if(mezcladorColorRGB.style.display==='grid'){
+          mezcladorColorRGB.style.display='none'
+          mezcladorColor.style.display='grid'
+          mezcladorColor.classList.add('move-padre-cmyk')
+          mostrarElementoProgressivo(mezcladorColor);
+        }        
+
+        /* ocultarElementoProgressivo(mezcladorColorRGB)
+        ocultarElementoProgressivo(panelControlRGB)
+        mostrarElementoProgressivo(mezcladorColor);
+        mostrarElementoProgressivo(panelControlCMYK); */
       }
     break;
   }
 }
+
+
 function ocultarElementoProgressivo(el, callback) {
   if (!el) return;
   // aceptar id/selector o elemento
@@ -6976,7 +6982,11 @@ function ocultarElementoProgressivo(el, callback) {
     el.removeEventListener('transitionend', onTransitionEnd);
     finish();
   }, fallback);
+  mezcladorColor.classList.remove('move-padre-cmyk')
+  creadorPerfiles.classList.remove('move-mezclador') 
+  mezcladorColorRGB.classList.remove('move-padre-cmyk')
 }
+
 function mostrarElementoProgressivo(el) {
   if (!el) return;
 
@@ -7012,17 +7022,19 @@ function mostrarElementoProgressivo(el) {
     });
   }, { once: true });
 }
+
 // MUESTRA LOS PADRES
 function secuenciaAparicion(canal) {
- const controlColor = document.querySelector('#perfiles-color');
+ /* const controlColor = document.querySelector('#perfiles-color');
   if (!controlColor || getComputedStyle(controlColor).display !== "none") {
     return; 
-  }
+  } */
+  cortina.classList.add('overlayRRHH')
+
   const perfilesRgb = document.querySelector('#perfiles-color')
   mostrarElementoProgressivo(perfilesRgb)
   setTimeout(() => {
     if (!buscaNombre) return;
-
     buscaNombre.value = '';
     creaNombre.value = '';
 
@@ -7033,6 +7045,9 @@ function secuenciaAparicion(canal) {
       creaNombre.setAttribute('inputmode', 'none');
     }
   }, 100);
+  setTimeout(() => {
+    cortina.classList.remove('overlayRRHH')    
+  }, 1000);
   
   
   switch(canal){
@@ -7042,6 +7057,11 @@ function secuenciaAparicion(canal) {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
       });
+      mezcladorColorRGB.classList.add('move-padre-cmyk')
+      setTimeout(() => {
+        creadorPerfiles.classList.add('move-mezclador')    
+      }, 500);
+
     break
     case 'cmyk' :
       const keys = ['lab-seis', 'boton-seis', 'lab-cmyk','boton-cmyk','lab-salir-cmyk','boton-cmyk-salir'];
@@ -7049,6 +7069,10 @@ function secuenciaAparicion(canal) {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
       });
+      mezcladorColor.classList.add('move-padre-cmyk')
+      setTimeout(() => {
+        creadorPerfiles.classList.add('move-mezclador')    
+      }, 500);
     break
   }
 }
@@ -7113,10 +7137,7 @@ function detenerParpadeo() {
 
 
 // BOTON BLANCO RGB
-function crearPerfilColor() { // crear nuevo desde botón blanco
-  const contRGB  = document.querySelector('#padre-rgb');
-  const contCYMK = document.querySelector('#padre-cmyk');
-
+function crearPerfilColor() { // crear nuevo desde botón blanc
   const primerImputRGB  = document.querySelector('#input-r');
   const segundoImputRGB = document.querySelector('#input-g');
   const tercerImputRGB  = document.querySelector('#input-b');
@@ -7141,9 +7162,9 @@ function crearPerfilColor() { // crear nuevo desde botón blanco
   // Determinar prefijo según contenedor visible
   let prefijo = '';
 
-  if (contRGB && contRGB.style.display === 'grid') {
+  if (mezcladorColorRGB && mezcladorColorRGB.style.display === 'grid') {
     prefijo = 'RGB - ';
-  } else if (contCYMK && contCYMK.style.display === 'grid') {
+  } else if (mezcladorColor && mezcladorColor.style.display === 'grid') {
     prefijo = 'CMYK - ';
   }
 
@@ -7174,14 +7195,14 @@ function crearPerfilColor() { // crear nuevo desde botón blanco
   }
 
   // Asignar valores según el contenedor activo
-  if (contRGB && contRGB.style.display === 'grid') {
+  if (mezcladorColorRGB && mezcladorColorRGB.style.display === 'grid') {
     almacenObjetos[objetoGlobal].RGBA.R = parseInt(primerImputRGB.value, 10) || 0;
     almacenObjetos[objetoGlobal].RGBA.G = parseInt(segundoImputRGB.value, 10) || 0;
     almacenObjetos[objetoGlobal].RGBA.B = parseInt(tercerImputRGB.value, 10) || 0;
     almacenObjetos[objetoGlobal].RGBA.A = parseInt(cuartoImputRGB.value, 10) || 0;
   }
 
-  if (contCYMK && contCYMK.style.display === 'grid') {
+  if (mezcladorColor && mezcladorColor.style.display === 'grid') {
     almacenObjetos[objetoGlobal].CMYK.C = parseInt(primerImputCMYK.value, 10) || 0;
     almacenObjetos[objetoGlobal].CMYK.M = parseInt(segundoImputCMYK.value, 10) || 0;
     almacenObjetos[objetoGlobal].CMYK.Y = parseInt(tercerImputCMYK.value, 10) || 0;
@@ -7205,25 +7226,19 @@ function crearPerfilColor() { // crear nuevo desde botón blanco
   traerAlmacenObjetos();
 }
 
-
-
-
 function colorRenderizado(){
-  let padreLuz = document.querySelector('#padre-rgb')
-  let padrePigmento = document.querySelector('#padre-cmyk')
-
-  if(padreLuz.style.display = 'grid'){
-    padrePigmento.style.display = 'none'
-    padreLuz.style.display  = 'grid'
+  if(mezcladorColorRGB.style.display = 'grid'){
+    mezcladorColor.style.display = 'none'
+    mezcladorColorRGB.style.display  = 'grid'
 
     setTimeout(() => {
       renderizaMezclaRGB()
     }, 100);
   }
 
-  if(padrePigmento.style.display = 'grid'){
-    padreLuz.style.display = 'none'
-    padrePigmento.style.display  = 'grid'
+  if(mezcladorColor.style.display = 'grid'){
+    mezcladorColorRGB.style.display = 'none'
+    mezcladorColor.style.display  = 'grid'
 
     setTimeout(() => {
       renderizaMezclaCMYK()
@@ -7291,42 +7306,51 @@ function renderizaMezclaCMYK() {
 
 }
 configurarBoton('#boton-seis', '#padre-cmyk', () => resetBotonMezclador('padre-cmyk'));
-configurarBoton('#boton-rgb', '#padre-rgb', () => resetBotonMezclador('padre-rgb'));
-configurarBoton('#boton-cmyk','#padre-cmyk', '')
 
+configurarBoton('#boton-rgb', '#padre-rgb', () => resetBotonMezclador('padre-rgb'));
+
+configurarBoton('#boton-cmyk','#padre-cmyk', '')
 configurarBoton('#boton-rgb-alternar','#padre-rgb', '') 
+
 configurarBoton('#boton-rgb-salir','#padre-rgb', '')
 configurarBoton('#boton-cmyk-salir','#padre-cmyk', '')
+
 document.querySelector('#btn-salir-perfiles').addEventListener('click', alternarOcultarBotones);
+
 function alternarOcultarBotones() {
-  const controlRgb = document.querySelector('#control-panel-rgb')
-  const controCmyk = document.querySelector('#control-panel-cmyk')
-  const perfiladorColor = document.querySelector('#perfiles-color')
+  cortina.classList.add('overlayRRHH')
+  creadorPerfiles.classList.remove('move-mezclador')
   const mostrarFlex = (selector) => {
     document.querySelectorAll(selector).forEach(el => el.style.display = 'flex');
   };
 
   ['.lbl-cmyk', '.btnCmyk', '.lbl-opcion', '.btn-opcion'].forEach(mostrarFlex);
-  ocultarElementoProgressivo(perfiladorColor)
-  ocultarElementoProgressivo(controlRgb)
-  ocultarElementoProgressivo(controCmyk)
-
+  ocultarElementoProgressivo(panelControlCMYK)
+  ocultarElementoProgressivo(panelControlRGB)
+  setTimeout(() => {
+    ocultarElementoProgressivo(creadorPerfiles)
+    cortina.classList.remove('overlayRRHH')
+  }, 1000);
 }
 // SALIR APLICACION INFERIOR
 document.querySelectorAll('.alterna-panel').forEach(btn => {
   btn.addEventListener('click', () => {
     if(btn.id === 'exit-cmyk'){
-      ocultarElementoProgressivo(panelControlCMYK)
+      /* ocultarElementoProgressivo(panelControlCMYK) */
+      desaparecerElemento(panelControlCMYK.id)
     }
     if(btn.id === 'exit-rgb'){
-      ocultarElementoProgressivo(panelControlRGB)
+      /* ocultarElementoProgressivo(panelControlRGB) */
+      desaparecerElemento(panelControlRGB.id)
+
     }
   });
 });
-document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{ 
-  let slidersCMYK = document.querySelector('#container-slider')
 
-  var elementosExcluidos = ['colorCMYK','container-slider','simulador','container01','links-inicialesI','links-iniciales','buscador','search-form'] 
+document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{ 
+  cortina.classList.add('overlayRRHH')
+  let slidersCMYK = document.querySelector('#container-slider')
+  var elementosExcluidos = ['colorCMYK','container-slider','simulador','links-inicialesI','links-iniciales','buscador','search-form'] 
   for (var i = 0; i < allContenedores.length; i++) { 
     var element = document.getElementById(allContenedores[i])
     if (element) {
@@ -7337,11 +7361,20 @@ document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{
   slidersCMYK.style.display = 'grid';
   aparecerElemento('padre-cmyk','grid')
   actualizarIdsArray('padre-cmyk');
+  setTimeout(() => {
+    mezcladorColorRGB.classList.remove('move-padre-cmyk')
+    mezcladorColorRGB.classList.remove('activo')
+    mezcladorColor.classList.remove('move-padre-cmyk')
+    mezcladorColor.classList.remove('activo')
+    creadorPerfiles.classList.remove('move-mezclador')  
+    cortina.classList.remove('overlayRRHH')
+  }, 1000);
 })
-document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
-  let slidersRGB = document.querySelector('#padre-controles')
 
-  var elementosExcluidos = ['colorDisplay','padre-controles','simulador','container01','links-inicialesI','links-iniciales','buscador','search-form'] 
+document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
+  cortina.classList.add('overlayRRHH')
+  let slidersRGB = document.querySelector('#padre-controles')
+  var elementosExcluidos = ['colorDisplay','padre-controles','simulador','links-inicialesI','links-iniciales','buscador','search-form'] 
   for (var i = 0; i < allContenedores.length; i++) { 
     var element = document.getElementById(allContenedores[i])  
     if (element) {
@@ -7352,20 +7385,37 @@ document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
   slidersRGB.style.display = 'grid';
   aparecerElemento('padre-rgb','grid')
   actualizarIdsArray('padre-rgb');
+  setTimeout(() => {
+    mezcladorColorRGB.classList.remove('move-padre-cmyk')
+    mezcladorColorRGB.classList.remove('activo')
+    mezcladorColor.classList.remove('move-padre-cmyk')
+    mezcladorColor.classList.remove('activo')
+    creadorPerfiles.classList.remove('move-mezclador') 
+    cortina.classList.remove('overlayRRHH')  
+  }, 1000);
 })
 document.querySelector('#save-tecnology').addEventListener('click', ()=>{
   crearPerfilColor()
 })
+
 creaNombre.addEventListener('click', () => {
   document.querySelector('#nombre-Perfil').value = ''
   creaNombre.value = ''
-  activarBlur(0,220)
+  /* activarBlur(0,220) */
   botonesPerfilColor.forEach(elemento => {   
     elemento.style.display = 'block';   
   });
   limpiarColoresDeFondo()
   desactivarClick(['.butt-perfiles', '.estilo-1']);  
   mostrarNombresDeObjetos();
+});
+creaNombre.addEventListener('mouseleave', () => {
+  setTimeout(() => {
+  // Solo ocultar si el cursor NO está sobre listaClientes
+  if (!listaColores.matches(':hover')) {
+    listaColores.style.display = 'none';
+  }
+  }, 300);
 });
 
 function pintarColor() {
