@@ -4943,10 +4943,10 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
     btn.removeAttribute('style');
 
     if (index === 0) {
-      document.querySelector("#overlay-kaizen").style.display='none'
       fichasTecnicas.classList.remove('activo')
       setTimeout(() => {
         fichasTecnicas.classList.add('activo')
+        fichasTecnicas.style.zIndex = '2110'
       }, 500);
     }
     if (index === 1) {
@@ -5496,9 +5496,7 @@ const accionesAceptar = {
   docuMaster: () => {
     document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
   }, 
-  /* fichasTecnicas: () => {
-    document.querySelector("#overlay-kaizen").style.display='none'
-  }  */
+
 };
 const accionesCancelar = {
   contenedor: () => {
@@ -6020,6 +6018,7 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
   panelAbierto = true;
 });
 document.querySelector("#overlay-kaizen").addEventListener('click',()=>{
+  if(fichasTecnicas.style.zIndex === '2110')return
   saltarAlerta('Ejecutar como administrador','fichasTecnicas')
 })
 
