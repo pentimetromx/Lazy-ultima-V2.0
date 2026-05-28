@@ -2647,7 +2647,6 @@ function irContenedorAnterior() {
       resultadosMA('interfaz-mtto')          
     break;
     case 'padre-cmyk':
-      let padreCMYK = document.querySelector('#padre-cmyk');  
       let slidersCMYK = document.querySelector('#container-slider')
 
       var elementosExcluidos = ['colorCMYK','container-slider','padre-cmyk','simulador'] 
@@ -2658,10 +2657,10 @@ function irContenedorAnterior() {
         }
       } 
       container1.style.display='grid'
-      padreCMYK.style.display = "grid";
+      mezcladorColor.style.display = "grid";
       slidersCMYK.style.display = 'grid';
-      padreCMYK.style.zIndex = 200
-      padreCMYK.classList.remove('move-panel-cmyk')
+      mezcladorColor.style.zIndex = 200
+      mezcladorColor.classList.remove('move-panel-cmyk')
     break;
     case 'padre-rgb':
       let padreRGB = document.querySelector('#padre-rgb');
@@ -3029,7 +3028,6 @@ function irContenedorSiguiente() {
       resultadosMA('interfaz-mtto')          
     break; 
     case 'padre-cmyk':
-      let padreCMYK = document.querySelector('#padre-cmyk');  
       let slidersCMYK = document.querySelector('#container-slider')
 
       var elementosExcluidos = ['colorCMYK','container-slider','padre-cmyk','simulador'] 
@@ -3040,13 +3038,12 @@ function irContenedorSiguiente() {
         }
       } 
       container1.style.display='grid'
-      padreCMYK.style.display = "grid";
+      mezcladorColor.style.display = "grid";
       slidersCMYK.style.display = 'grid';
-      padreCMYK.style.zIndex = 200
-      padreCMYK.classList.remove('move-panel-cmyk')
+      mezcladorColor.style.zIndex = 200
+      mezcladorColor.classList.remove('move-panel-cmyk')
     break;
     case 'padre-rgb':
-      let padreRGB = document.querySelector('#padre-rgb');
       let slidersRGB = document.querySelector('#padre-controles')
 
       var elementosExcluidos = ['colorDisplay','padre-controles','padre-rgb','simulador'] 
@@ -3057,10 +3054,10 @@ function irContenedorSiguiente() {
         }
       } 
       container1.style.display='grid'
-      padreRGB.style.display = "grid";
+      mezcladorColorRGB.style.display = "grid";
       slidersRGB.style.display = 'grid';
-      padreRGB.style.zIndex = 200
-      padreRGB.classList.remove('move-panel-rgb')      
+      mezcladorColorRGB.style.zIndex = 200
+      mezcladorColorRGB.classList.remove('move-panel-rgb')      
     break;   
 
     default:

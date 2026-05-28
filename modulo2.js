@@ -54,18 +54,16 @@ function desaparecerElemento(id) {
 const salirPadreCmyk = document.querySelector('#boton-cmyk-salir')
 const salirPadreRgb= document.querySelector('#boton-rgb-salir')
 salirPadreCmyk.addEventListener('click', () => {
-  const padreCmyk = document.querySelector('#padre-cmyk')
   resetBotonMezclador('padre-cmyk')
   setTimeout(() => {
-    ocultarElementoProgressivo(padreCmyk) 
+    ocultarElementoProgressivo(mezcladorColor) 
     alternarOcultarBotones() 
   }, 200);
 })
 salirPadreRgb.addEventListener('click', () => {
-  const padreRgb = document.querySelector('#padre-rgb')
   resetBotonMezclador('padre-rgb')
   setTimeout(() => {
-    ocultarElementoProgressivo(padreRgb) 
+    ocultarElementoProgressivo(mezcladorColorRGB) 
     alternarOcultarBotones() 
   }, 200);
 })

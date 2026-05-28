@@ -78,6 +78,7 @@ let posicionPantalla = document.getElementById('positionDisplay')
 let documentoEmplEliminar = document.querySelector('#input-baja')
 let contenedorPanel = document.getElementById('segunda-pantalla');
 let contibotsDistriII = document.getElementById('contenedor-7-V')
+const creadorPerfiles = document.querySelector("#perfiles-color")
 let contiBotsFreno = document.getElementById('conti-boton-freno')
 let contAdministrar = document.getElementById('cont-titulo-admin')
 let contCalidad = document.getElementById('cont-titulo-calidad')
@@ -92,6 +93,9 @@ let contiVidSmed = document.getElementById('conti-video-smed')
 let contImageneSmed = document.getElementById('imgsIsopropil') 
 let buttRepuestI = document.getElementById('butt-repuestos-I')
 let conteBancada = document.getElementById('bancada-torre-II')
+const mezcladorColor = document.querySelector("#padre-cmyk")
+const mezcladorColorRGB = document.querySelector("#padre-rgb")
+
 const botonesBaja = document.querySelector('#panel-botones')
 let contiButtRepuest = document.getElementById('conti-boton')
 let contenedor2 = document.getElementById('canvasContainer2')
@@ -2250,30 +2254,10 @@ document.querySelectorAll('.special-text').forEach(input => {
   });
 });
 document.querySelector('#borrarBoton4').addEventListener('click', ()=>{
-  flagEmpleado = true
-  desactivarClick(['.btn-baja']);
-  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI']; 
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var elemento = document.getElementById(allContenedores[i]) 
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-    }
-  }
-  
-  if(!esDesktop)documentoEmplEliminar.setAttribute('readonly', true);
-
-  panelDeBajas.classList.remove('activo')
-  panelDeBajas.classList.remove('move-panel-salir')
-  container1.style.display='grid'
-  linkListI.style.display='none'  
-  panelDeBajas.classList.add('activo')
-  aparecerElemento(panelDeBajas.id, 'block')
-  setTimeout(() => {
-    documentoEmplEliminar.value = '';
-    documentoEmplEliminar.focus();
-  }, 250);
-  
-
+  mezcladorColor.classList.remove('move-padre-cmyk')
+  creadorPerfiles.classList.remove('move-mezclador')
+  activarPantallaCompleta()
+  ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
 })
 
 

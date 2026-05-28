@@ -2005,6 +2005,8 @@ width:447px ;
 #padre-1.activo,
 #abuelo-indicadores.activo,
 #linksMA.activo ,
+#control-panel-rgb.activo,
+#control-panel-cmyk.activo,
 #contenedor-global.activo{
   display: flex; 
   transform: scale(1); 
@@ -3878,7 +3880,6 @@ elemento.visible {
   left: 17vw;
   top: 5vh;
   display: flex;
-  gap: 3px;
   width: 61vw;
   height: 7vh;
   z-index:100;
@@ -4673,6 +4674,8 @@ h4{
   left: 16vw;
   top: 11vh;
   overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
   padding: 18px;
   box-sizing: border-box;
   z-index: 100;
@@ -6575,7 +6578,7 @@ height:100%;
 #oblicuo-tintero-4{
   top: 120%;
 }
- .context-menu {
+.context-menu {
   display: none;
   position: absolute;
   background-color: rgb(177, 177, 177);
@@ -6880,7 +6883,6 @@ height:100%;
   font-weight: 500;
   font-size: 0.8vw;
   border-radius: 3px;
-
   background-color: rgba(200,200,200,0.7);
   color:rgba(1,1,1,0.9);
   border: 1px solid rgba(120,120,120,0.6);
@@ -6891,7 +6893,10 @@ height:100%;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   cursor: pointer;
 }
+.section:hover,
 .columna-centro > button:hover{
+    transform: skewX(-8deg);
+
   background-color: rgba(150,150,150,0.9);
   box-shadow:
     inset 4px 4px 6px rgba(0,0,0,0.5),
@@ -6901,6 +6906,7 @@ height:100%;
   transform: scale(0.95);
   color: black;
 }
+.section:active,
 .columna-centro > button:active {
   transform: translateY(0);
   box-shadow:
@@ -8062,11 +8068,11 @@ background-color: #3FEF9C;
 .but-job {
   display: block;
   position: absolute;
-  top: 87%;
-  left: 37%;
+  top: 92%;
+  left: 43%;
   border-radius: 7px;
-  width: 25%;
-  height: 10%;
+  width: 12%;
+  height: 5%;
   background-color: #1e3aff;
   background-image: url('./assets/doubble arrow.png');
   background-size: 100% 100%;
@@ -8083,10 +8089,11 @@ background-color: #3FEF9C;
   background-position: center;
   border: 1px solid #1e3aff;
 }
-.propuesta-item{
+.propuesta-item {
   color: rgba(255,255,255,0.5);
   font-size: 0.8em;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 .propuesta-item:hover{
   border: 1px solid white;
