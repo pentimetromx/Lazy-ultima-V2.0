@@ -4547,7 +4547,7 @@ function ubicaCalculadoraSegunContexto(){
       calculadora.classList.add('move-calculadora-up-ingreso');
     }, 100);
   } 
-  if(!esDesktop && panelAdministrativo.style.display==='grid'){  
+  if(!esDesktop && panelAdministrativo.style.display==='grid' && panelAdministrador.style.display==='none'){
     document.querySelector("#simulador").style.display='flex'    
     calculadora.classList.remove('move-calculadora-up-ingreso')
     calculadora.style.display='grid'
@@ -4559,7 +4559,20 @@ function ubicaCalculadoraSegunContexto(){
     setTimeout(() => {
       calculadora.classList.add('move-calculadora-up-ingreso');
     }, 100);
-  }   
+  }
+  if(!esDesktop && panelAdministrativo.style.display==='grid' && panelAdministrador.style.display==='grid'){  
+    document.querySelector("#simulador").style.display='flex'    
+    calculadora.classList.remove('move-calculadora-up-ingreso')
+    calculadora.style.display='grid'
+    calculadora.style.left='7vw'
+    calculadora.style.top='90vh' 
+    calculadora.style.height='45vh'
+    calculadora.style.width='40vw'
+    calculadora.style.zIndex = 1000;
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up-ingreso');
+    }, 100);
+  }  
 }
 
 const clamp = (val, min, max) =>
@@ -5773,24 +5786,20 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
   document.querySelector('#carta-exterior').style.display='grid'
 
   container1.style.display='grid'
+  panelAdministrador.style.display='grid'
   activarBlur(0,255)
   sliderGraf.value = 0;
   sliderTree.value= 0;
   sliderGraf.dispatchEvent(new Event('input'));
   sliderTree.dispatchEvent(new Event('input'));      
-
-
   document.querySelector('.panel-monitor').classList.add('activo')
   panelAdministrativo.classList.add('move-carta-exterior') 
-
   document.querySelector('#abuelo-indicadores').classList.add('administrativo') 
   document.querySelector('#padre-desempeños').classList.add('administrador')
   document.querySelector("#abuelo-grafica12").classList.add('administra')
   document.querySelector("#grafico-area").classList.add('administrar')
-
   document.querySelector(".graphics-lines").classList.add('administrativo')
   document.querySelector("#MiGrafica17").classList.add('admin')
-
   setTimeout(() => {
     const valor = cardInput.value.trim();
     const datos = JSON.parse(localStorage.getItem('empleadosRegistrados'))
@@ -5802,7 +5811,6 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
     aparecerElemento('abuelo-indicadores', 'grid')
     aparecerElemento('abuelo-grafica12', 'grid')
     aparecerElemento('grafico-area', 'grid')
-
     crearGraficoTreeMap()
     setTimeout(() => {
       aplicarLedsDesdeEmpleado(empleadoGlobal.documento);
