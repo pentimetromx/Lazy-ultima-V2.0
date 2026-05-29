@@ -5851,6 +5851,7 @@ btnActivar.addEventListener('click', function () {
     document.querySelector("#abuelo-grafica12").classList.remove('activo')
     document.querySelector("#grafico-area").classList.remove('administrar')
     document.querySelector("#grafico-area").classList.remove('activo')
+    panelAdministrador.style.display='none'
   }
       
   const valor = cardInput.value.trim();  
@@ -5896,9 +5897,8 @@ btnActivar.addEventListener('click', function () {
     document.querySelector('.panel-monitor').classList.remove('activo')    
 
   } else {
-    /* mostrarVentanaMensaje('Empleado no encontrado en la BD.'); */
     saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn')
-    cardImg.src = './assets/silueta0.png';
+    cardImg.src = './assets/silueta2.png';
     cardImg.alt = '';
   }  return
 });
