@@ -1355,7 +1355,7 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
 
     if (!hayMesActivo || !hayMaquinaActiva){
       alternarColor(firstMachine,secondMachine,2000)
-      saltarAlerta('Seleccione una Maquina y el Mes', 'lanzaGrafos')
+      saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
       return;
     }  // corta la ejecución
 
@@ -2284,7 +2284,14 @@ document.addEventListener('pointerdown', (e) => {
   }
 });
 
-document.querySelector('#recarga').addEventListener('click', ingresoEmpleado);
+document.querySelector('#recarga').addEventListener('click',()=>{
+  if(flagEmpleado === false){
+    alternarColor(btnDblFlecha,btnRecarga,500)
+    return
+  }
+
+  ingresoEmpleado()
+});
 document.querySelector('#recargaMA').addEventListener('click', ingresoEmpleadoMA);
 
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
@@ -2347,6 +2354,10 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
 // boton rojo 
 document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ 
   const inputs = document.querySelectorAll('.fila-ingreso .storeText');
+  if(flagEmpleado === false){
+    alternarColor(btnDblFlecha,btnMetricas,500)
+    return
+  }  
   for (const input of inputs) {
     if (input.value==='') {
       parpadearElemento('nomEmpl');
@@ -2356,8 +2367,6 @@ document.querySelector('.metricas-empleado').addEventListener('click', ()=>{
     }
 
   }
-  cortina.classList.add('overlayRRHH')
-
   console.log('BANDERA : ', flagEmpleado)
   interfazRRHH.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
   moverPadreIngresos(61,28)
@@ -5972,6 +5981,7 @@ document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',(
   container1.style.display = 'grid'; 
 })
 let panelAbierto = false;
+
 document.querySelector("#contenedor-global .but-job").addEventListener('click', () => {
 
   if (panelAbierto) {
@@ -5979,10 +5989,10 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
     document.querySelector("#contenedor-global").classList.remove('move-panel-ma');
     panelAbierto = false;
     return;
-  }
+  }  
 
-  document.querySelectorAll('.span-semana').forEach(s => {
-    s.style.backgroundColor = '';
+  document.querySelectorAll('.span-semana').forEach(semana => {
+    semana.style.backgroundColor = '';
   });
 
   const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
@@ -5990,7 +6000,7 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
 
   if (!hayMesActivo || !hayMaquinaActiva) {
     alternarColor(firstMachine, secondMachine, 2000);
-    saltarAlerta('Seleccione una Maquina y el Mes', 'lanzaGrafos');
+    saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos');
     return;
   }
 
@@ -6025,12 +6035,11 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
 
   panelAbierto = true;
 });
+
 document.querySelector("#overlay-kaizen").addEventListener('click',()=>{
   if(fichasTecnicas.style.zIndex === '2110')return
   saltarAlerta('Ejecutar como administrador','fichasTecnicas')
 })
-
-
 
 function borrrrrrarrrr(){
     ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
