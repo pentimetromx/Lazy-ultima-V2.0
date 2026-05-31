@@ -237,8 +237,9 @@ const btnLimpiarMA = document.querySelector('#limpia-ingreso-ma')
 let inputPerfil = document.getElementById('nombreCliente')
 let listaClientes = document.getElementById('lista-clientes')
 let listaColores = document.getElementById('lista-colores')
-
+const btnMetricas = document.querySelector(".metricas-empleado");
 const btnModificar = document.querySelector('#modifica-ingreso')
+const btnRecarga = document.querySelector('#recarga')
 const btnLimpiar = document.querySelector('#limpia-ingreso')
 const btnSalirRH = document.querySelector('#salir-ingreso')
 const btnAgregar = document.querySelector('#nuevo-ingreso');
@@ -2155,6 +2156,7 @@ function mostrarVentanaMensaje(texto) {
   }
   if (p) p.textContent = texto;
 }
+
 btnLimpiarMA.addEventListener('click', () =>{
 
   const img = document.getElementById('empleadoImg');
@@ -2216,6 +2218,7 @@ btnSalirRH.addEventListener('click',()=>{
   blurOverlay.style.display='none'
 
 })
+
 btnAgregar.addEventListener('click', agregarEmpleado);
 function limpiarEntradas() {
   entradas.forEach(input => input.value = '');

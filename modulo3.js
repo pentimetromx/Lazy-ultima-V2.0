@@ -12,12 +12,14 @@ document.addEventListener('keydown', function(event) {
       case 'Z':
       /* localStorage.removeItem('kaizenRegistrados'); */
       /* mostrarPorClaveLocalStore('empleadosRegistrados') */
-      console.warn('OBJETO GLOBAL', objetoGlobal)   
+        desactivarClick(['.entrada-empleado']);
+  
 
       break;  
       case 'H':
         /* Geometria() */
         console.log('OBJETO GLOBAL', objetoGlobal)
+        restablecerClick(['.entrada-empleado']);
       break;
       case 'X':
       eliminarClaveLocalStorage('empleadosRegistrados')
