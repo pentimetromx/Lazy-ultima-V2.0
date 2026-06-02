@@ -594,59 +594,9 @@ function actualizarAlturaBarra(contenedorPadre, nuevaAltura) {
     console.warn('No se encontró un div con clase .bar dentro del contenedor proporcionado');
   }
 }
-// Selecciona el segundo contenedor de barra
-const primerContenedor = document.querySelectorAll('.bar-container')[0]; 
-const segundoContenedor = document.querySelectorAll('.bar-container')[1];
-const tercerContenedor = document.querySelectorAll('.bar-container')[2];
-const cuartoContenedor = document.querySelectorAll('.bar-container')[3];
-const quintoContenedor = document.querySelectorAll('.bar-container')[4];
-const sextoContenedor = document.querySelectorAll('.bar-container')[5];
-const septimoContenedor = document.querySelectorAll('.bar-container')[6];
-const diasMes = document.querySelectorAll('.dia');
-const datosPorDia = {
-  1: ['75%', '55%', '35%', '87%', '90%', '22%', '67%'],
-  2: ['37%', '82%', '77%', '22%', '5%', '88%', '97%'],
-  3: ['12%', '33%', '65%', '41%', '69%', '11%', '23%'],
-  4: ['58%', '49%', '36%', '72%', '84%', '15%', '66%'],
-  5: ['90%', '44%', '29%', '53%', '61%', '77%', '35%'],
-  6: ['26%', '61%', '42%', '38%', '93%', '70%', '18%'],
-  7: ['13%', '47%', '78%', '55%', '80%', '99%', '30%'],
-  8: ['40%', '59%', '32%', '76%', '69%', '25%', '88%'],
-  9: ['60%', '31%', '83%', '28%', '74%', '39%', '92%'],
-  10: ['81%', '63%', '56%', '34%', '91%', '17%', '46%'],
-  11: ['24%', '70%', '48%', '62%', '79%', '52%', '11%'],
-  12: ['50%', '22%', '68%', '94%', '35%', '85%', '19%'],
-  13: ['43%', '75%', '20%', '57%', '98%', '27%', '86%'],
-  14: ['87%', '66%', '14%', '37%', '71%', '96%', '33%'],
-  15: ['45%', '21%', '61%', '99%', '12%', '58%', '74%'],
-  16: ['73%', '36%', '54%', '83%', '25%', '91%', '47%'],
-  17: ['62%', '11%', '90%', '40%', '66%', '78%', '32%'],
-  18: ['39%', '57%', '13%', '71%', '93%', '26%', '80%'],
-  19: ['31%', '95%', '84%', '19%', '44%', '55%', '67%'],
-  20: ['88%', '29%', '76%', '51%', '60%', '38%', '15%'],
-  21: ['92%', '42%', '17%', '85%', '34%', '73%', '27%'],
-  22: ['33%', '64%', '26%', '48%', '79%', '13%', '95%'],
-  23: ['98%', '30%', '59%', '81%', '20%', '43%', '70%'],
-  24: ['65%', '18%', '74%', '97%', '50%', '60%', '41%'],
-  25: ['77%', '93%', '24%', '36%', '89%', '12%', '53%'],
-  26: ['69%', '87%', '16%', '45%', '31%', '82%', '22%'],
-  27: ['53%', '20%', '63%', '90%', '17%', '44%', '79%'],
-  28: ['80%', '35%', '96%', '23%', '58%', '67%', '14%'],
-  29: ['46%', '28%', '91%', '70%', '39%', '21%', '83%'],
-  30: ['94%', '62%', '19%', '88%', '33%', '75%', '48%'],
-  31: ['50%', '60%', '70%', '80%', '90%', '100%', '30%']
-};
-const contenedores = [
-  primerContenedor,
-  segundoContenedor,
-  tercerContenedor,
-  cuartoContenedor,
-  quintoContenedor,
-  sextoContenedor,
-  septimoContenedor
-];
 
 diasMes.forEach(dia => {
+  console.warn('')
   dia.addEventListener('click', () => {
     const numeroDia = parseInt(dia.textContent.trim());
     const alturas = datosPorDia[numeroDia];
@@ -660,6 +610,7 @@ diasMes.forEach(dia => {
     });
   });
 });
+
 function resaltarSecuencial() {
   const spans = document.querySelectorAll('#formulario-cuenta .etq-frm');
 
@@ -2376,7 +2327,7 @@ document.querySelector('.metricas-empleado').addEventListener('click', ()=>{
   }
 })
 
-function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
+/*function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
   if (!contenedor) return;
 
@@ -2392,7 +2343,7 @@ function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
 }
 
 // Uso en los listeners
-['click', 'touchstart'].forEach(evt => {canvas.addEventListener(evt, () => {
+ ['click', 'touchstart'].forEach(evt => {canvas.addEventListener(evt, () => {
     document.querySelector('#grafico-area').style.display = 'block';
 
     mostrarCalendario(mesGlobal);
@@ -2403,7 +2354,7 @@ function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
       if (el) el.style.display = 'none';
     });
   });
-});
+}); */
 
 function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
