@@ -594,12 +594,21 @@ function actualizarAlturaBarra(contenedorPadre, nuevaAltura) {
     console.warn('No se encontró un div con clase .bar dentro del contenedor proporcionado');
   }
 }
+let hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
+let hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';
 
 diasMes.forEach(dia => {
-  console.warn('')
   dia.addEventListener('click', () => {
+    console.warn('')
     const numeroDia = parseInt(dia.textContent.trim());
     const alturas = datosPorDia[numeroDia];
+
+
+    if (!hayMesActivo || !hayMaquinaActiva) {
+      alternarColor(firstMachine, secondMachine, 2000);
+      saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos');
+      return;
+    }
 
     if (!alturas) return;
 
@@ -1308,7 +1317,7 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
       alternarColor(firstMachine,secondMachine,2000)
       saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
       return;
-    }  // corta la ejecución
+    }
 
     const abueloGrafica = document.querySelector('#abuelo-grafica4');
     
@@ -1703,101 +1712,115 @@ const previewFoto = document.getElementById('empleadoImg');
 
 // CLICK EN IMAGEN EN SOLITARIO INICIAL
 visor.addEventListener('click', (e) => {
-
-  const padreEmpleados = document.querySelector('#father-employees');
-  const padreImagenes = document.querySelector('.contenedor-visor'); 
-  if (e.target.tagName !== 'IMG') return;
-
-  const visor = document.getElementById('visorImagen');
-  const imgSrc = e.target.getAttribute('src');
-  const segundoSpan = visor.querySelector('span:nth-child(2)');
-  if (!imgSrc) return;
-
-  // ← copia la imagen al destino
-  const imagenDestino = document.getElementById('imagenDestino');
-  if (imagenDestino) imagenDestino.src = imgSrc;
-
-  imagenSeleccionada = imgSrc;
-  nombreSeleccionado = segundoSpan ? segundoSpan.textContent.trim() : '';
-
-  // obtener los spans actuales en el momento del clic
-  const nombres = Array.from(document.querySelectorAll('#listaNombres span'));
-  const span = indiceActual !== null ? nombres[indiceActual] : null;
-  if (!span) return; // evita el error si no existe
-
-  padreEmpleados.style.display = 'none';
-  padreImagenes.style.display = 'none';
-  buscador.value=''
-
-  switch (span.textContent) {
-    case 'Monica Muñoz Sepulveda':
-      console.log('NOMBRE EN SPAN:',span.textContent)
-      resultadosEmpleado('icon-andres', 'updateAndres', 'img2', 'true');
-      break;
-    case 'Carlos Mario Sanchez':
-      console.log('NOMBRE EN SPAN:',span.textContent)
-      resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
-      break;
-    case 'Jorge Alberto Lozada':
-      resultadosEmpleado('icon-jorge', 'updateJorge', 'img3', 'true');
-      break;
-    case 'Jesus Norvey Cordoba':
-      resultadosEmpleado('icon-jesus', 'updateJesus', 'img4', 'true');
-      break;
-    case 'Sandra Milena Alvarez':
-      resultadosEmpleado('icon-sandra', 'updateSandra', 'img5', 'true');
-      break;
-    case 'John Mario Mira Pineda':
-      resultadosEmpleado('icon-mario', 'updateMario', 'img6', 'true');
-      break;
-    case 'Ana Maria Duarte Pineda':
-      resultadosEmpleado('icon-ana', 'updateAna', 'img7', 'true');
-      break;
-  }
+  detenerDinamica()
+  moverVisor()
 
   setTimeout(() => {
-    permitirEliminarImagen = true;
-  }, 100);
+    const padreEmpleados = document.querySelector('#father-employees');
+    const padreImagenes = document.querySelector('.contenedor-visor'); 
+    if (e.target.tagName !== 'IMG') return;
 
-  const coleccionGraficos = document.querySelectorAll(".graphs-lines")
-  coleccionGraficos.forEach(grafico => {
-    grafico.style.display = 'flex'
-  })
+    const visor = document.getElementById('visorImagen');
+    const imgSrc = e.target.getAttribute('src');
+    const segundoSpan = visor.querySelector('span:nth-child(2)');
+    if (!imgSrc) return;
 
-  const grafica9 = document.querySelector('#MiGrafica9');
-  if (grafica9) {
-    grafica9.style.opacity = 1;
-    grafica9.style.display = 'flex';
-    grafica9.style.visibility = 'visible';
-  }
+    // ← copia la imagen al destino
+    const imagenDestino = document.getElementById('imagenDestino');
+    if (imagenDestino) imagenDestino.src = imgSrc;
 
-  const iconos = document.querySelector('#iconos');
-  const contLineas = document.querySelector('#contLineas');
-  const conteSecundario = document.querySelector('#conte-secundario');
-  const conteBotones = document.querySelector('#conte-butts-graphs');
-  const portaVisor = document.querySelector('#porta-visor');
-  const portaImagen = document.querySelector("#porta-imagen");
+    imagenSeleccionada = imgSrc;
+    nombreSeleccionado = segundoSpan ? segundoSpan.textContent.trim() : '';
 
-  if (iconos) iconos.style.display = 'flex';
-  if (contLineas) contLineas.style.display = 'grid';
-  if (conteSecundario) conteSecundario.style.display = 'flex';
-  if (conteBotones) conteBotones.style.display = 'grid';
-  if (portaImagen) portaImagen.style.display = 'grid';
+    // obtener los spans actuales en el momento del clic
+    const nombres = Array.from(document.querySelectorAll('#listaNombres span'));
+    const span = indiceActual !== null ? nombres[indiceActual] : null;
+    if (!span) return; // evita el error si no existe
 
-  aparecerElemento('porta-visor', 'grid');
+    padreEmpleados.style.display = 'none';
+    /* padreImagenes.style.display = 'none'; */
+    buscador.value=''
 
-  // ✅ Después de aparecerElemento
-  setTimeout(() => {
-    if (portaVisor && !portaVisor.classList.contains('modificarPosicion')) {
-      portaVisor.classList.add('modificarPosicion');
+    switch (span.textContent) {
+      case 'Monica Muñoz Sepulveda':
+        console.log('NOMBRE EN SPAN:',span.textContent)
+        resultadosEmpleado('icon-andres', 'updateAndres', 'img2', 'true');
+        break;
+      case 'Carlos Mario Sanchez':
+        console.log('NOMBRE EN SPAN:',span.textContent)
+        resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
+        break;
+      case 'Jorge Alberto Lozada':
+        resultadosEmpleado('icon-jorge', 'updateJorge', 'img3', 'true');
+        break;
+      case 'Jesus Norvey Cordoba':
+        resultadosEmpleado('icon-jesus', 'updateJesus', 'img4', 'true');
+        break;
+      case 'Sandra Milena Alvarez':
+        resultadosEmpleado('icon-sandra', 'updateSandra', 'img5', 'true');
+        break;
+      case 'John Mario Mira Pineda':
+        resultadosEmpleado('icon-mario', 'updateMario', 'img6', 'true');
+        break;
+      case 'Ana Maria Duarte Pineda':
+        resultadosEmpleado('icon-ana', 'updateAna', 'img7', 'true');
+        break;
     }
-  }, 50);
 
-  document.querySelector("#listaNombres").style.display = 'none';
-  document.querySelector("#buscador-empleado").classList.add("ubicacion");
-  document.querySelector("#visorImagen").classList.add('ubicar-visor');
-  document.querySelector("#porta-visor > div.visor > span").classList.add('ubicado');
-  document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');
+    setTimeout(() => {
+      permitirEliminarImagen = true;
+    }, 100);
+
+    const coleccionGraficos = document.querySelectorAll(".graphs-lines")
+    coleccionGraficos.forEach(grafico => {
+      grafico.style.display = 'flex'
+    })
+
+    const grafica9 = document.querySelector('#MiGrafica9');
+    if (grafica9) {
+      grafica9.style.opacity = 1;
+      grafica9.style.display = 'flex';
+      grafica9.style.visibility = 'visible';
+    }
+
+    const iconos = document.querySelector('#iconos');
+    /* const contLineas = document.querySelector('#contLineas'); */
+    const conteSecundario = document.querySelector('#conte-secundario');
+    const conteBotones = document.querySelector('#conte-butts-graphs');
+    const portaVisor = document.querySelector('#porta-visor');
+    const portaImagen = document.querySelector("#porta-imagen");
+
+    if (iconos) iconos.style.display = 'flex';
+    /* if (contLineas) contLineas.style.display = 'grid'; */
+    if (conteSecundario) conteSecundario.style.display = 'flex';
+    if (conteBotones) conteBotones.style.display = 'grid';
+    if (portaImagen) portaImagen.style.display = 'grid';
+
+    document.querySelector("#listaNombres").style.display = 'none';
+    document.querySelector("#buscador-empleado").classList.add("ubicacion");
+    document.querySelector("#visorImagen").classList.add('ubicar-visor');
+    document.querySelector("#porta-visor > div.visor > span").classList.add('ubicado');
+    document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');
+  }, 1000);
+  setTimeout(() => {
+    const contLineas = document.querySelector('#contLineas');
+    if (contLineas) contLineas.style.display = 'grid';
+
+    const coleccionGraficas = document.querySelectorAll(".graphs-lines");
+
+    coleccionGraficas.forEach((grafico, index) => {
+      grafico.style.display = 'flex';
+      grafico.style.transform = 'scale(0)';
+      grafico.style.transition = `transform 0.6s ease ${index * 0.10}s`;
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          grafico.style.transform = 'scale(1)';
+        });
+      });
+    });
+  }, 700);
+
 
 });
 
@@ -5709,25 +5732,20 @@ function limpiarFormulario() {
     if (imgMa) imgMa.src = '';
   }, inputs.length * 140);
 }
-
 document.querySelector('#borrarBoton2').addEventListener('click', () => {
   rodillosKaizen('btn17','')
 });
-
 documentoEmplEliminar.addEventListener('touchstart', (e) => {
   e.preventDefault();
   calculadoraSimulador = true;
   documentoEmplEliminar.focus();
   if(!esDesktop)ubicaCalculadoraSegunContexto();
 }, { passive: false });
-
 documentoEmplEliminar.addEventListener('blur', () => {
   if (!esDesktop) {
     hideCalculator();
   }
 });
-
-
 /* BOTON SUPERIOR COLUMNA BOTONES */
 document.querySelector("#boton-ma-card").addEventListener('click',()=>{
   const img = document.getElementById('imgAdministrar');
@@ -5784,7 +5802,6 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
     }, 2200);     
   }, 700);    
 })
-
 document.querySelector("#borrarBoton5").addEventListener('click',()=>{
   var elementosExcluidos = ['links-inicialesI','links-iniciales','buscador','search-form'] 
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -5794,13 +5811,13 @@ document.querySelector("#borrarBoton5").addEventListener('click',()=>{
     }
   } 
   container1.style.display='grid'
-  resultadosMaquina()
+  activarPantallaCompleta()
+  resultadosMA('interfaz-mtto')
   
 })
 const btnActivar = document.querySelector('#carta-exterior .btn-primario');
 const cardInput = document.querySelector('#carta-exterior .card-header');
 const cardImg = document.querySelector('#carta-exterior .card-foto img');
-
 btnActivar.addEventListener('click', function () {
   if (panelAdministrador.classList.contains('activo')){
     document.querySelector('#abuelo-indicadores').classList.remove('administrativo') 
@@ -5932,8 +5949,16 @@ document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',(
   container1.style.display = 'grid'; 
 })
 let panelAbierto = false;
-
 document.querySelector("#contenedor-global .but-job").addEventListener('click', () => {
+
+    const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
+    const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
+
+    if (!hayMesActivo || !hayMaquinaActiva){
+      alternarColor(firstMachine,secondMachine,2000)
+      saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
+      return;
+    }
 
   if (panelAbierto) {
     desaparecerElemento('abuelo-grafica4', 'grid');
@@ -5945,15 +5970,6 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
   document.querySelectorAll('.span-semana').forEach(semana => {
     semana.style.backgroundColor = '';
   });
-
-  const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
-  const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';
-
-  if (!hayMesActivo || !hayMaquinaActiva) {
-    alternarColor(firstMachine, secondMachine, 2000);
-    saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos');
-    return;
-  }
 
   const abueloGrafica = document.querySelector('#abuelo-grafica4');
   Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
@@ -5986,11 +6002,51 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
 
   panelAbierto = true;
 });
-
 document.querySelector("#overlay-kaizen").addEventListener('click',()=>{
   if(fichasTecnicas.style.zIndex === '2110')return
   saltarAlerta('Ejecutar como administrador','fichasTecnicas')
 })
+function moverVisor() {
+  const visor = document.getElementById('porta-visor');
+  const listaNombres = document.getElementById('listaNombres');
+  const imagen = document.querySelector('.visor-imagen'); 
+  const busqueda = document.querySelector("#buscador-empleado")
+  const nombre = document.querySelector("#porta-visor > div.visor > span")
+  const navArrow = document.querySelector("#porta-visor > div.visor > div.navegacion")
+
+
+
+  // Ocultar listaNombres primero
+  listaNombres.style.opacity = '0';
+  listaNombres.style.pointerEvents = 'none';
+
+  setTimeout(() => {
+    listaNombres.style.visibility = 'hidden';
+  }, 400);
+
+  // Mover y reducir el contenedor
+  visor.style.transition = 'transform 2s ease, width 2s ease';
+  visor.style.transition = 'transform 2s ease, height 2s ease';
+  visor.style.transform = 'scale(1) translate(-273px, 91px)';
+  visor.style.width = '15vw';
+  visor.style.height = '50vh';
+
+  imagen.style.transition = 'transform 2s ease, width 2s ease';
+  imagen.style.transition = 'transform 2s ease, rigth 2s ease';
+  imagen.style.width = '130%';
+  imagen.style.right='33%'
+  imagen.style.left=''
+
+  busqueda.style.width='132%'
+
+  nombre.style.width='156%'
+  nombre.style.marginLeft='-10%'
+
+  navArrow.style.width='161%'
+  navArrow.style.left='-16%'
+}
+
+
 
 function borrrrrrarrrr(){
     ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));

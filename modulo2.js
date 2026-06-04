@@ -5152,9 +5152,17 @@ function mostrarCalendario(mesSeleccionado, contenedorSelector = '.calendario-in
     diaElemento.style.display = "flex";
 
     diaElemento.addEventListener("click", () => {
+      const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
+      const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
+
+      if (!hayMesActivo || !hayMaquinaActiva){
+        alternarColor(firstMachine,secondMachine,2000)
+        saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
+        return;
+      }
 
       // Resaltado visual
-      document.querySelectorAll("#calendarioMes .dia").forEach(d => {
+      document.querySelectorAll(".dia").forEach(d => {
         d.style.backgroundColor = "";
         d.style.color = "";
       });

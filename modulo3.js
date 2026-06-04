@@ -10,9 +10,32 @@ document.addEventListener('keydown', function(event) {
 
       break
       case 'Z':
-      /* localStorage.removeItem('kaizenRegistrados'); */
-      /* mostrarPorClaveLocalStore('empleadosRegistrados') */
-        desactivarClick(['.entrada-empleado']);
+        /* document.querySelector("#contLineas").style.display='none'
+        setTimeout(() => {
+          document.querySelector("#contLineas").style.display='grid'
+          document.querySelectorAll('.graphs-lines').forEach(el => {
+            el.style.visibility = 'hidden';
+          });
+        }, 1000);
+        setTimeout(() => {
+          aparecerElemento('canvasContainer4', 'flex')            
+        }, 1500); */
+        const contLineas = document.querySelector('#contLineas');
+        if (contLineas) contLineas.style.display = 'grid';
+
+        const coleccionGraficos = document.querySelectorAll(".graphs-lines");
+
+        coleccionGraficos.forEach((grafico, index) => {
+          grafico.style.display = 'flex';
+          grafico.style.transform = 'scale(0)';
+          grafico.style.transition = `transform 1.6s ease ${index * 0.15}s`;
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              grafico.style.transform = 'scale(1)';
+            });
+          });
+        });    
   
 
       break;  
