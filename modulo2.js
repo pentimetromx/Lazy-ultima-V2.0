@@ -5045,180 +5045,6 @@ contLineas.addEventListener('click', (e) => {
     }
   });
 });
-// Selecciona el segundo contenedor de barra
-const primerContenedor = document.querySelectorAll('.bar-container')[0]; 
-const segundoContenedor = document.querySelectorAll('.bar-container')[1];
-const tercerContenedor = document.querySelectorAll('.bar-container')[2];
-const cuartoContenedor = document.querySelectorAll('.bar-container')[3];
-const quintoContenedor = document.querySelectorAll('.bar-container')[4];
-const sextoContenedor = document.querySelectorAll('.bar-container')[5];
-const septimoContenedor = document.querySelectorAll('.bar-container')[6];
-const diasMes = document.querySelectorAll('.dia');
-const datosPorDia = {
-  1: ['75%', '55%', '35%', '87%', '90%', '22%', '67%'],
-  2: ['37%', '82%', '77%', '22%', '5%', '88%', '97%'],
-  3: ['12%', '33%', '65%', '41%', '69%', '11%', '23%'],
-  4: ['58%', '49%', '36%', '72%', '84%', '15%', '66%'],
-  5: ['90%', '44%', '29%', '53%', '61%', '77%', '35%'],
-  6: ['26%', '61%', '42%', '38%', '93%', '70%', '18%'],
-  7: ['13%', '47%', '78%', '55%', '80%', '99%', '30%'],
-  8: ['40%', '59%', '32%', '76%', '69%', '25%', '88%'],
-  9: ['60%', '31%', '83%', '28%', '74%', '39%', '92%'],
-  10: ['81%', '63%', '56%', '34%', '91%', '17%', '46%'],
-  11: ['24%', '70%', '48%', '62%', '79%', '52%', '11%'],
-  12: ['50%', '22%', '68%', '94%', '35%', '85%', '19%'],
-  13: ['43%', '75%', '20%', '57%', '98%', '27%', '86%'],
-  14: ['87%', '66%', '14%', '37%', '71%', '96%', '33%'],
-  15: ['45%', '21%', '61%', '99%', '12%', '58%', '74%'],
-  16: ['73%', '36%', '54%', '83%', '25%', '91%', '47%'],
-  17: ['62%', '11%', '90%', '40%', '66%', '78%', '32%'],
-  18: ['39%', '57%', '13%', '71%', '93%', '26%', '80%'],
-  19: ['31%', '95%', '84%', '19%', '44%', '55%', '67%'],
-  20: ['88%', '29%', '76%', '51%', '60%', '38%', '15%'],
-  21: ['92%', '42%', '17%', '85%', '34%', '73%', '27%'],
-  22: ['33%', '64%', '26%', '48%', '79%', '13%', '95%'],
-  23: ['98%', '30%', '59%', '81%', '20%', '43%', '70%'],
-  24: ['65%', '18%', '74%', '97%', '50%', '60%', '41%'],
-  25: ['77%', '93%', '24%', '36%', '89%', '12%', '53%'],
-  26: ['69%', '87%', '16%', '45%', '31%', '82%', '22%'],
-  27: ['53%', '20%', '63%', '90%', '17%', '44%', '79%'],
-  28: ['80%', '35%', '96%', '23%', '58%', '67%', '14%'],
-  29: ['46%', '28%', '91%', '70%', '39%', '21%', '83%'],
-  30: ['94%', '62%', '19%', '88%', '33%', '75%', '48%'],
-  31: ['50%', '60%', '70%', '80%', '90%', '100%', '30%']
-};
-
-const contenedores = [
-  primerContenedor,
-  segundoContenedor,
-  tercerContenedor,
-  cuartoContenedor,
-  quintoContenedor,
-  sextoContenedor,
-  septimoContenedor
-];
-
-function mostrarCalendario(mesSeleccionado, contenedorSelector = '.calendario-interfaz') {
-  const contenedor = document.querySelector(contenedorSelector);
-  if (!contenedor) return;
-
-  // Mostrar mes actual
-  const spanMes = document.querySelector('#mes-area');
-  if (spanMes) spanMes.textContent = mesSeleccionado;
-
-  // Obtener días del mes
-  const diasMes = obtenerDiasDelMes(mesSeleccionado);
-
-  // Generar botonera original
-  generarBotoneraDias(
-    contenedorSelector,
-    diasMes,
-    offset,
-    index => cambiarFuente(index)
-  );
-
-  // Aplicar lógica de la primera función a los botones creados
-  const diasGenerados = contenedor.querySelectorAll('.dia');
-
-  diasGenerados.forEach(dia => {
-    dia.addEventListener('click', () => {
-
-      const numeroDia = parseInt(dia.textContent.trim());
-      const alturas = datosPorDia[numeroDia];
-
-      if (!alturas) return;
-
-      alturas.forEach((altura, i) => {
-        setTimeout(() => {
-          actualizarAlturaBarra(contenedores[i], altura);
-        }, 177 + i * 67);
-      });
-
-    });
-  });
-
-  const diasDelMes = diasPorMes[mesSeleccionado];
-
-  calendarioMes.innerHTML = "";
-
-  let semana = document.createElement("div");
-  semana.className = "semana";
-
-  for (let i = 1; i <= diasDelMes; i++) {
-
-    const diaElemento = document.createElement("div");
-    diaElemento.className = "dia";
-    diaElemento.textContent = i;
-    diaElemento.style.display = "flex";
-
-    diaElemento.addEventListener("click", () => {
-      const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
-      const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
-
-      if (!hayMesActivo || !hayMaquinaActiva){
-        alternarColor(firstMachine,secondMachine,2000)
-        saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
-        return;
-      }
-
-      // Resaltado visual
-      document.querySelectorAll(".dia").forEach(d => {
-        d.style.backgroundColor = "";
-        d.style.color = "";
-      });
-
-      diaElemento.style.backgroundColor = "rgb(40, 180, 110)";
-      diaElemento.style.color = "black";
-
-      // Lógica heredada de la primera función
-      const alturas = datosPorDia[i];
-
-      if (alturas) {
-        alturas.forEach((altura, indice) => {
-          setTimeout(() => {
-            actualizarAlturaBarra(contenedores[indice], altura);
-          }, 177 + indice * 67);
-        });
-      }
-
-      // Lógica propia
-      manejarDia(i);
-    });
-
-    semana.appendChild(diaElemento);
-
-    if (i % 7 === 0) {
-      calendarioMes.appendChild(semana);
-      semana = document.createElement("div");
-      semana.className = "semana";
-    }
-  }
-
-  if (semana.children.length > 0) {
-    calendarioMes.appendChild(semana);
-  }
-
-  while (semana.children.length < 7) {
-    const diaVacio = document.createElement("div");
-    diaVacio.className = "dia vacio";
-    diaVacio.style.display = "flex";
-    semana.appendChild(diaVacio);
-  }
-}
-
-// Uso en los listeners
-['click', 'touchstart'].forEach(evt => {canvas.addEventListener(evt, () => {
-  document.querySelector('#grafico-area').style.display = 'block';
-
-  mostrarCalendario(mesGlobal);
-
-  if (blurOverlay) activarBlur();
-
-  [linksMA, linkLista, buscador].forEach(el => {
-    if (el) el.style.display = 'none';
-  });
-});
-});
 
 function mostrarSecuencialmente() {
   const padreElementos = document.getElementById('metas-diarias')
@@ -5273,6 +5099,50 @@ function cargarDatos() {
 function   nextPrime() { alert("NextPrime función"); }
 function alternateFunction() { alert("Alternate función"); }
 
+function mostrarCalendario(mesSeleccionado) {
+  const diasDelMes = diasPorMes[mesSeleccionado]; 
+  calendarioMes.innerHTML = "";
+
+  let semana = document.createElement("div");
+  semana.className = "semana";
+
+  for (let i = 1; i <= diasDelMes; i++) {
+    const diaElemento = document.createElement("div");
+    diaElemento.className = "dia";
+    diaElemento.textContent = i;
+    diaElemento.style.display = "flex";
+
+    // Listener directo: resalta y llama a manejarDia
+    diaElemento.addEventListener("click", () => {
+      document.querySelectorAll(".dia").forEach(d => {
+        d.style.backgroundColor = "";
+        d.style.color = "";
+      });
+
+      diaElemento.style.backgroundColor = "rgb(40, 180, 110)";
+      diaElemento.style.color = "black";
+
+      manejarDia(i);
+    });
+
+    semana.appendChild(diaElemento);
+
+    if (i % 7 === 0) {
+      calendarioMes.appendChild(semana);
+      semana = document.createElement("div");
+      semana.className = "semana";
+    }
+  }
+
+  if (semana.children.length > 0) calendarioMes.appendChild(semana);
+
+  while (semana.children.length < 7) {
+    const diaVacio = document.createElement("div");
+    diaVacio.className = "dia vacio";
+    diaVacio.style.display = "flex";
+    semana.appendChild(diaVacio);
+  }
+}
 function destruirCharts() {
   [chart18,chart17, chart16, chart15, chart14, chart13].forEach((c, i, arr) => {
     if (c) {
@@ -5319,7 +5189,6 @@ elementosMes.forEach((mes, index) => {
     setTimeout(mostrarSemanasSecuencialmente, 50);
     aplicarLogicaPorMes(mes.textContent.trim());
     setTimeout(() => {
-      console.warn()
       aparecerElemento('contenedor-1','grid'); 
       document.querySelector('#tree-map').style.display='block'      
     }, 500);
@@ -5344,6 +5213,15 @@ function aplicarLogicaPorMes(nombreMes) {
   switch (nombreMes.toLowerCase()) {
     case "enero":
     break;
+
+    case "febrero":
+      console.log("Lógica especial para Febrero");
+    break;
+
+    case "marzo":
+      console.log("Lógica especial para Marzo");
+    break;
+
     default:
       console.log(`Sin lógica específica para ${nombreMes}`);
   }

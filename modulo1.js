@@ -4415,7 +4415,6 @@ function resultadosMaquina(){
   ['.maquina', '.mes', '.indicador','.span-semana'].forEach(selector => {
     document.querySelectorAll(selector).forEach(el => el.removeAttribute('style'));
   });
-
   document.querySelectorAll('.titulo-graf-ma').forEach(el => {
     el.textContent = '';
   });
@@ -4424,13 +4423,6 @@ function resultadosMaquina(){
   destruirCharts()
   container1.style.display='grid'
   document.querySelector("#contenedor-global").classList.remove('move-panel-ma')
-  setTimeout(() => {
-    document.querySelectorAll(".dia").forEach(d => {
-        d.style.backgroundColor = "";
-        d.style.color = "";
-        d.classList.remove('activo');
-    });   
-  }, 1000);
 }
 
 document.querySelectorAll('.maquina').forEach((maquina, index) => {
