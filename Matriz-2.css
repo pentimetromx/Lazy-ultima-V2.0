@@ -5689,8 +5689,15 @@ top: 44%;
   font-weight: 500;
   transition: background 0.2s, color 0.2s, transform 0.1s;  
 }
+.butt-mautonomo-desbobina:hover::before {
+  background-color: rgb(255,255,255);
+}
+
 button:hover{
-  background:#1f6feb;
+  /* background:#1f6feb; */
+  background-color: rgb(184, 90, 0);
+  color: rgb(255, 248, 220);
+
 }
 #salir{
   background:rgb(255,0,124); 
@@ -6037,7 +6044,7 @@ button:hover{
   width: 15vw;
   height: 50vh;
   margin-top: 90px;
-  left: 1vw;
+  left: 0.5vw;
   border: 1px solid rgb(30, 144, 255);
 }
 

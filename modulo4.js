@@ -594,62 +594,21 @@ function actualizarAlturaBarra(contenedorPadre, nuevaAltura) {
     console.warn('No se encontró un div con clase .bar dentro del contenedor proporcionado');
   }
 }
-// Selecciona el segundo contenedor de barra
-const primerContenedor = document.querySelectorAll('.bar-container')[0]; 
-const segundoContenedor = document.querySelectorAll('.bar-container')[1];
-const tercerContenedor = document.querySelectorAll('.bar-container')[2];
-const cuartoContenedor = document.querySelectorAll('.bar-container')[3];
-const quintoContenedor = document.querySelectorAll('.bar-container')[4];
-const sextoContenedor = document.querySelectorAll('.bar-container')[5];
-const septimoContenedor = document.querySelectorAll('.bar-container')[6];
-const diasMes = document.querySelectorAll('.dia');
-const datosPorDia = {
-  1: ['75%', '55%', '35%', '87%', '90%', '22%', '67%'],
-  2: ['37%', '82%', '77%', '22%', '5%', '88%', '97%'],
-  3: ['12%', '33%', '65%', '41%', '69%', '11%', '23%'],
-  4: ['58%', '49%', '36%', '72%', '84%', '15%', '66%'],
-  5: ['90%', '44%', '29%', '53%', '61%', '77%', '35%'],
-  6: ['26%', '61%', '42%', '38%', '93%', '70%', '18%'],
-  7: ['13%', '47%', '78%', '55%', '80%', '99%', '30%'],
-  8: ['40%', '59%', '32%', '76%', '69%', '25%', '88%'],
-  9: ['60%', '31%', '83%', '28%', '74%', '39%', '92%'],
-  10: ['81%', '63%', '56%', '34%', '91%', '17%', '46%'],
-  11: ['24%', '70%', '48%', '62%', '79%', '52%', '11%'],
-  12: ['50%', '22%', '68%', '94%', '35%', '85%', '19%'],
-  13: ['43%', '75%', '20%', '57%', '98%', '27%', '86%'],
-  14: ['87%', '66%', '14%', '37%', '71%', '96%', '33%'],
-  15: ['45%', '21%', '61%', '99%', '12%', '58%', '74%'],
-  16: ['73%', '36%', '54%', '83%', '25%', '91%', '47%'],
-  17: ['62%', '11%', '90%', '40%', '66%', '78%', '32%'],
-  18: ['39%', '57%', '13%', '71%', '93%', '26%', '80%'],
-  19: ['31%', '95%', '84%', '19%', '44%', '55%', '67%'],
-  20: ['88%', '29%', '76%', '51%', '60%', '38%', '15%'],
-  21: ['92%', '42%', '17%', '85%', '34%', '73%', '27%'],
-  22: ['33%', '64%', '26%', '48%', '79%', '13%', '95%'],
-  23: ['98%', '30%', '59%', '81%', '20%', '43%', '70%'],
-  24: ['65%', '18%', '74%', '97%', '50%', '60%', '41%'],
-  25: ['77%', '93%', '24%', '36%', '89%', '12%', '53%'],
-  26: ['69%', '87%', '16%', '45%', '31%', '82%', '22%'],
-  27: ['53%', '20%', '63%', '90%', '17%', '44%', '79%'],
-  28: ['80%', '35%', '96%', '23%', '58%', '67%', '14%'],
-  29: ['46%', '28%', '91%', '70%', '39%', '21%', '83%'],
-  30: ['94%', '62%', '19%', '88%', '33%', '75%', '48%'],
-  31: ['50%', '60%', '70%', '80%', '90%', '100%', '30%']
-};
-const contenedores = [
-  primerContenedor,
-  segundoContenedor,
-  tercerContenedor,
-  cuartoContenedor,
-  quintoContenedor,
-  sextoContenedor,
-  septimoContenedor
-];
+let hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
+let hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';
 
 diasMes.forEach(dia => {
   dia.addEventListener('click', () => {
+    console.warn('')
     const numeroDia = parseInt(dia.textContent.trim());
     const alturas = datosPorDia[numeroDia];
+
+
+    if (!hayMesActivo || !hayMaquinaActiva) {
+      alternarColor(firstMachine, secondMachine, 2000);
+      saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos');
+      return;
+    }
 
     if (!alturas) return;
 
@@ -660,6 +619,7 @@ diasMes.forEach(dia => {
     });
   });
 });
+
 function resaltarSecuencial() {
   const spans = document.querySelectorAll('#formulario-cuenta .etq-frm');
 
@@ -1355,9 +1315,9 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
 
     if (!hayMesActivo || !hayMaquinaActiva){
       alternarColor(firstMachine,secondMachine,2000)
-      saltarAlerta('Seleccione una Maquina y el Mes', 'lanzaGrafos')
+      saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
       return;
-    }  // corta la ejecución
+    }
 
     const abueloGrafica = document.querySelector('#abuelo-grafica4');
     
@@ -1751,6 +1711,117 @@ const inputFoto = document.getElementById('input-foto-empl');
 const previewFoto = document.getElementById('empleadoImg'); 
 
 // CLICK EN IMAGEN EN SOLITARIO INICIAL
+/* visor.addEventListener('click', (e) => {
+  detenerDinamica()
+  moverVisor()
+
+  setTimeout(() => {
+    const padreEmpleados = document.querySelector('#father-employees');
+    const padreImagenes = document.querySelector('.contenedor-visor'); 
+    if (e.target.tagName !== 'IMG') return;
+
+    const visor = document.getElementById('visorImagen');
+    const imgSrc = e.target.getAttribute('src');
+    const segundoSpan = visor.querySelector('span:nth-child(2)');
+    if (!imgSrc) return;
+
+    // ← copia la imagen al destino
+    const imagenDestino = document.getElementById('imagenDestino');
+    if (imagenDestino) imagenDestino.src = imgSrc;
+
+    imagenSeleccionada = imgSrc;
+    nombreSeleccionado = segundoSpan ? segundoSpan.textContent.trim() : '';
+
+    // obtener los spans actuales en el momento del clic
+    const nombres = Array.from(document.querySelectorAll('#listaNombres span'));
+    const span = indiceActual !== null ? nombres[indiceActual] : null;
+    if (!span) return; // evita el error si no existe
+
+    padreEmpleados.style.display = 'none';
+    buscador.value=''
+
+    switch (span.textContent) {
+      case 'Monica Muñoz Sepulveda':
+        console.log('NOMBRE EN SPAN:',span.textContent)
+        resultadosEmpleado('icon-andres', 'updateAndres', 'img2', 'true');
+        break;
+      case 'Carlos Mario Sanchez':
+        console.log('NOMBRE EN SPAN:',span.textContent)
+        resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
+        break;
+      case 'Jorge Alberto Lozada':
+        resultadosEmpleado('icon-jorge', 'updateJorge', 'img3', 'true');
+        break;
+      case 'Jesus Norvey Cordoba':
+        resultadosEmpleado('icon-jesus', 'updateJesus', 'img4', 'true');
+        break;
+      case 'Sandra Milena Alvarez':
+        resultadosEmpleado('icon-sandra', 'updateSandra', 'img5', 'true');
+        break;
+      case 'John Mario Mira Pineda':
+        resultadosEmpleado('icon-mario', 'updateMario', 'img6', 'true');
+        break;
+      case 'Ana Maria Duarte Pineda':
+        resultadosEmpleado('icon-ana', 'updateAna', 'img7', 'true');
+        break;
+    }
+
+    setTimeout(() => {
+      permitirEliminarImagen = true;
+    }, 100);
+
+    const coleccionGraficos = document.querySelectorAll(".graphs-lines")
+    coleccionGraficos.forEach(grafico => {
+      grafico.style.display = 'flex'
+    })
+
+    const grafica9 = document.querySelector('#MiGrafica9');
+    if (grafica9) {
+      grafica9.style.opacity = 1;
+      grafica9.style.display = 'flex';
+      grafica9.style.visibility = 'visible';
+    }
+
+    const iconos = document.querySelector('#iconos');
+    const conteSecundario = document.querySelector('#conte-secundario');
+    const conteBotones = document.querySelector('#conte-butts-graphs');
+    const portaVisor = document.querySelector('#porta-visor');
+    const portaImagen = document.querySelector("#porta-imagen");
+
+    if (iconos) iconos.style.display = 'flex';
+    if (conteSecundario) conteSecundario.style.display = 'flex';
+    if (conteBotones) conteBotones.style.display = 'grid';
+    if (portaImagen) portaImagen.style.display = 'grid';
+
+    document.querySelector("#listaNombres").style.display = 'none';
+    document.querySelector("#buscador-empleado").classList.add("ubicacion");
+    document.querySelector("#visorImagen").classList.add('ubicar-visor');
+    document.querySelector("#porta-visor > div.visor > span").classList.add('ubicado');
+    document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');
+  }, 1000);
+  setTimeout(() => {
+    const contLineas = document.querySelector('#contLineas');
+    if (contLineas) contLineas.style.display = 'grid';
+
+    const coleccionGraficas = document.querySelectorAll(".graphs-lines");
+
+    coleccionGraficas.forEach((grafico, index) => {
+      grafico.style.display = 'flex';
+      grafico.style.transform = 'scale(0)';
+      grafico.style.transition = `transform 0.6s ease ${index * 0.10}s`;
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          grafico.style.transform = 'scale(1)';
+        });
+      });
+    });
+  }, 700);
+
+
+}); */
+
+
 visor.addEventListener('click', (e) => {
 
   const padreEmpleados = document.querySelector('#father-employees');
@@ -1849,7 +1920,6 @@ visor.addEventListener('click', (e) => {
   document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');
 
 });
-
 
 function reubicarVisor(){
   document.querySelector('#conte-secundario').style.display='flex'
@@ -2284,7 +2354,14 @@ document.addEventListener('pointerdown', (e) => {
   }
 });
 
-document.querySelector('#recarga').addEventListener('click', ingresoEmpleado);
+document.querySelector('#recarga').addEventListener('click',()=>{
+  if(flagEmpleado === false){
+    alternarColor(btnDblFlecha,btnRecarga,500)
+    return
+  }
+
+  ingresoEmpleado()
+});
 document.querySelector('#recargaMA').addEventListener('click', ingresoEmpleadoMA);
 
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
@@ -2347,6 +2424,10 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
 // boton rojo 
 document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ 
   const inputs = document.querySelectorAll('.fila-ingreso .storeText');
+  if(flagEmpleado === false){
+    alternarColor(btnDblFlecha,btnMetricas,500)
+    return
+  }  
   for (const input of inputs) {
     if (input.value==='') {
       parpadearElemento('nomEmpl');
@@ -2356,8 +2437,6 @@ document.querySelector('.metricas-empleado').addEventListener('click', ()=>{
     }
 
   }
-  cortina.classList.add('overlayRRHH')
-
   console.log('BANDERA : ', flagEmpleado)
   interfazRRHH.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
   moverPadreIngresos(61,28)
@@ -2367,7 +2446,7 @@ document.querySelector('.metricas-empleado').addEventListener('click', ()=>{
   }
 })
 
-function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
+/*function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
   if (!contenedor) return;
 
@@ -2383,7 +2462,7 @@ function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
 }
 
 // Uso en los listeners
-['click', 'touchstart'].forEach(evt => {canvas.addEventListener(evt, () => {
+ ['click', 'touchstart'].forEach(evt => {canvas.addEventListener(evt, () => {
     document.querySelector('#grafico-area').style.display = 'block';
 
     mostrarCalendario(mesGlobal);
@@ -2394,7 +2473,7 @@ function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
       if (el) el.style.display = 'none';
     });
   });
-});
+}); */
 
 function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
@@ -4547,7 +4626,7 @@ function ubicaCalculadoraSegunContexto(){
       calculadora.classList.add('move-calculadora-up-ingreso');
     }, 100);
   } 
-  if(!esDesktop && panelAdministrativo.style.display==='grid'){  
+  if(!esDesktop && panelAdministrativo.style.display==='grid' && panelAdministrador.style.display==='none'){
     document.querySelector("#simulador").style.display='flex'    
     calculadora.classList.remove('move-calculadora-up-ingreso')
     calculadora.style.display='grid'
@@ -4559,7 +4638,20 @@ function ubicaCalculadoraSegunContexto(){
     setTimeout(() => {
       calculadora.classList.add('move-calculadora-up-ingreso');
     }, 100);
-  }   
+  }
+  if(!esDesktop && panelAdministrativo.style.display==='grid' && panelAdministrador.style.display==='grid'){  
+    document.querySelector("#simulador").style.display='flex'    
+    calculadora.classList.remove('move-calculadora-up-ingreso')
+    calculadora.style.display='grid'
+    calculadora.style.left='7vw'
+    calculadora.style.top='90vh' 
+    calculadora.style.height='45vh'
+    calculadora.style.width='40vw'
+    calculadora.style.zIndex = 1000;
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up-ingreso');
+    }, 100);
+  }  
 }
 
 const clamp = (val, min, max) =>
@@ -5736,25 +5828,20 @@ function limpiarFormulario() {
     if (imgMa) imgMa.src = '';
   }, inputs.length * 140);
 }
-
 document.querySelector('#borrarBoton2').addEventListener('click', () => {
   rodillosKaizen('btn17','')
 });
-
 documentoEmplEliminar.addEventListener('touchstart', (e) => {
   e.preventDefault();
   calculadoraSimulador = true;
   documentoEmplEliminar.focus();
   if(!esDesktop)ubicaCalculadoraSegunContexto();
 }, { passive: false });
-
 documentoEmplEliminar.addEventListener('blur', () => {
   if (!esDesktop) {
     hideCalculator();
   }
 });
-
-
 /* BOTON SUPERIOR COLUMNA BOTONES */
 document.querySelector("#boton-ma-card").addEventListener('click',()=>{
   const img = document.getElementById('imgAdministrar');
@@ -5773,24 +5860,20 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
   document.querySelector('#carta-exterior').style.display='grid'
 
   container1.style.display='grid'
+  panelAdministrador.style.display='grid'
   activarBlur(0,255)
   sliderGraf.value = 0;
   sliderTree.value= 0;
   sliderGraf.dispatchEvent(new Event('input'));
   sliderTree.dispatchEvent(new Event('input'));      
-
-
   document.querySelector('.panel-monitor').classList.add('activo')
   panelAdministrativo.classList.add('move-carta-exterior') 
-
   document.querySelector('#abuelo-indicadores').classList.add('administrativo') 
   document.querySelector('#padre-desempeños').classList.add('administrador')
   document.querySelector("#abuelo-grafica12").classList.add('administra')
   document.querySelector("#grafico-area").classList.add('administrar')
-
   document.querySelector(".graphics-lines").classList.add('administrativo')
   document.querySelector("#MiGrafica17").classList.add('admin')
-
   setTimeout(() => {
     const valor = cardInput.value.trim();
     const datos = JSON.parse(localStorage.getItem('empleadosRegistrados'))
@@ -5802,7 +5885,6 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
     aparecerElemento('abuelo-indicadores', 'grid')
     aparecerElemento('abuelo-grafica12', 'grid')
     aparecerElemento('grafico-area', 'grid')
-
     crearGraficoTreeMap()
     setTimeout(() => {
       aplicarLedsDesdeEmpleado(empleadoGlobal.documento);
@@ -5816,7 +5898,6 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
     }, 2200);     
   }, 700);    
 })
-
 document.querySelector("#borrarBoton5").addEventListener('click',()=>{
   var elementosExcluidos = ['links-inicialesI','links-iniciales','buscador','search-form'] 
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -5826,13 +5907,13 @@ document.querySelector("#borrarBoton5").addEventListener('click',()=>{
     }
   } 
   container1.style.display='grid'
-  resultadosMaquina()
+  activarPantallaCompleta()
+  resultadosMA('interfaz-mtto')
   
 })
 const btnActivar = document.querySelector('#carta-exterior .btn-primario');
 const cardInput = document.querySelector('#carta-exterior .card-header');
 const cardImg = document.querySelector('#carta-exterior .card-foto img');
-
 btnActivar.addEventListener('click', function () {
   if (panelAdministrador.classList.contains('activo')){
     document.querySelector('#abuelo-indicadores').classList.remove('administrativo') 
@@ -5843,6 +5924,7 @@ btnActivar.addEventListener('click', function () {
     document.querySelector("#abuelo-grafica12").classList.remove('activo')
     document.querySelector("#grafico-area").classList.remove('administrar')
     document.querySelector("#grafico-area").classList.remove('activo')
+    panelAdministrador.style.display='none'
   }
       
   const valor = cardInput.value.trim();  
@@ -5888,9 +5970,8 @@ btnActivar.addEventListener('click', function () {
     document.querySelector('.panel-monitor').classList.remove('activo')    
 
   } else {
-    /* mostrarVentanaMensaje('Empleado no encontrado en la BD.'); */
     saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn')
-    cardImg.src = './assets/silueta0.png';
+    cardImg.src = './assets/silueta2.png';
     cardImg.alt = '';
   }  return
 });
@@ -5966,25 +6047,25 @@ document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',(
 let panelAbierto = false;
 document.querySelector("#contenedor-global .but-job").addEventListener('click', () => {
 
+    const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
+    const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
+
+    if (!hayMesActivo || !hayMaquinaActiva){
+      alternarColor(firstMachine,secondMachine,2000)
+      saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
+      return;
+    }
+
   if (panelAbierto) {
     desaparecerElemento('abuelo-grafica4', 'grid');
     document.querySelector("#contenedor-global").classList.remove('move-panel-ma');
     panelAbierto = false;
     return;
-  }
+  }  
 
-  document.querySelectorAll('.span-semana').forEach(s => {
-    s.style.backgroundColor = '';
+  document.querySelectorAll('.span-semana').forEach(semana => {
+    semana.style.backgroundColor = '';
   });
-
-  const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
-  const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';
-
-  if (!hayMesActivo || !hayMaquinaActiva) {
-    alternarColor(firstMachine, secondMachine, 2000);
-    saltarAlerta('Seleccione una Maquina y el Mes', 'lanzaGrafos');
-    return;
-  }
 
   const abueloGrafica = document.querySelector('#abuelo-grafica4');
   Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
@@ -6021,6 +6102,45 @@ document.querySelector("#overlay-kaizen").addEventListener('click',()=>{
   if(fichasTecnicas.style.zIndex === '2110')return
   saltarAlerta('Ejecutar como administrador','fichasTecnicas')
 })
+function moverVisor() {
+  const visor = document.getElementById('porta-visor');
+  const listaNombres = document.getElementById('listaNombres');
+  const imagen = document.querySelector('.visor-imagen'); 
+  const busqueda = document.querySelector("#buscador-empleado")
+  const nombre = document.querySelector("#porta-visor > div.visor > span")
+  const navArrow = document.querySelector("#porta-visor > div.visor > div.navegacion")
+
+
+
+  // Ocultar listaNombres primero
+  listaNombres.style.opacity = '0';
+  listaNombres.style.pointerEvents = 'none';
+
+  setTimeout(() => {
+    listaNombres.style.visibility = 'hidden';
+  }, 400);
+
+  // Mover y reducir el contenedor
+  visor.style.transition = 'transform 2s ease, width 2s ease';
+  visor.style.transition = 'transform 2s ease, height 2s ease';
+  visor.style.transform = 'scale(1) translate(-273px, 91px)';
+  visor.style.width = '15vw';
+  visor.style.height = '50vh';
+
+  imagen.style.transition = 'transform 2s ease, width 2s ease';
+  imagen.style.transition = 'transform 2s ease, rigth 2s ease';
+  imagen.style.width = '130%';
+  imagen.style.right='33%'
+  imagen.style.left=''
+
+  busqueda.style.width='132%'
+
+  nombre.style.width='156%'
+  nombre.style.marginLeft='-10%'
+
+  navArrow.style.width='161%'
+  navArrow.style.left='-16%'
+}
 
 
 
