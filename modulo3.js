@@ -10,14 +10,39 @@ document.addEventListener('keydown', function(event) {
 
       break
       case 'Z':
-      /* localStorage.removeItem('kaizenRegistrados'); */
-      /* mostrarPorClaveLocalStore('empleadosRegistrados') */
-      console.warn('OBJETO GLOBAL', objetoGlobal)   
+        /* document.querySelector("#contLineas").style.display='none'
+        setTimeout(() => {
+          document.querySelector("#contLineas").style.display='grid'
+          document.querySelectorAll('.graphs-lines').forEach(el => {
+            el.style.visibility = 'hidden';
+          });
+        }, 1000);
+        setTimeout(() => {
+          aparecerElemento('canvasContainer4', 'flex')            
+        }, 1500); */
+        const contLineas = document.querySelector('#contLineas');
+        if (contLineas) contLineas.style.display = 'grid';
+
+        const coleccionGraficos = document.querySelectorAll(".graphs-lines");
+
+        coleccionGraficos.forEach((grafico, index) => {
+          grafico.style.display = 'flex';
+          grafico.style.transform = 'scale(0)';
+          grafico.style.transition = `transform 1.6s ease ${index * 0.15}s`;
+
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              grafico.style.transform = 'scale(1)';
+            });
+          });
+        });    
+  
 
       break;  
       case 'H':
         /* Geometria() */
         console.log('OBJETO GLOBAL', objetoGlobal)
+        restablecerClick(['.entrada-empleado']);
       break;
       case 'X':
       eliminarClaveLocalStorage('empleadosRegistrados')
@@ -5026,99 +5051,100 @@ digitos.forEach((elemento) => {
   elemento.addEventListener('click', (e) => {
   e.stopPropagation();
   if(panelControlRGB.style.display==='grid')calculadoraSimulador=true
+  if(panelAdministrativo.style.display==='grid')calculadoraSimulador=true
 
-    if (!calculadoraSimulador) {  // CALCULADORA HEIDELBERG
-      console.warn('Es HEIDELBERG')
+  if (!calculadoraSimulador) {  // CALCULADORA HEIDELBERG
+    console.warn('Es HEIDELBERG')
 
-      digitos.forEach(d => d.style.pointerEvents = 'none');
+    digitos.forEach(d => d.style.pointerEvents = 'none');
 
-      const spans = document.querySelectorAll('.datos-base');
+    const spans = document.querySelectorAll('.datos-base');
 
-      if ([...spans].every(span => span.textContent.trim() === '')) {
-        alertaTres.style.display = 'flex';
-        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+    if ([...spans].every(span => span.textContent.trim() === '')) {
+      alertaTres.style.display = 'flex';
+      desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
 
-      } else if (spans[0].textContent.trim() === '') {
-        document.getElementById('alerta-uno').style.display = 'flex';
-        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+    } else if (spans[0].textContent.trim() === '') {
+      document.getElementById('alerta-uno').style.display = 'flex';
+      desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
 
-      } else if (spans[1].textContent.trim() === '') {
-        document.getElementById('alerta-dos').style.display = 'flex';
-        desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
+    } else if (spans[1].textContent.trim() === '') {
+      document.getElementById('alerta-dos').style.display = 'flex';
+      desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
 
-      } else {
+    } else {
 
-        const numero = parseInt(elemento.textContent);
+      const numero = parseInt(elemento.textContent);
 
-        if (!isNaN(numero)) {
+      if (!isNaN(numero)) {
 
-          if (coleccionNumeros.length >= 10) {
-            digitos.forEach(d => d.style.pointerEvents = 'auto');
-            return;
-          }
-
-          coleccionNumeros.push(numero);
-
-          spansNumeros.forEach(span => span.textContent = '');
-          spansCantidades.forEach(span => span.textContent = '');
-
-          for (let i = 0; i < coleccionNumeros.length; i++) {
-
-            spansNumeros[
-              spansNumeros.length - coleccionNumeros.length + i
-            ].textContent = coleccionNumeros[i];
-
-            spansCantidades[
-              spansCantidades.length - coleccionNumeros.length + i
-            ].textContent = coleccionNumeros[i];
-          }
+        if (coleccionNumeros.length >= 10) {
+          digitos.forEach(d => d.style.pointerEvents = 'auto');
+          return;
         }
 
-      }
+        coleccionNumeros.push(numero);
 
-      setTimeout(() => {
-        digitos.forEach(d => d.style.pointerEvents = 'auto');
-      }, 200);
+        spansNumeros.forEach(span => span.textContent = '');
+        spansCantidades.forEach(span => span.textContent = '');
 
-    }else { // CALCULADORA ESPECIAL
-      console.warn('NO ES HEIDELBERG')
-      if (!lastFocusedInput) return;
+        for (let i = 0; i < coleccionNumeros.length; i++) {
 
-      const input = lastFocusedInput;
+          spansNumeros[
+            spansNumeros.length - coleccionNumeros.length + i
+          ].textContent = coleccionNumeros[i];
 
-      if (elemento.dataset.action === 'backspace') {
-
-        const value = input.value ?? '';
-        if (!value.length) return;
-
-        input.value = value.slice(0, -1);
-
-        input.selectionStart = input.selectionEnd = input.value.length;
-
-        return; // evitar que continúe la inserción
-      }
-      const numero = elemento.textContent;
-      const end = input.value.length;
-      input.selectionStart = end;
-      input.selectionEnd = end;
-      input.value = input.value + numero;
-      input.selectionStart = input.selectionEnd = input.value.length;
-      if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
-
-        const clamp = (val, min, max) =>
-          Math.min(max, Math.max(min, val));
-
-        input.value = input.value.replace(/\D/g, '');
-
-        if (input.value !== '' && input.id !== 'input-baja' && input.id !== 'doc-empl' && !input.classList.contains('input-especial')) {
-          const min = Number(input.min) || 0;
-          const max = Number(input.max) || 100;
-          input.value = clamp(parseInt(input.value, 10), min, max);
+          spansCantidades[
+            spansCantidades.length - coleccionNumeros.length + i
+          ].textContent = coleccionNumeros[i];
         }
-
       }
 
     }
+
+    setTimeout(() => {
+      digitos.forEach(d => d.style.pointerEvents = 'auto');
+    }, 200);
+
+  }else { // CALCULADORA ESPECIAL
+    console.warn('NO ES HEIDELBERG')
+    if (!lastFocusedInput) return;
+
+    const input = lastFocusedInput;
+
+    if (elemento.dataset.action === 'backspace') {
+
+      const value = input.value ?? '';
+      if (!value.length) return;
+
+      input.value = value.slice(0, -1);
+
+      input.selectionStart = input.selectionEnd = input.value.length;
+
+      return; // evitar que continúe la inserción
+    }
+    const numero = elemento.textContent;
+    const end = input.value.length;
+    input.selectionStart = end;
+    input.selectionEnd = end;
+    input.value = input.value + numero;
+    input.selectionStart = input.selectionEnd = input.value.length;
+    if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
+
+      const clamp = (val, min, max) =>
+        Math.min(max, Math.max(min, val));
+
+      input.value = input.value.replace(/\D/g, '');
+
+      if (input.value !== '' && input.id !== 'input-baja' && input.id !== 'doc-empl' && !input.classList.contains('input-especial')) {
+        const min = Number(input.min) || 0;
+        const max = Number(input.max) || 100;
+        input.value = clamp(parseInt(input.value, 10), min, max);
+      }
+
+    }
+
+  }
 
   });
 
