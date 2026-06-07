@@ -5807,10 +5807,11 @@ function mostrarNombresDeObjetos() {
   }
 
   nuevoDiv.addEventListener('click', manejarSeleccionItem);
-  nuevoDiv.addEventListener('touchend', (e) => {
+
+  /* nuevoDiv.addEventListener('touchend', (e) => {
     e.preventDefault();
     manejarSeleccionItem();
-  });
+  }); */
 
 
     nuevoDiv.addEventListener('contextmenu', (event) => {
@@ -7413,7 +7414,6 @@ document.querySelector('#save-tecnology').addEventListener('click', ()=>{
 creaNombre.addEventListener('click', () => {
   document.querySelector('#nombre-Perfil').value = ''
   creaNombre.value = ''
-  /* activarBlur(0,220) */
   botonesPerfilColor.forEach(elemento => {   
     elemento.style.display = 'block';   
   });
@@ -7421,6 +7421,7 @@ creaNombre.addEventListener('click', () => {
   desactivarClick(['.butt-perfiles', '.estilo-1']);  
   mostrarNombresDeObjetos();
 });
+
 creaNombre.addEventListener('mouseleave', () => {
   setTimeout(() => {
   // Solo ocultar si el cursor NO está sobre listaClientes
