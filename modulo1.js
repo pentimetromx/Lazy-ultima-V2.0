@@ -1974,82 +1974,72 @@ function abrirPilarMA(){
   }    
 }
 
-
-
-
+let videosReproduciendose = 0;
 function abrirPrepress(elementId) {
-
-  var elementosExcluidos = [
-    'buscador','search-form','links-inicialesI','links-iniciales',
-    'pre-prensa','primerCont','imgs-prepress','conte-botDensitoII'
-  ];
-
+  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','pre-prensa','primerCont','imgs-prepress','conte-botDensitoII'] 
   for (var i = 0; i < allContenedores.length; i++) {
-    var elemento = document.getElementById(allContenedores[i]);
-
+    var elemento = document.getElementById(allContenedores[i]);  
     if (elemento) {
-      elemento.style.display =
-        elementosExcluidos.includes(allContenedores[i])
-          ? 'flex'
-          : 'none';
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
+    }
+  }
+  container1.style.display='grid'
+  botIzquierda.style.display = 'flex'
+  botDerecha.style.display = 'flex'
+  videosPrepress.forEach(video => {
+    if (video) {
+      video.style.display = 'none'
+  }})
+  var padreVidPress = document.getElementById('imgs-prepress');
+  var imagenes = padreVidPress.getElementsByTagName('img');
+  for (var i = 0; i < imagenes.length; i++) {
+    imagenes[i].removeAttribute('style')
+  }    
+  setTimeout(() => {
+    showButtonsTeoriaConRetraso()   
+  }, 25);
+
+  var videos = padreVidPress.getElementsByTagName('video');
+  for (var i = 0; i < videos.length; i++) {
+    videos[i].style.display = 'flex';
+  }
+
+  document.body.style.zoom = "100%"
+
+  function verificarVideos() {
+    videosReproduciendose++;
+
+    if (videosReproduciendose === 3) {
+      reproducirVideo('vidCicodelia');
     }
   }
 
-  container1.style.display = 'grid';
-  document.body.style.zoom = "100%";
+  ['vid01', 'vid02', 'vid03'].forEach(id => {
 
-  const videoPrincipal = document.getElementById('vidCicodelia');
+    const video = document.getElementById(id);
 
-  videoPrincipal.addEventListener('playing', function ejecutarResto() {
-
-    botIzquierda.style.display = 'flex';
-    botDerecha.style.display = 'flex';
-
-    videosPrepress.forEach(video => {
-      if (video) {
-        video.style.display = 'none';
-      }
+    video.addEventListener('playing', verificarVideos, {
+      once: true
     });
 
-    var padreVidPress = document.getElementById('imgs-prepress');
+    reproducirVideo(id);
 
-    var imagenes = padreVidPress.getElementsByTagName('img');
-    for (var i = 0; i < imagenes.length; i++) {
-      imagenes[i].removeAttribute('style');
+  });
+
+  if (typeof elementId !== 'undefined') {
+    const index = idsArray.indexOf(elementId);
+    if (index !== -1) {
+      idsArray.splice(index, 1);
     }
-
-    setTimeout(() => {
-      showButtonsTeoriaConRetraso();
-    }, 25);
-
-    var videos = padreVidPress.getElementsByTagName('video');
-    for (var i = 0; i < videos.length; i++) {
-      videos[i].style.display = 'flex';
-    }
-
-    reproducirVideo('vid01');
-    reproducirVideo('vid02');
-    reproducirVideo('vid03');
-
-    if (typeof elementId !== 'undefined') {
-      const index = idsArray.indexOf(elementId);
-
-      if (index !== -1) {
-        idsArray.splice(index, 1);
-      }
-
-      idsArray.push(elementId);
-      console.log(idsArray);
-    }
-
-  }, { once: true });
-
-  reproducirVideo('vidCicodelia');
+    idsArray.push(elementId);
+    console.log(idsArray);
+  }
 }
 
 
 
 function abrirDensitometria(elementId){
+
   var contieneLinks = document.getElementById('linkList');
 
   var elementosExcluidos = [
@@ -2097,45 +2087,65 @@ function abrirDensitometria(elementId){
     }
   }
 
-  document.body.style.zoom = '100%';
+  document.body.style.zoom = "100%";
   container1.style.left = '';
   contieneLinks.style.display = 'none';
 
-  var vidDensitometria = document.getElementById('vidCicodeliaII');
-
-  vidDensitometria.style.display = 'flex';
-  vidDensitometria.pause();
-
-  vidDensitometria.addEventListener('playing', function ejecutarResto() {
-
-    vidDensitometria.removeEventListener('playing', ejecutarResto);
-
+  setTimeout(() => {
     showButtonsDensitoConRetraso();
+  }, 77);
 
-    const imagenesDensito = document.querySelectorAll('.imgDensito');
+  const imagenesDensito = document.querySelectorAll('.imgDensito');
 
-    imagenesDensito.forEach((imagen) => {
-      imagen.style.display = 'flex';
-    });
+  imagenesDensito.forEach((imagen) => {
+    imagen.style.display = 'flex';
+  });
 
-    if (typeof elementId !== 'undefined') {
-      const index = idsArray.indexOf(elementId);
+  let imagenesCargadas = 0;
 
-      if (index !== -1) {
-        idsArray.splice(index, 1);
-      }
+  function verificarImagenes() {
 
-      idsArray.push(elementId);
-      console.log(idsArray);
+    imagenesCargadas++;
+
+    if (imagenesCargadas === imagenesDensito.length) {
+
+      var vidDensitometria = document.getElementById('vidCicodeliaII');
+
+      vidDensitometria.style.display = 'flex';
+      vidDensitometria.pause();
+
+      setTimeout(function() {
+        vidDensitometria.currentTime = 0;
+        vidDensitometria.play();
+      }, 77);
+    }
+  }
+
+  imagenesDensito.forEach((imagen) => {
+
+    if (imagen.complete) {
+      verificarImagenes();
+    } else {
+      imagen.addEventListener('load', verificarImagenes, { once: true });
+      imagen.addEventListener('error', verificarImagenes, { once: true });
     }
 
-  }, { once: true });
+  });
 
-  setTimeout(() => {
-    vidDensitometria.currentTime = 0;
-    vidDensitometria.play();
-  }, 77);
+  if (typeof elementId !== 'undefined') {
+
+    const index = idsArray.indexOf(elementId);
+
+    if (index !== -1) {
+      idsArray.splice(index, 1);
+    }
+
+    idsArray.push(elementId);
+    console.log(idsArray);
+  }
 }
+
+
 function muestraVidPrisma(eltoHtml) {
   clickHabilitado = true
   acumuladorVideos.pop()
