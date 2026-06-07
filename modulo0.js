@@ -1441,6 +1441,7 @@ function moverElementos(idsElementos, porcentajeLeft, porcentajeTop) {
     el.dataset.movedY = String(newY);
   });
 }
+
 function restaurarPosicion(idsElementos) {
   idsElementos.forEach(id => {
     const el = document.getElementById(id);
