@@ -1166,7 +1166,7 @@ function crearGraficoLleno() {
   padreGrafica11.style.display = 'flex';
   const canvas = document.getElementById('MiGrafica15');
 
-  ['click', 'touchstart'].forEach(evt => {
+  /* ['click', 'touchstart'].forEach(evt => {
     canvas.addEventListener(evt, () => {
       
       ["grafico-area"].forEach(id => aparecerElemento(id, "block"));
@@ -1191,7 +1191,7 @@ function crearGraficoLleno() {
         if (el) el.style.display = 'none';
       });
     });
-  });
+  }); */
 
   // Destruir gráfico previo
   if (chart18) {
@@ -1711,7 +1711,9 @@ const inputFoto = document.getElementById('input-foto-empl');
 const previewFoto = document.getElementById('empleadoImg'); 
 
 // CLICK EN IMAGEN EN SOLITARIO INICIAL
-/* visor.addEventListener('click', (e) => {
+// CON TRANSSICIONES
+visor.addEventListener('click', (e) => {
+  moverLista=true
   detenerDinamica()
   moverVisor()
 
@@ -1819,107 +1821,64 @@ const previewFoto = document.getElementById('empleadoImg');
   }, 700);
 
 
-}); */
-
-
-visor.addEventListener('click', (e) => {
-
-  const padreEmpleados = document.querySelector('#father-employees');
-  const padreImagenes = document.querySelector('.contenedor-visor'); 
-  if (e.target.tagName !== 'IMG') return;
-
-  const visor = document.getElementById('visorImagen');
-  const imgSrc = e.target.getAttribute('src');
-  const segundoSpan = visor.querySelector('span:nth-child(2)');
-  if (!imgSrc) return;
-
-  // ← copia la imagen al destino
-  const imagenDestino = document.getElementById('imagenDestino');
-  if (imagenDestino) imagenDestino.src = imgSrc;
-
-  imagenSeleccionada = imgSrc;
-  nombreSeleccionado = segundoSpan ? segundoSpan.textContent.trim() : '';
-
-  // obtener los spans actuales en el momento del clic
-  const nombres = Array.from(document.querySelectorAll('#listaNombres span'));
-  const span = indiceActual !== null ? nombres[indiceActual] : null;
-  if (!span) return; // evita el error si no existe
-
-  padreEmpleados.style.display = 'none';
-  padreImagenes.style.display = 'none';
-  buscador.value=''
-
-  switch (span.textContent) {
-    case 'Monica Muñoz Sepulveda':
-      console.log('NOMBRE EN SPAN:',span.textContent)
-      resultadosEmpleado('icon-andres', 'updateAndres', 'img2', 'true');
-      break;
-    case 'Carlos Mario Sanchez':
-      console.log('NOMBRE EN SPAN:',span.textContent)
-      resultadosEmpleado('icon-carlos', 'updateCarlos', 'false');
-      break;
-    case 'Jorge Alberto Lozada':
-      resultadosEmpleado('icon-jorge', 'updateJorge', 'img3', 'true');
-      break;
-    case 'Jesus Norvey Cordoba':
-      resultadosEmpleado('icon-jesus', 'updateJesus', 'img4', 'true');
-      break;
-    case 'Sandra Milena Alvarez':
-      resultadosEmpleado('icon-sandra', 'updateSandra', 'img5', 'true');
-      break;
-    case 'John Mario Mira Pineda':
-      resultadosEmpleado('icon-mario', 'updateMario', 'img6', 'true');
-      break;
-    case 'Ana Maria Duarte Pineda':
-      resultadosEmpleado('icon-ana', 'updateAna', 'img7', 'true');
-      break;
-  }
-
-  setTimeout(() => {
-    permitirEliminarImagen = true;
-  }, 100);
-
-  const coleccionGraficos = document.querySelectorAll(".graphs-lines")
-  coleccionGraficos.forEach(grafico => {
-    grafico.style.display = 'flex'
-  })
-
-  const grafica9 = document.querySelector('#MiGrafica9');
-  if (grafica9) {
-    grafica9.style.opacity = 1;
-    grafica9.style.display = 'flex';
-    grafica9.style.visibility = 'visible';
-  }
-
-  const iconos = document.querySelector('#iconos');
-  const contLineas = document.querySelector('#contLineas');
-  const conteSecundario = document.querySelector('#conte-secundario');
-  const conteBotones = document.querySelector('#conte-butts-graphs');
-  const portaVisor = document.querySelector('#porta-visor');
-  const portaImagen = document.querySelector("#porta-imagen");
-
-  if (iconos) iconos.style.display = 'flex';
-  if (contLineas) contLineas.style.display = 'grid';
-  if (conteSecundario) conteSecundario.style.display = 'flex';
-  if (conteBotones) conteBotones.style.display = 'grid';
-  if (portaImagen) portaImagen.style.display = 'grid';
-
-  aparecerElemento('porta-visor', 'grid');
-
-  // ✅ Después de aparecerElemento
-  setTimeout(() => {
-    if (portaVisor && !portaVisor.classList.contains('modificarPosicion')) {
-      portaVisor.classList.add('modificarPosicion');
-    }
-  }, 50);
-
-  document.querySelector("#listaNombres").style.display = 'none';
-  document.querySelector("#buscador-empleado").classList.add("ubicacion");
-  document.querySelector("#visorImagen").classList.add('ubicar-visor');
-  document.querySelector("#porta-visor > div.visor > span").classList.add('ubicado');
-  document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');
-
 });
+function resetMoverElementos(idsElementos) {
+  idsElementos.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) {
+      console.warn(`El elemento con ID "${id}" no existe.`);
+      return;
+    }
+
+    // ✅ Limpiar exactamente lo que moverElementos aplicó
+    el.style.display    = '';
+    el.style.opacity    = '';
+    el.style.transition = '';
+    el.style.transform  = '';
+
+    // ✅ Limpiar los data attributes de posición acumulada
+    delete el.dataset.movedX;
+    delete el.dataset.movedY;
+  });
+}
+function resetGraficos() {
+  const contBotones = document.querySelector('#conte-butts-graphs');
+
+  // ✅ Limpiar estilos inline
+  contBotones.style.display    = '';
+  contBotones.style.opacity    = '';
+  contBotones.style.transition = '';
+  contBotones.style.transform  = '';
+
+  // ✅ Limpiar data attributes de posición
+  delete contBotones.dataset.movedX;
+  delete contBotones.dataset.movedY;
+
+  graficos.forEach((grafico) => {
+
+    // ✅ Eliminar clases de movimiento y oculto
+    grafico.classList.remove(...MOVE_ELEMENT);
+    grafico.classList.remove('oculto');
+
+    // ✅ Limpiar estilos inline aplicados por el click
+    grafico.style.opacity = '1';
+    grafico.style.transform = '';
+    grafico.style.transition = '';
+
+    // ✅ Limpiar flag de transición
+    grafico.dataset.transitioning = 'false';
+
+    // ✅ Restaurar canvas
+    const canvas = grafico.querySelector('canvas');
+    if (canvas) {
+      canvas.style.opacity = '1';
+      canvas.style.transform = '';
+      canvas.style.transition = '';
+    }
+  });
+  
+  resetMoverElementos(["conte-butts-graphs"]);
+}
 
 function reubicarVisor(){
   document.querySelector('#conte-secundario').style.display='flex'
@@ -4574,32 +4533,21 @@ function ubicaCalculadoraSegunContexto(){
       calculadora.classList.add('move-calculadora-up');
     }, 100);
   }
-  if(!esDesktop && panelControlCMYK.style.display==='grid'){
-    simulador.style.display='flex'
-    calculadora.classList.remove('move-calculadora-1')
-    calculadora.style.display='grid'
-    calculadora.style.left='36vw'
-    calculadora.style.top='102vh' 
-    calculadora.style.height='45vh'
-    calculadora.style.width='40vw'
-    calculadora.zindex=100
-    setTimeout(() => {
-      calculadora.classList.add('move-calculadora-up');
-    }, 100);
-  }
-  if(!esDesktop && panelControlRGB.style.display==='grid'){
-    simulador.style.display='flex'
-    calculadora.classList.remove('move-calculadora-1')
-    calculadora.style.display='grid'
-    calculadora.style.left='36vw'
-    calculadora.style.top='102vh' 
-    calculadora.style.height='45vh'
-    calculadora.style.width='40vw'
-    calculadora.zindex=100
-    setTimeout(() => {
-      calculadora.classList.add('move-calculadora-up');
-    }, 100);
-  } 
+
+if (!esDesktop &&(panelControlCMYK.style.display === 'grid' || panelControlRGB.style.display === 'grid')) {
+  simulador.style.display = 'flex';
+  calculadora.classList.remove('move-calculadora-1');
+  calculadora.style.display = 'grid';
+  calculadora.style.left = '26vw';
+  calculadora.style.top = '102vh';
+  calculadora.style.height = '45vh';
+  calculadora.style.width = '40vw';
+  calculadora.style.zIndex = '100';
+  setTimeout(() => {
+    calculadora.classList.add('move-calculadora-up');
+  }, 100);
+}  
+  
   if(!esDesktop && panelDeBajas.style.display==='block'){
     document.querySelector("#simulador").style.display='flex'    
     calculadora.classList.remove('move-calculadora-up-eliminar')
@@ -4764,6 +4712,7 @@ listaClientes.addEventListener('click', (e) => {
   }
 });
 
+let moverLista = false
 function mostrarListaClientes(seccion) {
   listaClientes.style.display = 'flex';
   listaClientes.style.zIndex = 2010;
@@ -4800,8 +4749,13 @@ function mostrarListaClientes(seccion) {
     break
     case 'perfilesIndividual':
       document.querySelector('#simulador').style.display = 'flex';
-      listaClientes.style.top = '35vh';
-      listaClientes.style.left = '25vw';
+      if(moverLista === false){
+        listaClientes.style.top = '35vh';
+        listaClientes.style.left = '25vw';
+      }else{
+        listaClientes.style.top = '35vh';
+        listaClientes.style.left = '15vw';
+      }
     break
   }
 }
@@ -6109,35 +6063,27 @@ function moverVisor() {
   const busqueda = document.querySelector("#buscador-empleado")
   const nombre = document.querySelector("#porta-visor > div.visor > span")
   const navArrow = document.querySelector("#porta-visor > div.visor > div.navegacion")
-
-
-
   // Ocultar listaNombres primero
   listaNombres.style.opacity = '0';
   listaNombres.style.pointerEvents = 'none';
-
   setTimeout(() => {
     listaNombres.style.visibility = 'hidden';
   }, 400);
-
   // Mover y reducir el contenedor
   visor.style.transition = 'transform 2s ease, width 2s ease';
   visor.style.transition = 'transform 2s ease, height 2s ease';
-  visor.style.transform = 'scale(1) translate(-273px, 91px)';
+  if(!esDesktop)  visor.style.transform = 'scale(1) translate(-310px, 91px)';
+  if(esDesktop)  visor.style.transform = 'scale(1) translate(-278px, 91px)';
   visor.style.width = '15vw';
   visor.style.height = '50vh';
-
   imagen.style.transition = 'transform 2s ease, width 2s ease';
   imagen.style.transition = 'transform 2s ease, rigth 2s ease';
   imagen.style.width = '130%';
   imagen.style.right='33%'
   imagen.style.left=''
-
   busqueda.style.width='132%'
-
   nombre.style.width='156%'
   nombre.style.marginLeft='-10%'
-
   navArrow.style.width='161%'
   navArrow.style.left='-16%'
 }

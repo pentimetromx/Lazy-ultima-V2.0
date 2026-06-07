@@ -4840,7 +4840,7 @@ function muestraMenu(){
 
 let intervalEnEjecucion = false;
 
-// CLICK EN LAS GRAFFICAS
+/* // CLICK EN LAS GRAFFICAS
 function openGraphics(elementId){
   const elementos = document.querySelectorAll('.graphs-lines');
   const botonesFlotantes = document.querySelector('#conte-butts-graphs')
@@ -4981,7 +4981,7 @@ function openGraphics(elementId){
       }
     }, 500);
   }
-}
+} */
 
 
 const MOVE_ELEMENT = [
@@ -5001,29 +5001,29 @@ graficos.forEach((grafico, index) => {
   grafico.dataset.index = index;
 });
 
- contLineas.addEventListener('click', (e) => {
+contLineas.addEventListener('click', (e) => {
   const graficoSeleccionado = e.target.closest('.graphs-lines');
   if (!graficoSeleccionado || !contLineas.contains(graficoSeleccionado)) return;
 
-  const botonesFlotantes = document.querySelector('#conte-butts-graphs')
-  const imagenSola = document.querySelector('#porta-imagen')
+  // ✅ Ignorar clicks durante transiciones activas
+  if (graficoSeleccionado.dataset.transitioning === 'true') return;
 
-  if(turnBlock === false){
-    turnBlock = true
+  const botonesFlotantes = document.querySelector('#conte-butts-graphs');
+  const imagenSola = document.querySelector('#porta-imagen');
+
+  if (turnBlock === false) {
+    turnBlock = true;
   }
 
-  setTimeout(() => {   
-    if(turnGraphic === false){
-      turnGraphic = true
+  setTimeout(() => {
       moverElementos(["conte-butts-graphs"], 27, -3.5);
-    }
-  }, 500); 
+  }, 500);
 
   const index = Number(graficoSeleccionado.dataset.index);
 
-  if(index === 5)mostrarSecuencialmente()
+  if (index === 5) mostrarSecuencialmente();
 
-  graficos.forEach((grafico, i) => {
+  graficos.forEach((grafico) => {
     const esActivo = grafico === graficoSeleccionado;
 
     // limpiar clases de movimiento
@@ -5041,10 +5041,26 @@ graficos.forEach((grafico, index) => {
 
     // aplicar movimiento solo al activo
     if (esActivo) {
-      grafico.classList.add(MOVE_ELEMENT[index]);
+      // ✅ Limpiar estilos inline que bloquean las clases CSS
+      grafico.style.transform = '';
+      grafico.style.transition = '';
+
+      // ✅ Marcar como en transición
+      grafico.dataset.transitioning = 'true';
+
+      // ✅ Esperar al siguiente frame para que el DOM procese el reset
+      requestAnimationFrame(() => {
+        grafico.classList.add(MOVE_ELEMENT[index]);
+
+        // ✅ Liberar el flag al terminar la transición
+        grafico.addEventListener('transitionend', () => {
+          grafico.dataset.transitioning = 'false';
+        }, { once: true });
+      });
     }
   });
 });
+
 
 // Selecciona el segundo contenedor de barra
 const primerContenedor = document.querySelectorAll('.bar-container')[0]; 

@@ -20,22 +20,8 @@ document.addEventListener('keydown', function(event) {
         setTimeout(() => {
           aparecerElemento('canvasContainer4', 'flex')            
         }, 1500); */
-        const contLineas = document.querySelector('#contLineas');
-        if (contLineas) contLineas.style.display = 'grid';
-
-        const coleccionGraficos = document.querySelectorAll(".graphs-lines");
-
-        coleccionGraficos.forEach((grafico, index) => {
-          grafico.style.display = 'flex';
-          grafico.style.transform = 'scale(0)';
-          grafico.style.transition = `transform 1.6s ease ${index * 0.15}s`;
-
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              grafico.style.transform = 'scale(1)';
-            });
-          });
-        });    
+        resetGraficos()
+         
   
 
       break;  
