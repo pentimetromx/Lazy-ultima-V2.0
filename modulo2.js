@@ -5431,6 +5431,7 @@ document.addEventListener('touchmove', (event) => {
 document.addEventListener('touchend', () => {
   activo = false;
 });
+
 function verificarPosicionTop(childID) {
   let elementos = childID  
   elementos.forEach(id => {
