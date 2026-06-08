@@ -6082,20 +6082,22 @@ function moverVisor() {
   imagen.style.transition = 'transform 2s ease, width 2s ease';
   imagen.style.transition = 'transform 2s ease, rigth 2s ease';
   imagen.style.width = '130%';
-  imagen.style.right='48%'
-  imagen.style.left=''
   busqueda.style.width='132%'
   busqueda.style.marginLeft='-23%'
 
   nombre.style.width='156%'
-  nombre.style.marginLeft='-35%'
   navArrow.style.width='161%'
-  navArrow.style.left='-38%'
   if(esDesktop){
     navArrow.style.left='-13%'
     nombre.style.marginLeft='-11%'
     imagen.style.right='34%'
     busqueda.style.marginLeft='0%'
+  }else{
+    navArrow.style.left='-5%'
+    nombre.style.marginLeft='-2%'
+    imagen.style.right='27%'
+    imagen.style.left=''
+    busqueda.style.marginLeft='9%'
   }
 
 }
