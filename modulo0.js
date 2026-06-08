@@ -1358,19 +1358,17 @@ function ElementosMaII(elementId){
       elemento.style.top = "";
     }
   });
-
   document.querySelectorAll('.btn-torre').forEach(btn => {
     document.querySelectorAll('.btn-torre').forEach(b => b.classList.remove('activo'));
   });
-
   activarPantallaCompleta();
   container1.style.display='grid'
   setTimeout(() => {
     document.body.style.zoom = "100%"    
   }, 10);
   setTimeout(() => {
-    showButtonsMAconRetraso()  
-  }, 20);  
+    animarBotonesTorre()  
+  }, 200);  
   arrayIdButtsMA .forEach(function (elto) {
     let elemento = document.getElementById(elto)    
     if (elemento) {
