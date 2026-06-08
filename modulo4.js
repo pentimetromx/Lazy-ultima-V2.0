@@ -5995,8 +5995,15 @@ document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',(
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
     }
   }
-  
   container1.style.display = 'grid'; 
+  setTimeout(() => {
+    animarBotonesTorre()    
+  }, 200);
+  setTimeout(() => {
+    document.querySelectorAll('.secuenciales').forEach(btn => {
+    btn.classList.remove('activo');
+});
+  }, 300);
 })
 let panelAbierto = false;
 document.querySelector("#contenedor-global .but-job").addEventListener('click', () => {
@@ -6071,12 +6078,8 @@ function moverVisor() {
   }, 400);
   // Mover y reducir el contenedor
   visor.style.transition = 'transform 2s ease, width 2s ease';
-  visor.style.transition = 'transform 2s ease, height 2s ease';
-/*   if(!esDesktop)  visor.style.transform = 'scale(1) translate(-310px, 91px)';
-  if(esDesktop)  visor.style.transform = 'scale(1) translate(-278px, 91px)'; */
-  
+  visor.style.transition = 'transform 2s ease, height 2s ease';  
   visor.style.transform = 'scale(1) translate(calc(-24.3vw), 91px)';
-
   visor.style.width = '15vw';
   visor.style.height = '50vh';
   imagen.style.transition = 'transform 2s ease, width 2s ease';
@@ -6084,7 +6087,6 @@ function moverVisor() {
   imagen.style.width = '130%';
   busqueda.style.width='132%'
   busqueda.style.marginLeft='-23%'
-
   nombre.style.width='156%'
   navArrow.style.width='161%'
   if(esDesktop){

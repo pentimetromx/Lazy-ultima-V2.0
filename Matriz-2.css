@@ -4097,6 +4097,7 @@ top: 44%;
   transform: skewX(-8deg) scaleY(1.08);
   box-shadow: 0 4px 0 #0a1fa8, 0 5px 3px rgba(0,0,0,0.2);
 }
+.secuenciales.activo,
 .btn-torre.activo {
   box-shadow: 0 0px 0 #a0a09e;
   top: 4px;

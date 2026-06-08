@@ -19,11 +19,8 @@ document.addEventListener('keydown', function(event) {
         }, 1000);
         setTimeout(() => {
           aparecerElemento('canvasContainer4', 'flex')            
-        }, 1500); */
-        resetGraficos()
-         
-  
-
+        }, 1500); */ 
+        animarBotonesTorre()
       break;  
       case 'H':
         /* Geometria() */
@@ -3799,13 +3796,14 @@ document.querySelector('#boton-reseteo').addEventListener('click', () =>{
 
 // BOTON SALA
 document.querySelector('#boton-prensas').addEventListener('click', () =>{
-  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','container01']  
+  var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']  
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }
+  container1.style.display='grid'
   interfazPerfiles.classList.remove('move-perfiles-entintado')
   document.querySelector('.sections').style.display = 'grid' 
 
@@ -7588,4 +7586,39 @@ function borrrrrrrrrrrarrrrrrrrrrrrrrrrrrrr(){
   document.querySelector("#visorImagen").classList.add('ubicar-visor');
   document.querySelector("#porta-visor > div.visor > span").classList.add('ubicado');
   document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');
+}
+
+function animarBotonesTorre() {
+  const botones = document.querySelectorAll('.secuenciales');
+  const total = botones.length;
+
+  botones.forEach((btn, index) => {
+    setTimeout(() => {
+      btn.style.transition = 'transform 0.15s ease, background-color 0.15s ease';
+      btn.style.transform = 'scale(0.7)';
+      btn.style.backgroundColor = '#1e3aff';
+      btn.style.color = 'white';
+
+      setTimeout(() => {
+        btn.style.transform = btn.classList.contains('activo')
+          ? 'skewX(-8deg) scaleY(0.97) scale(1.2)'
+          : 'scale(1.2)';
+      }, 50);
+
+      if (index === total - 1) {
+        botones.forEach((b, i) => {
+          setTimeout(() => {
+            b.style.backgroundColor = '';
+            b.style.color = '';
+            // Si tiene .activo respeta su transform, si no limpia
+            b.style.transform = b.classList.contains('activo')
+              // funcion que inclina el boton
+              ? 'skewX(-8deg) scaleY(0.97)'
+              : '';
+          }, 50 + (i * 20));
+        });
+      }
+
+    }, index * 20);
+  });
 }
