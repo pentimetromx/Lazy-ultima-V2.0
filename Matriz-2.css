@@ -5811,7 +5811,7 @@ button:hover{
   left: 33vw;
   width: 35vw;
   background: #2b2f36;
-  z-index: 200;
+  z-index: 1100;
   border-radius: 12px;
   padding: 28px 28px 24px;
   border: 0.5px solid #3e4451;
@@ -5976,7 +5976,7 @@ button:hover{
   margin: 0 0 24px;
 }
 .btn-secundario {
-  background: rgba(0,255,83,0.4);
+  background: #7f1d1d;
 }
 .btn-secundario:hover {
   background:#4EC9A0;
@@ -6149,7 +6149,7 @@ button:hover{
   gap: 4px;
 }
 .btn-primario {
-   background: #7f1d1d;
+  background: rgba(0,255,83,0.4);
 }
 .card-botones > button {
   position: relative;

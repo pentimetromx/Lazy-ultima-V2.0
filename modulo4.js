@@ -6072,20 +6072,32 @@ function moverVisor() {
   // Mover y reducir el contenedor
   visor.style.transition = 'transform 2s ease, width 2s ease';
   visor.style.transition = 'transform 2s ease, height 2s ease';
-  if(!esDesktop)  visor.style.transform = 'scale(1) translate(-310px, 91px)';
-  if(esDesktop)  visor.style.transform = 'scale(1) translate(-278px, 91px)';
+/*   if(!esDesktop)  visor.style.transform = 'scale(1) translate(-310px, 91px)';
+  if(esDesktop)  visor.style.transform = 'scale(1) translate(-278px, 91px)'; */
+  
+  visor.style.transform = 'scale(1) translate(calc(-24.3vw), 91px)';
+
   visor.style.width = '15vw';
   visor.style.height = '50vh';
   imagen.style.transition = 'transform 2s ease, width 2s ease';
   imagen.style.transition = 'transform 2s ease, rigth 2s ease';
   imagen.style.width = '130%';
-  imagen.style.right='33%'
+  imagen.style.right='48%'
   imagen.style.left=''
   busqueda.style.width='132%'
+  busqueda.style.marginLeft='-23%'
+
   nombre.style.width='156%'
-  nombre.style.marginLeft='-10%'
+  nombre.style.marginLeft='-35%'
   navArrow.style.width='161%'
-  navArrow.style.left='-16%'
+  navArrow.style.left='-38%'
+  if(esDesktop){
+    navArrow.style.left='-13%'
+    nombre.style.marginLeft='-11%'
+    imagen.style.right='34%'
+    busqueda.style.marginLeft='0%'
+  }
+
 }
 
 
