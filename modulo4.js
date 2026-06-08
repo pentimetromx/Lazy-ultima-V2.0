@@ -3793,6 +3793,7 @@ hijos.forEach((li, index) => {
       resultadosMA('interfaz-mtto')
     }
     if (index === 4) {
+      deBajaActivo=false
       activarPantallaCompleta()      
       panelAdministrativo.classList.remove('move-carta-exterior')
       panelAdministrativo.classList.remove('activo')
@@ -3812,7 +3813,6 @@ hijos.forEach((li, index) => {
         document.querySelector('#carta-exterior > .ident-empleado > input').value=''    
         document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
       }, 500);
-      
     }    
   });
 });
@@ -3857,6 +3857,7 @@ document.querySelector("#salir-ma").addEventListener('click',()=>{
 })
 
 document.querySelector("#input-documento").addEventListener('click',()=>{
+  deBajaActivo=false
   if (!esDesktop) {
     ubicaCalculadoraSegunContexto();
   }
@@ -5796,12 +5797,13 @@ documentoEmplEliminar.addEventListener('blur', () => {
     hideCalculator();
   }
 });
+let deBajaActivo = false
+
 /* BOTON SUPERIOR COLUMNA BOTONES */
 document.querySelector("#boton-ma-card").addEventListener('click',()=>{
-  const img = document.getElementById('imgAdministrar');
-  if (img && img.getAttribute('src') === './assets/silueta0.png') {
+  if(!deBajaActivo){
     saltarAlerta('Debe activar el empleado','docuMaster')
-    return
+    return    
   }
 
   var elementosExcluidos = ['links-inicialesI','links-iniciales','buscador','search-form'] 
@@ -5815,6 +5817,7 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
 
   container1.style.display='grid'
   panelAdministrador.style.display='grid'
+  
   activarBlur(0,255)
   sliderGraf.value = 0;
   sliderTree.value= 0;
@@ -5868,6 +5871,7 @@ document.querySelector("#borrarBoton5").addEventListener('click',()=>{
 const btnActivar = document.querySelector('#carta-exterior .btn-primario');
 const cardInput = document.querySelector('#carta-exterior .card-header');
 const cardImg = document.querySelector('#carta-exterior .card-foto img');
+
 btnActivar.addEventListener('click', function () {
   if (panelAdministrador.classList.contains('activo')){
     document.querySelector('#abuelo-indicadores').classList.remove('administrativo') 
@@ -5886,7 +5890,7 @@ btnActivar.addEventListener('click', function () {
   const empleadoEncontrado = empleados[valor];
 
   if (empleadoEncontrado) {
-
+    deBajaActivo = true
     document.getElementById('input-nombre').value = empleadoEncontrado.nombre;    
     document.getElementById('numDoc1').value = empleadoEncontrado.documento;
     document.getElementById('numDoc2').value = empleadoEncontrado.area;
