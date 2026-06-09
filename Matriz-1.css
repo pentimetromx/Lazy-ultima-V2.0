@@ -2004,10 +2004,12 @@ width:447px ;
 #padre-2.activo,
 #padre-1.activo,
 #abuelo-indicadores.activo,
-#linksMA.activo ,
+#linksMA.activo,
+#rr-hh.activo,
 #control-panel-rgb.activo,
 #control-panel-cmyk.activo,
-#contenedor-global.activo{
+#contenedor-global.activo,
+#rrhh-marco.activo{
   display: flex; 
   transform: scale(1); 
 }
