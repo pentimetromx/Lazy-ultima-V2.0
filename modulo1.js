@@ -477,7 +477,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const listadoNombres = document.getElementById('listaNombres');
   const img = document.getElementById('imagenVisor');
-  const nombre = document.querySelector('.visor > span');
+  const nombre = document.querySelector('.visor-top > #buscador-empleado');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
   // estado
@@ -551,8 +551,13 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarEmpleadoPorIndice(nuevo, { fijar: false });
   });
 
+
+  const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (!esDesktop && esTactil) {
+    campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
+  }
   // --- búsqueda ---
-  campoBusqueda.addEventListener('input', () => {
+  /* campoBusqueda.addEventListener('input', () => {
     const valor = campoBusqueda.value.trim().toLowerCase();
     if (!valor) {
       limpiarVisor();
@@ -571,20 +576,17 @@ document.addEventListener('DOMContentLoaded', () => {
       limpiarVisor();
       fotoFijada = null;
     }
-  });
-  const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  if (!esDesktop && esTactil) {
-    campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
-  }
-  campoBusqueda.addEventListener('focusin', (e) => {
+  });  */ 
+/*   campoBusqueda.addEventListener('focusin', (e) => {
     activeInput = e.target; // asignar input activo
     mostrarListaClientes('perfilesIndividual'); // abrir lista
-  });
+  }); */
 
-  campoBusqueda.addEventListener('pointerdown', (e) => {
+  /* campoBusqueda.addEventListener('pointerdown', (e) => {
+    alert()
     activeInput = e.target; // asignar input activo
     mostrarListaClientes('perfilesIndividual');
-  });
+  }); */
 
   campoBusqueda.addEventListener('blur', () => {
     if(!esDesktop) hideKeyboard()
@@ -607,7 +609,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!imgSrc) return;
 
     img.src = imgSrc;
-    nombre.textContent = span.textContent;
+    /* nombre.textContent = span.textContent; */
     indiceActual = Number(span.dataset.index ?? index);
 
     if (opts.fijar) {
@@ -619,14 +621,14 @@ document.addEventListener('DOMContentLoaded', () => {
   function mostrarEmpleadoObj(emp) {
     if (!emp) return;
     img.src = emp.ruta ?? '';
-    nombre.textContent = emp.nombre ?? '';
+    /* nombre.textContent = emp.nombre ?? ''; */
     // sincronizar indiceActual con la posición en colaboradores
     const idx = colaboradores.indexOf(emp);
     if (idx >= 0) indiceActual = idx;
   }
   function limpiarVisor() {
     img.src = '';
-    nombre.textContent = '';
+    /* nombre.textContent = ''; */
   }  
 });
 
@@ -4711,8 +4713,8 @@ function resultadosMA(identificador){
   document.querySelector("#porta-visor").classList.remove('modificarPosicion')
   document.querySelector("#buscador-empleado").classList.remove("ubicacion"); 
   document.querySelector("#visorImagen").classList.remove('ubicar-visor') 
-  document.querySelector("#porta-visor > div.visor > span").classList.remove('ubicado')
-  document.querySelector("#porta-visor > div.visor > div.navegacion").classList.remove('ancho')
+  /* document.querySelector("#porta-visor > div.visor > span").classList.remove('ubicado') */
+  /* document.querySelector("#porta-visor > div.visor > div.navegacion").classList.remove('ancho') */
 
   const padre = document.querySelector('.contenedor-visor');
   // elimina todos los estilos en línea del padre y sus hijos

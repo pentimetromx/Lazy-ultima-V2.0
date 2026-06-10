@@ -5122,20 +5122,23 @@ top: 44%;
   margin: 0;
   padding: 0;
 }
-.contenedor-visor{
+.contenedor-visor {
   position: absolute;
   display: flex;
+  flex-direction: column;
   width: 50vw;
   height: 59vh;
   left: 25vw;
   background: rgba(20, 30, 50, 0.85);
-  padding: 20px;
+  padding: 16px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
   box-sizing: border-box;
+  gap: 12px;
 
+  display: none;
   transform: scale(0);
-  transform-origin: center; 
+  transform-origin: center;
   transition: transform 1s ease;
 }
 .visor {
@@ -5162,33 +5165,48 @@ top: 44%;
   top: -14%;
   width: 129%; 
 }
-#buscador-empleado{
-  width:100%;
-  padding: 8px;
+#buscador-empleado {
+  width: 100%;
+  padding: 10px 14px;
   border: none;
   border-radius: 6px;
-  text-align: center;
-  font-size: 1vw;
+  background: rgba(255, 255, 255, 0.07);
+  color: #e0e0e0;
+  font-size: 0.85vw;
+  text-align: left;
+  outline: none;
+  box-sizing: border-box;
 }
+#buscador-empleado::placeholder {
+   color: rgba(255, 255, 255, 0.3);
+}
+#buscador-empleado:focus {
+  background: rgba(255, 255, 255, 0.11);
+  border: 0.5px solid rgba(30, 144, 255, 0.5);
+}
+                                                                                                        .visor-top{
+                                                                                                          display: flex;
+                                                                                                          flex: 1;
+                                                                                                          gap: 12px;
+                                                                                                          overflow: hidden;
+                                                                                                        }
+                                                                                                        
+
 #buscador-empleado.ubicacion{
   width: 128%;
   height: 100%;
 }
 
 .visor-imagen {
-  position: relative;
-  display:flex;
-  width: 70%;
-  height: 100%;
-  margin-left: 3vw;
-  gap: 5px;                       
+  flex: 0 0 38%;
   background: #1a2235;
-  justify-items: center;
-  align-items: center;
-  cursor: pointer;
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .visor-imagen.ubicar-visor{
   width: 130%;
   height: 100%;
@@ -5235,36 +5253,33 @@ top: 44%;
 #imagenVisor[src=""] {
   display: none;
 }
-#porta-visor > div.visor > div.navegacion{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  height: 100%;
-}
+
 #porta-visor > div.visor > div.navegacion.ancho{
   left: 15%;
   top: -39%;
 }
 .navegacion button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  height: 80%;
-  background: #24314d;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1.7vw;
-  transition: background 0.2s;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    border: 0.5px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
 }
+
 .navegacion button:hover {
-  background: #3a4c70;
+    background: rgba(30, 144, 255, 0.2);
+    color: #5aadff;
+    border-color: rgba(30, 144, 255, 0.4);
+}
+.navegacion button:active {
+    transform: scale(0.96);
 }
 /* .panel-nombres {
   position: relative;
@@ -5285,27 +5300,16 @@ top: 44%;
   overscroll-behavior: contain; 
 } */
 .panel-nombres {
-  position: fixed; 
-  top: 14%;
-  left: calc(48% + 10px);
-  width: 40%;
-
-
+  flex: 1;
   display: flex;
   flex-direction: column;
   border-left: 2px solid #1e90ff;
-  gap: 8px;
-  padding: 10px;  
-  background: rgba(10, 15, 25, 0.9);
-  max-height: 70%;
   overflow-y: auto;
-  padding-right: 10px;
-
-
-  -webkit-overflow-scrolling: touch; 
-  touch-action: pan-y; 
-  overscroll-behavior: contain;  
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
 }
+
 .panel-nombres::-webkit-scrollbar {
   width: 22px;
 }
@@ -5323,6 +5327,48 @@ top: 44%;
   color: #bcbcbcD9;
   transition: color 0.2s, background 0.2s;
 }
+.panel-nombres > span {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 0.85vw;
+  color: rgba(188, 188, 188, 0.85);
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+  transition: color 0.2s, background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.panel-nombres > span:last-child {
+  border-bottom: none;
+}
+.panel-nombres > span:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+.panel-nombres > span.activo {
+  background: rgba(30, 144, 255, 0.12);
+  color: #5aadff;
+}
+.visor-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.visor-footer .contador {
+  font-size: 0.75vw;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.navegacion {
+  display: flex;
+  margin-left: 11%;
+  gap: 24px;
+}
+
+
+
+
+
 .panel-nombres span:hover {
   color: #00aaff;
 }

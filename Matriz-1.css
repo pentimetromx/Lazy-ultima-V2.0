@@ -1983,7 +1983,6 @@ width:447px ;
 #abuelo-grafica12.activo,
 #interfaz-perfiles.activo,
 #padre-desempeños.activo,
-.contenedor-visor.activo,
 .dashboard-grid.activo,
 #ingresos-sistema-ma.activo,
 #ingresos-sistema.activo,
@@ -2009,7 +2008,8 @@ width:447px ;
 #control-panel-rgb.activo,
 #control-panel-cmyk.activo,
 #contenedor-global.activo,
-#rrhh-marco.activo{
+#rrhh-marco.activo,
+#porta-visor.activo{
   display: flex; 
   transform: scale(1); 
 }

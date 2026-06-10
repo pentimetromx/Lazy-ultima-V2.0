@@ -1798,8 +1798,8 @@ visor.addEventListener('click', (e) => {
     document.querySelector("#listaNombres").style.display = 'none';
     document.querySelector("#buscador-empleado").classList.add("ubicacion");
     document.querySelector("#visorImagen").classList.add('ubicar-visor');
-    document.querySelector("#porta-visor > div.visor > span").classList.add('ubicado');
-    document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');
+    /* document.querySelector("#porta-visor > div.visor > span").classList.add('ubicado');
+    document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');*/
   }, 1000);
   setTimeout(() => {
     const contLineas = document.querySelector('#contLineas');
@@ -6079,17 +6079,16 @@ document.querySelector("#overlay-kaizen").addEventListener('click',()=>{
 function moverVisor() {
   const visor = document.getElementById('porta-visor');
   const listaNombres = document.getElementById('listaNombres');
-  const imagen = document.querySelector('.visor-imagen'); 
+  const imagen = document.querySelector('.visor-top'); 
   const busqueda = document.querySelector("#buscador-empleado")
   const nombre = document.querySelector("#porta-visor > div.visor > span")
-  const navArrow = document.querySelector("#porta-visor > div.visor > div.navegacion")
+  const navArrow = document.querySelector("#porta-visor > div.visor-footer > div.navegacion")
   // Ocultar listaNombres primero
   listaNombres.style.opacity = '0';
   listaNombres.style.pointerEvents = 'none';
   setTimeout(() => {
     listaNombres.style.visibility = 'hidden';
   }, 400);
-  // Mover y reducir el contenedor
   visor.style.transition = 'transform 2s ease, width 2s ease';
   visor.style.transition = 'transform 2s ease, height 2s ease';  
   visor.style.transform = 'scale(1) translate(calc(-24.3vw), 91px)';
@@ -6097,226 +6096,234 @@ function moverVisor() {
   visor.style.height = '50vh';
   imagen.style.transition = 'transform 2s ease, width 2s ease';
   imagen.style.transition = 'transform 2s ease, rigth 2s ease';
-  imagen.style.width = '130%';
+  imagen.style.width = '270%';
   busqueda.style.width='132%'
   busqueda.style.marginLeft='-23%'
-  nombre.style.width='156%'
   navArrow.style.width='161%'
   if(esDesktop){
     navArrow.style.left='-13%'
-    nombre.style.marginLeft='-11%'
+    navArrow.style.width='113%'
+    navArrow.style.marginLeft= '18%';
+  {
+  }
     imagen.style.right='34%'
-    busqueda.style.marginLeft='0%'
+    busqueda.style.width='114%'
+    busqueda.style.height='10%'
+    busqueda.style.marginLeft='-7%'
+
   }else{
-    navArrow.style.left='-5%'
-    nombre.style.marginLeft='-2%'
+    navArrow.style.marginLeft='23%'
+    navArrow.style.width='161%'
+    navArrow.style.height='10%'
     imagen.style.right='27%'
     imagen.style.left=''
-    busqueda.style.marginLeft='9%'
+    busqueda.style.marginLeft='-6%'
+    busqueda.style.width='110%'
+    busqueda.style.height='10%'
   }
 
 }
 
 
-  const names = [
-    "Valentina Sofía Rodríguez Herrera",
-    "Valentina Camila Gómez Patiño",
-    "Juan Osvaldo Mira Pineda",
-    "Santiago Andrés Gómez Castillo",
-    "Santiago Felipe Herrera Londoño",
-    "Isabella Camila Martínez Vargas",
-    "Isabella Paola Torres Salazar",
-    "Sebastián Felipe Torres Mendoza",
-    "Sebastián Andrés Díaz Restrepo",
-    "Camila Juliana Pérez Salazar",
-    "Camila Andrea López Ospina",
-    "Mateo Alejandro Díaz Moreno",
-    "Mateo Esteban Vargas Cardona",
-    "Sofía Valentina López Rincón",
-    "Sofía Daniela Ramírez Arango",
-    "Nicolás Esteban Ramírez Gutiérrez",
-    "Nicolás David Muñoz Zapata",
-    "Valeria Daniela Castro Jiménez",
-    "Valeria Isabel Rojas Montoya",
-    "Alejandro Miguel Rojas Ospina",
-    "Alejandro Ernesto Sánchez Córdoba",
-    "Daniela Paola Suárez Cardona",
-    "Daniela Carolina Pineda Ríos",
-    "Andrés Felipe Morales Restrepo",
-    "Andrés Miguel Castillo Vargas",
-    "Mariana Isabel Vargas Londoño",
-    "Mariana Sofía Pérez Castaño",
-    "Julián David Herrera Patiño",
-    "Julián Alejandro Gómez Ruiz",
-    "Catalina María Sánchez Arango",
-    "Catalina Andrea Fernández Mendoza",
-    "Miguel Ángel Fernández Ríos",
-    "Miguel Andrés Moreno Gutiérrez",
-    "Paula Andrea Gómez Montoya",
-    "Paula Valentina Jiménez Torres",
-    "Diego Armando Ruiz Castaño",
-    "Diego Sebastián Castro Herrera",
-    "Natalia Carolina Muñoz Zapata",
-    "Natalia Juliana López Díaz",
-    "Felipe Ernesto Pineda Córdoba",
-    "Felipe David Vargas Ramírez"
+const names = [
+  "Valentina Sofía Rodríguez Herrera",
+  "Valentina Camila Gómez Patiño",
+  "Juan Osvaldo Mira Pineda",
+  "Santiago Andrés Gómez Castillo",
+  "Santiago Felipe Herrera Londoño",
+  "Isabella Camila Martínez Vargas",
+  "Isabella Paola Torres Salazar",
+  "Sebastián Felipe Torres Mendoza",
+  "Sebastián Andrés Díaz Restrepo",
+  "Camila Juliana Pérez Salazar",
+  "Camila Andrea López Ospina",
+  "Mateo Alejandro Díaz Moreno",
+  "Mateo Esteban Vargas Cardona",
+  "Sofía Valentina López Rincón",
+  "Sofía Daniela Ramírez Arango",
+  "Nicolás Esteban Ramírez Gutiérrez",
+  "Nicolás David Muñoz Zapata",
+  "Valeria Daniela Castro Jiménez",
+  "Valeria Isabel Rojas Montoya",
+  "Alejandro Miguel Rojas Ospina",
+  "Alejandro Ernesto Sánchez Córdoba",
+  "Daniela Paola Suárez Cardona",
+  "Daniela Carolina Pineda Ríos",
+  "Andrés Felipe Morales Restrepo",
+  "Andrés Miguel Castillo Vargas",
+  "Mariana Isabel Vargas Londoño",
+  "Mariana Sofía Pérez Castaño",
+  "Julián David Herrera Patiño",
+  "Julián Alejandro Gómez Ruiz",
+  "Catalina María Sánchez Arango",
+  "Catalina Andrea Fernández Mendoza",
+  "Miguel Ángel Fernández Ríos",
+  "Miguel Andrés Moreno Gutiérrez",
+  "Paula Andrea Gómez Montoya",
+  "Paula Valentina Jiménez Torres",
+  "Diego Armando Ruiz Castaño",
+  "Diego Sebastián Castro Herrera",
+  "Natalia Carolina Muñoz Zapata",
+  "Natalia Juliana López Díaz",
+  "Felipe Ernesto Pineda Córdoba",
+  "Felipe David Vargas Ramírez"
+];
+const ITEM_H    = 44;
+const VISIBLE   = 4;
+const PAD_ITEMS = Math.floor(VISIBLE / 2);
+const DURATION  = 1200;
+const ul         = document.getElementById("namesList");
+const resultName = document.getElementById("resultName");
+const nameInput  = document.getElementById("nameInput");
+const errorMsg   = document.getElementById("errorMsg");
+const suggestBox = document.getElementById("sugerencias");
+const btn        = document.getElementById("searchBtn");
+function normalize(s) {
+  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+function highlightMatch(fullName, query) {
+  const norm  = normalize(fullName);
+  const normQ = normalize(query);
+  const idx   = norm.indexOf(normQ);
+  if (idx === -1) return fullName;
+  const before  = fullName.slice(0, idx);
+  const matched = fullName.slice(idx, idx + query.length);
+  const after   = fullName.slice(idx + query.length);
+  return `${before}<mark>${matched}</mark>${after}`;
+}
+function hideSuggestions() {
+  suggestBox.innerHTML = "";
+  suggestBox.classList.remove("visible");
+}
+function showSuggestions(matches, query) {
+  suggestBox.innerHTML = matches.map(n =>
+    `<div class="suggestion-item" data-name="${n}">${highlightMatch(n, query)}</div>`
+  ).join("");
+  suggestBox.classList.add("visible");
+
+  // Al hacer clic en una sugerencia se dispara el scroll directamente
+  suggestBox.querySelectorAll(".suggestion-item").forEach(item => {
+    item.addEventListener("click", () => {
+      const chosen = item.dataset.name;
+      nameInput.value = chosen;
+      hideSuggestions();
+      errorMsg.textContent = "";
+      animateScroll(chosen);
+    });
+  });
+}
+nameInput.addEventListener("input", () => {
+  errorMsg.textContent = "";
+  const query = nameInput.value.trim();
+
+  if (!query) { hideSuggestions(); return; }
+
+  const matches = names.filter(n => normalize(n).includes(normalize(query)));
+
+  if (matches.length === 0) { hideSuggestions(); return; }
+
+  showSuggestions(matches, query);
+});
+nameInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") startSearch();
+});
+function buildList() {
+  ul.innerHTML = "";
+  const full = [
+    ...Array(PAD_ITEMS).fill(""),
+    ...names,
+    ...names,
+    ...Array(PAD_ITEMS).fill("")
   ];
-  const ITEM_H    = 44;
-  const VISIBLE   = 4;
-  const PAD_ITEMS = Math.floor(VISIBLE / 2);
-  const DURATION  = 1200;
-  const ul         = document.getElementById("namesList");
-  const resultName = document.getElementById("resultName");
-  const nameInput  = document.getElementById("nameInput");
-  const errorMsg   = document.getElementById("errorMsg");
-  const suggestBox = document.getElementById("sugerencias");
-  const btn        = document.getElementById("searchBtn");
-  function normalize(s) {
-    return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
-  }
-  function highlightMatch(fullName, query) {
-    const norm  = normalize(fullName);
-    const normQ = normalize(query);
-    const idx   = norm.indexOf(normQ);
-    if (idx === -1) return fullName;
-    const before  = fullName.slice(0, idx);
-    const matched = fullName.slice(idx, idx + query.length);
-    const after   = fullName.slice(idx + query.length);
-    return `${before}<mark>${matched}</mark>${after}`;
-  }
-  function hideSuggestions() {
-    suggestBox.innerHTML = "";
-    suggestBox.classList.remove("visible");
-  }
-  function showSuggestions(matches, query) {
-    suggestBox.innerHTML = matches.map(n =>
-      `<div class="suggestion-item" data-name="${n}">${highlightMatch(n, query)}</div>`
-    ).join("");
-    suggestBox.classList.add("visible");
-
-    // Al hacer clic en una sugerencia se dispara el scroll directamente
-    suggestBox.querySelectorAll(".suggestion-item").forEach(item => {
-      item.addEventListener("click", () => {
-        const chosen = item.dataset.name;
-        nameInput.value = chosen;
-        hideSuggestions();
-        errorMsg.textContent = "";
-        animateScroll(chosen);
-      });
-    });
-  }
-  nameInput.addEventListener("input", () => {
-    errorMsg.textContent = "";
-    const query = nameInput.value.trim();
-
-    if (!query) { hideSuggestions(); return; }
-
-    const matches = names.filter(n => normalize(n).includes(normalize(query)));
-
-    if (matches.length === 0) { hideSuggestions(); return; }
-
-    showSuggestions(matches, query);
+  full.forEach(n => {
+    const li = document.createElement("li");
+    li.textContent = n;
+    ul.appendChild(li);
   });
-  nameInput.addEventListener("keydown", e => {
-    if (e.key === "Enter") startSearch();
-  });
-  function buildList() {
-    ul.innerHTML = "";
-    const full = [
-      ...Array(PAD_ITEMS).fill(""),
-      ...names,
-      ...names,
-      ...Array(PAD_ITEMS).fill("")
-    ];
-    full.forEach(n => {
-      const li = document.createElement("li");
-      li.textContent = n;
-      ul.appendChild(li);
-    });
+}
+function easeInOut(t) {
+  return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+}
+// Función central de animación, reutilizada tanto por el botón como por las sugerencias
+function animateScroll(target) {
+  btn.disabled = true;
+  resultName.classList.remove("visible");
+  resultName.textContent = "—";
+
+  buildList();
+  ul.style.transform = "translateY(0px)";
+
+  const items = ul.querySelectorAll("li");
+  let targetIdx = -1;
+  for (let i = PAD_ITEMS; i < PAD_ITEMS + names.length; i++) {
+    if (items[i]?.textContent === target) { targetIdx = i; break; }
   }
-  function easeInOut(t) {
-    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-  }
-  // Función central de animación, reutilizada tanto por el botón como por las sugerencias
-  function animateScroll(target) {
-    btn.disabled = true;
-    resultName.classList.remove("visible");
-    resultName.textContent = "—";
 
-    buildList();
-    ul.style.transform = "translateY(0px)";
+  if (targetIdx < 0) { btn.disabled = false; return; }
 
-    const items = ul.querySelectorAll("li");
-    let targetIdx = -1;
-    for (let i = PAD_ITEMS; i < PAD_ITEMS + names.length; i++) {
-      if (items[i]?.textContent === target) { targetIdx = i; break; }
-    }
+  const finalY = -(targetIdx - Math.floor(VISIBLE / 2)) * ITEM_H;
+  let startTime = null;
 
-    if (targetIdx < 0) { btn.disabled = false; return; }
+  function animate(ts) {
+    if (!startTime) startTime = ts;
+    const elapsed  = ts - startTime;
+    const progress = Math.min(elapsed / DURATION, 1);
+    const eased    = easeInOut(progress);
+    ul.style.transform = `translateY(${finalY * eased}px)`;
 
-    const finalY = -(targetIdx - Math.floor(VISIBLE / 2)) * ITEM_H;
-    let startTime = null;
-
-    function animate(ts) {
-      if (!startTime) startTime = ts;
-      const elapsed  = ts - startTime;
-      const progress = Math.min(elapsed / DURATION, 1);
-      const eased    = easeInOut(progress);
-      ul.style.transform = `translateY(${finalY * eased}px)`;
-
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        } else {
-          ul.style.transform = `translateY(${finalY}px)`;
-          resultName.textContent = target;
-          resultName.classList.add("visible");
-          btn.disabled = false;
-          nameInput.value = "";  // ← aquí
-        }
+        ul.style.transform = `translateY(${finalY}px)`;
+        resultName.textContent = target;
+        resultName.classList.add("visible");
+        btn.disabled = false;
+        nameInput.value = "";  // ← aquí
       }
     }
-
-    requestAnimationFrame(animate);
   }
-  function startSearch() {
-    errorMsg.textContent = "";
-    hideSuggestions();
 
-    const query = nameInput.value.trim();
+  requestAnimationFrame(animate);
+}
+function startSearch() {
+  errorMsg.textContent = "";
+  hideSuggestions();
 
-    if (!query) {
-      errorMsg.textContent = "Escribe un nombre primero.";
-      return;
-    }
+  const query = nameInput.value.trim();
 
-    const matches = names.filter(n => normalize(n).includes(normalize(query)));
-
-    if (matches.length === 0) {
-      errorMsg.textContent = `No se encontró "${query}" en la lista.`;
-      return;
-    }
-
-    // Si hay exactamente una coincidencia o el texto ingresado es un nombre exacto, anima directo
-    const exact = names.find(n => normalize(n) === normalize(query));
-    if (exact) {
-      animateScroll(exact);
-      return;
-    }
-
-    if (matches.length === 1) {
-      nameInput.value = matches[0];
-      animateScroll(matches[0]);
-      return;
-    }
-
-    // Si hay varias, muestra las opciones para que el usuario elija
-    errorMsg.textContent = "Hay varias coincidencias, selecciona una de la lista.";
-    showSuggestions(matches, query);
+  if (!query) {
+    errorMsg.textContent = "Escribe un nombre primero.";
+    return;
   }
-  buildList();
+
+  const matches = names.filter(n => normalize(n).includes(normalize(query)));
+
+  if (matches.length === 0) {
+    errorMsg.textContent = `No se encontró "${query}" en la lista.`;
+    return;
+  }
+
+  // Si hay exactamente una coincidencia o el texto ingresado es un nombre exacto, anima directo
+  const exact = names.find(n => normalize(n) === normalize(query));
+  if (exact) {
+    animateScroll(exact);
+    return;
+  }
+
+  if (matches.length === 1) {
+    nameInput.value = matches[0];
+    animateScroll(matches[0]);
+    return;
+  }
+
+  // Si hay varias, muestra las opciones para que el usuario elija
+  errorMsg.textContent = "Hay varias coincidencias, selecciona una de la lista.";
+  showSuggestions(matches, query);
+}
+buildList();
 
 
 
