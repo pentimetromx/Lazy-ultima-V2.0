@@ -28,6 +28,7 @@
         <datalist id="suggestions"></datalist>                                             
         <img data-src="./assets/lupa.jpg" class="busqueda lazy" alt="Buscar">    
       </form>
+
     </header>
     <div id="gran-cortina"></div>   
     <div id="over_size"></div>
@@ -44,7 +45,7 @@
     <input id="input3" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">    
     <input id="input4" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">
 
-    <div class="contraseña" id="contraseña"><span id="texto">Iterfaz Agregada</span></div>
+    <div class="contraseña" id="contraseña"><span id="texto">Ingrese contraseña</span></div>
 
     <div id="cont-titulo">
       <h4 id="subtitulo-I">Aplicamos la transformación tecnológica</h4>
@@ -923,13 +924,13 @@
     <div id="conteneMantaut" class="mantAuto">
       
       <div id="conti-boton">
-        <button class="btn-torre" onclick="deslizaContenedor('troubleshooting','troubleshoot')">SOLUCIONADOR</button>
-        <button class="btn-torre" onclick="deslizaContenedor('canvasContainer2','def1')">DEF. TIPO 1</button>
-        <button class="btn-torre" onclick="deslizaContenedor('contChecks','def2')">DEF. TIPO 2</button>
-        <button class="btn-torre" onclick="deslizaContenedor('canvasContainer3','adtBut')">ADT</button>
-        <button class="btn-torre" onclick="deslizaContenedor('contImagNeg','fua1')">FUA</button>         
-        <button class="btn-torre" onclick="deslizaContenedor('contImagGraf','lup')">LUP</button>
-        <button class="btn-torre" onclick="deslizaContenedor('conti-boton-kaizen','kaizen')">KAIZEN</button>
+        <button class="btn-torre secuenciales" onclick="deslizaContenedor('troubleshooting','troubleshoot')">SOLUCIONADOR</button>
+        <button class="btn-torre secuenciales" onclick="deslizaContenedor('canvasContainer2','def1')">DEF. TIPO 1</button>
+        <button class="btn-torre secuenciales" onclick="deslizaContenedor('contChecks','def2')">DEF. TIPO 2</button>
+        <button class="btn-torre secuenciales" onclick="deslizaContenedor('canvasContainer3','adtBut')">ADT</button>
+        <button class="btn-torre secuenciales" onclick="deslizaContenedor('contImagNeg','fua1')">FUA</button>         
+        <button class="btn-torre secuenciales" onclick="deslizaContenedor('contImagGraf','lup')">LUP</button>
+        <button class="btn-torre secuenciales" onclick="deslizaContenedor('conti-boton-kaizen','kaizen')">KAIZEN</button>
         <button class="btn-torre" onclick="resetBotns('troubleshoot')" style="background-color: red;color: white;">Reset</button>
         <button class="btn-torre" onclick="building()" style="background-color: red;color: white;">Show everything</button>
         <!-- <button onclick="resultadosMA('interfaz-mtto')">TRACKING DASHBOARD</button>
@@ -2020,7 +2021,7 @@
               <button id="nextBtn">&#9654;</button>
             </div>
           </div>
-        </div> 
+        </div>        
         
       </div>
       
@@ -3229,8 +3230,6 @@
         </div>
       </div>
 
-
-
       <div id="calculadora">
         <div class="drag-handle" aria-hidden="true"></div>
         
@@ -3784,11 +3783,11 @@
     </nav>
 
     <div id="contenedor-botonera" data-display="flex">
-      <button class="btn-torre">Torre 1</button>
-      <button class="btn-torre">Torre 2</button>
-      <button class="btn-torre">Torre 3</button>
-      <button class="btn-torre">Torre 4</button>
-      <button class="btn-torre">Torre 5</button>
+      <button class="btn-torre secuenciales">Torre 1</button>
+      <button class="btn-torre secuenciales">Torre 2</button>
+      <button class="btn-torre secuenciales">Torre 3</button>
+      <button class="btn-torre secuenciales">Torre 4</button>
+      <button class="btn-torre secuenciales">Torre 5</button>
     </div>    
 
     <div id="visor-tools" class="image-viewer">
@@ -3944,6 +3943,7 @@
           <button id="salir-ingreso" class="entrada-empleado">Salir</button>
 
         </div>
+        
         <div class="columna-derecha">
           <label for="numDoc">Buscar</label> <!-- /////////////////// -->
 
@@ -3979,45 +3979,42 @@
             <input type="text" id="numDoc9-ma" readonly inputmode="none" class="entrada-empleado verGraficos">
           </div>
 
-          <div class="fila-ingreso-ma">
+          <!-- <div class="fila-ingreso-ma">
             <label for="numDoc1-ma">Defectos identificados</label>
             <input type="text" id="numDoc1-ma" class="entrada-empleado verGraficos  limpiarInput" data-colorable readonly tabindex="3">
-          </div>
+          </div> -->
 
+          <div class="fila-ingreso-ma">
+            <label for="numDoc1-ma">Defectos identificados</label>
+            <select id="numDoc1-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable tabindex="3"></select>
+          </div>
           <div class="fila-ingreso-ma">
             <label for="numDoc2">Defectos corregidos</label>
-            <input type="text"  id="numDoc2-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="4">
-
+            <select id="numDoc2-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable tabindex="3"></select>
           </div>
-
           <div class="fila-ingreso-ma">
             <label for="numDoc5">Defectos tipo A</label>
-            <input type="text"  id="numDoc5-ma" list="cargos" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="5">
+            <select id="numDoc5-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable tabindex="3"></select>
           </div> 
-
           <div class="fila-ingreso-ma">
             <label for="numDoc3">Defectos tipo B</label>
-            <input type="text"  id="numDoc3-ma" list="equipos" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="6">
+            <select id="numDoc3-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable tabindex="3"></select>
           </div>
-
           <div class="fila-ingreso-ma">
             <label for="numDoc4">Kaizen</label>
-            <input type="text"  id="numDoc4-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="7">
-          </div>   
-          
+            <select id="numDoc4-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable tabindex="3"></select>
+          </div>            
           <div class="fila-ingreso-ma">
             <label for="numDoc6">ADA,s</label>
-            <input type="text"  id="numDoc7-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="8">
-          </div> 
-          
+            <select id="numDoc7-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable tabindex="3"></select>
+          </div>           
           <div class="fila-ingreso-ma">
             <label for="numDoc6">ADT</label>
-            <input type="text"  id="numDoc6-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="9">
-          </div>
-          
+            <select id="numDoc6-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable tabindex="3"></select>
+          </div>          
           <div class="fila-ingreso-ma">
             <label for="numDoc6">Lup</label>
-            <input type="text"  id="numDoc8-ma"class="entrada-empleado verGraficos limpiarInput" data-colorable readonly tabindex="10">
+            <select id="numDoc8-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable tabindex="3"></select>
           </div>          
       
         </div>
@@ -4357,7 +4354,7 @@
    <div class="padre-inputs">
       <button id="borrarBoton" class="borrar-boton">RRHH</button>
       <button id="borrarBoton2" class="borrar-boton">11:30</button>
-      <button id="borrarBoton3" onclick="mostrarInterfazIngreso()" class="borrar-boton">NEW EMPLOYEE</button>
+      <button id="borrarBoton3" onclick="resultadosMaquina()" class="borrar-boton">NEW EMPLOYEE</button>
       <button id="borrarBoton4" class="borrar-boton">BAJA EMPLEADO</button>
       <button id="borrarBoton5" class="borrar-boton" style="z-index: 9999;">SIMULADOR</button>
     </div>   
@@ -4588,7 +4585,7 @@
         <div class="card-left">
 
           <div class="card-foto">
-            <img id="imgAdministrar" src="./assets/silueta0.png"/>
+            <img id="imgAdministrar" src="./assets/silueta2.png"/>
           </div>
 
           <div class="card-botones">
@@ -4648,7 +4645,7 @@
       <div class="sugerencias" id="sugerencias"></div>
       <span class="error-msg" id="errorMsg"></span>
       <button id="searchBtn" onclick="startSearch()">🔍 Buscar nombre</button>
-    </div>       
+    </div>    
 
     <div id="overlay-cortina" class="overlay"></div>
     <div id="overlay-general" class="overlay"></div>
@@ -4658,12 +4655,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@3.1.0"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-
-    <!-- <script src="./modulo0.js"></script>
-    <script src="./modulo1.js"></script>
-    <script src="./modulo2.js"></script>
-    <script src="./modulo3.js"></script>
-    <script src="./modulo4.js"></script>  -->
 
     <script src="./modulo0.js" defer></script>
     <script src="./modulo1.js" defer></script>

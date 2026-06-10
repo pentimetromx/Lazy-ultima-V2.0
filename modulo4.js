@@ -6227,6 +6227,7 @@ nameInput.addEventListener("input", () => {
 nameInput.addEventListener("keydown", e => {
   if (e.key === "Enter") startSearch();
 });
+//*******************************************************************************************************************
 function buildList() {
   ul.innerHTML = "";
   const full = [
@@ -6324,6 +6325,30 @@ function startSearch() {
   showSuggestions(matches, query);
 }
 buildList();
+//*******************************************************************************************************************
+function crearOpcionesNumericas(selectId, min = 0, max = 20) {
+  const select = document.getElementById(selectId);
+  if (!select) return;
+
+  for (let i = min; i <= max; i++) {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = i;
+    select.appendChild(opt);
+  }
+}
+crearOpcionesNumericas('numDoc1-ma');
+crearOpcionesNumericas('numDoc2-ma');
+crearOpcionesNumericas('numDoc5-ma');
+crearOpcionesNumericas('numDoc3-ma');
+crearOpcionesNumericas('numDoc4-ma');
+crearOpcionesNumericas('numDoc7-ma');
+crearOpcionesNumericas('numDoc6-ma');
+crearOpcionesNumericas('numDoc8-ma');
+
+
+
+
 
 
 

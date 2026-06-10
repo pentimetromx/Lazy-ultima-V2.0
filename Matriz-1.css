@@ -7076,6 +7076,34 @@ height:100%;
 .fila-ingreso-ma > label{
   text-align: right; 
 }
+
+.entrada-empleado {
+  width: 35%;
+  height: 71%;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  font-size: 0.6em;
+  font-family: 'Digital';
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  scrollbar-width: none;
+}
+.entrada-empleado::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+.entrada-empleado option {
+  background-color: rgba(20, 30, 50, 0.85);
+  font-size: 0.8em;
+  color: #e0e0e0;
+  text-align: center;
+}
+.entrada-empleado option:hover{
+  color: #00aaff;
+}
+
+
 .rango-rojo{
   background-color: rgb(120, 0, 0);
   color: #fff;
