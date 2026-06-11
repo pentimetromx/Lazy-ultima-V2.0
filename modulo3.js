@@ -20,12 +20,13 @@ document.addEventListener('keydown', function(event) {
         setTimeout(() => {
           aparecerElemento('canvasContainer4', 'flex')            
         }, 1500); */ 
-        animarBotonesTorre()
+        showKeyboard()
       break;  
       case 'H':
         /* Geometria() */
         console.log('OBJETO GLOBAL', objetoGlobal)
         restablecerClick(['.entrada-empleado']);
+        hideKeyboard()
       break;
       case 'X':
       eliminarClaveLocalStorage('empleadosRegistrados')
