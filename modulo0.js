@@ -1594,6 +1594,7 @@ function ejecutarVideo(idVideo, tiempoOcultar = null) {
   });
 }
 function changeButtonStyles(elementId, imgCont) {
+  sitio='pantallaInicial'
   activarPantallaCompleta()
   const baseMostrar = (excluidos) => {
     mostrarOcultar(excluidos);
@@ -1772,6 +1773,7 @@ function cambioContenedor(elementId){
   }  
 }
 function building(){
+  sitio = 'zonaKaizen'
   activarPantallaCompleta()
   let elementosExcluidos = ['buscador','search-form','sitema-humedad','links-inicialesI','links-iniciales','sitio-en-construccion']
   for (let i = 0; i < allContenedores.length; i++) { 

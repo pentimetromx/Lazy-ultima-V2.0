@@ -4285,6 +4285,8 @@ document.addEventListener('focusin', e => {
     lastFocusedInput = e.target;
   }
 });
+
+
 function createKeyboard(layout) {
   keyboard.innerHTML = '';
 
@@ -4315,122 +4317,80 @@ function createKeyboard(layout) {
 
       const deleteCharacter = () => {
         if (!lastFocusedInput) return;
-
         const input = lastFocusedInput;
         const value = input.value;
-
         if (!value.length) return;
-
         input.value = value.slice(0, -1);
-
         const newLength = input.value.length;
         input.selectionStart = input.selectionEnd = newLength;
-
         input.focus();
+        input.dispatchEvent(new Event('input', { bubbles: true })); // ✅ 1
       };
 
       key.addEventListener('touchstart', (e) => {
         e.preventDefault();
-
         if (!lastFocusedInput) return;
-
         const input = lastFocusedInput;
-
         const startPos = input.selectionStart ?? input.value.length;
         const endPos = input.selectionEnd ?? input.value.length;
         const value = input.value;
 
         if (letter === 'backspace') {
           deleteCharacter();
-
           deleteTimeout = setTimeout(() => {
-            deleteInterval = setInterval(
-              deleteCharacter,
-              DELETE_REPEAT_RATE
-            );
+            deleteInterval = setInterval(deleteCharacter, DELETE_REPEAT_RATE);
           }, DELETE_INITIAL_DELAY);
-
           return;
         }
 
         if (letter === 'space') {
-          input.value =
-            value.slice(0, startPos) + ' ' + value.slice(endPos);
-
-          input.selectionStart =
-          input.selectionEnd = startPos + 1;
-
+          input.value = value.slice(0, startPos) + ' ' + value.slice(endPos);
+          input.selectionStart = input.selectionEnd = startPos + 1;
           input.focus();
+          input.dispatchEvent(new Event('input', { bubbles: true })); // ✅ 2
           return;
         }
 
         const prevChar = value[startPos - 1];
-        const shouldUppercase =
-          startPos === 0 || prevChar === ' ';
-
-        const char = shouldUppercase
-          ? letter.toUpperCase()
-          : letter;
-
-        input.value =
-          value.slice(0, startPos) + char + value.slice(endPos);
-
-        input.selectionStart =
-        input.selectionEnd = startPos + 1;
-
+        const shouldUppercase = startPos === 0 || prevChar === ' ';
+        const char = shouldUppercase ? letter.toUpperCase() : letter;
+        input.value = value.slice(0, startPos) + char + value.slice(endPos);
+        input.selectionStart = input.selectionEnd = startPos + 1;
         input.focus();
+        input.dispatchEvent(new Event('input', { bubbles: true })); // ✅ 3
       });
 
       key.addEventListener('mousedown', (e) => {
         e.preventDefault();
-
         if (!lastFocusedInput) return;
-
         const input = lastFocusedInput;
-
         const startPos = input.selectionStart ?? input.value.length;
         const endPos = input.selectionEnd ?? input.value.length;
         const value = input.value;
 
         if (letter === 'backspace') {
           deleteCharacter();
-
           deleteTimeout = setTimeout(() => {
-            deleteInterval = setInterval(
-              deleteCharacter,
-              DELETE_REPEAT_RATE
-            );
+            deleteInterval = setInterval(deleteCharacter, DELETE_REPEAT_RATE);
           }, DELETE_INITIAL_DELAY);
-
           return;
         }
 
         if (letter === 'space') {
-          input.value =
-            value.slice(0, startPos) + ' ' + value.slice(endPos);
-
-          input.selectionStart =
-          input.selectionEnd = startPos + 1;
-
+          input.value = value.slice(0, startPos) + ' ' + value.slice(endPos);
+          input.selectionStart = input.selectionEnd = startPos + 1;
           input.focus();
+          input.dispatchEvent(new Event('input', { bubbles: true })); // ✅ 4
           return;
         }
 
         const prevChar = value[startPos - 1];
-        const shouldUppercase =
-          startPos === 0 || prevChar === ' ';
-
-        const char = shouldUppercase
-          ? letter.toUpperCase()
-          : letter;
-
-        input.value =
-          value.slice(0, startPos) + char + value.slice(endPos);
-
-        input.selectionStart =
-        input.selectionEnd = startPos + 1;
-
+        const shouldUppercase = startPos === 0 || prevChar === ' ';
+        const char = shouldUppercase ? letter.toUpperCase() : letter;
+        input.value = value.slice(0, startPos) + char + value.slice(endPos);
+        input.selectionStart = input.selectionEnd = startPos + 1;
         input.focus();
+        input.dispatchEvent(new Event('input', { bubbles: true })); // ✅ 5
       });
 
       const stopDeleting = () => {
@@ -4451,6 +4411,8 @@ function createKeyboard(layout) {
     keyboard.appendChild(row);
   });
 }
+
+
 /* inputNombre.addEventListener('focusin',()=>{
   keyboardWrapper.style.display='flex'
 }) */
@@ -6345,11 +6307,6 @@ crearOpcionesNumericas('numDoc4-ma');
 crearOpcionesNumericas('numDoc7-ma');
 crearOpcionesNumericas('numDoc6-ma');
 crearOpcionesNumericas('numDoc8-ma');
-
-
-
-
-
 
 
 function borrrrrrarrrr(){

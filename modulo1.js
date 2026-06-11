@@ -4698,6 +4698,9 @@ function ajustarContenedorGrafs() {
   });
 }
 // ULTIMO BOTON M.A 
+
+
+
 function resultadosMA(identificador){
   moverLista=false
   resetGraficos()
@@ -4713,11 +4716,8 @@ function resultadosMA(identificador){
   document.querySelector("#porta-visor").classList.remove('modificarPosicion')
   document.querySelector("#buscador-empleado").classList.remove("ubicacion"); 
   document.querySelector("#visorImagen").classList.remove('ubicar-visor') 
-  /* document.querySelector("#porta-visor > div.visor > span").classList.remove('ubicado') */
-  /* document.querySelector("#porta-visor > div.visor > div.navegacion").classList.remove('ancho') */
 
   const padre = document.querySelector('.contenedor-visor');
-  // elimina todos los estilos en línea del padre y sus hijos
   padre.removeAttribute('style');
   padre.querySelectorAll('*').forEach(hijo => hijo.removeAttribute('style'));
   document.body.style.zoom = "100%";
@@ -4732,19 +4732,17 @@ function resultadosMA(identificador){
     usuario.style.height = '';
     usuario.style.width = '';
     usuario.style.left = '';
-    var label = usuario.querySelector('label');
     clearInterval(intervaloColor);
   }
 
-  if(!esDesktop){
-    const almacenJSON = localStorage.getItem('empleadosRegistrados');
 
+if(!esDesktop){
+    const almacenJSON = localStorage.getItem('empleadosRegistrados');
     if (almacenJSON) {
       const empleados = JSON.parse(almacenJSON);
       const lista = document.querySelector('#listaNombres');
       lista.innerHTML = '';
 
-      // Funciona tanto para objeto {} como array []
       const lista_empleados = Array.isArray(empleados) 
         ? empleados 
         : Object.values(empleados);
@@ -4756,14 +4754,161 @@ function resultadosMA(identificador){
           span.textContent = empleado.nombre;
           span.dataset.index = index;
           lista.appendChild(span);
-       });
+        });
     }
   }
+
+  // ── AUTOCOMPLETE (funciona en desktop y móvil) ────────────
+  const almacenJSON = localStorage.getItem('empleadosRegistrados');
+  if (almacenJSON) {
+    const empleados = JSON.parse(almacenJSON);
+    const lista_empleados = Array.isArray(empleados)
+      ? empleados
+      : Object.values(empleados);
+
+    const input = document.querySelector("#buscador-empleado");
+
+    const dropdownViejo = document.querySelector('#autocomplete-dropdown');
+    if (dropdownViejo) dropdownViejo.remove();
+
+    if (!document.querySelector('#autocomplete-style')) {
+      const style = document.createElement('style');
+      style.id = 'autocomplete-style';
+      style.textContent = `
+        #autocomplete-dropdown {
+          position: absolute;
+          background: rgba(15, 25, 45, 0.98);
+          border: 1px solid #1e90ff;
+          border-radius: 8px;
+          max-height: 220px;
+          overflow-y: scroll;
+          scrollbar-width: none;
+          z-index: 9999;
+          display: none;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        #autocomplete-dropdown::-webkit-scrollbar { display: none; }
+        #autocomplete-dropdown .ac-item {
+          padding: 11px 16px;
+          cursor: pointer;
+          color: #cdd8f0;
+          font-size: 14px;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          transition: background 0.2s, color 0.2s;
+        }
+        #autocomplete-dropdown .ac-item:last-child { border-bottom: none; }
+        #autocomplete-dropdown .ac-item:hover {
+          background: rgba(30, 144, 255, 0.18);
+          color: #fff;
+        }
+        #autocomplete-dropdown .ac-item mark {
+          background: rgba(30, 144, 255, 0.35);
+          color: #5bb8ff;
+          border-radius: 3px;
+          padding: 0 2px;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    const dropdown = document.createElement('div');
+    dropdown.id = 'autocomplete-dropdown';
+    input.parentElement.style.position = 'relative';
+    input.parentElement.appendChild(dropdown);
+
+    const inputLimpio = input.cloneNode(true);
+    input.parentElement.replaceChild(inputLimpio, input);
+
+    inputLimpio.addEventListener('input', () => {
+      const query = inputLimpio.value.trim().toLowerCase();
+      dropdown.innerHTML = '';
+
+      if (!query) {
+        dropdown.style.display = 'none';
+        document.querySelectorAll('#listaNombres span').forEach(s => {
+          s.style.background = '';
+          s.style.color = '';
+          s.style.borderRadius = '';
+          s.style.padding = '';
+        });
+        return;
+      }
+
+      const matches = lista_empleados
+        .filter(e => e && e.nombre)
+        .map(e => e.nombre)
+        .filter(nombre => nombre.toLowerCase().includes(query));
+
+      if (matches.length === 0) {
+        dropdown.style.display = 'none';
+        return;
+      }
+
+      matches.forEach(nombre => {
+        const item = document.createElement('div');
+        item.className = 'ac-item';
+        const regex = new RegExp(`(${query})`, 'gi');
+        item.innerHTML = nombre.replace(regex, '<mark>$1</mark>');
+
+        item.addEventListener('mousedown', (e) => {
+          e.preventDefault();
+          inputLimpio.value = nombre;
+          dropdown.style.display = 'none';
+
+          const spans = document.querySelectorAll('#listaNombres span');
+          spans.forEach(s => {
+            s.style.background = '';
+            s.style.color = '';
+            s.style.borderRadius = '';
+            s.style.padding = '';
+          });
+
+          const spanObjetivo = [...spans].find(s => s.textContent.trim() === nombre);
+          if (spanObjetivo) {
+            spanObjetivo.style.background = 'linear-gradient(90deg, #1565c0, #1e90ff)';
+            spanObjetivo.style.color = '#ffffff';
+            spanObjetivo.style.borderRadius = '6px';
+            spanObjetivo.style.padding = '4px 10px';
+            spanObjetivo.style.transition = 'all 0.3s ease';
+
+            const panel = document.querySelector('#listaNombres');
+            const offsetSpan = spanObjetivo.offsetTop;
+            const alturaPanel = panel.clientHeight;
+            panel.scrollTo({
+              top: offsetSpan - (alturaPanel / 2),
+              behavior: 'smooth'
+            });
+          }
+        });
+
+        dropdown.appendChild(item);
+      });
+
+      dropdown.style.width = `${inputLimpio.offsetWidth}px`;
+      dropdown.style.display = 'block';
+    });
+
+
+    inputLimpio.addEventListener('touchstart', () => {
+      document.querySelector("#buscador-empleado").value=''
+      showKeyboard()
+
+      
+    });
+
+
+    inputLimpio.addEventListener('blur', () => {
+      setTimeout(() => dropdown.style.display = 'none', 150);
+      hideKeyboard()
+    });
+  }
+  // ─────────────────────────────────────────────────────────  
 
   const imgDinamica = document.querySelector('#img-dinamica');
   if (imgDinamica) imgDinamica.remove();
   actualizarIdsArray(identificador);      
 }
+
 
 
 function aumentarTamaño(element, factor, tiempo) {

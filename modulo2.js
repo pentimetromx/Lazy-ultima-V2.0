@@ -4470,8 +4470,13 @@ function moveElement(element, parent,frame) {
   }, speed * 2);
 }
 
+let sitio = null
 document.getElementById('butt-sitio').addEventListener('click', () => {
-  ElementosMaII('conteneMantaut')  
+  if(sitio ==='pantallaInicial'){
+   mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])
+  }else{
+    ElementosMaII('conteneMantaut')
+  }
 })
 
 function isVisible(element) {
