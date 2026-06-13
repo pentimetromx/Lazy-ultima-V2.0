@@ -1195,8 +1195,7 @@ function manejarLogica() {
     input.style.display = 'flex';
   });
 
-  if (screenWidth < 500) {
-    // Pantalla pequeña
+  if (!esDesktop) {
     document.getElementById('img-logo').style.width = '100%';
   } else {
     // Pantalla grande
@@ -1256,7 +1255,6 @@ function manejarLogica() {
     input.addEventListener('input', manejarEntrada);
     input.addEventListener('keydown', validarTecla);
   });
-
 }
 function abrirInterfaz() {
   elementoPadre.classList.remove('move-oblicuosII')

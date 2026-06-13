@@ -4822,7 +4822,6 @@ if(!esDesktop){
     inputLimpio.addEventListener('input', () => {
       const query = inputLimpio.value.trim().toLowerCase();
       dropdown.innerHTML = '';
-
       if (!query) {
         dropdown.style.display = 'none';
         document.querySelectorAll('#listaNombres span').forEach(s => {
@@ -4838,7 +4837,6 @@ if(!esDesktop){
         .filter(e => e && e.nombre)
         .map(e => e.nombre)
         .filter(nombre => nombre.toLowerCase().includes(query));
-
       if (matches.length === 0) {
         dropdown.style.display = 'none';
         return;
@@ -4879,6 +4877,7 @@ if(!esDesktop){
               behavior: 'smooth'
             });
           }
+          hideKeyboard()
         });
 
         dropdown.appendChild(item);
@@ -4891,9 +4890,7 @@ if(!esDesktop){
 
     inputLimpio.addEventListener('touchstart', () => {
       document.querySelector("#buscador-empleado").value=''
-      showKeyboard()
-
-      
+      showKeyboard()      
     });
 
 
