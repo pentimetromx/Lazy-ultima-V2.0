@@ -34,8 +34,6 @@ function aparecerElemento(id, display = "grid") {
     requestAnimationFrame(() => contenedor.classList.add("activo"));
   }, 30);
 }
-
-
 function desaparecerElemento(id) {
   const contenedor = document.getElementById(id);
   if (!contenedor) return;
@@ -50,7 +48,6 @@ function desaparecerElemento(id) {
     contenedor.classList.remove("cerrando");
   }, duracion);
 }
-
 const salirPadreCmyk = document.querySelector('#boton-cmyk-salir')
 const salirPadreRgb= document.querySelector('#boton-rgb-salir')
 salirPadreCmyk.addEventListener('click', () => {
@@ -67,7 +64,6 @@ salirPadreRgb.addEventListener('click', () => {
     alternarOcultarBotones() 
   }, 200);
 })
-
 function deslizaContenedor(identificador, idButton) {
   activarPantallaCompleta()
   restablecerPosiciones(['.ocultos', '.class-line']);
@@ -176,7 +172,6 @@ function deslizaContenedor(identificador, idButton) {
     break;
   }
 }
-
 function resetearBarras(){
   let ensayos = document.querySelectorAll('.first_table .barras .horizontales');
   ensayos.forEach(ensayo => {
@@ -258,7 +253,6 @@ function updateAna() {
   chart12.data.datasets[0].data = nuevosDatosV;
   chart12.update();
 }
-
 function updateAnaII() {
 
   setTimeout(function() { graficosAutomaticos('canvasContainer4'); }, 500);
@@ -287,7 +281,6 @@ function updateAnaII() {
   chart12II.data.datasets[0].data = nuevosDatosV;
   chart12II.update() 
 }
-
 function updateMario() {
   setTimeout(function() { graficosAutomaticos('canvasContainer4'); }, 500);
   setTimeout(function() { graficosAutomaticos('canvasContainer7'); }, 700);

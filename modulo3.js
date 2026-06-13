@@ -6826,8 +6826,6 @@ function initResize(contenedor, esquina) {
     document.removeEventListener("mouseup", stopResize);
   }
 }
-
-
 function resetBotonMezclador(parentContiner) {
   if (typeof parentContiner !== "string") return;
   parentContiner = parentContiner.trim().toLowerCase();
@@ -6866,8 +6864,6 @@ function resetBotonMezclador(parentContiner) {
     updateColorRGB();
   }
 }
-
-
 function configurarBoton(selector, contenedor, callback) {
   const boton = document.querySelector(selector);
   const padre = document.querySelector(contenedor);
@@ -6895,9 +6891,10 @@ function configurarBoton(selector, contenedor, callback) {
     boton.style.backgroundColor = ''; 
   });
 }
-
 // RGB CMYK
 function alternarTeccnologia(tecnologia) {
+  calculadoraSimulador=true
+
   switch (tecnologia) {
     case 'rgb':
       if (mezcladorColor) {
@@ -6918,7 +6915,6 @@ function alternarTeccnologia(tecnologia) {
       
       }
     break;
-
     case 'cmyk':
       if (mezcladorColorRGB) {
         desaparecerElemento(panelControlRGB.id)
@@ -6939,8 +6935,6 @@ function alternarTeccnologia(tecnologia) {
     break;
   }
 }
-
-
 function ocultarElementoProgressivo(el, callback) {
   if (!el) return;
   // aceptar id/selector o elemento
@@ -6998,7 +6992,6 @@ function ocultarElementoProgressivo(el, callback) {
   creadorPerfiles.classList.remove('move-mezclador') 
   mezcladorColorRGB.classList.remove('move-padre-cmyk')
 }
-
 function mostrarElementoProgressivo(el) {
   if (!el) return;
 
@@ -7088,16 +7081,12 @@ function secuenciaAparicion(canal) {
     break
   }
 }
-
 buscaNombre.addEventListener('click', () => {
   creaNombre.value = ''
   listaClientes.style.display = 'none'
   keyboardWrapper.style.display='flex'
 })
-
-
 let parpadeoActivo = null;
-
 function parpadearElemento(id,intervaloMs = 200, duracionMs = null) {
   detenerParpadeo();
 
@@ -7131,7 +7120,6 @@ function parpadearElemento(id,intervaloMs = 200, duracionMs = null) {
     colorOriginal
   };
 }
-
 function detenerParpadeo() {
   if (!parpadeoActivo) return;
 
@@ -7146,8 +7134,6 @@ function detenerParpadeo() {
 
   parpadeoActivo = null;
 }
-
-
 // BOTON BLANCO RGB
 function crearPerfilColor() { // crear nuevo desde botón blanc
   const primerImputRGB  = document.querySelector('#input-r');
@@ -7237,7 +7223,6 @@ function crearPerfilColor() { // crear nuevo desde botón blanc
   // Refrescar estado
   traerAlmacenObjetos();
 }
-
 function colorRenderizado(){
   if(mezcladorColorRGB.style.display = 'grid'){
     mezcladorColor.style.display = 'none'
