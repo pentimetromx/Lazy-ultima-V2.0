@@ -6860,7 +6860,7 @@ height:100%;
   margin-top: 5%;
   margin-left: 9%;
   grid-template-rows: 70% 10% 10% 10%;
-  gap: 5px;
+  gap: 17px;
   justify-items: left;
   align-items: center;
   width: 100%;
@@ -6869,11 +6869,10 @@ height:100%;
 .columna-centro > div {
   border: 1px solid #ccc;
   height: calc(100% - 5%);
-  width: calc(100% - 10%);
+  width: calc(82% - 10%);
   background: #f3f3f3;
-  box-shadow:
-    inset 2px 2px 4px rgba(0, 0, 0, 0.2),
-    inset -2px -2px 4px rgba(255, 255, 255, 0.8);
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.2),
+  inset -2px -2px 4px rgba(255, 255, 255, 0.8);
   border-radius: 6px;
 }
 .columna-centro > button{
@@ -6969,14 +6968,19 @@ height:100%;
   margin-left: -20%;
   display: grid;
   grid-template-rows: 10% 10% 14% 15% 20% 17% 17%;
-  gap: 0.2rem;
+  gap: 0.8rem;
   width: 110%;
   height: 50%;
   box-sizing: border-box;
-
   place-items: center;
   text-align: center;
 }
+#ingresos-sistema > div.columna-derecha > button.cierra-graficos.entrada-empleado,
+#ingresos-sistema-ma > div.columna-derecha > button.cierra-graficos.entrada-empleado {
+  width: 51%;
+  height: 74%;
+}
+
 .columna-derecha button:nth-child(7){
   background-image: url();
   font-size: 0.9vw;
@@ -7004,15 +7008,15 @@ height:100%;
   transition: transform 0.1s ease, box-shadow 0.1s ease;
 
 }
-.columna-derecha > input{
+.columna-derecha > input {
   width: 100%;
-  height:100%;
-  font-size: clamp(10px, 0.8vw, 18px);  
+  height: 141%;
+  font-size: clamp(10px, 0.8vw, 18px);
   box-sizing: border-box;
   border: none;
-  outline: none;  
+  outline: none;
   background-color: rgb(0,0,50);
-  color:#52E3F6;
+  color: #52E3F6;
   padding: 0.4rem 0.6rem;
   border-radius: 4px;
 }
@@ -7303,22 +7307,22 @@ height:100%;
     transform-origin: center;
     transition: transform 1s ease, filter 0.5s ease;
 }
-#padre-ingresos-ma,
-#padre-ingresos{
+
+#padre-ingresos-ma, #padre-ingresos {
   position: relative;
   display: flex;
   border-radius: 19px;
   top: 22vh;
-  left: 28vw;
-  width: 59.5vw;
+  left: 29vw;
+  width: 45.5vw;
   height: 56vh;
   background-color: rgb(0, 0,17);
   box-sizing: border-box;
   padding: 17px;
-  z-index: 10;  
-
+  
+  z-index: 10;
   transform: scale(0);
-  transform-origin: center; 
+  transform-origin: center;
   transition: transform 1s ease;
 }
 .special-border::before {  
@@ -7472,24 +7476,24 @@ height:100%;
   background-color: rgba(255,255,255,0.4);
   border-radius: 4px;
 }
-#abuelo-indicadores{
+#abuelo-indicadores {
   position: absolute;
   display: grid;
   grid-template-columns: 40% 57%;
   color: #00FFC6;
   border-radius: 9px;
   top: 12vh;
-  left: 46vw;
-  width: 53vw;
+  left: 48vw;
+  width: 51vw;
   height: 62vh;
   gap: 3%;
   display: none;
-
+  
   transform: scale(0);
-  transform-origin: center; 
+  transform-origin: center;
   transition: transform 1s ease;
-  overflow: hidden;                /* recorta el blur en los bordes */
-  background: rgba(10, 12, 20, 0.30); /* color base semitransparente */
+  overflow: hidden;
+  background: rgba(10, 12, 20, 0.30);
   border: 1px solid rgba(255,255,255,0.06);
   box-shadow: 0 8px 30px rgba(0,0,0,0.55);
   z-index: 500;
