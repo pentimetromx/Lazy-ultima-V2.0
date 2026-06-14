@@ -2951,7 +2951,7 @@ function infoEmpleadoPorSector(infoSector) {
   }
 
 }
-
+// ACTUALIAR DATOS MANT. AUT
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
   if (inputNombreMA.value !== '') {
     saltarAlerta('Confirmar cambios', 'recursosConfirmar')
@@ -3886,25 +3886,25 @@ mostrarRegistro.addEventListener('click', () =>{
 })
 //*********************************************************************************************************************** */
 function aplicarColoresInputs() {
-  document
-    .querySelectorAll('input[data-colorable]')
-    .forEach(input => {
-    const value = Number(input.value);
+document
+  .querySelectorAll('select[data-colorable]')
+  .forEach(select => {
+    const value = Number(select.value);
 
     if (Number.isNaN(value)) {
-      input.style.backgroundColor = '';
+      select.style.backgroundColor = '';
       return;
     }
 
     if (value <= 4) {
-      input.style.backgroundColor = '#CC3333';
-      input.style.color = '#FFFFFF';
-    } else if (value >=5 && value <=8) {
-      input.style.backgroundColor = '#F9A536';
-      input.style.color = '#000000';
+      select.style.backgroundColor = '#CC3333';
+      select.style.color = '#FFFFFF';
+    } else if (value >= 5 && value <= 8) {
+      select.style.backgroundColor = '#F9A536';
+      select.style.color = '#000000';
     } else {
-      input.style.backgroundColor = '#8CE15B';
-      input.style.color = '#000000';
+      select.style.backgroundColor = '#8CE15B';
+      select.style.color = '#000000';
     }
   });
   setTimeout(() => {
@@ -4010,6 +4010,28 @@ function normalizarColorCeldas() {
 function aplicarNormalizacionDeColores() {
   actualizarEstadoIndicadores();
   normalizarColorCeldas();
+  document.querySelectorAll('.led-indicador').forEach(indicador => {
+    if (indicador.children.length === 0) {
+      let parpadeos = 0;
+
+      const parpadear = () => {
+        if (parpadeos >= 3) return;
+
+        indicador.style.backgroundColor = '#CC3333';
+
+        setTimeout(() => {
+          indicador.style.backgroundColor = '';
+
+          setTimeout(() => {
+            parpadeos++;
+            parpadear();
+          }, 200);
+        }, 200);
+      };
+
+      parpadear();
+    }
+  });
 }
 
 
@@ -6298,7 +6320,24 @@ function crearOpcionesNumericas(selectId, min = 0, max = 20) {
     opt.textContent = i;
     select.appendChild(opt);
   }
+
+  select.addEventListener('change', function () {
+    const valor = Number(select.value);
+
+    if (valor <= 4) {
+      select.style.backgroundColor = '#CC3333'; // rojo cubre 0,1,2,3,4
+      select.style.color = '#FFFFFF';
+    } else if (valor >= 5 && valor <= 8) {
+      select.style.backgroundColor = '#F9A536';
+      select.style.color = '#000000';
+    } else {
+      select.style.backgroundColor = '#8CE15B';
+      select.style.color = '#000000';
+    }
+  });
+    
 }
+
 crearOpcionesNumericas('numDoc1-ma');
 crearOpcionesNumericas('numDoc2-ma');
 crearOpcionesNumericas('numDoc5-ma');

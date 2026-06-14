@@ -6252,9 +6252,13 @@ button:hover{
 .buscador-kaizen h3 {
   display: flex;
   font-size: 1em;
+  color: white;
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+#kaizen-buscador > div.col-titulo > div > div{
+  color: white;
 }
 .btn-volver {
   background-color: rgb(6, 31, 223);
