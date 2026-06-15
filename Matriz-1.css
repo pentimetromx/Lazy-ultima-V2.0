@@ -6698,54 +6698,113 @@ height:100%;
   color: rgb(40, 0, 0);
 }
 
-#metas-diarias{
-  position:absolute;
-  display: flex;
+
+
+#metas-diarias {
+  position: absolute;
   display: none;
   flex-direction: column;
-  font-family: "Oswald";
-  color: yellow;
-  font-size: 0.7em;    
-  left:60vw;
-  top:19vh;
-  width: 29vw;
-  height: 50vh;
-  transition: transform 0.5s ease;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  left: 61vw;
+  top: 19vh;
+  width: 320px;
+  height: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 0.5px solid rgba(255,255,255,0.15);
+  background: rgba(15, 18, 40, 0.97);
+  backdrop-filter: blur(12px);
   z-index: 50;
 }
+
+#metas-diarias .panel-header {
+  padding: 14px 20px;
+  border-bottom: 0.5px solid rgba(255,255,255,0.10);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+#metas-diarias .panel-header::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5DCAA5;
+  display: block;
+  flex-shrink: 0;
+}
+
+#metas-diarias .panel-header h3 {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
 #metas-diarias .listado-actividades {
   flex: 1;
   overflow-y: auto;
   margin: 0;
-  padding-left: 1.2em;
+  padding: 6px 0;
+  list-style: none;
   cursor: pointer;
 }
 
-
 #metas-diarias .listado-actividades::-webkit-scrollbar {
-  width: 22px;
+  width: 4px;
 }
 
 #metas-diarias .listado-actividades::-webkit-scrollbar-track {
-  background: gray;
+  background: transparent;
 }
+
 #metas-diarias .listado-actividades::-webkit-scrollbar-thumb {
-  background-color: rgb(177,255,255);
-  border-radius:3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 4px;
 }
+
 #metas-diarias li {
-  opacity: 0;
-  color: #FFFFFFB3;
-  background-color: rgb(0,0,17);
-  transition: opacity 0.5s ease;
-}  
-#metas-diarias li.visible {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 20px;
+  transition: background 0.15s ease;
   opacity: 1;
-}  
-#metas-diarias li .indice {
-  color: rgb(177,255,255);
-  margin-right:6px;
+  background-color: transparent;
+  border-bottom: 0.5px solid rgba(255,255,255,0.06);
 }
+
+#metas-diarias li:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+#metas-diarias li .indice {
+  font-size: 11px;
+  font-weight: 700;
+  color: #5DCAA5;
+  min-width: 20px;
+  text-align: right;
+  padding-top: 2px;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+#metas-diarias li span:not(.indice) {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: rgba(220, 225, 240, 0.88);
+  letter-spacing: 0.01em;
+}
+
+
+#metas-diarias li.visible {
+  color: rgba(255, 255, 255, 0.45);
+  opacity: 1;
+} 
 .vacio {
   background-color: #f0f0f085;
   border: none;
