@@ -4893,6 +4893,10 @@ if(!esDesktop){
       showKeyboard()      
     });
 
+    inputLimpio.addEventListener('click', () => {
+      document.querySelector("#buscador-empleado").value=''     
+    });    
+
 
     inputLimpio.addEventListener('blur', () => {
       setTimeout(() => dropdown.style.display = 'none', 150);
