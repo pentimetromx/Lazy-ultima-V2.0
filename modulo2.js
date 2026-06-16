@@ -5221,6 +5221,7 @@ function mostrarCalendario(mesSeleccionado, contenedorSelector = '.calendario-in
   }
 }
 
+
 // Uso en los listeners
 ['click', 'touchstart'].forEach(evt => {canvas.addEventListener(evt, () => {
   document.querySelector('#grafico-area').style.display = 'block';

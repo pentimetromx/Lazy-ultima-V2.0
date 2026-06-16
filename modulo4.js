@@ -1596,16 +1596,13 @@ function crearGraficoAreas() {
   );
   }
 }
-
-
-
-
 // Cambiar datos sin repintar completo
 function cambiarFuente(indice) {
   crearGraficoAreas()
   chart19.data.datasets[0].data = fuentesDeDatos[indice];
   chart19.update();
 }
+
 const teclasInterfaz = document.querySelectorAll('.child-calendar');
 teclasInterfaz.forEach(tecla => {
   // Inicializa estilos
