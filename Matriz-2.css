@@ -6133,7 +6133,7 @@ button:hover{
   height: 96%;
   width: 60%;
   border-radius: 4px;
-  background: #1e2128;
+  background: rgba(255, 255, 255, 0.07);
   border: 0.5px solid #3e4451;
   font-size: 0.5em;
   color: #9ba3af;
@@ -6180,13 +6180,14 @@ button:hover{
   border-radius: 6px;
 }
 .boton-seccion {
-  background: #1e2128;
+  background-color: rgba(200, 200, 200, 0.7);
+  box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.6), inset -2px -2px 4px rgba(0, 0, 0, 0.25), 2px 2px 6px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   width: 88%;
   height: 80%;
   margin-left: 6%;
   border-radius: 4px;
-  color: #9ba3af;
+  color: black;
   font-size: 0.6em;
 }
 .ident-empleado {
