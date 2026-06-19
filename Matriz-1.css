@@ -1116,7 +1116,7 @@ width:447px ;
   transition: top 2s ease, left 2s ease, transform 2s ease;  
   gap: 15px;
   top: 22vh;
-  left:17vw;
+  left:21vw;
   width: 15vw;
   min-height: 7vh;
   z-index: 40;
@@ -1184,18 +1184,19 @@ width:447px ;
   border-radius: 17px;
 }
 #contLineas {
-    position: relative;
-    display: grid;
-    display: none;
-    grid-template-columns: 33% 33% 34%;
-    grid-template-rows: 50% 50%;
-    top: -3%;
-    gap: 24px;
-    left: 17%;
-    margin-top: 3%;
-    width: 75%;
-    height: 58%;
-    border-radius: 15px;
+  position: relative;
+  display: grid;
+  display: none;
+  grid-template-columns: 33% 33% 34%;
+  grid-template-rows: 50% 50%;
+  top: -3%;
+  gap: 24px;
+  left: 21%;
+  margin-top: 3%;
+  width: 73%;
+  height: 58%;
+  border-radius: 15px;
+  z-index: 10;
 }
 
 .graphs-lines {
@@ -1987,6 +1988,7 @@ width:447px ;
 #ingresos-sistema-ma.activo,
 #ingresos-sistema.activo,
 #padre-ingresos-ma.activo,
+#padre-porta-visor.activo,
 #padre-ingresos.activo,
 .form-empleado.activo,
 #titulo-mes.activo,
@@ -3360,11 +3362,11 @@ elemento.visible {
 
 #porta-imagen {
   position: absolute;
-  display:grid;
+  display: grid;
   grid-template-rows: 90% 10%;
   gap: 3%;
-  top:2vh;
-  left: 2vw;
+  top: 7vh;
+  left: 5vw;
   width: 13vw;
   height: 26vh;
   border-radius: 12px;
@@ -6686,7 +6688,7 @@ height:100%;
   height:100%;
   width:14.2%;
 
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color:#1e293b;
   transition: background-color 0.3s ease, color 0.3s ease;
 } 
 .dia:hover{
@@ -6705,8 +6707,8 @@ height:100%;
   display: none;
   flex-direction: column;
   font-family: 'Inter', 'Segoe UI', sans-serif;
-  left: 61vw;
-  top: 19vh;
+  left: 66vw;
+  top: 18vh;
   width: 320px;
   height: 480px;
   border-radius: 16px;
@@ -7240,6 +7242,7 @@ height:100%;
 #contenedor-global {
   position: relative;
   display: block;
+  background-color: rgb(125, 144, 157);  
   top: 20vh;
   left: 28vw;
   width: 44vw;
@@ -7328,9 +7331,9 @@ height:100%;
   margin: auto;
   display: none;
   font-family: Arial, sans-serif;
+  background-color: #000;  
   font-size: 0.8em;
   color: rgba(255,255,255,0.5);
-  background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.2));
 
   transform: scale(0);
   transform-origin: center; 
@@ -7379,6 +7382,22 @@ height:100%;
   box-sizing: border-box;
   padding: 17px;
   
+  z-index: 10;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 1s ease;
+}
+#padre-porta-visor {
+  position: relative;
+  display: flex;
+  border-radius: 19px;
+  top: 0vh;
+  left: 25vw;
+  width: 50.5vw;
+  height: 64vh;
+  background-color: rgb(0, 0,17);
+  box-sizing: border-box;
+  padding: 17px;
   z-index: 10;
   transform: scale(0);
   transform-origin: center;
@@ -7668,7 +7687,7 @@ background-color: #3FEF9C;
     gap: 3%;
     grid-template-columns: repeat(5, 1fr);
     top: 89vh;
-    left: -2vw;
+    left: 44vw;
     height: 4vh;
     width: 36vw;
     z-index: 9999;

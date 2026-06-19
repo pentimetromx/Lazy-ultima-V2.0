@@ -6058,6 +6058,7 @@ document.querySelector("#overlay-kaizen").addEventListener('click',()=>{
   saltarAlerta('Ejecutar como administrador','fichasTecnicas')
 })
 function moverVisor() {
+  const padreVisor = document.getElementById('padre-porta-visor');
   const visor = document.getElementById('porta-visor');
   const listaNombres = document.getElementById('listaNombres');
   const imagen = document.querySelector('.visor-top'); 
@@ -6070,11 +6071,15 @@ function moverVisor() {
   setTimeout(() => {
     listaNombres.style.visibility = 'hidden';
   }, 400);
-  visor.style.transition = 'transform 2s ease, width 2s ease';
-  visor.style.transition = 'transform 2s ease, height 2s ease';  
-  visor.style.transform = 'scale(1) translate(calc(-24.3vw), 91px)';
-  visor.style.width = '15vw';
-  visor.style.height = '50vh';
+  padreVisor.style.transition = 'transform 2s ease, width 2s ease';
+  padreVisor.style.transition = 'transform 2s ease, height 2s ease';  
+  padreVisor.style.transform = 'scale(1) translate(calc(-24vw), 106px)';
+  padreVisor.style.width = '19vw';
+  padreVisor.style.height = '49vh';
+  visor.style.height = '45vh'
+  visor.style.width = '17vw'
+  visor.style.top = '-1vh'
+  visor.style.left = '-0.5vw'
   imagen.style.transition = 'transform 2s ease, width 2s ease';
   imagen.style.transition = 'transform 2s ease, rigth 2s ease';
   imagen.style.width = '270%';

@@ -20,11 +20,7 @@ document.addEventListener('keydown', function(event) {
         setTimeout(() => {
           aparecerElemento('canvasContainer4', 'flex')            
         }, 1500); */ 
-        document.querySelectorAll('.led-indicador').forEach(indicador => {
-          if (indicador.children.length === 0) {
-            indicador.style.backgroundColor = 'rgb(133,133,133)';
-          }
-        });
+        desaparecerElemento('padre-porta-visor')
       break;  
       case 'H':
         /* Geometria() */
