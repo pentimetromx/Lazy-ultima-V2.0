@@ -4713,6 +4713,8 @@ function resultadosMA(identificador){
     } 
   }
   container1.style.display='grid'
+  document.querySelector("#padre-porta-visor").classList.remove('modificarPosicion')
+
   document.querySelector("#porta-visor").classList.remove('modificarPosicion')
   document.querySelector("#buscador-empleado").classList.remove("ubicacion"); 
   document.querySelector("#visorImagen").classList.remove('ubicar-visor') 
@@ -4721,6 +4723,7 @@ function resultadosMA(identificador){
   padre.removeAttribute('style');
   padre.querySelectorAll('*').forEach(hijo => hijo.removeAttribute('style'));
   document.body.style.zoom = "100%";
+  ["padre-porta-visor"].forEach(id => aparecerElemento(id, "flex"));  
   ["porta-visor"].forEach(id => aparecerElemento(id, "flex"));
 
   var contiUsers = document.getElementsByClassName('cont-user'); 
@@ -4736,7 +4739,7 @@ function resultadosMA(identificador){
   }
 
 
-if(!esDesktop){
+  if(!esDesktop){
     const almacenJSON = localStorage.getItem('empleadosRegistrados');
     if (almacenJSON) {
       const empleados = JSON.parse(almacenJSON);
@@ -4825,8 +4828,8 @@ if(!esDesktop){
       if (!query) {
         dropdown.style.display = 'none';
         document.querySelectorAll('#listaNombres span').forEach(s => {
-          s.style.background = '';
-          s.style.color = '';
+          /* s.style.background = '';
+          s.style.color = ''; */
           s.style.borderRadius = '';
           s.style.padding = '';
         });

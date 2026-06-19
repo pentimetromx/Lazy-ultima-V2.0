@@ -5006,7 +5006,7 @@ contLineas.addEventListener('click', (e) => {
   // ✅ Ignorar clicks durante transiciones activas
   if (graficoSeleccionado.dataset.transitioning === 'true') return;
 
-  const botonesFlotantes = document.querySelector('#conte-butts-graphs');
+  const botonesFlotantes = document.querySelector('#conte-butts-graphs');  
   const imagenSola = document.querySelector('#porta-imagen');
 
   if (turnBlock === false) {
@@ -5014,7 +5014,7 @@ contLineas.addEventListener('click', (e) => {
   }
 
   setTimeout(() => {
-      moverElementos(["conte-butts-graphs"], 27, -3.5);
+    moverElementos(["conte-butts-graphs"], 27, -3.5);
   }, 500);
 
   const index = Number(graficoSeleccionado.dataset.index);
