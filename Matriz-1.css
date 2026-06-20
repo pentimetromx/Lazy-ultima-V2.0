@@ -523,6 +523,9 @@ color: white;
   background-color:rgb(255, 24, 54);
   backdrop-filter: blur(5px);
 }
+#container01 > button:hover{
+  background-color:rgba(255, 24, 54,0.5);
+}
 .rebobinador,
 .unidProceso,
 .alimentadorId,
@@ -1313,7 +1316,7 @@ width:447px ;
   position: absolute;
   display: flex;
   flex-direction: column;
-  top:0;
+  top:7%;
   left:0; 
   width:13%;
   height:33%;
@@ -1988,6 +1991,10 @@ width:447px ;
 #ingresos-sistema-ma.activo,
 #ingresos-sistema.activo,
 #padre-ingresos-ma.activo,
+#padre-contenedor-global.activo,
+#padre-formulario-empleado.activo,
+#padre-carta-exterior.activo,
+#padre-rrhh-marco.activo,
 #padre-porta-visor.activo,
 #padre-ingresos.activo,
 .form-empleado.activo,
@@ -3100,7 +3107,7 @@ h6{
   grid-template-rows: 33% 33% 33%;
   gap: 25%;
   left:17%;
-  top: 0;
+  top: 7%;
   z-index: 3;
   display: none;
 }
@@ -6617,7 +6624,7 @@ height:100%;
 }
 .indicador {
   position: absolute;
-  left:7.7vw;
+  left:7.1vw;
   top: 50%;
   transform: translateY(-50%);
   width: 2vw;
@@ -7242,17 +7249,18 @@ height:100%;
 #contenedor-global {
   position: relative;
   display: block;
-  background-color: rgb(125, 144, 157);  
-  top: 20vh;
-  left: 28vw;
-  width: 44vw;
-  height: 60vh;
+  background-color: rgb(125, 144, 157);
+  top: 0vh;
+  left: 0vw;
+  width: 40.7vw;
+  height: 59vh;
+  border-radius: 13px;  
   transform: scale(0);
   transform-origin: center;
   transition: transform 1s ease;
 }
-#contenedor-global.activo.move-panel-ma {
-  transform: scale(1) translateX(-28vw) translateY(-7vw);
+#padre-contenedor-global.activo.move-panel-ma{
+  transform: scale(1) translateX(-28vw) translateY(-9vw);
   transition: transform 1.4s ease-in-out;
 }
 #lista-maquinas{
@@ -7261,7 +7269,7 @@ height:100%;
   grid-template-rows: repeat(11, 1fr);
   top:2%;
   left:1%;
-  width: 11vw;
+  width: 10.5vw;
   height: 30vh;
   font-family: Arial, sans-serif;
   color: rgb(199,199,199);
@@ -7319,24 +7327,23 @@ height:100%;
   transform-origin: center; 
   transition: transform 1s ease;
 }
-#calendario-mes{
-  position: absolute;   
+#calendario-mes {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  top:8%;
-  left:42%;
+  top: 8%;
+  left: 44%;
   gap: 5px;
-  width:44%;
-  height:34%;
+  width: 43%;
+  height: 34%;
   margin: auto;
   display: none;
   font-family: Arial, sans-serif;
-  background-color: #000;  
+  background-color: #000;
   font-size: 0.8em;
   color: rgba(255,255,255,0.5);
-
   transform: scale(0);
-  transform-origin: center; 
+  transform-origin: center;
   transition: transform 1s ease, filter 0.5s ease;
 }
 #cont-span-semanas {
@@ -7358,7 +7365,7 @@ height:100%;
 #meses {
     position: absolute;
     top: 2%;
-    left: 27.4%;
+    left: 27.8%;
     display: grid;
     grid-template-rows: repeat(12, 1fr);
     gap: 5px;
@@ -7395,6 +7402,70 @@ height:100%;
   left: 25vw;
   width: 50.5vw;
   height: 64vh;
+  background-color: rgb(0, 0,17);
+  box-sizing: border-box;
+  padding: 17px;
+  z-index: 10;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 1s ease;
+}
+#padre-contenedor-global {
+  position: relative;
+  display: flex;
+  border-radius: 19px;
+  top: 22vh;
+  left: 29vw;
+  width: 43.5vw;
+  height: 64vh;
+  background-color: rgb(0, 0,17);
+  box-sizing: border-box;
+  padding: 17px;
+  z-index: 10;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 1s ease;
+}
+#padre-formulario-empleado {
+  position: relative;
+  display: flex;
+  border-radius: 19px;
+  top: 7vh;
+  left: 29vw;
+  width: 42.1vw;
+  height: 83vh;
+  background-color: rgb(0, 0,17);
+  box-sizing: border-box;
+  padding: 17px;
+  z-index: 10;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 1s ease;
+}
+#padre-carta-exterior {
+  position: absolute;
+  display: flex;
+  border-radius: 19px;
+  top: 27vh;
+  left: 35vw;
+  width: 31.1vw;
+  height: 53vh;
+  background-color: rgb(0, 0,17);
+  box-sizing: border-box;
+  padding: 17px;
+  z-index: 10;
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 1s ease;
+}
+#padre-rrhh-marco {
+  position: relative;
+  display: flex;
+  border-radius: 19px;
+  top: 7vh;
+  left: 32vw;
+  width: 42.1vw;
+  height: 80vh;
   background-color: rgb(0, 0,17);
   box-sizing: border-box;
   padding: 17px;
@@ -7440,7 +7511,7 @@ height:100%;
   grid-template-rows: auto 1fr;
   gap: 2%;
   background-color: rgb(125, 144, 157);
-  border-radius: 7px;
+  border-radius: 10px;
   
   transform: scale(0);
   transform-origin: center; 
@@ -7682,15 +7753,15 @@ background-color: #3FEF9C;
   pointer-events: none;
 }
 .padre-inputs {
-    position: absolute;
-    display: grid;
-    gap: 3%;
-    grid-template-columns: repeat(5, 1fr);
-    top: 89vh;
-    left: 44vw;
-    height: 4vh;
-    width: 36vw;
-    z-index: 9999;
+  position: absolute;
+  display: grid;
+  gap: 3%;
+  grid-template-columns: repeat(5, 1fr);
+  top: 89vh;
+  left: 63vw;
+  height: 4vh;
+  width: 36vw;
+  z-index: 9999;
 }
 .padre-inputs > button,
 .padre-inputs > input{

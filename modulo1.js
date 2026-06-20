@@ -4505,10 +4505,12 @@ function resultadosMaquina(){
     el.textContent = '';
   });
 
-  ["lista-maquinas", "meses", "calendario-mes", "cont-span-semanas", "titulo-calendar", "titulo-mes", "contenedor-global"].forEach(id => aparecerElemento(id, "grid"));
+  ["lista-maquinas", "meses", "calendario-mes", "cont-span-semanas", "titulo-calendar", "titulo-mes", "contenedor-global", "padre-contenedor-global"].forEach(id => aparecerElemento(id, "grid"));
   destruirCharts()
   container1.style.display='grid'
   document.querySelector("#contenedor-global").classList.remove('move-panel-ma')
+  document.querySelector("#padre-contenedor-global").classList.remove('move-panel-ma')
+
   setTimeout(() => {
     document.querySelectorAll(".dia").forEach(d => {
         d.style.backgroundColor = "";
@@ -4698,7 +4700,6 @@ function ajustarContenedorGrafs() {
   });
 }
 // ULTIMO BOTON M.A 
-
 
 
 function resultadosMA(identificador){
@@ -4912,7 +4913,6 @@ function resultadosMA(identificador){
   if (imgDinamica) imgDinamica.remove();
   actualizarIdsArray(identificador);      
 }
-
 
 
 function aumentarTamaño(element, factor, tiempo) {
