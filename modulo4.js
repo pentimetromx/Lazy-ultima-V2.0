@@ -1329,11 +1329,41 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
 
     switch (index) {
       case 0: {
-        panelAbierto = true
-        document.querySelector("#contenedor-global").classList.add('move-panel-ma')
+        const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
+        const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
+
+        if (!hayMesActivo || !hayMaquinaActiva){
+          alternarColor(firstMachine,secondMachine,2000)
+          saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
+          return;
+        }
+
+        if (panelAbierto) {
+          desaparecerElemento('abuelo-grafica4', 'grid');
+          document.querySelector("#contenedor-global").classList.remove('move-panel-ma');
+          document.querySelector("#padre-contenedor-global").classList.remove('move-panel-ma');
+          panelAbierto = false;
+          return;
+        }  
+
+        document.querySelectorAll('.span-semana').forEach(semana => {
+          semana.style.backgroundColor = '';
+        });
+
+        const abueloGrafica = document.querySelector('#abuelo-grafica4');
+        Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
+          hijo.style.display = '';
+          hijo.style.visibility = 'visible';
+          hijo.style.opacity = '1';
+        });
+
+        document.querySelector("#contenedor-global").classList.add('move-panel-ma');
+        document.querySelector("#padre-contenedor-global").classList.add('move-panel-ma');
+
         setTimeout(() => {
-          aparecerElemento('abuelo-grafica4', 'grid');          
+          aparecerElemento('abuelo-grafica4', 'grid');
         }, 400);
+
         setTimeout(() => {
           const pasos = [
             crearGraficoMes,
@@ -1349,7 +1379,9 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
             delay += 150;
           }
         }, 1100);
-        break;
+
+        panelAbierto = true;
+        
       }
       case 1:
         crearGraficoMes();
@@ -2556,17 +2588,22 @@ listaFotos.addEventListener('mouseleave', () => {
 
 /**************************************************************************************************************** */ 
 document.querySelector('#borrarBoton').addEventListener('click', () =>{
-    elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','rr-hh']  
+    elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','padre-rrhh-marco','rr-hh']  
     for (let i = 0; i < allContenedores.length; i++) { 
     let elemento = document.getElementById(allContenedores[i])  
     if (elemento) {
     elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   } 
+  document.querySelector('#padre-rrhh-marco').classList.remove('activo')
+  document.querySelector('#rrhh-marco').classList.remove('activo')
   container1.style.display='grid'
   activarPantallaCompleta()
-  /* document.querySelector('#rrhh-marco').style.display='flex' */
-  aparecerElemento('rrhh-marco', "flex");
+
+  aparecerElemento('padre-rrhh-marco', "flex");
+  setTimeout(() => {
+    aparecerElemento('rrhh-marco', "flex");    
+  }, 300);
 })
 
 const wrapper = document.querySelector('#calculadora');
@@ -3803,6 +3840,7 @@ hijos.forEach((li, index) => {
       activarPantallaCompleta()      
       panelAdministrativo.classList.remove('move-carta-exterior')
       panelAdministrativo.classList.remove('activo')
+      document.querySelector("#padre-carta-exterior").classList.remove('activo')
       var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI']; 
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i]) 
@@ -3813,6 +3851,7 @@ hijos.forEach((li, index) => {
       container1.style.display='grid'
       panelAdministrativo.classList.add('activo')
       aparecerElemento("carta-exterior", "grid");
+      aparecerElemento("padre-carta-exterior", "flex");
       if(!esDesktop)document.querySelector("#input-documento").readOnly = true;
 
       setTimeout(() => {
@@ -4915,12 +4954,9 @@ function mostrarInterfazIngreso(){
     }
   } 
   container1.style.display='grid'
-
   inputNuevoEmpl.forEach(input => input.value = '');
   ["formulario-empleado"].forEach(id => aparecerElemento(id, "block"));
-
-  activarBlur(0,20)
-  blurOverlay.zindex=1
+  ["padre-formulario-empleado"].forEach(id => aparecerElemento(id, "flex"));
 
   setTimeout(() => {
     if (!esDesktop) {
@@ -5395,6 +5431,7 @@ const accionesAceptar = {
   recursoNn: () => {
     inputRRHH.value=''
     inputRRHH.focus();
+    document.querySelector("#input-documento").focus()
   }, 
   recursoNuevo: () => {
     inputRRHH.value=''
@@ -5519,7 +5556,8 @@ const accionesAceptar = {
   recursoNn: () => {
     setTimeout(() => {
       documentoEmplEliminar.value=''
-      documentoEmplEliminar.focus()   
+      documentoEmplEliminar.focus() 
+      document.querySelector("#input-documento").focus() 
     }, 250);  
   }, 
   eliminarEmpl: () =>{
@@ -5774,7 +5812,8 @@ function limpiarFormulario() {
   }, inputs.length * 140);
 }
 document.querySelector('#borrarBoton2').addEventListener('click', () => {
-  rodillosKaizen('btn17','')
+  activarPantallaCompleta()
+  mostrarInterfazIngreso()
 });
 documentoEmplEliminar.addEventListener('touchstart', (e) => {
   e.preventDefault();
@@ -5803,18 +5842,18 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
       element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   } 
-  document.querySelector('#carta-exterior').style.display='grid'
-
   container1.style.display='grid'
+  padreAdministrativo.style.display='flex'
+  panelAdministrativo.style.display='grid'
   panelAdministrador.style.display='grid'
   
-  activarBlur(0,255)
+  /* activarBlur(0,255) */
   sliderGraf.value = 0;
   sliderTree.value= 0;
   sliderGraf.dispatchEvent(new Event('input'));
   sliderTree.dispatchEvent(new Event('input'));      
   document.querySelector('.panel-monitor').classList.add('activo')
-  panelAdministrativo.classList.add('move-carta-exterior') 
+  padreAdministrativo.classList.add('move-carta-exterior') 
   document.querySelector('#abuelo-indicadores').classList.add('administrativo') 
   document.querySelector('#padre-desempeños').classList.add('administrador')
   document.querySelector("#abuelo-grafica12").classList.add('administra')
@@ -5845,6 +5884,7 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
     }, 2200);     
   }, 700);    
 })
+
 document.querySelector("#borrarBoton5").addEventListener('click',()=>{
   var elementosExcluidos = ['links-inicialesI','links-iniciales','buscador','search-form'] 
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -5914,7 +5954,7 @@ btnActivar.addEventListener('click', function () {
       console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal)
     }
 
-    panelAdministrativo.classList.remove('move-carta-exterior')
+    padreAdministrativo.classList.remove('move-carta-exterior')
     document.querySelector('.panel-monitor').classList.remove('activo')    
 
   } else {
@@ -5933,14 +5973,15 @@ document.querySelector("#carta-exterior > div > div.card-left > div.card-botones
   document.querySelector("#grafico-area").classList.remove('administrar')
   document.querySelector("#grafico-area").classList.remove('activo')
   panelAdministrador.classList.remove('activo')
-  document.querySelector("#carta-exterior").classList.remove('move-carta-exterior')
+  document.querySelector("#padre-carta-exterior").classList.remove('move-carta-exterior')
   setTimeout(() => {
     document.querySelector("#carta-exterior").classList.remove('activo')
+    document.querySelector("#padre-carta-exterior").classList.remove('activo')
     desactivarBlur()    
   }, 1500);
 
   const img = document.getElementById('imgAdministrar');
-  img.src='./assets/silueta0.png'
+  img.src='./assets/silueta1.png'
 
 }) 
 document.querySelector("#doc-empl").addEventListener('click', () => {
@@ -6014,6 +6055,7 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
   if (panelAbierto) {
     desaparecerElemento('abuelo-grafica4', 'grid');
     document.querySelector("#contenedor-global").classList.remove('move-panel-ma');
+    document.querySelector("#padre-contenedor-global").classList.remove('move-panel-ma');
     panelAbierto = false;
     return;
   }  
@@ -6030,6 +6072,7 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
   });
 
   document.querySelector("#contenedor-global").classList.add('move-panel-ma');
+  document.querySelector("#padre-contenedor-global").classList.add('move-panel-ma');
 
   setTimeout(() => {
     aparecerElemento('abuelo-grafica4', 'grid');

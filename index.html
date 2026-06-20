@@ -1209,7 +1209,9 @@
     </div>
     <div id="marco-teñido"></div> 
     <div id="marco-freno"></div>
+
     <div id="freno">
+      
       <div class="conti-boton" id="conti-boton-freno">
         <button class="butt-mautonomo-freno image-trainings" id="btn60" onclick="LubricaDesbobinador('btn60')">DESEMPEÑO</button>
         <button class="butt-mautonomo-freno image-trainings" id="btn70" onclick="LubricaDesbobinador('btn70')">ESTRUCTURA</button>
@@ -2003,26 +2005,28 @@
       <h1 id="title-interfaz">Interfaz de seguimiento Mantenimiento Autonomo</h1>
 
       <div id="conte-secundario">
-
-        <div id="porta-visor" class="contenedor-visor">
-          <input id="buscador-empleado" type="text" placeholder="Buscar por nombre...">
-
-          <div class="visor-top">
-            <div id="visorImagen" class="visor-imagen">
-              <img src="" id="imagenVisor">
-            </div>
-            <div class="panel-nombres" id="listaNombres"></div>
-          </div>
-
-          <div class="visor-footer">
-
-            <div class="navegacion">
-              <button id="prevBtn">&#9664;</button>
-              <button id="nextBtn">&#9654;</button>
-            </div>
-          </div>
-        </div>        
         
+        <div id="padre-porta-visor" class="special-border contenedor-visor">           
+          <div id="porta-visor" class="contenedor-visor">
+            <input id="buscador-empleado" type="text" placeholder="Buscar por nombre...">
+
+            <div class="visor-top">
+              <div id="visorImagen" class="visor-imagen">
+                <img src="" id="imagenVisor">
+              </div>
+
+              <div class="panel-nombres" id="listaNombres"></div>
+              
+            </div>
+
+            <div class="visor-footer">
+              <div class="navegacion">
+                <button id="prevBtn">&#9664;</button>
+                <button id="nextBtn">&#9654;</button>
+              </div>
+            </div>
+          </div>        
+        </div>        
       </div>
       
       <div id="porta-imagen">
@@ -2626,6 +2630,7 @@
     </ul>
 
     <div id="metas-diarias">
+      <div class="panel-header"><h3>Metas diarias</h3></div>
       <ol class="listado-actividades">
         <li><span class="indice">1.</span> Establece objetivos claros y alcanzables para cada día.</li>
         <li><span class="indice">2.</span> Prioriza las tareas más importantes primero.</li>
@@ -2719,120 +2724,124 @@
 
     <div id="blur-layer"></div>
 
-    
-    <div id="contenedor-global" class="special-border">
+    <div id="padre-contenedor-global" class="special-border">
 
-      <div id="lista-maquinas">
-        <span class="maquina">Rotativa 1<span class="indicador"></span></span>  
-        <span class="maquina">Rotativa 2<span class="indicador"></span></span>
-        <span class="maquina">Rotativa 3<span class="indicador"></span></span>
-        <span class="maquina">Rotativa 4<span class="indicador"></span></span>
-        <span class="maquina">Flexografica<span class="indicador"></span></span>
-        <span class="maquina">Armadora sobres<span class="indicador"></span></span>
-        <span class="maquina">Colectora 1<span class="indicador"></span></span>
-        <span class="maquina">Colectora 2<span class="indicador"></span></span>
-        <span class="maquina">GTO 52-1<span class="indicador"></span></span>
-        <span class="maquina">GTO 52-2<span class="indicador"></span></span>
-        <span class="maquina">Guillotina<span class="indicador"></span></span>
-      </div>
-      <span id="titulo-calendar" class="titulo-graf-ma"></span>
-      <span id="titulo-mes" class="titulo-graf-ma"></span>  
+      <div id="contenedor-global">
 
-      <div id="calendario-mes">
-        <div class="semana">
-          <div class="dia">1</div>
-          <div class="dia">2</div>
-          <div class="dia">3</div>
-          <div class="dia">4</div>
-          <div class="dia">5</div>
-          <div class="dia">6</div>
-          <div class="dia">7</div>
+        <div id="lista-maquinas">
+          <span class="maquina">Rotativa 1<span class="indicador"></span></span>  
+          <span class="maquina">Rotativa 2<span class="indicador"></span></span>
+          <span class="maquina">Rotativa 3<span class="indicador"></span></span>
+          <span class="maquina">Rotativa 4<span class="indicador"></span></span>
+          <span class="maquina">Flexografica<span class="indicador"></span></span>
+          <span class="maquina">Armadora<span class="indicador"></span></span>
+          <span class="maquina">Colectora 1<span class="indicador"></span></span>
+          <span class="maquina">Colectora 2<span class="indicador"></span></span>
+          <span class="maquina">GTO 52-1<span class="indicador"></span></span>
+          <span class="maquina">GTO 52-2<span class="indicador"></span></span>
+          <span class="maquina">Guillotina<span class="indicador"></span></span>
         </div>
-        <div class="semana">
-          <div class="dia">8</div>
-          <div class="dia">9</div>
-          <div class="dia">10</div>
-          <div class="dia">11</div>
-          <div class="dia">12</div>
-          <div class="dia">13</div>
-          <div class="dia">14</div>
+        <span id="titulo-calendar" class="titulo-graf-ma"></span>
+        <span id="titulo-mes" class="titulo-graf-ma"></span>  
+
+        <div id="calendario-mes">
+          <div class="semana">
+            <div class="dia">1</div>
+            <div class="dia">2</div>
+            <div class="dia">3</div>
+            <div class="dia">4</div>
+            <div class="dia">5</div>
+            <div class="dia">6</div>
+            <div class="dia">7</div>
+          </div>
+          <div class="semana">
+            <div class="dia">8</div>
+            <div class="dia">9</div>
+            <div class="dia">10</div>
+            <div class="dia">11</div>
+            <div class="dia">12</div>
+            <div class="dia">13</div>
+            <div class="dia">14</div>
+          </div>
+          <div class="semana">
+            <div class="dia">15</div>
+            <div class="dia">16</div>
+            <div class="dia">17</div>
+            <div class="dia">18</div>
+            <div class="dia">19</div>
+            <div class="dia">20</div>
+            <div class="dia">21</div>
+          </div>
+          <div class="semana">
+            <div class="dia">22</div>
+            <div class="dia">23</div>
+            <div class="dia">24</div>
+            <div class="dia">25</div>
+            <div class="dia">26</div>
+            <div class="dia">27</div>
+            <div class="dia">28</div>
+          </div>
+          <div class="semana">
+            <div class="dia">29</div>
+            <div class="dia">30</div>
+            <div class="dia">31</div>
+            <div class="dia vacio"></div>
+            <div class="dia vacio"></div>
+            <div class="dia vacio"></div>
+            <div class="dia vacio"></div>
+          </div>
         </div>
-        <div class="semana">
-          <div class="dia">15</div>
-          <div class="dia">16</div>
-          <div class="dia">17</div>
-          <div class="dia">18</div>
-          <div class="dia">19</div>
-          <div class="dia">20</div>
-          <div class="dia">21</div>
+
+
+        <div id="cont-span-semanas">
+          <span class="span-semana">Graficar</span>
+          <span class="span-semana">Mes</span>
+          <span class="span-semana">Semana 1</span>
+          <span class="span-semana">Semana 2</span>
+          <span class="span-semana">Semana 3</span>
+          <span class="span-semana">Semana 4</span>
+          <span class="span-semana">Semana 5</span>
+        </div> 
+        <div id="meses">
+          <div class="mes">Enero</div>
+          <div class="mes">Febrero</div>
+          <div class="mes">Marzo</div>
+          <div class="mes">Abril</div>
+          <div class="mes">Mayo</div>
+          <div class="mes">Junio</div>
+          <div class="mes">Julio</div>
+          <div class="mes">Agosto</div>
+          <div class="mes">Septiembre</div>
+          <div class="mes">Octubre</div>
+          <div class="mes">Noviembre</div>
+          <div class="mes">Diciembre</div>
         </div>
-        <div class="semana">
-          <div class="dia">22</div>
-          <div class="dia">23</div>
-          <div class="dia">24</div>
-          <div class="dia">25</div>
-          <div class="dia">26</div>
-          <div class="dia">27</div>
-          <div class="dia">28</div>
-        </div>
-        <div class="semana">
-          <div class="dia">29</div>
-          <div class="dia">30</div>
-          <div class="dia">31</div>
-          <div class="dia vacio"></div>
-          <div class="dia vacio"></div>
-          <div class="dia vacio"></div>
-          <div class="dia vacio"></div>
-        </div>
-      </div>
-
-
-      <div id="cont-span-semanas">
-        <span class="span-semana">Graficar</span>
-        <span class="span-semana">Mes</span>
-        <span class="span-semana">Semana 1</span>
-        <span class="span-semana">Semana 2</span>
-        <span class="span-semana">Semana 3</span>
-        <span class="span-semana">Semana 4</span>
-        <span class="span-semana">Semana 5</span>
-      </div> 
-      <div id="meses">
-        <div class="mes">Enero</div>
-        <div class="mes">Febrero</div>
-        <div class="mes">Marzo</div>
-        <div class="mes">Abril</div>
-        <div class="mes">Mayo</div>
-        <div class="mes">Junio</div>
-        <div class="mes">Julio</div>
-        <div class="mes">Agosto</div>
-        <div class="mes">Septiembre</div>
-        <div class="mes">Octubre</div>
-        <div class="mes">Noviembre</div>
-        <div class="mes">Diciembre</div>
-      </div>
-      
-
-      <div id="contenedor-1" class="sup-level">
-
-        <div class="title">LEVEL <div class="sub-title">Week</div></div>
-
-        <div class="container">
-          <div class="bar-container"><div class="bar" style="height: 20%;"></div></div>
-          <div class="bar-container"><div class="bar" style="height: 40%;"></div></div>
-          <div class="bar-container"><div class="bar" style="height: 60%;"></div></div>
-          <div class="bar-container"><div class="bar" style="height: 80%;"></div></div>
-          <div class="bar-container"><div class="bar" style="height: 50%;"></div></div>
-          <div class="bar-container"><div class="bar" style="height: 70%;"></div></div>
-          <div class="bar-container"><div class="bar" style="height: 90%;"></div></div>
-        </div>  
-
-        <div class="litle-title">Service</div>
         
-      </div>
 
-      <button class="but-job"></button>  
+        <div id="contenedor-1" class="sup-level">
+
+          <div class="title">LEVEL <div class="sub-title">Week</div></div>
+
+          <div class="container">
+            <div class="bar-container"><div class="bar" style="height: 20%;"></div></div>
+            <div class="bar-container"><div class="bar" style="height: 40%;"></div></div>
+            <div class="bar-container"><div class="bar" style="height: 60%;"></div></div>
+            <div class="bar-container"><div class="bar" style="height: 80%;"></div></div>
+            <div class="bar-container"><div class="bar" style="height: 50%;"></div></div>
+            <div class="bar-container"><div class="bar" style="height: 70%;"></div></div>
+            <div class="bar-container"><div class="bar" style="height: 90%;"></div></div>
+          </div>  
+
+          <div class="litle-title">Service</div>
+          
+        </div>
+
+        <button class="but-job"></button>  
+
+      </div>
 
     </div>
+
 
     <div id="simulador"> 
 
@@ -4374,152 +4383,157 @@
       <button id="close-keyboard-btn">Cerrar teclado</button>
     </div>
 
-    <form id="formulario-empleado" class="form-empleado">
+    <div id="padre-formulario-empleado" class="special-border">
 
-      <h2>Registro Empleados</h2>
+      <form id="formulario-empleado" class="form-empleado">
 
-      <div id="panel-empleado" class="grid">
+        <h2>Registro Empleados</h2>
 
-        <div class="campo">
-          <label>Nombre</label>
-          <input id="nom-empl" name="nombre" class="estilo-empl special-text" required>
+        <div id="panel-empleado" class="grid">
+
+          <div class="campo">
+            <label>Nombre</label>
+            <input id="nom-empl" name="nombre" class="estilo-empl special-text" required>
+          </div>
+
+          <div class="campo">
+            <label>Documento</label>
+            <input id="doc-empl" inputmode="none" name="documento" class="dato-ma estilo-empl only-numbers input-especial" required>
+          </div>
+
+          <div class="campo">
+            <label>Área</label>
+            <select name="area" class="estilo-empl entrada-empleado storeText " required>
+              <option value="" style="background-color: blue;" disabled selected></option>
+              <option value="Recursos Humanos">Recursos Humanos</option>
+              <option value="Finanzas">Finanzas</option>
+              <option value="Mercadeo">Mercadeo</option>
+              <option value="Ventas">Ventas</option>
+              <option value="Producción">Producción</option>
+              <option value="Calidad">Calidad</option>
+              <option value="Investigación y Desarrollo">Investigación y Desarrollo</option>
+              <option value="Logística">Logística</option>
+              <option value="Servicio al Cliente">Servicio al Cliente</option>
+              <option value="Tecnología">Tecnología</option>
+            </select>
+
+          </div>
+
+          <div class="campo">
+            <label>Cargo</label>
+            <select name="cargo" class="entrada-empleado storeText estilo-empl" required>
+              <option value="" style="background-color: blue;" disabled selected></option>
+              <option value="Presidente">Presidente</option>
+              <option value="Director General">Director General</option>
+              <option value="Gerente de Producción">Gerente de Producción</option>
+              <option value="Gerente Comercial">Gerente Comercial</option>
+              <option value="Gerente de Finanzas">Gerente de Finanzas</option>
+              <option value="Gerente de Calidad">Gerente de Calidad</option>
+              <option value="Jefe de Preprensa">Jefe de Preprensa</option>
+              <option value="Jefe de Impresión Offset">Jefe de Impresión Offset</option>
+              <option value="Jefe de Acabados y Empaque">Jefe de Acabados y Empaque</option>
+              <option value="Jefe de Mantenimiento">Jefe de Mantenimiento</option>
+              <option value="Supervisor de Producción">Supervisor de Producción</option>
+              <option value="Diseñador Gráfico">Diseñador Gráfico</option>
+              <option value="Coordinador de Logística">Coordinador de Logística</option>
+              <option value="Asistente de Compras">Asistente de Compras</option>
+              <option value="Técnico en Control de Calidad">Técnico en Control de Calidad</option>
+              <option value="Operario de Máquina Offset">Operario de Máquina Offset</option>
+              <option value="Auxiliar de Máquina">Auxiliar de Máquina</option>
+              <option value="Operario de Acabados">Operario de Acabados</option>
+              <option value="Mensajero Interno">Mensajero Interno</option>
+              <option value="Servicios Generales">Servicios Generales</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label>Equipo</label>
+            <select name="equipo" class="entrada-empleado storeText estilo-empl" required>
+              <option value="" style="background-color: blue;" disabled selected></option>
+              <option value="Epson SurePress L-6534VW">Epson SurePress L-6534VW</option>
+              <option value="Epson SurePress L-6534VW (Orange Ink)">Epson SurePress L-6534VW (Orange Ink)</option>
+              <option value="Epson SurePress L-6534VW (CMYKW+Or)">Epson SurePress L-6534VW (CMYKW+Or)</option>
+              <option value="Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press">Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press</option>
+              <option value="Ricoh Pro Z75 (Duplex)">Ricoh Pro Z75 (Duplex)</option>
+              <option value="Ricoh Pro Z75 (400 gsm Media Support)">Ricoh Pro Z75 (400 gsm Media Support)</option>
+              <option value="IBM InfoPrint Production Press">IBM InfoPrint Production Press</option>
+              <option value="IBM InfoPrint Color 1000">IBM InfoPrint Color 1000</option>
+              <option value="IBM InfoColor 70">IBM InfoColor 70</option>
+              <option value="Roland Sheetfed 900 Evolution">Roland Sheetfed 900 Evolution</option>
+              <option value="Roland Sheetfed DI 106-8-L (LED UV)">Roland Sheetfed DI 106-8-L (LED UV)</option>
+              <option value="Roland Sheetfed 700 Series (High Performance)">Roland Sheetfed 700 Series (High Performance)</option>
+              <option value="Heidelberg Speedmaster SX 102">Heidelberg Speedmaster SX 102</option>
+              <option value="Heidelberg Speedmaster XL 105">Heidelberg Speedmaster XL 105</option>
+              <option value="Heidelberg Speedmaster CX 145">Heidelberg Speedmaster CX 145</option>
+              <option value="Rotatek Brava 450 Semi-Rotary/Rotary Offset Press">Rotatek Brava 450 Semi-Rotary/Rotary Offset Press</option>
+              <option value="Rotatek Universal 850 Web-Offset Press">Rotatek Universal 850 Web-Offset Press</option>
+              <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press">Rotatek RK-250 Plus Roll-to-Roll Offset Press</option>
+            </select>
+          </div>
+
+          <div class="campo">
+            <label>Fecha</label>
+            <input type="date" name="fecha" class="estilo-empl" required>
+          </div>
+
+          <div class="campo">
+            <label id="registro">Registro fotográfico</label> 
+            <input id="input-foto-empl" type="text" class="entrada-empleado storeText estilo-empl" value="" name="imagen" required readonly inputmode="none">                  
+          </div>
+
+          <div class="campo">
+            <label>Identificados</label>
+            <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="identificados">
+          </div>
+
+          <div class="campo">
+            <label>Corregidos</label>
+            <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="corregidos">
+          </div>
+
+          <div class="campo">
+            <label>Tipo A</label>
+            <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="tipoA">
+          </div>
+
+          <div class="campo">
+            <label>Tipo B</label>
+            <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="tipoB">
+          </div>
+
+          <div class="campo">
+            <label>Kaizen</label>
+            <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="kaizen">
+          </div>
+
+          <div class="campo">
+            <label>ADAS</label>
+            <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="adas">
+          </div>
+
+          <div class="campo">
+            <label>ADT</label>
+            <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="adt">
+          </div>
+
+          <div class="campo">
+            <label>LUP</label>
+            <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="lup">
+          </div>
+                  
         </div>
 
-        <div class="campo">
-          <label>Documento</label>
-          <input id="doc-empl" inputmode="none" name="documento" class="dato-ma estilo-empl only-numbers input-especial" required>
+        <div class="controller">
+          <button type="button" id="registro-baja">Registrar</button>
+          <button type="submit" id="buscar">Buscar</button>
+          <button type="button" id="limpiar">Limpiar</button>
+          <button type="button" id="salir">Salir</button>
         </div>
 
-        <div class="campo">
-          <label>Área</label>
-          <select name="area" class="estilo-empl entrada-empleado storeText " required>
-            <option value="" style="background-color: blue;" disabled selected></option>
-            <option value="Recursos Humanos">Recursos Humanos</option>
-            <option value="Finanzas">Finanzas</option>
-            <option value="Mercadeo">Mercadeo</option>
-            <option value="Ventas">Ventas</option>
-            <option value="Producción">Producción</option>
-            <option value="Calidad">Calidad</option>
-            <option value="Investigación y Desarrollo">Investigación y Desarrollo</option>
-            <option value="Logística">Logística</option>
-            <option value="Servicio al Cliente">Servicio al Cliente</option>
-            <option value="Tecnología">Tecnología</option>
-          </select>
+      </form> 
 
-        </div>
+    </div>
 
-        <div class="campo">
-          <label>Cargo</label>
-          <select name="cargo" class="entrada-empleado storeText estilo-empl" required>
-            <option value="" style="background-color: blue;" disabled selected></option>
-            <option value="Presidente">Presidente</option>
-            <option value="Director General">Director General</option>
-            <option value="Gerente de Producción">Gerente de Producción</option>
-            <option value="Gerente Comercial">Gerente Comercial</option>
-            <option value="Gerente de Finanzas">Gerente de Finanzas</option>
-            <option value="Gerente de Calidad">Gerente de Calidad</option>
-            <option value="Jefe de Preprensa">Jefe de Preprensa</option>
-            <option value="Jefe de Impresión Offset">Jefe de Impresión Offset</option>
-            <option value="Jefe de Acabados y Empaque">Jefe de Acabados y Empaque</option>
-            <option value="Jefe de Mantenimiento">Jefe de Mantenimiento</option>
-            <option value="Supervisor de Producción">Supervisor de Producción</option>
-            <option value="Diseñador Gráfico">Diseñador Gráfico</option>
-            <option value="Coordinador de Logística">Coordinador de Logística</option>
-            <option value="Asistente de Compras">Asistente de Compras</option>
-            <option value="Técnico en Control de Calidad">Técnico en Control de Calidad</option>
-            <option value="Operario de Máquina Offset">Operario de Máquina Offset</option>
-            <option value="Auxiliar de Máquina">Auxiliar de Máquina</option>
-            <option value="Operario de Acabados">Operario de Acabados</option>
-            <option value="Mensajero Interno">Mensajero Interno</option>
-            <option value="Servicios Generales">Servicios Generales</option>
-          </select>
-        </div>
-
-        <div class="campo">
-          <label>Equipo</label>
-          <select name="equipo" class="entrada-empleado storeText estilo-empl" required>
-            <option value="" style="background-color: blue;" disabled selected></option>
-            <option value="Epson SurePress L-6534VW">Epson SurePress L-6534VW</option>
-            <option value="Epson SurePress L-6534VW (Orange Ink)">Epson SurePress L-6534VW (Orange Ink)</option>
-            <option value="Epson SurePress L-6534VW (CMYKW+Or)">Epson SurePress L-6534VW (CMYKW+Or)</option>
-            <option value="Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press">Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press</option>
-            <option value="Ricoh Pro Z75 (Duplex)">Ricoh Pro Z75 (Duplex)</option>
-            <option value="Ricoh Pro Z75 (400 gsm Media Support)">Ricoh Pro Z75 (400 gsm Media Support)</option>
-            <option value="IBM InfoPrint Production Press">IBM InfoPrint Production Press</option>
-            <option value="IBM InfoPrint Color 1000">IBM InfoPrint Color 1000</option>
-            <option value="IBM InfoColor 70">IBM InfoColor 70</option>
-            <option value="Roland Sheetfed 900 Evolution">Roland Sheetfed 900 Evolution</option>
-            <option value="Roland Sheetfed DI 106-8-L (LED UV)">Roland Sheetfed DI 106-8-L (LED UV)</option>
-            <option value="Roland Sheetfed 700 Series (High Performance)">Roland Sheetfed 700 Series (High Performance)</option>
-            <option value="Heidelberg Speedmaster SX 102">Heidelberg Speedmaster SX 102</option>
-            <option value="Heidelberg Speedmaster XL 105">Heidelberg Speedmaster XL 105</option>
-            <option value="Heidelberg Speedmaster CX 145">Heidelberg Speedmaster CX 145</option>
-            <option value="Rotatek Brava 450 Semi-Rotary/Rotary Offset Press">Rotatek Brava 450 Semi-Rotary/Rotary Offset Press</option>
-            <option value="Rotatek Universal 850 Web-Offset Press">Rotatek Universal 850 Web-Offset Press</option>
-            <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press">Rotatek RK-250 Plus Roll-to-Roll Offset Press</option>
-          </select>
-        </div>
-
-        <div class="campo">
-          <label>Fecha</label>
-          <input type="date" name="fecha" class="estilo-empl" required>
-        </div>
-
-        <div class="campo">
-          <label id="registro">Registro fotográfico</label> 
-          <input id="input-foto-empl" type="text" class="entrada-empleado storeText estilo-empl" value="" name="imagen" required readonly inputmode="none">                  
-        </div>
-
-        <div class="campo">
-          <label>Identificados</label>
-          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="identificados">
-        </div>
-
-        <div class="campo">
-          <label>Corregidos</label>
-          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="corregidos">
-        </div>
-
-        <div class="campo">
-          <label>Tipo A</label>
-          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="tipoA">
-        </div>
-
-        <div class="campo">
-          <label>Tipo B</label>
-          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="tipoB">
-        </div>
-
-        <div class="campo">
-          <label>Kaizen</label>
-          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="kaizen">
-        </div>
-
-        <div class="campo">
-          <label>ADAS</label>
-          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="adas">
-        </div>
-
-        <div class="campo">
-          <label>ADT</label>
-          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="adt">
-        </div>
-
-        <div class="campo">
-          <label>LUP</label>
-          <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="lup">
-        </div>
-                
-      </div>
-
-      <div class="controller">
-        <button type="button" id="registro-baja">Registrar</button>
-        <button type="submit">Buscar</button>
-        <button type="button" id="limpiar">Limpiar</button>
-        <button type="button" id="salir">Salir</button>
-      </div>
-
-    </form> 
 
     <div class="almacen-fotos">
 
@@ -4566,47 +4580,55 @@
       </div>
 
     </div>  
-    
-    <div id="carta-exterior" class="card-outer">
 
-      <div class="ident-empleado">
-        <label class="card-label">Documento</label>
-        <input type="text" id="input-documento" inputmode="none" class="card-header only-numbers">
-      </div>
+    <div id="padre-carta-exterior" class="special-border">
 
-      <div class="ident-empleado">
-        <label class="card-label">Empleado</label>
-        <input type="text" id="input-nombre" class="card-header only-numbers" disabled>
-      </div>
+      <div id="carta-exterior" class="card-outer">
 
-
-      <div class="card-body">
-
-        <div class="card-left">
-
-          <div class="card-foto">
-            <img id="imgAdministrar" src="./assets/silueta2.png"/>
-          </div>
-
-          <div class="card-botones">
-            <button class="btn-primario">Activar</button>
-            <button class="btn-secundario">Salir</button>
-          </div>
+        <div class="ident-empleado">
+          <label class="card-label">Documento</label>
+          <input type="text" id="input-documento" inputmode="none" class="card-header only-numbers">
         </div>
 
-        <div class="card-right">
-          <div class="aloja-boton"><button class="boton-seccion" id="boton-ma-card">M.A</button></div>
-          <div class="aloja-boton"><button class="boton-seccion">Job Track</button></div>
-          <div class="aloja-boton"><button class="boton-seccion">Time Soft</button></div>
-          <div class="aloja-boton"><button class="boton-seccion">Procesos</button></div>
-          <div class="aloja-boton"><button class="boton-seccion">Q.A</button></div>
-          <div class="aloja-boton"><button class="boton-seccion">Historial</button></div>
-          <div class="aloja-boton"><button class="boton-seccion">Reconocimientos</button></div>
+        <div class="ident-empleado">
+          <label class="card-label">Empleado</label>
+          <input type="text" id="input-nombre" class="card-header only-numbers" disabled>
         </div>
 
-      </div>
+
+        <div class="card-body">
+
+          <div class="card-left">
+
+            <div class="card-foto">
+              <img id="imgAdministrar" src="./assets/silueta2.png"/>
+            </div>
+
+            <div class="card-botones">
+              <button class="btn-primario">Activar</button>
+              <button class="btn-secundario">Salir</button>
+            </div>
+          </div>
+
+          <div class="card-right">
+            <div class="aloja-boton"><button class="boton-seccion" id="boton-ma-card">M.A</button></div>
+            <div class="aloja-boton"><button class="boton-seccion">Job Track</button></div>
+            <div class="aloja-boton"><button class="boton-seccion">Time Soft</button></div>
+            <div class="aloja-boton"><button class="boton-seccion">Procesos</button></div>
+            <div class="aloja-boton"><button class="boton-seccion">Q.A</button></div>
+            <div class="aloja-boton"><button class="boton-seccion">Historial</button></div>
+            <div class="aloja-boton"><button class="boton-seccion">Reconocimientos</button></div>
+          </div>
+
+        </div>
+
+      </div>      
 
     </div>
+    
+
+
+         
 
     <div id="panel-admon" class="panel-monitor">
 
@@ -4632,20 +4654,26 @@
 
     </div>
 
-    <div id="rrhh-marco" class="rrhh-wrapper">
-      <h1>Nombres empleados</h1>
-      <div class="list-container">
-        <ul class="names-scroll" id="namesList"></ul>
-      </div>
-      <div class="result-box">
-        <span class="result-label">nombre encontrado</span>
-        <span class="result-name" id="resultName">—</span>
-      </div>
-      <input type="text" id="nameInput" placeholder="Nombre a buscar" />
-      <div class="sugerencias" id="sugerencias"></div>
-      <span class="error-msg" id="errorMsg"></span>
-      <button id="searchBtn" onclick="startSearch()">🔍 Buscar nombre</button>
-    </div>    
+    <div  id="padre-rrhh-marco" class="special-border">
+
+      <div id="rrhh-marco" class="rrhh-wrapper">
+        <h1>Nombres empleados</h1>
+        <div class="list-container">
+          <ul class="names-scroll" id="namesList"></ul>
+        </div>
+        <div class="result-box">
+          <span class="result-label">nombre encontrado</span>
+          <span class="result-name" id="resultName">—</span>
+        </div>
+        <input type="text" id="nameInput" placeholder="Nombre a buscar" />
+        <div class="sugerencias" id="sugerencias"></div>
+        <span class="error-msg" id="errorMsg"></span>
+        <button id="searchBtn" onclick="startSearch()">🔍 Buscar nombre</button>
+      </div>       
+
+    </div>
+
+   
 
     <div id="overlay-cortina" class="overlay"></div>
     <div id="overlay-general" class="overlay"></div>

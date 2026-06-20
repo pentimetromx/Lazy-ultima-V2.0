@@ -20,7 +20,7 @@ document.addEventListener('keydown', function(event) {
         setTimeout(() => {
           aparecerElemento('canvasContainer4', 'flex')            
         }, 1500); */ 
-        desaparecerElemento('padre-porta-visor')
+        Geometria()
       break;  
       case 'H':
         /* Geometria() */
@@ -37,7 +37,7 @@ document.addEventListener('keydown', function(event) {
 
 function Geometria() {
   console.clear();  
-  let contiBoton = document.querySelector('#calculadora');  
+  let contiBoton = document.querySelector('#padre-carta-exterior');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  

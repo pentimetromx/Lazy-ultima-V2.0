@@ -1950,9 +1950,9 @@ img[src=""] {
   transition: transform 0.9s ease;
 }
 
-#carta-exterior.move-carta-exterior {
+#padre-carta-exterior.move-carta-exterior {
   visibility: visible;
-  transform: translate3d(-110%, -18%, 0) scale(1);
+  transform: translate3d(-109%, -30%, 0) scale(1);
   transition: transform 0.9s ease;
 }
 .graphics-lines.administrativo{
@@ -5170,7 +5170,7 @@ top: 44%;
   border: none;
   border-radius: 6px;
   background-color: rgb(0, 0, 50);
-  color: #e0e0e0;
+  color:rgb(125, 144, 157);
   font-size: 0.85vw;
   text-align: left;
   outline: none;
@@ -5323,17 +5323,10 @@ top: 44%;
   border-radius:3px;
 }
 .panel-nombres > span {
-  padding: 6px 0;
-  cursor: pointer;
-  font-size:1vw;
-  color: #bcbcbcD9;
-  transition: color 0.2s, background 0.2s;
-}
-.panel-nombres > span {
   padding: 10px 14px;
   cursor: pointer;
   font-size: 0.85vw;
-  color: rgba(188, 188, 188, 0.85);
+  color:rgb(125, 144, 157);
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
   transition: color 0.2s, background 0.2s;
   display: flex;
@@ -5650,31 +5643,30 @@ top: 44%;
   transform: translateY(-75vh) translateX(12vw);
   transition: transform 0.4s ease;
 }
-.form-empleado{
+.form-empleado {
   position: absolute;
   display: block;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  width:40vw;
-  height:79vh;
-  left: 30vw;
-  top: 12vh;
+  width: 40vw;
+  height: 79vh;
+  left: 1vw;
+  top: 2vh;
   background: #2b2f36;
-  padding:2%;
-  border-radius:3%;
-  box-shadow:0 1vh 3vh rgba(0,0,0,.08);
+  padding: 2%;
+  border-radius: 3%;
+  box-shadow: 0 1vh 3vh rgba(0,0,0,.08);
   display: none;
   z-index: 30;
-
   transform: scale(0);
-  transform-origin: center; 
+  transform-origin: center;
   transition: transform 1s ease;
 }
-.form-empleado h2{
+.form-empleado h2 {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  margin-bottom:7%;
-  font-weight:600;
-  color: #9ba3af;
-  font-size:115%;
+  margin-bottom: 7%;
+  font-weight: 600;
+  color: rgb(125, 144, 157);
+  font-size: 115%;
   height: 3%;
 }
 .grid{
@@ -5714,7 +5706,7 @@ top: 44%;
   font-size: 55%;
   margin-bottom: 1%;
   margin-left: 4%;
-  color: #9ba3af;
+  color: rgb(125, 144, 157);
 }
 .campo input:focus{
   outline:none;
@@ -5741,19 +5733,21 @@ top: 44%;
 .butt-mautonomo-desbobina:hover::before {
   background-color: rgb(255,255,255);
 }
-button:hover{
-  /* background:#1f6feb; */
+/* button:hover{
   background-color: rgb(184, 90, 0);
   color: rgb(255, 248, 220);
-
-}
+} */
 #salir{
   background:rgb(255,0,124); 
 }
+#salir:hover{
+  background:rgba(255,0,124,0.5); 
+}
+#registro-baja:hover,
+#buscar:hover,
 #limpiar:hover{
   background:rgba(255,0,124,0.7);
   color:white;  
-
 }
 .overlayKaizen{
   position: absolute;
@@ -5910,10 +5904,10 @@ button:hover{
   gap: 10px;
 }
 .btn-cancelar,
-.btn-baja {
+.btn-baja {  
   flex: 1;
   padding: 9px 0;
-  background: #7f1d1d;
+  background-color:rgb(127, 29,29);
   color: #fca5a5;
   border: 0.5px solid #991b1b;
   border-radius: 8px;
@@ -5924,7 +5918,7 @@ button:hover{
 }
 .btn-cancelar:hover,
 .btn-baja:hover {
-  background: #991b1b;
+  background-color:rgba(127, 29,29,0.5);
 }
 .btn-cancelar:active,
 .btn-baja:active {
@@ -6098,17 +6092,17 @@ button:hover{
   position: absolute;
   display: grid;
   grid-template-rows: 11% 11% 78%;
-  border-radius: 7px;
+  border-radius: 13px;
   border: 1px solid white;
   box-sizing: border-box;
   background-color: rgb(125, 144, 157);
   border: 0.5px solid #3e4451;
   padding: 18px;
   gap: 15px;
-  top: 20vh;
-  left: 35vw;
-  width: 31vw;
-  height: 53vh;
+  top: 1vh;
+  left: 0.5vw;
+  width: 30vw;
+  height: 51vh;
   z-index: 300;
   display: none;
   transform: scale(0);
@@ -6256,10 +6250,13 @@ button:hover{
   justify-content: center;
 }
 #kaizen-buscador > div.col-titulo > div > div{
-  color: white;
+  color: rgb(125, 144, 157);
+}
+#kaizen-buscador > div.col-titulo > div > div:hover{
+  color: whitesmoke;
 }
 .btn-volver {
-  background-color: rgb(6, 31, 223);
+  background-color: rgb(125, 144, 157);
   height: 45%;
   width: 56%;
   margin-left: 22%;
@@ -6274,6 +6271,7 @@ button:hover{
 }
 .btn-volver:hover {
   opacity: 0.85;
+  color: whitesmoke;
 }
 .opcion-empleado {
   width: 100%;
@@ -6283,7 +6281,7 @@ button:hover{
   background: rgba(255, 255, 255, 0.12);
 }
 .lista-propuestas {
-  background: rgb(6, 31, 223);
+  background: rgb(0, 0, 17);
   border-radius: 8px;
   border: 0.5px solid rgba(100, 140, 255, 0.18);
   height: 100%;
@@ -6305,8 +6303,8 @@ button:hover{
 
 .rrhh-wrapper {
   position: absolute;
-  top: 13vh;
-  left: 35vw;
+  top: 2%;
+  left: 3%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -6316,13 +6314,12 @@ button:hover{
   background: #1e293b;
   border-radius: 16px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  width: 34%;
-  height: 82%;
-
-  transition: transform 0.5s ease; /* 501 ms */
-  display: none; /* inicialmente oculto */
-  transform: scale(0); /* inicia reducido */
-  transform-origin: center; /* crece desde el centro */   
+  width: 94.5%;
+  height: 96%;
+  transition: transform 0.5s ease;
+  display: none;
+  transform: scale(0);
+  transform-origin: center;
 }
 .rrhh-wrapper * {
   box-sizing: border-box;
