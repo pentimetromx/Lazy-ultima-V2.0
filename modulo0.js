@@ -33,6 +33,8 @@ const botonVolver = document.getElementById('butt-links-II')
 
 let contiVidDistribuidor = document.getElementById('conti-video-distribuidor')  
 let arrayButtsIniciales = ['bot-atras','bot-inicial','iniciar','bot-atras12']
+let padreFormularioNuevoIngreso = document.querySelector('#padre-formulario-empleado')  
+
 let formularioNuevoIngreso = document.querySelector('#formulario-empleado')  
 let miCanvas2 = document.getElementById('MiSegundaGrafica').getContext('2d')
 let miCanvas3 = document.getElementById('MiTerceraGrafica').getContext('2d')
@@ -57,6 +59,8 @@ let contImgsDistribuidor = document.getElementById("images-distribuidor")
 const actividadesLimpieza = document.getElementById('actividad-limpieza') 
 let buttRepuestIII = document.getElementById('conti-boton-repuestos-II')
 const padreAdministrativo = document.querySelector('#padre-carta-exterior')
+
+const padrePanelAdministrativo = document.querySelector('#padre-carta-exterior')
 
 const panelAdministrativo = document.querySelector('#carta-exterior')
 const imgsDistribuidor = document.getElementById('contImgDistribuidor')
@@ -97,7 +101,7 @@ let buttRepuestI = document.getElementById('butt-repuestos-I')
 let conteBancada = document.getElementById('bancada-torre-II')
 const mezcladorColor = document.querySelector("#padre-cmyk")
 const mezcladorColorRGB = document.querySelector("#padre-rgb")
-
+const interfazRecursos = document.querySelector("#rrhh-marco")
 const botonesBaja = document.querySelector('#panel-botones')
 let contiButtRepuest = document.getElementById('conti-boton')
 let contenedor2 = document.getElementById('canvasContainer2')
