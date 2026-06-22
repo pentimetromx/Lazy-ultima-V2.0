@@ -2595,6 +2595,11 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
     elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   } 
+  if(!esDesktop){
+    keyboardWrapper.style.left='37vw'
+    keyboardWrapper.style.setProperty('--keyboard-width', '61vw');
+    document.querySelector('#padre-rrhh-marco').style.left='2vw'
+  }
   document.querySelector('#padre-rrhh-marco').classList.remove('activo')
   document.querySelector('#rrhh-marco').classList.remove('activo')
   container1.style.display='grid'
@@ -3837,7 +3842,10 @@ hijos.forEach((li, index) => {
     }
     if (index === 4) {
       deBajaActivo=false
-      activarPantallaCompleta()      
+      activarPantallaCompleta()         
+      padrePanelAdministrativo.classList.remove('move-carta-exterior')
+      padrePanelAdministrativo.classList.remove('activo')
+  
       panelAdministrativo.classList.remove('move-carta-exterior')
       panelAdministrativo.classList.remove('activo')
       document.querySelector("#padre-carta-exterior").classList.remove('activo')
@@ -3906,7 +3914,6 @@ document.querySelector("#input-documento").addEventListener('click',()=>{
   if (!esDesktop) {
     ubicaCalculadoraSegunContexto();
   }
-
 })
 
 document.querySelector("#input-documento").addEventListener('blur', () => {
@@ -4538,7 +4545,6 @@ function ubicaCalculadoraSegunContexto(){
   calculadora.classList.remove('move-calculadora-down');
   calculadora.classList.remove('move-calculadora-up-ingreso');
   calculadora.classList.remove('move-calculadora-up-eliminar');
-
   if(!esDesktop && interfazRRHH.style.display==='grid'){
     simulador.style.display='flex'
     calculadora.classList.remove('move-calculadora-1')
@@ -4563,21 +4569,19 @@ function ubicaCalculadoraSegunContexto(){
       calculadora.classList.add('move-calculadora-up');
     }, 100);
   }
-
-if (!esDesktop &&(panelControlCMYK.style.display === 'grid' || panelControlRGB.style.display === 'grid')) {
-  simulador.style.display = 'flex';
-  calculadora.classList.remove('move-calculadora-1');
-  calculadora.style.display = 'grid';
-  calculadora.style.left = '26vw';
-  calculadora.style.top = '102vh';
-  calculadora.style.height = '45vh';
-  calculadora.style.width = '40vw';
-  calculadora.style.zIndex = '100';
-  setTimeout(() => {
-    calculadora.classList.add('move-calculadora-up');
-  }, 100);
-}  
-  
+  if (!esDesktop &&(panelControlCMYK.style.display === 'grid' || panelControlRGB.style.display === 'grid')) {
+    simulador.style.display = 'flex';
+    calculadora.classList.remove('move-calculadora-1');
+    calculadora.style.display = 'grid';
+    calculadora.style.left = '26vw';
+    calculadora.style.top = '102vh';
+    calculadora.style.height = '45vh';
+    calculadora.style.width = '40vw';
+    calculadora.style.zIndex = '100';
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up');
+    }, 100);
+  }  
   if(!esDesktop && panelDeBajas.style.display==='block'){
     document.querySelector("#simulador").style.display='flex'    
     calculadora.classList.remove('move-calculadora-up-eliminar')
@@ -4938,6 +4942,7 @@ limpiarBtn.addEventListener('click', () => {
 });
 document.querySelector('#salir').addEventListener('click',()=>{
   formularioNuevoIngreso.classList.remove('activo')
+  padreFormularioNuevoIngreso.classList.remove('activo')
   desactivarBlur()
   setTimeout(() => {
     ingresoEmpleado()
@@ -6255,6 +6260,15 @@ nameInput.addEventListener("input", () => {
 });
 nameInput.addEventListener("keydown", e => {
   if (e.key === "Enter") startSearch();
+});
+
+nameInput.addEventListener('blur', () => {
+  hideKeyboard()
+});
+
+nameInput.addEventListener('touchstart', () => {
+  nameInput.value=''  
+  showKeyboard() 
 });
 //*******************************************************************************************************************
 function buildList() {
