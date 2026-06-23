@@ -2037,13 +2037,10 @@ function abrirPrepress(elementId) {
     console.log(idsArray);
   }
 }
-
-
-
 function abrirDensitometria(elementId){
 
   var contieneLinks = document.getElementById('linkList');
-
+alert()
   var elementosExcluidos = [
     'buscador',
     'search-form',
@@ -2146,8 +2143,6 @@ function abrirDensitometria(elementId){
     console.log(idsArray);
   }
 }
-
-
 function muestraVidPrisma(eltoHtml) {
   clickHabilitado = true
   acumuladorVideos.pop()
@@ -4894,11 +4889,13 @@ function resultadosMA(identificador){
 
     inputLimpio.addEventListener('touchstart', () => {
       document.querySelector("#buscador-empleado").value=''
-      showKeyboard()      
+      showKeyboard() 
+      keyboardWrapper.style.setProperty('--keyboard-width', '50vw');
+      keyboardWrapper.style.setProperty('--keyboard-left', '48vw');
     });
 
     inputLimpio.addEventListener('click', () => {
-      document.querySelector("#buscador-empleado").value=''     
+      document.querySelector("#buscador-empleado").value=''    
     });    
 
 
