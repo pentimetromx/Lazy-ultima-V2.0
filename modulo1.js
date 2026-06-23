@@ -2038,9 +2038,7 @@ function abrirPrepress(elementId) {
   }
 }
 function abrirDensitometria(elementId){
-
   var contieneLinks = document.getElementById('linkList');
-alert()
   var elementosExcluidos = [
     'buscador',
     'search-form',
