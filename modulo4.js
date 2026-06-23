@@ -6236,6 +6236,7 @@ function hideSuggestions() {
   suggestBox.innerHTML = "";
   suggestBox.classList.remove("visible");
 }
+
 function showSuggestions(matches, query) {
   suggestBox.innerHTML = matches.map(n =>
     `<div class="suggestion-item" data-name="${n}">${highlightMatch(n, query)}</div>`
@@ -6250,9 +6251,14 @@ function showSuggestions(matches, query) {
       hideSuggestions();
       errorMsg.textContent = "";
       animateScroll(chosen);
+      setTimeout(() => {
+        padreNuevaInterfaz.classList.remove('move-new-employee')
+      }, 300);
+
     });
   });
 }
+
 nameInput.addEventListener("input", () => {
   errorMsg.textContent = "";
   const query = nameInput.value.trim();
@@ -6265,12 +6271,18 @@ nameInput.addEventListener("input", () => {
 
   showSuggestions(matches, query);
 });
+
 nameInput.addEventListener("keydown", e => {
   if (e.key === "Enter") startSearch();
 });
 
 nameInput.addEventListener('blur', () => {
   hideKeyboard()
+  padreNuevaInterfaz.classList.remove('move-new-employee')
+  setTimeout(() => {
+    hideSuggestions()  
+    nameInput.value=''  
+  }, 500);
 });
 
 nameInput.addEventListener('touchstart', () => {

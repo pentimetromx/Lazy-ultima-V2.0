@@ -5286,8 +5286,8 @@ function cargarDatos() {
   marcoGraficas.style.display='grid'
   document.querySelector('#canvasContainer4').style.display='flex'
 }
-function   nextPrime() { alert("NextPrime función"); }
-function alternateFunction() { alert("Alternate función"); }
+/* function   nextPrime() { alert("NextPrime función"); }
+function alternateFunction() { alert("Alternate función"); } */
 
 function destruirCharts() {
   [chart18,chart17, chart16, chart15, chart14, chart13].forEach((c, i, arr) => {

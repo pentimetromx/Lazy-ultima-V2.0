@@ -5394,11 +5394,6 @@ btnEntrar.addEventListener('click', () => {
   }
 });
 
-document.querySelectorAll('.input-especial').forEach(input => {
-  /* input.addEventListener('focus', manejarEntrar); */
-  console.warn()
-});
-
 function sumarPorcentaje() {
   // Obtener el valor actual del contador (remover el símbolo '%')
   let porcentajeCurrent = parseInt(contadorTinta.textContent.replace('%', ''), 10);

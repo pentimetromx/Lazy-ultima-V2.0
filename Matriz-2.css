@@ -5711,6 +5711,11 @@ top: 44%;
   border-color:#2f81f7;
   box-shadow:0 0 0 .4vh rgba(47,129,247,.2);
 }
+
+#panel-empleado > div:nth-child(6) > input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
 .controller button{
   margin-top:2%;
   width:100%;
