@@ -68,6 +68,7 @@ let buttRepuestV = document.getElementById('conti-boton-repuestos-III')
 const verButtsInterfazIII = document.getElementById('butts_interfaz_3')
 const contenedorPropuesta = document.querySelector('.lista-propuestas');
 const verButtsInterfazII = document.getElementById('butts_interfaz_2')
+const padreNuevaInterfaz = document.querySelector('#padre-rrhh-marco')
 const botonesPerfilColor = document.querySelectorAll('.butt-perfiles')
 let padreImgsDistribuidor = document.getElementById("contene-images")  
 let contImgsEntintador = document.getElementById("images-entintador")

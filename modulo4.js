@@ -2595,13 +2595,11 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
     elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   } 
-  if(!esDesktop){
-    keyboardWrapper.style.left='37vw'
-    keyboardWrapper.style.setProperty('--keyboard-width', '61vw');
-    document.querySelector('#padre-rrhh-marco').style.left='2vw'
-  }
-  document.querySelector('#padre-rrhh-marco').classList.remove('activo')
-  document.querySelector('#rrhh-marco').classList.remove('activo')
+  padreNuevaInterfaz.classList.remove('activo')
+  interfazRecursos.classList.remove('activo')
+  padreNuevaInterfaz.removeAttribute('style');
+  padreNuevaInterfaz.classList.remove('move-new-employee')  
+
   container1.style.display='grid'
   activarPantallaCompleta()
 
@@ -3893,10 +3891,10 @@ hijosTec.forEach((li, index) => {
       mezcladorColor.classList.remove('move-padre-cmyk')
       creadorPerfiles.classList.remove('move-mezclador')
       activarPantallaCompleta()
-       ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
+      ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
     }
     if (index === 1) {
-      mezcladorColor.classList.remove('move-padre-cmyk')
+      mezcladorColorRGB.classList.remove('move-padre-cmyk')
       creadorPerfiles.classList.remove('move-mezclador')
       activarPantallaCompleta()      
       ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form')
@@ -4526,9 +4524,18 @@ document.addEventListener('focusin', e => {
     lastFocusedInput = e.target;
   }
 });
+
+
 function showKeyboard() {
+  keyboardWrapper.removeAttribute('style');
   keyboardWrapper.classList.add('is-visible');
+
+  if(!esDesktop && padreNuevaInterfaz.style.display==='flex'){
+    keyboardWrapper.style.left='37vw'
+    keyboardWrapper.style.setProperty('--keyboard-width', '57vw');
+  } 
 }
+
 function hideKeyboard() {
   keyboardWrapper.classList.remove('is-visible');
 }
@@ -4595,7 +4602,7 @@ function ubicaCalculadoraSegunContexto(){
       calculadora.classList.add('move-calculadora-up-eliminar');
     }, 100);
   } 
-  if(!esDesktop && formularioNuevoIngreso.style.display==='block'){  
+  if(!esDesktop && formularioNuevoIngreso.style.display==='block'){
     document.querySelector("#simulador").style.display='flex'    
     calculadora.classList.remove('move-calculadora-up-ingreso')
     calculadora.style.display='grid'
@@ -6268,6 +6275,11 @@ nameInput.addEventListener('blur', () => {
 
 nameInput.addEventListener('touchstart', () => {
   nameInput.value=''  
+  if(!esDesktop){
+    keyboardWrapper.style.left='37vw'
+    keyboardWrapper.style.setProperty('--keyboard-width', '33vw');
+    document.querySelector('#padre-rrhh-marco').classList.add('move-new-employee')
+  }
   showKeyboard() 
 });
 //*******************************************************************************************************************

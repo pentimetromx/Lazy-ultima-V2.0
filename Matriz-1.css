@@ -5844,6 +5844,10 @@ input.numero:focus {
   transform: translate3d(-208%, -151%, 0);
   transition: transform 0.9s ease;
 }
+#padre-rrhh-marco.move-new-employee {
+  transform: translate3d(-72%, 0, 0);
+  transition: transform 0.9s ease;
+}
 
 #nicho_spans{
   position: relative;
