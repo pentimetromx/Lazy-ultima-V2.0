@@ -525,7 +525,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const i = Number(span.dataset.index);
     indiceActual = i;
 
-    // ✅ Lee de colaboradores directamente
+    // ✅ Limpia el estilo inline de TODOS los spans dentro de la lista
+    document.querySelectorAll('#listaNombres span').forEach(s => {
+      s.removeAttribute('style');
+    });
+
+    // ✅ Aplica amarillo solo al span actual
+    span.style.color = 'white';
+    span.style.background = 'linear-gradient(90deg, rgb(21, 101, 192), rgb(30, 144, 255))';
+
+    // Lee de colaboradores directamente
     const emp = colaboradores[i];
     if (!emp) return;
 
