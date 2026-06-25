@@ -1792,8 +1792,8 @@ width:447px ;
   border: 1px solid rgb(111,111,111);
   border-radius: 13px;
   top: 44%;
-  left: 42%;
-  width: 24.5vw;
+  left: 43.5%;
+  width: 22.5vw;
   height: 24vh;
   transition: transform 0.5s ease;
   z-index: 2;
@@ -1801,6 +1801,7 @@ width:447px ;
   transform: scale(0);
   transform-origin: center;
 }
+
 
 .sup-level > :nth-child(3){
   width: 90%;
@@ -2081,7 +2082,8 @@ width:447px ;
 }
 .submenu-colorimetria li:hover,
 .iridescent-element li:hover {
-  background-color: #33373d;
+  background-color:rgba(0,0,255,0.8);
+  /* background-color: #33373d; */
   color: #fff;
 }
 

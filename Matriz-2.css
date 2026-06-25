@@ -3851,7 +3851,7 @@ top: 44%;
   background-color:rgba(233,255,165,0.15);
 }
 .title {
-  color: rgba(255,255,255,0.85);
+  color:black;
   font-family: Arial, sans-serif;
   font-size: 0.5em;
   font-weight: bold;
@@ -3865,7 +3865,7 @@ top: 44%;
 .sub-title,
 .litle-title{
   position: relative;
-  color: rgba(255,255,255,0.5);
+  color:black;
   font-family: Arial, sans-serif;
   font-size: 0.6em;
   font-weight: bold;
@@ -10555,7 +10555,7 @@ top: 44%;
   #titleContainerI p{
     font-size:20px;
   }
-    .iridescent-element li {
+  .iridescent-element li {
     font-size: '13px'
   }
 
