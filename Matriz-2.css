@@ -1397,9 +1397,6 @@ img[src=""] {
   background-color:#66ff66ef;             
   color: rgb(0,0,22);
 }
-/* #simulador{
-  display: none;
-} */
 #calculadora {
   position: absolute;
   display: grid;
@@ -1504,7 +1501,6 @@ img[src=""] {
   align-items: center;
   background: #444;
   color: rgb(0, 255, 0);
-  /* font-size: 0.9em; */
   font-size: clamp(14px, 1vw, 18px);  
   font-family: 'Digital';
   cursor: pointer;
@@ -1544,7 +1540,6 @@ img[src=""] {
 }
 .eraser{
   cursor: pointer;
-  /* font-size: 0.5em; */
   font-size: clamp(14px, 0.8vw, 18px);
 }
 #display-cantidad{
@@ -3210,7 +3205,6 @@ width: 70%;
 #formulario-perfiles span,
 .formulario span{
   position: relative;
-  /* font-size: 1.1vw; */
   font-size: clamp(15px, 0.8vw, 18px); 
   color: rgb(0,0,77);
 }
@@ -3389,8 +3383,8 @@ width: 70%;
   display: grid;
   gap: 10px;
   grid-template-rows: repeat(3, 1fr);
-  justify-items: center;   /* centra horizontalmente */
-  align-items: center;     /* centra verticalmente */
+  justify-items: center;
+  align-items: center;
   font-size: 1em;
   top: 1%;
   width: 99%;
@@ -4022,15 +4016,6 @@ top: 44%;
   height: 40vh;
   width: 40vw;
 }
-/* #corte-oscilacion,
-#ajuste-corte{
-  position: relative;
-  display: flex;
-  border-radius: 13px;
-  border-radius: 13px;
-  width:100%;
-  height: 100%;
-} */
 #tinta_segmento video,
 #trinquete video,
 #trinquete-multi video,
@@ -4155,113 +4140,6 @@ top: 44%;
   box-shadow: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* #marco-formulario{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  display: none;
-    border-radius: 13px;
-
-  top: 10vh;
-  left: 1vw;
-  width: 22vw;
-  height: 77vh;
-
-  transition: background-color 2s ease, box-shadow 2s ease;
-}
-.formulario-crear-cuenta {
-  position: relative;
-  display: grid;
-  display: none;
-  grid-template-rows: repeat(21, 1fr);
-  top: 10vh;
-  left: 1vw;
-  width: 22vw;
-  height: 80vh;
-  padding: 5px;
-
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: #071520;
-  border-radius: 13px;
-  color: white;
-}
-.formulario-crear-cuenta .etq-frm{
-  position: relative;
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content:center; 
-  font-size: 0.9vw;
-  cursor: pointer;
-  border-radius: 2px;
-  background-color: #1f3546;
-  transition: background-color 1s ease, box-shadow 1s ease;
-}
-.formulario-crear-cuenta .etq-frm:hover{
-  background-color: #00cc88;
-  color: #001;
-  transition: background-color 0.3s ease;
-}
-.element-chart{
-  position: relative;
-  display: grid;
-  grid-template-rows: 50% 50%;
-  width: 100%;
-}
-.formulario-crear-cuenta h2{
-  position:relative;
-  width: 100%;
-  
-  left:5%;
-  text-align:left;
-  overflow: hidden;
-  color: rgba(0,255,0,1);
-  font-family: 'Courier New', Courier, monospace; 
-  font-size: 1.7vw      
-}
-.formulario-crear-cuenta button:hover{
-  color: rgba(0,255,0,1);
-  background-color:#1f1f1f;
-  transition: background-color 0.3s ease;
-  border: 1px solid rgb(155,155,155);
-}
-#formulario-crear-cuenta .etq-frm.activo {
-  background-color: rgb(255, 0, 0);
-  box-shadow: 0 0 30px rgba(255, 0, 0, 1), 0 0 60px rgba(255, 0, 0, 0.7);
-} */
-
-
-/* #formulario-cuenta.nav-industrial {
-  position: relative;
-  display: none; 
-  flex-direction: row;
-  top: 10vh;
-  left: 11vw;
-  width: 22vw;
-  height: 80vh;
-  border-radius: 13px;
-  overflow: hidden;
-  background-color: #071520;
-} */
 #formulario-cuenta.nav-industrial {
   position: relative;
   display: flex;
@@ -4280,22 +4158,22 @@ top: 44%;
 .nav-left {
   display: flex;
   flex-direction: row;
-  width: 100%;              /* ocupa todo el ancho del nav */
-  height: 100%;             /* ← altura fija, no depende del contenido */
+  width: 100%; 
+  height: 100%; 
   flex-shrink: 0;
-  overflow: hidden;         /* ← contiene los hijos sin desbordarse */
+  overflow: hidden;
 }
 .nav-tabs-strip {
   display: flex;
   flex-direction: column;
   width: 56px;
-  height: 100%;             /* ← siempre ocupa el 100% del nav-left */
+  height: 100%; 
   background: #02080f;
   border-right: 1px solid #0d2033;
   padding: 8px 0;
   gap: 4px;
   flex-shrink: 0;
-  overflow: hidden;         /* ← los tabs no se salen */
+  overflow: hidden; 
 }
 
 .nav-tab-btn {
@@ -4349,11 +4227,10 @@ top: 44%;
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 100%;             /* ← anclado a la altura del padre */
+  height: 100%; 
   overflow: hidden;
   min-width: 0;
 }
-
 
 .nav-secondary-header {
   padding: 12px 10px 8px;
@@ -4370,15 +4247,13 @@ top: 44%;
 }
 .nav-secondary-items {
   flex: 1;
-  overflow-y: auto;         /* ← scroll interno, nunca empuja hacia abajo */
+  overflow-y: auto; 
   padding: 6px;
   display: flex;
   flex-direction: column;
   gap: 3px;
-  min-height: 0;            /* ← clave en flexbox: permite que el scroll funcione */
+  min-height: 0;
 }
-
-
 .nav-secondary-items::-webkit-scrollbar { width: 3px; }
 .nav-secondary-items::-webkit-scrollbar-track { background: transparent; }
 .nav-secondary-items::-webkit-scrollbar-thumb {
@@ -4469,7 +4344,7 @@ top: 44%;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   height: 100%;
-  min-height: 0;        /* ← clave para respetar el grid padre */
+  min-height: 0;
   overflow: hidden;
   border-radius: 14px;
   gap: 1%;
@@ -4477,8 +4352,8 @@ top: 44%;
 #imagenes-sheeter > .imagen-sheeter img {
   width: 100%;
   height: 100%;
-  min-height: 0;        /* ← clave para respetar el grid padre */
-  object-fit: cover;    /* ← mantiene proporción sin deformar */
+  min-height: 0;
+  object-fit: cover;
   display: block;
   cursor: pointer;
 }
@@ -5275,39 +5150,19 @@ top: 44%;
 .navegacion button:active {
     transform: scale(0.96);
 }
-/* .panel-nombres {
-  position: relative;
-  display: flex;
-  top: 14%;
-  flex-direction: column;
-  border-left: 2px solid #1e90ff;
-  gap: 8px;
-  width: 40%;
-  padding: 10px;  
-  background: rgba(10, 15, 25, 0.9);
-  max-height: 70%;
-  overflow-y: auto;
-  padding-right: 10px;
-
-  -webkit-overflow-scrolling: touch; 
-  touch-action: pan-y;
-  overscroll-behavior: contain; 
-} */
 .panel-nombres {
   flex: 1;
   display: flex;
   flex-direction: column;
   border-left: 2px solid #1e90ff;
   background-color: rgb(0, 0, 50);
-  overflow-y: scroll;            /* permite scroll */
-  scrollbar-width: none;         /* oculta barra - Firefox */
-  -ms-overflow-style: none;      /* oculta barra - IE/Edge */
+  overflow-y: scroll; 
+  scrollbar-width: none;  
+  -ms-overflow-style: none;  
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
   overscroll-behavior: contain;
 }
-
-/* Oculta barra - Chrome/Safari */
 .panel-nombres::-webkit-scrollbar {
   display: none;
 }
@@ -5393,11 +5248,11 @@ top: 44%;
 }
 #ingreso-color{
   position: relative;
-  padding-left: 23px; /* espacio para la flecha */
+  padding-left: 23px;
 }
 #ingreso-padre {
   position: relative;
-  padding-right: 20px; /* espacio para la flecha */
+  padding-right: 20px;
 }
 .auxiliar-registro li,
 #links-color li,
@@ -5504,8 +5359,8 @@ top: 44%;
   transform: scale(0);
   transform-origin: center; 
   transition: transform 1s ease;
-  overflow: hidden;                /* recorta el blur en los bordes */
-  background: rgba(10, 12, 20, 0.30); /* color base semitransparente */
+  overflow: hidden; 
+  background: rgba(10, 12, 20, 0.30);
   border: 1px solid rgba(255,255,255,0.06);
   box-shadow: 0 8px 30px rgba(0,0,0,0.55);
   z-index: 500;
@@ -5518,10 +5373,9 @@ top: 44%;
 :root {
   --keyboard-width: 70vw;
   --keyboard-height: 50vh;
-
-  --key-bg: #f7f7f7;       /* blanco mate */
+  --key-bg: #f7f7f7; 
   --key-shadow: rgba(0, 0, 0, 0.3);
-  --key-text: #6f6f6f;     /* gris suave con contraste */
+  --key-text: #6f6f6f;
 }
 #keyboard-wrapper {
   position: fixed;
@@ -5602,15 +5456,12 @@ top: 44%;
 #close-keyboard-btn {
   margin-top: 1.2vh;
   padding: 0.9vh 2.4vh;
-
-  background: #2f5d9f;        /* azul profesional */
+  background: #2f5d9f; 
   color: #ffffff;
-
   border: none;
   border-radius: 0.6vh;
   font-size: clamp(0.9rem, 1.8vh, 1.2rem);
   font-family: system-ui, sans-serif;
-
   cursor: pointer;
   box-shadow: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.2);
   transition: background 0.15s ease, transform 0.08s ease;
@@ -5736,10 +5587,6 @@ top: 44%;
 .butt-mautonomo-desbobina:hover::before {
   background-color: rgb(255,255,255);
 }
-/* button:hover{
-  background-color: rgb(184, 90, 0);
-  color: rgb(255, 248, 220);
-} */
 #salir{
   background:rgb(255,0,124); 
 }
@@ -5782,7 +5629,6 @@ top: 44%;
   width: 100vw;
   height: 100vh;
   z-index: 1001;
-  /* background-color: rgb(30,30,30); */
   display: none;
 }
 #overlay-kaizen {
@@ -5816,7 +5662,6 @@ top: 44%;
 .overlayRRHH {
   position: absolute;
   display: block !important;
-  /* background-color: orange; */
   top: 2vh;
   left: 1vw;
   width: 98vw;
@@ -5950,7 +5795,6 @@ top: 44%;
     margin-bottom: 16px;
     width: 36%;
 }
-/* panel confirmacion */
 .confirmacion-header {
   display: flex;
   align-items: center;
@@ -5990,7 +5834,6 @@ top: 44%;
   color: #5a6478;
   margin: 0 0 22px;
 }
-/* panel exito */
 #panel-exito {
   text-align: center;
   padding: 36px 28px;
@@ -6036,7 +5879,6 @@ top: 44%;
   transition: background 0.3s ease;
   color: whitesmoke;
 }
-/* PANEL MONITOR ***********/
 #panel-admon{
   position: absolute;
   left: 33vw;
@@ -6075,7 +5917,7 @@ top: 44%;
   box-sizing: border-box;
 }
 .pantalla {
-  flex: 1;  /* ocupa el espacio restante tras la etiqueta */
+  flex: 1;
   background: #1a1d22;
   border-radius: 11px;
   border: 0.5px solid #3e4451;
@@ -6900,16 +6742,6 @@ top: 44%;
     border-radius: 20px;
     z-index: 33;
   }
-  /* #child-move{
-    width: 60px;
-    height: 60px;
-    background-color: rgb(255, 165, 0);
-    box-shadow: 0 0 30px rgba(255, 165, 0, 1), 0 0 60px rgba(255, 165,0, 0.7);
-    position: absolute;
-    border-radius:50%;
-    top: 0;
-    left: 0;
-  } */
   #child-div {
     width: 60px;
     height: 60px;
@@ -7255,17 +7087,6 @@ top: 44%;
     height: 100px;
     width: 150px;
   }
-/*   #grilla-durezas{
-    position: absolute;
-    display: flex;
-  } */
-  /* .dureza{
-    margin-top:47%;
-    margin-left: -34%;
-    width:90%;
-    height:40%;
-    z-index:33;
-  } */
   .img-rodillo{
     margin-right: 10px;
     border-radius: 7px;
@@ -8692,16 +8513,6 @@ top: 44%;
     cursor: pointer;
     font-size: 3.2vw;
   }
-  /* #abuelo-plana,
-  #abuelo-variable{
-    position: relative;
-    display:flex;
-    left: 11vw;
-    top: 21vh;
-    width: 77vw;
-    height: 47vh;
-    display: none;
-  } */
   #padre-plana,
   #padre-variable{
     position: absolute;

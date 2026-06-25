@@ -4767,21 +4767,6 @@ contextMenu.addEventListener('touchmove', (e) => {
 // En moviles
 let shouldShowMenu = true;
 
-
-
-
-
-
-/* targetDiv.addEventListener('touchstart', function(event) {
-  shouldShowMenu = true;
-  setTimeout(() => {
-    if (shouldShowMenu) {
-      event.preventDefault();
-      const touch = event.touches[0];      
-    }
-  }, 0);
-}); */
-
 document.addEventListener('touchstart', (event) => {
   const tocado = event.target;  
   if (!contextMenu.contains(event.target) && !targetDiv.contains(event.target)) {
@@ -4837,150 +4822,6 @@ function muestraMenu(){
 }  
 
 let intervalEnEjecucion = false;
-
-/* // CLICK EN LAS GRAFFICAS
-function openGraphics(elementId){
-  const elementos = document.querySelectorAll('.graphs-lines');
-  const botonesFlotantes = document.querySelector('#conte-butts-graphs')
-  const imagenSola = document.querySelector('#porta-imagen')
-
-  if(turnBlock === false){
-    turnBlock = true
-  }
-  desactivarClick(['.graphs-lines'])
-
-  if(screenWidth > 500){
-    let elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','iconos']
-    for (let i = 0; i < allContenedores.length; i++) { 
-      let elemento = document.getElementById(allContenedores[i])
-      if (elemento) {
-        elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-      }   
-    }
-
-    botonesFlotantes.style.display='grid'
-    container1.style.display='grid'
-    marcoGraficas.style.display='grid'
-    imagenSola.style.display='grid'
-    imagenSola.style.zIndex = 75
-    restaurarPosicion(["conte-butts-graphs"]);    
-
-    desactivarClicsPorUnTiempo(1500)
-
-    Array.from(marcoGraficas.querySelectorAll('*')).forEach(hijo => {
-      hijo.style.display = 'block';
-      hijo.style.visibility = 'visible';
-      hijo.style.opacity = '1';
-    });
-
-    if (elementId === 'canvasContainer4') {
-      elementos.forEach(el => {
-        const canvas = el.querySelector('canvas');
-        if (el.id === elementId) {
-          el.classList.add('move-canvas-1');
-          el.style.visibility = 'visible';
-          if (canvas) canvas.style.visibility = 'visible';
-        } else {
-          setTimeout(() => {
-            el.style.visibility = 'hidden';
-            if (canvas) canvas.style.visibility = 'hidden'; 
-          }, 750);
-        }
-      });
-    }
-    
-    if(elementId === 'canvasContainer5'){
-      elementos.forEach(el => {
-        const canvas = el.querySelector('canvas');
-        if (el.id === elementId) {
-          el.classList.add('move-canvas-2');
-          el.style.visibility = 'visible';
-          if (canvas) canvas.style.visibility = 'visible';
-        } else {
-          setTimeout(() => {
-            el.style.visibility = 'hidden';
-            if (canvas) canvas.style.visibility = 'hidden'; 
-          }, 1000);
-        }
-      });
-
-    }  
-    if(elementId === 'canvasContainer6'){
-      elementos.forEach(el => {
-        const canvas = el.querySelector('canvas');
-        if (el.id === elementId) {
-          el.classList.add('move-canvas-3');
-          el.style.visibility = 'visible';
-          if (canvas) canvas.style.visibility = 'visible';
-        } else {
-          setTimeout(() => {
-            el.style.visibility = 'hidden';
-            if (canvas) canvas.style.visibility = 'hidden'; 
-          }, 1250);
-        }
-      });
-    }
-    if(elementId === 'canvasContainer7'){
-      elementos.forEach(el => {
-        const canvas = el.querySelector('canvas');
-        if (el.id === elementId) {
-          el.classList.add('move-canvas-4');
-          el.style.visibility = 'visible';
-          if (canvas) canvas.style.visibility = 'visible';
-        } else {
-          setTimeout(() => {
-            el.style.visibility = 'hidden';
-            if (canvas) canvas.style.visibility = 'hidden'; 
-          }, 850);
-        }
-      });
-    }    
-    if(elementId === 'canvasContainer8'){
-      elementos.forEach(el => {
-        const canvas = el.querySelector('canvas');
-        if (el.id === elementId) {
-          el.classList.add('move-canvas-5');
-          el.style.visibility = 'visible';
-          if (canvas) canvas.style.visibility = 'visible';
-        } else {
-          setTimeout(() => {
-            el.style.visibility = 'hidden';
-            if (canvas) canvas.style.visibility = 'hidden'; 
-          }, 1150);
-        }
-      });
-
-    }    
-    if(elementId === 'canvasContainer9'){
-      elementos.forEach(el => {
-        const canvas = el.querySelector('canvas');
-        if (el.id === elementId) {
-          el.classList.add('move-canvas-6');
-          el.style.visibility = 'visible';
-          if (canvas) canvas.style.visibility = 'visible';
-        } else {
-          setTimeout(() => {
-            el.style.visibility = 'hidden';
-            if (canvas) canvas.style.visibility = 'hidden'; 
-          }, 1450);
-        }
-      });
-
-      setTimeout(() => {
-        mostrarSecuencialmente()
-      }, 1400);
-
-    }    
-    
-    setTimeout(() => {   
-      if(turnGraphic === false){
-        turnGraphic = true
-        moverElementos(["conte-butts-graphs"], 27, -7);
-      }
-    }, 500);
-  }
-} */
-
 
 const MOVE_ELEMENT = [
   
@@ -5286,8 +5127,6 @@ function cargarDatos() {
   marcoGraficas.style.display='grid'
   document.querySelector('#canvasContainer4').style.display='flex'
 }
-/* function   nextPrime() { alert("NextPrime función"); }
-function alternateFunction() { alert("Alternate función"); } */
 
 function destruirCharts() {
   [chart18,chart17, chart16, chart15, chart14, chart13].forEach((c, i, arr) => {

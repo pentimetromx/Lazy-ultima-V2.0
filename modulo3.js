@@ -2,28 +2,15 @@ document.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.shiftKey) { 
     switch (event.key) {  
       case 'Ñ':
-
-      /* vaciarPorClaveLocalStore('empleadosRegistrados', 'object'); */
       setTimeout(() => {
         mostrarPorClaveLocalStore('empleadosRegistrados')        
       }, 200);
 
       break
       case 'Z':
-        /* document.querySelector("#contLineas").style.display='none'
-        setTimeout(() => {
-          document.querySelector("#contLineas").style.display='grid'
-          document.querySelectorAll('.graphs-lines').forEach(el => {
-            el.style.visibility = 'hidden';
-          });
-        }, 1000);
-        setTimeout(() => {
-          aparecerElemento('canvasContainer4', 'flex')            
-        }, 1500); */ 
         Geometria()
       break;  
       case 'H':
-        /* Geometria() */
         console.log('OBJETO GLOBAL', objetoGlobal)
         restablecerClick(['.entrada-empleado']);
         hideKeyboard()
@@ -91,7 +78,6 @@ function animarWidth(selector, duracion = 1000) {
   let heightInicial = 1;        // Valor de inicio en %
   const heightFinal = 93;      // Valor final en %
   const incremento = (heightFinal - heightInicial) / (duracion / 16.7); 
-  // ~60 fps → 16.7 ms por frame
 
   function animar() {
     heightInicial += incremento;
@@ -325,19 +311,6 @@ setInterval(updateDigitalClock, 1000);
 updateDigitalClock(); // Llamar inmediatamente para mostrar la hora al cargar
 const contenedorPadre = document.getElementById('clock');
 const tableta = document.getElementById('water-background');
-
-/* let isDragging = false;
-let isDraggingI = false;
-let offsetX, offsetY; 
-
-
-contenedorPadre.addEventListener('mousedown', (e) => {
-  e.preventDefault(); // Prevenir comportamiento predeterminado de arrastre
-  isDragging = true; // El elemento empieza a ser arrastrado
-  offsetX = e.clientX - contenedorPadre.offsetLeft; // Distancia del clic desde el borde izquierdo del contenedor
-  offsetY = e.clientY - contenedorPadre.offsetTop; // Distancia del clic desde el borde superior del contenedor
-  contenedorPadre.style.cursor = 'grabbing'; // Cambia el cursor a "grabbing" durante el arrastre
-}) */;
 
 let enArrastre = false;
 let offsetXX, offsetYY;
@@ -2021,11 +1994,6 @@ function resetearBalanceTinta(lineasSelector, footerSelector, gama) {
     displayGral.textContent = '';
     displayGral.style.top = '';
   }
-
-  // 4. Resetear array
-  /* if (almacenObjetos[objetoGlobal]?.[gama]) {
-    almacenObjetos[objetoGlobal][gama].nivelTinta = [];
-  } */
 }
 function resetearBalanceSolucion(lineasSelector, footerSelector, gama) {
   // 1. Detener intervalo
@@ -2046,11 +2014,6 @@ function resetearBalanceSolucion(lineasSelector, footerSelector, gama) {
     displayGeneral.textContent = '';
     displayGeneral.style.top = '';
   }
-
-  // 4. Resetear array
-  /* if (almacenObjetos[objetoGlobal]?.[gama]) {
-    almacenObjetos[objetoGlobal][gama].nivelAgua = [];
-  } */
 }
 
 // 🔸 Se agrupa la lógica de inicio en una función reutilizable
@@ -4235,7 +4198,6 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   inputNombre = capitalizarTexto(inputNombre);
   if (almacenObjetos[inputNombre]) {
     saltarAlerta('Ya existe un perfil con este nombre', 'perfilExiste');
-    /* mostrarVentanaEmergente('Ya existe un perfil con este nombre'); */
     return;
   }
   // Crear una nueva instancia de la clase objetoColores
@@ -4258,8 +4220,6 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   console.log(`Perfil "${inputNombre}" creado y almacenado.`);
   console.log("Objeto almacenado en la variable global:", objetoGlobal);
   console.log(almacenObjetos);
-  // Mostrar mensaje de éxito
-  /* mostrarVentanaEmergente('Perfil creado y almacenado'); */
   saltarAlerta('Perfil creado y almacenado','perfilAgregado')
   // Limpiar el input
   inputPerfil.value = '';
@@ -4278,7 +4238,6 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   } else {
     console.log("No se encontraron objetos almacenados en el localStorage.");
   }
-  /* restablecerClick(['.butt-perfiles', '.jobs']) */
 });
 
 // Función para capitalizar la primera letra de cada palabra
@@ -4896,9 +4855,7 @@ btnSalir.addEventListener('click', ()=>{
   const numeros = document.querySelectorAll('.number'); // Selecciona todos los elementos con la clase .number  
   const algunoConContenido = Array.from(numeros).some(numero => numero.textContent.trim() !== '');
   if (algunoConContenido) {
-    /* mostrarVentanaMensaje('Click en ENTRAR para ingesar la informacion') */
     saltarAlerta('Click en ENTRAR para ingesar la informacion','salirCalcula')
-    /* alternarColor('entrar-cantidad') */
     parpadearElemento('entrar-cantidad', 150, 2500);
   }else{
     calculadora.classList.add('move-calculadora')
@@ -5436,17 +5393,6 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
   let displayTintaGral = document.querySelector(`#gral-display-${color}`)
   let displaySolucionGral = document.querySelector(`#display-general-${color}`)
 
-
-  /* console.log('OBJETO GLOBAL', objetoGlobal)
-  console.group('Nueva Empresa');
-  const obj = almacenObjetos['Nueva Empresa'];
-  Object.entries(obj).forEach(([propiedad, valor]) => {
-    console.group(propiedad);
-    console.log(valor);
-    console.groupEnd();
-  });
-  console.groupEnd(); */
-
   console.log('objetoGlobal:', objetoGlobal);
   console.log('almacenObjetos:', almacenObjetos);
   console.log('existe clave:', almacenObjetos[objetoGlobal]);
@@ -5622,19 +5568,6 @@ function desactivarClickTemporalmente(classElements, duracion) {
     }, duracion);
   });
 }
-/* function restablecerClick(classElements) { 
-  if (!Array.isArray(classElements)) {
-    console.error('El parámetro debe ser un array de selectores.');
-    return;
-  }
-  classElements.forEach(selector => {
-    const botones = document.querySelectorAll(selector);
-    botones.forEach(boton => {
-      boton.style.pointerEvents = 'auto'; // Reactiva eventos de clic
-      boton.style.opacity = '1'; // Restaura la apariencia
-    });
-  });
-} */  
 function bloquearClick(event) {
   if (event.currentTarget.dataset.clickDisabled === 'true') {
     event.stopPropagation();
@@ -5757,7 +5690,6 @@ function mostrarNombresDeObjetos() {
     nuevoDiv.className = 'cliente-item';
     nuevoDiv.textContent = nombreCapitalizado;  
     nuevoDiv.style.fontSize = '0.7em';
-
   function manejarSeleccionItem() {
     restablecerClick(['.estilo-1']);
     const panelUno = document.getElementById('panel-uno');
@@ -5799,14 +5731,7 @@ function mostrarNombresDeObjetos() {
     }
     parpadearBoton(btn);
   }
-
   nuevoDiv.addEventListener('click', manejarSeleccionItem);
-
-  /* nuevoDiv.addEventListener('touchend', (e) => {
-    e.preventDefault();
-    manejarSeleccionItem();
-  }); */
-
 
     nuevoDiv.addEventListener('contextmenu', (event) => {
       event.preventDefault();
@@ -6901,13 +6826,7 @@ function alternarTeccnologia(tecnologia) {
           mezcladorColorRGB.style.display='grid'
           mezcladorColorRGB.classList.add('move-padre-cmyk')
           mostrarElementoProgressivo(mezcladorColorRGB);
-        }
-
-        /* ocultarElementoProgressivo(mezcladorColor)
-        ocultarElementoProgressivo(panelControlCMYK)
-        mostrarElementoProgressivo(mezcladorColorRGB);
-        mostrarElementoProgressivo(panelControlRGB); */
-      
+        }      
       }
     break;
     case 'cmyk':
@@ -6921,11 +6840,6 @@ function alternarTeccnologia(tecnologia) {
           mezcladorColor.classList.add('move-padre-cmyk')
           mostrarElementoProgressivo(mezcladorColor);
         }        
-
-        /* ocultarElementoProgressivo(mezcladorColorRGB)
-        ocultarElementoProgressivo(panelControlRGB)
-        mostrarElementoProgressivo(mezcladorColor);
-        mostrarElementoProgressivo(panelControlCMYK); */
       }
     break;
   }
@@ -7025,10 +6939,6 @@ function mostrarElementoProgressivo(el) {
 
 // MUESTRA LOS PADRES
 function secuenciaAparicion(canal) {
- /* const controlColor = document.querySelector('#perfiles-color');
-  if (!controlColor || getComputedStyle(controlColor).display !== "none") {
-    return; 
-  } */
   cortina.classList.add('overlayRRHH')
 
   const perfilesRgb = document.querySelector('#perfiles-color')
@@ -7147,7 +7057,6 @@ function crearPerfilColor() { // crear nuevo desde botón blanc
 
   if (!inputNombre) {
     parpadearElemento('nombre-Perfil');
-    /* mostrarVentanaEmergente('Por favor, ingrese un nombre válido'); */
     saltarAlerta('Por favor, ingrese un nombre válido','vacioRgb')
     return;
   }
@@ -7328,11 +7237,9 @@ function alternarOcultarBotones() {
 document.querySelectorAll('.alterna-panel').forEach(btn => {
   btn.addEventListener('click', () => {
     if(btn.id === 'exit-cmyk'){
-      /* ocultarElementoProgressivo(panelControlCMYK) */
       desaparecerElemento(panelControlCMYK.id)
     }
     if(btn.id === 'exit-rgb'){
-      /* ocultarElementoProgressivo(panelControlRGB) */
       desaparecerElemento(panelControlRGB.id)
 
     }
@@ -7437,13 +7344,6 @@ function pintarColor() {
       renderizaMezclaRGB();      
     }, 500);
   }
-
-  /* if (tecnologyCMYK) {
-    renderizaMezclaCMYK();
-  }
-  if (tecnologyRGB) {
-    renderizaMezclaRGB();
-  } */
 }
 // Función para observar cambios en el DOM
 function observarCambioDisplay() {

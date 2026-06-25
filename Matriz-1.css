@@ -73,7 +73,6 @@ body,html {
   z-index: 0;
 }
 h1, h2, h3 {
-  /* font-family: "GothamRounded"; */
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 #toggleVideoButton{
@@ -148,9 +147,9 @@ color: white;
   z-index: 777;
   border-radius: 7px;
 
-  background-color: rgba(245, 247, 248, 0.65); /* Blanco suave con transparencia */
+  background-color: rgba(245, 247, 248, 0.65);
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(6px); /* Safari */
+  -webkit-backdrop-filter: blur(6px);
 }
 #vinculos-ma{
   position: absolute;
@@ -178,7 +177,7 @@ color: white;
 
   padding: 5%;
   transition: background-color 0.5s ease, color 0.8s ease;
-  border-radius: 0; /* Asegura que todos estén sin bordes */
+  border-radius: 0;
 }
 .estilo-ma li:hover {
   background:#3F444A;
@@ -378,11 +377,11 @@ color: white;
   padding: 10px;
   box-sizing: border-box;
 
-  transition: transform 0.5s ease; /* 501 ms */
+  transition: transform 0.5s ease;
   z-index: 2;
-  display: none; /* inicialmente oculto */
-  transform: scale(0); /* inicia reducido */
-  transform-origin: center; /* crece desde el centro */   
+  display: none;
+  transform: scale(0);
+  transform-origin: center; 
 }
 #barras-inicio.activo,
 #barras-contenedor.activo,
@@ -519,7 +518,6 @@ color: white;
   color: white;
   cursor: pointer;
   border-radius: 7px;
-  /* background-color: rgba(255, 24, 55, 0.4); */
   background-color:rgb(255, 24, 54);
   backdrop-filter: blur(5px);
 }
@@ -543,11 +541,11 @@ color: white;
   width: 98%;
   height: 80%;
 
-  transition: transform 0.5s ease; /* 501 ms */
+  transition: transform 0.5s ease;
   z-index: 2;
-  display: none; /* inicialmente oculto */
-  transform: scale(0); /* inicia reducido */
-  transform-origin: center; /* crece desde el centro */   
+  display: none;
+  transform: scale(0);
+  transform-origin: center;
 }
 
 #desbobinadorId,
@@ -703,28 +701,6 @@ color: white;
   background-color: white;
   content: "";
 }
-/* .linea-vertical-II{
-  position: absolute;
-  left: 340px;
-  top: -127px;
-  bottom: 0;
-  width: 2px;
-  height: 477px;
-  background-color: rgb(0,255,0);
-  content: "";
-  display: none;
-} */
-/* #vertical-lineI{
-  position: absolute;
-  left: -30px;
-  top: -126px;
-  bottom: 0;
-  width: 2px;
-  height: 477px;
-  background-color: rgb(0,255,0);
-  content: "";
-  display: none;
-} */
 .linea-vertical-VII{
   position: absolute;
   left: 340px;
@@ -848,11 +824,6 @@ color: white;
   width: 100%;
   height: 100%;
 }
-/* .grilla-entintado-imgs-row{
-  grid-column: 1 / -1;
-  grid-row: 1 / -1;
-} */
-
 .expand-activo{
   grid-column: 1 / -1;
   grid-row: 1 / -1;
@@ -1237,16 +1208,14 @@ width:447px ;
 #MiGrafica12,
 #MiGrafica11,
 #MiGrafica10 {
-  display: block;       /* evita comportamiento flex extraño */
-  width: 100%;          /* ocupa todo el contenedor */
+  display: block; 
+  width: 100%; 
   height: 100%;         
-  margin: 0;            /* elimina el margen que lo desplazaba */
+  margin: 0; 
   cursor: pointer;
-  transition: none;     /* elimina la deformación */
+  transition: none;
   box-sizing: border-box;
 }
-
-
 #MiGrafica15:hover,
 #MiGrafica14:hover,
 #MiGrafica13:hover,
@@ -1674,16 +1643,6 @@ width:447px ;
   cursor: pointer;
   z-index: 1;
 }
-/* .Bot-inicio-fondo{
-  background-color: rgb(0,255,0);
-  border-radius: 7px;
-  width: 6.2vw;
-  height: 7vh;
-  clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%); 
-  transform: skewX(-30deg);
-  cursor: pointer;
-  z-index: 0;
-} */
 #butt-011,
 #butt-010,
 #butt-001,
@@ -1818,11 +1777,11 @@ width:447px ;
   height: 87%;
   width: 99%;
 
-  transition: transform 0.5s ease; /* 501 ms */
+  transition: transform 0.5s ease;
   z-index: 2;
-  display: none; /* inicialmente oculto */
-  transform: scale(0); /* inicia reducido */
-  transform-origin: center; /* crece desde el centro */   
+  display: none;
+  transform: scale(0); 
+  transform-origin: center;
 }
 .sup-level {
   display: grid;
@@ -1979,7 +1938,7 @@ width:447px ;
   transform: scale(0);
   transform-origin: center; 
   transition: transform 1s ease;
-  overflow: hidden;                /* recorta el blur en los bordes */
+  overflow: hidden; 
   border: 1px solid rgba(111,111,111,0.5);
   box-shadow: 0 8px 30px rgba(0,0,0,0.55);
   z-index: 500;
@@ -2110,9 +2069,7 @@ width:447px ;
 .iridescent-element li {
   display: flex;
   align-items: center; 
-
   padding: 10px;
-  /* font-size:'2vw'; */ 
   color: rgb(55,55,55);
   cursor: pointer;
   background-color: #e0e0e0;
@@ -2124,7 +2081,7 @@ width:447px ;
 }
 .submenu-colorimetria li:hover,
 .iridescent-element li:hover {
-  background-color: rgba(6, 31, 223,0.9);
+  background-color: #33373d;
   color: #fff;
 }
 
@@ -2178,13 +2135,13 @@ width:447px ;
 .linksTraining li:hover,
 .linksTraining li:hover a {
   color: #28a745 !important;
-  font-weight: bold;      /* pone el texto en negrita */
+  font-weight: bold;
   text-decoration: underline;
 }
 .linksTraining a:hover {
   color: orange !important;
-  font-weight: bold;      /* pone el texto en negrita */
-  text-decoration: underline; /* opcional, subrayado */
+  font-weight: bold; 
+  text-decoration: underline;
 }
 
 .imgs-entrenos{
@@ -2224,7 +2181,7 @@ header {
 }
 .arow-direction::after{
   position: absolute;
-  top:42%; /* Lo llevas al centro */
+  top:42%;
   transform: translateY(-50%);
   content: "\25B6";
   font-size: 1em;
@@ -2520,7 +2477,6 @@ header {
   flex-direction: column;
   border: 1px solid rgba(180, 180, 180, 0.5);
   border-radius: 20px;
-  /* display: none; */
   overflow: auto;
   background-color: #000;
 }
@@ -2555,9 +2511,9 @@ header {
   background-color: #000;
   display: none;
 
-  transform: scale(0);          /* empieza reducido */
-  transform-origin: center;     /* crece desde el centro */
-  transition: transform 1s ease; /* animación de 1000ms */
+  transform: scale(0);          
+  transform-origin: center;     
+  transition: transform 1s ease; 
 }
 
 #padre-instrucciones {
@@ -2591,9 +2547,9 @@ header {
   border-radius: 21px; 
   background-color:black;
   display: none; 
-  transform: scale(0);          /* empieza reducido */
-  transform-origin: center;     /* crece desde el centro */
-  transition: transform 1s ease; /* animación de 1000ms */
+  transform: scale(0);          
+  transform-origin: center;     
+  transition: transform 1s ease; 
 
   outline: 2px solid #C0C0C0;
   outline-offset: 3px;  
@@ -2636,16 +2592,6 @@ header {
   font-size: 1.1vw;
   color: #ffffffb3;
 }
-
-/* .img-1{
-  position: relative;
-  display: block;
-  height: 90%;
-  width: 90%;
-  border: 1px solid rgba(180, 180, 180, 0.5);
-  border-radius: 7px;
-  object-fit: fill;
-} */
 #pneumatico{  
   position: relative;
   display: flex;
@@ -2716,11 +2662,11 @@ h6{
   z-index: 100;
 }
 #troubleshooting{
-  transition: transform 0.5s ease; /* 501 ms */
+  transition: transform 0.5s ease; 
   z-index: 2;
-  display: none; /* inicialmente oculto */
-  transform: scale(0); /* inicia reducido */
-  transform-origin: center; /* crece desde el centro */   
+  display: none; 
+  transform: scale(0); 
+  transform-origin: center;    
 } 
 #troubleshooting .miBoton{
   font-size:0.8vw;
@@ -2742,7 +2688,6 @@ h6{
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color:#28a745; */ 
   background-color:rgb(25, 144, 255);
 
   width: 100%;
@@ -2933,7 +2878,6 @@ h6{
   height:57vh;
   width:37vw;
 }
-/* PADRE ULTIMO*/
 .item-naranja {
   display: flex;
   width: 100%;
@@ -2942,7 +2886,6 @@ h6{
   align-items: center;
   gap: 5px;
 }
-/* PADRE ULTIMO */
 .item-naranja .second-lbl {
   width: 25%;
   height: 100%;
@@ -2954,10 +2897,8 @@ h6{
   color: whitesmoke;
   text-align: right;
 }
-
-
 .item-naranja .span-extension {
-  width: 48%;    /* el tamaño que desees */
+  width: 48%;
   height: 100%;
   border-radius: 3px;
   display: flex;
@@ -3001,18 +2942,6 @@ h6{
   justify-content: center; 
   cursor: pointer;
 }
-/* .item-orange .first-lbl{
-  position: absolute;
-  left: 107%;
-  top: 50%;
-  width: 3vw;
-  font-family: "GothamRounded", sans-serif;
-  font-size: 0.9vw;
-  color: whitesmoke;
-  transform: translateY(-50%);
-} */
-
-/* PRIMER SPAN */
 
 .item-orange .second-lbl{ 
   position: absolute;
@@ -3079,8 +3008,6 @@ h6{
 
 .butt-mautonomo-planos:hover,
 .butt-mautonomo-kaizen:hover{
-  /* transform: scale(1.2);
-  background-color: #0056b3; */
   background-color: rgba(150,150,150,0.9);
   box-shadow: inset 4px 4px 6px rgba(0,0,0,0.5), inset -3px -3px 6px rgba(255,255,255,0.7) , 0 0 4px rgba(0,0,0,0.4);
   border: 1px solid rgba(80,80,80,0.8);
@@ -3131,17 +3058,6 @@ h6{
   top: -88%;
   display: none;
 }
-/* #vertcal-line-II{
-  position: absolute;
-  left: -237px;
-  top: 17px;
-  bottom: 0;
-  width: 2px;
-  height: 497px;
-  background-color: rgb(0,255,0);
-  content: "";
-  display: none;
-} */ 
 #indicaciones-III{
   display: flex;
   flex-direction: column;
@@ -3191,17 +3107,6 @@ h6{
 #indicaciones-VI label{
   margin-bottom: 117px;
 }
-/* #vertcal-line-I{
-  position: absolute;
-  left: 240px;
-  top: 17px;
-  bottom: 0;
-  width: 2px;
-  height: 497px;
-  background-color: rgb(0,255,0);
-  content: "";
-  display: none;
-} */
 #aceitera{
   display: flex;
   flex-direction: column;
@@ -3400,8 +3305,8 @@ elemento.visible {
 .imagen-empleado img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* llena el espacio respetando proporción */
-  border-radius: 10px; /* opcional, igual que el contenedor */
+  object-fit: cover;
+  border-radius: 10px;
 }
 .nombre-empleado {
   text-align: center;
@@ -3425,7 +3330,6 @@ elemento.visible {
   background-color: rgb(22,22,22);
   border: 7px solid white; 
   display: none;
-  /* overflow-y: auto; */
 }
 .cont-userI{
   position: relative;
@@ -3442,7 +3346,7 @@ elemento.visible {
   display:flex;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* o 'contain' si no quieres recortar */
+  object-fit: contain;
   border-radius: 9px;
   margin-bottom: 4px;
 }
@@ -3511,8 +3415,8 @@ elemento.visible {
   color: black;
 
   display: flex;
-  align-items: center;     /* centra verticalmente */
-  justify-content: flex-start; /* mantiene el texto a la izquierda */
+  align-items: center; 
+  justify-content: flex-start;
 
   text-align: left;    
   font-size: 0.9vw;
@@ -3915,12 +3819,6 @@ elemento.visible {
   background-color: rgb(0,0,17);
   border-radius: 20px;
 }
-/* #grilla-durezas{
-  position: absolute;
-  display: flex;
-  left: 32%;
-  top:0;
-} */
 #freno-I{
   display: flex;
   position: absolute;
@@ -4161,7 +4059,6 @@ elemento.visible {
   display: flex;
   left:1vw;
   top:44%;
-  /* display: none; */
   height:55%;
   width:97%;
   border-radius: 11px;
@@ -4643,9 +4540,6 @@ h4{
   width: 96.5%;
   height: 97%;  
   display: none;
-
-  /* outline: 1.1px solid #C0C0C0;
-  outline-offset: 3px; */  
 }
 #cont-plana .child-section,
 #cont-variable .child-section{
@@ -4701,7 +4595,7 @@ h4{
 
 .row{
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
   height: 100%;
   gap: 6px;
@@ -4902,16 +4796,15 @@ input.numero:focus {
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* centra vertical */
-  align-items: center;       /* centra horizontal */
-  gap: 0.5rem;               /* separación entre circle y el texto */
+  justify-content: center; 
+  align-items: center; 
+  gap: 0.5rem;
   
   top: 33vh;
   left: 4vw;
   width: 3.7vw;
   height: 6.7vh;
 }
-/* Quitar el absolute innecesario */
 #circle {
   display: flex;
   flex-direction: column;
@@ -4924,9 +4817,8 @@ input.numero:focus {
   border-radius: 50%;
   cursor: pointer;
   overflow: hidden;
-  display: none;  /* si quieres ocultarlo inicialmente */
+  display: none; 
 }
-/* También quitar absolute aquí */
 #padre-circle h6 {
   top: 120%;
   font-size: 1.3vw;
@@ -5053,16 +4945,6 @@ input.numero:focus {
   width: 0;
   transition: width 0.7s ease;
 }
-/* #imagen-ayudas{
-  position: absolute;
-  display: flex;
-  width: 40px;
-  height: 40px;
-  border-radius: 100px;
-  cursor: pointer;
-  display: none;
-  transition: all 0.2s ease;
-} */
 #imagen-ayudasII{
   position: absolute;
   display: flex;
@@ -5073,10 +4955,6 @@ input.numero:focus {
   display: none;
   transition: all 0.2s ease;
 }
-/* #imagen-ayudas.pressed{
-  transform: translateY(2px);
-  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
-} */
 #imagen-ayudasII.pressed{
   transform: translateY(3px);
   box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -6134,7 +6012,6 @@ input.numero:focus {
 }
 #padre {
   position: absolute;
-  /* display: grid; */
   grid-template-columns: repeat(4, 1fr);
   flex-wrap: nowrap;
   top: 29.5vh;
@@ -6253,12 +6130,6 @@ input.numero:focus {
   font-size:2.5em;
   transition: font-size 0.6s ease;
 }
-/* .dureza{
-  width:44vw;
-  height:55vh;
-  background-color: black;
-  border-radius: 20px;
-} */
 .grilla-teñido{
   position: relative;
   top:0;
@@ -6268,18 +6139,6 @@ input.numero:focus {
   background-color: black;
   border-radius: 20px;
 }
-/* #child-move{
-  width: 60px;
-  height: 60px;
-  background-color: rgb(255, 165, 0);
-  box-shadow: 0 0 30px rgba(255, 165, 0, 1), 0 0 60px rgba(255, 165,0, 0.7);
-  position: absolute;
-  border-radius:50%;
-  top: 0;
-  left: 0;
-  display: none;
-} */
-
 #item-movil{
   width: 60px;
   height: 60px;
@@ -6290,7 +6149,6 @@ input.numero:focus {
   left: 0;
   border-radius:50%;
 }
-
 .abuelo-lub,
 .grand-father{
   position: absolute;
@@ -6302,16 +6160,6 @@ input.numero:focus {
   width:100%;
   height:100%;
 }
-/* .grand-father-dureza{
-  position: absolute;
-  display: flex;
-  background-color: rgb(0,0,17);
-  border-radius: 20px;
-  left:0;
-  top:0;
-  width:100%;
-  height:100%;
-} */
 .grand-father-III,
 .grand-father-I{
   position: absolute;
@@ -6512,11 +6360,11 @@ height:44vh;
   width: 7vw;
   height:44vh;
 
-  transition: transform 0.5s ease; /* 501 ms */
+  transition: transform 0.5s ease; 
   z-index: 2;
-  display: none; /* inicialmente oculto */
-  transform: scale(0); /* inicia reducido */
-  transform-origin: center; /* crece desde el centro */   
+  display: none; 
+  transform: scale(0); 
+  transform-origin: center;    
 }
 .cont-oblicuos {
 position: relative;
@@ -6660,7 +6508,6 @@ height:100%;
   justify-content: center;
   align-items: center;
   background-color: #000;
-  /* border: 1px solid rgb(70, 80, 90); */
   border: 1px solid rgb(70, 80, 90);
   font-family: Arial, sans-serif;
   cursor: pointer;
@@ -6907,7 +6754,7 @@ height:100%;
   height: 100%;
   margin-left: 20%;
   margin-top: 2%;  
-  grid-column: 1 / -1; /* ocupa todo el ancho */
+  grid-column: 1 / -1;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -7065,7 +6912,6 @@ height:100%;
   width: 60%;
   justify-content: center;
   align-items: center;
-  /* background: linear-gradient(145deg, #004aad, #00357a); */
   background-color:rgb(25, 144, 255);
 
   color: #f5f5f5;
@@ -7102,7 +6948,6 @@ height:100%;
   border-radius: 4px;
   background-image: url(./assets/intermitente.png);
   object-fit: fill;
-  /* background-size: 70% 50%; */
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -7170,7 +7015,7 @@ height:100%;
   scrollbar-width: none;
 }
 .entrada-empleado::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
 }
 .entrada-empleado option {
   background-color: rgba(20, 30, 50, 0.85);
@@ -7239,17 +7084,6 @@ height:100%;
   border: 1px solid rgba(155,155,155,0.2);
   border-radius: 5px;
 }
-/* #contenedor-global {
-  position: relative;
-  display: block;
-  top: 6.5vh;
-  width: 55vw;
-  height: 60vh;
-  
-  transform: scale(0);
-  transform-origin: center; 
-  transition: transform 1s ease;
-} */
 #contenedor-global {
   position: relative;
   display: block;
@@ -7651,23 +7485,17 @@ height:100%;
   box-shadow: 0 8px 30px rgba(0,0,0,0.55);
   z-index: 500;
 }
-/* Capa que aplica el blur detrás del elemento.
-   Usamos ambos prefijos para compatibilidad. */
 #abuelo-indicadores::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  /* El backdrop-filter se aplica en el propio pseudo-elemento */
   -webkit-backdrop-filter: blur(10px) saturate(120%);
   backdrop-filter: blur(10px) saturate(120%);
-  /* ligera capa de color para intensificar el efecto */
   background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(0,0,0,0.12));
   mix-blend-mode: normal;
-  z-index: -1; /* queda detrás del contenido del contenedor */
+  z-index: -1;
 }
-/* Fallback visual para navegadores sin backdrop-filter:
-   deja un fondo semitransparente y un sombreado aceptable */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
   #abuelo-indicadores {
     background: rgba(10,12,20,0.50);
@@ -7687,7 +7515,6 @@ height:100%;
   height: 100%;
   grid-template-rows: repeat(10, 1fr);
 }
-/* PADRE */
 .indicadores {
   position: relative;
   display: flex;
@@ -7698,7 +7525,6 @@ height:100%;
   width: 100%;
   background-color: rgb(0,0,22);
 }
-/* HIJO */
 .led-indicador {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -7721,12 +7547,6 @@ background-color: #3FEF9C;
 
   grid-template-rows: repeat(10, 1fr);
 }
-/* #columna-item > span{
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  font-size: 1vw;
-} */
  #columna-item > span {
     display: flex;
     justify-content: right;
@@ -7742,12 +7562,12 @@ background-color: #3FEF9C;
   transition: background-color 0.15s ease;  
 }
 .led-amarillo {
-  background-color: #32ff7e; /* verde neón profesional */
+  background-color: #32ff7e;
 }
 .blockout {
   position: absolute;
   top: 0;
-  right: 0;   /*anclar al lado derecho */
+  right: 0;
   background-color: yellowgreen;
   height: 100%;
   width: 100%;
@@ -7781,7 +7601,7 @@ background-color: #3FEF9C;
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px); /* desenfoque */
+  backdrop-filter: blur(4px);
   display: none;
   justify-content: center;
   align-items: center;
@@ -7832,7 +7652,6 @@ background-color: #3FEF9C;
   align-items: center;
   justify-content: center;
 }
-/* ===== BOTONES ===== */
 .aceptar-evento {
   appearance: none;
   -webkit-appearance: none;
@@ -7853,7 +7672,6 @@ background-color: #3FEF9C;
 
   transition: transform .25s ease, background-color .25s ease;
 }
-/* solo cuando el modal esté en modo reseteo */
 #padre-evento.reseteo .contenido-alerta #aceptar-evento:hover {
   background-color: red;
   color: white;
@@ -7898,7 +7716,7 @@ background-color: #3FEF9C;
   transform: scale(0);
   transform-origin: center; 
   transition: transform 1s ease;
-  overflow: hidden;                /* recorta el blur en los bordes */
+  overflow: hidden;
   border: 1px solid rgba(111,111,111,0.5);
   box-shadow: 0 8px 30px rgba(0,0,0,0.55);
   z-index: 500;
@@ -7916,9 +7734,9 @@ background-color: #3FEF9C;
 
 .slider-map label,
 .padre-slider label{
-  display: block;      /* opcional, por claridad */
+  display: block; 
   width: 100%;
-  text-align: center;  /* <- centra el texto horizontalmente */
+  text-align: center;
   color: rgba(188,188,188,0.9);
   font-size: 1vw;
   box-sizing: border-box;
@@ -7930,7 +7748,6 @@ background-color: #3FEF9C;
   width: 46%;
   height: 100%;
 }
-/* PADRE GRAFICO */
 .graphics-lines {
   position: relative;
   display: flex;
@@ -7953,7 +7770,6 @@ background-color: #3FEF9C;
   position: static;   /* evita desplazamientos inesperados */
   transition: transform 2.5s ease;
 }
-/* DIAS LEDS INDEXADO */
 .slider-father {
   position: relative;
   display: grid;
@@ -8181,7 +7997,7 @@ background-color: #3FEF9C;
 }
 .ficha-grid label {
   font-size: 0.8rem;
-  align-items: center;        /* centrado vertical */
+  align-items: center;
   justify-content: flex-end;  
 
   height: 100%;
@@ -8212,7 +8028,7 @@ background-color: #3FEF9C;
   gap: 6px;
 }
 .input-activo {
-  background-color: #fff3b0; /* amarillo suave profesional */
+  background-color: #fff3b0;
 }
 #sql {
   position: absolute;
@@ -8234,7 +8050,7 @@ background-color: #3FEF9C;
 }
 .first_table {
   flex: 1;
-  height: 0; /* inicia en 0, se anima a 100% */
+  height: 0;
   margin-left: 1px;
   border-radius: 4px 4px 0 0;
   background-color: rgba(255,255,0,99);

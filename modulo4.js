@@ -393,7 +393,6 @@ videoSheeter.forEach(video => {
     document.querySelectorAll('.imagenes-cortador').forEach(img => {
       img.classList.remove('imagen-expandida');
     });
-    /* ocultarTodos() */
     ocultarTodos(['buscador','search-form','links-inicialesI','links-iniciales','container01'])
     document.querySelector('#formulario-cuenta').style.display = 'flex'           
     document.querySelector('#imagenes-sheeter').style.display = 'grid'
@@ -1166,33 +1165,6 @@ function crearGraficoLleno() {
   padreGrafica11.style.display = 'flex';
   const canvas = document.getElementById('MiGrafica15');
 
-  /* ['click', 'touchstart'].forEach(evt => {
-    canvas.addEventListener(evt, () => {
-      
-      ["grafico-area"].forEach(id => aparecerElemento(id, "block"));
-
-      const contenedor = document.querySelector('.calendario-interfaz');
-      if (!contenedor) return;
-
-      // Mostrar mes actual
-      const spanMes = document.querySelector('#mes-area');
-      spanMes.textContent = mesGlobal;
-
-      // Determinar días
-      const diasMes = obtenerDiasDelMes(mesGlobal);
-
-      // Generar calendario dinámico
-      generarBotoneraDias('.calendario-interfaz', diasMes, offset, index => cambiarFuente(index));
-
-      // Activar blur overlay
-      if (blurOverlay) activarBlur();
-      // Ocultar elementos innecesarios
-      [linksMA, linkLista, buscador].forEach(el => {
-        if (el) el.style.display = 'none';
-      });
-    });
-  }); */
-
   // Destruir gráfico previo
   if (chart18) {
     chart18.destroy();
@@ -1827,8 +1799,6 @@ visor.addEventListener('click', (e) => {
     document.querySelector("#listaNombres").style.display = 'none';
     document.querySelector("#buscador-empleado").classList.add("ubicacion");
     document.querySelector("#visorImagen").classList.add('ubicar-visor');
-    /* document.querySelector("#porta-visor > div.visor > span").classList.add('ubicado');
-    document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');*/
   }, 1000);
   setTimeout(() => {
     const contLineas = document.querySelector('#contLineas');
@@ -2034,74 +2004,6 @@ function ingresoEmpleadoMA(){
   }, 350); 
 }
 
-/* document.addEventListener('DOMContentLoaded', () => {
-  const listadoNombres = document.getElementById('listaNombres');
-  const img = document.getElementById('imagenVisor');
-  const nombre = document.querySelector('.visor > span');
-
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-
-  // estado
-  let indiceActual = 0;
-  let fotoFijada = null;
-
-  // --- navegación Prev / Next ---
-  prevBtn.addEventListener('click', () => {
-    const spans = listadoNombres.querySelectorAll('span');
-    if (!spans.length) return;
-    const nuevo = Math.max(0, indiceActual - 1);
-    mostrarEmpleadoPorIndice(nuevo, { fijar: false });
-  });
-
-  nextBtn.addEventListener('click', () => {
-    const spans = listadoNombres.querySelectorAll('span');
-    if (!spans.length) return;
-    const nuevo = Math.min(spans.length - 1, indiceActual + 1);
-    mostrarEmpleadoPorIndice(nuevo, { fijar: false });
-  });
-
-  const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
-
-  // --- funciones auxiliares ---
-
-  // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
-  function mostrarEmpleadoPorIndice(index, opts = { fijar: false }) {
-    const spans = listadoNombres.querySelectorAll('span');
-    const span = spans[index];
-    if (!span) return;
-    const imgSrc = span.dataset.img;
-    if (!imgSrc) return;
-
-    // actualizar visor
-    img.src = imgSrc;
-    nombre.textContent = span.textContent;
-    indiceActual = Number(span.dataset.index ?? index);
-
-    if (opts.fijar) {
-      // fijar objeto si existe en colaboradores
-      const emp = colaboradores[indiceActual];
-      if (emp) fotoFijada = emp;
-    }
-  }
-
-  // muestra usando el objeto de colaboradores (click o buscador)
-  function mostrarEmpleadoObj(emp) {
-    if (!emp) return;
-    img.src = emp.ruta ?? '';
-    nombre.textContent = emp.nombre ?? '';
-    // sincronizar indiceActual con la posición en colaboradores
-    const idx = colaboradores.indexOf(emp);
-    if (idx >= 0) indiceActual = idx;
-  }
-
-  function limpiarVisor() {
-    img.src = '';
-    nombre.textContent = '';
-  }
-}); */
-
 /*********************************************************************************************************************************************** */
 const soloNumerosInputs = [
   document.getElementById('numDoc1'),          
@@ -2233,19 +2135,6 @@ document.addEventListener('input', (e) => {
     ubicaCalculadoraSegunContexto();
   }
 });
-
-/* document.querySelector('#doc-empl').addEventListener('input',(e=>{
-  e.target.value = e.target.value.replace(/[^0-9]/g, '');
-}))
-
-inputRRHH.addEventListener('input', (e) => {
-  e.target.value = e.target.value.replace(/[^0-9]/g, '');
-  if(!esDesktop) ubicaCalculadoraSegunContexto()
-});
-inputMA.addEventListener('input', (e) => {
-  e.target.value = e.target.value.replace(/[^0-9]/g, '');
-  ubicaCalculadoraSegunContexto()
-}); */
 
 inputRRHH.addEventListener('click',() =>{
   if(!esDesktop) ubicaCalculadoraSegunContexto()
@@ -2434,35 +2323,6 @@ document.querySelector('.metricas-empleado').addEventListener('click', ()=>{
   }
 })
 
-/*function mostrarCalendario(mes, contenedorSelector = '.calendario-interfaz') {
-  const contenedor = document.querySelector(contenedorSelector);
-  if (!contenedor) return;
-
-  // Mostrar mes actual
-  const spanMes = document.querySelector('#mes-area');
-  if (spanMes) spanMes.textContent = mes;
-
-  // Determinar días
-  const diasMes = obtenerDiasDelMes(mes);
-
-  // Generar calendario dinámico
-  generarBotoneraDias(contenedorSelector, diasMes, offset, index => cambiarFuente(index));
-}
-
-// Uso en los listeners
- ['click', 'touchstart'].forEach(evt => {canvas.addEventListener(evt, () => {
-    document.querySelector('#grafico-area').style.display = 'block';
-
-    mostrarCalendario(mesGlobal);
-
-    if (blurOverlay) activarBlur();
-
-    [linksMA, linkLista, buscador].forEach(el => {
-      if (el) el.style.display = 'none';
-    });
-  });
-}); */
-
 function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
   if (!contenedor) return;
@@ -2581,7 +2441,6 @@ listaFotos.addEventListener('click', e => {
 });
 
 listaFotos.addEventListener('mouseleave', () => {
-  /* listaFotos.classList.add('oculto'); */
   document.querySelector('.almacen-fotos').classList.add('oculto')
   blurOverlay.style.display='none'
 });
@@ -4316,14 +4175,9 @@ function avanzarFoco() {
     if (indiceFoco >= ordenInputsNuevoIngreso.length) {
       indiceFoco = 0;
     }
-
     const siguienteInput = document.querySelector(ordenInputsNuevoIngreso[indiceFoco]);
-
     if (!siguienteInput) return;
-
     siguienteInput.focus();
-    /* parpadearElemento(siguienteInput.name, 150, 2500); */
-
   }  
 }  
 
@@ -4475,10 +4329,6 @@ function createKeyboard(layout) {
   });
 }
 
-
-/* inputNombre.addEventListener('focusin',()=>{
-  keyboardWrapper.style.display='flex'
-}) */
 function handleKeyPress(letter) {
   if (!lastFocusedInput) return;
 
@@ -4524,7 +4374,6 @@ document.addEventListener('focusin', e => {
     lastFocusedInput = e.target;
   }
 });
-
 
 function showKeyboard() {
   keyboardWrapper.removeAttribute('style');
@@ -4998,19 +4847,7 @@ function mostrarInterfazIngreso(){
         }
       });      
     }    
-  }, 350);  
-
-
-  /* if (!esDesktop) {
-    document.querySelectorAll(".input-especial").forEach(input => {
-      input.setAttribute('readonly', true);
-      input.setAttribute('inputmode', 'none');
-
-      input.addEventListener('mousedown', (e) => e.preventDefault());
-      input.addEventListener('focus', () => input.blur());
-    });
-  }  */ 
- 
+  }, 350);   
 }
 /* **********************************************************************************************************************/
 function bloquearEdicion(){
@@ -5364,10 +5201,6 @@ function traerEmpleadoaEliminar(){
       }
       imgElemento.src = rutaImagen;
     }
-
-    // ... asignaciones
-    /* cortina.classList.add('overlayRRHH');
-    cortina.style.display = 'block'; */
     panelDeBajas.classList.add('move-panel-salir');
     restablecerClick(['.btn-baja'])
   }
@@ -5839,8 +5672,6 @@ documentoEmplEliminar.addEventListener('blur', () => {
   }
 });
 let deBajaActivo = false
-
-/* BOTON SUPERIOR COLUMNA BOTONES */
 document.querySelector("#boton-ma-card").addEventListener('click',()=>{
   if(!deBajaActivo){
     saltarAlerta('Debe activar el empleado','docuMaster')
@@ -5858,8 +5689,6 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
   padreAdministrativo.style.display='flex'
   panelAdministrativo.style.display='grid'
   panelAdministrador.style.display='grid'
-  
-  /* activarBlur(0,255) */
   sliderGraf.value = 0;
   sliderTree.value= 0;
   sliderGraf.dispatchEvent(new Event('input'));

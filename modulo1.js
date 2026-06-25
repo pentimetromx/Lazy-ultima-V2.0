@@ -560,42 +560,10 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarEmpleadoPorIndice(nuevo, { fijar: false });
   });
 
-
   const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   if (!esDesktop && esTactil) {
     campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
   }
-  // --- búsqueda ---
-  /* campoBusqueda.addEventListener('input', () => {
-    const valor = campoBusqueda.value.trim().toLowerCase();
-    if (!valor) {
-      limpiarVisor();
-      fotoFijada = null;
-      return;
-    }
-    const coincidencia = colaboradores.find(c => c.nombre.toLowerCase().includes(valor)
-    );
-    if (coincidencia) {
-      fotoFijada = coincidencia; // fija desde buscador
-      mostrarEmpleadoObj(coincidencia);
-      // sincronizar índice si coincide con la lista
-      const idx = colaboradores.indexOf(coincidencia);
-      if (idx >= 0) indiceActual = idx;
-    } else {
-      limpiarVisor();
-      fotoFijada = null;
-    }
-  });  */ 
-/*   campoBusqueda.addEventListener('focusin', (e) => {
-    activeInput = e.target; // asignar input activo
-    mostrarListaClientes('perfilesIndividual'); // abrir lista
-  }); */
-
-  /* campoBusqueda.addEventListener('pointerdown', (e) => {
-    alert()
-    activeInput = e.target; // asignar input activo
-    mostrarListaClientes('perfilesIndividual');
-  }); */
 
   campoBusqueda.addEventListener('blur', () => {
     if(!esDesktop) hideKeyboard()
@@ -618,7 +586,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!imgSrc) return;
 
     img.src = imgSrc;
-    /* nombre.textContent = span.textContent; */
     indiceActual = Number(span.dataset.index ?? index);
 
     if (opts.fijar) {
@@ -630,14 +597,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function mostrarEmpleadoObj(emp) {
     if (!emp) return;
     img.src = emp.ruta ?? '';
-    /* nombre.textContent = emp.nombre ?? ''; */
     // sincronizar indiceActual con la posición en colaboradores
     const idx = colaboradores.indexOf(emp);
     if (idx >= 0) indiceActual = idx;
   }
   function limpiarVisor() {
     img.src = '';
-    /* nombre.textContent = ''; */
   }  
 });
 
@@ -4831,8 +4796,6 @@ function resultadosMA(identificador){
       if (!query) {
         dropdown.style.display = 'none';
         document.querySelectorAll('#listaNombres span').forEach(s => {
-          /* s.style.background = '';
-          s.style.color = ''; */
           s.style.borderRadius = '';
           s.style.padding = '';
         });
@@ -4966,8 +4929,6 @@ function graficosAutomaticos(idGrafico){
 const eventoEntradaI = esDesktop ? 'mouseenter' : 'touchstart';
 
 document.getElementById('titleContainerI').addEventListener(eventoEntradaI, () => {
-  /* activarPantallaCompleta() */
-
   let padreLinks = document.getElementById('links-inicialesI');
   let conteLinks = document.getElementById('linkListI');
 
@@ -5009,7 +4970,6 @@ document.getElementById('titleContainerI').addEventListener(eventoEntradaI, () =
     padreLinks.style.display = 'block';
     linkListI.style.display = 'block';
     padre.style.display = 'block';
-
   }
 
 });
