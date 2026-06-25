@@ -440,21 +440,16 @@ document.addEventListener('click', (e) => {
     if (functionExe) ejecutarFuncionEmpleado(functionExe);
   }
 
-  // ocultar calendario
   if (calendario && inputFecha && !calendario.contains(e.target) && e.target !== inputFecha) {
     calendario.style.display = 'none';
   }
 
-  // ocultar listaFotos
   if (listaFotos && !listaFotos.contains(e.target) && e.target !== inputFoto) {
     listaFotos.style.display = 'none';
   }
 
 });
 
-/* listaClientes.addEventListener('mouseleave',()=>{
-  listaClientes.style.display='none'
-}) */
 function mostrarPorClaveLocalStore(clave) {
   const raw = JSON.parse(localStorage.getItem(clave)) || {};
   const data = Array.isArray(raw)
@@ -527,8 +522,6 @@ const listaLocalClientes = [
 function guardarLista(clave, lista) {
   localStorage.setItem(clave, JSON.stringify(lista));
 }
-/* guardarLista('listaEmpleados', listaLocalEmpleados);
-guardarLista('listaClientes', listaLocalClientes); */
 /*********************************************************************************** */
 idsArray.push("cont-titulo") 
 idsArrayEliminados.push('cont-titulo')
@@ -616,8 +609,6 @@ if ("IntersectionObserver" in window) {
     }, { once: true })
   });
 }
-
-  // Hover en botones
   const buttons = document.querySelectorAll('.Bot-inicio3, .Bot-inicio7');
   buttons.forEach(button => {
     button.addEventListener("mouseover", () => {
@@ -634,7 +625,6 @@ if ("IntersectionObserver" in window) {
     toggleVideoButton.addEventListener("click", () => video.pause());
   }
 
-  // elementosDinamicamente(PADRE , CANTIDAD , CLASE , TEXTO ENTRE DIVS , span); 
   elementosDinamicamente('tanque-solucion', 100,'lineas-solucion');
   AelementosDinamicamente('tanque-tinta', 100, 'lineas-tinta');
   elementosDinamicamente('puntos', 22,'punto');
@@ -669,19 +659,17 @@ if ("IntersectionObserver" in window) {
  const colorActual = document.querySelector('#current-Color');   
   botonesLatentes.forEach((boton,index) => {
     boton.addEventListener('click', () => {
-      // Cambia el color de fondo y el color del texto del span dentro del botón clicado
       boton.style.backgroundColor = 'rgb(0,255,0)';
       const spanBoton = boton.querySelector('span');
       if (spanBoton) {
         spanBoton.style.color = 'black'; // Cambia el color del texto a negro
       }  
-      // Reinicia el color de fondo y el color del texto del span en los demás botones
       botonesLatentes.forEach(otroBoton => {
         if (otroBoton !== boton) {
-          otroBoton.style.backgroundColor = ''; // Reinicia el color de fondo
+          otroBoton.style.backgroundColor = '';
           const spanOtroBoton = otroBoton.querySelector('span');
           if (spanOtroBoton) {
-            spanOtroBoton.style.color = ''; // Reinicia el color del texto
+            spanOtroBoton.style.color = ''; 
           }
         }
       });
@@ -1044,13 +1032,13 @@ if ("IntersectionObserver" in window) {
     lineaLeds.forEach((elto, index) => { 
       setTimeout(() => {
         elto.style.backgroundColor = '#2bf22bc0';
-      }, index * 7); // Retraso de 100ms entre cada elemento
+      }, index * 7); 
     });
     setTimeout(() => {
       lineaLeds.forEach((elto, index) => {
         setTimeout(() => {
           elto.style.backgroundColor = '';
-        }, index * 7); // Retraso de 100ms entre cada elemento
+        }, index * 7); 
       });    
     }, 177);
     clases.forEach(clase => {
@@ -1087,7 +1075,7 @@ if ("IntersectionObserver" in window) {
     }
     crearBotoneraDinamica(botoneraDinamica);
     botonesGenerales.forEach(boton => {
-      boton.style.backgroundColor = ''; // Reinicia el color
+      boton.style.backgroundColor = ''; 
     });    
     botonActual.style.backgroundColor = verde;  
     bloqueTinta.classList.add(`move-generales-${claseColor}`)
@@ -1108,9 +1096,9 @@ if ("IntersectionObserver" in window) {
     const bottsSelectores = document.querySelectorAll('.butt-selector');  
     bottsSelectores.forEach((boton, i) => {
       if (i === indexSelector) {
-        boton.style.backgroundColor = verde ; // Aplicar fondo verde al botón en la posición `index`
+        boton.style.backgroundColor = verde ; 
       } else {
-        boton.style.backgroundColor = ''; // Restablecer color para los demás botones
+        boton.style.backgroundColor = '';
       }
     });
   }
@@ -1207,7 +1195,6 @@ function manejarLogica() {
   if (!esDesktop) {
     document.getElementById('img-logo').style.width = '100%';
   } else {
-    // Pantalla grande
     document.getElementById('titulo-ancho').style.width = '100%';
   }
 
@@ -1241,8 +1228,6 @@ function manejarLogica() {
         inputs[indice + 1].focus();
       }
     }, 177);
-
-    // Validación suma
     const suma = valoresIngresados.reduce((acc, val) => acc + val, 0);
     if (suma === masterKey[0]) {
       inputs.forEach(input => input.style.display = 'none');
@@ -1459,8 +1444,6 @@ function restaurarPosicion(idsElementos) {
     delete el.dataset.movedX;
     delete el.dataset.movedY;
   });
-
-  // si usas banderas, también resetéala
   turnGraphic = false;
 }
 
@@ -1468,11 +1451,9 @@ function restaurarEstilosPadre(idContenedor) {
   let contenedor = document.getElementById(idContenedor);
 
   if (contenedor) {
-    // Obtener todos los elementos hijos dentro del contenedor
     let elementosHijos = contenedor.querySelectorAll("*");
 
     elementosHijos.forEach(elemento => {
-      // Remover todos los estilos en línea aplicados por JavaScript
       elemento.removeAttribute("style");
     });
   } else {
@@ -1572,7 +1553,7 @@ function reproducirVideo(videoId) {
   video.pause();
   video.currentTime = 0;
   video.load();
-  if (video.readyState >= 3) {  // 3 = HAVE_FUTURE_DATA
+  if (video.readyState >= 3) { 
     video.play().catch(error => console.error('Error al intentar reproducir el video:', error));
   } else {
     video.addEventListener('canplaythrough', function() {
@@ -1845,11 +1826,11 @@ function configurarInputSoloTexto(id) {
   input.addEventListener('click', () => {
     // breve retraso para permitir que se abra la lista
     setTimeout(() => {
-      input.value = ''; // limpia después de que el evento click es procesado
+      input.value = '';
       try {
-        input.showPicker?.(); // despliega lista
+        input.showPicker?.();
       } catch {}
-    }, 60); // 60 ms suele ser suficiente
+    }, 60);
   });
 
   input.addEventListener('input', e => {
@@ -1920,7 +1901,7 @@ function generarCalendario(anio, mes) {
   selectMes.addEventListener('change', () => generarCalendario(parseInt(selectAnio.value), parseInt(selectMes.value)));
   selectAnio.addEventListener('change', () => generarCalendario(parseInt(selectAnio.value), parseInt(selectMes.value)));
 }
-// BTN 'Registrar'
+
 function agregarEmpleado() {
   if (flagEmpleado === false) {
     alternarColor(btnDblFlecha,btnAgregar);
@@ -1954,14 +1935,12 @@ function agregarEmpleado() {
   const valor = inputArchivo.value.trim().toLowerCase();
 
   if (!nombre || !documento || !area || !cargo || !equipo || !fecha || !imagen) {
-    /* mostrarVentanaMensaje('Todos los campos son obligatorios.'); */
     parpadearElemento('numDoc');
     saltarAlerta('Ingrese nombre del empleado y complete los campos.', 'recursoNuevo')
     return; 
   }
 
   if (!valor.endsWith('.png') && !valor.endsWith('.jpg') && !valor.endsWith('.jpeg')) {
-    /* mostrarVentanaMensaje('El archivo debe ser una imagen .png o .jpg'); */
     parpadearElemento('nomEmpl');
     saltarAlerta('Ingrese documento del empleado.', 'recursoNuevo')
     return;
@@ -1970,7 +1949,6 @@ function agregarEmpleado() {
   // 4. Verificar existencia en localStorage, NO en variable global
   const existe = empleadosLocal.some(emp => emp.documento === documento);
   if (existe) {
-    /* mostrarVentanaMensaje('Empleado ya existe.'); */
     saltarAlerta('Empleado ya existe.', 'recursoExistente')
     console.log('Empleados en localStorage:', empleadosLocal);
     return;
@@ -1998,40 +1976,13 @@ function agregarEmpleado() {
     imgEmpleado.src = ruta;
   }
 
-
-  /* mostrarVentanaMensaje('Empleado agregado y almacenado correctamente.'); */
   saltarAlerta('Empleado agregado y almacenado correctamente.', 'recursoNuevo')
   console.log('Empleado agregado:', nuevoEmpleado);
   console.log('Empleados en localStorage:', empleadosLocal);
   console.log('GLOBAL:', empleadoGlobal);
 
 }
-/* const imagenesKaizen = [
-  { texto: 'Salva manos en maquina colectora', ruta: './assets/kaizen colectora.jpg' },
-  { texto: 'Mejora en linea de ensamble', ruta: './assets/kaizen fresa.jpg' },
-  { texto: 'Bodega estanteria lijera', ruta: './assets/kaizen estante.jpg' },
-  { texto: 'Metodologia 5S', ruta: './assets/kaizen 5S.jpg' },
-  { texto: 'Lean manufacturing', ruta: './assets/kaizen lean.jpg' },
-  { texto: 'Filosofia kaizen japones', ruta: './assets/kaizen japones.jpg' }
-];
 
-function cargarOpcionesImagenKaizen() {
-  const selectImagenEl = document.getElementById('imagen-kaizen');
-  if (!selectImagenEl) return;
-
-  selectImagenEl.innerHTML = '<option value="">Seleccione...</option>';
-
-  imagenesKaizen.forEach(({ texto, ruta }) => {
-    const option = document.createElement('option');
-    option.value = ruta;
-    option.textContent = texto;
-    selectImagenEl.appendChild(option);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  cargarOpcionesImagenKaizen();
-}); */
 function llenarOpcionesKaizen() {
   const selectImagenKaizen = document.getElementById('imagen-kaizen');
   const contenedorKaizen = document.getElementById('kaizen-propuestos');
@@ -2088,7 +2039,6 @@ const selectImagenKaizen = document.getElementById('imagen-kaizen');
     labelPantalla.textContent = texto;
   });
 })();
-// CREA EL NUEVO KAIZEN Y LO GUARDA
 function agregarKaizen() {
   const kaizenKey = 'kaizenRegistrados';
 
@@ -2152,7 +2102,7 @@ function agregarKaizen() {
 // ---------- EVENTO ----------
 
 
-// helper para mostrar mensaje usando tu función si existe
+// helper para mostrar mensaje usando función si existe
 function mostrarVentanaMensaje(texto) {
   const cont = document.getElementById('msg-empleado');
   const p = cont?.querySelector('p');
@@ -2172,22 +2122,17 @@ btnLimpiarMA.addEventListener('click', () =>{
 
   const contenedor = img?.closest('.imgEmpleado');
   const contenedorMA = imgMA?.closest('.imgEmpleado-ma');
-
-  // Si no existe ninguno, no hay trabajo que hacer
   if (!img && !imgMA) return;
 
-  // Reset para el primero
   if (img && contenedor) {
     img.src = '';
     contenedor.dataset.img = '';
   }
 
-  // Reset para el segundo
   if (imgMA && contenedorMA) {
     imgMA.src = '';
     contenedorMA.dataset.img = '';
   }
-
 
   const inputs = document.querySelectorAll('.verGraficos');
   inputs.forEach(input => {
@@ -2391,9 +2336,3 @@ function stopAnimB() {
   rafIdsB.length = 0;
   hijosB.forEach(h => h.style.height = '0%');
 }
-
-/* setTimeout(() => {
-  stopAnim()
-  stopAnimB()
-}, 10000); */
-
