@@ -9,6 +9,7 @@ document.addEventListener('keydown', function(event) {
       break
       case 'Z':
         Geometria()
+       
       break;  
       case 'H':
         console.log('OBJETO GLOBAL', objetoGlobal)
@@ -23,6 +24,7 @@ document.addEventListener('keydown', function(event) {
 }); 
 
 function Geometria() {
+   debugger
   console.clear();  
   let contiBoton = document.querySelector('#padre-carta-exterior');  
   var rect = contiBoton.getBoundingClientRect(); 

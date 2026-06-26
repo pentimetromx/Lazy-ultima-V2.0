@@ -4418,17 +4418,16 @@ top: 44%;
   top: 56vh;
   left: 36vw;
   width: 40vw;
-  height: 44vh;
+  height: 43vh;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   overflow: hidden;
-
   transition: transform 0.5s ease;
   z-index: 2;
   display: none;
   transform: scale(0);
-  transform-origin: center; 
+  transform-origin: center;
 }
 .image-container {
   width: 98%;
@@ -4451,8 +4450,8 @@ top: 44%;
   background-color: rgb(34, 63, 147);
   border: none;
   color: white;
-  height: 7%;
-  width: 50%;
+  height: 8%;
+  width: 69%;
   font-size: 0.6rem;
   cursor: pointer;
   border-radius: 50%;
@@ -5143,9 +5142,8 @@ top: 44%;
 }
 
 .navegacion button:hover {
-    background: rgba(30, 144, 255, 0.2);
-    color: #5aadff;
-    border-color: rgba(30, 144, 255, 0.4);
+ color: #0073e6;
+ transform: scale(0.95);
 }
 .navegacion button:active {
     transform: scale(0.96);

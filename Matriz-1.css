@@ -7002,7 +7002,13 @@ height:100%;
 .fila-ingreso-ma > label{
   text-align: right; 
 }
-
+.fila-ingreso-ma > select {
+  font-family: 'Digital';
+}
+.digital > input{
+  font-family: 'Digital';
+  color: rgb(0,255,0);
+}
 .entrada-empleado {
   width: 17%;
   height: 71%;
@@ -7010,7 +7016,7 @@ height:100%;
   border: none;
   outline: none;
   font-size: 0.6em;
-  font-family: 'Digital';
+  /* font-family: 'Digital'; */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -7021,10 +7027,11 @@ height:100%;
 }
 .entrada-empleado option {
   background-color: rgba(20, 30, 50, 0.85);
-  font-size: 0.8em;
+  font-size: 1em;
   color: #e0e0e0;
-  text-align: center;
+  text-align: left;
 }
+
 .entrada-empleado option:hover{
   color: #00aaff;
 }
