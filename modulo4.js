@@ -5862,6 +5862,11 @@ inputsMA.forEach(el => {
   });   
 
 });
+
+document.querySelector('select[name="area"]').addEventListener('click', function (e) {
+    debugger
+});
+
 document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',()=>{
   activarPantallaCompleta()
    var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','contenedor-botonera']; 
@@ -6120,6 +6125,7 @@ nameInput.addEventListener('touchstart', () => {
     keyboardWrapper.style.left='37vw'
     keyboardWrapper.style.setProperty('--keyboard-width', '33vw');
     document.querySelector('#padre-rrhh-marco').classList.add('move-new-employee')
+    nameInput.readOnly = true; 
   }
   showKeyboard() 
 });
