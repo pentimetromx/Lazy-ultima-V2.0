@@ -24,9 +24,8 @@ document.addEventListener('keydown', function(event) {
 }); 
 
 function Geometria() {
-   debugger
   console.clear();  
-  let contiBoton = document.querySelector('#padre-carta-exterior');  
+  let contiBoton = document.querySelector('#overlay-cortina');  
   var rect = contiBoton.getBoundingClientRect(); 
   var topPosition = rect.top;  
   var leftPosition = rect.left;  
@@ -6942,6 +6941,9 @@ function mostrarElementoProgressivo(el) {
 // MUESTRA LOS PADRES
 function secuenciaAparicion(canal) {
   cortina.classList.add('overlayRRHH')
+  mezcladorColorRGB.classList.remove('move-padre-cmyk')
+  creadorPerfiles.classList.remove('move-mezclador') 
+  mezcladorColor.classList.add('move-padre-cmyk')
 
   const perfilesRgb = document.querySelector('#perfiles-color')
   mostrarElementoProgressivo(perfilesRgb)
