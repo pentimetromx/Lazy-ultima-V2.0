@@ -5657,8 +5657,8 @@ function limpiarFormulario() {
   }, inputs.length * 140);
 }
 document.querySelector('#borrarBoton2').addEventListener('click', () => {
-  activarPantallaCompleta()
-  mostrarInterfazIngreso()
+  /* activarPantallaCompleta()
+  mostrarInterfazIngreso() */
 });
 documentoEmplEliminar.addEventListener('touchstart', (e) => {
   e.preventDefault();
@@ -5863,9 +5863,9 @@ inputsMA.forEach(el => {
 
 });
 
-document.querySelector('select[name="area"]').addEventListener('click', function (e) {
+/* document.querySelector('select[name="area"]').addEventListener('click', function (e) {
     debugger
-});
+}); */
 
 document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',()=>{
   activarPantallaCompleta()

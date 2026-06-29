@@ -5658,7 +5658,7 @@ input.numero:focus {
   transform: translateX(1300px);
 }
 .move-oblicuos{
-  transform: translateY(143%);
+  transform: translateY(95%);
 }
 .move-oblicuosII{
   transform: translateY(106%);
@@ -6514,7 +6514,7 @@ height:100%;
   font-family: Arial, sans-serif;
   cursor: pointer;
   border-radius: 4px;
-  font-size: 0.7vw;
+  font-size: 0.8em;
   width: 100%;
   height: 80%;
 }
@@ -7008,6 +7008,7 @@ height:100%;
 .digital > input{
   font-family: 'Digital';
   color: rgb(0,255,0);
+  font-size: 0.9em;
 }
 .entrada-empleado {
   width: 17%;
@@ -7457,7 +7458,7 @@ height:100%;
  #listaFotos > div {
   padding: 8px 12px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  font-size: 0.5em;
+  font-size: 0.8em;
   cursor: pointer;
   white-space: nowrap;
 }

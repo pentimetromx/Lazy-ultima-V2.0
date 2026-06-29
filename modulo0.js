@@ -1272,7 +1272,7 @@ function abrirInterfaz() {
   elementoPadre.style.display='grid'
 
   const titulo = document.getElementById('subtitulo-I');
-  const esMovil = screenWidth < 500;
+  const esMovil = (!esDesktop);
 
   const secuencia = esMovil 
     ? [
