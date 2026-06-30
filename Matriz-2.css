@@ -1940,10 +1940,15 @@ img[src=""] {
   transform: translate3d(-22%, 0, 0);
   transition: transform 0.9s ease;
 }
+.retorna-mezclador{
+  transform: translate3d(0%, 0, 0);
+  transition: transform 0.9s ease;  
+}
 .move-mezclador{
-  transform: translate3d(-55%, 0, 0);
+  transform: translate3d(-50%, 0, 0);
   transition: transform 0.9s ease;
 }
+
 
 #padre-carta-exterior.move-carta-exterior {
   visibility: visible;
@@ -5417,7 +5422,7 @@ top: 44%;
   align-items: center;
   justify-content: center;
 
-  font-size: clamp(1rem, 2.2vh, 1.6rem);
+  font-size: 1.5em;
   font-family: system-ui, sans-serif;
 
   box-shadow:
