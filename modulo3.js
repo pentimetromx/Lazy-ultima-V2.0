@@ -6938,15 +6938,43 @@ function mostrarElementoProgressivo(el) {
   }, { once: true });
 }
 
-// MUESTRA LOS PADRES
 function secuenciaAparicion(canal) {
-  cortina.classList.add('overlayRRHH')
+  if (creadorPerfiles.style.display === 'none') {
+    mostrarElementoProgressivo(creadorPerfiles)
+
+    if(mezcladorColor)mezcladorColor.classList.add('move-padre-cmyk')
+    if(mezcladorColorRGB)mezcladorColorRGB.classList.add('move-padre-cmyk')
+
+    setTimeout(() => {
+      creadorPerfiles.classList.add('move-mezclador')             
+    }, 500);
+    return
+  }
+  /* if(creadorPerfiles.classList.contains('move-mezclador')){
+
+    setTimeout(() => {
+      creadorPerfiles.classList.remove('move-mezclador')       
+    }, 200);
+    setTimeout(() => {
+      creadorPerfiles.classList.add('retorna-mezclador')             
+    }, 1500);
+  }else{
+    mezcladorColor.classList.add('move-padre-cmyk')
+    setTimeout(() => {
+      creadorPerfiles.classList.add('move-mezclador')       
+    }, 200);
+    setTimeout(() => {
+      creadorPerfiles.classList.remove('retorna-mezclador')             
+    }, 400);
+  } */
+
+
+  /* cortina.classList.add('overlayRRHH')
   mezcladorColorRGB.classList.remove('move-padre-cmyk')
   creadorPerfiles.classList.remove('move-mezclador') 
   mezcladorColor.classList.add('move-padre-cmyk')
 
-  const perfilesRgb = document.querySelector('#perfiles-color')
-  mostrarElementoProgressivo(perfilesRgb)
+  mostrarElementoProgressivo(creadorPerfiles)
   setTimeout(() => {
     if (!buscaNombre) return;
     buscaNombre.value = '';
@@ -6988,8 +7016,13 @@ function secuenciaAparicion(canal) {
         creadorPerfiles.classList.add('move-mezclador')    
       }, 500);
     break
-  }
+  } */
 }
+
+
+
+
+
 buscaNombre.addEventListener('click', () => {
   creaNombre.value = ''
   listaClientes.style.display = 'none'

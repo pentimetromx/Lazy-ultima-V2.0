@@ -6128,6 +6128,9 @@ nameInput.addEventListener('touchstart', () => {
     nameInput.readOnly = true; 
   }
   showKeyboard() 
+  setTimeout(() => {
+    debugger
+  }, 1000);
 });
 //*******************************************************************************************************************
 function buildList() {
