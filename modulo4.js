@@ -501,6 +501,7 @@ function mostrarAyudas(parametro) {
   }
   showImage(actualPosicion, selectedArray);
 }
+
 function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
   container1.style.display = 'grid';
 
@@ -553,6 +554,7 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     break;
   }
 }
+
 function ocultarGranCortina() {
   setTimeout(() => {
     const cortina = document.getElementById('gran-cortina'); 
@@ -1951,7 +1953,7 @@ function ingresoEmpleado(){
   }, 350);  
 }
 
-function ingresoEmpleadoMA(){  
+function ingresoEmpleadoMA(idElement){  
   calculadoraSimulador=true
   const excluidos = [
     'buscador','search-form','links-inicialesI','links-iniciales','container01'
@@ -2002,6 +2004,11 @@ function ingresoEmpleadoMA(){
       });      
     }   
   }, 350); 
+
+  if (!idsArray.includes(idElement)) {
+    idsArray.push(idElement);
+    console.log(idsArray);
+  }  
 }
 
 /*********************************************************************************************************************************************** */
@@ -3579,6 +3586,11 @@ simulador.addEventListener('click', (e) => {
   // solo se ejecuta si el click fue directamente en el li padre
   if (e.target !== simulador) return;
   iniciarAnimaciones();
+
+  if (!idsArray.includes('simulador')) {
+    idsArray.push('simulador');
+    console.log(idsArray);
+  }
 });
 
 if (!primeroDerecha || !linksRgbaCmyk || !linksRegistro) {
@@ -3643,7 +3655,7 @@ primerSubListaRRHH.addEventListener('mouseleave', () => {
 
 primerhijoSubListaRRHH.addEventListener('click', () => {
   activarPantallaCompleta()
-  mostrarInterfazIngreso()
+  mostrarInterfazIngreso('nuevoIngreso')
 });
 
 segundohijoSubListaRRHH.addEventListener('click', () => {
@@ -3683,46 +3695,22 @@ tercerhijoSubListaRRHH.addEventListener('click', () => {
 hijos.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();  
-    if (index === 1) {
-    }  
     if (index === 0) {
       activarPantallaCompleta()
-      resultadosMaquina()
-    }
+      resultadosMaquina('jobTrack')
+    }    
+    if (index === 1) {
+    }  
     if (index === 2) {
       activarPantallaCompleta()
-      ingresoEmpleadoMA()
+      ingresoEmpleadoMA('ingresoMA')
     }
     if (index === 3) {
       activarPantallaCompleta()
       resultadosMA('interfaz-mtto')
     }
     if (index === 4) {
-      deBajaActivo=false
-      activarPantallaCompleta()         
-      padrePanelAdministrativo.classList.remove('move-carta-exterior')
-      padrePanelAdministrativo.classList.remove('activo')
-  
-      panelAdministrativo.classList.remove('move-carta-exterior')
-      panelAdministrativo.classList.remove('activo')
-      document.querySelector("#padre-carta-exterior").classList.remove('activo')
-      var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI']; 
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
-      }
-      container1.style.display='grid'
-      panelAdministrativo.classList.add('activo')
-      aparecerElemento("carta-exterior", "grid");
-      aparecerElemento("padre-carta-exterior", "flex");
-      if(!esDesktop)document.querySelector("#input-documento").readOnly = true;
-
-      setTimeout(() => {
-        document.querySelector('#carta-exterior > .ident-empleado > input').value=''    
-        document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
-      }, 500);
+      mostrarMaster('interfazMaestra')      
     }    
   });
 });
@@ -3751,15 +3739,54 @@ hijosTec.forEach((li, index) => {
       creadorPerfiles.classList.remove('move-mezclador')
       activarPantallaCompleta()
       ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
+      if (!idsArray.includes('cmyk')) {
+        idsArray.push('cmyk');
+        console.log(idsArray);
+      }      
     }
     if (index === 1) {
       mezcladorColorRGB.classList.remove('move-padre-cmyk')
       creadorPerfiles.classList.remove('move-mezclador')
       activarPantallaCompleta()      
       ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form')
+      if (!idsArray.includes('rgb')) {
+        idsArray.push('rgb');
+        console.log(idsArray);
+      }        
     }
   });
 });
+
+function mostrarMaster(elementId){
+  deBajaActivo=false
+  activarPantallaCompleta()         
+  padrePanelAdministrativo.classList.remove('move-carta-exterior')
+  padrePanelAdministrativo.classList.remove('activo')  
+  panelAdministrativo.classList.remove('move-carta-exterior')
+  panelAdministrativo.classList.remove('activo')
+  document.querySelector("#padre-carta-exterior").classList.remove('activo')
+  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI']; 
+  for (var i = 0; i < allContenedores.length; i++) { 
+    var elemento = document.getElementById(allContenedores[i]) 
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
+    }
+  }
+  container1.style.display='grid'
+  panelAdministrativo.classList.add('activo')
+  aparecerElemento("carta-exterior", "grid");
+  aparecerElemento("padre-carta-exterior", "flex");
+  if(!esDesktop)document.querySelector("#input-documento").readOnly = true;
+  setTimeout(() => {
+    document.querySelector('#carta-exterior > .ident-empleado > input').value=''    
+    document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
+  }, 500);
+
+  if (!idsArray.includes(elementId)) {
+    idsArray.push(elementId);
+    console.log(idsArray);
+  }  
+}
 
 document.querySelector("#salir-ma").addEventListener('click',()=>{
   desaparecerElemento(interfazMA.id, 'grid')
@@ -4804,7 +4831,7 @@ document.querySelector('#salir').addEventListener('click',()=>{
     ingresoEmpleado()
   }, 800);
 })
-function mostrarInterfazIngreso(){
+function mostrarInterfazIngreso(elementId){
   activarPantallaCompleta()
   calculadoraSimulador = true
   elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']  
@@ -4847,7 +4874,11 @@ function mostrarInterfazIngreso(){
         }
       });      
     }    
-  }, 350);   
+  }, 350);  
+  if (!idsArray.includes(elementId)) {
+    idsArray.push(elementId);
+    console.log(idsArray);
+  }   
 }
 /* **********************************************************************************************************************/
 function bloquearEdicion(){
@@ -6127,7 +6158,7 @@ nameInput.addEventListener('touchstart', () => {
     document.querySelector('#padre-rrhh-marco').classList.add('move-new-employee')
     nameInput.readOnly = true; 
   }
-  showKeyboard() 
+  showKeyboard()  
 });
 //*******************************************************************************************************************
 function buildList() {

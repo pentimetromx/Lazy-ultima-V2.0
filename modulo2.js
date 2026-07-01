@@ -125,7 +125,7 @@ function deslizaContenedor(identificador, idButton) {
       stopWidth = false;
       startAnim()
       startAnimB() 
-      activarBlur(0,29,null,null,null,null)     
+      activarBlur(0,29,'10vh',null,null,null)     
       actualizarIdsArray(identificador);
       break;
     case 'canvasContainer3':

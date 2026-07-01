@@ -2223,7 +2223,6 @@ imagenAyudas.addEventListener('mouseleave',()=>{
   }
 }, 300);
 })
-
 function interfazAvance() {
   if(screenWidth < 500){
     var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','pre-prensa','imgs-prepress','primerCont','conte-ayudas','nicho-videos','contenedor_padre_3','contenedor_padre_2','contenedor_padre'];
@@ -2372,7 +2371,7 @@ function irContenedorAnterior() {
     location.reload()
     break;
     case 'cont-titulo-operacion':
-      abrirSeccionOperativa()        
+      mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])       
     break;
     case 'cont-titulo-admin':
       abrirSeccionAdministrativa()        
@@ -2717,7 +2716,6 @@ function irContenedorAnterior() {
     case 'padre-rgb':
       let padreRGB = document.querySelector('#padre-rgb');
       let slidersRGB = document.querySelector('#padre-controles')
-
       var elementosExcluidos = ['colorDisplay','padre-controles','padre-rgb','simulador'] 
       for (var i = 0; i < allContenedores.length; i++) { 
         var element = document.getElementById(allContenedores[i])  
@@ -2730,7 +2728,41 @@ function irContenedorAnterior() {
       slidersRGB.style.display = 'grid';
       padreRGB.style.zIndex = 200
       padreRGB.classList.remove('move-panel-rgb')      
-    break;   
+    break;  
+    case 'simulador':
+      activarPantallaCompleta()
+      document.querySelector('#calculadora').style.display='none'
+      restablecerClick(['.butt-perfiles']);
+      iniciarAnimaciones();    
+    break
+    case 'cmyk':
+      mezcladorColor.classList.remove('move-padre-cmyk')
+      creadorPerfiles.classList.remove('move-mezclador')
+      activarPantallaCompleta()
+      ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')    
+    break
+    case 'rgb':
+      mezcladorColorRGB.classList.remove('move-padre-cmyk')
+      creadorPerfiles.classList.remove('move-mezclador')
+      activarPantallaCompleta()      
+      ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form')
+    break 
+    case 'jobTrack':
+      activarPantallaCompleta()
+      resultadosMaquina('jobTrack')
+    break
+    case 'ingresoMA':
+      activarPantallaCompleta()
+      ingresoEmpleadoMA('ingresoMA')
+    break 
+    case 'interfazMaestra':
+      activarPantallaCompleta()
+      mostrarMaster('interfazMaestra')
+    break
+    case 'nuevoIngreso':
+      activarPantallaCompleta()
+      mostrarInterfazIngreso('nuevoIngreso')
+    break        
 
     default:
   } 
@@ -2740,7 +2772,6 @@ function irContenedorAnterior() {
   } 
   console.log('1.', idsArray)
 }
-
 function irContenedorSiguiente() {
   if (idsArrayEliminados.length === 2) {
     mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','gran-cortina'])
@@ -2753,7 +2784,7 @@ function irContenedorSiguiente() {
     location.reload()
     break;
     case 'cont-titulo-operacion':
-      abrirSeccionOperativa()        
+      mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])       
     break;
     case 'cont-titulo-admin':
       abrirSeccionAdministrativa()        
@@ -3110,7 +3141,41 @@ function irContenedorSiguiente() {
       slidersRGB.style.display = 'grid';
       mezcladorColorRGB.style.zIndex = 200
       mezcladorColorRGB.classList.remove('move-panel-rgb')      
-    break;   
+    break;
+    case 'simulador':
+      activarPantallaCompleta()
+      document.querySelector('#calculadora').style.display='none'
+      restablecerClick(['.butt-perfiles']);
+      iniciarAnimaciones();    
+    break
+    case 'cmyk':
+      mezcladorColor.classList.remove('move-padre-cmyk')
+      creadorPerfiles.classList.remove('move-mezclador')
+      activarPantallaCompleta()
+      ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')    
+    break
+    case 'rgb':
+      mezcladorColorRGB.classList.remove('move-padre-cmyk')
+      creadorPerfiles.classList.remove('move-mezclador')
+      activarPantallaCompleta()      
+      ocultaElementos('colorDisplay','padre-controles','padre-rgb','container01','links-inicialesI','links-iniciales','buscador','search-form')
+    break
+    case 'jobTrack':
+      activarPantallaCompleta()
+      resultadosMaquina('jobTrack')
+    break  
+    case 'ingresoMA':
+      activarPantallaCompleta()
+      ingresoEmpleadoMA('ingresoMA')
+    break
+    case 'interfazMaestra':
+      activarPantallaCompleta()
+      mostrarMaster('interfazMaestra')
+    break 
+    case 'nuevoIngreso':
+      activarPantallaCompleta()
+      mostrarInterfazIngreso('nuevoIngreso')
+    break        
 
     default:
   } 
@@ -3118,8 +3183,6 @@ function irContenedorSiguiente() {
   idsArrayEliminados.pop();
   console.log('2.', idsArrayEliminados)
 }
-
-
 function listaEntrenamientosII(btnList) {
   activarPantallaCompleta()
   restablecerPosiciones(['.ocultos']);
@@ -3183,8 +3246,6 @@ function listaEntrenamientosII(btnList) {
 
   document.getElementById('context-menu').style.display = 'none';
 }
-
-
 function listaEntrenamientos(){
   var videoBackground = document.getElementById('videoBackground')
   var contTraining = document.getElementById('largoImpresion')
@@ -3232,7 +3293,6 @@ function toggleFullScreen(element) {
     }
   }
 }
-
 function imagenesPasoApaso(id) {
   activarPantallaCompleta()
   desactivarClicsPorUnTiempo(500);
@@ -3335,9 +3395,6 @@ function imagenesPasoApaso(id) {
   // Resaltar botón activo
   Array.from(botones).forEach(b => b.style.color = (b.id === id) ? '#28a745' : '');
 }
-
-
-
 function lubricacion(buttId) {
   alternarButtsDesbobinador(buttId);
 
@@ -3391,10 +3448,6 @@ function lubricacion(buttId) {
       break;
   }
 }
-
-
-
-
 function alternarButtsDesbobinador(id) {
   alternarBotones(grupos.desbobinador, id);
 }
@@ -3444,7 +3497,6 @@ function alternarBotones(grupoIds, idActivo) {
     }
   });
 }
-
 function LubricaDesbobinador(idButt) {
   var arrayIdButtsLub = ['btn1', 'btn2', 'btn3', 'btn4', 'btn5', 'btn60', 'btn70', 'btn80']
   var arrayIdButtsLubII = ['btn60', 'btn70', 'btn80']
@@ -3618,7 +3670,6 @@ function LubricaDesbobinador(idButt) {
     default:
   }   
 } 
-
 function UnidadTeñido(buttId) {
   alternarButtsTeñido(buttId);
 
@@ -3694,7 +3745,6 @@ function UnidadTeñido(buttId) {
       break;
   }
 }
-
 function mostrartBotonesIntervalo(className) {
   const buttons = document.querySelectorAll(`.${className}`);
   buttons.forEach(button => button.style.visibility = 'hidden');
@@ -3708,7 +3758,6 @@ function mostrartBotonesIntervalo(className) {
     delay += 177;
   });
 }
-
 function UnidadAlimenta(buttId) {
   alternarButtsfeed(buttId);
 
@@ -3742,7 +3791,6 @@ function UnidadAlimenta(buttId) {
       break;
   }
 }
-
 function UnidadProceso(buttId) {
   alternarButtsUnit(buttId);
 
@@ -3767,7 +3815,6 @@ function UnidadProceso(buttId) {
     palpitarBoton('unidProceso');
   }
 }
-
 function UnidadRebonina(buttId) {
   alternarButtsRebobina(buttId);
 
@@ -3792,7 +3839,6 @@ function UnidadRebonina(buttId) {
     palpitarBoton('rebobinador');
   }
 }
-
 function UnidadTintero(buttId,btnIniId){
   var alimenta = document.getElementById('uTeñidos')
   var botsTorre = ['boton1','boton7','boton13','boton19','boton25',]
@@ -4315,8 +4361,6 @@ function rodillosTeñido(botId) {
     default:
   } 
 }  
-
-
 function showLablsLubricacion() { 
   var botones = document.querySelectorAll('.labl-lub')
   function mostrarLabelConRetraso(i) {
@@ -4413,7 +4457,6 @@ function ubicaPerfilPequeño(idEmpleado){
     }
   }}
 }
-
 function ubicaPerfil(idEmpleado) {
   var contUserElements = document.getElementsByClassName('cont-user')   
   var contSecundario = document.getElementById('conte-secundario')
@@ -4455,7 +4498,7 @@ var intervaloActualizarII = null;
 var intervaloActualizar = null;
 let intervaloProgreso = null;
 
-function resultadosMaquina(){
+function resultadosMaquina(elementId){
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','title-interfaz']
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i])
@@ -4485,6 +4528,11 @@ function resultadosMaquina(){
         d.classList.remove('activo');
     });   
   }, 1000);
+
+  if (!idsArray.includes(elementId)) {
+    idsArray.push(elementId);
+    console.log(idsArray);
+  }  
 }
 
 document.querySelectorAll('.maquina').forEach((maquina, index) => {
@@ -4536,10 +4584,8 @@ document.querySelectorAll('.maquina').forEach((maquina, index) => {
     });
   });
 });
-
 let imagenSeleccionada = null;
 let nombreSeleccionado = null;
-  
 // CICK IMAGENES VERTICALES
 function resultadosEmpleado(idEmpleado, functionExe, icono, state) {
 
@@ -4559,7 +4605,6 @@ function resultadosEmpleado(idEmpleado, functionExe, icono, state) {
     ejecutarFuncionEmpleado(functionExe);
   },400);
 }
-
 // === Auxiliares ===
 function mostrarImagenSuperior(imagenClicada) {
   if (!imagenSeleccionada) return;
@@ -4576,7 +4621,6 @@ function mostrarImagenSuperior(imagenClicada) {
   spanImagen.removeEventListener('click', handleSpanImagenClick);
   spanImagen.addEventListener('click', handleSpanImagenClick);
 }
-
 // ✅ Función nombrada fuera de mostrarImagenSuperior
 function handleSpanImagenClick() {
   restaurarPosicion(["conte-butts-graphs"]);
@@ -4596,12 +4640,10 @@ function handleSpanImagenClick() {
   });
   restablecerClick(['.graphs-lines']);
 }
-
 document.querySelector("#porta-imagen > img").addEventListener('click', () => {
   mostrarImagenSuperior();
   handleSpanImagenClick()
 });
-
 function alternarContenedores() {
   const excluidos = [
     'buscador','search-form','links-inicialesI','links-iniciales',
@@ -4614,8 +4656,6 @@ function alternarContenedores() {
   document.querySelector('#conte-butts-graphs').style.display='grid'
   document.querySelector('#porta-imagen').style.display='grid'
 }
-
-
 function mostrarGraficas() {
   document.querySelectorAll('.graphs-lines').forEach(div => {
     Object.assign(div.style, { visibility: 'visible', opacity: '1' });
@@ -4623,13 +4663,11 @@ function mostrarGraficas() {
     if (cv) Object.assign(cv.style, { visibility: 'visible', opacity: '1' });
   });
 }
-
 function limpiarImagenDinamica() {
   if (!permitirEliminarImagen) return;
   const img = document.getElementById('img-dinamica');
   if (img) img.remove();
 }
-
 function resetearAnimacionesCanvas() {
   document.querySelectorAll('.graphs-lines').forEach(el => {
     el.classList.remove(
@@ -4639,7 +4677,6 @@ function resetearAnimacionesCanvas() {
     restablecerClick(['.desactivar', '.graphs-lines']);
   });
 }
-
 function  ejecutarFuncionEmpleado(nombre) {
   const mapa = {
     updateAna:      () => { updateAna(); updateAnaII(); },
@@ -4652,7 +4689,6 @@ function  ejecutarFuncionEmpleado(nombre) {
   };
   if (mapa[nombre]) mapa[nombre]();
 }
-
 function ajustarContenedorGrafs() {
   const padre = document.getElementById('contLineas');
   padre.style.display = 'grid';
@@ -4667,8 +4703,6 @@ function ajustarContenedorGrafs() {
   });
 }
 // ULTIMO BOTON M.A 
-
-
 function resultadosMA(identificador){
   moverLista=false
   resetGraficos()
@@ -4880,8 +4914,6 @@ function resultadosMA(identificador){
   if (imgDinamica) imgDinamica.remove();
   actualizarIdsArray(identificador);      
 }
-
-
 function aumentarTamaño(element, factor, tiempo) {
   const originalWidth = element.clientWidth;
   const originalHeight = element.clientHeight;
@@ -4914,7 +4946,6 @@ function deslizaMosaico(){
   }, 300)
   }, 300)
 }
-
 function graficosAutomaticos(idGrafico){
   for (var i = 0; i < idsMA.length; i++) {
     var elto = idsMA[i]
@@ -4925,9 +4956,7 @@ function graficosAutomaticos(idGrafico){
     }
   }
 }
-
 const eventoEntradaI = esDesktop ? 'mouseenter' : 'touchstart';
-
 document.getElementById('titleContainerI').addEventListener(eventoEntradaI, () => {
   let padreLinks = document.getElementById('links-inicialesI');
   let conteLinks = document.getElementById('linkListI');
@@ -4973,9 +5002,7 @@ document.getElementById('titleContainerI').addEventListener(eventoEntradaI, () =
   }
 
 });
-
 const eventoEntrada = esDesktop ? 'mouseenter' : 'touchstart';
-
 document.getElementById('titleContainer').addEventListener(eventoEntrada, () => {
 
   let padreLinks = document.getElementById('links-iniciales');
@@ -5023,11 +5050,9 @@ document.getElementById('titleContainer').addEventListener(eventoEntrada, () => 
   }
 
 });
-
 let intervaloAltura = null; 
 let intervaloAlturaI = null;
 let alturaObjetivoAlcanzada = false;
-
 linkListI.addEventListener('mouseleave', () =>{
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]);
