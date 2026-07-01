@@ -6950,79 +6950,7 @@ function secuenciaAparicion(canal) {
     }, 500);
     return
   }
-  /* if(creadorPerfiles.classList.contains('move-mezclador')){
-
-    setTimeout(() => {
-      creadorPerfiles.classList.remove('move-mezclador')       
-    }, 200);
-    setTimeout(() => {
-      creadorPerfiles.classList.add('retorna-mezclador')             
-    }, 1500);
-  }else{
-    mezcladorColor.classList.add('move-padre-cmyk')
-    setTimeout(() => {
-      creadorPerfiles.classList.add('move-mezclador')       
-    }, 200);
-    setTimeout(() => {
-      creadorPerfiles.classList.remove('retorna-mezclador')             
-    }, 400);
-  } */
-
-
-  /* cortina.classList.add('overlayRRHH')
-  mezcladorColorRGB.classList.remove('move-padre-cmyk')
-  creadorPerfiles.classList.remove('move-mezclador') 
-  mezcladorColor.classList.add('move-padre-cmyk')
-
-  mostrarElementoProgressivo(creadorPerfiles)
-  setTimeout(() => {
-    if (!buscaNombre) return;
-    buscaNombre.value = '';
-    creaNombre.value = '';
-
-    if (esDesktop) {
-      buscaNombre.focus();
-    }else{
-      creaNombre.setAttribute('readonly', '')
-      creaNombre.setAttribute('inputmode', 'none');
-    }
-  }, 100);
-  setTimeout(() => {
-    cortina.classList.remove('overlayRRHH')    
-  }, 1000);
-  
-  
-  switch(canal){
-    case 'rgb':
-      const ids = ['boton-rgb', 'boton-rgb-alternar', 'boton-rgb-salir','lab-rgb','lab-alternar','lab-salir-rgb'];
-      ids.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-      });
-      mezcladorColorRGB.classList.add('move-padre-cmyk')
-      setTimeout(() => {
-        creadorPerfiles.classList.add('move-mezclador')    
-      }, 500);
-
-    break
-    case 'cmyk' :
-      const keys = ['lab-seis', 'boton-seis', 'lab-cmyk','boton-cmyk','lab-salir-cmyk','boton-cmyk-salir'];
-      keys.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.style.display = 'none';
-      });
-      mezcladorColor.classList.add('move-padre-cmyk')
-      setTimeout(() => {
-        creadorPerfiles.classList.add('move-mezclador')    
-      }, 500);
-    break
-  } */
 }
-
-
-
-
-
 buscaNombre.addEventListener('click', () => {
   creaNombre.value = ''
   listaClientes.style.display = 'none'
