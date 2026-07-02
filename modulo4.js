@@ -4950,7 +4950,7 @@ const idsSelect = [
   'participante5',
   'lider'
 ];
-//empleados ára mostrar en los select
+//empleados pára mostrar en los select
 
 function setSelectValue(id, value) {
   const select = document.getElementById(id);
@@ -4979,6 +4979,7 @@ function mostrarPropuestas(nombre) {
   contenedorPropuesta.innerHTML = '';
 
   const kaizenRaw = JSON.parse(localStorage.getItem('kaizenRegistrados')) || [];
+  console.log('KAIZEN EN LOCAL STORE : ',kaizenRaw)
 
   const kaizenArray = Array.isArray(kaizenRaw)
     ? kaizenRaw
@@ -5021,7 +5022,6 @@ function cargarFichaTecnica(kaizen) {
   document.getElementById('mejora').value = kaizen.propuesta || '';
   document.getElementById('fecha').value = kaizen.fecha || '';
   document.getElementById('autogestionado').value = kaizen.autogestionado || '';
-  document.getElementById('lider').value = kaizen.lider || '';
   document.getElementById('equipo').value = kaizen.equipo || '';
   document.getElementById('area').value = kaizen.area || '';
 
@@ -5031,7 +5031,8 @@ function cargarFichaTecnica(kaizen) {
   if (selectImagenKaizen) {
     selectImagenKaizen.value = kaizen.imagen || '';
   }
-
+  
+  setSelectValue('lider', kaizen.lider);
   setSelectValue('empleado', kaizen.empleado);
   setSelectValue('participante1', kaizen.participante1);
   setSelectValue('participante2', kaizen.participante2);
@@ -5059,6 +5060,7 @@ function cargarEmpleados(select) {
   if (select.dataset.loaded === 'true') return;
 
   const raw = JSON.parse(localStorage.getItem('empleadosRegistrados'));
+  console.log(raw)
   
   // Convertir a array sin importar cómo esté guardado
   const empleados = Array.isArray(raw) ? raw : Object.values(raw || {});
