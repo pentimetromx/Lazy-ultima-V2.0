@@ -29,8 +29,6 @@ const panelAdministrador = document.querySelector("#panel-admon")
 const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
 const botonVolver = document.getElementById('butt-links-II')
 
-
-
 let contiVidDistribuidor = document.getElementById('conti-video-distribuidor')  
 let arrayButtsIniciales = ['bot-atras','bot-inicial','iniciar','bot-atras12']
 let padreFormularioNuevoIngreso = document.querySelector('#padre-formulario-empleado')  

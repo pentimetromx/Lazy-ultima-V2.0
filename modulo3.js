@@ -3,18 +3,23 @@ document.addEventListener('keydown', function(event) {
     switch (event.key) {  
       case 'Ñ':
       setTimeout(() => {
-        mostrarPorClaveLocalStore('empleadosRegistrados')        
+        mostrarPorClaveLocalStore('kaizenRegistrados')
       }, 200);
 
       break
       case 'Z':
         Geometria()
-       
+        localStorage.setItem('kaizenRegistrados', JSON.stringify([]));
+        localStorage.setItem('empleadosRegistrados', JSON.stringify([])); 
+
+        const kaizenRegistrados = JSON.parse(localStorage.getItem('kaizenRegistrados'));
+        const empleadosRegistrados = JSON.parse(localStorage.getItem('empleadosRegistrados'));
+
+        console.log('EMPLEADOS EN LOCAL STORE VACIO : ', empleadosRegistrados);
+    
       break;  
       case 'H':
-        console.log('OBJETO GLOBAL', objetoGlobal)
-        restablecerClick(['.entrada-empleado']);
-        hideKeyboard()
+        vaciarPorClaveLocalStore('empleadosRegistrados', tipo = 'array')
       break;
       case 'X':
       eliminarClaveLocalStorage('empleadosRegistrados')
@@ -6919,11 +6924,9 @@ function mostrarElementoProgressivo(el) {
   });
 
   requestAnimationFrame(() => {
-    // transición del padre
-    el.style.transition = 'opacity 0.5s ease';
+    el.style.transition = 'opacity 0.5s ease, transform 0.8s ease-in-out';
     el.style.opacity = '1';
 
-    // transición de los hijos
     Array.from(el.querySelectorAll('*')).forEach(hijo => {
       hijo.style.transition = 'opacity 0.5s ease';
       hijo.style.opacity = '1';
@@ -7191,8 +7194,6 @@ function alternarOcultarBotones() {
   };
 
   ['.lbl-cmyk', '.btnCmyk', '.lbl-opcion', '.btn-opcion'].forEach(mostrarFlex);
-  ocultarElementoProgressivo(panelControlCMYK)
-  ocultarElementoProgressivo(panelControlRGB)
   setTimeout(() => {
     ocultarElementoProgressivo(creadorPerfiles)
     cortina.classList.remove('overlayRRHH')
