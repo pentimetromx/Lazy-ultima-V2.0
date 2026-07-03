@@ -22,7 +22,7 @@ body,html {
   user-select: none;
   background-position: center;
   background-repeat: no-repeat; 
-  background-color: rgb(30,30,30);     
+  background-color: #0f1316;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -7591,7 +7591,7 @@ background-color: #3FEF9C;
   display: grid;
   gap: 3%;
   grid-template-columns: repeat(5, 1fr);
-  top: 89vh;
+  top: 95vh;
   left: 63vw;
   height: 4vh;
   width: 36vw;
