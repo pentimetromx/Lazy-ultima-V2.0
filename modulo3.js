@@ -3,12 +3,13 @@ document.addEventListener('keydown', function(event) {
     switch (event.key) {  
       case 'Ñ':
       setTimeout(() => {
+        mostrarPorClaveLocalStore('empleadosRegistrados')
         mostrarPorClaveLocalStore('kaizenRegistrados')
       }, 200);
 
       break
       case 'Z':
-        Geometria()
+        /* Geometria() */
         localStorage.setItem('kaizenRegistrados', JSON.stringify([]));
         localStorage.setItem('empleadosRegistrados', JSON.stringify([])); 
 
@@ -7196,6 +7197,8 @@ function alternarOcultarBotones() {
   ['.lbl-cmyk', '.btnCmyk', '.lbl-opcion', '.btn-opcion'].forEach(mostrarFlex);
   setTimeout(() => {
     ocultarElementoProgressivo(creadorPerfiles)
+    ocultarElementoProgressivo(panelControlRGB)
+    ocultarElementoProgressivo(panelControlCMYK)
     cortina.classList.remove('overlayRRHH')
   }, 1000);
 }
