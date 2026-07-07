@@ -4,7 +4,7 @@ document.addEventListener('keydown', function(event) {
       case 'Ñ':
       setTimeout(() => {
         mostrarPorClaveLocalStore('empleadosRegistrados')
-        mostrarPorClaveLocalStore('kaizenRegistrados')
+        /* mostrarPorClaveLocalStore('kaizenRegistrados') */
       }, 200);
 
       break
