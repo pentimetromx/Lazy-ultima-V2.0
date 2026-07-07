@@ -290,8 +290,7 @@ const bloqueador = document.querySelector('.bloqueador')
 const pantallaKaizen = document.querySelector('#pantalla-kaizen')
 /*********************************************************************************** */
 class Empleado {
-  constructor(nombre, documento, area, cargo, equipo, fecha, imagen,
-    identificados, corregidos, tipoA, tipoB,kaizen, adas, adt, lup) {
+  constructor(nombre, documento, area, cargo, equipo, fecha, imagen,identificados, corregidos, tipoA, tipoB,kaizen, adas, adt, lup) {
     this.nombre = nombre;
     this.documento = documento;
     this.area = area;
@@ -310,21 +309,7 @@ class Empleado {
   }
 }
 class Kaizen {
-  constructor({
-    empleado,
-    propuesta,
-    fecha,
-    autogestionado,
-    participante1,
-    participante2,
-    participante3,
-    participante4,
-    participante5,
-    lider,
-    equipo,
-    area,
-    imagen
-  }) {
+  constructor({empleado,propuesta,fecha,autogestionado,participante1,participante2,participante3,participante4,participante5,lider,equipo,area,imagen}) {
     this.empleado = empleado;
     this.propuesta = propuesta;
     this.fecha = fecha;
