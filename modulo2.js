@@ -48,22 +48,19 @@ function desaparecerElemento(id) {
     contenedor.classList.remove("cerrando");
   }, duracion);
 }
-const salirPadreCmyk = document.querySelector('#boton-cmyk-salir')
-const salirPadreRgb= document.querySelector('#boton-rgb-salir')
-salirPadreCmyk.addEventListener('click', () => {
-  resetBotonMezclador('padre-cmyk')
-  setTimeout(() => {
-    ocultarElementoProgressivo(mezcladorColor) 
-    alternarOcultarBotones() 
-  }, 200);
-})
-salirPadreRgb.addEventListener('click', () => {
-  resetBotonMezclador('padre-rgb')
-  setTimeout(() => {
-    ocultarElementoProgressivo(mezcladorColorRGB) 
-    alternarOcultarBotones() 
-  }, 200);
-})
+
+function cerrarTecnologias(idBoton, elementos) {
+  document.querySelector(idBoton).addEventListener('click', () => {
+    resetBotonMezclador(idBoton.includes('cmyk') ? 'padre-cmyk' : 'padre-rgb')
+    setTimeout(() => {
+      elementos.forEach(ocultarElementoProgressivo)
+    }, 200)
+  })
+}
+
+cerrarTecnologias('#boton-cmyk-salir', [mezcladorColor, creadorPerfiles, panelControlCMYK])
+cerrarTecnologias('#boton-rgb-salir', [mezcladorColorRGB, creadorPerfiles, panelControlRGB])
+
 function deslizaContenedor(identificador, idButton) {
   activarPantallaCompleta()
   restablecerPosiciones(['.ocultos', '.class-line']);
