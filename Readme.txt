@@ -155,17 +155,20 @@ inputPerfil.addEventListener('blur', () => {
 
 setTimeout(() => { debugger; }, 300)   
 
-
+======IR A COMMIT ANTERIOR ===============================
 
 git checkout main
-
 git checkout a42cb5b6bb478fea118b6f8181d37762b9dfbcec -- .
-
 git status
 git add .
 git commit -m "recuperando modulo4.js desde commit a42cb5b6"
 git push
 
+
+======REGRESAR A ULTIMA VERSION ===============================
+
+git checkout main
+git pull origin main
 
 
 
