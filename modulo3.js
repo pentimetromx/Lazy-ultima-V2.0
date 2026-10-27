@@ -9,14 +9,8 @@ document.addEventListener('keydown', function(event) {
 
       break
       case 'Z':
-        /* Geometria() */
-        localStorage.setItem('kaizenRegistrados', JSON.stringify([]));
-        localStorage.setItem('empleadosRegistrados', JSON.stringify([])); 
-
-        const kaizenRegistrados = JSON.parse(localStorage.getItem('kaizenRegistrados'));
-        const empleadosRegistrados = JSON.parse(localStorage.getItem('empleadosRegistrados'));
-
-        console.log('EMPLEADOS EN LOCAL STORE VACIO : ', empleadosRegistrados);
+        const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+        console.table(empleados);
     
       break;  
       case 'H':

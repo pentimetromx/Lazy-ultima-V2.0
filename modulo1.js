@@ -385,7 +385,7 @@ function cargarColaboradoresDesdeStorage() {
     }));
 }
 
- const colaboradores = cargarColaboradoresDesdeStorage();
+let colaboradores = cargarColaboradoresDesdeStorage();
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -485,7 +485,51 @@ document.addEventListener('DOMContentLoaded', () => {
   let fotoFijada = null;
   // --- construir lista dinámica ---
 
-  colaboradores.forEach((emp, i) => {
+
+  function pintarLista() {
+    listadoNombres.innerHTML = '';
+    colaboradores = cargarColaboradoresDesdeStorage();
+
+    colaboradores.forEach((emp, i) => {
+          const span = document.createElement('span');
+    span.textContent = emp.nombre;
+    span.dataset.img = emp.ruta;
+    span.dataset.index = i;
+
+    span.addEventListener('mouseenter', () => {
+      indiceActual = i;
+      mostrarEmpleadoPorIndice(i, { fijar: false });
+    });
+    span.addEventListener('mouseleave', () => {
+      if (fotoFijada) {
+        mostrarEmpleadoObj(fotoFijada);
+      } else {
+        limpiarVisor();
+      }
+    });
+    span.addEventListener('click', () => {
+      indiceActual = i;
+      if (fotoFijada === emp) {
+        fotoFijada = null;
+        limpiarVisor();
+      } else {
+        fotoFijada = emp;
+        mostrarEmpleadoObj(emp);
+      }
+    });
+
+    listadoNombres.appendChild(span); // ← primero agrega al DOM
+
+    });
+  }
+
+  pintarLista();
+
+  window.pintarLista = pintarLista;
+
+
+
+  /* colaboradores.forEach((emp, i) => {
     const span = document.createElement('span');
     span.textContent = emp.nombre;
     span.dataset.img = emp.ruta;
@@ -514,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     listadoNombres.appendChild(span); // ← primero agrega al DOM
-  });
+  }); */
 
   // ✅ Fuera del forEach — todos los spans ya están en el DOM
   document.querySelector('#listaNombres').addEventListener('touchend', (e) => {

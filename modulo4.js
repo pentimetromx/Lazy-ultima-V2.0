@@ -4756,7 +4756,7 @@ document.querySelector('#registro-baja').addEventListener('click', () => {
   const datos = new FormData(formularioNuevoIngreso);
   const documento = String(datos.get('documento')).trim();
 
-  const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+  const empleados = obtenerEmpleados();
 
   if (empleados[documento]) {
     saltarAlerta('El empleado ya existe en la BD', 'nuevoEmpleado');
@@ -4784,10 +4784,26 @@ document.querySelector('#registro-baja').addEventListener('click', () => {
   guardarEmpleado(empleado);
 });
 
+function obtenerEmpleados() {
+  let crudo;
+  try { crudo = JSON.parse(localStorage.getItem('empleadosRegistrados')); }
+  catch { crudo = null; }
+
+  const lista = Array.isArray(crudo) ? crudo : Object.values(crudo || {});
+  const empleados = {};
+
+  lista.forEach(emp => {
+    if (emp && emp.documento) empleados[String(emp.documento).trim()] = emp;
+  });
+  return empleados;
+}
+
+
 function guardarEmpleado(empleado){
-  const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
+  const empleados = obtenerEmpleados();
   empleados[empleado.documento] = empleado;
   localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
+  if (window.pintarLista) window.pintarLista();   // ← línea nueva
   saltarAlerta('Empleado registrado','exitoRegistro')
   console.log(empleados)
 }
@@ -5142,29 +5158,23 @@ document.querySelector('#btn-confirmar-baja').addEventListener('click', () => {
     return;
   }
   // 1. extraer de localStorage
-  const almacenJSON = localStorage.getItem('empleadosRegistrados'); 
-  if (!almacenJSON) {
-    saltarAlerta('No hay empleados registrados', 'baja') 
-    return;
-  }
-  const empleados = JSON.parse(almacenJSON);
-  // 2. buscar por la propiedad 'nombre' dentro de cada objeto
-  const keyEncontrada = Object.keys(empleados).find(
-    key => empleados[key].documento === nombreInput
-  );
-  if (!keyEncontrada) {
+
+  const empleados = obtenerEmpleados();
+  if (!empleados[nombreInput]) {
     saltarAlerta('Documento no registrado', 'baja') 
     return;
   }
 
   traerEmpleadoaEliminar()
+
   setTimeout(() => {
-    // 3. eliminar y actualizar localStorage
-    delete empleados[keyEncontrada];
-    localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
+    const actuales = obtenerEmpleados();
+    delete actuales[nombreInput];
+    localStorage.setItem('empleadosRegistrados', JSON.stringify(actuales));
+    if (window.pintarLista) window.pintarLista();   // ← línea nueva
     limpiarEntradas()
     console.log(`Empleado "${nombreInput}" eliminado`);
-    console.log('Registro actualizado:', empleados);
+    console.log('Registro actualizado:', actuales);
     saltarAlerta('Empleado eliminado en BD', 'baja') 
   }, 1000);
   
@@ -5760,18 +5770,10 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
 })
 
 document.querySelector("#borrarBoton5").addEventListener('click',()=>{
-  var elementosExcluidos = ['links-inicialesI','links-iniciales','buscador','search-form'] 
-  for (var i = 0; i < allContenedores.length; i++) { 
-    var element = document.getElementById(allContenedores[i])  
-    if (element) {
-      element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
-    }
-  } 
-  container1.style.display='grid'
   activarPantallaCompleta()
-  resultadosMA('interfaz-mtto')
-  
+  mostrarInterfazIngreso('nuevoIngreso')  
 })
+
 const btnActivar = document.querySelector('#carta-exterior .btn-primario');
 const cardInput = document.querySelector('#carta-exterior .card-header');
 const cardImg = document.querySelector('#carta-exterior .card-foto img');
