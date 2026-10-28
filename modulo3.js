@@ -5754,9 +5754,9 @@ function mostrarNombresDeObjetos() {
       menuContextual.style.visibility = 'visible';
       menuContextual.dataset.nombreObjeto = nombreCapitalizado;
 
-      setTimeout(() => {
+      /* setTimeout(() => {
         document.querySelectorAll('.cliente-item').forEach(item => item.blur());
-      }, 100);
+      }, 100); */
     });
 
     listaColores.appendChild(nuevoDiv);

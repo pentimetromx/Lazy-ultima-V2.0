@@ -3718,15 +3718,13 @@ hijosMaster.forEach((li, index) => {
       mostrarMaster('interfazMaestra')      
     }         
     if (index === 1) {
-      var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','panel-listado']; 
+      var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','panel-listado','panel-colores']; 
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i]) 
         if (elemento) {
           elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
         }
       }
-
-      /* panelListado.style.display='flex' */
     }  
   });
 });
@@ -6307,24 +6305,26 @@ function crearOpcionesNumericas(selectId, min = 0, max = 20) {
     
 }
 
+const CAMPOS = [
+  'nombre', 'documento', 'area', 'cargo', 'equipo', 'fecha', 'imagen',
+  'identificados', 'corregidos', 'tipoA', 'tipoB', 'kaizen', 'adas', 'adt', 'lup'
+];
 
-document.querySelector('#btn-ver-listado').addEventListener('click', () => {
-  const CAMPOS = [
-    'nombre', 'documento', 'area', 'cargo', 'equipo', 'fecha', 'imagen',
-    'identificados', 'corregidos', 'tipoA', 'tipoB', 'kaizen', 'adas', 'adt', 'lup'
-  ];
-
-  const boton = document.querySelector('#btn-ver-listado');
+interfazToggle.addEventListener('click', () => {
+  const interfazToggle = document.querySelector('#btn-ver-listado');
+  const panel = document.querySelector('#panel-listado');
   const contenedor = document.querySelector('#contenedor-tabla');
   const tabla = document.querySelector('#tabla-listado');
   const total = document.querySelector('#listado-total');
 
   // Si está desplegada, vuelve al estado inicial
-  if (boton.dataset.abierto === 'true') {
+  traerAlFrente(panel);
+  if (interfazToggle.dataset.abierto === 'true') {
     contenedor.style.display = 'none';
     total.style.display = 'none';
-    boton.dataset.abierto = 'false';
-    boton.textContent = 'Empleados registrados';
+    interfazToggle.dataset.abierto = 'false';
+    interfazToggle.textContent = 'Empleados registrados';
+    panel.classList.remove('expandido');   // <- vuelve al ancho base
     return;
   }
 
@@ -6358,15 +6358,80 @@ document.querySelector('#btn-ver-listado').addEventListener('click', () => {
   total.style.display = 'block';
   tabla.style.display = empleados.length ? 'table' : 'none';
   contenedor.style.display = 'block';
-  boton.dataset.abierto = 'true';
-  boton.textContent = 'Ocultar empleados registrados';
+  interfazToggle.dataset.abierto = 'true';
+  interfazToggle.textContent = 'Ocultar empleados registrados';
+  panel.classList.add('expandido');        // <- se expande
 });
+
+let zActual = 10;
+
+function traerAlFrente(panel) {
+  zActual += 1;
+  panel.style.zIndex = zActual;
+}
 
 linkMaster.addEventListener('mouseenter', () => {
   linkAuxiliarMaster.style.display = 'block';
 });
 linkMaster.addEventListener('mouseleave', () => {
   linkAuxiliarMaster.style.display = 'none';
+});
+
+
+document.querySelector('#btn-ver-colores').addEventListener('click', () => {
+  const boton = document.querySelector('#btn-ver-colores');
+  const contenedor = document.querySelector('#contenedor-colores');
+  const total = document.querySelector('#colores-total');
+  const lista = document.querySelector('#listado-colores');
+
+  // Si está desplegado, vuelve al estado inicial
+  if (boton.dataset.abierto === 'true') {
+    contenedor.style.display = 'none';
+    total.style.display = 'none';
+    boton.dataset.abierto = 'false';
+    boton.textContent = 'Ver colores registrados';
+    return;
+  }
+
+  // Si está contraído, lee los datos y despliega
+  let colores = {};
+  try {
+    colores = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
+  } catch {
+    colores = {};
+  }
+
+  const nombres = Object.keys(colores).sort();
+  lista.innerHTML = '';
+
+  nombres.forEach(nombre => {
+    const item = document.createElement('li');
+
+    const titulo = document.createElement('div');
+    titulo.textContent = nombre;
+    item.appendChild(titulo);
+
+    const detalle = document.createElement('pre');
+    detalle.textContent = JSON.stringify(colores[nombre], null, 2);
+    detalle.style.display = 'none';
+    detalle.style.margin = '8px 0 0';
+    detalle.style.fontSize = '12px';
+    detalle.style.whiteSpace = 'pre-wrap';
+    detalle.style.color = '#9aa2ab';
+    item.appendChild(detalle);
+
+    titulo.addEventListener('click', () => {
+      detalle.style.display = detalle.style.display === 'none' ? 'block' : 'none';
+    });
+
+    lista.appendChild(item);
+  });
+
+  total.textContent = `Total: ${nombres.length} colores`;
+  total.style.display = 'block';
+  contenedor.style.display = 'block';
+  boton.dataset.abierto = 'true';
+  boton.textContent = 'Ocultar colores registrados';
 });
 
 
