@@ -88,7 +88,7 @@ function ocultarConstellation(coleccion) {
 	const el = document.querySelector('#calendario-mes');
         if (!el || el.offsetParent === null) {
          return
-       }else{ ...
+       }else{ ...}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

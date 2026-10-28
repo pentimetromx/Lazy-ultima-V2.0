@@ -3708,10 +3708,26 @@ hijos.forEach((li, index) => {
     if (index === 3) {
       activarPantallaCompleta()
       resultadosMA('interfaz-mtto')
-    }
-    if (index === 4) {
+    }  
+  });
+});
+hijosMaster.forEach((li, index) => {
+  li.addEventListener('click', (e) => {
+    e.stopPropagation(); 
+    if (index === 0) {
       mostrarMaster('interfazMaestra')      
-    }    
+    }         
+    if (index === 1) {
+      var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','panel-listado']; 
+      for (var i = 0; i < allContenedores.length; i++) { 
+        var elemento = document.getElementById(allContenedores[i]) 
+        if (elemento) {
+          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
+        }
+      }
+
+      /* panelListado.style.display='flex' */
+    }  
   });
 });
 
@@ -6290,6 +6306,69 @@ function crearOpcionesNumericas(selectId, min = 0, max = 20) {
   });
     
 }
+
+
+document.querySelector('#btn-ver-listado').addEventListener('click', () => {
+  const CAMPOS = [
+    'nombre', 'documento', 'area', 'cargo', 'equipo', 'fecha', 'imagen',
+    'identificados', 'corregidos', 'tipoA', 'tipoB', 'kaizen', 'adas', 'adt', 'lup'
+  ];
+
+  const boton = document.querySelector('#btn-ver-listado');
+  const contenedor = document.querySelector('#contenedor-tabla');
+  const tabla = document.querySelector('#tabla-listado');
+  const total = document.querySelector('#listado-total');
+
+  // Si está desplegada, vuelve al estado inicial
+  if (boton.dataset.abierto === 'true') {
+    contenedor.style.display = 'none';
+    total.style.display = 'none';
+    boton.dataset.abierto = 'false';
+    boton.textContent = 'Empleados registrados';
+    return;
+  }
+
+  // Si está contraída, lee los datos y despliega
+  const empleados = Object.values(obtenerEmpleados());
+  const cabecera = document.querySelector('#listado-cabecera');
+  const cuerpo = document.querySelector('#listado-cuerpo');
+
+  cabecera.innerHTML = '';
+  cuerpo.innerHTML = '';
+
+  const filaCab = document.createElement('tr');
+  CAMPOS.forEach(campo => {
+    const th = document.createElement('th');
+    th.textContent = campo;
+    filaCab.appendChild(th);
+  });
+  cabecera.appendChild(filaCab);
+
+  empleados.forEach(emp => {
+    const fila = document.createElement('tr');
+    CAMPOS.forEach(campo => {
+      const celda = document.createElement('td');
+      celda.textContent = emp[campo] ?? '';
+      fila.appendChild(celda);
+    });
+    cuerpo.appendChild(fila);
+  });
+
+  total.textContent = `Total: ${empleados.length} empleados`;
+  total.style.display = 'block';
+  tabla.style.display = empleados.length ? 'table' : 'none';
+  contenedor.style.display = 'block';
+  boton.dataset.abierto = 'true';
+  boton.textContent = 'Ocultar empleados registrados';
+});
+
+linkMaster.addEventListener('mouseenter', () => {
+  linkAuxiliarMaster.style.display = 'block';
+});
+linkMaster.addEventListener('mouseleave', () => {
+  linkAuxiliarMaster.style.display = 'none';
+});
+
 
 crearOpcionesNumericas('numDoc1-ma');
 crearOpcionesNumericas('numDoc2-ma');

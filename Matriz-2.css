@@ -6305,6 +6305,65 @@ top: 44%;
 
 
 
+#panel-listado {  
+  position: absolute;
+  top: 10vh;
+  left: 2vw;
+  width: 96vw;
+  max-height: 70vh;
+  overflow: hidden;
+  display: flex;
+  display: none;
+  flex-direction: column;
+  z-index: 1999;
+  padding: 14px;
+  background: #2b3036;
+  color: #c9ced4;
+  border: 1px solid #4a525b;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+#contenedor-tabla {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;              /* ambos scrolls en este contenedor */
+}
+#btn-ver-listado {
+  width: 100%;
+  padding: 8px 12px;
+  background: #3d444c;
+  color: #e3e6ea;
+  border: 1px solid #5b646e;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#btn-ver-listado:hover { background: #4a525b; }
+#listado-total { margin: 10px 0 6px; color: #9aa2ab; }
+#tabla-listado { width: 100%; border-collapse: collapse; }
+#tabla-listado th {
+  text-align: left;
+  padding: 6px 8px;
+  background: #353b42;
+  color: #e3e6ea;
+  border-bottom: 1px solid #5b646e;
+  white-space: nowrap;
+}
+#tabla-listado td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #3a4047;
+  color: #c9ced4;
+  white-space: nowrap;
+}
+#tabla-listado tbody tr:hover { background: #343a41; }
+#listado-total { display: none; }
+#contenedor-tabla { display: none; }
+
+
+
+
+
 
 
 

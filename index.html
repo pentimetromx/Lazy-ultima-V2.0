@@ -507,20 +507,25 @@
         <li onclick="decisionesEstrategicas()">Estrategia</li> 
         <li id="ingreso-padre">Ingresos / Resultados
 
-        <ul id="links-auxiliar" class="auxiliar-links">
-          <li>Job track</li> 
-          <li>Administracion
-            <ul id="empleado-ingreso" class="auxiliar-links">
-              <li>Nuevo ingreso</li>
-              <li>Data empleado</li>
-              <li>Retirar empleado</li>
-            </ul>
-          </li>
-          <li>Mantenimiento Autonomo</li>
-          <li>Resultado individual M.A</li>
-          <li>Master</li>
+          <ul id="links-auxiliar" class="auxiliar-links">
+            <li>Job track</li> 
+            <li>Administracion
+              <ul id="empleado-ingreso" class="auxiliar-links">
+                <li>Nuevo ingreso</li>
+                <li>Data empleado</li>
+                <li>Retirar empleado</li>
+              </ul>
+            </li>
+            <li>Mantenimiento Autonomo</li>
+            <li>Resultado individual M.A</li>
+            <li id="link-master">Master
+              <ul id="links-aux-master" class="auxiliar-links">
+                <li>Integral</li>
+                <li>Bases datos</li> 
+              </ul>
+            </li>
 
-        </ul>
+          </ul>
           
         </li>        
         <li onclick="cerrarPilares()">Salir</li> 
@@ -4530,10 +4535,6 @@
       </div>      
 
     </div>
-    
-
-
-         
 
     <div id="panel-admon" class="panel-monitor">
 
@@ -4577,6 +4578,17 @@
       </div>       
 
     </div>
+
+    <div id="panel-listado">
+      <button id="btn-ver-listado" type="button">Empleados registrados</button>
+      <p id="listado-total"></p>
+      <div id="contenedor-tabla">
+        <table id="tabla-listado" style="display:none;">
+          <thead id="listado-cabecera"></thead>
+          <tbody id="listado-cuerpo"></tbody>
+        </table>
+      </div>
+    </div>    
 
    
 

@@ -9,8 +9,7 @@ document.addEventListener('keydown', function(event) {
 
       break
       case 'Z':
-        const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
-        console.table(empleados);
+        traerAlmacenObjetos()
     
       break;  
       case 'H':
