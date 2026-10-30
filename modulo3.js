@@ -5663,16 +5663,16 @@ function mostrarNombresDeObjetos() {
     menuItem.style.alignItems = 'center';
     menuItem.style.justifyContent = 'flex-start';
 
-    menuItem.addEventListener('click', () => {
+    menuItem.addEventListener('click', (event) => {
       menuContextual.style.display = 'none';
 
       if (opcion === 'Editar') {
         editarObjeto(menuContextual.dataset.nombreObjeto);
       } else if (opcion === 'Filtrar') {
-        buscarPerfil(event);
+        buscarPerfil();
       } else if (opcion === 'Eliminar') {
-        eliminarObjeto(menuContextual.dataset.nombreObjeto); 
-      }    
+        eliminarObjeto(menuContextual.dataset.nombreObjeto);
+      }
     });
 
     menuContextual.appendChild(menuItem);
@@ -5776,83 +5776,76 @@ function mostrarNombresDeObjetos() {
   }); 
 
   listaColores.addEventListener('mouseleave', () => {
+    // Si el buscador está en uso, no cierres nada
+    if (inputBuscar && inputBuscar.style.display !== 'none' && document.activeElement === inputBuscar) return;
+
     listaColores.style.display = 'none';
-    if(inputBuscar)inputBuscar.style.display='none'
+    if (inputBuscar) inputBuscar.style.display = 'none';
     menuContextual.style.display = 'none';
     restablecerClick(['.base-datos']);
-    blurOverlay.style.display='none'
-    
+    blurOverlay.style.display = 'none';
   });
   console.log('Nombres de objetos mostrados en lista-clientes:', Object.keys(almacenCapitalizado));      
     
   cortina.classList.remove('overlayRRHH')    
 }
 
-function buscarPerfil(event) {
-  desactivarClick(['.cliente-item']); 
+function buscarPerfil() {
+  desactivarClick(['.cliente-item']);
 
   if (!inputBuscar) {
-    // Crear el input flotante solo si no existe
     inputBuscar = document.createElement('input');
     inputBuscar.type = 'text';
     inputBuscar.placeholder = 'Buscar perfil...';
-    inputBuscar.style.position = 'absolute';
-    inputBuscar.style.zIndex = '5000';
-    inputBuscar.style.padding = '8px';
-    inputBuscar.style.backgroundColor='#060101'
-    inputBuscar.style.border = '1px solid #ccc';
-    inputBuscar.style.color = '#ccc';  
-    inputBuscar.style.borderRadius = '5px';
-    inputBuscar.style.outline = 'none';
-    inputBuscar.style.display = 'none'; // Inicialmente oculto
+    Object.assign(inputBuscar.style, {
+      position: 'absolute',
+      zIndex: '5000',
+      padding: '8px',
+      backgroundColor: '#060101',
+      border: '1px solid #ccc',
+      color: '#ccc',
+      borderRadius: '5px',
+      outline: 'none',
+      display: 'none',
+      left: '47vw',
+      top: '44vh'
+    });
     document.body.appendChild(inputBuscar);
 
-    // Agregar evento mouseleave para ocultar el input
+    // Se registra UNA sola vez
+    inputBuscar.addEventListener('input', () => {
+      const texto = inputBuscar.value.trim().toLowerCase();
+      document.querySelectorAll('.cliente-item').forEach(item => {
+        item.style.display = item.textContent.toLowerCase().startsWith(texto) ? 'block' : 'none';
+      });
+    });
+
     inputBuscar.addEventListener('mouseleave', () => {
-      if (inputBuscar.value.trim() === '') { 
-        // Solo ocultar si el input está vacío
+      if (inputBuscar.value.trim() === '') {
         inputBuscar.style.display = 'none';
-        listaClientes.style.display = 'none';
+        listaColores.style.display = 'none';   // antes: listaClientes
       }
-    });    
-
-  }  
-
-  // Verificar si el evento es válido
-  if (event && event.pageX !== undefined && event.pageY !== undefined) {
-    inputBuscar.style.left = '47vw'
-    inputBuscar.style.top = '44vh'
-    inputBuscar.style.zIndex=5000
-  } else {
-    // Si no hay evento, ubicarlo en el centro de la pantalla como fallback
-    inputBuscar.style.left = '50%';
-    inputBuscar.style.top = '20px';
-    inputBuscar.style.transform = 'translateX(-50%)';
+    });
   }
 
-  inputBuscar.style.display = 'block';
-  inputBuscar.value = '';
-  inputBuscar.focus();
-
-  // Evento para filtrar en tiempo real
-  inputBuscar.addEventListener('input', () => {
-    let textoIngresado = inputBuscar.value.toLowerCase();
-    let clientes = document.querySelectorAll('.cliente-item');
-
-    clientes.forEach(cliente => {
-      let nombre = cliente.textContent.toLowerCase();
-      cliente.style.display = nombre.startsWith(textoIngresado) ? 'block' : 'none';
-    });
+  // Reinicia el filtro anterior
+  document.querySelectorAll('.cliente-item').forEach(item => {
+    item.style.display = 'block';
   });
 
-  // Evento para ocultar el input cuando se haga clic fuera
+  inputBuscar.value = '';
+  inputBuscar.style.display = 'block';
+  inputBuscar.focus();
+
+  // Cierra el buscador al hacer clic fuera
   setTimeout(() => {
-    document.addEventListener('click', function ocultarInput(evento) {
+    const ocultarInput = (evento) => {
       if (evento.target !== inputBuscar) {
         inputBuscar.style.display = 'none';
         document.removeEventListener('click', ocultarInput);
       }
-    });
+    };
+    document.addEventListener('click', ocultarInput);
     restablecerClick(['.cliente-item']);
   }, 500);
 }
