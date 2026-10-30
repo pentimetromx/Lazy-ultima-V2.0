@@ -522,6 +522,8 @@
               <ul id="links-aux-master" class="auxiliar-links">
                 <li>Integral</li>
                 <li>Bases datos</li> 
+                <li>Almacen datos</li> 
+
               </ul>
             </li>
 
@@ -4285,8 +4287,8 @@
 
    <div class="padre-inputs">
       <button id="borrarBoton" class="borrar-boton">RRHH</button>
-      <button id="borrarBoton2" class="borrar-boton" onclick="deslizaContenedor('conti-boton-kaizen','kaizen')">11:30</button>
-      <button id="borrarBoton3" onclick="resultadosMaquina()" class="borrar-boton">NEW EMPLOYEE</button>
+      <button id="borrarBoton3" class="borrar-boton">Simulador</button>
+      <button id="borrarBoton2" class="borrar-boton">Almacen de datos</button>
       <button id="borrarBoton4" class="borrar-boton">Bases datos</button>
       <button id="borrarBoton5" class="borrar-boton" style="z-index: 9999;">New employee</button>
     </div>   
@@ -4591,12 +4593,26 @@
     </div>    
 
     <div id="panel-colores">
-      <button id="btn-ver-colores" type="button">Ver colores registrados</button>
+      <button id="btn-ver-colores" type="button">Colores registrados</button>
       <p id="colores-total"></p>
       <div id="contenedor-colores">
         <ul id="listado-colores"></ul>
       </div>
-    </div>    
+    </div>  
+    
+    <div id="panel-storage" class="panel">
+      <h2>Almacenamiento local</h2>
+      <div id="grid-storage"></div>
+      <h3 id="titulo-detalle"></h3>
+      <h3 id="titulo-detalle"></h3>
+      <input id="buscador-detalle" type="text" placeholder="Buscar...">      
+      <div id="contenedor-detalle">
+        <table id="tabla-detalle">
+          <thead id="detalle-cabecera"></thead>
+          <tbody id="detalle-cuerpo"></tbody>
+        </table>
+      </div>
+    </div> 
 
    
 

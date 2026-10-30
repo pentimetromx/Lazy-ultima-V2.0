@@ -9,8 +9,7 @@ document.addEventListener('keydown', function(event) {
 
       break
       case 'Z':
-        traerAlmacenObjetos()
-    
+        console.table(Object.keys(localStorage))
       break;  
       case 'H':
         vaciarPorClaveLocalStore('empleadosRegistrados', tipo = 'array')
@@ -4900,7 +4899,10 @@ buttsJobs.forEach(boton => {
         if(lineaClientes.style.display==='block') lineaClientes.style.display='none'
         listaClientes.removeAttribute('style');     
         desactivarClick(['.butt-perfiles', '.estilo-1']);       
-        mostrarNombresDeObjetos();           
+        mostrarNombresDeObjetos();
+        /* setTimeout(() => {
+          debugger
+        }, 1000); */   
       break;
       case 'lineas':
         if(listaColores.style.display==='flex') listaColores.style.display='none'
@@ -5371,7 +5373,6 @@ function sumarPorcentaje() {
 }
 
 
-
 //APLICA A leds, led, grilla
 function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propiedadIII, propiedadIV, propiedadV, propiedadVI, footer, foot){
   
@@ -5608,6 +5609,7 @@ listaClientes.addEventListener('mouseleave', () => {
 });
 
 const jobs = document.querySelectorAll('.jobs');
+
 function mostrarNombresDeObjetos() {
   flagAplicacion = true;
 
@@ -5690,48 +5692,47 @@ function mostrarNombresDeObjetos() {
     nuevoDiv.className = 'cliente-item';
     nuevoDiv.textContent = nombreCapitalizado;  
     nuevoDiv.style.fontSize = '0.7em';
-  function manejarSeleccionItem() {
-    restablecerClick(['.estilo-1']);
-    const panelUno = document.getElementById('panel-uno');
-    const perfilador = document.querySelector('#perfiles-color');
-    blurOverlay.style.display='none'
+    function manejarSeleccionItem() {
+      restablecerClick(['.estilo-1']);
+      const panelUno = document.getElementById('panel-uno');
+      const perfilador = document.querySelector('#perfiles-color');
+      blurOverlay.style.display='none'
 
-    creaNombre.value = nombreCapitalizado;         
-    const nombreCliente = document.querySelector('.nombre-cliente');
-    nombreCliente.textContent = nombreCapitalizado;
-    panelUno.textContent = nombreCapitalizado;
-    panelUno.style.backgroundColor = 'rgb(0,0,23)';
-    panelUno.style.color = 'rgb(200,200,200)';
-    objetoGlobal = nombreCapitalizado;
-    console.log('OBJETO GLOBAL :', objetoGlobal);
-    listaColores.style.display = 'none';
+      creaNombre.value = nombreCapitalizado;         
+      const nombreCliente = document.querySelector('.nombre-cliente');
+      nombreCliente.textContent = nombreCapitalizado;
+      panelUno.textContent = nombreCapitalizado;
+      panelUno.style.backgroundColor = 'rgb(0,0,23)';
+      panelUno.style.color = 'rgb(200,200,200)';
+      objetoGlobal = nombreCapitalizado;
+      console.log('OBJETO GLOBAL :', objetoGlobal);
+      listaColores.style.display = 'none';
 
-    if (!perfilador || getComputedStyle(perfilador).display === 'none') {
-      mostrarBarraProgres(0.1, 33.5);
+      if (!perfilador || getComputedStyle(perfilador).display === 'none') {
+        mostrarBarraProgres(0.1, 33.5);
+      }
+
+      const btn = document.querySelector('#btn-execute');
+      function parpadearBoton(elemento, duracion = 1000, intervalo = 50) {
+        let encendido = false;
+        const originalColor = elemento.style.backgroundColor;
+        const originalTransform = elemento.style.transform;
+        const originalTransition = elemento.style.transition;
+        elemento.style.transition = `transform ${duracion}ms ease, background-color ${intervalo}ms linear`;
+        elemento.style.transform = 'scale(1.3)';
+        const intervalID = setInterval(() => {
+          elemento.style.backgroundColor = encendido ? 'white' : 'green';
+          encendido = !encendido;
+        }, intervalo);
+        setTimeout(() => {
+          clearInterval(intervalID);
+          elemento.style.backgroundColor = originalColor;
+          elemento.style.transform = originalTransform;
+          elemento.style.transition = originalTransition;
+        }, duracion);
+      }
+      parpadearBoton(btn);
     }
-
-    const btn = document.querySelector('#btn-execute');
-    function parpadearBoton(elemento, duracion = 1000, intervalo = 50) {
-      let encendido = false;
-      const originalColor = elemento.style.backgroundColor;
-      const originalTransform = elemento.style.transform;
-      const originalTransition = elemento.style.transition;
-      elemento.style.transition = `transform ${duracion}ms ease, background-color ${intervalo}ms linear`;
-      elemento.style.transform = 'scale(1.3)';
-      const intervalID = setInterval(() => {
-        elemento.style.backgroundColor = encendido ? 'white' : 'green';
-        encendido = !encendido;
-      }, intervalo);
-      setTimeout(() => {
-        clearInterval(intervalID);
-        elemento.style.backgroundColor = originalColor;
-        elemento.style.transform = originalTransform;
-        elemento.style.transition = originalTransition;
-      }, duracion);
-    }
-    parpadearBoton(btn);
-  }
-  nuevoDiv.addEventListener('click', manejarSeleccionItem);
 
     nuevoDiv.addEventListener('contextmenu', (event) => {
       event.preventDefault();
@@ -5757,7 +5758,9 @@ function mostrarNombresDeObjetos() {
       /* setTimeout(() => {
         document.querySelectorAll('.cliente-item').forEach(item => item.blur());
       }, 100); */
-    });
+    });  
+    
+    nuevoDiv.addEventListener('click', manejarSeleccionItem);   
 
     listaColores.appendChild(nuevoDiv);
   });
@@ -5770,7 +5773,7 @@ function mostrarNombresDeObjetos() {
 
   menuContextual.addEventListener('mouseleave', () => {
     menuContextual.style.display = 'none';
-  });
+  }); 
 
   listaColores.addEventListener('mouseleave', () => {
     listaColores.style.display = 'none';
@@ -5855,13 +5858,18 @@ function buscarPerfil(event) {
 }
 
 function eliminarObjeto(nombreObjeto) {
+  document.getElementById('panel-uno').textContent = '';
+  document.getElementById('panel-uno').style.backgroundColor=''
   desactivarClick(['.cliente-item']);
   document.querySelectorAll('.cliente-item').forEach(item => {
     item.style.filter = 'blur(15px)';
   });
+
+  document.getElementById('alerta-nueve')?.remove();
+
   const divEliminacion = document.createElement('div');
   divEliminacion.id = 'alerta-nueve';
-  listaClientes.appendChild(divEliminacion);
+  document.body.appendChild(divEliminacion);
 
   // Crear elementos de la alerta
   const spanAnuncio = document.createElement('span');
@@ -5887,43 +5895,38 @@ function eliminarObjeto(nombreObjeto) {
   divEliminacion.appendChild(nombreElemento);
   divEliminacion.appendChild(spanConfirmar);   
   divEliminacion.appendChild(spanAbandonar);
-  divEliminacion.style.display = 'grid';
-  divEliminacion.style.height = '21vh'
+
+  
+  Object.assign(divEliminacion.style, {
+    display: 'grid',
+    height: '21vh',
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: '9999'
+  });
+
   // Evento para confirmar la eliminación
+
   spanConfirmar.addEventListener('click', (e) => {
     e.stopPropagation();
-    const alertaNueve = document.getElementById('span-index');    
-    divEliminacion.style.display='none'
-    // Eliminar del localStorage  
-    const almacenJSON = localStorage.getItem('coloresRegistrados');
-    if (almacenJSON) {
-      const almacenRecuperado = JSON.parse(almacenJSON);
-      if (almacenRecuperado[nombreObjeto]) {
-        delete almacenRecuperado[nombreObjeto]; // Eliminar la clave del objeto
-        localStorage.setItem('coloresRegistrados', JSON.stringify(almacenRecuperado)); // Guardar cambios
-        setTimeout(() => {
-          almacenObjetos = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
-        }, 50);
-      }
-    } 
-    // Eliminar visualmente de la lista
-    const elementosLista = document.querySelectorAll('.cliente-item');
-    elementosLista.forEach((elemento) => {
-      if (elemento.textContent === nombreObjeto) {
-        elemento.remove();
-      }
-    }); 
+    divEliminacion.remove();
 
-    mostrarNombresDeObjetos(); // Refrescar la lista después de eliminar
-    document.querySelector('.alerta-botones').style.display='flex'
-    document.querySelector('.alerta-botones').style.top='43vh'
-    document.querySelector('.alerta-botones').style.left='37vw'
-    document.querySelector('.alerta-botones').textContent= `El perfil : ${nombreObjeto} ha sido eliminado exitosamente.`
+    const eliminado = eliminarPerfil(nombreObjeto);
+
+    restablecerClick(['.cliente-item']);
     document.querySelectorAll('.cliente-item').forEach(item => {
-    item.style.filter = 'blur(15px)';
-    alertaNueve.style.zIndex=9999
+      item.style.filter = 'none';
+    });
 
-    });  
+    if (eliminado) {
+      const aviso = document.querySelector('.alerta-botones');
+      aviso.style.display = 'flex';
+      aviso.style.top = '43vh';
+      aviso.style.left = '37vw';
+      aviso.textContent = `El perfil : ${nombreObjeto} ha sido eliminado exitosamente.`;
+    }
   });
 
   spanAbandonar.addEventListener('click', (e) => {
@@ -5935,117 +5938,140 @@ function eliminarObjeto(nombreObjeto) {
     });
     divEliminacion.style.display = 'none';
   });
-  document.getElementById('panel-uno').textContent = '';
-  document.getElementById('panel-uno').style.backgroundColor=''
 
   desactivarClickTemporalmente(['.nueve-span'], 500);
+}
 
+
+function eliminarPerfil(nombre) {
+  // 1. Borrar de localStorage
+  const colores = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
+
+  if (!(nombre in colores)) {
+    console.warn('No existe en coloresRegistrados:', nombre);
+    return false;
+  }
+
+  delete colores[nombre];
+  localStorage.setItem('coloresRegistrados', JSON.stringify(colores));
+
+  // 2. Actualizar la variable en memoria
+  almacenObjetos = colores;
+
+  // 3. Quitar el item de la lista en pantalla
+  document.querySelectorAll('.cliente-item').forEach(item => {
+    if (item.textContent.trim() === nombre) item.remove();
+  });
+
+  return true;
 }
 
 function editarObjeto(nombreObjeto) {
-  document.querySelectorAll('.cliente-item').forEach(item => {
-    item.style.filter = 'blur(15px)';
-  });
-  
-  let spanAviso = document.querySelector('#span-nombre')
-  // Crear un input para capturar el nuevo nombre
+  const spanAviso = document.querySelector('#span-nombre');
+
+  // Input con el nombre actual
   const inputNuevoNombre = document.createElement('input');
   inputNuevoNombre.type = 'text';
-  inputNuevoNombre.value = nombreObjeto; // Valor actual por defecto 
-  inputNuevoNombre.id = 'input-edicion'
+  inputNuevoNombre.value = nombreObjeto;
+  inputNuevoNombre.id = 'input-edicion';
 
-  // Botón para confirmar el cambio de nombre
+  // Botones
   const botonConfirmar = document.createElement('button');
-  const botonSalir = document.createElement('button')
   botonConfirmar.textContent = 'Guardar';
-  botonConfirmar.className = 'boton-edicion'
-  botonConfirmar.className ='edicion-span'  
+  botonConfirmar.className = 'edicion-span';
 
-  botonSalir.textContent = 'Salir'
-  botonSalir.className = 'boton-edicion'
-  botonSalir.className ='edicion-span'
+  const botonSalir = document.createElement('button');
+  botonSalir.textContent = 'Salir';
+  botonSalir.className = 'edicion-span';
 
-  // Contenedor temporal para edición
+  // Contenedor temporal de edición
   const contenedorEdicion = document.createElement('div');
-  contenedorEdicion.classList.add('contenedor-edicion'); // Usamos la clase para el posicionamiento estático  
-  contenedorEdicion.appendChild(inputNuevoNombre);
-  contenedorEdicion.appendChild(botonConfirmar);
-  contenedorEdicion.appendChild(botonSalir);
- 
-  // Insertar el contenedor en el DOM
-  listaClientes.appendChild(contenedorEdicion);
-  contenedorEdicion.style.display='grid'
-  
+  contenedorEdicion.classList.add('contenedor-edicion');
+  contenedorEdicion.append(inputNuevoNombre, botonConfirmar, botonSalir);
+
+  // Cambio 1: en body (antes: listaClientes) y con posición propia,
+  // para que el mouseleave de la lista no lo oculte
+  document.body.appendChild(contenedorEdicion);
+  Object.assign(contenedorEdicion.style, {
+    display: 'grid',
+    position: 'fixed',
+    width:'50%',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: '9999'
+  });
+
   inputNuevoNombre.focus();
-  // Evento para confirmar el cambio de nombre
+
+  // Cambio 2: listener de Guardar reescrito
   botonConfirmar.addEventListener('click', (e) => {
     e.stopPropagation();
-    const nuevoNombre = inputNuevoNombre.value.trim(); 
+
+    const nuevoNombre = capitalizarTexto(inputNuevoNombre.value.trim());
+
     if (!nuevoNombre) {
-      alertaOcho.style.display='flex'
-      alertaOcho.style.zIndex = 5000
-      alertaOcho.textContent='El perfil debe tener un nombre'
+      alertaOcho.style.display = 'flex';
+      alertaOcho.style.zIndex = 5000;
+      alertaOcho.textContent = 'El perfil debe tener un nombre';
       return;
     }
-    // Recuperar el objeto almacenado en localStorage
-    const almacenJSON = localStorage.getItem('coloresRegistrados');
-    if (almacenJSON) {
-      const almacenRecuperado = JSON.parse(almacenJSON);
-      // Verificar que el nuevo nombre no exista ya
-      if (almacenRecuperado[nuevoNombre]) {
-        alertaOcho.style.display='flex'
-        alertaOcho.style.zIndex = 5000
 
-        alertaOcho.addEventListener('click', () => {
-          alertaOcho.style.display='none'
-          listaClientes.style.filter = 'none';
-        });
-        return;
-      }
-      // Actualizar el nombre en el almacenamiento
-      almacenRecuperado[nuevoNombre] = almacenRecuperado[nombreObjeto]; // Copiar los datos del objeto
-      delete almacenRecuperado[nombreObjeto]; // Eliminar la clave antigua
-      // Guardar nuevamente en localStorage
-      localStorage.setItem('coloresRegistrados', JSON.stringify(almacenRecuperado));
-      // Actualizar la lista visualmente
-      const elementosLista = document.querySelectorAll('.cliente-item');
-      elementosLista.forEach((elemento) => {
-        if (elemento.textContent === nombreObjeto) {
-          elemento.textContent = nuevoNombre; // Cambiar el nombre visualmente 
-          elemento.style.filter = 'blur(15px)';
-        }
-      });
-      // Ordenar la lista después de actualizar el nombre
-      ordenarListaClientes();
-      mostrarNombresDeObjetos();
-      alertaSiete.style.display='grid'
-      alertaSiete.style.zIndex= 5000
-      spanAviso.textContent = `${nuevoNombre}`;      
-    }                           
-    // Eliminar el contenedor temporal
+    // Mismo nombre: no hay nada que guardar
+    if (nuevoNombre === nombreObjeto) {
+      contenedorEdicion.remove();
+      return;
+    }
+
+    const colores = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
+
+    if (nuevoNombre in colores) {
+      alertaOcho.style.display = 'flex';
+      alertaOcho.style.zIndex = 5000;
+      alertaOcho.textContent = 'Ya existe un perfil con ese nombre';
+      return;
+    }
+
+    if (!(nombreObjeto in colores)) {
+      console.warn('No existe en coloresRegistrados:', nombreObjeto);
+      return;
+    }
+
+    // Reconstruye el objeto cambiando solo la clave, sin alterar el orden
+    const actualizado = {};
+    Object.keys(colores).forEach(k => {
+      actualizado[k === nombreObjeto ? nuevoNombre : k] = colores[k];
+    });
+    localStorage.setItem('coloresRegistrados', JSON.stringify(actualizado));
+
     contenedorEdicion.remove();
-    traerAlmacenObjetos();
-  }); 
+    mostrarNombresDeObjetos();
 
+    if (spanAviso) spanAviso.textContent = nuevoNombre;
+    alertaSiete.style.display = 'grid';
+    alertaSiete.style.zIndex = 5000;
+  });
+
+  // Salir: queda igual que antes
   botonSalir.addEventListener('click', (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     document.querySelectorAll('.cliente-item').forEach(item => {
       item.style.filter = 'none';
     });
-    let alertas = document.querySelectorAll('.cerrar')
-    contenedorEdicion.style.display='none'
-    alertas.forEach(alerta =>{
-      alerta.style.display='none'
-    })
-    document.querySelectorAll('.datos-base').forEach((elemento) => {
-    elemento.textContent = ''
-    })
-    restablecerClick(['.butt-perfiles', '.estilo-1','.digit','.digito']); 
-    calculadora.classList.add('move-calculadora')
-    objetoGlobal = '' 
-    
-  }) 
+    const alertas = document.querySelectorAll('.cerrar');
+    contenedorEdicion.style.display = 'none';
+    alertas.forEach(alerta => {
+      alerta.style.display = 'none';
+    });
+    document.querySelectorAll('.datos-base').forEach(elemento => {
+      elemento.textContent = '';
+    });
+    restablecerClick(['.butt-perfiles', '.estilo-1', '.digit', '.digito']);
+    calculadora.classList.add('move-calculadora');
+    objetoGlobal = '';
+  });
 }
+
 function ordenarListaClientes() {
   const elementos = Array.from(listaClientes.children);
   

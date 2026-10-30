@@ -3718,17 +3718,37 @@ hijosMaster.forEach((li, index) => {
       mostrarMaster('interfazMaestra')      
     }         
     if (index === 1) {
-      var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','panel-listado','panel-colores']; 
-      for (var i = 0; i < allContenedores.length; i++) { 
-        var elemento = document.getElementById(allContenedores[i]) 
-        if (elemento) {
-          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-        }
+      activarPantallaCompleta()
+      // Actualiza con lo último guardado en localStorage antes de mostrar
+      if (document.querySelector('#btn-ver-listado').dataset.abierto === 'true') {
+        renderizarListado();
       }
-    }  
+
+      var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','panel-listado','panel-colores'];
+      for (var i = 0; i < allContenedores.length; i++) {
+        var elemento = document.getElementById(allContenedores[i]);
+        if (elemento) {
+          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
+        }
+        container1.style.display='grid'
+      }
+    }
+    if (index === 2) {
+      activarPantallaCompleta()
+      var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI'];
+      for (var i = 0; i < allContenedores.length; i++) {
+        var elemento = document.getElementById(allContenedores[i]);
+        if (elemento) {
+          elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
+        }
+        container1.style.display='grid'
+        document.querySelector('#panel-storage').style.display='grid'
+      }
+      dibujarAlmacen()
+    }
+     
   });
 });
-
 hijosColor.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3743,7 +3763,6 @@ hijosColor.forEach((li, index) => {
     }
   });
 });
-
 hijosTec.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -3770,7 +3789,6 @@ hijosTec.forEach((li, index) => {
     }
   });
 });
-
 function mostrarMaster(elementId){
   deBajaActivo=false
   activarPantallaCompleta()         
@@ -3801,26 +3819,22 @@ function mostrarMaster(elementId){
     console.log(idsArray);
   }  
 }
-
 document.querySelector("#salir-ma").addEventListener('click',()=>{
   desaparecerElemento(interfazMA.id, 'grid')
   blurOverlay.style.display='none'
 })
-
 document.querySelector("#input-documento").addEventListener('click',()=>{
   deBajaActivo=false
   if (!esDesktop) {
     ubicaCalculadoraSegunContexto();
   }
 })
-
 document.querySelector("#input-documento").addEventListener('blur', () => {
   if (!esDesktop) {
     calculadora.classList.remove('move-calculadora-up-ingreso')
     hideCalculator();
   }
 });
-
 const mostrarRegistro = document.querySelector('#links-registro > li:nth-child(2)')
 mostrarRegistro.addEventListener('click', () =>{
   mostrarElementos(['butts-simulador','simulador','search-form','buscador','links-inicialesI','links-iniciales'])
@@ -3852,7 +3866,6 @@ document
     if(inputMA)inputMA.style=''
   }, 350);
 }
-
 function aplicarColorPorValor(input) {
   const value = Number(input.value);
 
@@ -3878,13 +3891,11 @@ function aplicarColorPorValor(input) {
 
   input.style.backgroundColor = color;
 }
-
 document.addEventListener('blur', (e) => {
   if (e.target.matches('input[data-colorable]')) {
     aplicarColorPorValor(e.target);
   }
 }, true);
-
 const INDICADORES = [
   'led-identificados',
   'led-corregidos',
@@ -3895,7 +3906,6 @@ const INDICADORES = [
   'led-adt',
   'led-lup'
 ];
-
 function contarLeds(id, total = 10) {
   const contenedor = document.getElementById(id);
   if (!contenedor) return { verdes: 0, sinColor: total };
@@ -3909,7 +3919,6 @@ function contarLeds(id, total = 10) {
     sinColor: total - verdes
   };
 }
-
 function obtenerEstadoLeds() {
   const estado = {};
 
@@ -3946,8 +3955,6 @@ function normalizarColorCeldas() {
       });
   });
 }
-
-
 function aplicarNormalizacionDeColores() {
   actualizarEstadoIndicadores();
   normalizarColorCeldas();
@@ -3974,9 +3981,6 @@ function aplicarNormalizacionDeColores() {
     }
   });
 }
-
-
-
 //*********************************************************************************************************************** */
 const MOVE_CLASSES = [
   'move-kaizen',
@@ -4646,7 +4650,7 @@ listaClientes.addEventListener('click', (e) => {
 let moverLista = false
 function mostrarListaClientes(seccion) {
   listaClientes.style.display = 'flex';
-  listaClientes.style.zIndex = 2010;
+  listaClientes.style.zIndex = 2010;  
   listaClientes.innerHTML = '';
 
   const almacenJSON = localStorage.getItem('empleadosRegistrados');
@@ -5714,8 +5718,17 @@ function limpiarFormulario() {
   }, inputs.length * 140);
 }
 document.querySelector('#borrarBoton2').addEventListener('click', () => {
-  /* activarPantallaCompleta()
-  mostrarInterfazIngreso() */
+  activarPantallaCompleta()
+  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI'];
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i]);
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
+    }
+    container1.style.display='grid'
+    document.querySelector('#panel-storage').style.display='grid'
+  }
+  dibujarAlmacen()
 });
 documentoEmplEliminar.addEventListener('touchstart', (e) => {
   e.preventDefault();
@@ -5911,10 +5924,6 @@ inputsMA.forEach(el => {
   });   
 
 });
-
-/* document.querySelector('select[name="area"]').addEventListener('click', function (e) {
-    debugger
-}); */
 
 document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',()=>{
   activarPantallaCompleta()
@@ -6309,75 +6318,35 @@ const CAMPOS = [
   'nombre', 'documento', 'area', 'cargo', 'equipo', 'fecha', 'imagen',
   'identificados', 'corregidos', 'tipoA', 'tipoB', 'kaizen', 'adas', 'adt', 'lup'
 ];
-
 interfazToggle.addEventListener('click', () => {
-  const interfazToggle = document.querySelector('#btn-ver-listado');
+  const boton = document.querySelector('#btn-ver-listado');
   const panel = document.querySelector('#panel-listado');
   const contenedor = document.querySelector('#contenedor-tabla');
-  const tabla = document.querySelector('#tabla-listado');
   const total = document.querySelector('#listado-total');
+  const abrir = boton.dataset.abierto !== 'true';
 
-  // Si está desplegada, vuelve al estado inicial
   traerAlFrente(panel);
-  if (interfazToggle.dataset.abierto === 'true') {
-    contenedor.style.display = 'none';
-    total.style.display = 'none';
-    interfazToggle.dataset.abierto = 'false';
-    interfazToggle.textContent = 'Empleados registrados';
-    panel.classList.remove('expandido');   // <- vuelve al ancho base
-    return;
-  }
 
-  // Si está contraída, lee los datos y despliega
-  const empleados = Object.values(obtenerEmpleados());
-  const cabecera = document.querySelector('#listado-cabecera');
-  const cuerpo = document.querySelector('#listado-cuerpo');
+  if (abrir) renderizarListado();
 
-  cabecera.innerHTML = '';
-  cuerpo.innerHTML = '';
-
-  const filaCab = document.createElement('tr');
-  CAMPOS.forEach(campo => {
-    const th = document.createElement('th');
-    th.textContent = campo;
-    filaCab.appendChild(th);
-  });
-  cabecera.appendChild(filaCab);
-
-  empleados.forEach(emp => {
-    const fila = document.createElement('tr');
-    CAMPOS.forEach(campo => {
-      const celda = document.createElement('td');
-      celda.textContent = emp[campo] ?? '';
-      fila.appendChild(celda);
-    });
-    cuerpo.appendChild(fila);
-  });
-
-  total.textContent = `Total: ${empleados.length} empleados`;
-  total.style.display = 'block';
-  tabla.style.display = empleados.length ? 'table' : 'none';
-  contenedor.style.display = 'block';
-  interfazToggle.dataset.abierto = 'true';
-  interfazToggle.textContent = 'Ocultar empleados registrados';
-  panel.classList.add('expandido');        // <- se expande
+  contenedor.style.display = abrir ? 'block' : 'none';
+  total.style.display = abrir ? 'block' : 'none';
+  boton.dataset.abierto = String(abrir);
+  boton.textContent = abrir ? 'Ocultar empleados registrados' : 'Empleados registrados';
+  panel.classList.toggle('expandido', abrir);
+  
 });
-
 let zActual = 10;
-
 function traerAlFrente(panel) {
   zActual += 1;
   panel.style.zIndex = zActual;
 }
-
 linkMaster.addEventListener('mouseenter', () => {
   linkAuxiliarMaster.style.display = 'block';
 });
 linkMaster.addEventListener('mouseleave', () => {
   linkAuxiliarMaster.style.display = 'none';
 });
-
-
 document.querySelector('#btn-ver-colores').addEventListener('click', () => {
   const boton = document.querySelector('#btn-ver-colores');
   const contenedor = document.querySelector('#contenedor-colores');
@@ -6389,7 +6358,7 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
     contenedor.style.display = 'none';
     total.style.display = 'none';
     boton.dataset.abierto = 'false';
-    boton.textContent = 'Ver colores registrados';
+    boton.textContent = 'Colores registrados';
     return;
   }
 
@@ -6433,7 +6402,186 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
   boton.dataset.abierto = 'true';
   boton.textContent = 'Ocultar colores registrados';
 });
+function renderizarListado() {
+  const empleados = Object.values(obtenerEmpleados()); // lee de localStorage
+  const cabecera = document.querySelector('#listado-cabecera');
+  const cuerpo = document.querySelector('#listado-cuerpo');
+  const tabla = document.querySelector('#tabla-listado');
+  const total = document.querySelector('#listado-total');
 
+  cabecera.innerHTML = '';
+  cuerpo.innerHTML = '';
+
+  const filaCab = document.createElement('tr');
+  CAMPOS.forEach(campo => {
+    const th = document.createElement('th');
+    th.textContent = campo;
+    filaCab.appendChild(th);
+  });
+  cabecera.appendChild(filaCab);
+
+  empleados.forEach(emp => {
+    const fila = document.createElement('tr');
+    CAMPOS.forEach(campo => {
+      const celda = document.createElement('td');
+      celda.textContent = emp[campo] ?? '';
+      fila.appendChild(celda);
+    });
+    cuerpo.appendChild(fila);
+  });
+
+  total.textContent = `Total: ${empleados.length} empleados`;
+  tabla.style.display = empleados.length ? 'table' : 'none';
+}
+
+
+function dibujarAlmacen() {
+  const grid = document.querySelector('#grid-storage');
+  grid.innerHTML = '';
+
+  Object.keys(localStorage).forEach(clave => {
+    const texto = localStorage.getItem(clave);
+    let tipo = 'texto';
+    let elementos = '-';
+
+    try {
+      const dato = JSON.parse(texto);
+      if (Array.isArray(dato)) {
+        tipo = 'arreglo';
+        elementos = dato.length;
+      } else if (dato && typeof dato === 'object') {
+        tipo = 'objeto';
+        elementos = Object.keys(dato).length;
+      }
+    } catch {}
+
+    const tarjeta = document.createElement('div');
+    tarjeta.className = 'tarjeta';
+
+    const titulo = document.createElement('h3');
+    titulo.textContent = clave;
+
+    const info = document.createElement('p');
+    info.textContent = `Tipo: ${tipo}`;
+
+    const cantidad = document.createElement('p');
+    cantidad.textContent = `Elementos: ${elementos}`;
+
+    const tamano = document.createElement('p');
+    tamano.textContent = `Caracteres: ${texto.length}`;
+
+    tarjeta.append(titulo, info, cantidad, tamano);
+
+    tarjeta.addEventListener('click', () => {
+      document.querySelectorAll('.tarjeta').forEach(t => t.classList.remove('activa'));
+      tarjeta.classList.add('activa');
+
+      document.querySelector('#titulo-detalle').textContent = clave;
+
+      let dato;
+      try { dato = JSON.parse(texto); } catch { dato = texto; }
+
+      mostrarTabla(dato && typeof dato === 'object' ? dato : { valor: dato });
+      prepararBuscador(clave);
+    });
+
+    grid.appendChild(tarjeta); 
+  });
+}
+
+function mostrarTabla(dato) {
+  const cabecera = document.querySelector('#detalle-cabecera');
+  const cuerpo = document.querySelector('#detalle-cuerpo');
+  cabecera.innerHTML = '';
+  cuerpo.innerHTML = '';
+
+  const entradas = Object.entries(dato);
+  const sonObjetos = entradas.length > 0 && entradas.every(([, v]) => v && typeof v === 'object');
+
+  // Si cada elemento es un objeto: una fila por elemento. Si no: una sola fila.
+  const filas = sonObjetos ? entradas : [['', dato]];
+  const columnas = [...new Set(filas.flatMap(([, fila]) => Object.keys(fila)))];
+
+  const filaCab = document.createElement('tr');
+  (sonObjetos ? ['clave', ...columnas] : columnas).forEach(nombre => {
+    const th = document.createElement('th');
+    th.textContent = nombre;
+    filaCab.appendChild(th);
+  });
+  cabecera.appendChild(filaCab);
+
+  filas.forEach(([clave, fila]) => {
+    const tr = document.createElement('tr');
+
+    if (sonObjetos) {
+      const tdClave = document.createElement('td');
+      tdClave.textContent = clave;
+      tr.appendChild(tdClave);
+    }
+
+    columnas.forEach(col => {
+      const valor = fila[col];
+      const td = document.createElement('td');
+
+      if (valor && typeof valor === 'object') {
+        td.textContent = Array.isArray(valor)
+          ? `[ ${valor.length} ]`
+          : `{ ${Object.keys(valor).length} }`;
+      } else {
+        const texto = String(valor ?? '');
+        td.textContent = texto.length > 60 ? texto.slice(0, 60) + '…' : texto;
+      }
+      tr.appendChild(td);
+    });
+
+    cuerpo.appendChild(tr);
+  });
+}
+
+// Por qué columna se filtra en cada clave
+const FILTROS = {
+  empleadosRegistrados: { columna: 'documento', placeholder: 'Buscar por documento...', numerico: true },
+  coloresRegistrados:   { columna: 'clave',     placeholder: 'Buscar por nombre...' }
+};
+
+let filtroActual = null;
+
+function prepararBuscador(clave) {
+  const input = document.querySelector('#buscador-detalle');
+  const config = FILTROS[clave] || { columna: 'clave', placeholder: 'Buscar por nombre...' };
+
+  const columnas = [...document.querySelectorAll('#detalle-cabecera th')].map(th => th.textContent);
+  const indice = columnas.indexOf(config.columna);
+
+  input.value = '';
+
+  if (indice === -1) {            // la tabla no tiene esa columna (volume, muted...)
+    input.style.display = 'none';
+    filtroActual = null;
+    return;
+  }
+
+  input.style.display = 'block';
+  input.placeholder = config.placeholder;
+  input.inputMode = config.numerico ? 'numeric' : 'text';
+  filtroActual = { indice, numerico: config.numerico };
+}
+
+document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
+  if (!filtroActual) return;
+
+  let texto = e.target.value;
+  if (filtroActual.numerico) {
+    texto = texto.replace(/\D/g, '');     // solo dígitos
+    e.target.value = texto;
+  }
+  texto = texto.trim().toLowerCase();
+
+  document.querySelectorAll('#detalle-cuerpo tr').forEach(fila => {
+    const celda = fila.children[filtroActual.indice].textContent.toLowerCase();
+    fila.style.display = celda.includes(texto) ? '' : 'none';
+  });
+});
 
 crearOpcionesNumericas('numDoc1-ma');
 crearOpcionesNumericas('numDoc2-ma');
@@ -6470,4 +6618,30 @@ function borrrrrrarrrr(){
     conteJobTrack.classList.add('move-job-track') 
   }, 100);
 }
+
+document.querySelector("#borrarBoton3").addEventListener('click',() =>{
+  ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
+  const padreBotonera = document.querySelector('#botonera-frente')
+  padreBotonera.style.display='grid'
+  conteJobTrack.classList.remove('move-job-track')
+  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8'] 
+  for (var i = 0; i < allContenedores.length; i++) {
+    var elemento = document.getElementById(allContenedores[i])  
+    if (elemento) {
+      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
+    }
+  }
+  container1.style.display = 'none'
+  desactivarClick(['.butt-perfiles'])
+  restablecerClick(['.estilo-1', '.butt-revierte'])
+  document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
+  
+  conteJobTrack.style.display='flex'
+  document.querySelectorAll('.datos-base').forEach((elemento) => { 
+    elemento.textContent = ''
+  });  
+  setTimeout(() => {
+    conteJobTrack.classList.add('move-job-track') 
+  }, 100);
+})
 
