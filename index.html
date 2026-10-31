@@ -4104,10 +4104,13 @@
 
         <form class="ficha-grid">
 
-          <label for="empleado">Nombre del proponente</label>
-          <select id="empleado" class="opcion-empleado current-focus special-text">
-            <option value="">Seleccione...</option>
-          </select>
+        <label for="empleado">Nombre del proponente</label>
+        <select id="empleado" class="opcion-empleado current-focus special-text">
+          <option value="">Seleccione...</option>
+        </select>
+
+        <label for="documento-kaizen">Documento</label>
+        <input id="documento-kaizen" name="documento" type="text" >
 
           <label for="mejora">Mejora propuesta</label>
           <input id="mejora" class="opcion-empleado current-focus special-text" inputmode="none" type="text">
@@ -4287,7 +4290,7 @@
 
    <div class="padre-inputs">
       <button id="borrarBoton" class="borrar-boton">RRHH</button>
-      <button id="borrarBoton3" class="borrar-boton">Simulador</button>
+      <button id="borrarBoton3" class="borrar-boton" onclick="rodillosKaizen('btn17','')">Simulador</button>
       <button id="borrarBoton2" class="borrar-boton">Almacen de datos</button>
       <button id="borrarBoton4" class="borrar-boton">Bases datos</button>
       <button id="borrarBoton5" class="borrar-boton" style="z-index: 9999;">New employee</button>
@@ -4581,16 +4584,24 @@
 
     </div>
 
+    
     <div id="panel-listado">
       <button id="btn-ver-listado" type="button">Empleados registrados</button>
       <p id="listado-total"></p>
+
       <div id="contenedor-tabla">
-        <table id="tabla-listado" style="display:none;">
-          <thead id="listado-cabecera"></thead>
-          <tbody id="listado-cuerpo"></tbody>
-        </table>
+        <input id="buscar-nombre" type="search" placeholder="Buscar por nombre..." autocomplete="off">
+
+        <div id="tabla-scroll">
+          <table id="tabla-listado" style="display:none;">
+            <thead id="listado-cabecera"></thead>
+            <tbody id="listado-cuerpo"></tbody>
+          </table>
+          <p id="sin-resultados">No se encontraron empleados.</p>
+        </div>
       </div>
-    </div>    
+    </div>     
+        
 
     <div id="panel-colores">
       <button id="btn-ver-colores" type="button">Colores registrados</button>

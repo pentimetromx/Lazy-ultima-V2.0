@@ -316,7 +316,7 @@ class Empleado {
   }
 }
 class Kaizen {
-  constructor({empleado,propuesta,fecha,autogestionado,participante1,participante2,participante3,participante4,participante5,lider,equipo,area,imagen}) {
+  constructor({empleado,documento,propuesta,fecha,autogestionado,participante1,participante2,participante3,participante4,participante5,lider,equipo,area,imagen}) {
     this.empleado = empleado;
     this.propuesta = propuesta;
     this.fecha = fecha;
@@ -2029,13 +2029,32 @@ const selectImagenKaizen = document.getElementById('imagen-kaizen');
     labelPantalla.textContent = texto;
   });
 })();
+
+function leerKaizen() {
+  let datos;
+  try { datos = JSON.parse(localStorage.getItem('kaizenRegistrados')); } catch { datos = null; }
+
+  if (Array.isArray(datos)) {
+    const empleados = Object.values(obtenerEmpleados());
+    const objeto = {};
+    datos.forEach((reg, i) => {
+      const nombre = String(reg.empleado).trim().toLowerCase();
+      const emp = empleados.find(e => String(e.nombre).trim().toLowerCase() === nombre);
+      reg.documento = reg.documento || (emp ? String(emp.documento).trim() : 'sin-documento');
+      objeto[`${reg.documento}-${Date.now() + i}`] = reg;
+    });
+    localStorage.setItem('kaizenRegistrados', JSON.stringify(objeto));
+    return objeto;
+  }
+  return datos || {};
+}
+
 function agregarKaizen() {
   const kaizenKey = 'kaizenRegistrados';
-
-  const raw = JSON.parse(localStorage.getItem(kaizenKey));
-  const kaizenLocal = Array.isArray(raw) ? raw : [];
+  const kaizenLocal = leerKaizen();
 
   const empleado = document.getElementById('empleado').value.trim();
+  const documento = document.getElementById('documento-kaizen').value.trim();
   const propuesta = document.getElementById('mejora').value.trim();
   const fecha = document.getElementById('fecha').value.trim();
   const autogestionado = document.getElementById('autogestionado').value.trim();
@@ -2049,13 +2068,14 @@ function agregarKaizen() {
   const equipo = document.getElementById('equipo').value.trim();
   const area = document.getElementById('area').value.trim();
 
-  if (!empleado || !autogestionado || !propuesta || !imagen) {
+  if (!empleado || !documento || !autogestionado || !propuesta || !imagen) {
     saltarAlerta('Hay campos sin diligenciar.', 'fichaTecnica');
     return;
   }
 
   const nuevoKaizen = {
     empleado,
+    documento,
     propuesta,
     fecha,
     autogestionado,
@@ -2072,9 +2092,10 @@ function agregarKaizen() {
 
   const propuestaNormalizada = propuesta.toLowerCase();
 
-  const propuestaDuplicada = kaizenLocal.some(kaizen =>
+  const propuestaDuplicada = Object.values(kaizenLocal).some(kaizen =>
     (kaizen.propuesta || '').trim().toLowerCase() === propuestaNormalizada
   );
+  
 
   if (propuestaDuplicada) {
     saltarAlerta('Esta propuesta de Kaizen ya existe.', 'fichaTecnica');
@@ -2082,9 +2103,8 @@ function agregarKaizen() {
     return;
   }
 
-  kaizenLocal.push(nuevoKaizen);
+  kaizenLocal[`${documento}-${Date.now()}`] = nuevoKaizen;
   localStorage.setItem(kaizenKey, JSON.stringify(kaizenLocal));
-
   saltarAlerta('Propuesta Kaizen registrada correctamente.', 'fichaTecnica');
 
   mostrarPropuestas(empleado);

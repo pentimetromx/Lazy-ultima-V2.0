@@ -4844,6 +4844,7 @@ function mostrarTablaLocalStorage(clave){
   console.table(lista);
 
 }
+
 function eliminarClaveLocalStorage(clave){
   if (!localStorage.getItem(clave)) {
     console.warn(`La clave "${clave}" no existe en localStorage`);
@@ -5065,7 +5066,7 @@ function cargarFichaTecnica(kaizen) {
   if (selectImagenKaizen) {
     selectImagenKaizen.value = kaizen.imagen || '';
   }
-  
+
   setSelectValue('lider', kaizen.lider);
   setSelectValue('empleado', kaizen.empleado);
   setSelectValue('participante1', kaizen.participante1);
@@ -5078,13 +5079,32 @@ function cargarFichaTecnica(kaizen) {
   const nombreKaizen = document.querySelector('.cell-exterior label');
 
   pantallaKaizen.style.display = 'grid';
-  cortina.classList.remove('overlayImagenesKaizen')
+  cortina.classList.remove('overlayImagenesKaizen');
   cortina.style.display = '';
-  cortina.classList.add('overlayKaizen')
-  if (kaizen.imagen && visorKaizen && nombreKaizen) {
-    visorKaizen.src = kaizen.imagen;
-    visorKaizen.dataset.src = kaizen.imagen;
+  cortina.classList.add('overlayKaizen');
+
+  if (visorKaizen && nombreKaizen) {
     nombreKaizen.textContent = kaizen.propuesta || '';
+
+    // Limpia estado anterior
+    visorKaizen.onload = null;
+    visorKaizen.onerror = null;
+    visorKaizen.classList.remove('loaded', 'sin-imagen');
+
+    if (kaizen.imagen) {
+      visorKaizen.onload = () => visorKaizen.classList.add('loaded');
+      visorKaizen.onerror = () => {
+        visorKaizen.removeAttribute('src');
+        visorKaizen.classList.add('sin-imagen');
+      };
+      visorKaizen.dataset.src = kaizen.imagen;
+      visorKaizen.src = kaizen.imagen;
+    } else {
+      // Sin imagen: quitamos src para que no quede la anterior ni el icono roto
+      visorKaizen.removeAttribute('src');
+      visorKaizen.removeAttribute('data-src');
+      visorKaizen.classList.add('sin-imagen');
+    }
   }
 
   desaparecerElemento('kaizen-buscador');
@@ -6481,7 +6501,7 @@ function dibujarAlmacen() {
       let dato;
       try { dato = JSON.parse(texto); } catch { dato = texto; }
 
-      mostrarTabla(dato && typeof dato === 'object' ? dato : { valor: dato });
+      mostrarTabla(dato && typeof dato === 'object' ? dato : { valor: dato }, clave);
       prepararBuscador(clave);
     });
 
@@ -6489,7 +6509,7 @@ function dibujarAlmacen() {
   });
 }
 
-function mostrarTabla(dato) {
+function mostrarTabla(dato, nombreClave) {
   const cabecera = document.querySelector('#detalle-cabecera');
   const cuerpo = document.querySelector('#detalle-cuerpo');
   cabecera.innerHTML = '';
@@ -6515,7 +6535,9 @@ function mostrarTabla(dato) {
 
     if (sonObjetos) {
       const tdClave = document.createElement('td');
-      tdClave.textContent = clave;
+      tdClave.textContent = nombreClave === 'kaizenRegistrados'
+      ? String(clave).split('-')[0]
+      : clave;
       tr.appendChild(tdClave);
     }
 
@@ -6543,9 +6565,7 @@ const FILTROS = {
   empleadosRegistrados: { columna: 'documento', placeholder: 'Buscar por documento...', numerico: true },
   coloresRegistrados:   { columna: 'clave',     placeholder: 'Buscar por nombre...' }
 };
-
 let filtroActual = null;
-
 function prepararBuscador(clave) {
   const input = document.querySelector('#buscador-detalle');
   const config = FILTROS[clave] || { columna: 'clave', placeholder: 'Buscar por nombre...' };
@@ -6566,7 +6586,6 @@ function prepararBuscador(clave) {
   input.inputMode = config.numerico ? 'numeric' : 'text';
   filtroActual = { indice, numerico: config.numerico };
 }
-
 document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
   if (!filtroActual) return;
 
@@ -6582,6 +6601,38 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
     fila.style.display = celda.includes(texto) ? '' : 'none';
   });
 });
+
+(() => {
+  const buscador  = document.getElementById('buscar-nombre');
+  const cabecera  = document.getElementById('listado-cabecera');
+  const cuerpo    = document.getElementById('listado-cuerpo');
+  const sinResult = document.getElementById('sin-resultados');
+
+  const normalizar = t =>
+    (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+  function filtrarListado() {
+    const q = normalizar(buscador.value);
+
+    const ths = [...cabecera.querySelectorAll('th')];
+    let idx = ths.findIndex(th => normalizar(th.textContent) === 'nombre');
+    if (idx < 0) idx = 0;
+
+    let visibles = 0;
+    cuerpo.querySelectorAll('tr').forEach(tr => {
+      const coincide = !q || normalizar(tr.children[idx]?.textContent).includes(q);
+      tr.style.display = coincide ? '' : 'none';
+      if (coincide) visibles++;
+    });
+
+    sinResult.style.display = (q && visibles === 0) ? 'block' : 'none';
+  }
+
+  buscador.addEventListener('input', filtrarListado);
+  new MutationObserver(filtrarListado).observe(cuerpo, { childList: true });
+})();
+
+
 
 crearOpcionesNumericas('numDoc1-ma');
 crearOpcionesNumericas('numDoc2-ma');
@@ -6619,7 +6670,7 @@ function borrrrrrarrrr(){
   }, 100);
 }
 
-document.querySelector("#borrarBoton3").addEventListener('click',() =>{
+/* document.querySelector("#borrarBoton3").addEventListener('click',() =>{
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
   const padreBotonera = document.querySelector('#botonera-frente')
   padreBotonera.style.display='grid'
@@ -6643,5 +6694,5 @@ document.querySelector("#borrarBoton3").addEventListener('click',() =>{
   setTimeout(() => {
     conteJobTrack.classList.add('move-job-track') 
   }, 100);
-})
+}) */
 

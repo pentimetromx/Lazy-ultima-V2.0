@@ -4658,6 +4658,26 @@ h4{
   width: 100%;
   height: 100%;
   display: block;
+
+  background: linear-gradient(110deg, #1b2a3a 8%, #243649 18%, #1b2a3a 33%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+  color: transparent;   /* oculta el texto alt */
+  font-size: 0;  
+}
+
+.cell-exterior img.loaded {
+  animation: none;
+  background: none;
+}
+.cell-exterior img.sin-imagen,
+.cell-exterior img:not([src]),
+.cell-exterior img[src=""] {
+  visibility: hidden;
+}
+
+@keyframes shimmer {
+  to { background-position-x: -200%; }
 }
 
 .move-kaizen{

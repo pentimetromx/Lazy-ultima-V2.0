@@ -1059,7 +1059,7 @@ function rodillosKaizen(idButton,vidElem) {
         }
       };
       container1.style.display='grid'
-      fichasTecnicas.style.display='flex'
+      fichasTecnicas.style.display='grid'
       imgsKaizen.classList.remove('ocultar-padre');
       const cells = document.querySelectorAll('#kaizen-propuestos > .cell');
       cells.forEach((cell, index) => {

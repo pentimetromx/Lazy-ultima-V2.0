@@ -6301,6 +6301,9 @@ top: 44%;
 .rrhh-wrapper button:active { transform: scale(0.98); }
 .rrhh-wrapper button:disabled { opacity: 0.5; cursor: not-allowed; }
 
+
+
+
 #panel-listado {  
   position: absolute;
   top: 10vh;
@@ -6322,10 +6325,9 @@ top: 44%;
   font-size: 14px;
 }
 #contenedor-tabla {
+  display: none;      /* tu JS lo muestra como ya lo hace */
   flex: 1;
   min-height: 0;
-  max-height: 60vh;  
-  overflow: auto;              /* ambos scrolls en este contenedor */
 }
 #btn-ver-listado {
   width: 100%;
@@ -6359,6 +6361,32 @@ top: 44%;
 #tabla-listado tbody tr:hover { background: #343a41; }
 #listado-total { display: none; }
 #contenedor-tabla { display: none; }
+
+#tabla-scroll {
+  max-height: 55vh;
+  overflow: auto;     /* ambos scrolls van aquí */
+}
+
+#buscar-nombre {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 7px 10px;
+  background: #23272c;
+  color: #e3e6ea;
+  border: 1px solid #5b646e;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+#buscar-nombre:focus { border-color: #8fa3b8; }
+#buscar-nombre::placeholder { color: #7d858e; }
+#sin-resultados {
+  display: none;
+  padding: 12px 8px;
+  color: #9aa2ab;
+}
+
+
 
 
 #panel-colores {
