@@ -2404,7 +2404,6 @@ const visorContenedor = document.querySelector('#visorImagen-II');
 const imagenVisor = document.querySelector('#imagenVisor-II');
 
 function generarListaFotos() {
-
   const almacen = document.querySelector('.almacen-fotos');
 
   almacen.classList.remove('oculto');   // quitar ocultamiento previo
@@ -2419,6 +2418,8 @@ function generarListaFotos() {
   imagennesColaboradores.forEach(colaborador => {
     const item = document.createElement('div');
     item.textContent = colaborador.nombre;
+    item.style.fontSize = '0.6rem';
+    item.style.color = '#3FE0C5'
     item.dataset.ruta = colaborador.ruta;
     listaFotos.appendChild(item);
   });
@@ -3724,7 +3725,7 @@ hijosMaster.forEach((li, index) => {
         renderizarListado();
       }
 
-      var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','panel-listado','panel-colores'];
+      var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','panel-listado','panel-colores','panel-kaizen'];
       for (var i = 0; i < allContenedores.length; i++) {
         var elemento = document.getElementById(allContenedores[i]);
         if (elemento) {
@@ -5110,7 +5111,7 @@ function cargarFichaTecnica(kaizen) {
   desaparecerElemento('kaizen-buscador');
 }
 
-function cargarEmpleados(select) {
+function cargarEmpleados(select) {  
   if (select.dataset.loaded === 'true') return;
 
   const raw = JSON.parse(localStorage.getItem('empleadosRegistrados'));
@@ -5128,6 +5129,7 @@ function cargarEmpleados(select) {
 
   empleados
     .filter(empleado => empleado && empleado.nombre)
+    .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }))    
     .forEach(empleado => {
       const option = document.createElement('option');
       option.value = empleado.nombre;
@@ -6338,6 +6340,7 @@ const CAMPOS = [
   'nombre', 'documento', 'area', 'cargo', 'equipo', 'fecha', 'imagen',
   'identificados', 'corregidos', 'tipoA', 'tipoB', 'kaizen', 'adas', 'adt', 'lup'
 ];
+
 interfazToggle.addEventListener('click', () => {
   const boton = document.querySelector('#btn-ver-listado');
   const panel = document.querySelector('#panel-listado');
@@ -6352,11 +6355,12 @@ interfazToggle.addEventListener('click', () => {
   contenedor.style.display = abrir ? 'block' : 'none';
   total.style.display = abrir ? 'block' : 'none';
   boton.dataset.abierto = String(abrir);
-  boton.textContent = abrir ? 'Ocultar empleados registrados' : 'Empleados registrados';
+  boton.textContent = abrir ? 'Cerrar empleados registrados' : 'Empleados registrados';
   panel.classList.toggle('expandido', abrir);
   
 });
 let zActual = 10;
+
 function traerAlFrente(panel) {
   zActual += 1;
   panel.style.zIndex = zActual;
@@ -6368,6 +6372,7 @@ linkMaster.addEventListener('mouseleave', () => {
   linkAuxiliarMaster.style.display = 'none';
 });
 document.querySelector('#btn-ver-colores').addEventListener('click', () => {
+  const panel = document.querySelector('#panel-colores');
   const boton = document.querySelector('#btn-ver-colores');
   const contenedor = document.querySelector('#contenedor-colores');
   const total = document.querySelector('#colores-total');
@@ -6379,8 +6384,11 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
     total.style.display = 'none';
     boton.dataset.abierto = 'false';
     boton.textContent = 'Colores registrados';
+    panel.classList.remove('expandido');
     return;
   }
+
+  panel.classList.add('expandido');
 
   // Si está contraído, lee los datos y despliega
   let colores = {};
@@ -6420,7 +6428,127 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
   total.style.display = 'block';
   contenedor.style.display = 'block';
   boton.dataset.abierto = 'true';
-  boton.textContent = 'Ocultar colores registrados';
+  boton.textContent = 'Cerrar colores registrados';
+});
+document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
+  const panel      = document.querySelector('#panel-kaizen');            // CAMBIO 1: nueva constante
+  const boton      = document.querySelector('#btn-ver-kaizen');
+  const contenedor = document.querySelector('#contenedor-tabla-kaizen');
+  const total      = document.querySelector('#listado-total-kaizen');
+  const tabla      = document.querySelector('#tabla-listado-kaizen');
+  const cabecera   = document.querySelector('#listado-cabecera-kaizen');
+  const cuerpo     = document.querySelector('#listado-cuerpo-kaizen');
+  const buscador   = document.querySelector('#buscar-kaizen');
+
+  // Si está desplegado, vuelve al estado inicial
+  if (boton.dataset.abierto === 'true') {
+    contenedor.style.display = 'none';
+    total.style.display = 'none';
+    panel.classList.remove('expandido');                                 // CAMBIO 2: se contrae
+    boton.dataset.abierto = 'false';
+    boton.textContent = 'Kaizen registrados';
+    return;
+  }
+
+  // Si está contraído, lee los datos y despliega
+  let datos = [];
+  try {
+    const crudo = JSON.parse(localStorage.getItem('kaizenRegistrados'));
+    datos = Array.isArray(crudo) ? crudo : Object.values(crudo || {});
+  } catch {
+    datos = [];
+  }
+  datos = datos.filter(Boolean);
+
+  // Columnas que se muestran (ajusta, quita o reordena a tu gusto)
+  const columnas = [
+    { clave: 'empleado',        titulo: 'Proponente' },
+    { clave: 'documento',       titulo: 'Documento' },
+    { clave: 'propuesta',       titulo: 'Propuesta' },
+    { clave: 'fecha',           titulo: 'Fecha' },
+    { clave: 'autogestionado',  titulo: 'Autogestionado' },
+    { clave: 'participante1',   titulo: 'Participante 1' },
+    { clave: 'participante2',   titulo: 'Participante 2' },
+    { clave: 'participante3',   titulo: 'Participante 3' },
+    { clave: 'participante4',   titulo: 'Participante 4' },
+    { clave: 'participante5',   titulo: 'Participante 5' },
+    { clave: 'imagen',          titulo: 'Imagen' },
+    { clave: 'lider',           titulo: 'Líder de área' },
+    { clave: 'equipo',          titulo: 'Equipo M.A' },
+    { clave: 'area',            titulo: 'Área' }
+  ];
+
+  // Encabezado
+  const filaCabecera = document.createElement('tr');
+  columnas.forEach(col => {
+    const th = document.createElement('th');
+    th.textContent = col.titulo;                 // CAMBIO: antes era col
+    filaCabecera.appendChild(th);
+  });
+  cabecera.replaceChildren(filaCabecera);
+
+  // Filas
+  buscador.value = '';
+  const filas = datos.map(kaizen => {
+    const tr = document.createElement('tr');
+    columnas.forEach(col => {
+      const td = document.createElement('td');
+      td.textContent = kaizen[col.clave] ?? '';  // CAMBIO: antes era kaizen[col]
+      tr.appendChild(td);
+    });
+    return tr;
+  });
+  cuerpo.replaceChildren(...filas);  
+
+  total.textContent = `Total: ${datos.length} kaizen`;
+  total.style.display = 'block';
+  tabla.style.display = 'table';
+  contenedor.style.display = 'block';
+  panel.classList.add('expandido');                                      // CAMBIO 3: se amplía
+  boton.dataset.abierto = 'true';
+  boton.textContent = 'Cerrar kaizen registrados';
+});
+function activarBuscador({ inputId, cabeceraId, cuerpoId, sinResultId, columna = 'nombre' }) {
+  const buscador  = document.getElementById(inputId);
+  const cabecera  = document.getElementById(cabeceraId);
+  const cuerpo    = document.getElementById(cuerpoId);
+  const sinResult = document.getElementById(sinResultId);
+
+  if (!buscador || !cabecera || !cuerpo || !sinResult) {
+    console.warn('activarBuscador: falta algún elemento para', inputId);
+    return;
+  }
+
+  const normalizar = t =>
+    (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+  function filtrar() {
+    const q = normalizar(buscador.value);
+
+    const ths = [...cabecera.querySelectorAll('th')];
+    let idx = ths.findIndex(th => normalizar(th.textContent) === normalizar(columna));
+    if (idx < 0) idx = 0;
+
+    let visibles = 0;
+    cuerpo.querySelectorAll('tr').forEach(tr => {
+      const coincide = !q || normalizar(tr.children[idx]?.textContent).includes(q);
+      tr.style.display = coincide ? '' : 'none';
+      if (coincide) visibles++;
+    });
+
+    sinResult.style.display = (q && visibles === 0) ? 'block' : 'none';
+  }
+
+  buscador.addEventListener('input', filtrar);
+  new MutationObserver(filtrar).observe(cuerpo, { childList: true });
+}
+// El buscador (va después del bloque anterior)
+activarBuscador({
+  inputId:     'buscar-kaizen',
+  cabeceraId:  'listado-cabecera-kaizen',
+  cuerpoId:    'listado-cuerpo-kaizen',
+  sinResultId: 'sin-resultados-kaizen',
+  columna:     'Proponente'
 });
 function renderizarListado() {
   const empleados = Object.values(obtenerEmpleados()); // lee de localStorage
@@ -6453,8 +6581,6 @@ function renderizarListado() {
   total.textContent = `Total: ${empleados.length} empleados`;
   tabla.style.display = empleados.length ? 'table' : 'none';
 }
-
-
 function dibujarAlmacen() {
   const grid = document.querySelector('#grid-storage');
   grid.innerHTML = '';
@@ -6508,7 +6634,6 @@ function dibujarAlmacen() {
     grid.appendChild(tarjeta); 
   });
 }
-
 function mostrarTabla(dato, nombreClave) {
   const cabecera = document.querySelector('#detalle-cabecera');
   const cuerpo = document.querySelector('#detalle-cuerpo');
@@ -6559,7 +6684,6 @@ function mostrarTabla(dato, nombreClave) {
     cuerpo.appendChild(tr);
   });
 }
-
 // Por qué columna se filtra en cada clave
 const FILTROS = {
   empleadosRegistrados: { columna: 'documento', placeholder: 'Buscar por documento...', numerico: true },
@@ -6601,7 +6725,7 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
     fila.style.display = celda.includes(texto) ? '' : 'none';
   });
 });
-
+// IIFE Para empleados  
 (() => {
   const buscador  = document.getElementById('buscar-nombre');
   const cabecera  = document.getElementById('listado-cabecera');
@@ -6631,8 +6755,70 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
   buscador.addEventListener('input', filtrarListado);
   new MutationObserver(filtrarListado).observe(cuerpo, { childList: true });
 })();
+// IIFE Para colores
+(() => {
+  const buscador  = document.getElementById('buscar-color');
+  const lista     = document.getElementById('listado-colores');
+  const sinResult = document.getElementById('sin-resultados-colores');
 
+  const normalizar = t =>
+    (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 
+  function filtrarColores() {
+    const q = normalizar(buscador.value);
+
+    let visibles = 0;
+    lista.querySelectorAll('li').forEach(li => {
+      const nombre = li.querySelector('div')?.textContent ?? '';
+      const coincide = !q || normalizar(nombre).includes(q);
+      li.style.display = coincide ? '' : 'none';
+      if (coincide) visibles++;
+    });
+
+    sinResult.style.display = (q && visibles === 0) ? 'block' : 'none';
+  }
+
+  buscador.addEventListener('input', filtrarColores);
+  new MutationObserver(filtrarColores).observe(lista, { childList: true });
+})();
+// IIFE Para clientes
+(() => {
+  const lista     = document.getElementById('lista-colores');
+  const buscador  = document.getElementById('buscar-color-lista');
+  const sinResult = lista?.querySelector('.sin-resultados-lista');
+  if (!lista || !buscador || !sinResult) return;
+
+  const normalizar = t =>
+    (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+  function filtrar() {
+    const q = normalizar(buscador.value);
+    let visibles = 0;
+
+    lista.querySelectorAll('.cliente-item').forEach(item => {
+      const coincide = !q || normalizar(item.textContent).includes(q);
+      item.style.display = coincide ? '' : 'none';
+      if (coincide) visibles++;
+    });
+
+    sinResult.style.display = (q && visibles === 0) ? 'block' : 'none';
+  }
+
+  buscador.addEventListener('input', filtrar);
+
+  lista.addEventListener('mouseleave', () => {
+    if (document.activeElement === buscador) return;
+    buscador.value = '';
+    filtrar();
+  }); 
+
+  buscador.addEventListener('blur', () => {
+    if (!lista.matches(':hover')) {
+      buscador.value = '';
+      filtrar();
+    }
+  });
+})();
 
 crearOpcionesNumericas('numDoc1-ma');
 crearOpcionesNumericas('numDoc2-ma');
@@ -6669,30 +6855,4 @@ function borrrrrrarrrr(){
     conteJobTrack.classList.add('move-job-track') 
   }, 100);
 }
-
-/* document.querySelector("#borrarBoton3").addEventListener('click',() =>{
-  ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
-  const padreBotonera = document.querySelector('#botonera-frente')
-  padreBotonera.style.display='grid'
-  conteJobTrack.classList.remove('move-job-track')
-  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8'] 
-  for (var i = 0; i < allContenedores.length; i++) {
-    var elemento = document.getElementById(allContenedores[i])  
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-    }
-  }
-  container1.style.display = 'none'
-  desactivarClick(['.butt-perfiles'])
-  restablecerClick(['.estilo-1', '.butt-revierte'])
-  document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
-  
-  conteJobTrack.style.display='flex'
-  document.querySelectorAll('.datos-base').forEach((elemento) => { 
-    elemento.textContent = ''
-  });  
-  setTimeout(() => {
-    conteJobTrack.classList.add('move-job-track') 
-  }, 100);
-}) */
 

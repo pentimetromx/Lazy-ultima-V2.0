@@ -9,7 +9,10 @@ document.addEventListener('keydown', function(event) {
 
       break
       case 'Z':
-        console.table(Object.keys(localStorage))
+        document.querySelectorAll('.panel-datos').forEach(panel => {
+        if(panel.classList === 'panel-datos')
+            panel.classList.remove('panel-datos')
+        })
       break;  
       case 'H':
         vaciarPorClaveLocalStore('empleadosRegistrados', tipo = 'array')
@@ -4900,9 +4903,6 @@ buttsJobs.forEach(boton => {
         listaClientes.removeAttribute('style');     
         desactivarClick(['.butt-perfiles', '.estilo-1']);       
         mostrarNombresDeObjetos();
-        /* setTimeout(() => {
-          debugger
-        }, 1000); */   
       break;
       case 'lineas':
         if(listaColores.style.display==='flex') listaColores.style.display='none'
@@ -4955,11 +4955,9 @@ buttsJobs.forEach(boton => {
 function actualizarDisplay() {
   document.querySelectorAll('#resultado-calculadora .number, #display-cantidad .cantidad-display').forEach(elemento => elemento.textContent = '');
 }
-
 // CLIENTES
 const contenedorClientes = document.getElementById('lista-clientes');
 const arriba = document.querySelector('#job-files > div:nth-child(1) > span:nth-child(2)');
-
 contenedorClientes.addEventListener('click', (e) => {
   const cliente = e.target.closest('div');
   if (!cliente) return;
@@ -4969,8 +4967,6 @@ contenedorClientes.addEventListener('click', (e) => {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
   blurOverlay.style.display = 'none';
 });
-
-
 // LINEAS
 const panelDos = document.getElementById('panel-dos');
 const destinoLinea = document.querySelector('#job-files > .jobs:nth-child(2) > .base-datos:nth-child(2)');
@@ -4979,8 +4975,8 @@ lineaClientes.addEventListener('click', (e) => {
   const linea = e.target.closest('div');
   if (!linea) return;
 
-  panelDos.style.backgroundColor = 'rgb(0,0,23)';
-  panelDos.style.color = 'rgb(200,200,200)';
+  panelDos.style.backgroundColor = 'rgb(0, 0, 17)';
+  panelDos.style.color = '#3FE0C5';
 
   destinoLinea.textContent = linea.textContent;
   lineaClientes.style.display = 'none';
@@ -4988,7 +4984,6 @@ lineaClientes.addEventListener('click', (e) => {
   restablecerClick(['.jobs', '.estilo-1']);
   mostrarBarraProgres(33.5, 67);
 });
-
 // BOTONES DE LA CALCULADORA
 digitos.forEach((elemento) => {
   elemento.addEventListener('mousedown', (e) => e.preventDefault());
@@ -5093,9 +5088,6 @@ digitos.forEach((elemento) => {
   });
 
 });
-
-
-
 alertaTres.addEventListener('click', ()=> {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
 })
@@ -5641,7 +5633,15 @@ function mostrarNombresDeObjetos() {
 
   localStorage.setItem('coloresRegistrados', JSON.stringify(almacenCapitalizado));
 
-  listaColores.innerHTML = '';
+  // CAMBIO 1: vaciar solo los items (no toda la lista, para no borrar el buscador)
+  const contenedorItems = document.getElementById('items-colores');
+  contenedorItems.innerHTML = '';
+
+  // Al abrir la lista, el buscador siempre empieza limpio
+  const buscadorLista = document.getElementById('buscar-color-lista');
+  if (buscadorLista) buscadorLista.value = '';
+  const sinResultadosLista = listaColores.querySelector('.sin-resultados-lista');
+  if (sinResultadosLista) sinResultadosLista.style.display = 'none';
 
   // ✅ Fix 1 — Eliminar menuContextual anterior si ya existe
   const menuAnterior = document.getElementById('menu-contextual');
@@ -5703,7 +5703,7 @@ function mostrarNombresDeObjetos() {
       nombreCliente.textContent = nombreCapitalizado;
       panelUno.textContent = nombreCapitalizado;
       panelUno.style.backgroundColor = 'rgb(0,0,23)';
-      panelUno.style.color = 'rgb(200,200,200)';
+      panelUno.style.color = '#3FE0C5';
       objetoGlobal = nombreCapitalizado;
       console.log('OBJETO GLOBAL :', objetoGlobal);
       listaColores.style.display = 'none';
@@ -5762,7 +5762,8 @@ function mostrarNombresDeObjetos() {
     
     nuevoDiv.addEventListener('click', manejarSeleccionItem);   
 
-    listaColores.appendChild(nuevoDiv);
+    // CAMBIO 2: las filas se agregan al contenedor nuevo
+    contenedorItems.appendChild(nuevoDiv);
   });
 
   // ✅ Fix 3 — Listeners del menuContextual solo una vez
@@ -5776,7 +5777,10 @@ function mostrarNombresDeObjetos() {
   }); 
 
   listaColores.addEventListener('mouseleave', () => {
-    // Si el buscador está en uso, no cierres nada
+    // CAMBIO 3: si estás escribiendo en el buscador de la lista, no ocultar
+    if (document.activeElement === document.getElementById('buscar-color-lista')) return;
+
+    // Si el buscador anterior está en uso, no cierres nada
     if (inputBuscar && inputBuscar.style.display !== 'none' && document.activeElement === inputBuscar) return;
 
     listaColores.style.display = 'none';

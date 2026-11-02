@@ -3225,7 +3225,13 @@
       </div>
 
       <div id="lista-clientes" class="listado-clientes"></div>
-      <div id="lista-colores" class="listado-clientes"></div>
+      <div id="lista-colores" class="listado-clientes">        
+        <div class="buscador-lista">
+          <input id="buscar-color-lista" type="search" placeholder="Buscar color..." autocomplete="off">
+        </div>
+        <div class="sin-resultados-lista" style="display:none;">No se encontraron colores.</div>
+        <div id="items-colores"></div>
+      </div>      
       
       <div id="lista-lineas" class="listado-lineas">
         <div>Valores</div>
@@ -4104,64 +4110,64 @@
 
         <form class="ficha-grid">
 
-        <label for="empleado">Nombre del proponente</label>
-        <select id="empleado" class="opcion-empleado current-focus special-text">
-          <option value="">Seleccione...</option>
-        </select>
+          <label for="empleado">Nombre del proponente</label>
+          <select id="empleado" tabindex="101" class="opcion-empleado current-focus special-text">
+            <option value="">Seleccione...</option>
+          </select>
 
-        <label for="documento-kaizen">Documento</label>
-        <input id="documento-kaizen" name="documento" type="text" >
+          <label for="documento-kaizen">Documento</label>
+          <input id="documento-kaizen" tabindex="102" name="documento" type="text" >  
 
           <label for="mejora">Mejora propuesta</label>
-          <input id="mejora" class="opcion-empleado current-focus special-text" inputmode="none" type="text">
+          <input id="mejora" tabindex="103" class="opcion-empleado current-focus special-text" inputmode="none" type="text">
 
           <label for="fecha">Fecha de presentación</label>
-          <input id="fecha" type="date">
+          <input id="fecha" tabindex="104" type="date">
 
           <label for="autogestionado">Autogestionado</label>
-          <select id="autogestionado" class="opcion-empleado current-focus">
+          <select id="autogestionado" tabindex="105" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
             <option value="true">Sí</option>
             <option value="false">No</option>
           </select>
 
           <label for="participante1">Participante 1</label>
-          <select id="participante1" class="opcion-empleado current-focus">
+          <select id="participante1" tabindex="106" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
 
           <label for="participante2">Participante 2</label>
-          <select id="participante2" class="opcion-empleado current-focus">
+          <select id="participante2" tabindex="107" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
 
           <label for="participante3">Participante 3</label>
-          <select id="participante3" class="opcion-empleado current-focus">
+          <select id="participante3" tabindex="108" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
 
           <label for="participante4">Participante 4</label>
-          <select id="participante4" class="opcion-empleado current-focus">
+          <select id="participante4" tabindex="109" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
 
           <label for="participante5">Participante 5</label>
-          <select id="participante5" class="opcion-empleado current-focus">
+          <select id="participante5" tabindex="110" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
 
           <label for="imagen-kaizen">Imagen</label>
-          <select id="imagen-kaizen" class="opcion-empleado current-focus">
+          <select id="imagen-kaizen" tabindex="111" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
 
           <label for="lider">Líder de área</label>
-          <select id="lider" class="opcion-empleado current-focus special-text">
+          <select id="lider" tabindex="112" class="opcion-empleado current-focus special-text">
             <option value="">Seleccione...</option>
           </select>          
 
           <label for="equipo">Equipo M.A</label>
-          <select id="equipo" class="opcion-empleado current-focus special-text">
+          <select id="equipo" tabindex="113" class="opcion-empleado current-focus special-text">
             <option value="">Seleccione...</option>
             <option value="Aguilas">Águilas</option>
             <option value="Jaguares">Jaguares</option>
@@ -4179,7 +4185,7 @@
           </select>      
 
           <label for="area">Área</label>
-          <select id="area" class="opcion-empleado current-focus special-text">
+          <select id="area" tabindex="114" class="opcion-empleado current-focus special-text">
             <option value="">Seleccione...</option>
             <option value="Recursos humanos">Recursos humanos</option>
             <option value="Tecnologias de informacion">Tecnologías de información</option>
@@ -4585,7 +4591,7 @@
     </div>
 
     
-    <div id="panel-listado">
+    <div id="panel-listado" class="panel-datos">
       <button id="btn-ver-listado" type="button">Empleados registrados</button>
       <p id="listado-total"></p>
 
@@ -4600,16 +4606,39 @@
           <p id="sin-resultados">No se encontraron empleados.</p>
         </div>
       </div>
-    </div>     
-        
+    </div> 
 
-    <div id="panel-colores">
+    <div id="panel-colores" class="panel-datos">
       <button id="btn-ver-colores" type="button">Colores registrados</button>
       <p id="colores-total"></p>
+
       <div id="contenedor-colores">
+        <input id="buscar-color" type="search" placeholder="Buscar por nombre..." autocomplete="off">
+
+        <p id="sin-resultados-colores" style="display:none;">No se encontraron colores.</p>
         <ul id="listado-colores"></ul>
       </div>
-    </div>  
+    </div> 
+
+    <div id="panel-kaizen" class="panel-datos">
+      <button id="btn-ver-kaizen" type="button">Kaizen registrados</button>
+      <p id="listado-total-kaizen"></p>
+
+      <div id="contenedor-tabla-kaizen">
+        <input id="buscar-kaizen" type="search" placeholder="Buscar por proponente..." autocomplete="off">
+        <div id="tabla-scroll-kaizen">
+          <table id="tabla-listado-kaizen" style="display:none;">
+            <thead id="listado-cabecera-kaizen"></thead>
+            <tbody id="listado-cuerpo-kaizen"></tbody>
+          </table>
+          <p id="sin-resultados-kaizen">No se encontraron kaizen.</p>
+        </div>
+      </div>
+    </div>
+    
+
+
+    
     
     <div id="panel-storage" class="panel">
       <h2>Almacenamiento local</h2>
@@ -4624,8 +4653,6 @@
         </table>
       </div>
     </div> 
-
-   
 
     <div id="overlay-cortina" class="overlay"></div>
     <div id="overlay-general" class="overlay"></div>
