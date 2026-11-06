@@ -170,35 +170,12 @@ git push
 git checkout main
 git pull origin main
 
+======                        ===============================
 
+- estoy arreglando el problema con el overlay al eliminar empleados
 
+- pendiente las tres etiquetas con los almacenamientos 
 
-PREGUNTAS PARA MI SENIOR ENGINEER IN TO AUTOMATION:
-
-- Es posible conectar con una API de un reproductor de musica y setearlo para que disminuya la velocidad de las canciones según los beats o o mejor los BPM para que reconozca mis gustos y acomode la velocidad de la musica a mi gusto
- -  
-
-
-
-
-
-element.style {
-    position: absolute;
-    top: 87%;
-    left: 57%;
-    border-radius: 7px;
-    border: 1px solid white;
-    width: 25%;
-    height: 10%;
-    background-image: url("./assets/doubble arrow.png");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    cursor: pointer;
-    background-color:#1e3aff;
-}
-
-#1e3aff;
 
 
 

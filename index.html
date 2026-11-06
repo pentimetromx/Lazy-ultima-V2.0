@@ -560,11 +560,10 @@
           <ul id="links-color" class="auxiliar-links">  
             <li>Densitometria</li>
             <li>Teoria del color</li>
-            <li>Espectrofotometria</li>
+            <li>Espectrofotometria</li>  
             <li>Montaje</li>
 
-            <li class="has-submenu">
-              Colorimetria
+            <li class="has-submenu">Colorimetria
               <ul class="submenu-colorimetria">
                 <li>CMYK</li>
                 <li>RGB</li>
@@ -3898,7 +3897,7 @@
 
           <button id="recarga" class="cierra-graficos"></button>
 
-          <button class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
+          <button id="btn-metricas" class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
           <button class="cierra-graficos entrada-empleado"></button>
           <button class="cierra-graficos">Areas</button>
         </div>
@@ -4329,87 +4328,38 @@
             <label>Nombre</label>
             <input id="nom-empl" name="nombre" class="estilo-empl special-text" required>
           </div>
-
           <div class="campo">
             <label>Documento</label>
             <input id="doc-empl" inputmode="none" name="documento" class="dato-ma estilo-empl only-numbers input-especial" required>
           </div>
-
-          <div class="campo">
+          <div class="campo campo-lista">
             <label>Área</label>
-            <select name="area" class="estilo-empl entrada-empleado storeText " required>
-              <option value="" style="background-color: blue;" disabled selected></option>
-              <option value="Recursos Humanos">Recursos Humanos</option>
-              <option value="Finanzas">Finanzas</option>
-              <option value="Mercadeo">Mercadeo</option>
-              <option value="Ventas">Ventas</option>
-              <option value="Producción">Producción</option>
-              <option value="Calidad">Calidad</option>
-              <option value="Investigación y Desarrollo">Investigación y Desarrollo</option>
-              <option value="Logística">Logística</option>
-              <option value="Servicio al Cliente">Servicio al Cliente</option>
-              <option value="Tecnología">Tecnología</option>
-            </select>
+            <input id="input-area-empl" type="text" class="estilo-empl storeText"
+              name="area" value="" required readonly inputmode="none" autocomplete="off">
+            <div id="listaAreas" class="lista-desplegable"></div>
           </div>
-
-          <div class="campo">
+          <div class="campo campo-lista">
             <label>Cargo</label>
-            <select name="cargo" class="entrada-empleado storeText estilo-empl" required>
-              <option value="" style="background-color: blue;" disabled selected></option>
-              <option value="Presidente">Presidente</option>
-              <option value="Director General">Director General</option>
-              <option value="Gerente de Producción">Gerente de Producción</option>
-              <option value="Gerente Comercial">Gerente Comercial</option>
-              <option value="Gerente de Finanzas">Gerente de Finanzas</option>
-              <option value="Gerente de Calidad">Gerente de Calidad</option>
-              <option value="Jefe de Preprensa">Jefe de Preprensa</option>
-              <option value="Jefe de Impresión Offset">Jefe de Impresión Offset</option>
-              <option value="Jefe de Acabados y Empaque">Jefe de Acabados y Empaque</option>
-              <option value="Jefe de Mantenimiento">Jefe de Mantenimiento</option>
-              <option value="Supervisor de Producción">Supervisor de Producción</option>
-              <option value="Diseñador Gráfico">Diseñador Gráfico</option>
-              <option value="Coordinador de Logística">Coordinador de Logística</option>
-              <option value="Asistente de Compras">Asistente de Compras</option>
-              <option value="Técnico en Control de Calidad">Técnico en Control de Calidad</option>
-              <option value="Operario de Máquina Offset">Operario de Máquina Offset</option>
-              <option value="Auxiliar de Máquina">Auxiliar de Máquina</option>
-              <option value="Operario de Acabados">Operario de Acabados</option>
-              <option value="Mensajero Interno">Mensajero Interno</option>
-              <option value="Servicios Generales">Servicios Generales</option>
-            </select>
+            <input id="input-cargo-empl" type="text" class="storeText estilo-empl"
+                  name="cargo" value="" required readonly inputmode="none" autocomplete="off">
+            <div id="listaCargos" class="lista-desplegable oculto"></div>
           </div>
-          <div class="campo">
+          <div class="campo campo-lista">
             <label>Equipo</label>
-            <select name="equipo" class="entrada-empleado storeText estilo-empl" required>
-              <option value="" style="background-color: blue;" disabled selected></option>
-              <option value="Epson SurePress L-6534VW">Epson SurePress L-6534VW</option>
-              <option value="Epson SurePress L-6534VW (Orange Ink)">Epson SurePress L-6534VW (Orange Ink)</option>
-              <option value="Epson SurePress L-6534VW (CMYKW+Or)">Epson SurePress L-6534VW (CMYKW+Or)</option>
-              <option value="Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press">Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press</option>
-              <option value="Ricoh Pro Z75 (Duplex)">Ricoh Pro Z75 (Duplex)</option>
-              <option value="Ricoh Pro Z75 (400 gsm Media Support)">Ricoh Pro Z75 (400 gsm Media Support)</option>
-              <option value="IBM InfoPrint Production Press">IBM InfoPrint Production Press</option>
-              <option value="IBM InfoPrint Color 1000">IBM InfoPrint Color 1000</option>
-              <option value="IBM InfoColor 70">IBM InfoColor 70</option>
-              <option value="Roland Sheetfed 900 Evolution">Roland Sheetfed 900 Evolution</option>
-              <option value="Roland Sheetfed DI 106-8-L (LED UV)">Roland Sheetfed DI 106-8-L (LED UV)</option>
-              <option value="Roland Sheetfed 700 Series (High Performance)">Roland Sheetfed 700 Series (High Performance)</option>
-              <option value="Heidelberg Speedmaster SX 102">Heidelberg Speedmaster SX 102</option>
-              <option value="Heidelberg Speedmaster XL 105">Heidelberg Speedmaster XL 105</option>
-              <option value="Heidelberg Speedmaster CX 145">Heidelberg Speedmaster CX 145</option>
-              <option value="Rotatek Brava 450 Semi-Rotary/Rotary Offset Press">Rotatek Brava 450 Semi-Rotary/Rotary Offset Press</option>
-              <option value="Rotatek Universal 850 Web-Offset Press">Rotatek Universal 850 Web-Offset Press</option>
-              <option value="Rotatek RK-250 Plus Roll-to-Roll Offset Press">Rotatek RK-250 Plus Roll-to-Roll Offset Press</option>
-            </select>
+            <input id="input-equipo-empl" type="text" class="storeText estilo-empl"
+                  name="equipo" value="" required readonly inputmode="none" autocomplete="off">
+            <div id="listaEquipos" class="lista-desplegable oculto"></div>
           </div>
           <div class="campo">
             <label>Fecha</label>
             <input type="date" name="fecha" class="estilo-empl" required>
           </div>
+
           <div class="campo">
             <label id="registro">Registro fotográfico</label> 
-            <input id="input-foto-empl" type="text" class="entrada-empleado storeText estilo-empl" value="" name="imagen" required readonly inputmode="none">                  
-          </div>
+            <input id="input-foto-empl" type="text" class="storeText estilo-empl" value="" name="imagen" required readonly inputmode="none">                  
+          </div>  
+                  
           <div class="campo digital">
             <label>Identificados</label>
             <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="identificados">
@@ -4592,7 +4542,7 @@
 
     
     <div id="panel-listado" class="panel-datos">
-      <button id="btn-ver-listado" type="button">Empleados registrados</button>
+      <button id="btn-ver-listado" type="button">Registro empleados</button>
       <p id="listado-total"></p>
 
       <div id="contenedor-tabla">
@@ -4608,8 +4558,8 @@
       </div>
     </div> 
 
-    <div id="panel-colores" class="panel-datos">
-      <button id="btn-ver-colores" type="button">Colores registrados</button>
+    <div id="panel-colores"class="panel-datos">
+      <button id="btn-ver-colores" type="button">Perfiles de color</button>
       <p id="colores-total"></p>
 
       <div id="contenedor-colores">
@@ -4618,10 +4568,10 @@
         <p id="sin-resultados-colores" style="display:none;">No se encontraron colores.</p>
         <ul id="listado-colores"></ul>
       </div>
-    </div> 
+    </div>
 
     <div id="panel-kaizen" class="panel-datos">
-      <button id="btn-ver-kaizen" type="button">Kaizen registrados</button>
+      <button id="btn-ver-kaizen" type="button">Registro kaizen</button>
       <p id="listado-total-kaizen"></p>
 
       <div id="contenedor-tabla-kaizen">

@@ -491,8 +491,8 @@ document.addEventListener('DOMContentLoaded', () => {
     colaboradores = cargarColaboradoresDesdeStorage();
 
     colaboradores.forEach((emp, i) => {
-          const span = document.createElement('span');
-    span.textContent = emp.nombre;
+    const span = document.createElement('span');
+    span.textContent = capitalizarTexto(emp.nombre);   // ← único cambio
     span.dataset.img = emp.ruta;
     span.dataset.index = i;
 
@@ -527,39 +527,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.pintarLista = pintarLista;
 
-
-
-  /* colaboradores.forEach((emp, i) => {
-    const span = document.createElement('span');
-    span.textContent = emp.nombre;
-    span.dataset.img = emp.ruta;
-    span.dataset.index = i;
-
-    span.addEventListener('mouseenter', () => {
-      indiceActual = i;
-      mostrarEmpleadoPorIndice(i, { fijar: false });
-    });
-    span.addEventListener('mouseleave', () => {
-      if (fotoFijada) {
-        mostrarEmpleadoObj(fotoFijada);
-      } else {
-        limpiarVisor();
-      }
-    });
-    span.addEventListener('click', () => {
-      indiceActual = i;
-      if (fotoFijada === emp) {
-        fotoFijada = null;
-        limpiarVisor();
-      } else {
-        fotoFijada = emp;
-        mostrarEmpleadoObj(emp);
-      }
-    });
-
-    listadoNombres.appendChild(span); // ← primero agrega al DOM
-  }); */
-
   // ✅ Fuera del forEach — todos los spans ya están en el DOM
   document.querySelector('#listaNombres').addEventListener('touchend', (e) => {
     e.preventDefault();
@@ -588,8 +555,6 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarEmpleadoPorIndice(i, { fijar: false });
   }, { passive: false });
   
-
-
   // --- navegación Prev / Next ---
   prevBtn.addEventListener('click', () => {
     const spans = listadoNombres.querySelectorAll('span');
@@ -4783,30 +4748,25 @@ function resultadosMA(identificador){
     usuario.style.left = '';
     clearInterval(intervaloColor);
   }
-
-
   if(!esDesktop){
     const almacenJSON = localStorage.getItem('empleadosRegistrados');
     if (almacenJSON) {
       const empleados = JSON.parse(almacenJSON);
       const lista = document.querySelector('#listaNombres');
       lista.innerHTML = '';
-
       const lista_empleados = Array.isArray(empleados) 
         ? empleados 
         : Object.values(empleados);
-
       lista_empleados
         .filter(empleado => empleado && empleado.nombre)
         .forEach((empleado, index) => {
           const span = document.createElement('span');
-          span.textContent = empleado.nombre;
+          span.textContent = capitalizarTexto(empleado.nombre);
           span.dataset.index = index;
           lista.appendChild(span);
         });
     }
   }
-
   // ── AUTOCOMPLETE (funciona en desktop y móvil) ────────────
   const almacenJSON = localStorage.getItem('empleadosRegistrados');
   if (almacenJSON) {
@@ -4814,12 +4774,9 @@ function resultadosMA(identificador){
     const lista_empleados = Array.isArray(empleados)
       ? empleados
       : Object.values(empleados);
-
     const input = document.querySelector("#buscador-empleado");
-
     const dropdownViejo = document.querySelector('#autocomplete-dropdown');
     if (dropdownViejo) dropdownViejo.remove();
-
     if (!document.querySelector('#autocomplete-style')) {
       const style = document.createElement('style');
       style.id = 'autocomplete-style';
@@ -4859,15 +4816,12 @@ function resultadosMA(identificador){
       `;
       document.head.appendChild(style);
     }
-
     const dropdown = document.createElement('div');
     dropdown.id = 'autocomplete-dropdown';
     input.parentElement.style.position = 'relative';
     input.parentElement.appendChild(dropdown);
-
     const inputLimpio = input.cloneNode(true);
     input.parentElement.replaceChild(inputLimpio, input);
-
     inputLimpio.addEventListener('input', () => {
       const query = inputLimpio.value.trim().toLowerCase();
       dropdown.innerHTML = '';
@@ -4882,7 +4836,7 @@ function resultadosMA(identificador){
 
       const matches = lista_empleados
         .filter(e => e && e.nombre)
-        .map(e => e.nombre)
+        .map(e => capitalizarTexto(e.nombre))   // ← único cambio
         .filter(nombre => nombre.toLowerCase().includes(query));
       if (matches.length === 0) {
         dropdown.style.display = 'none';
@@ -4892,6 +4846,7 @@ function resultadosMA(identificador){
       matches.forEach(nombre => {
         const item = document.createElement('div');
         item.className = 'ac-item';
+        item.style.fontSize = '10px';
         const regex = new RegExp(`(${query})`, 'gi');
         item.innerHTML = nombre.replace(regex, '<mark>$1</mark>');
 
@@ -4933,27 +4888,21 @@ function resultadosMA(identificador){
       dropdown.style.width = `${inputLimpio.offsetWidth}px`;
       dropdown.style.display = 'block';
     });
-
-
     inputLimpio.addEventListener('touchstart', () => {
       document.querySelector("#buscador-empleado").value=''
       showKeyboard() 
       keyboardWrapper.style.setProperty('--keyboard-width', '50vw');
       keyboardWrapper.style.setProperty('--keyboard-left', '48vw');
     });
-
     inputLimpio.addEventListener('click', () => {
       document.querySelector("#buscador-empleado").value=''    
     });    
-
-
     inputLimpio.addEventListener('blur', () => {
       setTimeout(() => dropdown.style.display = 'none', 150);
       hideKeyboard()
     });
   }
   // ─────────────────────────────────────────────────────────  
-
   const imgDinamica = document.querySelector('#img-dinamica');
   if (imgDinamica) imgDinamica.remove();
   actualizarIdsArray(identificador);      
@@ -5002,6 +4951,11 @@ function graficosAutomaticos(idGrafico){
 }
 const eventoEntradaI = esDesktop ? 'mouseenter' : 'touchstart';
 document.getElementById('titleContainerI').addEventListener(eventoEntradaI, () => {
+  if (!esDesktop) {
+    document.getElementById('links-inicialesI').style.display = 'block';
+    document.getElementById('linkListI').style.display = 'block';
+  }
+
   let padreLinks = document.getElementById('links-inicialesI');
   let conteLinks = document.getElementById('linkListI');
 

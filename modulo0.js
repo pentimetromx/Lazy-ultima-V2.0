@@ -28,7 +28,8 @@ const linkMaster = document.querySelector("#links-auxiliar > li:nth-child(5)")
 const panelAdministrador = document.querySelector("#panel-admon")
 const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
 const botonVolver = document.getElementById('butt-links-II')
-const interfazToggle = document.querySelector('#btn-ver-listado')
+const interfazToggle = document.querySelector('#btn-ver-listado')  
+const panelesDatos = document.querySelectorAll('.panel-datos')
 
 let contiVidDistribuidor = document.getElementById('conti-video-distribuidor')  
 let arrayButtsIniciales = ['bot-atras','bot-inicial','iniciar','bot-atras12']
@@ -247,7 +248,7 @@ const btnLimpiarMA = document.querySelector('#limpia-ingreso-ma')
 let inputPerfil = document.getElementById('nombreCliente')
 let listaClientes = document.getElementById('lista-clientes')
 let listaColores = document.getElementById('lista-colores')
-const btnMetricas = document.querySelector(".metricas-empleado");
+const btnMetricas = document.querySelector("#btn-metricas")
 const btnModificar = document.querySelector('#modifica-ingreso')
 const btnRecarga = document.querySelector('#recarga')
 const btnLimpiar = document.querySelector('#limpia-ingreso')
@@ -2054,18 +2055,20 @@ function agregarKaizen() {
   const kaizenKey = 'kaizenRegistrados';
   const kaizenLocal = leerKaizen();
 
-  const empleado = document.getElementById('empleado').value.trim();
+  const empleado = capitalizarTexto(document.getElementById('empleado').value.trim());  
   const documento = document.getElementById('documento-kaizen').value.trim();
   const propuesta = document.getElementById('mejora').value.trim();
   const fecha = document.getElementById('fecha').value.trim();
   const autogestionado = document.getElementById('autogestionado').value.trim();
   const imagen = document.getElementById('imagen-kaizen').value.trim();
-  const participante1 = document.getElementById('participante1').value.trim();
-  const participante2 = document.getElementById('participante2').value.trim();
-  const participante3 = document.getElementById('participante3').value.trim();
-  const participante4 = document.getElementById('participante4').value.trim();
-  const participante5 = document.getElementById('participante5').value.trim();
-  const lider = document.getElementById('lider').value.trim();
+
+  const participante1 = capitalizarTexto(document.getElementById('participante1').value.trim());
+  const participante2 = capitalizarTexto(document.getElementById('participante2').value.trim());
+  const participante3 = capitalizarTexto(document.getElementById('participante3').value.trim());
+  const participante4 = capitalizarTexto(document.getElementById('participante4').value.trim());
+  const participante5 = capitalizarTexto(document.getElementById('participante5').value.trim());
+  const lider = capitalizarTexto(document.getElementById('lider').value.trim());
+  
   const equipo = document.getElementById('equipo').value.trim();
   const area = document.getElementById('area').value.trim();
 
@@ -2216,10 +2219,12 @@ function limpiarEntradas() {
   }, 350);
 }
 document.querySelectorAll('.special-text').forEach(input => {
-  input.addEventListener('input', function() {
-    this.value = this.value.replace(/\b\w/g, l => l.toUpperCase());
+  input.addEventListener('input', function () {
+    if (this.tagName === 'SELECT') return;
+    this.value = this.value.replace(/(^|\s)\p{L}/gu, l => l.toUpperCase());
   });
 });
+
 document.querySelector('#borrarBoton4').addEventListener('click', ()=>{
   var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','panel-listado','panel-colores','panel-kaizen']; 
   for (var i = 0; i < allContenedores.length; i++) { 

@@ -9,10 +9,10 @@ document.addEventListener('keydown', function(event) {
 
       break
       case 'Z':
-        document.querySelectorAll('.panel-datos').forEach(panel => {
-        if(panel.classList === 'panel-datos')
-            panel.classList.remove('panel-datos')
-        })
+      let valor = document.querySelector("#numDoc1-ma")
+      console.clear()
+      console.log("Valor del input:", valor.value);
+
       break;  
       case 'H':
         vaciarPorClaveLocalStore('empleadosRegistrados', tipo = 'array')
@@ -4244,7 +4244,9 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
 
 // Función para capitalizar la primera letra de cada palabra
 function capitalizarTexto(texto) {
-  return texto.replace(/\b\w/g, char => char.toUpperCase());
+  return texto
+    .toLowerCase()
+    .replace(/(^|\s)\p{L}/gu, char => char.toUpperCase());
 }
 // Función para actualizar y mostrar la lista de nombres
 function actualizarListaNombres() {
@@ -4913,7 +4915,7 @@ buttsJobs.forEach(boton => {
         })
         desactivarClick(['.butt-perfiles', '.estilo-1']);
         if(panelUno.textContent === ''){
-          alertaTres.style.display = 'flex';
+          saltarAlerta('Debe seleccionar un cliente','lineas') 
         }else{
           lineaClientes.style.display = 'block'
           listaClientes.style.display = 'none'
@@ -4935,7 +4937,7 @@ buttsJobs.forEach(boton => {
           desactivarClick(['.butt-perfiles', '.estilo-1']);
           restablecerClick(['.digito'])
           if(panelUno.textContent === '' || panelDos.textContent === ''){  
-            alertaTres.style.display = 'flex';
+            saltarAlerta('Debe seleccionar un cliente y linea de producto','lineas') 
           }else{          
             calculadora.classList.remove('move-calculadora')
             calculadora.classList.remove('move-calculadora-1')
@@ -5304,7 +5306,6 @@ document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
 })
 
 // ENTER DE LA CALCULADORA
-
 btnEntrar.addEventListener('click', () => {  
   detenerParpadeo()
 
@@ -5318,10 +5319,9 @@ btnEntrar.addEventListener('click', () => {
     desactivarClick(['.butt-perfiles','.digit', '.estilo-1','digito']);
     detenerAlternarColor()
     const elementos = document.querySelectorAll('.number');
-    const todosVacios = Array.from(elementos).every(elemento => elemento.textContent.trim() === '');  
-    console.log(document.querySelectorAll('.digito'));
+    const todosVacios = Array.from(elementos).every(elemento => elemento.textContent.trim() === '');
     if (todosVacios) {
-      mostrarVentanaMensaje('Ingrese tiraje para este producto ...')
+      saltarAlerta('Ingrese tiraje para este producto','enter')
     }else{
       document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {  
         elemento.style.display = 'none';

@@ -1279,9 +1279,10 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
 
     document.querySelectorAll('.span-semana').forEach(s => {
       s.style.backgroundColor = '';
+      s.style.color = 'rgb(144,144,144)';
     });    
-
-    span.style.backgroundColor ='rgb(20,40,60)';
+    span.style.backgroundColor ='rgb(40, 180, 110)';
+    span.style.color ='#0a1630';
     const azul = 'rgb(90, 160, 220)';
     
     const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
@@ -1320,9 +1321,9 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
           return;
         }  
 
-        document.querySelectorAll('.span-semana').forEach(semana => {
+        /* document.querySelectorAll('.span-semana').forEach(semana => {
           semana.style.backgroundColor = '';
-        });
+        }); */
 
         const abueloGrafica = document.querySelector('#abuelo-grafica4');
         Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
@@ -2010,7 +2011,6 @@ function ingresoEmpleadoMA(idElement){
     console.log(idsArray);
   }  
 }
-
 /*********************************************************************************************************************************************** */
 const soloNumerosInputs = [
   document.getElementById('numDoc1'),          
@@ -2026,15 +2026,13 @@ const soloNumerosInputs = [
 ];
 // Lógica reutilizable
 function limpiarYCapitalizar(e) {
-  let valor = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '');
+  let valor = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
 
-  valor = valor.toLowerCase().replace(/\b\w/g, letra => letra.toUpperCase());
+  valor = valor.toLowerCase().replace(/(^|\s)\p{L}/gu, letra => letra.toUpperCase());
 
   e.target.value = valor;
 }
-
 const inputsVarios = [buscaNombre, mejoraFichaTec, nombreNuevo];
-
 inputsVarios.forEach(input => {
   if (!input) return;
 
@@ -2050,10 +2048,10 @@ inputsVarios.forEach(input => {
 
   input.addEventListener('input', limpiarYCapitalizar);
 });
-
-
 function permitirSoloNumeros(e) {
   const input = e.target;
+
+  if (input.tagName !== 'INPUT') return;   // ignora select, option y demás
 
   input.value = input.value.replace(/\D/g, '');
 
@@ -2062,15 +2060,11 @@ function permitirSoloNumeros(e) {
   }
 }
 
-
 soloNumerosInputs.forEach(input => {
   if (input) input.addEventListener('focusin', permitirSoloNumeros);
 });
-
 /*********************************************************************************************************************************************** */
-
 const simuladorGraf = document.getElementById('simulador');
-
 const restablecerEstilos = el => {
   const nodo = typeof el === 'string'
     ? document.getElementById(el)
@@ -2080,7 +2074,6 @@ const restablecerEstilos = el => {
 
   nodo.removeAttribute('style');
 };
-
 const reUbicarElemento = (
   el,
   { display, left, width, top, height, parentSelector }
@@ -2104,7 +2097,6 @@ const reUbicarElemento = (
     height
   });
 };
-
 const configCalculadora = {
   display: 'grid',
   left: '45%',
@@ -2113,10 +2105,8 @@ const configCalculadora = {
   height: '30%',
   parentSelector: '#simulador'
 };
-
 // FOCO/CLICK EN INPUTS M.A
 const soloNumerosSet = new Set(soloNumerosInputs);
-
 interfazMA.addEventListener('focusin', e => {
   const target = e.target;
 
@@ -2124,7 +2114,6 @@ interfazMA.addEventListener('focusin', e => {
 
   if (!soloNumerosSet.has(target)) return;
 });
-
 document.querySelectorAll('.fila-ingreso-ma > input').forEach(input => {
   input.addEventListener('input', () => {
     if (input.value.length > 1) {
@@ -2132,7 +2121,6 @@ document.querySelectorAll('.fila-ingreso-ma > input').forEach(input => {
     }
   });
 });
-
 document.addEventListener('input', (e) => {
   if (!e.target.classList.contains('only-numbers')) return;
 
@@ -2306,7 +2294,7 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
   }, 25);
 }
 // boton rojo 
-document.querySelector('.metricas-empleado').addEventListener('click', ()=>{ 
+btnMetricas.addEventListener('click', ()=>{ 
   const inputs = document.querySelectorAll('.fila-ingreso .storeText');
   if(flagEmpleado === false){
     alternarColor(btnDblFlecha,btnMetricas,500)
@@ -2315,7 +2303,7 @@ document.querySelector('.metricas-empleado').addEventListener('click', ()=>{
   for (const input of inputs) {
     if (input.value==='') {
       parpadearElemento('nomEmpl');
-      saltarAlerta('Hay campos sin diligenciar.', 'moverRrhh')
+      saltarAlerta('Ingrese el numero de documento', 'moverRrhh')
       flagEmpleado = true
       return;
     }
@@ -2386,18 +2374,6 @@ function insertarGrafico(idContenedor, idCanvas) {
 // CLICK EN EL INPUT REGISTRO FOTOGRAFICO
 inputFoto.addEventListener('click', () => {
   generarListaFotos()
-  // En consola de DevTools:
-
-  // 1. ¿Existe el elemento listaFotos?
-  console.log(document.querySelector('#listaFotos'));
-
-  // 2. ¿Tiene items después de llamar la función?
-  generarListaFotos();
-  console.log(document.querySelector('#listaFotos').children.length);
-
-  // 3. ¿Está visible?
-  console.log(document.querySelector('#listaFotos').style.display);
-  console.log(document.querySelector('.almacen-fotos').style.display);
 });
 
 const visorContenedor = document.querySelector('#visorImagen-II');
@@ -2405,25 +2381,19 @@ const imagenVisor = document.querySelector('#imagenVisor-II');
 
 function generarListaFotos() {
   const almacen = document.querySelector('.almacen-fotos');
-
   almacen.classList.remove('oculto');   // quitar ocultamiento previo
   almacen.style.display = 'grid';
-
   document.querySelector('#visorImagen-II').classList.remove('oculto');
-
   listaFotos.innerHTML = "";
   listaFotos.style.display = 'grid'; // ✅ esto faltaba
   listaFotos.classList.remove('oculto');
-
   imagennesColaboradores.forEach(colaborador => {
     const item = document.createElement('div');
     item.textContent = colaborador.nombre;
-    item.style.fontSize = '0.6rem';
-    item.style.color = '#3FE0C5'
+    item.classList.add('item-foto');
     item.dataset.ruta = colaborador.ruta;
     listaFotos.appendChild(item);
   });
-
   listaFotos.classList.remove('oculto');
 }
 
@@ -2437,15 +2407,11 @@ listaFotos.addEventListener('mouseover', e => {
 listaFotos.addEventListener('click', e => {
   const item = e.target.closest('[data-ruta]');
   if (!item) return;
-
   const ruta = item.dataset.ruta;
-
   imagenVisor.src = ruta;
   inputFoto.value = ruta;
-
   listaFotos.classList.add('oculto');
   blurOverlay.style.display = 'none';
-
 });
 
 listaFotos.addEventListener('mouseleave', () => {
@@ -2558,6 +2524,11 @@ function ocultar() {
 }
 
 btnAreas.addEventListener('click', () => {
+  if(flagEmpleado === true){
+    alternarColor(btnMetricas,btnAreas,500)
+    return
+  }
+
   if (inputNombre.value === '') {
     parpadearElemento('nomEmpl');
     saltarAlerta('Debe ingresar un numero de documento', 'detieneArea');
@@ -2565,6 +2536,7 @@ btnAreas.addEventListener('click', () => {
     dentro = true;
     mostrar();
   }
+
 });
 
 btnAreas.addEventListener('mouseleave', () => {
@@ -2723,8 +2695,8 @@ function   cargarEmpleadoMA() {
   const inputLupMA           = document.getElementById('numDoc8-ma');
   const inputKaizenMA        = document.getElementById('numDoc4-ma');
 
-  if (inputNombreMA)         inputNombreMA.value        = empleado.nombre        || '';
-  if (inputDocumentoMA)      inputDocumentoMA.value     = empleado.documento     || '';
+  if (inputNombreMA)         inputNombreMA.value        = capitalizarTexto(empleado.nombre || '');
+  if (inputDocumentoMA)      inputDocumentoMA.value     = empleado.documento     || valorBusqueda;
   if (inputIdentificadosMA)  inputIdentificadosMA.value = empleado.identificados || '';
   if (inputCorregidosMA)     inputCorregidosMA.value    = empleado.corregidos    || '';
   if (inputTipoAMA)          inputTipoAMA.value         = empleado.tipoA         || '';
@@ -2811,7 +2783,7 @@ function infoEmpleadoPorSector(infoSector) {
           const empleadoEncontrado = empleados[valor];
           if (empleadoEncontrado) {
 
-            document.getElementById('numDoc').value = empleadoEncontrado.nombre;
+            document.getElementById('numDoc').value = capitalizarTexto(empleadoEncontrado.nombre || '');            
             document.getElementById('numDoc1').value = empleadoEncontrado.documento;
             document.getElementById('numDoc2').value = empleadoEncontrado.area;
             document.getElementById('numDoc3').value = empleadoEncontrado.equipo;
@@ -2819,7 +2791,7 @@ function infoEmpleadoPorSector(infoSector) {
             document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
             document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
 
-            document.getElementById('numDoc-ma').value = empleadoEncontrado.nombre;
+            document.getElementById('numDoc-ma').value = capitalizarTexto(empleadoEncontrado.nombre || '');            
             document.getElementById('numDoc9-ma').value = empleadoEncontrado.documento;
             document.getElementById('numDoc1-ma').value = empleadoEncontrado.identificados;
             document.getElementById('numDoc2-ma').value = empleadoEncontrado.corregidos;
@@ -2863,47 +2835,52 @@ document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
     saltarAlerta('Ingrese numero de documento', 'mantenimientoID')
     parpadearElemento('nomEmpl-ma');
   }
-  
 }) 
 
 function actualizarIdentificadosMA(sector) {
   if(sector === 'M.A'){
-    const docInput   = document.getElementById('numDoc9-ma');
-    const identInput = document.getElementById('numDoc1-ma');
-    const corrInput = document.getElementById('numDoc2-ma');
-    const tipoaInput = document.getElementById('numDoc5-ma');
-    const tipobInput = document.getElementById('numDoc3-ma');
+    const nombreInput = document.getElementById('numDoc-ma');
+    const docInput    = document.getElementById('numDoc9-ma');
+    const identInput  = document.getElementById('numDoc1-ma');
+    const corrInput   = document.getElementById('numDoc2-ma');
+    const tipoaInput  = document.getElementById('numDoc5-ma');
+    const tipobInput  = document.getElementById('numDoc3-ma');
     const kaizenInput = document.getElementById('numDoc4-ma');
-    const adaInput = document.getElementById('numDoc7-ma');
-    const adtInput = document.getElementById('numDoc6-ma');
-    const lupInput = document.getElementById('numDoc8-ma');
+    const adaInput    = document.getElementById('numDoc7-ma');
+    const adtInput    = document.getElementById('numDoc6-ma');
+    const lupInput    = document.getElementById('numDoc8-ma');
 
+    const nombreBusqueda = nombreInput.value.trim();
     const documentoBusqueda = docInput.value.trim();
     const nuevoIdentificado = identInput.value.trim();
-    const nuevoCorregido = corrInput.value.trim();
-    const nuevoTipoA = tipoaInput.value.trim();
-    const nuevoTipoB = tipobInput.value.trim();
-    const nuevoKaizen = kaizenInput.value.trim();
-    const nuevoAda = adaInput.value.trim();
-    const nuevoAdt = adtInput.value.trim();
-    const nuevoLup = lupInput.value.trim();
+    const nuevoCorregido    = corrInput.value.trim();
+    const nuevoTipoA        = tipoaInput.value.trim();
+    const nuevoTipoB        = tipobInput.value.trim();
+    const nuevoKaizen       = kaizenInput.value.trim();
+    const nuevoAda          = adaInput.value.trim();
+    const nuevoAdt          = adtInput.value.trim();
+    const nuevoLup        = lupInput.value.trim();
 
     if (!documentoBusqueda || !nuevoIdentificado || !nuevoCorregido || !nuevoTipoA || !nuevoTipoB || !nuevoKaizen || !nuevoAda || !nuevoAdt || !nuevoLup) {
       saltarAlerta('Faltan datos para continuar.', 'recursoFaltante')
       return;
     }
 
-    let empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || [];
+    let empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};    
 
     console.log('Estado inicial de empleadosRegistrados:', empleados);
 
+    console.log('Buscando documento:', JSON.stringify(documentoBusqueda));
+    console.log('Documentos guardados:', Object.keys(empleados));
+
     const empleado = empleados[documentoBusqueda];
     if (!empleado) {
-      console.log('No se encontró un empleado con ese documento.');
+      saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn');
       return;
     }
 
     // Actualizar propiedad
+    empleado.nombre = capitalizarTexto(nombreBusqueda);
     empleado.identificados = nuevoIdentificado;
     empleado.corregidos = nuevoCorregido;
     empleado.tipoA = nuevoTipoA;
@@ -2926,7 +2903,6 @@ function actualizarIdentificadosMA(sector) {
     console.log('Estado final en localStorage:', verificacion);
     console.log('GLOBAL : ', empleadoGlobal)
   }else {
-
     const nombInput   = document.getElementById('numDoc');
     const docInput    = document.getElementById('numDoc1');
     const areaInput   = document.getElementById('numDoc2');
@@ -2936,7 +2912,7 @@ function actualizarIdentificadosMA(sector) {
     const fotoInput   = document.getElementById('numDoc6');
 
     const documentoBusqueda = docInput.value.trim();
-    const nuevoIdentificado = nombInput.value.trim();
+    const nuevoIdentificado = capitalizarTexto(nombInput.value.trim());    
     const nuevoArea         = areaInput.value.trim();
     const nuevoCargo        = cargoInput.value.trim();
     const nuevoFecha        = fechaInput.value.trim();
@@ -2959,7 +2935,7 @@ function actualizarIdentificadosMA(sector) {
     const empleado = empleados[documentoBusqueda];
 
     if (!empleado) {
-      mostrarVentanaMensaje('No se encontró un empleado con ese documento.');
+      saltarAlerta('Documento no registrado en BD..', 'recursoNuevo')
       return;
     }
 
@@ -2992,7 +2968,7 @@ function actualizarIdentificadosMA(sector) {
 }
 
 function limpiarEmpleadosRegistrados() {
-  localStorage.setItem('empleadosRegistrados', JSON.stringify([]));
+  localStorage.setItem('empleadosRegistrados', JSON.stringify({}));
   console.log('empleadosRegistrados se ha vaciado:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
 }
 function mostrarLocalStorageComoJSON() {
@@ -3753,7 +3729,6 @@ hijosMaster.forEach((li, index) => {
 hijosColor.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
-
     if (index === 0) {
       activarPantallaCompleta()
       abrirDensitometria('densitometria')
@@ -3842,31 +3817,29 @@ mostrarRegistro.addEventListener('click', () =>{
 })
 //*********************************************************************************************************************** */
 function aplicarColoresInputs() {
-document
-  .querySelectorAll('select[data-colorable]')
-  .forEach(select => {
-    const value = Number(select.value);
-
-    if (Number.isNaN(value)) {
+  document.querySelectorAll('select[data-colorable]').forEach(select => {
+    if (select.value === '') {
       select.style.backgroundColor = '';
+      select.style.color = '';
       return;
     }
+    const value = Number(select.value);
 
     if (value <= 4) {
-      select.style.backgroundColor = '#CC3333';
+      select.style.backgroundColor = '#D64545';
       select.style.color = '#FFFFFF';
-    } else if (value >= 5 && value <= 8) {
-      select.style.backgroundColor = '#F9A536';
-      select.style.color = '#000000';
-    } else {
-      select.style.backgroundColor = '#8CE15B';
-      select.style.color = '#000000';
+    } else if (value <= 8) {
+      select.style.backgroundColor = '#F5A524';
+      select.style.color = '#1A1204';
+    } else if (value >= 9) {
+      select.style.backgroundColor = '#4FBF6B';
+      select.style.color = '#06210F';
     }
   });
-  setTimeout(() => {
-    if(inputMA)inputMA.style=''
-  }, 350);
+  // Elimina el setTimeout salvo que sepas qué es inputMA y por qué se limpia
 }
+
+
 function aplicarColorPorValor(input) {
   const value = Number(input.value);
 
@@ -4622,7 +4595,7 @@ listaClientes.addEventListener('pointerdown', (e) => {
   const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
   if (empleado?.imagen) {
     document.querySelector('#imagenVisor').src = empleado.imagen;
-    document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
+    document.querySelector("#porta-visor > div.visor > span").textContent = capitalizarTexto(empleado.nombre);
   }
   setTimeout(() => {
     cortina.classList.remove('overlayRRHH');
@@ -4644,7 +4617,7 @@ listaClientes.addEventListener('click', (e) => {
   const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
   if (empleado?.imagen) {
     document.querySelector('#imagenVisor').src = empleado.imagen;
-    document.querySelector("#porta-visor > div.visor > span").textContent = empleado.nombre;
+    document.querySelector("#porta-visor > div.visor > span").textContent = capitalizarTexto(empleado.nombre);
   }
 });
 
@@ -4667,7 +4640,7 @@ function mostrarListaClientes(seccion) {
     if (!empleado) return;
     const item = document.createElement('div');
     item.className = 'cliente-item';
-    item.textContent = empleado.nombre;
+    item.textContent = capitalizarTexto(empleado.nombre);
     item.dataset.nombre = empleado.nombre;
     listaClientes.appendChild(item);
   });
@@ -4783,7 +4756,7 @@ document.querySelector('#registro-baja').addEventListener('click', () => {
   }
 
   const empleado = new Empleado(
-    datos.get('nombre'),
+    capitalizarTexto(String(datos.get('nombre')).trim()),
     documento,
     datos.get('area'),
     datos.get('cargo'),
@@ -4939,16 +4912,15 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
       }, 500);
     }
     if (index === 1) {
-    let inputsFichaTecnica = document.querySelectorAll('#fichas-tecnicas .ficha-grid input, #fichas-tecnicas .ficha-grid select');
-
-    for (const input of inputsFichaTecnica) {
-      if (input.value.trim() === '') {
-        const etiqueta = input.previousElementSibling?.textContent || 'un campo';
-        saltarAlerta(`Debe completar: ${etiqueta}`, 'fichaTecnica');
-        parpadearElemento(input.id, 150, 2500);
-        return;
+      let inputsFichaTecnica = document.querySelectorAll('#fichas-tecnicas .ficha-grid input, #fichas-tecnicas .ficha-grid select');
+      for (const input of inputsFichaTecnica) {
+        if (input.value.trim() === '') {
+          const etiqueta = input.previousElementSibling?.textContent || 'un campo';
+          saltarAlerta(`Debe completar el campo: ${etiqueta}`, 'fichaTecnica');
+          parpadearElemento(input.id, 150, 2500);
+          return;
+        }
       }
-    }
       bloqueador.style.display = 'block';
       agregarKaizen();
     }
@@ -5111,7 +5083,7 @@ function cargarFichaTecnica(kaizen) {
   desaparecerElemento('kaizen-buscador');
 }
 
-function cargarEmpleados(select) {  
+function cargarEmpleados(select) {
   if (select.dataset.loaded === 'true') return;
 
   const raw = JSON.parse(localStorage.getItem('empleadosRegistrados'));
@@ -5133,7 +5105,7 @@ function cargarEmpleados(select) {
     .forEach(empleado => {
       const option = document.createElement('option');
       option.value = empleado.nombre;
-      option.textContent = empleado.nombre;
+      option.textContent = capitalizarTexto(empleado.nombre);
       select.appendChild(option);
     });
   select.dataset.loaded = 'true';
@@ -5576,8 +5548,11 @@ function saltarAlerta(texto, padre) {
   aceptar.onmouseleave = null;
   cancelar.onmouseenter = null;
   cancelar.onmouseleave = null;
-  
 
+  aceptar.focus();
+    if (alertaGlobal === 'lineas') {
+    cancelar.style.display = 'none';
+  }
   if (alertaGlobal === 'contenedor') {
     cancelar.style.display = 'none';
 
@@ -5602,6 +5577,9 @@ function saltarAlerta(texto, padre) {
   } else {
     modal.classList.remove('reseteo');
   }
+  if (alertaGlobal === 'enter') {
+    cancelar.style.display='none'
+  }  
   if (alertaGlobal === 'perfilador') {
     cancelar.style.display='none'
   }
@@ -5846,7 +5824,7 @@ btnActivar.addEventListener('click', function () {
 
   if (empleadoEncontrado) {
     deBajaActivo = true
-    document.getElementById('input-nombre').value = empleadoEncontrado.nombre;    
+    document.getElementById('input-nombre').value = capitalizarTexto(empleadoEncontrado.nombre || '');       
     document.getElementById('numDoc1').value = empleadoEncontrado.documento;
     document.getElementById('numDoc2').value = empleadoEncontrado.area;
     document.getElementById('numDoc3').value = empleadoEncontrado.equipo;
@@ -5854,7 +5832,7 @@ btnActivar.addEventListener('click', function () {
     document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
     document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
 
-    document.getElementById('numDoc-ma').value = empleadoEncontrado.nombre;
+    document.getElementById('numDoc-ma').value = capitalizarTexto(empleadoEncontrado.nombre || '')    
     document.getElementById('numDoc9-ma').value = empleadoEncontrado.documento;
     document.getElementById('numDoc1-ma').value = empleadoEncontrado.identificados;
     document.getElementById('numDoc2-ma').value = empleadoEncontrado.corregidos;
@@ -5986,9 +5964,9 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
     return;
   }  
 
-  document.querySelectorAll('.span-semana').forEach(semana => {
+  /* document.querySelectorAll('.span-semana').forEach(semana => {
     semana.style.backgroundColor = '';
-  });
+  }); */
 
   const abueloGrafica = document.querySelector('#abuelo-grafica4');
   Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
@@ -6042,13 +6020,9 @@ function moverVisor() {
   }, 400);
   padreVisor.style.transition = 'transform 2s ease, width 2s ease';
   padreVisor.style.transition = 'transform 2s ease, height 2s ease';  
-  padreVisor.style.transform = 'scale(1) translate(calc(-24vw), 106px)';
+  padreVisor.style.transform = 'scale(1) translate(calc(-128%), 106px)';
   padreVisor.style.width = '19vw';
   padreVisor.style.height = '49vh';
-  visor.style.height = '45vh'
-  visor.style.width = '17vw'
-  visor.style.top = '-1vh'
-  visor.style.left = '-0.5vw'
   imagen.style.transition = 'transform 2s ease, width 2s ease';
   imagen.style.transition = 'transform 2s ease, rigth 2s ease';
   imagen.style.width = '270%';
@@ -6308,9 +6282,26 @@ function startSearch() {
 }
 buildList();
 //*******************************************************************************************************************
-function crearOpcionesNumericas(selectId, min = 0, max = 20) {
+function aplicarColorSemaforo(select) {
+  const valor = Number(select.value);
+
+  if (valor <= 4) {
+    select.style.backgroundColor = '#CC3333';   // rojo: 0 a 4
+    select.style.color = '#FFFFFF';
+  } else if (valor <= 8) {
+    select.style.backgroundColor = '#F9A536';   // naranja: 5 a 9
+    select.style.color = '#000000';
+  } else {
+    select.style.backgroundColor = '#8CE15B';   // verde: 10 o más
+    select.style.color = '#000000';
+  }
+}
+
+function crearOpcionesNumericas(selectId, min = 0, max = 30) {
   const select = document.getElementById(selectId);
   if (!select) return;
+
+  select.innerHTML = '';
 
   for (let i = min; i <= max; i++) {
     const opt = document.createElement('option');
@@ -6319,21 +6310,7 @@ function crearOpcionesNumericas(selectId, min = 0, max = 20) {
     select.appendChild(opt);
   }
 
-  select.addEventListener('change', function () {
-    const valor = Number(select.value);
-
-    if (valor <= 4) {
-      select.style.backgroundColor = '#CC3333'; // rojo cubre 0,1,2,3,4
-      select.style.color = '#FFFFFF';
-    } else if (valor >= 5 && valor <= 8) {
-      select.style.backgroundColor = '#F9A536';
-      select.style.color = '#000000';
-    } else {
-      select.style.backgroundColor = '#8CE15B';
-      select.style.color = '#000000';
-    }
-  });
-    
+  select.addEventListener('change', () => aplicarColorSemaforo(select));
 }
 
 const CAMPOS = [
@@ -6341,6 +6318,7 @@ const CAMPOS = [
   'identificados', 'corregidos', 'tipoA', 'tipoB', 'kaizen', 'adas', 'adt', 'lup'
 ];
 
+// REGISTRO DE EMPLEADOS
 interfazToggle.addEventListener('click', () => {
   const boton = document.querySelector('#btn-ver-listado');
   const panel = document.querySelector('#panel-listado');
@@ -6355,7 +6333,7 @@ interfazToggle.addEventListener('click', () => {
   contenedor.style.display = abrir ? 'block' : 'none';
   total.style.display = abrir ? 'block' : 'none';
   boton.dataset.abierto = String(abrir);
-  boton.textContent = abrir ? 'Cerrar empleados registrados' : 'Empleados registrados';
+  boton.textContent = abrir ? 'Cerrar empleados registrados' : 'Registro empleados';
   panel.classList.toggle('expandido', abrir);
   
 });
@@ -6371,6 +6349,7 @@ linkMaster.addEventListener('mouseenter', () => {
 linkMaster.addEventListener('mouseleave', () => {
   linkAuxiliarMaster.style.display = 'none';
 });
+// REGISTRO DE COLORES
 document.querySelector('#btn-ver-colores').addEventListener('click', () => {
   const panel = document.querySelector('#panel-colores');
   const boton = document.querySelector('#btn-ver-colores');
@@ -6383,7 +6362,7 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
     contenedor.style.display = 'none';
     total.style.display = 'none';
     boton.dataset.abierto = 'false';
-    boton.textContent = 'Colores registrados';
+    boton.textContent = 'Perfiles de color';
     panel.classList.remove('expandido');
     return;
   }
@@ -6405,7 +6384,7 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
     const item = document.createElement('li');
 
     const titulo = document.createElement('div');
-    titulo.textContent = nombre;
+    titulo.textContent = capitalizarTexto(nombre)
     item.appendChild(titulo);
 
     const detalle = document.createElement('pre');
@@ -6424,12 +6403,13 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
     lista.appendChild(item);
   });
 
-  total.textContent = `Total: ${nombres.length} colores`;
+  total.textContent = `Total: ${nombres.length} perfiles de color`;
   total.style.display = 'block';
   contenedor.style.display = 'block';
   boton.dataset.abierto = 'true';
   boton.textContent = 'Cerrar colores registrados';
 });
+// REGISTRO KAIZEN
 document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
   const panel      = document.querySelector('#panel-kaizen');            // CAMBIO 1: nueva constante
   const boton      = document.querySelector('#btn-ver-kaizen');
@@ -6446,7 +6426,7 @@ document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
     total.style.display = 'none';
     panel.classList.remove('expandido');                                 // CAMBIO 2: se contrae
     boton.dataset.abierto = 'false';
-    boton.textContent = 'Kaizen registrados';
+    boton.textContent = 'Registro kaizen';
     return;
   }
 
@@ -6489,11 +6469,13 @@ document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
 
   // Filas
   buscador.value = '';
+  const columnasNombre = ['empleado', 'participante1', 'participante2', 'participante3', 'participante4', 'participante5', 'lider'];
   const filas = datos.map(kaizen => {
     const tr = document.createElement('tr');
     columnas.forEach(col => {
       const td = document.createElement('td');
-      td.textContent = kaizen[col.clave] ?? '';  // CAMBIO: antes era kaizen[col]
+      const valor = kaizen[col.clave] ?? '';
+      td.textContent = columnasNombre.includes(col.clave) ? capitalizarTexto(String(valor)) : valor;
       tr.appendChild(td);
     });
     return tr;
@@ -6572,7 +6554,9 @@ function renderizarListado() {
     const fila = document.createElement('tr');
     CAMPOS.forEach(campo => {
       const celda = document.createElement('td');
-      celda.textContent = emp[campo] ?? '';
+      celda.textContent = campo === 'nombre'
+        ? capitalizarTexto(emp[campo] ?? '')
+        : (emp[campo] ?? '');
       fila.appendChild(celda);
     });
     cuerpo.appendChild(fila);
@@ -6675,7 +6659,10 @@ function mostrarTabla(dato, nombreClave) {
           ? `[ ${valor.length} ]`
           : `{ ${Object.keys(valor).length} }`;
       } else {
-        const texto = String(valor ?? '');
+        const original = String(valor ?? '');
+        const texto = (nombreClave === 'empleadosRegistrados' && col === 'nombre')
+          ? capitalizarTexto(original)
+          : original;
         td.textContent = texto.length > 60 ? texto.slice(0, 60) + '…' : texto;
       }
       tr.appendChild(td);
@@ -6819,6 +6806,96 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
     }
   });
 })();
+
+function crearListaDesplegable(inputId, listaId, opciones) {
+  const input = document.getElementById(inputId);
+  const lista = document.getElementById(listaId);
+
+  function generar() {
+    lista.innerHTML = '';
+    opciones.forEach(texto => {
+      const item = document.createElement('div');
+      item.textContent = texto;
+      item.classList.add('item-lista');
+      item.dataset.valor = texto;
+      if (texto === input.value) item.classList.add('seleccionado');
+      lista.appendChild(item);
+    });
+  }
+
+  input.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const estabaOculta = lista.classList.contains('oculto');
+    // cierra cualquier otra lista abierta
+    document.querySelectorAll('.lista-desplegable').forEach(l => l.classList.add('oculto'));
+    if (estabaOculta) {
+      generar();
+      lista.classList.remove('oculto');
+    }
+  });
+
+  lista.addEventListener('click', (e) => {
+    const item = e.target.closest('.item-lista');
+    if (!item) return;
+    input.value = item.dataset.valor;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    lista.classList.add('oculto');
+  });
+
+  lista.addEventListener('mouseleave', () => {
+    lista.classList.add('oculto');
+  });  
+}
+
+// Cerrar al hacer clic fuera o con Escape (una sola vez, global)
+document.addEventListener('click', () =>
+  document.querySelectorAll('.lista-desplegable').forEach(l => l.classList.add('oculto'))
+);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape')
+    document.querySelectorAll('.lista-desplegable').forEach(l => l.classList.add('oculto'));
+});
+
+
+// Datos
+const areas = [
+  'Recursos Humanos', 'Finanzas', 'Mercadeo', 'Ventas', 'Producción',
+  'Calidad', 'Investigación y Desarrollo', 'Logística',
+  'Servicio al Cliente', 'Tecnología'
+];
+const cargos = [
+  'Presidente', 'Director General', 'Gerente de Producción', 'Gerente Comercial',
+  'Gerente de Finanzas', 'Gerente de Calidad', 'Jefe de Preprensa',
+  'Jefe de Impresión Offset', 'Jefe de Acabados y Empaque', 'Jefe de Mantenimiento',
+  'Supervisor de Producción', 'Diseñador Gráfico', 'Coordinador de Logística',
+  'Asistente de Compras', 'Técnico en Control de Calidad', 'Operario de Máquina Offset',
+  'Auxiliar de Máquina', 'Operario de Acabados', 'Mensajero Interno', 'Servicios Generales'
+];
+const equipos = [
+  'Epson SurePress L-6534VW',
+  'Epson SurePress L-6534VW (Orange Ink)',
+  'Epson SurePress L-6534VW (CMYKW+Or)',
+  'Ricoh Pro Z75 B2 Sheet-Fed Inkjet Press',
+  'Ricoh Pro Z75 (Duplex)',
+  'Ricoh Pro Z75 (400 gsm Media Support)',
+  'IBM InfoPrint Production Press',
+  'IBM InfoPrint Color 1000',
+  'IBM InfoColor 70',
+  'Roland Sheetfed 900 Evolution',
+  'Roland Sheetfed DI 106-8-L (LED UV)',
+  'Roland Sheetfed 700 Series (High Performance)',
+  'Heidelberg Speedmaster SX 102',
+  'Heidelberg Speedmaster XL 105',
+  'Heidelberg Speedmaster CX 145',
+  'Rotatek Brava 450 Semi-Rotary/Rotary Offset Press',
+  'Rotatek Universal 850 Web-Offset Press',
+  'Rotatek RK-250 Plus Roll-to-Roll Offset Press'
+];
+
+crearListaDesplegable('input-equipo-empl', 'listaEquipos', equipos);
+crearListaDesplegable('input-area-empl', 'listaAreas', areas);
+crearListaDesplegable('input-cargo-empl', 'listaCargos', cargos);
+
 
 crearOpcionesNumericas('numDoc1-ma');
 crearOpcionesNumericas('numDoc2-ma');

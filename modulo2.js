@@ -5157,11 +5157,6 @@ elementosMes.forEach((mes, index) => {
       m.style.backgroundColor = '';
       m.style.color = '';
     });
-
-    document.querySelectorAll('.span-semana').forEach(element => {
-      element.style.color='rgb(120, 150, 170)'
-    }); 
-
     mes.style.backgroundColor ='rgb(20,40,60)';
     mes.style.color = 'rgb(90,160,220)';
 
