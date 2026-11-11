@@ -4241,6 +4241,7 @@ function createKeyboard(layout) {
         key.innerHTML = '<div class="space-bar"></div>';
       } else if (letter === 'backspace') {
         key.textContent = '⌫';
+        key.classList.add('key-borrar');        
       } else {
         key.textContent = letter;
       }
@@ -4341,6 +4342,15 @@ function createKeyboard(layout) {
       key.addEventListener('mouseup', stopDeleting);
       key.addEventListener('mouseleave', stopDeleting);
 
+      const presionar = () => key.classList.add('presionada');
+      const soltar = () => key.classList.remove('presionada');
+
+      key.addEventListener('touchstart', presionar, { passive: true });
+      key.addEventListener('mousedown', presionar);
+      ['touchend', 'touchcancel', 'mouseup', 'mouseleave'].forEach(ev =>
+        key.addEventListener(ev, soltar)
+      );      
+
       row.appendChild(key);
     });
 
@@ -4386,14 +4396,13 @@ function handleKeyPress(letter) {
 createKeyboard(keyboardLayout);
 const closeKeyboardBtn = document.getElementById('close-keyboard-btn');
 closeKeyboardBtn.addEventListener('click', () => {
-  keyboardWrapper.style.display = 'none';
+  hideKeyboard()
 });
 document.addEventListener('focusin', e => {
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
     lastFocusedInput = e.target;
   }
 });
-
 function showKeyboard() {
   keyboardWrapper.removeAttribute('style');
   keyboardWrapper.classList.add('is-visible');
@@ -4403,7 +4412,6 @@ function showKeyboard() {
     keyboardWrapper.style.setProperty('--keyboard-width', '57vw');
   } 
 }
-
 function hideKeyboard() {
   keyboardWrapper.classList.remove('is-visible');
 }
@@ -4411,7 +4419,6 @@ function hideCalculator() {
   calculadora.classList.add('move-calculadora-down');  
   detenerParpadeo()
 }
-
 function ubicaCalculadoraSegunContexto(){
   restablecerEstilos('calculadora');
   calculadora.classList.remove('move-calculadora')
@@ -4510,7 +4517,6 @@ function ubicaCalculadoraSegunContexto(){
     }, 100);
   }  
 }
-
 const clamp = (val, min, max) =>
   Math.min(max, Math.max(min, val));
 
@@ -4523,7 +4529,6 @@ const normalizarInput = (input) => {
 
   input.value = clamp(parseInt(input.value, 10), min, max);
 };
-
 document.addEventListener('input', (e) => {
   if (!e.target.matches('.panel-color > input')) return;
 
@@ -4533,14 +4538,11 @@ document.addEventListener('input', (e) => {
     ubicaCalculadoraSegunContexto();
   }
 });
-
 document.addEventListener('blur', (e) => {
   if (!e.target.matches('.panel-color > input')) return;
 
   normalizarInput(e.target);
 }, true);
-
-
 /* ***************************************************************************************************************************************** */
 //Bloque para aplicar clase que agranda imagen en primer click , segundo click normaliza tamaño
 
@@ -5471,6 +5473,10 @@ const accionesAceptar = {
   docuMaster: () => {
     document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
   }, 
+  perfilDeColor: () => {
+    buscaNombre.value = '';
+    buscaNombre.focus();
+  },   
 
 };
 const accionesCancelar = {
@@ -5667,11 +5673,16 @@ function saltarAlerta(texto, padre) {
   if (alertaGlobal === 'docuMaster') {        
     cancelar.style.display='none'
   } 
+  if (alertaGlobal === 'perfilDeColor') {        
+    cancelar.style.display='none'
+  }  
   if (alertaGlobal === 'fichasTecnicas') {
     alternarColor(btnAdministrador, '',10000);    
     cancelar.style.display='none'
   } 
-
+  if (alertaGlobal === 'vacioRgb') {  
+    cancelar.style.display='none'
+  }   
   const cerrar = () => {
     accionesCancelar[padre]?.();
     aceptar.onclick = null;
@@ -5680,7 +5691,6 @@ function saltarAlerta(texto, padre) {
     ocultarElemento('.contenido-alerta');          
     ocultarElemento('#padre-evento');
   };
-
   aceptar.onclick = () => {
     const resultado = accionesAceptar[padre]?.();
     if (resultado?.siguienteAlerta) {
@@ -5691,7 +5701,6 @@ function saltarAlerta(texto, padre) {
 
     cerrar();
   };
-
   cancelar.onclick = cerrar;
 }
 function limpiarFormulario() {
@@ -5771,6 +5780,7 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
   document.querySelector("#grafico-area").classList.add('administrar')
   document.querySelector(".graphics-lines").classList.add('administrativo')
   document.querySelector("#MiGrafica17").classList.add('admin')
+  activarBlur(0,8)
   setTimeout(() => {
     const valor = cardInput.value.trim();
     const datos = JSON.parse(localStorage.getItem('empleadosRegistrados'))

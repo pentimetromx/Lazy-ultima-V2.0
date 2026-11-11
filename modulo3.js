@@ -9,10 +9,7 @@ document.addEventListener('keydown', function(event) {
 
       break
       case 'Z':
-      let valor = document.querySelector("#numDoc1-ma")
-      console.clear()
-      console.log("Valor del input:", valor.value);
-
+        activarBlur(0,8)
       break;  
       case 'H':
         vaciarPorClaveLocalStore('empleadosRegistrados', tipo = 'array')
@@ -7065,7 +7062,8 @@ function crearPerfilColor() { // crear nuevo desde botón blanc
 
   // Validar si el perfil ya existe
   if (almacenObjetos[inputNombre]) {
-    mostrarVentanaEmergente('Ya existe un perfil con este nombre');
+    /* mostrarVentanaEmergente('Ya existe un perfil con este nombre'); */
+    saltarAlerta('Ya existe un perfil con este nombre', 'perfilDeColor')
     return;
   }
 
