@@ -6273,7 +6273,7 @@ function initSliderCMYK(trackId, spanId, channel) {
       (porcentaje / 100) * (rect.height - thumb.offsetHeight);
 
     thumb.style.bottom = `${pos}px`;
-    track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+    track.style.background = `linear-gradient(to top, #b8b8b8 ${porcentaje}%, #2e2e2e ${porcentaje}%)`;
 
     values[channel] = Math.round(porcentaje);
     if (span) span.textContent = `${values[channel]}%`;
@@ -6368,7 +6368,7 @@ function animarSlidersCMYK(sliderConfigs, duracion = 1000) {
       thumb.style.bottom = `${newValue}px`;
       let porcentaje = (newValue / (rect.height - thumb.offsetHeight)) * 100;
 
-      track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+      track.style.background = `linear-gradient(to top, #b8b8b8 ${porcentaje}%, #2e2e2e ${porcentaje}%)`;
 
       values[channel] = Math.round(porcentaje); // ✅ Ahora W se mantiene en escala 0-100 como los demás      
 
@@ -6397,7 +6397,7 @@ function initSliderRGB(trackId, spanId, channel) {
     const pos = (porcentaje / 100) * (rect.height - thumb.offsetHeight);
 
     thumb.style.bottom = `${pos}px`;
-    track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+    track.style.background = `linear-gradient(to top, #b8b8b8 ${porcentaje}%, #2e2e2e ${porcentaje}%)`;
 
     values[channel] = Math.round((porcentaje / 100) * 255);
     span.textContent = values[channel];
@@ -6467,7 +6467,7 @@ function animarSlidersRGB(sliderConfigs, duracion = 1000) {
       thumb.style.bottom = `${newValue}px`;
 
       let porcentaje = (newValue / (rect.height - thumb.offsetHeight)) * 100;
-      track.style.background = `linear-gradient(to top, rgb(255,120,0) ${porcentaje}%, rgb(0,0,17) ${porcentaje}%)`;
+      track.style.background = `linear-gradient(to top, #b8b8b8 ${porcentaje}%, #2e2e2e ${porcentaje}%)`;
 
       values[channel] = Math.round((porcentaje / 100) * 255);
       span.textContent = values[channel];
@@ -6793,7 +6793,7 @@ function resetBotonMezclador(parentContiner) {
   let sliderTracks = document.querySelectorAll(esCmyk ? ".slider-track" : ".slider-track-rgb");
   sliderTracks.forEach(track => {
     track.style.transition = "background 0.8s ease";
-    track.style.background = `linear-gradient(to top, rgb(255,120,0) 0%, rgb(0,0,17) 0%)`;
+    track.style.background = `linear-gradient(to top, #b8b8b8 0%, #2e2e2e 0%)`;
     setTimeout(() => { track.style.transition = ""; }, 800);
   });
 
@@ -6817,7 +6817,6 @@ function configurarBoton(selector, contenedor, callback) {
 
     // Aplicar efecto solo al botón activo
     boton.style.backgroundColor = 'rgb(255,0,0)';
-
     // Ajustes al contenedor
     padre.style.width = '50vw';
     padre.style.height = '68vh';
@@ -7158,7 +7157,6 @@ function renderizaMezclaRGB() {
   traerAlmacenObjetos()
 }
 function renderizaMezclaCMYK() {
-  
   // Verificar si almacenObjetos está definido
   if (!almacenObjetos[objetoGlobal] || !almacenObjetos[objetoGlobal].CMYK) {
     console.warn("Error: objetoGlogal o objetoGlogal.CMYK no está definido.");
@@ -7315,8 +7313,9 @@ function pintarColor() {
   }
 
   const valor = creaNombre.value;
+  console.log('VALOR : ', valor)
 
-  if (valor.startsWith('CMYK')) {
+  if (valor.startsWith('Cmyk')) {
     alternarTeccnologia('cmyk')
     setTimeout(() => {
       renderizaMezclaCMYK();      

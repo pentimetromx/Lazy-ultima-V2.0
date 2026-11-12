@@ -6943,3 +6943,10 @@ function borrrrrrarrrr(){
   }, 100);
 }
 
+document.querySelector("#borrarBoton3").addEventListener('click', ()=>{
+  mezcladorColor.classList.remove('move-padre-cmyk')
+  creadorPerfiles.classList.remove('move-mezclador')
+  activarPantallaCompleta()
+  ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
+})
+
