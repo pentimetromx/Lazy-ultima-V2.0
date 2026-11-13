@@ -3035,12 +3035,16 @@ width: 70%;
   width:20.2vw;
   height: 35vh;
   align-items: center;
-  background-color: rgb(138, 149, 151);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 17px;
   z-index: 33;
   display: none;
   transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+
+  background: var(--panel-bg);
+  border-radius: 11px;
+  outline: 1px solid #5a5a5a;
+  outline-offset: 3px;
+  color: var(--panel-texto);  
 }
 .formulario > input{
   position: relative;
@@ -3051,7 +3055,16 @@ width: 70%;
   font-size: 1vw;
   background-color: black;
   color: rgb(200,200,200);
+  border: none;
   outline: none;
+}
+.formulario input:focus {
+  border-color: #d0d0d0;
+  box-shadow: 0 0 0 2px rgba(208, 208, 208, 0.25);
+}
+
+.formulario input::placeholder {
+  color: #9a9a9a;
 }
 .formulario > *:nth-child(1){
   display: flex;
@@ -3088,12 +3101,13 @@ width: 70%;
   margin-top: -2%;
   width: 9vw;
   height: 90%;
-  background-color: #007bff;
   color: white;
-  border: none;
   border-radius: 9px;
   cursor: pointer;
   font-size: 1vw;
+  background: transparent;
+  border: 1px solid #b0b0b0;
+  box-shadow: none;  
 }
 .mandos-color {
   display: flex;
@@ -3111,7 +3125,39 @@ width: 70%;
   height: 55%;
   border-radius: 4px;
   cursor: pointer;
+
+  background: linear-gradient(180deg, var(--btn-1), var(--btn-2));
+  color: #f0f0f0;
+  border: 1px solid var(--panel-borde);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: background 0.15s ease, transform 0.08s ease;  
 }
+#reset-btn-cmyk:hover,
+#reset-btn-rgb:hover,
+.boton-perfil:hover {
+  background: linear-gradient(180deg, #9a9a9a, #777777);
+}
+.boton-perfil:active {
+  background: linear-gradient(180deg, #5e5e5e, #707070);
+  transform: translateY(1px);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+#animate-btn,
+#btn-execute {
+  background: linear-gradient(180deg, #e0e0e0, #b8b8b8);
+  color: #222;
+  font-weight: 600;  
+}
+#control-panel-rgb > #exit-rgb:hover,
+
+#control-panel-rgb > #animate-btn:hover,
+#control-panel-cmyk > #animate-btn-cmyk:hover,
+#btn-execute:hover {
+  background: rgb(0, 0, 15);
+  color: #fff;
+}
+
 #formulario-perfiles {
   position: absolute;
   display: grid;
@@ -3193,10 +3239,9 @@ width: 70%;
 .formulario span{
   position: relative;
   font-size: clamp(15px, 0.8vw, 18px); 
-  color: rgb(0,0,77);
-}
-#btn-execute{
-  background-color: rgba(0,255,0,1);
+
+  color: var(--panel-titulo);
+  font-weight: 500;  
 }
 #btn-crea-cmyk{
   background-color: rgba(255,255,185,0.9)
@@ -3240,10 +3285,11 @@ width: 70%;
   margin-top: 50%;
   height: 50%;
 }
+#control-panel-cmyk > #exit-cmyk:hover,
 #alerta-nueve:hover,
 #alerta-siete:hover,
-.botones button:hover {
-  background-color: black; 
+.botones button:hover{
+  background-color: rgb(0,0,15); 
 }
 #execute-button > button:hover,
 #first-butts > :nth-child(1):hover{
@@ -3694,21 +3740,24 @@ top: 44%;
   left: 66vw;
   width: 20vw;
   height: 30%;
-  background-color: rgb(138, 149, 151);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
   z-index: 37; 
   display: none; 
   transform: scale(0);
   transform-origin: center;
   transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+
+  background: var(--panel-bg);
+  border-radius: 11px;
+  outline: 1px solid #5a5a5a;
+  outline-offset: 3px;
+  color: var(--panel-texto);   
 }
 #control-panel-cmyk{
   grid-template-rows: 10% 18% 18% 17% 17% 20% ;
 }
 #control-panel-cmyk > :first-child,
 #control-panel-rgb > :first-child {
-  background-color: rgb(154, 166, 168);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3722,9 +3771,36 @@ top: 44%;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background: linear-gradient(180deg, #e0e0e0, #b8b8b8);
+  color: #222;
+  font-weight: 600;  
 }
+#control-panel-rgb > #exit-rgb,
+#control-panel-cmyk > #exit-cmyk {
+  color: white;
+  border-radius: 9px;
+  font-size: 1vw;
+  background: transparent;
+  border: 1px solid #b0b0b0;
+  box-shadow: none;
+}
+#control-panel-cmyk > :nth-child(7) {
+  height: 95%;
+  margin-top: 8%;
+}
+
 #control-panel-cmyk > :nth-child(4){
-  height:69% ;
+  height:78% ;
+  margin-top: 7%;
+}
+#control-panel-cmyk > :nth-child(7){
+  height:78% ;
+  margin-top: 25%;
+}
+#control-panel-cmyk > :nth-child(10){
+  height:78% ;
+  margin-top: 42%;
 }
 #control-panel-cmyk > :nth-child(6),
 #control-panel-rgb > :nth-child(6) {
@@ -3744,23 +3820,27 @@ top: 44%;
 }
 #control-panel-cmyk > span,
 #control-panel-rgb > span{
-  color: rgb(0,0,77);
+  color: var(--panel-titulo);  
   font-size: 1.1vw;
 }
 #control-panel-cmyk > button,
 #control-panel-rgb > button{
-  background-color: #007bff;
-  color: rgba(255,255,255,0.9);
   border-radius: 6px;
   border: transparent;
-  cursor: pointer;
   font-size: 1vw;
   width: 70%;
   height: 57%;
+
+  position: relative;
+  font-size: 0.6em;
+  cursor: pointer;
+  background: linear-gradient(180deg, var(--btn-1), var(--btn-2));
+  color: #f0f0f0;
+  border: 1px solid var(--panel-borde);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: background 0.15s ease, transform 0.08s ease;  
 }
-#control-panel-cmyk > button{
-  height: 67%;
-}
+
 .clase-ordenadora {
   display: flex;
   align-items: center;
@@ -5306,6 +5386,16 @@ top: 44%;
   --key-acento:    #3b66d9;
   --key-acento-2:  #3fe0c5;
   --key-peligro:   #e5484d;
+
+  --panel-bg:      #707070;
+  --panel-borde:   #4a4a4a;
+  --panel-titulo:  #e8e8e8;
+  --panel-texto:   #d0d0d0;
+  --input-bg:      #3a3a3a;
+  --input-borde:   #555555;
+  --btn-1:         #8c8c8c;
+  --btn-2:         #6a6a6a;
+  --acento:        #d0d0d0;  
 }
 #keyboard-wrapper {
   position: fixed;
