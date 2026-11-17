@@ -394,7 +394,7 @@ const empleadosEnLocalStore = JSON.parse(localStorage.getItem('empleadosRegistra
 const kaizenEnLocalStore = JSON.parse(localStorage.getItem('kaizenRegistrados')) || [];
 const coloresEnLocalStore = JSON.parse(localStorage.getItem('coloresRegistrados')) || [];
 let esDesktop = mediaDesktop.matches;
-mediaDesktop.addEventListener('change', e => {
+mediaDesktop.addEventListener('change', e => {  
   esDesktop = e.matches;
 });
 
@@ -1302,26 +1302,46 @@ function ejecutarSecuencia(funciones, tiempos) {
   });
 }
 function activarPantallaCompleta() {
-  if (
+  const enPantallaCompleta =
     document.fullscreenElement ||
-    document.mozFullScreenElement ||
     document.webkitFullscreenElement ||
-    document.msFullscreenElement
-  ) {
-    return;
-  }
+    document.mozFullScreenElement ||
+    document.msFullscreenElement;
 
-  const docEl = document.documentElement;
-  if (docEl.requestFullscreen) {
-    docEl.requestFullscreen();
-  } else if (docEl.mozRequestFullScreen) {
-    docEl.mozRequestFullScreen();
-  } else if (docEl.webkitRequestFullscreen) {
-    docEl.webkitRequestFullscreen();
-  } else if (docEl.msRequestFullscreen) {
-    docEl.msRequestFullscreen();
+  if (enPantallaCompleta) {
+    // Salir
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  } else {
+    // Entrar
+    const docEl = document.documentElement;
+    if (docEl.requestFullscreen) {
+      docEl.requestFullscreen();
+    } else if (docEl.webkitRequestFullscreen) {
+      docEl.webkitRequestFullscreen();
+    } else if (docEl.mozRequestFullScreen) {
+      docEl.mozRequestFullScreen();
+    } else if (docEl.msRequestFullscreen) {
+      docEl.msRequestFullscreen();
+    }
   }
 }
+
+const btnFull = document.getElementById('iniciar');
+function actualizarBotonFull() {
+  const activo = document.fullscreenElement || document.webkitFullscreenElement;
+  btnFull.textContent = activo ? 'Exit Full Screen' : 'Full Screen';
+}
+document.addEventListener('fullscreenchange', actualizarBotonFull);
+document.addEventListener('webkitfullscreenchange', actualizarBotonFull);
+
 function VolveraInicio(){
   location.reload()
   idsArray = []

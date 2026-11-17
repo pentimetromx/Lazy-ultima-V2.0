@@ -3742,7 +3742,8 @@ hijosColor.forEach((li, index) => {
 hijosTec.forEach((li, index) => {
   li.addEventListener('click', (e) => {
     e.stopPropagation();
-
+      resetBotonMezclador('padre-rgb')
+      resetBotonMezclador('padre-cmyk')     
     if (index === 0) {
       mezcladorColor.classList.remove('move-padre-cmyk')
       creadorPerfiles.classList.remove('move-mezclador')
@@ -3751,7 +3752,8 @@ hijosTec.forEach((li, index) => {
       if (!idsArray.includes('cmyk')) {
         idsArray.push('cmyk');
         console.log(idsArray);
-      }      
+      }
+      resetBotonMezclador('padre-cmyk')    
     }
     if (index === 1) {
       mezcladorColorRGB.classList.remove('move-padre-cmyk')
@@ -3761,7 +3763,8 @@ hijosTec.forEach((li, index) => {
       if (!idsArray.includes('rgb')) {
         idsArray.push('rgb');
         console.log(idsArray);
-      }        
+      }  
+              
     }
   });
 });
@@ -4343,7 +4346,7 @@ function createKeyboard(layout) {
       key.addEventListener('mouseleave', stopDeleting);
 
       const presionar = () => key.classList.add('presionada');
-      const soltar = () => key.classList.remove('presionada');
+      const soltar = () => setTimeout(() => key.classList.remove('presionada'), 120);
 
       key.addEventListener('touchstart', presionar, { passive: true });
       key.addEventListener('mousedown', presionar);
@@ -4459,7 +4462,7 @@ function ubicaCalculadoraSegunContexto(){
     calculadora.style.top = '102vh';
     calculadora.style.height = '45vh';
     calculadora.style.width = '40vw';
-    calculadora.style.zIndex = '100';
+    calculadora.style.zIndex = '300';
     setTimeout(() => {
       calculadora.classList.add('move-calculadora-up');
     }, 100);

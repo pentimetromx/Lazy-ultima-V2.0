@@ -2915,10 +2915,6 @@ function palpitarBotonHumedad() {
     document.getElementById('humedadButton').classList.remove('parpadea');
   }, 277);  
 }
-document.getElementById('iniciar').addEventListener('click', function() {
-  contibotsDistri.classList.toggle('move-down')
-  contVideo.classList.toggle('move-down-I')
-});
 function transicionElementos() {
   contibotsDistri.classList.add('move-up')
   contVideo.classList.add('move-up-left')

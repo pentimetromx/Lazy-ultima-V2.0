@@ -5648,7 +5648,6 @@ function mostrarNombresDeObjetos() {
   const menuContextual = document.createElement('div');
   menuContextual.id = 'menu-contextual';
   document.body.appendChild(menuContextual);
-
   const opcionesMenu = ['Editar', 'Filtrar', 'Eliminar'];
   opcionesMenu.forEach(opcion => {  
     const menuItem = document.createElement('div');
@@ -5751,10 +5750,6 @@ function mostrarNombresDeObjetos() {
       menuContextual.style.top = `${posY}px`;
       menuContextual.style.visibility = 'visible';
       menuContextual.dataset.nombreObjeto = nombreCapitalizado;
-
-      /* setTimeout(() => {
-        document.querySelectorAll('.cliente-item').forEach(item => item.blur());
-      }, 100); */
     });  
     
     nuevoDiv.addEventListener('click', manejarSeleccionItem);   
@@ -6822,7 +6817,6 @@ function configurarBoton(selector, contenedor, callback) {
     padre.style.height = '68vh';
     padre.style.zIndex = 200;
     padre.style.backgroundColor = '';
-
     if (callback) callback();
   });
 
@@ -6833,7 +6827,6 @@ function configurarBoton(selector, contenedor, callback) {
 // RGB CMYK
 function alternarTeccnologia(tecnologia) {
   calculadoraSimulador=true
-
   switch (tecnologia) {
     case 'rgb':
       if (mezcladorColor) {
