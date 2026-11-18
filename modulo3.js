@@ -5863,8 +5863,8 @@ function eliminarObjeto(nombreObjeto) {
   // Crear elementos de la alerta
   const spanAnuncio = document.createElement('span');
   const nombreElemento = document.createElement('span');
-  const spanConfirmar = document.createElement('span');
-  const spanAbandonar = document.createElement('span');
+  const spanConfirmar = document.createElement('button');
+  const spanAbandonar = document.createElement('button');
 
   spanAnuncio.id = 'actual-nombre';
   spanAnuncio.textContent = 'Se eliminará definitivamente el perfil :'; 
@@ -5888,12 +5888,18 @@ function eliminarObjeto(nombreObjeto) {
   
   Object.assign(divEliminacion.style, {
     display: 'grid',
-    height: '21vh',
+    height: '30vh',
     position: 'fixed',
+    transform: 'translate(-50%, -50%)',
+    zIndex: '9999',
+
+    width: '50%',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    zIndex: '9999'
+    justifyItems: 'center',
+    alignItems: 'center',
+    zIndex: 9999
   });
 
   // Evento para confirmar la eliminación
@@ -5901,9 +5907,7 @@ function eliminarObjeto(nombreObjeto) {
   spanConfirmar.addEventListener('click', (e) => {
     e.stopPropagation();
     divEliminacion.remove();
-
     const eliminado = eliminarPerfil(nombreObjeto);
-
     restablecerClick(['.cliente-item']);
     document.querySelectorAll('.cliente-item').forEach(item => {
       item.style.filter = 'none';
@@ -5915,6 +5919,8 @@ function eliminarObjeto(nombreObjeto) {
       aviso.style.top = '43vh';
       aviso.style.left = '37vw';
       aviso.textContent = `El perfil : ${nombreObjeto} ha sido eliminado exitosamente.`;
+      listaColores.style.display='none'
+
     }
   });
 

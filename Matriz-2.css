@@ -2831,13 +2831,16 @@ width: 70%;
   left: 36vw;
   width: 50vw;
   height: 14vh;
-  background-color: rgb(0,0,17);
-  border: 2px solid rgba(199,199,199,0.7);
-  color: rgb(188,188,188,0.8);
   border-radius: 5px;
   font-size: 1em;
-  z-index: 40;
+  z-index:5000;
   display: none;
+
+  background: linear-gradient(180deg, #14233a, var(--kb-fondo));
+  border: 1px solid #3e4a63;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55),
+            inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  color: #e8e8e8;  
 }
 #span-index span{
   position: absolute;
@@ -2945,13 +2948,10 @@ width: 70%;
   border-radius: 11px;
   width: 90%;
 }
-#alerta-nueve :nth-child(2),
 #alerta-siete :nth-child(2){
   background-color: #000;
   color: #999;
 }
-#alerta-nueve :nth-child(4),
-#alerta-nueve :nth-child(3),
 #alerta-siete :nth-child(3){
   left: 33%;
   margin-top: 3%;
@@ -3327,13 +3327,13 @@ width: 70%;
   color: #dbeafe;
   font-weight: 500;
 }
-#alerta-nueve > :nth-child(2), #alerta-siete > :nth-child(2) {
+#alerta-siete > :nth-child(2) {
   background: #172438;
   color: #f0f6ff;
   border: 1px solid #3e4a63;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
 }
-#alerta-nueve > :nth-child(3), #alerta-siete > :nth-child(3) {
+#alerta-siete > :nth-child(3) {
   width: 40%;
   left: 30%;
   font-weight: 600;
@@ -3346,31 +3346,56 @@ width: 70%;
   color: #f0f6ff;    
 }
 
-#alerta-nueve > :nth-child(3):hover, #alerta-siete > :nth-child(3):hover {
+#alerta-siete > :nth-child(3):hover {
   background: linear-gradient(180deg, #4a76e8, #3860c4);
 }
-
-#alerta-nueve > :nth-child(3):active, #alerta-siete > :nth-child(3):active {
+#alerta-siete > :nth-child(3):active {
   background: linear-gradient(180deg, #2f52b5, #3b66d9);
   transform: translateY(1px);
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
 }
-.span-nueve{
-  background-color: #000;
-  color: rgb(155,155,155);
-  border-radius: 5px;
-  padding: 0 0 0 2%;
-}
-.nueve-span{
-  width: 14%; 
-  border-radius: 5px;
+.span-nueve {
+  position: static;
+  left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  width: 90%;
+  padding: 0 2%;
+  font-size: 1.4em;
   text-align: center;
-  background: transparent;
-  color: #f0f0f0;
+  background: #172438;
+  color: #f0f6ff;
   border: 1px solid #3e4a63;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+.nueve-span {
+  width: 40%;
+  height: 90%;
+  justify-self: center;          /* centra en la fila, reemplaza left: 30% / 33% */
+  margin-top: 3%;
+  font-weight: 600;
+  color: #f0f6ff;
+  text-align: center;
+  background: linear-gradient(180deg, #2f4f9e, #243d7c);
+  border: 1px solid #4a6cc4;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.08s ease;  
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.45),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: background 0.15s ease, transform 0.08s ease;
+}
+
+.nueve-span:hover {
+    background: linear-gradient(180deg, #3a5fb8, #2c4a94);
+}
+
+.nueve-span:active {
+    background: linear-gradient(180deg, #243d7c, #2f4f9e);
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 #span-perfiles{
   margin-top:4%;
@@ -3401,31 +3426,42 @@ width: 70%;
   left: 38.9%;
   top: 30%;
   width: 25vw;
-  background-color: white;
   padding: 1.5rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   text-align: center;
+
+  background: linear-gradient(180deg, #14233a, var(--kb-fondo));
+  border: 1px solid #3e4a63;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55),
+            inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 .contenidoPerfil p,
 .contenidoEmergente p {
   margin-bottom: 1rem;
   font-size: 0.9em;
-  color: #333;
+  color: #e8e8e8;
 }
 .contenidoPerfil button,
 .contenidoEmergente button {
   padding: 0.5rem 1rem;
   font-size: 0.8em;
   color: white;
-  background-color: #007bff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+
+  font-weight: 600;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.35),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: background 0.15s ease, transform 0.08s ease;
+  background: linear-gradient(180deg, #3b66d9, #2f52b5);
+  color: #fff;
+  border: 1px solid #3fe0c5;  
 }
 .contenidoPerfil button:hover,
 .contenidoEmergente button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(180deg, #4a76e8, #3860c4)
 }
 #menu-contextual {
   display: none;
