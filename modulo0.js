@@ -133,6 +133,8 @@ let contVid = document.getElementById('videosTraining')
 const fichaGrid = document.querySelector('.ficha-grid');
 const nombreNuevo = document.querySelector("#nom-empl")
 let container1 = document.getElementById('container01')
+let nombreNuevoIngreso = document.getElementById('input-edicion')
+
 const inputsMA = document.querySelectorAll('.dato-ma')
 let botIzquierda = document.getElementById('bot-atras')
 let botDerecha = document.getElementById('bot-atras12')

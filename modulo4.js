@@ -2032,7 +2032,7 @@ function limpiarYCapitalizar(e) {
 
   e.target.value = valor;
 }
-const inputsVarios = [buscaNombre, mejoraFichaTec, nombreNuevo];
+const inputsVarios = [buscaNombre, mejoraFichaTec, nombreNuevo, nombreNuevoIngreso];
 inputsVarios.forEach(input => {
   if (!input) return;
 
@@ -6946,10 +6946,17 @@ function borrrrrrarrrr(){
   }, 100);
 }
 
-document.querySelector("#borrarBoton3").addEventListener('click', ()=>{
-  mezcladorColor.classList.remove('move-padre-cmyk')
-  creadorPerfiles.classList.remove('move-mezclador')
+document.querySelector("#borrarBoton3").addEventListener('click', (e)=>{
   activarPantallaCompleta()
-  ocultaElementos('colorCMYK','container-slider','padre-cmyk','container01','links-inicialesI','links-iniciales','buscador','search-form')
+  document.querySelector('#calculadora').style.display='none'
+  restablecerClick(['.butt-perfiles']);
+  // solo se ejecuta si el click fue directamente en el li padre
+  if (e.target.id !== "borrarBoton3") return;
+  iniciarAnimaciones();
+
+  if (!idsArray.includes('simulador')) {
+    idsArray.push('simulador');
+    console.log(idsArray);
+  }
 })
 

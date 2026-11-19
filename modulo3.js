@@ -9,7 +9,7 @@ document.addEventListener('keydown', function(event) {
 
       break
       case 'Z':
-        activarBlur(0,8)
+        activarPantallaCompleta()  
       break;  
       case 'H':
         vaciarPorClaveLocalStore('empleadosRegistrados', tipo = 'array')
@@ -4973,10 +4973,11 @@ const destinoLinea = document.querySelector('#job-files > .jobs:nth-child(2) > .
 lineaClientes.addEventListener('click', (e) => {
   const linea = e.target.closest('div');
   if (!linea) return;
-
-  panelDos.style.backgroundColor = 'rgb(0, 0, 17)';
-  panelDos.style.color = '#3FE0C5';
-
+  panelDos.style.background = '#0f1a2b';
+  panelDos.style.color = '#f0f6ff';
+  panelDos.style.border = '1px solid #6f8fd8';
+  panelDos.style.borderRadius = '8px';
+  panelDos.style.boxShadow = '0 0 12px rgba(63, 224, 197, 0.25), inset 0 1px 3px rgba(0, 0, 0, 0.5)';
   destinoLinea.textContent = linea.textContent;
   lineaClientes.style.display = 'none';
 
@@ -5601,7 +5602,6 @@ const jobs = document.querySelectorAll('.jobs');
 
 function mostrarNombresDeObjetos() {
   flagAplicacion = true;
-
   if(interfazColor.style.display==='flex'){
     listaColores.style.display = 'flex';
     listaColores.style.left='37vw'
@@ -5653,11 +5653,6 @@ function mostrarNombresDeObjetos() {
     const menuItem = document.createElement('div');
     menuItem.className = 'opcion';
     menuItem.textContent = opcion;
-    menuItem.style.cursor = 'pointer';    
-    menuItem.style.padding = '5px';
-    menuItem.style.display = 'flex';
-    menuItem.style.alignItems = 'center';
-    menuItem.style.justifyContent = 'flex-start';
 
     menuItem.addEventListener('click', (event) => {
       menuContextual.style.display = 'none';
@@ -5667,6 +5662,7 @@ function mostrarNombresDeObjetos() {
       } else if (opcion === 'Filtrar') {
         buscarPerfil();
       } else if (opcion === 'Eliminar') {
+        menuItem.classList.add('opcion-eliminar');
         eliminarObjeto(menuContextual.dataset.nombreObjeto);
       }
     });
@@ -5698,8 +5694,11 @@ function mostrarNombresDeObjetos() {
       const nombreCliente = document.querySelector('.nombre-cliente');
       nombreCliente.textContent = nombreCapitalizado;
       panelUno.textContent = nombreCapitalizado;
-      panelUno.style.backgroundColor = 'rgb(0,0,23)';
-      panelUno.style.color = '#3FE0C5';
+      panelUno.style.background = '#0f1a2b';
+      panelUno.style.color = '#f0f6ff';
+      panelUno.style.border = '1px solid #6f8fd8';
+      panelUno.style.borderRadius = '8px';
+      panelUno.style.boxShadow = '0 0 12px rgba(63, 224, 197, 0.25), inset 0 1px 3px rgba(0, 0, 0, 0.5)';    
       objetoGlobal = nombreCapitalizado;
       console.log('OBJETO GLOBAL :', objetoGlobal);
       listaColores.style.display = 'none';
@@ -5887,19 +5886,7 @@ function eliminarObjeto(nombreObjeto) {
 
   
   Object.assign(divEliminacion.style, {
-    display: 'grid',
-    height: '30vh',
-    position: 'fixed',
-    transform: 'translate(-50%, -50%)',
-    zIndex: '9999',
-
-    width: '50%',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    justifyItems: 'center',
-    alignItems: 'center',
-    zIndex: 9999
+    display: 'grid'
   });
 
   // Evento para confirmar la eliminación
@@ -5997,7 +5984,7 @@ function editarObjeto(nombreObjeto) {
     zIndex: '9999'
   });
 
-  inputNuevoNombre.focus();
+  /* inputNuevoNombre.focus(); */
 
   // Cambio 2: listener de Guardar reescrito
   botonConfirmar.addEventListener('click', (e) => {
@@ -6967,6 +6954,7 @@ function secuenciaAparicion(canal) {
   }
 }
 buscaNombre.addEventListener('click', () => {
+  alert()
   creaNombre.value = ''
   listaClientes.style.display = 'none'
   keyboardWrapper.style.display='flex'
