@@ -2881,13 +2881,14 @@ document.getElementById('butt-job-track').addEventListener('click', () =>{
   desactivarClick(['.butt-perfiles'])
   restablecerClick(['.estilo-1', '.butt-revierte'])
   document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
-  
   conteJobTrack.style.display='flex'
   document.querySelectorAll('.datos-base').forEach((elemento) => { 
     elemento.textContent = ''
   });  
   setTimeout(() => {
     conteJobTrack.classList.add('move-job-track') 
+      actualizarEstiloThirdJob()
+
   }, 100);
 })
 
@@ -4191,6 +4192,7 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   let inputNombre = inputPerfil.value.trim();
   if (inputNombre === '') {
     saltarAlerta('Por favor, ingrese un nombre válido', 'perfilador');
+    document.querySelector("#padre-evento > div").style.left='35%'
     return;
   }
   // Capitalizar la primera letra de cada palabra
@@ -4860,6 +4862,7 @@ btnSalir.addEventListener('click', ()=>{
     parpadearElemento('entrar-cantidad', 150, 2500);
   }else{
     calculadora.classList.add('move-calculadora')
+    actualizarEstiloThirdJob()
   }
 })      
 
@@ -4894,7 +4897,7 @@ buttsJobs.forEach(boton => {
   boton.addEventListener('click', () => {
     
     restablecerEstilos('calculadora');
-    calculadora.classList.remove('subir');   
+    calculadora.classList.remove('subir'); 
     
     switch(boton.id) {
       case 'clientes':
@@ -4952,7 +4955,7 @@ buttsJobs.forEach(boton => {
 
 });
 function actualizarDisplay() {
-  document.querySelectorAll('#resultado-calculadora .number, #display-cantidad .cantidad-display').forEach(elemento => elemento.textContent = '');
+  document.querySelectorAll('#resultado-calculadora .number, #display-cantidad .cantidad-display').forEach(elemento => elemento.textContent = ''); 
 }
 // CLIENTES
 const contenedorClientes = document.getElementById('lista-clientes');
@@ -5306,13 +5309,10 @@ document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
 // ENTER DE LA CALCULADORA
 btnEntrar.addEventListener('click', () => {  
   detenerParpadeo()
-
   let padreRGB = document.getElementById('padre-rgb')
-
   if (padreRGB.style.display==='grid' || mezcladorColor.style.display==='grid') {
     calculadoraSimulador = true
   }
-
   if(!calculadoraSimulador){
     desactivarClick(['.butt-perfiles','.digit', '.estilo-1','digito']);
     detenerAlternarColor()
@@ -5329,7 +5329,8 @@ btnEntrar.addEventListener('click', () => {
       document.querySelectorAll('#resultado-calculadora .number').forEach(elemento => elemento.textContent = '');
       calculadora.classList.add('move-calculadora')
       setTimeout(() => {
-        mostrarBarraProgres(67, 100);         
+        mostrarBarraProgres(67, 100);
+        actualizarEstiloThirdJob()        
       }, 500);
       setTimeout(() => {
         irAconsola.style.display='block'
@@ -5342,6 +5343,46 @@ btnEntrar.addEventListener('click', () => {
     if(!esDesktop)avanzarFoco();
   }
 });
+
+function estilizarThirdJob() {
+  const displays = document.querySelectorAll('.cantidad-display');
+
+  // Si todos están vacíos, no hace nada
+  const hayTexto = [...displays].some(d => d.textContent.trim() !== '');
+  if (!hayTexto) return;
+
+  const el = document.querySelector('#third-job > span:nth-child(2)');
+  if (el) {
+    el.style.background = 'rgb(15, 26, 43)';
+    el.style.color = 'rgb(240, 246, 255)';
+    el.style.border = '1px solid rgb(111, 143, 216)';
+    el.style.borderRadius = '8px';
+    el.style.boxShadow = 'rgba(63, 224, 197, 0.25) 0px 0px 12px, rgba(0, 0, 0, 0.5) 0px 1px 3px inset';
+    el.style.pointerEvents = 'auto';
+  }
+}
+function limpiarEstiloThirdJob() {
+  const displays = document.querySelectorAll('.cantidad-display');
+
+  // Si al menos uno tiene texto, no hace nada
+  const hayTexto = [...displays].some(d => d.textContent.trim() !== '');
+  if (hayTexto) return;
+
+  const el = document.querySelector('#third-job > span:nth-child(2)');
+  if (el) {
+    el.style.background = '';
+    el.style.color = '';
+    el.style.border = '';
+    el.style.borderRadius = '';
+    el.style.boxShadow = '';
+    el.style.pointerEvents = '';
+  }
+}
+function actualizarEstiloThirdJob() {
+  const hayTexto = [...document.querySelectorAll('.cantidad-display')]
+    .some(d => d.textContent.trim() !== '');
+  hayTexto ? estilizarThirdJob() : limpiarEstiloThirdJob();
+}
 
 function sumarPorcentaje() {
   // Obtener el valor actual del contador (remover el símbolo '%')
@@ -5954,6 +5995,10 @@ function editarObjeto(nombreObjeto) {
   // Input con el nombre actual
   const inputNuevoNombre = document.createElement('input');
   inputNuevoNombre.type = 'text';
+  if (!esDesktop){
+    inputNuevoNombre.setAttribute('inputmode', 'none');
+    showKeyboard()
+  } 
   inputNuevoNombre.value = nombreObjeto;
   inputNuevoNombre.id = 'input-edicion';
 
@@ -5981,7 +6026,7 @@ function editarObjeto(nombreObjeto) {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    zIndex: '9999'
+    zIndex: '9900'
   });
 
   /* inputNuevoNombre.focus(); */

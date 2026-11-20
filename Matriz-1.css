@@ -7703,10 +7703,11 @@ background-color: #3FEF9C;
   z-index: 9999;
   transition: opacity 0.1s ease-out;
 }
-.contenido-alerta,
-.alerta-contenido {
+.contenido-alerta, .alerta-contenido {
   background-color: #1e2a3a;
   border: 1px solid #2f6fe0;
+  position: absolute;
+  left: 39%;
   width: 37%;
   height: 20%;
   padding: 1.5vh;
@@ -7716,8 +7717,8 @@ background-color: #3FEF9C;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border-radius: 5px; 
-  transition: opacity 0.1s ease-out;    
+  border-radius: 5px;
+  transition: opacity 0.1s ease-out;
 }
 .contenido-alerta p{
   color:white;

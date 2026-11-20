@@ -5479,7 +5479,7 @@ const accionesAceptar = {
   perfilDeColor: () => {
     buscaNombre.value = '';
     buscaNombre.focus();
-  },   
+  },  
 
 };
 const accionesCancelar = {
@@ -5530,34 +5530,31 @@ function saltarAlerta(texto, padre) {
   const aceptar = document.querySelector('#aceptar-evento');
   const cancelar = document.querySelector('#denegar-evento'); 
 
+  const el = document.querySelector("#padre-evento > div");
+  if (el) el.removeAttribute('style');  
+  
   mostrarElemento('#padre-evento');
   mostrarElemento('.contenido-alerta');
-
   modal.classList.remove('reseteo');
   cancelar.style.display = '';
   aceptar.style.color = '';
   cancelar.style.color = '';
   modal.style.backgroundColor = '';
-
   aceptar.onmouseenter =
   aceptar.onmouseleave =
   cancelar.onmouseenter =
   cancelar.onmouseleave = null;
-
   mensaje.textContent = texto;
   modal.style.display = 'flex';
   alertaGlobal = padre;
-
   aceptar.style.color = '';
   cancelar.style.color = '';
   cancelar.style.display = '';
   modal.style.backgroundColor=''
-
   aceptar.onmouseenter = null;
   aceptar.onmouseleave = null;
   cancelar.onmouseenter = null;
   cancelar.onmouseleave = null;
-
   aceptar.focus();
     if (alertaGlobal === 'lineas') {
     cancelar.style.display = 'none';
