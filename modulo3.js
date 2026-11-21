@@ -4174,9 +4174,6 @@ inputPerfil.addEventListener('input', function () {
 
   this.value = valor;
 });
-inputPerfil.addEventListener('focusin',() =>{
-  if(!esDesktop) showKeyboard()
-})
 inputPerfil.addEventListener('blur', () => {
   if(!esDesktop) hideKeyboard()
 });
@@ -5997,7 +5994,7 @@ function editarObjeto(nombreObjeto) {
   inputNuevoNombre.type = 'text';
   if (!esDesktop){
     inputNuevoNombre.setAttribute('inputmode', 'none');
-    showKeyboard()
+    showKeyboard(-4)
   } 
   inputNuevoNombre.value = nombreObjeto;
   inputNuevoNombre.id = 'input-edicion';
@@ -6999,7 +6996,6 @@ function secuenciaAparicion(canal) {
   }
 }
 buscaNombre.addEventListener('click', () => {
-  alert()
   creaNombre.value = ''
   listaClientes.style.display = 'none'
   keyboardWrapper.style.display='flex'

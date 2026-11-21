@@ -5636,12 +5636,14 @@ top: 44%;
 
   transform: translateY(100vh);
   transition: transform 1s ease;
+
+  --keyboard-lift: -9vh;  
 }
 .listado-clientes.isvisible{
   transform: translateY(0);
 }
 #keyboard-wrapper.is-visible {
-  transform: translateY(-9vh);
+  transform: translateY(var(--keyboard-lift));
 }
 #virtual-keyboard {
   width: var(--keyboard-width);
@@ -5765,9 +5767,6 @@ top: 44%;
   border-color: var(--key-acento-2);
   box-shadow: 0 0 0 3px rgba(63, 224, 197, 0.35);
 }
-
-
-
 .move-calculadora-up{
   transform: translateY(-51vh);
   transition: transform 0.4s ease;

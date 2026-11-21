@@ -2032,14 +2032,75 @@ function limpiarYCapitalizar(e) {
 
   e.target.value = valor;
 }
-const inputsVarios = [buscaNombre, mejoraFichaTec, nombreNuevo, nombreNuevoIngreso];
-inputsVarios.forEach(input => {
+const names = [
+  "Valentina Sofía Rodríguez Herrera",
+  "Valentina Camila Gómez Patiño",
+  "Juan Osvaldo Mira Pineda",
+  "Santiago Andrés Gómez Castillo",
+  "Santiago Felipe Herrera Londoño",
+  "Isabella Camila Martínez Vargas",
+  "Isabella Paola Torres Salazar",
+  "Sebastián Felipe Torres Mendoza",
+  "Sebastián Andrés Díaz Restrepo",
+  "Camila Juliana Pérez Salazar",
+  "Camila Andrea López Ospina",
+  "Mateo Alejandro Díaz Moreno",
+  "Mateo Esteban Vargas Cardona",
+  "Sofía Valentina López Rincón",
+  "Sofía Daniela Ramírez Arango",
+  "Nicolás Esteban Ramírez Gutiérrez",
+  "Nicolás David Muñoz Zapata",
+  "Valeria Daniela Castro Jiménez",
+  "Valeria Isabel Rojas Montoya",
+  "Alejandro Miguel Rojas Ospina",
+  "Alejandro Ernesto Sánchez Córdoba",
+  "Daniela Paola Suárez Cardona",
+  "Daniela Carolina Pineda Ríos",
+  "Andrés Felipe Morales Restrepo",
+  "Andrés Miguel Castillo Vargas",
+  "Mariana Isabel Vargas Londoño",
+  "Mariana Sofía Pérez Castaño",
+  "Julián David Herrera Patiño",
+  "Julián Alejandro Gómez Ruiz",
+  "Catalina María Sánchez Arango",
+  "Catalina Andrea Fernández Mendoza",
+  "Miguel Ángel Fernández Ríos",
+  "Miguel Andrés Moreno Gutiérrez",
+  "Paula Andrea Gómez Montoya",
+  "Paula Valentina Jiménez Torres",
+  "Diego Armando Ruiz Castaño",
+  "Diego Sebastián Castro Herrera",
+  "Natalia Carolina Muñoz Zapata",
+  "Natalia Juliana López Díaz",
+  "Felipe Ernesto Pineda Córdoba",
+  "Felipe David Vargas Ramírez"
+];
+const ITEM_H    = 44;
+const VISIBLE   = 4;
+const PAD_ITEMS = Math.floor(VISIBLE / 2);
+const DURATION  = 1200;
+const ul         = document.getElementById("namesList");
+const resultName = document.getElementById("resultName");
+const nameInput  = document.getElementById("nameInput");
+const errorMsg   = document.getElementById("errorMsg");
+const suggestBox = document.getElementById("sugerencias");
+const btn        = document.getElementById("searchBtn");
+const inputsVarios = [
+  { input: buscaNombre,         lift: -12 },
+  { input: mejoraFichaTec,      lift: -10 },
+  { input: nombreNuevo,         lift: -20 },
+  { input: nombreNuevoIngreso,  lift: -10 },
+  { input: nombreInterfazNuevao,lift: -5 },
+  { input: campoBusqueda,       lift: -5 },
+  { input: inputPerfil,         lift: 1}
+];
+inputsVarios.forEach(({ input, lift }) => {
   if (!input) return;
 
-  if (!esDesktop) nombreNuevo.setAttribute('readonly', true);
+  if (!esDesktop) input.setAttribute('readonly', '');
 
   input.addEventListener('focusin', () => {
-    if (!esDesktop) showKeyboard();
+    if (!esDesktop) showKeyboard(lift);
   });
 
   input.addEventListener('blur', () => {
@@ -2047,6 +2108,7 @@ inputsVarios.forEach(input => {
   });
 
   input.addEventListener('input', limpiarYCapitalizar);
+  
 });
 function permitirSoloNumeros(e) {
   const input = e.target;
@@ -4406,17 +4468,17 @@ document.addEventListener('focusin', e => {
     lastFocusedInput = e.target;
   }
 });
-function showKeyboard() {
-  keyboardWrapper.removeAttribute('style');
-  keyboardWrapper.classList.add('is-visible');
 
-  if(!esDesktop && padreNuevaInterfaz.style.display==='flex'){
-    keyboardWrapper.style.left='37vw'
-    keyboardWrapper.style.setProperty('--keyboard-width', '57vw');
-  } 
+function showKeyboard(lift = -9) {
+  keyboardWrapper.style.setProperty('--keyboard-lift', `${lift}vh`);
+  keyboardWrapper.classList.add('is-visible');
 }
+
 function hideKeyboard() {
   keyboardWrapper.classList.remove('is-visible');
+  keyboardWrapper.style.removeProperty('--keyboard-width');
+  keyboardWrapper.style.removeProperty('--keyboard-left');
+  keyboardWrapper.style.removeProperty('--keyboard-lift');  
 }
 function hideCalculator() {
   calculadora.classList.add('move-calculadora-down');  
@@ -4434,8 +4496,8 @@ function ubicaCalculadoraSegunContexto(){
     simulador.style.display='flex'
     calculadora.classList.remove('move-calculadora-1')
     calculadora.style.display='grid'
-    calculadora.style.left='40vw'
-    calculadora.style.top='102vh' 
+    calculadora.style.left='47vw'
+    calculadora.style.top='95vh' 
     calculadora.style.height='45vh'
     calculadora.style.width='40vw'
     setTimeout(() => {
@@ -4446,8 +4508,8 @@ function ubicaCalculadoraSegunContexto(){
     simulador.style.display='flex'
     calculadora.classList.remove('move-calculadora-1')
     calculadora.style.display='grid'
-    calculadora.style.left='44vw'
-    calculadora.style.top='102vh' 
+    calculadora.style.left='47vw'
+    calculadora.style.top='95vh' 
     calculadora.style.height='45vh'
     calculadora.style.width='40vw'
     setTimeout(() => {
@@ -4518,7 +4580,20 @@ function ubicaCalculadoraSegunContexto(){
     setTimeout(() => {
       calculadora.classList.add('move-calculadora-up-ingreso');
     }, 100);
-  }  
+  }
+  if(!esDesktop && panelAdministrativo.style.display==='grid'){  
+    document.querySelector("#simulador").style.display='flex'    
+    calculadora.classList.remove('move-calculadora-up-ingreso')
+    calculadora.style.display='grid'
+    calculadora.style.left='19vw'
+    calculadora.style.top='110vh' 
+    calculadora.style.height='45vh'
+    calculadora.style.width='40vw'
+    calculadora.style.zIndex = 1000;
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up-ingreso');
+    }, 100);
+  }    
 }
 const clamp = (val, min, max) =>
   Math.min(max, Math.max(min, val));
@@ -6062,61 +6137,6 @@ function moverVisor() {
   }
 
 }
-
-
-const names = [
-  "Valentina Sofía Rodríguez Herrera",
-  "Valentina Camila Gómez Patiño",
-  "Juan Osvaldo Mira Pineda",
-  "Santiago Andrés Gómez Castillo",
-  "Santiago Felipe Herrera Londoño",
-  "Isabella Camila Martínez Vargas",
-  "Isabella Paola Torres Salazar",
-  "Sebastián Felipe Torres Mendoza",
-  "Sebastián Andrés Díaz Restrepo",
-  "Camila Juliana Pérez Salazar",
-  "Camila Andrea López Ospina",
-  "Mateo Alejandro Díaz Moreno",
-  "Mateo Esteban Vargas Cardona",
-  "Sofía Valentina López Rincón",
-  "Sofía Daniela Ramírez Arango",
-  "Nicolás Esteban Ramírez Gutiérrez",
-  "Nicolás David Muñoz Zapata",
-  "Valeria Daniela Castro Jiménez",
-  "Valeria Isabel Rojas Montoya",
-  "Alejandro Miguel Rojas Ospina",
-  "Alejandro Ernesto Sánchez Córdoba",
-  "Daniela Paola Suárez Cardona",
-  "Daniela Carolina Pineda Ríos",
-  "Andrés Felipe Morales Restrepo",
-  "Andrés Miguel Castillo Vargas",
-  "Mariana Isabel Vargas Londoño",
-  "Mariana Sofía Pérez Castaño",
-  "Julián David Herrera Patiño",
-  "Julián Alejandro Gómez Ruiz",
-  "Catalina María Sánchez Arango",
-  "Catalina Andrea Fernández Mendoza",
-  "Miguel Ángel Fernández Ríos",
-  "Miguel Andrés Moreno Gutiérrez",
-  "Paula Andrea Gómez Montoya",
-  "Paula Valentina Jiménez Torres",
-  "Diego Armando Ruiz Castaño",
-  "Diego Sebastián Castro Herrera",
-  "Natalia Carolina Muñoz Zapata",
-  "Natalia Juliana López Díaz",
-  "Felipe Ernesto Pineda Córdoba",
-  "Felipe David Vargas Ramírez"
-];
-const ITEM_H    = 44;
-const VISIBLE   = 4;
-const PAD_ITEMS = Math.floor(VISIBLE / 2);
-const DURATION  = 1200;
-const ul         = document.getElementById("namesList");
-const resultName = document.getElementById("resultName");
-const nameInput  = document.getElementById("nameInput");
-const errorMsg   = document.getElementById("errorMsg");
-const suggestBox = document.getElementById("sugerencias");
-const btn        = document.getElementById("searchBtn");
 function normalize(s) {
   return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
@@ -6183,15 +6203,27 @@ nameInput.addEventListener('blur', () => {
   }, 500);
 });
 
-nameInput.addEventListener('touchstart', () => {
+/* nameInput.addEventListener('touchstart', () => {
   nameInput.value=''  
   if(!esDesktop){
-    keyboardWrapper.style.left='37vw'
+    keyboardWrapper.style.left='39vw'
     keyboardWrapper.style.setProperty('--keyboard-width', '33vw');
     document.querySelector('#padre-rrhh-marco').classList.add('move-new-employee')
     nameInput.readOnly = true; 
   }
   showKeyboard()  
+}); */
+
+nameInput.addEventListener('touchstart', () => {
+  console.log('click')
+  nameInput.value = '';
+  showKeyboard(-5);                       // primero (showKeyboard borra el style)
+  if (!esDesktop) {
+    keyboardWrapper.style.left = '39vw';
+    keyboardWrapper.style.setProperty('--keyboard-width', '57vw');
+    document.querySelector('#padre-rrhh-marco').classList.add('move-new-employee');
+    nameInput.readOnly = true;
+  }
 });
 //*******************************************************************************************************************
 function buildList() {

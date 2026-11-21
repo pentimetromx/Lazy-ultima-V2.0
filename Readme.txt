@@ -172,9 +172,9 @@ git pull origin main
 
 ======                        ===============================
 
-- estoy arreglando el problema con el overlay al eliminar empleados
+- VERIFICAR TODAS LAS POSICIONES DESDE DONDE SE LLAMA ALA CALCULADORA
 
-- pendiente las tres etiquetas con los almacenamientos 
+- HACER LO MISMO CON EL TECLADO (ESTOY POR AHORA CON LA POSICION DEL TECLADO EN EL MEZCLADOR DE COLORES)
 
 
 

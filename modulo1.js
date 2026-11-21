@@ -4889,10 +4889,10 @@ function resultadosMA(identificador){
       dropdown.style.display = 'block';
     });
     inputLimpio.addEventListener('touchstart', () => {
-      document.querySelector("#buscador-empleado").value=''
-      showKeyboard() 
+      inputLimpio.value = '';
+      showKeyboard(-12);
       keyboardWrapper.style.setProperty('--keyboard-width', '50vw');
-      keyboardWrapper.style.setProperty('--keyboard-left', '48vw');
+      keyboardWrapper.style.setProperty('--keyboard-left', '25.4vw');
     });
     inputLimpio.addEventListener('click', () => {
       document.querySelector("#buscador-empleado").value=''    

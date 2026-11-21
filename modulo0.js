@@ -25,7 +25,6 @@ const btnAreas = document.querySelector('.columna-derecha button:nth-child(7)')
 const firstMachine = document.querySelector('#lista-maquinas span:nth-child(1)')
 const mediaDesktop = window.matchMedia('(pointer: fine) and (min-width: 1025px)');
 const linkMaster = document.querySelector("#links-auxiliar > li:nth-child(5)")
-const panelAdministrador = document.querySelector("#panel-admon")
 const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
 const botonVolver = document.getElementById('butt-links-II')
 const interfazToggle = document.querySelector('#btn-ver-listado')  
@@ -59,11 +58,15 @@ let contiVidEntintador = document.getElementById('conti-video-entintador')
 let contImgsDistribuidor = document.getElementById("images-distribuidor")
 const actividadesLimpieza = document.getElementById('actividad-limpieza') 
 let buttRepuestIII = document.getElementById('conti-boton-repuestos-II')
+
+const panelAdministrador = document.querySelector("#panel-admon")
+
 const padreAdministrativo = document.querySelector('#padre-carta-exterior')
 
 const padrePanelAdministrativo = document.querySelector('#padre-carta-exterior')
 
 const panelAdministrativo = document.querySelector('#carta-exterior')
+
 const imgsDistribuidor = document.getElementById('contImgDistribuidor')
 let buttRepuestV = document.getElementById('conti-boton-repuestos-III') 
 const verButtsInterfazIII = document.getElementById('butts_interfaz_3')
@@ -134,6 +137,7 @@ const fichaGrid = document.querySelector('.ficha-grid');
 const nombreNuevo = document.querySelector("#nom-empl")
 let container1 = document.getElementById('container01')
 let nombreNuevoIngreso = document.getElementById('input-edicion')
+let nombreInterfazNuevao = document.getElementById('nameInput')
 
 const inputsMA = document.querySelectorAll('.dato-ma')
 let botIzquierda = document.getElementById('bot-atras')
