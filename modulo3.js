@@ -2847,7 +2847,7 @@ document.getElementById('butt-control-tinta').addEventListener('click', () =>{
   contPerfilIndividual.classList.remove('move-perfil-individual')
   const displayAjusteFino = document.getElementById('inerfaz-ajuste-fino'); 
   nombreCliente.style.display='flex'
-  nombreCliente.style.top='5vh'
+  /* nombreCliente.style.top='5vh' */
   if (!primerClickRealizado) {
     displayAjusteFino.style.display = 'flex';
     displayAjusteFino.style.top = '33vh'
@@ -4898,6 +4898,7 @@ buttsJobs.forEach(boton => {
     
     switch(boton.id) {
       case 'clientes':
+        if (!esDesktop) buscadorLista.setAttribute('inputmode', 'none');
         if(lineaClientes.style.display==='block') lineaClientes.style.display='none'
         listaClientes.removeAttribute('style');     
         desactivarClick(['.butt-perfiles', '.estilo-1']);       
@@ -5318,10 +5319,12 @@ btnEntrar.addEventListener('click', () => {
     if (todosVacios) {
       saltarAlerta('Ingrese tiraje para este producto','enter')
     }else{
-      document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {  
+      /* document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {  
         elemento.style.display = 'none';
         document.querySelector('#abandonar-perfiles').style.display = 'none'
-      }); 
+      });  */
+        document.querySelector('#abandonar-perfiles').style.display = 'none'
+
       coleccionNumeros.length = 0;        
       document.querySelectorAll('#resultado-calculadora .number').forEach(elemento => elemento.textContent = '');
       calculadora.classList.add('move-calculadora')
@@ -5643,6 +5646,7 @@ function mostrarNombresDeObjetos() {
   if(interfazColor.style.display==='flex'){
     listaColores.style.display = 'flex';
     listaColores.style.left='37vw'
+    listaColores.style.top='19vw'
   }else{
     listaColores.style.display = 'flex';
     listaColores.style.left='62vw'
@@ -5673,7 +5677,6 @@ function mostrarNombresDeObjetos() {
   contenedorItems.innerHTML = '';
 
   // Al abrir la lista, el buscador siempre empieza limpio
-  const buscadorLista = document.getElementById('buscar-color-lista');
   if (buscadorLista) buscadorLista.value = '';
   const sinResultadosLista = listaColores.querySelector('.sin-resultados-lista');
   if (sinResultadosLista) sinResultadosLista.style.display = 'none';
@@ -5706,6 +5709,7 @@ function mostrarNombresDeObjetos() {
     });
 
     menuContextual.appendChild(menuItem);
+
   });
 
   // ✅ Fix 2 — Remover listeners anteriores antes de agregar nuevos
@@ -5840,8 +5844,9 @@ function buscarPerfil() {
       borderRadius: '5px',
       outline: 'none',
       display: 'none',
-      left: '47vw',
-      top: '44vh'
+      left: '43vw',
+      top: '26vh',
+      width: '17vw',
     });
     document.body.appendChild(inputBuscar);
 
@@ -5852,6 +5857,9 @@ function buscarPerfil() {
         item.style.display = item.textContent.toLowerCase().startsWith(texto) ? 'block' : 'none';
       });
     });
+    inputBuscar.addEventListener('focusin', () => {
+      showKeyboard(-4)
+    });   
 
     inputBuscar.addEventListener('mouseleave', () => {
       if (inputBuscar.value.trim() === '') {
@@ -6035,9 +6043,7 @@ function editarObjeto(nombreObjeto) {
     const nuevoNombre = capitalizarTexto(inputNuevoNombre.value.trim());
 
     if (!nuevoNombre) {
-      alertaOcho.style.display = 'flex';
-      alertaOcho.style.zIndex = 5000;
-      alertaOcho.textContent = 'El perfil debe tener un nombre';
+      saltarAlerta('El perfil debe tener un nombre', 'perfilesColor');
       return;
     }
 

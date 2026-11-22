@@ -741,12 +741,22 @@
       </div>
     </div>
 
-    <div id="container01" class="ocultos" data-display="grid">  
+    
+
+    <div id="container01" class="ocultos" data-display="grid">
       <button id="bot-atras" class="entrada-empleado" onclick="irContenedorAnterior('contPortPlaca')"></button>
       <button id="bot-inicial" class="entrada-empleado" onclick="abrirInterfaz()">Panel Inicio</button>
-      <button id="iniciar" class="entrada-empleado" onclick="activarPantallaCompleta()">Full Screen</button>
+
+      <div class="grupo-botones">
+        <button id="iniciar" class="entrada-empleado" onclick="activarPantallaCompleta()">Full</button>
+        <button id="salir-full" class="entrada-empleado" onclick="salirPantallaCompleta()">Exit</button>
+      </div>
+
       <button id="bot-atras12" class="entrada-empleado" onclick="irContenedorSiguiente()"></button>
     </div>
+
+
+
     <div id="pantalla-tintero"> 
 
       <div id="cont-links">
@@ -3225,6 +3235,7 @@
       </div>
 
       <div id="lista-clientes" class="listado-clientes"></div>
+      
       <div id="lista-colores" class="listado-clientes">        
         <div class="buscador-lista">
           <input id="buscar-color-lista" type="search" placeholder="Buscar color..." autocomplete="off">
@@ -3905,6 +3916,7 @@
       </div>    
         
     </div>
+    <!-- MANTENIMIENTO AUTONOMO -->
 
     <div id="padre-ingresos-ma" class="special-border"> 
 
@@ -4316,7 +4328,7 @@
       <div id="virtual-keyboard"></div>
       <button id="close-keyboard-btn">Cerrar teclado</button>
     </div>
-
+    <!-- NUEVO INGRESO -->
     <div id="padre-formulario-empleado" class="special-border">
 
       <form id="formulario-empleado" class="form-empleado">
@@ -4355,12 +4367,10 @@
             <label>Fecha</label>
             <input type="date" name="fecha" class="estilo-empl" required>
           </div>
-
           <div class="campo">
             <label id="registro">Registro fotográfico</label> 
             <input id="input-foto-empl" type="text" class="storeText estilo-empl" value="" name="imagen" required readonly inputmode="none">                  
-          </div>  
-                  
+          </div>    
           <div class="campo digital">
             <label>Identificados</label>
             <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="identificados">

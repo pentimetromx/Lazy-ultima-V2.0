@@ -7084,6 +7084,7 @@ background-color:rgb(25, 144, 255);
   font-family: 'Digital';
   color: rgb(0,255,0);
   font-size: 0.9em;
+  width: 20%;
 }
 .entrada-empleado {
   width: 17%;
@@ -7092,7 +7093,6 @@ background-color:rgb(25, 144, 255);
   border: none;
   outline: none;
   font-size: 0.6em;
-  /* font-family: 'Digital'; */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -7110,6 +7110,35 @@ background-color:rgb(25, 144, 255);
 .entrada-empleado option:hover{
   color: #00aaff;
 }
+
+
+.grupo-botones {
+  display: flex;
+  width: 100%;   /* ocupa toda la celda, no 17% de la celda */
+  height: 100%;
+}
+
+.grupo-botones button {
+  flex: 1 1 50%;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  border-radius: 0;
+  /* copia aquí el fondo y color que tienen tus otros botones */
+  background-color: #ff1a3c;
+  color: #fff;
+  cursor: pointer;
+}
+
+.grupo-botones button:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.grupo-botones button:last-child {
+  border-radius: 0 4px 4px 0;
+}
+
+
 .rango-rojo{
   background-color: rgb(120, 0, 0);
   color: #fff;

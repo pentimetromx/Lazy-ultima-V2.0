@@ -2585,7 +2585,8 @@ function ocultar() {
   }, 300);  
 }
 
-btnAreas.addEventListener('click', () => {
+btnAreas.addEventListener('click', (e) => {
+  e.stopPropagation();   
   if(flagEmpleado === true){
     alternarColor(btnMetricas,btnAreas,500)
     return
@@ -2596,14 +2597,8 @@ btnAreas.addEventListener('click', () => {
     saltarAlerta('Debe ingresar un numero de documento', 'detieneArea');
   } else {
     dentro = true;
-    mostrar();
+    mostrar(padreLinks);
   }
-
-});
-
-btnAreas.addEventListener('mouseleave', () => {
-  dentro = false;
-  ocultar();
 });
 
 padreLinks.addEventListener('mouseenter', () => {
@@ -3867,7 +3862,7 @@ document.querySelector("#salir-ma").addEventListener('click',()=>{
 document.querySelector("#input-documento").addEventListener('click',()=>{
   deBajaActivo=false
   if (!esDesktop) {
-    ubicaCalculadoraSegunContexto();
+    if (!padreAdministrativo.classList.contains('move-carta-exterior')) ubicaCalculadoraSegunContexto();
   }
 })
 document.querySelector("#input-documento").addEventListener('blur', () => {
@@ -4497,7 +4492,7 @@ function ubicaCalculadoraSegunContexto(){
     calculadora.classList.remove('move-calculadora-1')
     calculadora.style.display='grid'
     calculadora.style.left='47vw'
-    calculadora.style.top='95vh' 
+    calculadora.style.top='99vh' 
     calculadora.style.height='45vh'
     calculadora.style.width='40vw'
     setTimeout(() => {
@@ -4509,7 +4504,7 @@ function ubicaCalculadoraSegunContexto(){
     calculadora.classList.remove('move-calculadora-1')
     calculadora.style.display='grid'
     calculadora.style.left='47vw'
-    calculadora.style.top='95vh' 
+    calculadora.style.top='99vh' 
     calculadora.style.height='45vh'
     calculadora.style.width='40vw'
     setTimeout(() => {
@@ -4546,8 +4541,8 @@ function ubicaCalculadoraSegunContexto(){
     document.querySelector("#simulador").style.display='flex'    
     calculadora.classList.remove('move-calculadora-up-ingreso')
     calculadora.style.display='grid'
-    calculadora.style.left='47vw'
-    calculadora.style.top='102vh' 
+    calculadora.style.left='44vw'
+    calculadora.style.top='101vh' 
     calculadora.style.height='45vh'
     calculadora.style.width='40vw'
     calculadora.Zindex=100
@@ -5631,7 +5626,7 @@ function saltarAlerta(texto, padre) {
   cancelar.onmouseenter = null;
   cancelar.onmouseleave = null;
   aceptar.focus();
-    if (alertaGlobal === 'lineas') {
+  if (alertaGlobal === 'lineas') {
     cancelar.style.display = 'none';
   }
   if (alertaGlobal === 'contenedor') {
@@ -5757,7 +5752,12 @@ function saltarAlerta(texto, padre) {
   } 
   if (alertaGlobal === 'vacioRgb') {  
     cancelar.style.display='none'
-  }   
+  } 
+  if (alertaGlobal === 'perfilesColor') {  
+    cancelar.style.display='none'
+    document.querySelector("#padre-evento > div").style.left='32%'
+    document.querySelector("#padre-evento > div").style.marginTop= '0%';
+  }     
   const cerrar = () => {
     accionesCancelar[padre]?.();
     aceptar.onclick = null;
@@ -5802,17 +5802,8 @@ function limpiarFormulario() {
   }, inputs.length * 140);
 }
 document.querySelector('#borrarBoton2').addEventListener('click', () => {
-  activarPantallaCompleta()
-  var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI'];
-  for (var i = 0; i < allContenedores.length; i++) {
-    var elemento = document.getElementById(allContenedores[i]);
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none';
-    }
-    container1.style.display='grid'
-    document.querySelector('#panel-storage').style.display='grid'
-  }
-  dibujarAlmacen()
+      activarPantallaCompleta()
+      ingresoEmpleadoMA('ingresoMA')
 });
 documentoEmplEliminar.addEventListener('touchstart', (e) => {
   e.preventDefault();
@@ -5827,7 +5818,8 @@ documentoEmplEliminar.addEventListener('blur', () => {
 });
 let deBajaActivo = false
 document.querySelector("#boton-ma-card").addEventListener('click',()=>{
-  if(!deBajaActivo){
+
+  if(!deBajaActivo && !padreAdministrativo.classList.contains('move-carta-exterior')){
     saltarAlerta('Debe activar el empleado','docuMaster')
     return    
   }
@@ -5839,6 +5831,7 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
       element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   } 
+  
   container1.style.display='grid'
   padreAdministrativo.style.display='flex'
   panelAdministrativo.style.display='grid'
@@ -5880,16 +5873,13 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
     }, 2200);     
   }, 700);    
 })
-
 document.querySelector("#borrarBoton5").addEventListener('click',()=>{
   activarPantallaCompleta()
   mostrarInterfazIngreso('nuevoIngreso')  
 })
-
 const btnActivar = document.querySelector('#carta-exterior .btn-primario');
 const cardInput = document.querySelector('#carta-exterior .card-header');
 const cardImg = document.querySelector('#carta-exterior .card-foto img');
-
 btnActivar.addEventListener('click', function () {
   if (panelAdministrador.classList.contains('activo')){
     document.querySelector('#abuelo-indicadores').classList.remove('administrativo') 
@@ -5986,27 +5976,14 @@ document.querySelector("#doc-empl").addEventListener('blur', () => {
 });
 inputsMA.forEach(el => {
   el.addEventListener('focus', () => {
-    if (!esDesktop) {
-      ubicaCalculadoraSegunContexto();
-    }
-  });
-  el.addEventListener('input', () => {
-    if (!esDesktop) {
-      ubicaCalculadoraSegunContexto();
-    }
+    if (!esDesktop) ubicaCalculadoraSegunContexto();
   });
   el.addEventListener('blur', () => {
     if (!esDesktop) {
-      calculadora.classList.remove('move-calculadora-up-ingreso')
-      calculadora.classList.remove('move-calculadora-down')
-      hideCalculator()
+      calculadora.classList.remove('move-calculadora-up-ingreso', 'move-calculadora-down');
+      hideCalculator();
     }
   });  
-  el.addEventListener('touchstart', () => {
-    if (!esDesktop) {
-      ubicaCalculadoraSegunContexto()
-    }
-  });   
 
 });
 
@@ -6812,42 +6789,58 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
 })();
 // IIFE Para clientes
 (() => {
-  const lista     = document.getElementById('lista-colores');
-  const buscador  = document.getElementById('buscar-color-lista');
-  const sinResult = lista?.querySelector('.sin-resultados-lista');
-  if (!lista || !buscador || !sinResult) return;
+  const sinResult = listaColores?.querySelector('.sin-resultados-lista');
+  if (!listaColores || !buscadorLista || !sinResult) return;
 
   const normalizar = t =>
-    (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+  (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
 
   function filtrar() {
-    const q = normalizar(buscador.value);
+    const q = normalizar(buscadorLista.value);
     let visibles = 0;
 
-    lista.querySelectorAll('.cliente-item').forEach(item => {
+    listaColores.querySelectorAll('.cliente-item').forEach(item => {
       const coincide = !q || normalizar(item.textContent).includes(q);
       item.style.display = coincide ? '' : 'none';
       if (coincide) visibles++;
     });
 
     sinResult.style.display = (q && visibles === 0) ? 'block' : 'none';
+
   }
 
-  buscador.addEventListener('input', filtrar);
+  buscadorLista.addEventListener('input', filtrar);
 
-  lista.addEventListener('mouseleave', () => {
-    if (document.activeElement === buscador) return;
-    buscador.value = '';
+  listaColores.addEventListener('mouseleave', () => {
+    if (document.activeElement === buscadorLista) return;
+    buscadorLista.value = '';
     filtrar();
   }); 
 
-  buscador.addEventListener('blur', () => {
-    if (!lista.matches(':hover')) {
-      buscador.value = '';
+  buscadorLista.addEventListener('blur', () => {
+    if (!listaColores.matches(':hover')) {
+      buscadorLista.value = '';
       filtrar();
     }
   });
 })();
+
+buscadorLista.addEventListener('focusin',() =>{
+  if(!esDesktop) showKeyboard(-5)
+});
+
+
+function cerrarListaColores() {
+  if (document.activeElement === buscadorLista) return;
+  if (inputBuscar && inputBuscar.style.display !== 'none' && document.activeElement === inputBuscar) return;
+
+  listaColores.style.display = 'none';
+  if (inputBuscar) inputBuscar.style.display = 'none';
+  const menu = document.getElementById('menu-contextual');
+  if (menu) menu.style.display = 'none';
+  restablecerClick(['.base-datos']);
+  blurOverlay.style.display = 'none';
+}
 
 function crearListaDesplegable(inputId, listaId, opciones) {
   const input = document.getElementById(inputId);

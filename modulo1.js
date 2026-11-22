@@ -4890,7 +4890,7 @@ function resultadosMA(identificador){
     });
     inputLimpio.addEventListener('touchstart', () => {
       inputLimpio.value = '';
-      showKeyboard(-12);
+      showKeyboard(-12 );
       keyboardWrapper.style.setProperty('--keyboard-width', '50vw');
       keyboardWrapper.style.setProperty('--keyboard-left', '25.4vw');
     });
