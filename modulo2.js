@@ -3,7 +3,6 @@
   if (!contenedor) return;
   contenedor.classList.remove("activo"); // <- importante
   contenedor.classList.add("desvanecer");
-
   contenedor.addEventListener("transitionend", () => {
     if (contenedor.classList.contains("desvanecer")) {
       contenedor.style.display = "none";
@@ -13,21 +12,17 @@
 }
 // CLICK EN CUARTO BOTON DE BUSCADOR
 function aparecerElemento(id, display = "grid") {
-
   const contenedor = document.getElementById(id);
   if (!contenedor) return;
   if(id==='fichas-tecnicas')bloqueador.style.display='block'
-
   // Forzar ocultamiento previo
   contenedor.classList.remove("activo");
   contenedor.style.display = "none";
-
   // limpiar hijos si es necesario
   Array.from(contenedor.querySelectorAll("*")).forEach(hijo => {
     hijo.style.display = "";
     hijo.classList.remove("oculto");
   });
-
   // después de un pequeño delay re-aplica display y clase
   setTimeout(() => {
     contenedor.style.display = display;
@@ -37,10 +32,8 @@ function aparecerElemento(id, display = "grid") {
 function desaparecerElemento(id) {
   const contenedor = document.getElementById(id);
   if (!contenedor) return;
-
   contenedor.classList.remove("activo");
   contenedor.classList.add("cerrando");
-
   // Espera a que termine la animación y oculta
   const duracion = 1000; // ms, debe coincidir con el CSS
   setTimeout(() => {
@@ -48,7 +41,6 @@ function desaparecerElemento(id) {
     contenedor.classList.remove("cerrando");
   }, duracion);
 }
-
 function cerrarTecnologias(idBoton, elementos) {
   document.querySelector(idBoton).addEventListener('click', () => {
     resetBotonMezclador(idBoton.includes('cmyk') ? 'padre-cmyk' : 'padre-rgb')
@@ -57,10 +49,8 @@ function cerrarTecnologias(idBoton, elementos) {
     }, 200)
   })
 }
-
 cerrarTecnologias('#boton-cmyk-salir', [mezcladorColor, creadorPerfiles, panelControlCMYK])
 cerrarTecnologias('#boton-rgb-salir', [mezcladorColorRGB, creadorPerfiles, panelControlRGB])
-
 function deslizaContenedor(identificador, idButton) {
   activarPantallaCompleta()
   restablecerPosiciones(['.ocultos', '.class-line']);
@@ -68,10 +58,8 @@ function deslizaContenedor(identificador, idButton) {
   troublesh.removeAttribute('style');
   stopAnim()
   stopAnimB() 
-  
   clearAllIntervals();
   desactivarClicsPorUnTiempo(500);
-
   // Botones MA
   arrayIdButtsMA.forEach(id => {
     const btn = document.getElementById(id);
@@ -80,26 +68,21 @@ function deslizaContenedor(identificador, idButton) {
     btn.style.backgroundColor = activo ? 'orange' : 'rgba(83, 82, 82, 0.678)';
     btn.style.color = activo ? 'black' : '';
   });
-
   // Botones conti
   contiBtt.forEach(id => {
     const btn = document.getElementById(id);
     if (btn) btn.style.backgroundColor = '';
   });
-
   if (document.body.style.zoom !== "100%") document.body.style.zoom = "100%";
-
   const setDisplay = (excluidos) => {
     allContenedores.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = excluidos.includes(id) ? 'flex' : 'none';
     });
   };
-
   const activarLayout = () => {
     container1.style.display = 'grid';
   };
-
   switch (identificador) {
     case 'troubleshooting':
       setDisplay(['buscador', 'search-form', 'links-inicialesI', 'links-iniciales', 'conteneMantaut','conti-boton']);
@@ -131,7 +114,6 @@ function deslizaContenedor(identificador, idButton) {
       inicioTracker();
       aparecerElemento("canvasContainer3", "flex");
       setTimeout(() => aparecerElemento("padre", "flex"), 200);
-
       if (screenWidth < 500) {
         const canvas3 = document.getElementById(identificador);
         if (canvas3) canvas3.style.marginTop = '12%';
@@ -179,7 +161,6 @@ function resetearBarras(){
   imgWallStreetI.style.width = ''
   imgWallStreet.style.height = ''
   parentElements.style.display = 'none'
-
   isAnimatingXIII = false      
   isAnimatingXIV = false      
   isAnimatingXV = false 
@@ -251,14 +232,12 @@ function updateAna() {
   chart12.update();
 }
 function updateAnaII() {
-
   setTimeout(function() { graficosAutomaticos('canvasContainer4'); }, 500);
   setTimeout(function() { graficosAutomaticos('canvasContainer7'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer5'); }, 900);
   setTimeout(function() { graficosAutomaticos('canvasContainer6'); }, 1100);
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200);
-  
   let nuevosDatos = [ 0,70,30,70,50,90]
   chart7II.data.datasets[0].data = nuevosDatos;
   chart7II.update()
@@ -286,10 +265,8 @@ function updateMario() {
   setTimeout(function() { graficosAutomaticos('canvasContainer8'); }, 700);
   setTimeout(function() { graficosAutomaticos('canvasContainer9'); }, 1200); 
   let nuevosDatos = [ 100,20,70,10,80,90]
-  
   chart7.data.datasets[0].data = nuevosDatos;
   chart7.update()
-
   let nuevosDatosI = [ 30,25,90,110,50,77]
   chart8.data.datasets[0].data = nuevosDatosI;
   chart8.update()
@@ -592,21 +569,15 @@ function updateCarlosII() {
   chart12II.data.datasets[0].data = nuevosDatosV
   chart12II.update()  
 }
-
 /******************************************************************************************************************************************************** */
 let dinamicaActiva = false;
 let timeoutsDinamica = [];
-
 function updateDinamico() {
   if (dinamicaActiva) return;
-
   dinamicaActiva = true;
-
   desactivarClick(['.desactivar']);
-
   timeoutsDinamica.forEach(id => clearTimeout(id));
   timeoutsDinamica.length = 0;
-
   if (turnBlock === false) {
     [
       ['canvasContainer4', 500],
@@ -623,33 +594,23 @@ function updateDinamico() {
       timeoutsDinamica.push(t);
     });
   }
-
   if (!dinamicaActiva) return;
-
   chart7.data.datasets[0].data = [0,30,40,50,60,70];
   chart7.update();
-
   chart8.data.datasets[0].data = [5,20,35,50,65,80];
   chart8.update();
-
   chart9.data.datasets[0].data = [15,20,25,30,35,40];
   chart9.update();
-
   chart10.data.datasets[0].data = [3,6,9,12,15,18];
   chart10.update();
-
   chart11.data.datasets[0].data = [7,14,21,28,35,42];
   chart11.update();
-
   chart12.data.datasets[0].data = [9,18,27,36,45,54];
   chart12.update();
-
   actualizarDatos();
 }
-  
 function updateDinamicoII() {
   if (!dinamicaActiva) return;
-
   if (turnBlock === false) {
     [
       ['canvasContainer4-II', 500],
@@ -666,51 +627,36 @@ function updateDinamicoII() {
       timeoutsDinamica.push(t);
     });
   }
-
   chart7II.data.datasets[0].data = [0,70,30,70,50,90];
   chart7II.update();
-
   chart8II.data.datasets[0].data = [55,5,95,30,10,10];
   chart8II.update();
-
   chart9II.data.datasets[0].data = [30,50,60,77,20,8];
   chart9II.update();
-
   chart10II.data.datasets[0].data = [5,17,8,30,44,10];
   chart10II.update();
-
   chart11II.data.datasets[0].data = [11,50,20,80,10,100];
   chart11II.update();
-
   chart12II.data.datasets[0].data = [5,17,33,45,51,57,67,99];
   chart12II.update();
-
   actualizarDatosII();
 }
-  
 function detenerDinamica() {
   dinamicaActiva = false;
-
   clearInterval(intervaloActualizar);
   clearInterval(intervaloActualizarII);
-
   intervaloActualizar = null;
   intervaloActualizarII = null;
-
   timeoutsDinamica.forEach(clearTimeout);
   timeoutsDinamica.length = 0;
-
   restablecerClick(['.desactivar']);
 }
-
 /******************************************************************************************************************************************************** */
-
 function actualizarDatosII() {
   if (intervaloActualizarII) {
     clearInterval(intervaloActualizarII);
     intervaloActualizarII = null; // Reiniciar la variable
   }
-
   intervaloActualizarII = setInterval(function() {
     [nuevosDatos, nuevosDatosI, nuevosDatosII, nuevosDatosIII, nuevosDatosIIII, nuevosDatosV].forEach(function(array, index) {
       for (let i = 0; i < array.length; i++) {
@@ -735,7 +681,6 @@ function deslizaMosaicoII(idElement) {
   let contLinkMant = document.getElementById('linksMA')
   let elementoAnterior = null;
   let elementoActual = null;
-
   if (contLinkMant !== null && contImgEntrenos !== null) {
     contLinkMant.style.display = 'none'
     contImgEntrenos.style.display = 'none'
@@ -763,20 +708,16 @@ function deslizaMosaicoII(idElement) {
     }
   }
   requestAnimationFrame(animar)
-
   for (let i = 1; i < arrayPosicionnador.length; i++) {
     let elementoActual = document.getElementById(arrayPosicionnador[i])
     let elementoAnterior = document.getElementById(arrayPosicionnador[i - 1])
-
     if (elementoActual && elementoAnterior) {
       let estiloAnterior = window.getComputedStyle(elementoAnterior)
       let posicionAnterior = parseFloat(estiloAnterior.getPropertyValue('left'))
       let anchoAnterior = parseFloat(estiloAnterior.getPropertyValue('width'))
-
       destino = posicionAnterior + anchoAnterior;
     }
   }
-
 }
 function ampliaIndicaciones(index) {
   let botonConico = document.getElementById('bot-indicacionesII')
@@ -784,7 +725,6 @@ function ampliaIndicaciones(index) {
   let indicEje = document.getElementById('indicaciones-eje') 
   let conico = document.getElementById('conico')
   let eje = document.getElementById('eje')
-
   switch (index) {
     case 'eje':
     eje.style.width = (window.innerWidth * 0.75) + 'px' 
@@ -795,7 +735,6 @@ function ampliaIndicaciones(index) {
     eje.style.zIndex = '999'
     eje.style.left = '0' 
     eje.style.top = '0' 
-    
     break;
     case 'conico':
       botonConico.style.display = 'block'
@@ -820,7 +759,6 @@ function ocultarIndicaciones(idIndicador) {
   let indicEje = document.getElementById('indicaciones-eje')
   let conico = document.getElementById('conico')
   let eje = document.getElementById('eje')
-
   switch(idIndicador) {
     case 'eje':
       indicEje.style.display = 'none'
@@ -840,13 +778,10 @@ function ocultarIndicaciones(idIndicador) {
   }
   linkListI.style.display = "none";  
   linkList.style.display = "none";
-
 }
-
 function rodillosKaizen(idButton,vidElem) {
   let buttsTerceros = document.getElementsByClassName('butt-mautonomo-planos') 
   let casoEstudio = document.getElementById('casos-kaizen')
-  
   let imgsEstudio = document.getElementById('mejoras-kai')
   let contMateriales = document.getElementById('materiales-kaizen')
   let contplanosKaizen = document.getElementById('planos-kaizen')
@@ -875,7 +810,6 @@ function rodillosKaizen(idButton,vidElem) {
       activarBlur(0,115,null,null,null,null)
       container1.style.display='grid'
       contiButtRepuest.style.display='flex'
-
       for (let i = 0; i < buttsToyota.length; i++) {
         let elemento = document.getElementById(buttsToyota[i])      
         if (elemento) {
@@ -887,7 +821,6 @@ function rodillosKaizen(idButton,vidElem) {
           }
         }
       }
-
       transicionImagenes()
       setTimeout(() => {
         apilarCasos()  
@@ -964,9 +897,6 @@ function rodillosKaizen(idButton,vidElem) {
             };
             videoKaizen.addEventListener('canplaythrough', reproducirCuandoListo);
           }
-
-
-
           contadorClicks = 0;
           if (screenWidth < 500){
             contBotKaizen.removeAttribute('style')
@@ -1070,7 +1000,6 @@ function rodillosKaizen(idButton,vidElem) {
         }
       });
       /* desaparecerElemento('fichas-tecnicas') */
-      
       const padreLineas = document.querySelector('#kaizen-propuestos');
       padreLineas.style.display = 'grid';
       padreLineas.querySelectorAll('*').forEach(hijo => {
@@ -1078,24 +1007,20 @@ function rodillosKaizen(idButton,vidElem) {
         hijo.style.visibility = 'visible';
         hijo.style.opacity = '1';
       });
-
     break;       
     default:
   }
 }  
- 
 function apilarCasos() {
   const casoEstudio = document.getElementById('casos-kaizen');
   const mejoras = document.getElementById('mejoras-kai');
   const caso1 = document.getElementById('caso1');
   const caso2 = document.getElementById('caso2');
   const caso3 = document.getElementById('caso3');
-
   // Mostrar contenedores
   casoEstudio.style.display = 'flex';
   casoEstudio.style.marginLeft = '7%';
   mejoras.style.display = 'block';
-
   // Orden inicial
   caso1.style.zIndex = 3;
   caso1.style.display = 'block';
@@ -1103,12 +1028,10 @@ function apilarCasos() {
   caso2.style.display = 'block';
   caso3.style.zIndex = 1;
   caso3.style.display = 'block';
-
   // Resetear transformaciones para que el efecto se reinicie
   caso1.style.transform = 'translateY(0)';
   caso2.style.transform = 'translateY(0)';
   caso3.style.transform = 'translateY(0)';
-
   setTimeout(() => {
     caso2.style.transform = 'translateY(110%)';
   }, 200);
@@ -1120,7 +1043,6 @@ function transicionImagenes() {
   let casoEstudio = document.getElementById('casos-kaizen')
   let index = 0;
   casoEstudio.style.display = 'none'
-
     function ocultarSiguienteImagen() {
         let imageId = buttsToyota[index]
         let image = document.getElementById(imageId)
@@ -1139,14 +1061,10 @@ function transicionImagenes() {
 }
 function mostrarBotonConRetardo(index) {
   let arrayButtCasos = ['caso1', 'caso2', 'caso3']
-
   contiButtCasos.style.display = 'flex'
-
   if (index < arrayButtCasos.length) {
-
     let casoId = arrayButtCasos[index]
     document.getElementById(casoId).style.display = 'flex'
-
     // Luego de 1 segundo, mostrar el siguiente botón
     setTimeout(function () {
         mostrarBotonConRetardo(index + 1)
@@ -1160,7 +1078,6 @@ function showButtonsKaizenRetraso() {
     if (i < arrayButtsKaizen.length) {
       let botonId = arrayButtsKaizen[i]
       let boton = document.getElementById(botonId)
-
       if (boton) {
         boton.style.display = 'inline-block'
         boton.color = ''
@@ -1180,7 +1097,6 @@ function hideButtonsKaizenRetraso() {
     if (i < arrayButtsKaizen.length) {
       let botonId = arrayButtsKaizen[i]
       let boton = document.getElementById(botonId)
-
       if (boton) {
         boton.style.display = 'none'
         boton.style.color = ''
@@ -1203,10 +1119,8 @@ function showButtonsPlanosRetraso() {
     if (i < arrayButtsPlanos.length) {
       let botonId = arrayButtsPlanos[i]
       let boton = document.getElementById(botonId)
-
       if (boton) {
         boton.style.display = 'inline-block' // o 'inline-block' según tus necesidades
-
         setTimeout(function() {
           mostrarConRetraso(i + 1)
         }, 150) // 150 milisegundos de retraso entre botones
@@ -1227,7 +1141,6 @@ function tamaño100(){
   troublesh.removeAttribute('style')
   document.body.style.zoom = "100%"
 }  
-
 botones.forEach(function(boton) {
 let id = boton.getAttribute('id')
 alternarVisibilidad(id)
@@ -1357,7 +1270,6 @@ let chart3 = new Chart(miCanvas2, {
                   color: '#FFFFFFB3',
                   beginAtZero: true
                 }
-
             }
         },
         indexAxis: 'x', // Mostrar barras horizontalmente
@@ -1404,7 +1316,6 @@ let chart4 = new Chart(miCanvas3, {
                   color: '#FFFFFFB3',
                   beginAtZero: true 
                 }
-
             }
         },
         indexAxis: 'x', // Mostrar barras horizontalmente
@@ -1452,7 +1363,6 @@ let chart5 = new Chart(miCanvas4, {
           color: '#FFFFFFB3',
           beginAtZero: true
         }
-
       }
     },
     indexAxis: 'x', // Mostrar barras horizontalmente
@@ -1500,7 +1410,6 @@ let chart6 = new Chart(miCanvas5, {
           color: '#FFFFFFB3',
           beginAtZero: true 
         }
-
       }
     },
     indexAxis: 'x', // Mostrar barras horizontalmente
@@ -1511,7 +1420,6 @@ let chart6 = new Chart(miCanvas5, {
     }
   }
 })
-
 let chart7 = new Chart(miCanvas6, { 
   type: 'bar',
   data: {
@@ -1568,7 +1476,6 @@ let chart7 = new Chart(miCanvas6, {
     }
   }
 })
-
 let chart7II = new Chart(miCanvas6II, { 
   type: 'bar',
   data: {
@@ -1633,7 +1540,6 @@ let chart7II = new Chart(miCanvas6II, {
     }
   }
 });
-
 let chart8 = new Chart(miCanvas7, {
   type: 'bar',
   data: {
@@ -1690,7 +1596,6 @@ let chart8 = new Chart(miCanvas7, {
     }
   }
 })
-
 let chart8II = new Chart(miCanvas7II, {
   type: 'bar',
   data: {
@@ -1964,7 +1869,6 @@ let chart10II = new Chart(miCanvas9II, {
           },
           align: 'center',
         }
-
     }
   }
 })
@@ -2134,9 +2038,6 @@ let chart12 = new Chart(miCanvas11, {
     }
   }
 });
-
-
-
 let chart12II = new Chart(miCanvas11II, {
   type: 'line',
   data: {
@@ -2148,7 +2049,6 @@ let chart12II = new Chart(miCanvas11II, {
         borderWidth: 1,
         pointRadius: 0, 
         data: [7, 19,17,37,9,77]
-                      
       }
     ]
   },
@@ -2202,7 +2102,6 @@ searchInput.addEventListener('click' , () =>{
 searchForm.addEventListener('submit', function (e) {
   e.preventDefault()
   const searchTerm = searchInput.value.toLowerCase()
-
   // ... Tu código de manejo de búsqueda actual ...
   switch (searchTerm) {
     case 'autonomo':
@@ -2359,7 +2258,6 @@ function animateScroll(elementId) {
     console.error(`Element with ID ${elementId} not found.`);
   }
 }
-
 let canvas = document.getElementById("sinusoidalCanvas");         
 let ctx = canvas.getContext("2d");
 ctx.strokeStyle = "rgb(0, 255, 0)"; // Verde
@@ -2431,7 +2329,6 @@ function drawDiagonalLine() {
   dcx.lineTo(300, 0);
   // Finaliza el trazado y dibuja la línea
   dcx.stroke();
-
   // Dibuja el eje horizontal con numeración y etiquetas rojas
   drawHorizontalAxisII();
   // Dibuja el eje vertical con numeración y etiquetas rojas
@@ -2581,11 +2478,9 @@ function iniciarEventos() {
     botones.forEach(function (boton) {
       let indiceInicio = parseInt(boton.dataset.indiceInicio)
       let indiceColor = (indiceInicio + 1) % colores.length
-
       // Cambia la clase de color del botón
       boton.classList.remove(...colores);
       boton.classList.add(colores[indiceColor])
-
       // Actualiza el índice de inicio para el próximo color
       boton.dataset.indiceInicio = indiceColor
     });
@@ -2594,7 +2489,6 @@ function iniciarEventos() {
   intervalId = setInterval(cambiarColor, 77)
   contSinusoidales.style.display = 'flex'
   contCicodelicos.style.display = 'grid'
-
 }
 function detenerEventos() {
   clearInterval(intervalId);
@@ -2607,7 +2501,6 @@ function iniciarTransito() {
   let anchoPantalla = window.innerWidth;
   let altoPantalla = window.innerHeight - 37;
   let duracion = 1000;
-
   // 1. Array de colores
   let colores = ['verde', 'rojo', 'amarillo', 'azul', 'violeta', 'magenta', 'gris', 'verdesat', 'cyan', 'purpura', 'anaranjado'];
   // 2. Elemento del botón
@@ -2623,7 +2516,6 @@ function iniciarTransito() {
   }
   // Llamar a la función para iniciar el cambio de colores
   cambiarColorConIntervalo();
-
   // Función para mover el botón y reiniciar el ciclo
   function mover(distanciaX, distanciaY, transitionProperty, nextMove) {
     if (stopFlag) return;
@@ -2692,7 +2584,6 @@ const buttons = document.querySelectorAll('.buttons')
 let contButtsAround = document.getElementById('button-container')
 function moverBoton(boton, index) {
   const valoresLeft = ['-52px', '-104px', '-156px', '-208px', '-260px', '-312px', '-364px', '-416px', '-468px', '-520px', '-572px', '-624px', '-676px', '-728px', '-780px', '-832px', '-884px', '-936px', '-988px', '-1040px', '-1092px', '-1144px', '-1196px', '-1248px', '-1300px', '-1352px', '-1404px', '-1456px', '-1508px', '-1560px', '-1612px', '-1664px', '-1716px', '-1768px', '-1820px', '-1872px', '-1924px', '-1976px', '-2028px', '-2080px', '-2132px', '-2184px', '-2236px', '-2288px', '-2340px', '-2392px', '-2444px', '-2496px', '-2548px', '-2600px', '-2652px', '-2704px', '-2756px', '-2808px', '-2860px', '-2912px', '-2964px', '-3016px', '-3068px', '-3120px', '-3172px', '-3224px', '-3276px', '-3328px', '-3380px', '-3432px', '-3484px', '-3536px', '-3588px']
-
   // Calcular la distancia total de los cuatro lados de la pantalla
   const screenWidth = window.innerWidth;
   const screenHeight = window.innerHeight;
@@ -2725,7 +2616,6 @@ function moverBoton(boton, index) {
   let moviendoArriba = false
   let contador = 0
   let nuevoContador = 0
-
   function mover() {
     contador++;  // Incrementa el primer contador cuando moviendoDerecha es true
     contButtsAround.style.display = 'flex'
@@ -2763,7 +2653,6 @@ function moverBoton(boton, index) {
         y += velocidad;
         boton.style.background = 'rgb(255,255,0)'
         const colores = {
-
           3: 'rgb(0, 255, 0)',
           4: 'rgb(0, 255, 255)',
           5: 'rgb(222, 53, 230)',
@@ -2772,7 +2661,6 @@ function moverBoton(boton, index) {
           8: 'rgb(77, 0, 255)',
           9: 'rgb(255, 145, 0)'
         };
-        
         if (nuevoContador >= 3 && nuevoContador <= 9) {
           boton.style.background = colores[nuevoContador];
         }
@@ -2821,7 +2709,6 @@ function moverBoton(boton, index) {
       if(nuevoContador >= 9){
         nuevoContador = 0
       }
-
       } else {
       y = 0
       moviendoArriba = false
@@ -2835,29 +2722,23 @@ function moverBoton(boton, index) {
   }
   mover();
 } 
-
 function iniciaMove() {
   const elementosExcluidos = [
     'cont-videojuegos'
   ];
-
   allContenedores.forEach(id => {
     const elemento = document.getElementById(id);
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
     }
   });
-
-
   buttons.forEach((button, index) => {
     moverBoton(button, index);
   });
   iniciarTransito()
 }
-
 function palpitarBoton(elemento){
   switch (elemento){
-
     case 'desbobinadorId':
       document.getElementById('boton1').classList.add('parpadea');
     setTimeout(function () {
@@ -2889,7 +2770,6 @@ function palpitarBoton(elemento){
     break;       
     default:
   }
-
 }
 function palpitarBotonTintero() {
   document.getElementById('tinteroButton').classList.add('parpadea');
@@ -2977,8 +2857,6 @@ const applyFiltersIII = () => {
   videoStore.forEach(videoElement => {
     videoElement.style.transform = `scale(${zoomAmount}%) rotate(${degreesAmount}deg)`;
 });
-
-  
 };
 const applyFiltersIV = () => {
   videoPrisma.style.filter = `blur(${blurAmount}px)`;
@@ -3041,7 +2919,6 @@ let intervalId6 = null
 let intervalId7 = null
 let currentLeft = parseFloat(window.getComputedStyle(button).left)
 let newLeft = currentLeft + 2
-
 buttonLeft.addEventListener('mousedown', () => {
   if (!clickHabilitado) return; 
   intervalId = setInterval(() => {
@@ -3182,7 +3059,6 @@ buttonLeft2.addEventListener('mousedown', () => {
       clearInterval(intervalId5)
     }
   }, 77);
-
 });
 buttonLeft2.addEventListener('mouseup', () => {
   clearInterval(intervalId5)
@@ -3251,7 +3127,6 @@ buttonRight3.addEventListener('mousedown', () => {
       applyFiltersIII(); // Aplicar los filtros actualizados
       positionDisplayIII.textContent = `${currentZoom + 100} %`;
       console.log(currentZoom)
-
     }
   }, 77);
 });
@@ -3432,7 +3307,6 @@ function changeColorRedAndBack() {
 function dañarLogo() {
   let imagenAyudas = document.getElementById('imagen-ayudas')
   let imagenAyudasII = document.getElementById('imagen-ayudasII')
-
   imagenAyudas.style.display = 'none'
   setTimeout(() => {  
     imagenAyudasII.style.display = 'flex'      
@@ -3441,7 +3315,6 @@ function dañarLogo() {
     imagenAyudasII.style.display = 'none' 
     imagenAyudas.style.display = 'flex'
   }, 350);  
-
 }
 let ocultarTimer = null; 
 let isMouseOver = false;
@@ -3452,7 +3325,6 @@ conteElementos.addEventListener('mouseover', () => {
 conteElementos.addEventListener('mouseout', () => {
   isMouseOver = false;
 });
-
 let barraI = document.getElementById('iniciador_1')
 let barraII = document.getElementById('iniciador_2')
 let barraIII = document.getElementById('iniciador_3')
@@ -3554,7 +3426,6 @@ function barraInteligente() {
   elementos.forEach(elemento => {
     elemento.removeAttribute('style');
   });
-
   removeInlineStyles(parentElements);   
   removeInlineStyles(imgWallStreet);
   removeInlineStyles(imgWallStreetI); 
@@ -3564,7 +3435,6 @@ function barraInteligente() {
   removeInlineStyles(paternLittles);
   removeInlineStyles(paternStreet);
   clearAllIntervals(firstMid)  
-
   stopWidth = false
   resetearBarras()
   incrementoHeightXI()
@@ -3724,7 +3594,6 @@ function incrementoWidth() {
   INTERVALOS.intervaloXXXII = setInterval(() => {
     let currentWidth = parseFloat(window.getComputedStyle(imgWallStreetI).width) / parseFloat(window.getComputedStyle(imgWallStreetI.parentElement).width) * 100;
     imgWallStreetI.style.width = (currentWidth + 1) + '%';
-
      if(currentWidth >= 99){
       clearInterval(INTERVALOS.intervaloXXXII);            
     }
@@ -3742,7 +3611,6 @@ function incrementoHeight(barra, pantalla, intervaloVariable, intervaloTiempo) {
     let alturaMaxima = 90;
     let iniciador = 100
     contador++
-
     if (parseInt (alturaAcumuladaBarra) >= alturaMaxima) {
       clearInterval(INTERVALOS[intervaloVariable]);
       if(barra.id === 'iniciador_1'){
@@ -4035,7 +3903,6 @@ function resetStyles() {
     document.getElementById('over_size'),
     document.getElementById('over_side'),
   ];
-  
   elements.forEach(el => {
     if (el) {
       el.style.height = '';
@@ -4202,7 +4069,6 @@ function changeHeight(barra, step, limit, onComplete) {
     let alturaActual = parseInt(barra.style.height) || 0;
     barra.style.height = (alturaActual + step) + '%';
     barra.style.transition = 'height 0.03s linear';
-
     if ((step > 0 && alturaActual >= limit) || (step < 0 && alturaActual <= 0)) {
       clearInterval(barra.interval);
       if (onComplete) {
@@ -4234,11 +4100,9 @@ function resetStylesAndIntervals() {
     clearInterval(INTERVAL.intervalo2);
     INTERVAL.intervalo2 = null;
   }
-
   // Limpiar timeouts pendientes
   timeoutHandles.forEach(handle => clearTimeout(handle));
   timeoutHandles = []; // Vaciar la lista de identificadores de setTimeout
-
   // Resetear estilos de las barras
   barras.forEach(barra => {
       removeInlineStyles(barra);
@@ -4248,7 +4112,6 @@ function resetStylesAndIntervals() {
       }
       barra.style.height = '0'; // Asegurarse de que la altura se restablezca
   });
-
   trackerStarted = false; // Reiniciar la bandera
 }
 function inicioTracker() {
@@ -4315,7 +4178,6 @@ function detenerCicodelia() {
     intervaloColorsI = null; // Resetea la variable para evitar problemas
   }
 }
-
 function thirdMovement(){
   let slider1 = document.getElementById('wall_street_II')
   let estilosAplicados = window.getComputedStyle(slider1)
@@ -4323,7 +4185,6 @@ function thirdMovement(){
     let propiedad = estilosAplicados[i];
     slider1.style[propiedad] = ""; // Establecer el estilo en una cadena vacía
   }
-
   isAnimatingVII = false;
   document.getElementById('iniciador_7').style.width = '1px'
   for (let key in INTERVALOSHORIZONTALES) {
@@ -4416,7 +4277,6 @@ function moveElement(element, parent,frame) {
   stopAllIntervals();
   const marco = document.getElementById(frame);
   marco.classList.remove("apagado");
-
   let positionParent = parent.clientWidth - element.clientWidth;
   intervals.derecha = setInterval(() => {
       pos += step;
@@ -4424,14 +4284,12 @@ function moveElement(element, parent,frame) {
       if (pos >= parent.clientWidth - element.clientWidth) {
           clearInterval(intervals.derecha);
           pos = 0;
-
           intervals.baja = setInterval(() => {
               pos += step;
               element.style.top = pos + 'px';
               if (pos >= parent.clientHeight - element.clientHeight) {
                   clearInterval(intervals.baja);
                   pos = 0;
-
                   intervals.izquierda = setInterval(() => {
                       positionParent -= step * 2;
                       element.style.left = positionParent + 'px';
@@ -4439,7 +4297,6 @@ function moveElement(element, parent,frame) {
                           clearInterval(intervals.izquierda);
                           positionParent = parent.clientHeight - element.clientHeight;
                           pos = parent.clientHeight - element.clientHeight;
-
                           intervals.arriba = setInterval(() => {
                               pos -= step;
                               element.style.top = pos + 'px';
@@ -4455,7 +4312,6 @@ function moveElement(element, parent,frame) {
       }
   }, speed * 2);
 }
-
 let sitio = null
 document.getElementById('butt-sitio').addEventListener('click', () => {
   if(sitio ==='pantallaInicial'){
@@ -4464,7 +4320,6 @@ document.getElementById('butt-sitio').addEventListener('click', () => {
     ElementosMaII('conteneMantaut')
   }
 })
-
 function isVisible(element) {
   const style = window.getComputedStyle(element);
   return (
@@ -4478,7 +4333,6 @@ function cerrarVentanasII() {
   botonVolver.style.left = '';
   botonVolver.style.top = '';
   contiButtRepuest.removeAttribute('style');
-
   if (!esDesktop) {
     // Mapeo de secciones y acciones en móvil
     const accionesMovil = [
@@ -4494,13 +4348,11 @@ function cerrarVentanasII() {
       { id: 'puesta-punto',    fn: () => listaEntrenamientosII('archivo') },
       { id: 'grilla-durezas',  fn: () => abrirSeccionContinua('pantalla-inicial') }
     ];
-
     accionesMovil.forEach(({ id, fn }) => {
       const el = document.getElementById(id);
       if (el && isVisible(el)) fn();
     });
     document.querySelector("#linksMA").style.top='22vh'
-
   } else {
     // IDs que deben permanecer visibles en escritorio
     const elementosExcluidos = [
@@ -4508,27 +4360,22 @@ function cerrarVentanasII() {
       'links-inicialesI','links-iniciales','largoImpresion',
       'contImgEntrenos','linksMA','linkLis'
     ];
-
     allContenedores.forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
     });
-
     document.body.style.zoom = "100%";
     container1.style.display = 'grid';
     contiButtRepuest.style.display='flex'
     document.querySelector("#linksMA").removeAttribute("style");
-
     const troubleshooting = document.getElementById('troubleshooting');
     if (troubleshooting) {
       troubleshooting.style.display = 'grid';
       troubleshooting.style.left = '';
       troubleshooting.style.top = '';
     }
-
     const linksMA = document.getElementById('linksMA');
     if (linksMA) linksMA.style.top = '';
-
     document.querySelectorAll('.ventana').forEach(v => v.style.display = 'none');
   }
 }
@@ -4660,19 +4507,16 @@ function reponerEstilos(){
       m.style.backgroundColor = "";
       m.style.color = "";
     });
-  
   });  
   document.getElementById('month-display').textContent=''
   document.getElementById('month-display').classList.remove('move-month')
   if(document.getElementById('dia')){document.getElementById('dia').style.display='none'}
-
   let intervalos = [intervaloActualizar, intervaloActualizarII];
   intervalos.forEach(function(intervalo) {
     if (intervalo) {
       clearInterval(intervalo);
     }
   });
-  
   for (let i = 0; i < allContenedores.length; i++) { 
     let elemento = document.getElementById(allContenedores[i]);
     if (elemento) {
@@ -4680,31 +4524,19 @@ function reponerEstilos(){
     }
   }
 }
-
-
-
-
 const targetDiv = document.querySelector('.img1');
 const contextMenu = document.getElementById('context-menu');
-
-
-
-
-
 let timeoutOcultar;
 const esTouch = 'ontouchstart' in window;
-
 function ocultarMenu() {
   if (esTouch) return; // en táctil nunca ocultar por mouseleave/touchend de targetDiv
   timeoutOcultar = setTimeout(() => {
     contextMenu.style.display = 'none';
   }, 100);
 }
-
 function cancelarOcultar() {
   clearTimeout(timeoutOcultar);
 }
-
 function mostrarMenu() {
   if (document.querySelector("#vid_festo").style.display === 'flex') return;
   if (!esDesktop) {
@@ -4721,7 +4553,6 @@ function mostrarMenu() {
     contextMenu.style.width = '20vw';
   }
 }
-
 // ── PC ──────────────────────────────────────────
 targetDiv.addEventListener('click', mostrarMenu);
 targetDiv.addEventListener('mouseleave', ocultarMenu);
@@ -4730,13 +4561,11 @@ contextMenu.addEventListener('mouseleave', () => {
   if (esTouch) return;
   contextMenu.style.display = 'none';
 });
-
 // ── Táctil ──────────────────────────────────────
 targetDiv.addEventListener('touchstart', (e) => {
   e.preventDefault();
   mostrarMenu();
 });
-
 // en táctil el menú se cierra solo al tocar fuera de él
 document.addEventListener('touchstart', (e) => {
   if (!esTouch) return;
@@ -4759,7 +4588,6 @@ contextMenu.addEventListener('touchmove', (e) => {
 });
 // En moviles
 let shouldShowMenu = true;
-
 document.addEventListener('touchstart', (event) => {
   const tocado = event.target;  
   if (!contextMenu.contains(event.target) && !targetDiv.contains(event.target)) {
@@ -4775,7 +4603,6 @@ document.addEventListener('touchstart', (event) => {
       }
     }
   }
-
   if (!tocado.closest('#buscador-empleado') && !tocado.closest('#listaClientes')) {
     listaClientes.style.display = 'none';
   }  
@@ -4809,15 +4636,11 @@ subMenu.addEventListener('mouseleave',() =>{
   }
   subMenu.style.display='none'
 })
-
 function muestraMenu(){
   document.getElementById('segundaLista').style.display='block'
 }  
-
 let intervalEnEjecucion = false;
-
 const MOVE_ELEMENT = [
-  
   'move-canvas-1',
   'move-canvas-2',
   'move-canvas-3',
@@ -4825,65 +4648,47 @@ const MOVE_ELEMENT = [
   'move-canvas-5',
   'move-canvas-6'
 ];
-
 const contLineas = document.querySelector('#contLineas');
 const graficos = [...contLineas.querySelectorAll('.graphs-lines')];
-
 graficos.forEach((grafico, index) => {
   grafico.dataset.index = index;
 });
-
 contLineas.addEventListener('click', (e) => {
   const graficoSeleccionado = e.target.closest('.graphs-lines');
   if (!graficoSeleccionado || !contLineas.contains(graficoSeleccionado)) return;
-
   // ✅ Ignorar clicks durante transiciones activas
   if (graficoSeleccionado.dataset.transitioning === 'true') return;
-
   const botonesFlotantes = document.querySelector('#conte-butts-graphs');  
   const imagenSola = document.querySelector('#porta-imagen');
-
   if (turnBlock === false) {
     turnBlock = true;
   }
-
   setTimeout(() => {
     moverElementos(["conte-butts-graphs"], 27, -3.5);
   }, 500);
-
   const index = Number(graficoSeleccionado.dataset.index);
-
   if (index === 5) mostrarSecuencialmente();
-
   graficos.forEach((grafico) => {
     const esActivo = grafico === graficoSeleccionado;
-
     // limpiar clases de movimiento
     grafico.classList.remove(...MOVE_ELEMENT);
-
     // marcar estado lógico
     grafico.classList.toggle('oculto', !esActivo);
-
     // visibilidad real (canvas incluido)
     const opacity = esActivo ? '1' : '0';
     grafico.style.opacity = opacity;
-
     const canvas = grafico.querySelector('canvas');
     if (canvas) canvas.style.opacity = opacity;
-
     // aplicar movimiento solo al activo
     if (esActivo) {
       // ✅ Limpiar estilos inline que bloquean las clases CSS
       grafico.style.transform = '';
       grafico.style.transition = '';
-
       // ✅ Marcar como en transición
       grafico.dataset.transitioning = 'true';
-
       // ✅ Esperar al siguiente frame para que el DOM procese el reset
       requestAnimationFrame(() => {
         grafico.classList.add(MOVE_ELEMENT[index]);
-
         // ✅ Liberar el flag al terminar la transición
         grafico.addEventListener('transitionend', () => {
           grafico.dataset.transitioning = 'false';
@@ -4892,8 +4697,6 @@ contLineas.addEventListener('click', (e) => {
     }
   });
 });
-
-
 // Selecciona el segundo contenedor de barra
 const primerContenedor = document.querySelectorAll('.bar-container')[0]; 
 const segundoContenedor = document.querySelectorAll('.bar-container')[1];
@@ -4936,7 +4739,6 @@ const datosPorDia = {
   30: ['94%', '62%', '19%', '88%', '33%', '75%', '48%'],
   31: ['50%', '60%', '70%', '80%', '90%', '100%', '30%']
 };
-
 const contenedores = [
   primerContenedor,
   segundoContenedor,
@@ -4946,18 +4748,14 @@ const contenedores = [
   sextoContenedor,
   septimoContenedor
 ];
-
 function mostrarCalendario(mesSeleccionado, contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
   if (!contenedor) return;
-
   // Mostrar mes actual
   const spanMes = document.querySelector('#mes-area');
   if (spanMes) spanMes.textContent = mesSeleccionado;
-
   // Obtener días del mes
   const diasMes = obtenerDiasDelMes(mesSeleccionado);
-
   // Generar botonera original
   generarBotoneraDias(
     contenedorSelector,
@@ -4965,63 +4763,46 @@ function mostrarCalendario(mesSeleccionado, contenedorSelector = '.calendario-in
     offset,
     index => cambiarFuente(index)
   );
-
   // Aplicar lógica de la primera función a los botones creados
   const diasGenerados = contenedor.querySelectorAll('.dia');
-
   diasGenerados.forEach(dia => {
     dia.addEventListener('click', () => {
-
       const numeroDia = parseInt(dia.textContent.trim());
       const alturas = datosPorDia[numeroDia];
-
       if (!alturas) return;
-
       alturas.forEach((altura, i) => {
         setTimeout(() => {
           actualizarAlturaBarra(contenedores[i], altura);
         }, 177 + i * 67);
       });
-
     });
   });
-
   const diasDelMes = diasPorMes[mesSeleccionado];
-
   calendarioMes.innerHTML = "";
-
   let semana = document.createElement("div");
   semana.className = "semana";
-
   for (let i = 1; i <= diasDelMes; i++) {
-
     const diaElemento = document.createElement("div");
     diaElemento.className = "dia";
     diaElemento.textContent = i;
     diaElemento.style.display = "flex";
-
     diaElemento.addEventListener("click", () => {
       const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
       const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
-
       if (!hayMesActivo || !hayMaquinaActiva){
         alternarColor(firstMachine,secondMachine,2000)
         saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
         return;
       }
-
       // Resaltado visual
       document.querySelectorAll(".dia").forEach(d => {
         d.style.backgroundColor = "";
         d.style.color = "";
       });
-
       diaElemento.style.backgroundColor = "rgb(40, 180, 110)";
       diaElemento.style.color = "black";
-
       // Lógica heredada de la primera función
       const alturas = datosPorDia[i];
-
       if (alturas) {
         alturas.forEach((altura, indice) => {
           setTimeout(() => {
@@ -5029,24 +4810,19 @@ function mostrarCalendario(mesSeleccionado, contenedorSelector = '.calendario-in
           }, 177 + indice * 67);
         });
       }
-
       // Lógica propia
       manejarDia(i);
     });
-
     semana.appendChild(diaElemento);
-
     if (i % 7 === 0) {
       calendarioMes.appendChild(semana);
       semana = document.createElement("div");
       semana.className = "semana";
     }
   }
-
   if (semana.children.length > 0) {
     calendarioMes.appendChild(semana);
   }
-
   while (semana.children.length < 7) {
     const diaVacio = document.createElement("div");
     diaVacio.className = "dia vacio";
@@ -5054,31 +4830,23 @@ function mostrarCalendario(mesSeleccionado, contenedorSelector = '.calendario-in
     semana.appendChild(diaVacio);
   }
 }
-
-
 // Uso en los listeners
 ['click', 'touchstart'].forEach(evt => {canvas.addEventListener(evt, () => {
   document.querySelector('#grafico-area').style.display = 'block';
-
   mostrarCalendario(mesGlobal);
-
   if (blurOverlay) activarBlur();
-
   [linksMA, linkLista, buscador].forEach(el => {
     if (el) el.style.display = 'none';
   });
 });
 });
-
 function mostrarSecuencialmente() {
   const padreElementos = document.getElementById('metas-diarias')
   const elementos = document.querySelectorAll("#metas-diarias li")
-
   if(screenWidth < 500){
     padreElementos.style.top = '40vh'
     padreElementos.style.left = '23vw'
   }
-
   elementos.forEach((li, index) => {
   setTimeout(() => {
       li.classList.remove("visible");
@@ -5087,7 +4855,6 @@ function mostrarSecuencialmente() {
   setTimeout(() => {
     padreElementos.style.display = 'flex'
   }, 250);
-
   setTimeout(() => {
     elementos.forEach((li, index) => {
       setTimeout(() => {
@@ -5095,7 +4862,6 @@ function mostrarSecuencialmente() {
       }, index * 20); 
     });
   }, 300);
-  
 }
 const meses = document.querySelectorAll("#meses .mes");
 const calendarioMes = document.getElementById("calendario-mes");
@@ -5120,7 +4886,6 @@ function cargarDatos() {
   marcoGraficas.style.display='grid'
   document.querySelector('#canvasContainer4').style.display='flex'
 }
-
 function destruirCharts() {
   [chart18,chart17, chart16, chart15, chart14, chart13].forEach((c, i, arr) => {
     if (c) {
@@ -5145,7 +4910,6 @@ const mesesGraficos = [
   'Diciembre'
 ];
 const elementosMes = document.querySelectorAll('.mes');
-
 elementosMes.forEach((mes, index) => {
   mes.addEventListener('click', () => {
     // reset estilos
@@ -5155,9 +4919,7 @@ elementosMes.forEach((mes, index) => {
     });
     mes.style.backgroundColor ='rgb(20,40,60)';
     mes.style.color = 'rgb(90,160,220)';
-
     ['calendario-mes','cont-span-semanas','titulo-calendar','titulo-mes']
-    
     mostrarCalendario(mes.textContent.trim());
     setTimeout(mostrarSemanasSecuencialmente, 50);
     aplicarLogicaPorMes(mes.textContent.trim());
@@ -5167,14 +4929,11 @@ elementosMes.forEach((mes, index) => {
       document.querySelector('#tree-map').style.display='block'      
     }, 500);
     destruirCharts();
-    
     document.querySelector('#titulo-mes').textContent = mes.textContent.trim();
     mesGlobal = mes.textContent.trim();
-    
     if (mesesGraficos[index]) console.log(mesesGraficos[index]);
   });
 });
-
 function aplicarLogicaPorMes(nombreMes) {
   // 🟡 1️⃣ Ocultar, no eliminar, todos los hijos
   const abuelo = document.getElementById('abuelo-grafica4');
@@ -5182,7 +4941,6 @@ function aplicarLogicaPorMes(nombreMes) {
     abuelo.style.display='none'
     hijo.style.display = 'none';
   });
-
   // 2️⃣ Lógica específica según el mes
   switch (nombreMes.toLowerCase()) {
     case "enero":
@@ -5194,12 +4952,10 @@ function aplicarLogicaPorMes(nombreMes) {
 function mostrarSemanasSecuencialmente() {
   const semanas = document.querySelectorAll(".semana"); // Selecciona todas las semanas
   let index = 0; // Índice para rastrear la semana actual
-
   // Inicializa la opacidad de todas las semanas a 0 (invisibles)
   semanas.forEach((semana) => {
     semana.style.opacity = "0";
   });
-
   // Función que se ejecutará a intervalos regulares
   const interval = setInterval(() => {
     if (index < semanas.length) {
@@ -5219,7 +4975,6 @@ function manejarDia(n) {
     2: () => console.log("Día 2"),
     3: () => console.log("Día 3"),
   };
-
   (acciones[n] || (() => console.log(`Día ${n} sin acción`)))();
 }
 function mostrarDiaEspecifico(posicion) {
@@ -5257,7 +5012,6 @@ document.addEventListener('touchmove', (event) => {
 document.addEventListener('touchend', () => {
   activo = false;
 });
-
 function verificarPosicionTop(childID) {
   let elementos = childID  
   elementos.forEach(id => {

@@ -6,7 +6,6 @@ document.addEventListener('keydown', function(event) {
         mostrarPorClaveLocalStore('empleadosRegistrados')
         /* mostrarPorClaveLocalStore('kaizenRegistrados') */
       }, 200);
-
       break
       case 'Z':
         activarPantallaCompleta()  
@@ -20,7 +19,6 @@ document.addEventListener('keydown', function(event) {
     }
   }
 }); 
-
 function Geometria() {
   console.clear();  
   let contiBoton = document.querySelector('#overlay-cortina');  
@@ -35,8 +33,6 @@ function Geometria() {
   var visibilityType = style.visibility;  
   var zIndexValue = style.zIndex;  
   var isVisible = rect.width > 0 && rect.height > 0 && displayType !== 'none' && visibilityType !== 'hidden';   
-  
-  
   console.log("PADRE :", contiBoton.id);  
   console.log("Top:", topPosition);  
   console.log("Left:", leftPosition);  
@@ -47,7 +43,6 @@ function Geometria() {
   console.log("Visibility:", visibilityType);  
   console.log("Z-Index:", zIndexValue);  
   console.log("Is Visible:", isVisible);
-  
   var contiBotonI = document.getElementById('contLineas') 
   var rect = contiBotonI.getBoundingClientRect();
   var topPosition = rect.top;
@@ -73,19 +68,15 @@ function Geometria() {
 function animarWidth(selector, duracion = 1000) {
   const elemento = document.querySelector(selector);
   if (!elemento) return;
-
   let heightInicial = 1;        // Valor de inicio en %
   const heightFinal = 93;      // Valor final en %
   const incremento = (heightFinal - heightInicial) / (duracion / 16.7); 
-
   function animar() {
     heightInicial += incremento;
-
     if (heightInicial >= heightFinal) {
       elemento.style.height = heightFinal + '%';
       return;
     }
-
     elemento.style.height = heightInicial + '%';
     requestAnimationFrame(animar);
   }
@@ -151,7 +142,6 @@ let almacenObjetos = JSON.parse(localStorage.getItem('coloresRegistrados')) || {
 let objetoGlobal = null
 let nombreProvisional = null
 let objetoGlobalColor = null
-
 function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14){
   var elementosExcluidos = [id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13,id14]  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -172,14 +162,12 @@ function ocultaElementos(id1,id2,id3,id4,id5,id6,id7,id8,id9,id10,id11,id12,id13
     break;
     case 'colorCMYK':
       mostrarElementoProgressivo(mezcladorColor);
-    
     break;
     case 'colorDisplay':
       mostrarElementoProgressivo(mezcladorColorRGB);            
     break;
   }  
 }
-
 function updateDigitalClock() {   
   const now = new Date();
   let hours = now.getHours();
@@ -249,7 +237,6 @@ function startCronometro() {
   botonInicio.style.backgroundColor = 'rgb(0,255,0)'
   botonInicio.style.color = 'rgb(77,0,0)'
   botonReseteo.style.backgroundColor=''
-
   if (cronometroInterval === null) { // Verifica si no hay otro intervalo corriendo
     cronometroInterval = setInterval(() => {
       elapsedTime += 1;
@@ -257,7 +244,6 @@ function startCronometro() {
       const minutes = Math.floor((elapsedTime % 36000) / 600);
       const seconds = Math.floor((elapsedTime % 600) / 10);
       const tenths = elapsedTime % 10;
-
       document.getElementById('cronometro').textContent =
         `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${tenths}`;
     }, 100);
@@ -301,7 +287,6 @@ function resetCronometro() {
   botonDetener.style.color=''
   botonInicio.style.backgroundColor = ''
   botonInicio.style.color = ''
-
 }
 botonInicio.addEventListener('click', startCronometro);
 botonDetener.addEventListener('click', stopCronometro);
@@ -310,7 +295,6 @@ setInterval(updateDigitalClock, 1000);
 updateDigitalClock(); // Llamar inmediatamente para mostrar la hora al cargar
 const contenedorPadre = document.getElementById('clock');
 const tableta = document.getElementById('water-background');
-
 let enArrastre = false;
 let offsetXX, offsetYY;
 contenedorPanel.addEventListener('mousedown', (e) => {
@@ -347,7 +331,6 @@ function resetearElementos() {
     document.getElementById('miRectangulo5'),
     document.getElementById('miRectangulo6')
   ];
-
   elementos.forEach(elemento => {
     elemento.style.transition = 'none'; // Elimina cualquier transición aplicada
     elemento.style.transform = 'none';  // Restablece la transformación (rotación, escala, etc.)
@@ -396,7 +379,6 @@ function girarElemento(esquina) {
     animarRectangulos()
   }, 2000);
 }
-
 let btnRegistro = document.querySelector("#boton-registro")
 btnRegistro.addEventListener('click',()=>{
 var elementosExcluidos = ['simulador','interfaz-perfiles','boton-perfiles','boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8'] 
@@ -407,10 +389,8 @@ var elementosExcluidos = ['simulador','interfaz-perfiles','boton-perfiles','boto
     }
   }
   container1.style.display = 'none'
-
   document.querySelector("#butts-simulador").style.display='grid'
 })
-
 let buttsSelectores = document.querySelectorAll('.section')
 let zonasRegistro = document.querySelectorAll('.indexado')
 buttsSelectores.forEach(boton =>{
@@ -419,7 +399,6 @@ buttsSelectores.forEach(boton =>{
   let botonDos = buttsSelectores[1]
   let botonTres = buttsSelectores[2]
   let botonCuatro = buttsSelectores[3]
-
   botonUno.addEventListener('click',()=>{
     resetearElementos()    
     document.querySelector('#segunda-pantalla').style.display='flex'
@@ -465,7 +444,6 @@ buttsSelectores.forEach(boton =>{
     })
   }) 
 })
-
 document.getElementById('alterna1').addEventListener('click', () =>{ 
   document.getElementById('pantalla-registro').style.zIndex=2
   document.getElementById('pantalla-guias').style.zIndex=1
@@ -637,11 +615,9 @@ function resetRegistros() {
   document.getElementById('conteo-escuadra').textContent = ``
   document.getElementById('conteo-sup').textContent = ``
   document.getElementById('conteo-inf').textContent = ``;
-
   botonera.forEach(element => {
     element.style.backgroundColor = ''
   });
-  
 }
 botonera.forEach(element => {
   element.addEventListener('click', () => {
@@ -649,18 +625,15 @@ botonera.forEach(element => {
     botonera.forEach(el => {
       el.style.backgroundColor = ''; // Vuelve al color por defecto del CSS
     });
-
     // Cambiar el color del elemento que recibe el clic
     element.style.backgroundColor = 'rgb(0,200,255)'; // Color naranja
   });
 });
-
 // Incrementar la posición en Z solo cuando se haga clic en 'interfaz-perfiles'
 interfazColor.addEventListener('click', (e) => {
   e.stopPropagation();   
   interfazColor.style.zIndex = 30;
 });
-
 // Evitar la propagación del clic en los elementos hijos
 document.querySelectorAll('.cabeza').forEach(element => {
   element.addEventListener('click', (e) => {
@@ -706,7 +679,6 @@ function crearLineaLeds(idLinea) {
 }
 function crearVariasLineas(numeroDeLineas) {
   const contenedorPrincipal = document.getElementById('columna-70');
-
   for (let i = 1; i <= numeroDeLineas; i++) {
     const lineaLeds = crearLineaLeds(i);
     contenedorPrincipal.appendChild(lineaLeds);
@@ -791,7 +763,6 @@ const iniciarMasTintaGeneral = () => {
     mostrarAlertaVerde();
     desactivarClicEnElementos(botonesPerfilColor, buttsColores);
   }
-
   if (flagNegro) {
     aumentarBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-negro #footer-1 .divs-grales-tinta-negro', 'yellow', 'black', 'negro');
   }
@@ -810,7 +781,6 @@ const iniciarMasTintaGeneral = () => {
   if (flagBarniz) {
     aumentarBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-barniz #footer-11 .divs-grales-tinta-barniz', 'yellow', 'rgb(200,200,200)', 'barniz');
   }
-
   masTintaGeneral.style.backgroundColor = '#2bf22bc0';
 };
 // 🔴 Detener AUMENTAR tinta general
@@ -821,7 +791,6 @@ const detenerMasTintaGeneral = () => {
   }
   masTintaGeneral.style.backgroundColor = '';
 };
-
 const aviso = document.querySelector('#span-index');
 // 🟠 Iniciar DISMINUIR tinta general
 const iniciarMenosTintaGeneral = () => {
@@ -834,7 +803,6 @@ const iniciarMenosTintaGeneral = () => {
     mostrarAlertaVerde();
     desactivarClicEnElementos(botonesPerfilColor);
   }
-
   if (flagNegro) {
     disminuirBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-negro #footer-1 .divs-grales-tinta-negro', 'yellow', 'black', 'negro');
   }
@@ -853,7 +821,6 @@ const iniciarMenosTintaGeneral = () => {
   if (flagBarniz) {
     disminuirBalanceTinta(estadoIntervaloTinta, '.lineas-tinta', '#footer-barniz #footer-11 .divs-grales-tinta-barniz', 'yellow', 'gray', 'barniz');
   }
-
   menosTintaGeneral.style.backgroundColor = '#2bf22bc0';
 };
 // 🔴 Detener DISMINUIR tinta general
@@ -891,7 +858,6 @@ menosTintaGeneral.addEventListener('touchstart', (e) => {
 }, { passive: false });
 menosTintaGeneral.addEventListener('touchend', detenerMenosTintaGeneral, { passive: true });
 menosTintaGeneral.addEventListener('touchcancel', detenerMenosTintaGeneral, { passive: true });
-
 // 🟢 Iniciar AUMENTAR agua general
 const iniciarMasSolucionGeneral = () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) {  
@@ -903,7 +869,6 @@ const iniciarMasSolucionGeneral = () => {
     mostrarAlertaVerde();
     desactivarClicEnElementos(botonesPerfilColor);
   }
-
   if (flagNegro) {
     aumentarBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-negro #footer-2 .divs-grales-solucion-negro', 'yellow', verdeAgua, 'negro', 'nivelAgua');
   }
@@ -922,7 +887,6 @@ const iniciarMasSolucionGeneral = () => {
   if (flagBarniz) {
     aumentarBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-barniz #footer-12 .divs-grales-solucion-barniz', 'yellow', verdeAgua, 'barniz', 'nivelAgua');
   }
-
   masSolucionGeneral.style.backgroundColor = '#2bf22bc0';
 };
 // 🔴 Detener AUMENTAR agua general
@@ -944,7 +908,6 @@ const iniciarMenosSolucionGeneral = () => {
     mostrarAlertaVerde();
     desactivarClicEnElementos(botonesPerfilColor);
   }
-
   if (flagNegro) {
     reducirBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-negro #footer-2 .divs-grales-solucion-negro', 'yellow', verdeAgua, 'negro', 'nivelAgua');
   }
@@ -963,7 +926,6 @@ const iniciarMenosSolucionGeneral = () => {
   if (flagBarniz) {
     reducirBalanceSolucion(estadoIntervaloSolucion, '.lineas-solucion', '#footer-barniz #footer-12 .divs-grales-solucion-barniz', 'yellow', verdeAgua, 'barniz', 'nivelAgua');
   }
-
   menosSolucionGeneral.style.backgroundColor = 'rgb(0,255,0)';
 };
 // 🔴 Detener DISMINUIR agua general
@@ -998,7 +960,6 @@ menosSolucionGeneral.addEventListener('touchstart', (e) => {
   e.preventDefault();
   iniciarMenosSolucionGeneral();
 }, { passive: false });
-
 menosSolucionGeneral.addEventListener('touchend', detenerMenosSolucionGeneral, { passive: true });
 menosSolucionGeneral.addEventListener('touchcancel', detenerMenosSolucionGeneral, { passive: true });
 alertaBotones.addEventListener('click', () =>{
@@ -1033,7 +994,6 @@ function AelementosDinamicamente(contPadre, numeroDeLineas, classElto, startNumb
   const contenedorPrincipal = document.getElementById(contPadre);
   contenedorPrincipal.innerHTML = '';
   let numeroConsecutivo = startNumber !== null ? startNumber : null;
-
   for (let i = 1; i <= numeroDeLineas; i++) {
     const lineaLeds = document.createElement('div'); 
     lineaLeds.classList.add(classElto);
@@ -1076,7 +1036,6 @@ const iniciarMasTinta = () => {
     }, 500);
     desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
   }
-
   if (flagNegro) {
     aumentarBalanceTinta(
       estadoIntervaloTinta,
@@ -1137,7 +1096,6 @@ const iniciarMasTinta = () => {
       'barniz',
     );
   }
-
   masTinta.style.backgroundColor = '#2bf22bc0';
 };
 // 🟡 Evento estándar para PC
@@ -1160,7 +1118,6 @@ masTinta.addEventListener('mouseleave', detenerMasTinta);
 // 📱 Táctil
 masTinta.addEventListener('touchend', detenerMasTinta, { passive: true });
 masTinta.addEventListener('touchcancel', detenerMasTinta, { passive: true });
-
 const iniciarMenosTinta = () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
     if (!flagNegro && !flagCyan && !flagMagenta && !flagAmarillo && !flagEspecial && !flagBarniz) {   
@@ -1189,7 +1146,6 @@ const iniciarMenosTinta = () => {
     }, 500);
     desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
   }
-
   if (flagNegro) {
     disminuirBalanceTinta(
       estadoIntervaloTinta,
@@ -1250,7 +1206,6 @@ const iniciarMenosTinta = () => {
       'barniz'
     );
   }
-
   menosTinta.style.backgroundColor = 'rgb(0,255,0)';
 };
 const detenerMenosTinta = () => {
@@ -1271,10 +1226,6 @@ menosTinta.addEventListener('touchstart', (e) => {
 }, { passive: false });
 menosTinta.addEventListener('touchend', detenerMenosTinta, { passive: true });
 menosTinta.addEventListener('touchcancel', detenerMenosTinta, { passive: true });
-
-
-
-
 let intervaloTintaNegro = null
 let intervaloTintaCyan = null
 let intervaloTintaMagenta = null
@@ -1293,7 +1244,6 @@ function reducirBalanceSolucion(estado, lineasSelector, footerSelector, colorTin
   const totalElementos = lineasTinta.length;
   let displays = document.querySelector('#ctrl-gral .div-ctrl #solucion-porcentaje');
   let displayGeneral = document.querySelector(`#display-general-${gama}`)
-  
   if (flagNegro) {  
     traerObjetoNegro();
     estado.intervalo = setInterval(() => {
@@ -1451,7 +1401,6 @@ function aumentarBalanceSolucion(estado, lineasSelector, footerSelector, colorTi
   const totalElementos = lineasTinta.length;
   let displays = document.querySelector('#ctrl-gral .div-ctrl #solucion-porcentaje') 
   let displayGeneral = document.querySelector(`#display-general-${gama}`)
-
   if(flagNegro){
     traerObjetoNegro(); // Sincroniza el objetoNegro
     estado.intervalo = setInterval(() => {
@@ -1503,7 +1452,6 @@ function aumentarBalanceSolucion(estado, lineasSelector, footerSelector, colorTi
         console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
       }
     }, 77);
-
   }
   if (flagAmarillo) {
     traerObjetoAmarillo(); // Sincroniza el objetoAmarillo
@@ -1617,14 +1565,12 @@ function aumentarBalanceSolucion(estado, lineasSelector, footerSelector, colorTi
     }, 77);
   }
 }
-
 function aumentarBalanceTinta(estado, lineasSelector, footerSelector, colorTinta, colorAgua, gama) { 
   const lineasTinta = document.querySelectorAll(lineasSelector);
   const lineasGrales = document.querySelectorAll(footerSelector);
   const totalElementos = lineasTinta.length;
   let displays = document.querySelector('#ctrl-gral .div-ctrl #tinta-perc');
   let displayGral = document.querySelector(`#gral-display-${gama}`);
-
   if (flagNegro) {
     traerObjetoNegro();
     estado.intervalo = setInterval(() => {
@@ -1775,14 +1721,12 @@ function aumentarBalanceTinta(estado, lineasSelector, footerSelector, colorTinta
     }, 77);
   }
 }
-
 function disminuirBalanceTinta(estado, lineasSelector, footerSelector, uno, dos, gama) {
   const lineasTinta = document.querySelectorAll(lineasSelector);
   const lineasGrales = document.querySelectorAll(footerSelector);
   const totalElementos = lineasTinta.length;
   let displays = document.querySelector('#ctrl-gral .div-ctrl #tinta-perc');  
   let displayGral = document.querySelector(`#gral-display-${gama}`);
-
   if (flagNegro) {
     traerObjetoNegro();
     estado.intervalo = setInterval(() => {
@@ -1832,7 +1776,6 @@ function disminuirBalanceTinta(estado, lineasSelector, footerSelector, uno, dos,
         console.warn(`Elemento no encontrado en el índice ${actualIndex}.`);
       }
     }, 77);
-
   }
   if (flagMagenta) {
     traerObjetoMagenta(); // Sincroniza el objetoNegro
@@ -1940,8 +1883,6 @@ function darColorVerdeCabeza() {
   let index = 0;
   const gris = '#A9B0B8';
   const noire = 'black';
-
-
   const intervaloAplicarColor = setInterval(() => {
     if (index >= elementosCabeza.length) {
       clearInterval(intervaloAplicarColor);
@@ -1972,19 +1913,15 @@ let intervaloMenosSolucion = null;
 let indexAumento = 0
 const lineasTinta = document.querySelectorAll('.lineas-tinta');
 const contenedor = document.getElementById('butts-selectores');
-
-
 function resetearBalanceTinta(lineasSelector, footerSelector, gama) {
   // 1. Detener intervalo
   if (estadoIntervaloTinta.intervalo) {
     clearInterval(estadoIntervaloTinta.intervalo);
     estadoIntervaloTinta.intervalo = null;
   }
-
   // 2. Limpiar colores
   document.querySelectorAll(lineasSelector).forEach(el => el.style.backgroundColor = '');
   document.querySelectorAll(footerSelector).forEach(el => el.style.backgroundColor = '');
-
   // 3. Limpiar displays
   const displays = document.querySelector('#ctrl-gral .div-ctrl #tinta-perc');
   const displayGral = document.querySelector(`#gral-display-${gama}`);
@@ -2000,11 +1937,9 @@ function resetearBalanceSolucion(lineasSelector, footerSelector, gama) {
     clearInterval(estadoIntervaloSolucion.intervalo);
     estadoIntervaloSolucion.intervalo = null;
   }
-
   // 2. Limpiar colores
   document.querySelectorAll(lineasSelector).forEach(el => el.style.backgroundColor = '');
   document.querySelectorAll(footerSelector).forEach(el => el.style.backgroundColor = '');
-
   // 3. Limpiar displays
   const displays = document.querySelector('#ctrl-gral .div-ctrl #solucion-porcentaje');
   const displayGeneral = document.querySelector(`#display-general-${gama}`);
@@ -2014,7 +1949,6 @@ function resetearBalanceSolucion(lineasSelector, footerSelector, gama) {
     displayGeneral.style.top = '';
   }
 }
-
 // 🔸 Se agrupa la lógica de inicio en una función reutilizable
 const iniciarMasSolucion = () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
@@ -2044,7 +1978,6 @@ const iniciarMasSolucion = () => {
     }, 500);
     desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
   }  
-
   if (flagNegro) {
     aumentarBalanceSolucion(
       estadoIntervaloSolucion,
@@ -2108,7 +2041,6 @@ const iniciarMasSolucion = () => {
       'barniz'
     );    
   }
-
   masSolucion.style.backgroundColor = '#2bf22bc0';
 };
 // 🔸 Se agrupa la lógica de detención en otra función reutilizable
@@ -2130,9 +2062,6 @@ masSolucion.addEventListener('touchstart', (e) => {
 }, { passive: false });
 masSolucion.addEventListener('touchend', detenerMasSolucion, { passive: true });
 masSolucion.addEventListener('touchcancel', detenerMasSolucion, { passive: true });
-
-
-
 // 🔸 Se agrupa la lógica de inicio en una función reutilizable
 const iniciarMenosSolucion = () => {
   if (objetoGlobal && Object.keys(objetoGlobal).length > 0) { 
@@ -2160,7 +2089,6 @@ const iniciarMenosSolucion = () => {
     }, 500);
     desactivarClicEnElementos(botonesPerfilColor, botonesSelectores);
   }  
-
   if (flagNegro) {
     reducirBalanceSolucion(
       estadoIntervaloSolucion,
@@ -2221,7 +2149,6 @@ const iniciarMenosSolucion = () => {
       'barniz',
     );
   }
-
   menosSolucion.style.backgroundColor = 'rgb(0,255,0)';
 };
 // 🔸 Se agrupa la lógica de detención en otra función reutilizable
@@ -2243,9 +2170,6 @@ menosSolucion.addEventListener('touchstart', (e) => {
 }, { passive: false });
 menosSolucion.addEventListener('touchend', detenerMenosSolucion, { passive: true });
 menosSolucion.addEventListener('touchcancel', detenerMenosSolucion, { passive: true });
-
-
-
 let almacenSolucionNegro = []  
 let almacenSolucionCyan = []
 let almacenSolucionMagenta = []
@@ -2311,7 +2235,6 @@ function aplicarColor(estadoObjeto, claseElemento) {
         displaySolucion.textContent = iterAgua + '%';
       }
     }
-  
   }
   if(flagCyan){
     const nivelTintaGral = document.querySelectorAll('#footer-azul #footer-3 .divs-grales-tinta-azul'); 
@@ -2469,7 +2392,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
   lineasSolucion.forEach(linea => {
     linea.style.backgroundColor = ''; // Quitar cualquier color previo
   });
-
   if(flagNegro){
     const nivelTintaGral = document.querySelectorAll('#footer-negro #footer-1 .divs-grales-tinta-negro'); 
     const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
@@ -2477,7 +2399,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
     const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
     const displayTinta = document.getElementById('tinta-perc')
     const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
-
     const iteraciones = objetoNegro.nivelTinta.length;
     const iterAgua = objetoNegro.nivelAgua.length;
     // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
@@ -2497,7 +2418,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
         nivelSolucion[indice].style.backgroundColor = amarillo;
         nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
       }
-
     }
   }  
   if(flagCyan){
@@ -2507,7 +2427,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
     const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
     const displayTinta = document.getElementById('tinta-perc')
     const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
-
     const iteraciones = objetoCian.nivelTinta.length;
     const iterAgua = objetoCian.nivelAgua.length;
     // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
@@ -2527,7 +2446,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
         nivelSolucion[indice].style.backgroundColor = amarillo;
         nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
       }
-
     }
   }
   if(flagMagenta){
@@ -2537,7 +2455,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
     const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
     const displayTinta = document.getElementById('tinta-perc')
     const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
-
     const iteraciones = objetoMagenta.nivelTinta.length;
     const iterAgua = objetoMagenta.nivelAgua.length;
     // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
@@ -2557,7 +2474,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
         nivelSolucion[indice].style.backgroundColor = amarillo;
         nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
       }
-
     }
   }
   if(flagAmarillo){
@@ -2567,7 +2483,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
     const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
     const displayTinta = document.getElementById('tinta-perc')
     const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
-
     const iteraciones = objetoAmarillo.nivelTinta.length;
     const iterAgua = objetoAmarillo.nivelAgua.length;
     // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
@@ -2587,7 +2502,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
         nivelSolucion[indice].style.backgroundColor = amarillo;
         nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
       }
-
     }
   }
   if(flagEspecial){
@@ -2597,7 +2511,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
     const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
     const displayTinta = document.getElementById('tinta-perc')
     const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
-
     const iteraciones = objetoEspecial.nivelTinta.length;
     const iterAgua = objetoEspecial.nivelAgua.length;
     // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
@@ -2617,7 +2530,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
         nivelSolucion[indice].style.backgroundColor = amarillo;
         nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
       }
-
     }
   }
   if(flagBarniz){
@@ -2627,7 +2539,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
     const nivelSolucion = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
     const displayTinta = document.getElementById('tinta-perc')
     const displaySolucion = document.querySelector('#inerfaz-ajuste-fino #ctrl-gral #solucion-porcentaje');
-
     const iteraciones = objetoBarniz.nivelTinta.length;
     const iterAgua = objetoBarniz.nivelAgua.length;
     // 4. Crear un bucle para recorrer los elementos desde el último hacia el primero 
@@ -2647,7 +2558,6 @@ function aplicarSolucion(estadoObjeto, claseElemento) {
         nivelSolucion[indice].style.backgroundColor = amarillo;
         nivelSolucionGral[indice].style.backgroundColor = verdeAgua;  
       }
-
     }
   }
 } 
@@ -2659,7 +2569,6 @@ function renderObjeto() {
   // 3. Recorre desde el último elemento hacia el primero, aplicando color a los `cantidad` elementos
   for (let i = 0; i < cantidad; i++) {
     const index = elementos.length - 1 - i;  // Calcula el índice desde el final
-    
     if (index >= 0) {  // Verifica que el índice no sea negativo
       elementos[index].style.backgroundColor = 'yellow';  // Aplica el color amarillo
     }   
@@ -2669,7 +2578,6 @@ function renderObjeto() {
   const porcentaje = Math.min(cantidad, elementos.length) * 100 / elementos.length; // Calcula el porcentaje (0-100)
   porcentajeTinta.textContent = `${Math.round(porcentaje)}%`;  
 }  
-
 document.getElementById('butt-perfil-tinta').addEventListener('click', () =>{ 
   nombreCliente.style.top=''
   let nombreDatos = document.querySelector('#cliente-nombre')
@@ -2721,7 +2629,6 @@ document.getElementById('butt-perfil').addEventListener('click', () =>{
     primerClickRealizado = true;
   }
 })  
-
 let primerClickRealizado = false;
 document.getElementById('butt-control-tinta').addEventListener('click', () =>{ 
   const colorPerfilador = document.querySelector('#current-Color');   
@@ -2862,9 +2769,7 @@ document.getElementById('butt-control-tinta').addEventListener('click', () =>{
     restablecerClick(['.butt-selector'])  
   }, 10);
 })
-
 let calculadoraSimulador = false
-
 document.getElementById('butt-job-track').addEventListener('click', () =>{
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
   const padreBotonera = document.querySelector('#botonera-frente')
@@ -2888,10 +2793,8 @@ document.getElementById('butt-job-track').addEventListener('click', () =>{
   setTimeout(() => {
     conteJobTrack.classList.add('move-job-track') 
       actualizarEstiloThirdJob()
-
   }, 100);
 })
-
 document.getElementById('conte-img').addEventListener('click', () =>{
   var elementosExcluidos = ['simulador','interfaz-perfiles','inerfaz-ajuste-fino','perfil-individual','control-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8']  
   for (var i = 0; i < allContenedores.length; i++) {
@@ -2903,7 +2806,6 @@ document.getElementById('conte-img').addEventListener('click', () =>{
   botonesPerfilColor.forEach(boton => {
     boton.style.display = 'block'
   } )
-
 })
 let menuHambrgr = document.getElementById('show-todos')
 let txtHambrgr = document.getElementById('texto-perf-todos')
@@ -2958,7 +2860,6 @@ document.querySelectorAll('.color-ind').forEach((elemento, index) => {
     elemento.style.display = 'flex';
     menuHambrgr.style.display='flex'
     txtHambrgr.style.display='flex'
-
     // Lógica de mostrar el menú y aplicar color basado en el índice
     switch(index + 1) {
       case 1:
@@ -3013,33 +2914,27 @@ function elementosDinamicamente(contPadre, numeroDeLineas, classElto, startNumbe
   contenedorPrincipal.innerHTML = '';
   // Definir el número inicial solo si se proporciona `startNumber` y es un número
   let numeroConsecutivo = Number.isInteger(startNumber) ? startNumber : null;
-
   for (let i = 1; i <= numeroDeLineas; i++) {
     const lineaLeds = document.createElement('div');    
     lineaLeds.classList.add(classElto);
-
     // Asignar contenido de texto solo si `numeroConsecutivo` es un número válido
     if (numeroConsecutivo !== null) {
       lineaLeds.textContent = numeroConsecutivo;
       numeroConsecutivo++;
     }
-
     // Asignar ID con prefijo solo si `prefixId` tiene un valor
     if (prefixId) {
       lineaLeds.id = `${prefixId}-${i}`; // Prefijo y número de línea
     }
-
     contenedorPrincipal.appendChild(lineaLeds);
   }
 }
 function elementosConSpanDinamicamente(contPadre, numeroDeLineas, classElto, texts = [], ids = []) {
   const contenedorPrincipal = document.getElementById(contPadre);  
   contenedorPrincipal.innerHTML = '';
-
   for (let i = 0; i < numeroDeLineas; i++) {
     const lineaLeds = document.createElement('div');
     lineaLeds.classList.add(classElto);
-
     // Crear el span con el texto del array texts si está disponible
     if (texts[i]) {
       const span = document.createElement('span');
@@ -3047,47 +2942,37 @@ function elementosConSpanDinamicamente(contPadre, numeroDeLineas, classElto, tex
       span.textContent = texts[i];
       lineaLeds.appendChild(span);
     }
-
     // Asignar id del arreglo ids si está disponible
     if (ids[i]) {
       lineaLeds.id = ids[i];
     }    
-
     contenedorPrincipal.appendChild(lineaLeds);
   }
-  
 }
 function clasePadreCantidadClaseTextId(contPadre, numeroDeLineas, classElto, texts = [], prefixId = '') {
   const contenedoresPrincipales = document.querySelectorAll(`.${contPadre}`);
-
   // Verifica si se encontraron elementos con la clase proporcionada
   if (contenedoresPrincipales.length === 0) {
     console.warn(`No se encontró ningún contenedor con la clase: ${contPadre}`);
     return;
   }
-
   contenedoresPrincipales.forEach((contenedorPrincipal, index) => {
     // Limpiar cada contenedor para evitar acumulación de elementos
     contenedorPrincipal.innerHTML = '';
-
     for (let i = 1; i <= numeroDeLineas; i++) {
       const spanElement = document.createElement('span');
       spanElement.classList.add(classElto);
-      
       // Añadir el texto correspondiente, si se proporciona
       spanElement.textContent = texts.length > 0 ? texts[i - 1] || '' : ''; 
-
       // Asignar un ID basado en el índice y el prefijo, si se proporciona
       if (prefixId) {
         spanElement.id = `${prefixId}-${i}`; // Prefijo, índice del contenedor, y número de línea
       }
-
       // Agregar el span creado al contenedor padre
       contenedorPrincipal.appendChild(spanElement);
     }
   });
 }
-
 function idPadreCantidadClaseTextId(contPadre, numeroDeLineas, classElto, claseDos = '', texts = [], prefixId = '', padreEtiqueta, color, padreEtiquetaTinta) {   
   const contenedorPrincipal = document.getElementById(contPadre);  
   // Limpiar el contenedor para evitar acumulación de elementos
@@ -3106,35 +2991,26 @@ function idPadreCantidadClaseTextId(contPadre, numeroDeLineas, classElto, claseD
   if (contenedorDestino) {
     contenedorDestino.appendChild(spanAgua);
   } else {
-    
   }
-
   if (contenedorTinta) {
     contenedorTinta.appendChild(spanTinta);
   } else {
-  
   }
-
   // Crear múltiples spans dentro del contenedorPrincipal usando el bucle
   for (let i = 1; i <= numeroDeLineas; i++) {
     const spanElement = document.createElement('span');
-    
     // Agregar la clase principal
     spanElement.classList.add(classElto); 
-
     // Agregar la segunda clase si se proporciona
     if (claseDos) {
       spanElement.classList.add(claseDos);
     }
-
     // Añadir el texto correspondiente, si se proporciona
     spanElement.textContent = texts.length > 0 ? texts[i - 1] || '' : ''; 
-
     // Asignar un ID basado en el índice y el prefijo, si se proporciona
     if (prefixId) {
       spanElement.id = `${prefixId}-${i}`;
     }
-
     // Agregar el span creado dentro del contenedor principal
     contenedorPrincipal.appendChild(spanElement);
   }
@@ -3148,38 +3024,32 @@ let intervalColorBarniz = null
 function toggleColorButton(index) {
   const coleccionCabeza = document.querySelectorAll('.cabeza');
   const coleccionButtSelector = document.querySelectorAll('.butt-selector');
-
   // Restablece el color de todos los botones en ambas colecciones
   coleccionCabeza.forEach(boton => boton.style.backgroundColor = '');
   coleccionButtSelector.forEach(boton => boton.style.backgroundColor = '');
-
   // Aplica el color rojo solo a los botones en la posición `index`
   if (coleccionCabeza[index]) coleccionCabeza[index].style.backgroundColor = verde; 
   // Aplicar color verde al botón y negro al texto en el <span> inmediatamente
   if (coleccionButtSelector[index]) {
     coleccionButtSelector[index].style.backgroundColor = verde;
-
     // Captura el <span> directamente dentro del botón y aplica el color negro
     const span = coleccionButtSelector[index].querySelector(`#butts-selectores div:nth-child(${index}) .texto-selectores`);
     if (span) {
       span.style.color = 'black';
     }
   }
-  
 }
 function crearLedsSpan() {
   // Ciclo para crear 22 padres con IDs secuenciales y 24 spans en cada uno
   for (let i = 1; i <= 22; i++) {
     // Obtener el padre correspondiente
     const contenedorLed = document.getElementById(`led-${i}`);
-    
     // Verificar que el contenedor padre exista
     if (contenedorLed) {
       // Eliminar todos los spans hijos existentes en el contenedor
       while (contenedorLed.firstChild) {
         contenedorLed.removeChild(contenedorLed.firstChild);
       }
-
       // Crear 24 elementos span y agregarlos al padre actual
       for (let j = 1; j <= 24; j++) {
         const elementoSpan = document.createElement('span');
@@ -3190,14 +3060,12 @@ function crearLedsSpan() {
       console.warn(`No se encontró el contenedor con id: led-${i}`);
     }
   }
-
   const columnaClon = document.querySelectorAll('#control-perfiles #led-1 .led')
   if (columnaClon.length === 0) { 
     columnaClon.forEach(nieto => {
       nieto.classList.add('elemento-sync');
     });
   }
-
 }
 function eliminarBotonesSuma() {
   const contenedorPrincipal = document.getElementById('columna-30');
@@ -3344,37 +3212,26 @@ function getColorName(color) {
   const rgbColor = typeof color === "string" ? color : color.toString();      
   return colorNames[rgbColor] || "desconocido";
 }
-
 function crearBotonSuma(color, linea1, linea2, linea3) {
   const contenedorPrincipal = document.getElementById('columna-30');
   const botonesSuma = []; 
   const indexarElements = document.querySelectorAll('.indexar');
-
   for (let i = 1; i <= 22; i++) {
     const elementoSuma = document.createElement('div');
     elementoSuma.classList.add('linea-control', 'suma');
     elementoSuma.id = `bot-${i}`;
     contenedorPrincipal.appendChild(elementoSuma);
     botonesSuma.push(elementoSuma);
-
     let intervalID = null; // 🔸 Cada botón mantiene su propio intervalo
-
     // 🔸 Lógica de inicio común para mouse y táctil
     const iniciarAccion = () => {
-      
   if (Object.keys(objetoGlobal).length === 0) {
     console.warn('No hay datos');
     alertaSeis.classList.remove('move-alerta')
     alertaSeis.style.display='grid'
     granCortina.style.display='block'
-
     return;
   }
-
-
-
-
-  
   if (!flagAplicacion) {
     alertaBotones.style.display = 'flex';
     alertaBotones.style.backgroundColor = verde;
@@ -3387,34 +3244,27 @@ function crearBotonSuma(color, linea1, linea2, linea3) {
     }, 500);
     return;
   }
-
       const numeroBoton = elementoSuma.id.match(/\d+/)?.[0];
       elementoSuma.style.backgroundColor = 'rgb(0, 250, 254)';
       const colorName = getColorName(color);
       const lineaID = `linea-${numeroBoton}`;
       const ledID = `led-${numeroBoton}`;
       const ledGeneral = `grilla-${numeroBoton}`;
-
       const ledsRuta = `#columna-70 #${lineaID} #display-leds .leds`;
       const ledControlRuta = `#control-perfiles #led-${numeroBoton} .led`;
       const ledGeneralRuta = `#perfil-${colorName} #grilla-${numeroBoton} .led-general`;
-
       const coleccionLeds = document.querySelectorAll(ledsRuta);
       const coleccionLed = document.querySelectorAll(ledControlRuta);
       const coleccionGeneral = document.querySelectorAll(ledGeneralRuta);
-
       let index = (coleccionLeds.length - 1) - almacenObjetos[objetoGlobal][colorName][linea1][lineaID].length;
-
       intervalID = setInterval(() => {
         if (index >= 0) {
           coleccionLeds[index].style.backgroundColor = rojo;
           coleccionLed[index].style.backgroundColor = color;
           coleccionGeneral[index].style.backgroundColor = color;
-
           almacenObjetos[objetoGlobal][colorName][linea1][lineaID].push(index);
           almacenObjetos[objetoGlobal][colorName][linea2][ledID].push(index);
           almacenObjetos[objetoGlobal][colorName][linea3][ledGeneral].push(index);
-
           guardarObjetoEnLocalStorage();
           guardarCambiosGeneralesEnAlmacen();
           index--;
@@ -3423,7 +3273,6 @@ function crearBotonSuma(color, linea1, linea2, linea3) {
           intervalID = null;
         }
       }, 177);
-
       const indexarElement = indexarElements[i - 1];
       if (indexarElement) {
         indexarElement.style.color = 'red';
@@ -3431,7 +3280,6 @@ function crearBotonSuma(color, linea1, linea2, linea3) {
         indexarElement.style.fontWeight = 'bold';
       }
     };
-
     // 🔸 Lógica de detención común
     const detenerAccion = () => {
       const indexarElement = indexarElements[i - 1];
@@ -3446,23 +3294,19 @@ function crearBotonSuma(color, linea1, linea2, linea3) {
         intervalID = null;
       }
     };
-
     // 🖱️ Eventos para PC
     elementoSuma.addEventListener('mousedown', iniciarAccion);
     elementoSuma.addEventListener('mouseup', detenerAccion);
     elementoSuma.addEventListener('mouseleave', detenerAccion);
-
     // 📱 Eventos para táctiles
     elementoSuma.addEventListener('touchstart', (e) => {
       e.preventDefault(); // evita scroll o zoom
       iniciarAccion();
     }, { passive: false });
-
     elementoSuma.addEventListener('touchend', detenerAccion, { passive: true });
     elementoSuma.addEventListener('touchcancel', detenerAccion, { passive: true });
   }
 }
-
 function guardarObjetoEnLocalStorage(){
   localStorage.setItem('objetoAmarillo', JSON.stringify(objetoAmarillo));
   localStorage.setItem('objetoMagenta', JSON.stringify(objetoMagenta));
@@ -3471,7 +3315,6 @@ function guardarObjetoEnLocalStorage(){
   localStorage.setItem('objetoEspecial', JSON.stringify(objetoEspecial));
   localStorage.setItem('objetoBarniz', JSON.stringify(objetoBarniz));
 }
-
 function traerObjetoDeLocalStorage() {
   const objetoAmarilloDesdeLocal = JSON.parse(localStorage.getItem('objetoAmarillo') || '{}'); 
   const objetoMagentaDesdeLocal = JSON.parse(localStorage.getItem('objetoMagenta') || '{}');
@@ -3545,22 +3388,17 @@ function vaciarObjeto(){
 function vaciarAlmacenObjetos() {
   // 1. Traer el objeto almacenado en localStorage
   const almacenJSON = localStorage.getItem('coloresRegistrados');
-
   if (!almacenJSON) {
     console.log("El almacén de objetos está vacío o no existe.");
     return;
   }
-
   // Parsear el objeto JSON almacenado
   almacenObjetos = JSON.parse(almacenJSON);
   console.log("Almacén antes de vaciarlo:", almacenObjetos);
-
   // 2. Vaciar el objeto
   almacenObjetos = {};
-
   // 3. Guardar los cambios en localStorage
   localStorage.setItem('coloresRegistrados', JSON.stringify(almacenObjetos));
-
   console.log("El almacén de objetos ha sido vaciado.");
 }
 let buttonSmart = document.getElementById('seleccion-gral')
@@ -3580,19 +3418,15 @@ buttonSmart.addEventListener('mouseup', () =>{
 function guardarObjetoEnLocal(objeto) {
   // Convertir el objeto a una cadena JSON
   const objetoString = JSON.stringify(objeto);
-  
   // Guardarlo en localStorage
   localStorage.setItem('informacionCopia', objetoString);
-  
 }
 function guardarObjetoAmarillo(objetoAmarillo) {   
   try {
       // Convertir el objeto a una cadena JSON
       const objetoString = JSON.stringify(objetoAmarillo);
-
       // Guardar en localStorage con la clave "objetoAmarillo"
       localStorage.setItem("objetoAmarillo", objetoString);
-
       console.log("Objeto guardado exitosamente:", objetoAmarillo);
   } catch (error) {
       console.error("Error al guardar el objeto en localStorage:", error);
@@ -3602,10 +3436,8 @@ function guardarobjetoMagenta(objetoMagenta) {
   try {
       // Convertir el objeto a una cadena JSON
       const objetoString = JSON.stringify(objetoMagenta);
-
       // Guardar en localStorage con la clave "objetoAmarillo"
       localStorage.setItem("objetoMagenta", objetoString);
-
       console.log("Objeto guardado exitosamente:", objetoMagenta);
   } catch (error) {
       console.error("Error al guardar el objeto en localStorage:", error);
@@ -3730,7 +3562,6 @@ function vaciarObjetosPerfiles() {
     colorElemento: '',
     contadorPulsos: [], 
   };
-
   // Iterar sobre cada objeto
   objetos.forEach(nombre => {
     if (window[nombre]) {
@@ -3742,7 +3573,6 @@ function vaciarObjetosPerfiles() {
     localStorage.removeItem(nombre);
   });
   console.log("Objetos vaciados y eliminados de localStorage.");
-
 }
 document.querySelector('#boton-reseteo').addEventListener('click', () =>{
   alertaGlobal='boton-reseteo'
@@ -3757,7 +3587,6 @@ document.querySelector('#boton-reseteo').addEventListener('click', () =>{
   desactivarClick(['.butt-perfiles']); 
   saltarAlerta('Esta acción elimina definitivamente los perfiles guardados ', 'reseteo') 
 })
-
 // BOTON SALA
 document.querySelector('#boton-prensas').addEventListener('click', () =>{
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales']  
@@ -3770,7 +3599,6 @@ document.querySelector('#boton-prensas').addEventListener('click', () =>{
   container1.style.display='grid'
   interfazPerfiles.classList.remove('move-perfiles-entintado')
   document.querySelector('.sections').style.display = 'grid' 
-
   const clasesALimpiar = ['.led', '.leds', '.led-general', '.clase-dos', '.lineas-tinta', '.lineas-solucion'];
   clasesALimpiar.forEach(clase => {
     document.querySelectorAll(clase).forEach(el => {
@@ -3794,7 +3622,6 @@ document.querySelector('#boton-prensas').addEventListener('click', () =>{
     resetearBalanceSolucion('.lineas-solucion','#footer-barniz #footer-12 .divs-grales-solucion-barniz','barniz');      
   objetoGlobal={}  
 })
-
 // CREACION DE PERFILES
 document.querySelector('#boton-perfiles').addEventListener('click', () =>{
   var elementosExcluidos = ['simulador','butt-perfil-tinta', 'butt-control-tinta', 'butt-perfil', 'butt-job-track', 'boton-perfiles', 'interfaz-perfiles', 'boton-reseteo','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8']  
@@ -3809,19 +3636,16 @@ document.querySelector('#boton-perfiles').addEventListener('click', () =>{
   restablecerClick(['.butt-revierte'])
   setTimeout(() => {
     moverFormulario()
-
   if (esDesktop) {
     inputPerfil.focus();
   }     
     inputPerfil.value = ''
   }, 20);
 })
-
 function traerObjetoAmarillo() {
   try {
     // Recuperar el objeto almacenado en localStorage
     const objetoString = localStorage.getItem("objetoAmarillo");
-
     if (objetoString) {
       // Convertir la cadena JSON de vuelta a un objeto
       const objeto = JSON.parse(objetoString);
@@ -3858,7 +3682,6 @@ function traerObjetoMagenta() {
   try {
     // Recuperar el objeto almacenado en localStorage
     const objetoString = localStorage.getItem("objetoMagenta");
-
     if (objetoString) {
       // Convertir la cadena JSON de vuelta a un objeto
       const objeto = JSON.parse(objetoString);
@@ -3895,7 +3718,6 @@ function traerObjetoCian() {
   try {
     // Recuperar el objeto almacenado en localStorage
     const objetoString = localStorage.getItem("objetoCian");
-
     if (objetoString) {
       // Convertir la cadena JSON de vuelta a un objeto
       const objeto = JSON.parse(objetoString);
@@ -3932,7 +3754,6 @@ function traerObjetoNegro() {
   try {
     // Recuperar el objeto almacenado en localStorage
     const objetoString = localStorage.getItem("objetoNegro");
-
     if (objetoString) {
       // Convertir la cadena JSON de vuelta a un objeto
       const objeto = JSON.parse(objetoString);
@@ -3971,7 +3792,6 @@ function traerObjetoEspecial() {
   try {
     // Recuperar el objeto almacenado en localStorage
     const objetoString = localStorage.getItem("objetoEspecial");
-
     if (objetoString) {
       // Convertir la cadena JSON de vuelta a un objeto
       const objeto = JSON.parse(objetoString);
@@ -4008,7 +3828,6 @@ function traerObjetoBarniz() {
   try {
     // Recuperar el objeto almacenado en localStorage
     const objetoString = localStorage.getItem("objetoBarniz");
-
     if (objetoString) {
       // Convertir la cadena JSON de vuelta a un objeto
       const objeto = JSON.parse(objetoString);
@@ -4047,7 +3866,6 @@ function aplicarColorDesdeObjeto(objeto) {
     const lineaLeds = document.querySelectorAll('#columna-70 #linea-1 #display-leds .leds')
     const lineaSeguidor = document.querySelectorAll('#control-perfiles #led-1 .led')
     const lineaGeneral = document.querySelectorAll('#perfil-amarillo #grilla-1 .led-general')
-
     const nivelTinta = document.querySelectorAll('#ctrl-gral #tanque-tinta .lineas-tinta');
     const nivelAgua = document.querySelectorAll('#ctrl-gral #tanque-solucion .lineas-solucion');
     const nivelTintaGral = document.querySelectorAll('#footer-amarillo #footer-7 .divs-grales-tinta-amarillo');
@@ -4056,22 +3874,17 @@ function aplicarColorDesdeObjeto(objeto) {
     const ledsAgua = document.getElementsByClassName('lineas-solucion');
     const displayAgua = document.getElementById('solucion-porcentaje')
     const displayTinta = document.getElementById('tinta-perc')
-
     let ledsParaColorear = objeto.linea["linea-1"].length;
     console.log('LEDS : ', ledsParaColorear)
-
   }
 }
 function traerObjetoDeLocal() {
   const objetoString = localStorage.getItem('informacionCopia');
-
   if (objetoString) {
     let objetos = JSON.parse(objetoString);
-
     if (Array.isArray(objetos)) {
       // Limitar a los primeros 22 elementos
       objetos = objetos.slice(0, 22);
-
       console.log('Información del objeto recuperado de localStorage:');
       objetos.forEach((objetoActual, index) => {
         console.log(`Elemento ${index + 1}:`);
@@ -4085,12 +3898,10 @@ function traerObjetoDeLocal() {
         console.log(`clasesColoreadas: ${objetoActual.colorElemento}`);
         console.log('---');
       });
-
       // Llama a renderizarObjetoLocal con el array de objetos
       objetos.forEach((objetoActual) => {
         renderizarObjetoLocal(objetoActual);
       });
-
       return objetos;
     } else {
       console.log('El objeto recuperado no es una lista.');
@@ -4105,11 +3916,9 @@ function renderizarObjetoLocal(objetoActual) {
   const elementosObjeto = document.querySelectorAll(`#${objetoActual.lineaActual} .${objetoActual.clasesColoreadas[0]}`);
   const elementosLedObjeto = document.querySelectorAll(`#${objetoActual.lineaActual} .${objetoActual.ledActual}`);
   const elementosGrillaObjeto = document.querySelectorAll(`#${objetoActual.lineaActual} .${objetoActual.ledSecundario}`);
-
   if (elementosObjeto.length > 0 || elementosLedObjeto.length || elementosGrillaObjeto.length > 0) {
     const limite = objetoActual.colorAplicadoContador;
     let coloreados = 0;
-
     // Aplicar el color almacenado
     for (let i = elementosObjeto.length - 1; i >= 0; i--) {
       if (coloreados < limite) {
@@ -4119,7 +3928,6 @@ function renderizarObjetoLocal(objetoActual) {
         break;
       }
     }
-
     for (let i = elementosLedObjeto.length - 1; i >= 0; i--) {
       if (coloreados < limite) {
         elementosLedObjeto[i].style.backgroundColor = objetoActual.colorElemento;
@@ -4135,7 +3943,6 @@ function renderizarObjetoLocal(objetoActual) {
 function vaciarObjetoEnLocal() {
   // Eliminar el objeto almacenado en localStorage
   localStorage.removeItem('objetoAmarillo');
-  
   console.log('Objeto eliminado de localStorage');
 }  
 function guardarCambios(nombreClave) {
@@ -4153,7 +3960,6 @@ function guardarCambios(nombreClave) {
 }
 function cargarInstanciaDesdeLocalEnObjetoglobal(nombreClave) {
   const instanciaGuardada = localStorage.getItem(nombreClave);
-    
   if (instanciaGuardada) {
     try {
       objetoGlobal = JSON.parse(instanciaGuardada);
@@ -4166,24 +3972,16 @@ function cargarInstanciaDesdeLocalEnObjetoglobal(nombreClave) {
     console.warn(`No se encontró ninguna instancia bajo la clave "${nombreClave}".`);
   }
 }
-
 inputPerfil.addEventListener('input', function () {
   const valor = this.value
     .toLowerCase()                         // normaliza todo
     .replace(/\b\w/g, c => c.toUpperCase()); // mayúscula por palabra
-
   this.value = valor;
 });
-inputPerfil.addEventListener('blur', () => {
-  if(!esDesktop) hideKeyboard()
-});
-
-
 function vaciarTodoAlmacenObjetos() {
   localStorage.clear(); // Borra todo el contenido de localStorage
   console.log("Todos los objetos han sido eliminados del almacenamiento local.");
 }
-
 document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   // Capturar el valor del input
   let inputNombre = inputPerfil.value.trim();
@@ -4200,7 +3998,6 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
   }
   // Crear una nueva instancia de la clase objetoColores
   const nuevoObjeto = new objetoColores();
- 
   // Almacenar el objeto en el almacén bajo el nombre del input 
   almacenObjetos[inputNombre] = nuevoObjeto;
   // Crear un nuevo objeto ordenado alfabéticamente por las claves
@@ -4237,7 +4034,6 @@ document.getElementById('btn-crea-perfil').addEventListener('click', () => {
     console.log("No se encontraron objetos almacenados en el localStorage.");
   }
 });
-
 // Función para capitalizar la primera letra de cada palabra
 function capitalizarTexto(texto) {
   return texto
@@ -4249,22 +4045,18 @@ function actualizarListaNombres() {
   const listaNombresContainer = document.getElementById('listaNombresContainer');  
   // Limpiar el contenedor antes de actualizarlo
   listaNombresContainer.innerHTML = '';
-
   // Obtener los nombres del almacén y ordenarlos alfabéticamente
   const nombresOrdenados = Object.keys(almacenObjetos)
     .sort(); // Ordenar alfabéticamente
-
   // Iterar sobre los nombres ordenados y mostrarlos en el contenedor
   nombresOrdenados.forEach(nombre => {
     const nombreDiv = document.createElement('div');
     nombreDiv.textContent = nombre; // Mostrar el nombre con formato
     nombreDiv.classList.add('elemento-objeto'); // Agregar clase para estilos o identificación
-
     // Agregar evento de clic al elemento dinámico
     nombreDiv.addEventListener('click', () => {
       resaltarElemento(nombreDiv);
     });
-
     listaNombresContainer.appendChild(nombreDiv);
   });
 }
@@ -4272,18 +4064,15 @@ function actualizarListaNombres() {
 function resaltarElemento(elementoClicado) {
   const listaNombresContainer = document.getElementById('listaNombresContainer');
   const nombresDivs = Array.from(listaNombresContainer.querySelectorAll('.elemento-objeto'));
-
   // Quitar el color de fondo y mostrar todos los elementos primero
   nombresDivs.forEach(div => {
     div.style.backgroundColor = ''; // Restaurar el color original
     div.style.color = ''; // Restaurar el color del texto
     div.style.display = 'block'; // Mostrar todos los elementos
   });
-
   // Aplicar el color azul de fondo al elemento clicado
   elementoClicado.style.backgroundColor = 'blue';
   elementoClicado.style.color = 'white';
-
   // Ocultar todos los demás elementos
   nombresDivs.forEach(div => {
     if (div !== elementoClicado) {
@@ -4321,44 +4110,34 @@ function mostrarVentanaEmergente(mensaje) {
   mensajeEmergente.textContent = mensaje;
   ventanaEmergente.classList.remove('oculta');
 }
-
 document.getElementById('cerrarEmergente').addEventListener('click', () => {
   const mensajeEmergente = document.getElementById('mensajeEmergente');
   conteJobTrack.classList.remove('move-job-track')
-
   if (mensajeEmergente.textContent === 'Perfil creado y almacenado') {
     document.getElementById('ventanaEmergente').classList.add('oculta');
     document.querySelector('#unit-job-track').style.display = 'flex';
-
     // Verificar si alguno de los dos contenedores tiene display "grid"
     let cmykVisible = window.getComputedStyle(mezcladorColor).display === 'grid';
     let rgbVisible = window.getComputedStyle(mezcladorColorRGB).display === 'grid';
     buscaNombre.focus()
     listaColores.removeAttribute('style')
-
-
     if (!cmykVisible && !rgbVisible) { 
       conteJobTrack.classList.add('move-job-track'); 
     }
-
     inputPerfil.value = '';
     document.querySelectorAll('.datos-base').forEach((elemento) => {
       elemento.textContent = '';
     });
-
     desactivarClick(['.butt-perfiles']);
     restablecerClick(['.cont-vacio']);
-
     setTimeout(() => {
       ocultarElemento('#formulario-perfiles');
     }, 200);
-
     setTimeout(() => {
       mostrarElemento('.files-job');
       inputPerfil.focus();
       inputPerfil.value = '';
     }, 700);
-    
   }
   if (mensajeEmergente.textContent === 'Por favor, ingrese un nombre válido') {
     document.getElementById('ventanaEmergente').classList.add('oculta');
@@ -4377,7 +4156,6 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
     detenerParpadeo() 
     buscaNombre.value = ''
     creaNombre.value = ''
-
     botonesPerfilColor.forEach(elemento => {   
       elemento.style.display = 'block';   
     });
@@ -4389,18 +4167,14 @@ document.getElementById('cerrarEmergente').addEventListener('click', () => {
         mostrarVentanaMensaje('El almacenamiento y la base de datos estan vacíos')
       }
     }, 50);      
-
-
   }
   if (mensajeEmergente.textContent === 'Ya existe un perfil con este nombre') {
     document.getElementById('ventanaEmergente').classList.add('oculta');
   }    
-
 });
 function crearBotonResta(color, linea1, linea2, linea3) {
   const contenedorPrincipal = document.getElementById('columna-30');
   const botonesResta = [];
-
   const indexarElements = document.querySelectorAll('.indexar');
   for (let i = 1; i <= 22; i++) {
     const elementoResta = document.createElement('div');
@@ -4408,7 +4182,6 @@ function crearBotonResta(color, linea1, linea2, linea3) {
     elementoResta.id = `bot-resta-${i}`;
     contenedorPrincipal.appendChild(elementoResta);
     botonesResta.push(elementoResta);
-
     // 🔸 Se agrupa la lógica común para reutilizar en eventos táctiles y de mouse
     const iniciarResta = () => {
       if (!flagAplicacion) {
@@ -4435,7 +4208,6 @@ function crearBotonResta(color, linea1, linea2, linea3) {
         const coleccionLed = document.querySelectorAll(ledControlRuta);
         const coleccionGeneral = document.querySelectorAll(ledGeneralRuta);
         console.log(' COLORNAME :', colorName);
-
         let index = (coleccionLeds.length) - almacenObjetos[objetoGlobal][colorName][linea1][lineaID].length;
         let intervalID = setInterval(() => {
           if (index === 24) return;
@@ -4443,11 +4215,9 @@ function crearBotonResta(color, linea1, linea2, linea3) {
             coleccionLeds[index].style.backgroundColor = '';
             coleccionLed[index].style.backgroundColor = '';
             coleccionGeneral[index].style.backgroundColor = '';
-
             almacenObjetos[objetoGlobal][colorName][linea1][lineaID].pop();
             almacenObjetos[objetoGlobal][colorName][linea2][ledID].pop();
             almacenObjetos[objetoGlobal][colorName][linea3][ledGeneral].pop();
-
             guardarObjetoEnLocalStorage();
             guardarCambiosGeneralesEnAlmacen();
             index++;
@@ -4455,14 +4225,12 @@ function crearBotonResta(color, linea1, linea2, linea3) {
             clearInterval(intervalID);
           }
         }, 177);
-
         const indexarElement = indexarElements[i - 1];
         if (indexarElement) {
           indexarElement.style.color = 'red';
           indexarElement.style.fontSize = '1em';
           indexarElement.style.fontWeight = 'bold';
         }
-
         const detenerResta = () => { // 🟡 Nueva función reutilizable
           const indexarElement = indexarElements[i - 1];
           if (indexarElement) {
@@ -4473,33 +4241,26 @@ function crearBotonResta(color, linea1, linea2, linea3) {
           elementoResta.style.backgroundColor = '';
           clearInterval(intervalID);
         };
-
         elementoResta.addEventListener("mouseup", detenerResta);
         elementoResta.addEventListener("mouseleave", detenerResta);
-
         // 🟡 Nuevos eventos táctiles equivalentes a mouseup/mouseleave
         elementoResta.addEventListener("touchend", detenerResta, { passive: true });
         elementoResta.addEventListener("touchcancel", detenerResta, { passive: true });
       }
     };
-
     elementoResta.addEventListener("mousedown", iniciarResta);
-
     // 🟡 Nuevo: soporte táctil equivalente a mousedown
     elementoResta.addEventListener("touchstart", (e) => {
       e.preventDefault(); // evita scroll en pantallas táctiles
       iniciarResta();
     }, { passive: false });
   }
-
-
   }
 function renderizarPerfilesTinta(color) {
   const todosLeds = document.querySelectorAll('.led, .leds');
   todosLeds.forEach(led => {
     led.style.backgroundColor = '';
   });
-
   let informacionBalance; // Variable para almacenar la información de los botones según el color
   let informacionBotones; // Variable para almacenar la información de los botones según el color
   switch(color) {
@@ -4531,7 +4292,6 @@ function aplicarColorLeds(informacionBotones, color) {
     // Seleccionar todos los leds correspondientes a la linea actual
     const displayLedsLinea = document.querySelectorAll(`#linea-${index + 1} #display-leds .leds`);
     const displayLedsSeguidores = document.querySelectorAll(`#control-perfiles #led-${index + 1} .led`);      
-
     // Recorrer los índices de leds coloreados almacenados en el objeto
     obj.ledsColoreados.forEach((ledIndex) => {
       // Aplicar el color a cada led que se encuentra en el array ledsColoreados
@@ -4561,7 +4321,6 @@ document.querySelector('#cont-modificadores span:nth-child(3)').addEventListener
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }  
-  
 })
 function resetPerfiles() {
   resetColor(flagNegro, informacionBotonesNegro, 'negro');
@@ -4642,19 +4401,15 @@ function eliminarColoresConIntervalo(perfil) {
       almacenSolucionBarniz = []
       almacenTintaBarniz = []
     }
-
     limpiarColores(perfil)
     // Reiniciar variables para futuras ejecuciones
     currentLinea = 0;
     currentIndice = 0;
-
   }
-
 }
 function limpiarColores(perfil) {
   const lineasSolucion = document.querySelectorAll('.lineas-solucion');
   const lineasTinta = document.querySelectorAll('.lineas-tinta');
-
   lineasTinta.forEach(lineas =>{
     lineas.style.backgroundColor=''
     almacenTintaNegro = []
@@ -4663,12 +4418,10 @@ function limpiarColores(perfil) {
     lineat.style.backgroundColor=''
     almacenSolucionNegro = []
   })
-
   const inkLines = document.querySelectorAll(`#footer-${perfil} #footer-1 .divs-grales-tinta-${perfil}`);  
   inkLines.forEach(line => {
     line.style.backgroundColor = ''; // Elimina el color de fondo de cada elemento
   });
-
   const fontLines = document.querySelectorAll(`#footer-${perfil} #footer-2 .divs-grales-solucion-${perfil}`)
   fontLines.forEach(font => {
     font.style.backgroundColor = '';
@@ -4788,60 +4541,46 @@ function actualizarTinta(color) {
     break
   }
 }  
-
 botonesPerfilColor.forEach(boton => {
   boton.addEventListener('click', () => {
     botonesPerfilColor.forEach(b => b.style.backgroundColor = '');
     boton.style.backgroundColor = '#2bf22bc0';
   });
 });
-
 const intervalosColor = new Map();
-
-
 function alternarColor(el1, el2,espera) {
   detenerTodosLosColores(); // ← CLAVE
-
   [el1, el2].forEach(el => {
     if (!el) return;
-
     el.style.backgroundColor = 'rgb(0, 255, 0)';
-
     const intervalo = setInterval(() => {
       el.style.backgroundColor =
         el.style.backgroundColor === 'rgb(0, 255, 0)'
           ? 'transparent'
           : 'rgb(0, 255, 0)';
     }, 100);
-
     intervalosColor.set(el, intervalo);
   });
-
   setTimeout(() => {
     detenerAlternarColor(el1, el2);
   }, espera);
 }
-
 function detenerAlternarColor(...elementos) {
   elementos.forEach(el => {
     if (!intervalosColor.has(el)) return;
-
     clearInterval(intervalosColor.get(el));
     intervalosColor.delete(el);
     el.style.backgroundColor = '';
   });
 }
-
 function detenerAlternarColor(...elementos) {
   elementos.forEach(el => {
     if (!intervalosColor.has(el)) return;
-
     clearInterval(intervalosColor.get(el));
     intervalosColor.delete(el);
     el.style.backgroundColor = '';
   });
 }
-
 function detenerTodosLosColores() {
   for (const [el, intervalo] of intervalosColor) {
     clearInterval(intervalo);
@@ -4849,8 +4588,6 @@ function detenerTodosLosColores() {
   }
   intervalosColor.clear();
 }
-
-
 btnSalir.addEventListener('click', ()=>{ 
   const numeros = document.querySelectorAll('.number'); // Selecciona todos los elementos con la clase .number  
   const algunoConContenido = Array.from(numeros).some(numero => numero.textContent.trim() !== '');
@@ -4862,7 +4599,6 @@ btnSalir.addEventListener('click', ()=>{
     actualizarEstiloThirdJob()
   }
 })      
-
 const coleccionNumeros = [];
 const contenedorResultado = document.querySelector('#resultado-calculadora');
 const spansNumeros = contenedorResultado.querySelectorAll('.number');
@@ -4884,18 +4620,13 @@ const alertaOcho = document.getElementById('alerta-ocho')
 let alertaNueve = document.querySelector('#alerta-nueve')
 const buttsJobs = document.querySelectorAll('.base-datos');
 const botonClientes = document.querySelector('#clientes')
-
 buttsJobs.forEach(boton => {
   let panelUno = document.getElementById('panel-uno')
   let panelDos = document.getElementById('panel-dos')  
-  
-
   //CALCULADORA SIMULADOR
   boton.addEventListener('click', () => {
-    
     restablecerEstilos('calculadora');
     calculadora.classList.remove('subir'); 
-    
     switch(boton.id) {
       case 'clientes':
         if (!esDesktop) buscadorLista.setAttribute('inputmode', 'none');
@@ -4928,7 +4659,6 @@ buttsJobs.forEach(boton => {
         calculadora.classList.remove('move-calculadora-down')
         calculadora.classList.remove('move-calculadora-up-ingreso')
         calculadora.classList.remove('move-calculadora-1')
-
         calculadoraSimulador=false
         if(!calculadoraSimulador){
           irAconsola.style.display='none'
@@ -4950,7 +4680,6 @@ buttsJobs.forEach(boton => {
       break;  
     } 
   });
-
 });
 function actualizarDisplay() {
   document.querySelectorAll('#resultado-calculadora .number, #display-cantidad .cantidad-display').forEach(elemento => elemento.textContent = ''); 
@@ -4961,7 +4690,6 @@ const arriba = document.querySelector('#job-files > div:nth-child(1) > span:nth-
 contenedorClientes.addEventListener('click', (e) => {
   const cliente = e.target.closest('div');
   if (!cliente) return;
-
   arriba.textContent = cliente.textContent;
   contenedorClientes.style.display = 'none';
   restablecerClick(['.butt-perfiles', '.estilo-1']);
@@ -4970,7 +4698,6 @@ contenedorClientes.addEventListener('click', (e) => {
 // LINEAS
 const panelDos = document.getElementById('panel-dos');
 const destinoLinea = document.querySelector('#job-files > .jobs:nth-child(2) > .base-datos:nth-child(2)');
-
 lineaClientes.addEventListener('click', (e) => {
   const linea = e.target.closest('div');
   if (!linea) return;
@@ -4981,7 +4708,6 @@ lineaClientes.addEventListener('click', (e) => {
   panelDos.style.boxShadow = '0 0 12px rgba(63, 224, 197, 0.25), inset 0 1px 3px rgba(0, 0, 0, 0.5)';
   destinoLinea.textContent = linea.textContent;
   lineaClientes.style.display = 'none';
-
   restablecerClick(['.jobs', '.estilo-1']);
   mostrarBarraProgres(33.5, 67);
 });
@@ -4992,75 +4718,52 @@ digitos.forEach((elemento) => {
   e.stopPropagation();
   if(panelControlRGB.style.display==='grid')calculadoraSimulador=true
   if(panelAdministrativo.style.display==='grid')calculadoraSimulador=true
-
+  if(almacenKaizen.style.display==='grid')calculadoraSimulador=true  
   if (!calculadoraSimulador) {  // CALCULADORA HEIDELBERG
     console.warn('Es HEIDELBERG')
-
     digitos.forEach(d => d.style.pointerEvents = 'none');
-
     const spans = document.querySelectorAll('.datos-base');
-
     if ([...spans].every(span => span.textContent.trim() === '')) {
       alertaTres.style.display = 'flex';
       desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
-
     } else if (spans[0].textContent.trim() === '') {
       document.getElementById('alerta-uno').style.display = 'flex';
       desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
-
     } else if (spans[1].textContent.trim() === '') {
       document.getElementById('alerta-dos').style.display = 'flex';
       desactivarClicEnElementos(digitos, botonesPerfilColor, buttsClientes);
-
     } else {
-
       const numero = parseInt(elemento.textContent);
-
       if (!isNaN(numero)) {
-
         if (coleccionNumeros.length >= 10) {
           digitos.forEach(d => d.style.pointerEvents = 'auto');
           return;
         }
-
         coleccionNumeros.push(numero);
-
         spansNumeros.forEach(span => span.textContent = '');
         spansCantidades.forEach(span => span.textContent = '');
-
         for (let i = 0; i < coleccionNumeros.length; i++) {
-
           spansNumeros[
             spansNumeros.length - coleccionNumeros.length + i
           ].textContent = coleccionNumeros[i];
-
           spansCantidades[
             spansCantidades.length - coleccionNumeros.length + i
           ].textContent = coleccionNumeros[i];
         }
       }
-
     }
-
     setTimeout(() => {
       digitos.forEach(d => d.style.pointerEvents = 'auto');
     }, 200);
-
   }else { // CALCULADORA ESPECIAL
     console.warn('NO ES HEIDELBERG')
     if (!lastFocusedInput) return;
-
     const input = lastFocusedInput;
-
     if (elemento.dataset.action === 'backspace') {
-
       const value = input.value ?? '';
       if (!value.length) return;
-
       input.value = value.slice(0, -1);
-
       input.selectionStart = input.selectionEnd = input.value.length;
-
       return; // evitar que continúe la inserción
     }
     const numero = elemento.textContent;
@@ -5070,24 +4773,17 @@ digitos.forEach((elemento) => {
     input.value = input.value + numero;
     input.selectionStart = input.selectionEnd = input.value.length;
     if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
-
       const clamp = (val, min, max) =>
         Math.min(max, Math.max(min, val));
-
       input.value = input.value.replace(/\D/g, '');
-
       if (input.value !== '' && input.id !== 'input-baja' && input.id !== 'doc-empl' && !input.classList.contains('input-especial')) {
         const min = Number(input.min) || 0;
         const max = Number(input.max) || 100;
         input.value = clamp(parseInt(input.value, 10), min, max);
       }
-
     }
-
   }
-
   });
-
 });
 alertaTres.addEventListener('click', ()=> {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
@@ -5097,7 +4793,6 @@ btnSalir.addEventListener('mouseleave', () => {
   detenerAlternarColor(btnEntrar)
   alertaCinco.style.display='none'
 } )
-
 document.getElementById('alerta-seis').children[2].addEventListener('click', () => {
   alertaSeis.classList.add('move-alerta')
   restablecerClick(['.mod-tinta','.div-ctrl','.butt-perfiles', '.butt-selector', '.cabeza', '.estilo-1', '.digit', '.digito']);
@@ -5134,7 +4829,6 @@ document.querySelector('#perfil-existe').addEventListener('click', () => {
     alertaSeis.classList.remove('move-alerta')
     restablecerClick(['.cont-vacio', '.mod-tinta', '.div-ctrl','.base-datos'])
   }, 1000);
-
 }) 
 document.querySelector('#perfil-crear').addEventListener('click', () => {
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
@@ -5192,117 +4886,84 @@ alertaNormal.forEach((alerta) => {
     reactivarClicEnElementos(digitos, buttsClientes);
   });
 });
-
 // BOTON BORRAR CALCULADORA
-
-
-
 const DELETE_INITIAL_DELAY = 400;
 const DELETE_REPEAT_RATE = 70;
-
 let deleteTimeout = null;
 let deleteInterval = null;
-
 document.addEventListener('focusin', (e) => {
   if (e.target.matches('input, textarea')) {
     lastFocusedInput = e.target;
   }
 });
-
 const limpiarBase = () => {
   coleccionNumeros.length = 0;
   actualizarDisplay();
   detenerAlternarColor();
 };
-
 const stopDeleting = () => {
   clearTimeout(deleteTimeout);
   clearInterval(deleteInterval);
-
   deleteTimeout = null;
   deleteInterval = null;
 };
-
 const deleteLastCharacter = (target) => {
-
   const value = target.value ?? target.textContent ?? '';
   if (!value.length) return;
-
   const newValue = value.slice(0, -1);
-
   if ('value' in target) {
     target.value = newValue;
   } else {
     target.textContent = newValue;
   }
-
 };
-
 if (esDesktop) {
-
   botonBorrar.addEventListener('click', (e) => {
     e.preventDefault();
     limpiarBase();
   });
-
 }
-
 if (!esDesktop) {
-
   inputPerfil.setAttribute('readonly', true);
-
   botonBorrar.addEventListener('touchstart', (e) => {
     e.preventDefault();
-
     document.querySelectorAll('.number').forEach(el => {
       el.textContent = '';
     });
-
-
     const target = lastFocusedInput;
     if (!target) return;
-
     // borrar carácter primero
     deleteLastCharacter(target);
-
     // luego limpiar estado interno
     limpiarBase();
-
     // iniciar repetición progresiva
     deleteTimeout = setTimeout(() => {
-
       deleteInterval = setInterval(() => {
         deleteLastCharacter(target);
       }, DELETE_REPEAT_RATE);
-
     }, DELETE_INITIAL_DELAY);
-
   });
-
   botonBorrar.addEventListener('touchend', stopDeleting);
   botonBorrar.addEventListener('touchcancel', stopDeleting);
-
 }
-
-
-
 
 document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
   alertaMSG.style.display = 'none';
-  conteJobTrack.style.display = 'none'
-  document.querySelector('#contenedor-registro').style.display = 'none'
-  calculadora.classList.add('move-calculadora')
+  conteJobTrack.style.display = 'none';
+  document.querySelectorAll('.contenedor-edicion').forEach(el => el.remove());
+  document.querySelector('#contenedor-registro').style.display = 'none';
+  calculadora.classList.add('move-calculadora');
   document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {
-     elemento.style.display = 'block';
-  }) 
-  restablecerClick(['.butt-perfiles']) 
-    setTimeout(() => {          
+    elemento.style.display = 'block';
+  });
+  restablecerClick(['.butt-perfiles']);
+  setTimeout(() => {
     animarColorSecuencia();
   }, 100);
   setTimeout(() => {
     animarSecuenciaPerfiles();
-  }, 200); 
-})
+  }, 200);
+});
 
 // ENTER DE LA CALCULADORA
 btnEntrar.addEventListener('click', () => {  
@@ -5324,7 +4985,6 @@ btnEntrar.addEventListener('click', () => {
         document.querySelector('#abandonar-perfiles').style.display = 'none'
       });  */
         document.querySelector('#abandonar-perfiles').style.display = 'none'
-
       coleccionNumeros.length = 0;        
       document.querySelectorAll('#resultado-calculadora .number').forEach(elemento => elemento.textContent = '');
       calculadora.classList.add('move-calculadora')
@@ -5343,14 +5003,11 @@ btnEntrar.addEventListener('click', () => {
     if(!esDesktop)avanzarFoco();
   }
 });
-
 function estilizarThirdJob() {
   const displays = document.querySelectorAll('.cantidad-display');
-
   // Si todos están vacíos, no hace nada
   const hayTexto = [...displays].some(d => d.textContent.trim() !== '');
   if (!hayTexto) return;
-
   const el = document.querySelector('#third-job > span:nth-child(2)');
   if (el) {
     el.style.background = 'rgb(15, 26, 43)';
@@ -5363,11 +5020,9 @@ function estilizarThirdJob() {
 }
 function limpiarEstiloThirdJob() {
   const displays = document.querySelectorAll('.cantidad-display');
-
   // Si al menos uno tiene texto, no hace nada
   const hayTexto = [...displays].some(d => d.textContent.trim() !== '');
   if (hayTexto) return;
-
   const el = document.querySelector('#third-job > span:nth-child(2)');
   if (el) {
     el.style.background = '';
@@ -5383,30 +5038,22 @@ function actualizarEstiloThirdJob() {
     .some(d => d.textContent.trim() !== '');
   hayTexto ? estilizarThirdJob() : limpiarEstiloThirdJob();
 }
-
 function sumarPorcentaje() {
   // Obtener el valor actual del contador (remover el símbolo '%')
   let porcentajeCurrent = parseInt(contadorTinta.textContent.replace('%', ''), 10);
-
   // Sumar 1 al porcentaje
   porcentajeCurrent = porcentajeCurrent + 1;
-
   // Si el porcentaje supera 100, igualarlo a 100
   if (porcentajeCurrent > 100) {
     porcentajeCurrent = 100;
   }
-
   // Actualizar el texto del contador con el nuevo valor y el símbolo '%'
   contadorTinta.textContent = porcentajeCurrent + '%';
-
   // Para depuración (opcional)
   console.log('Nuevo porcentaje:', porcentajeCurrent + '%');
 }
-
-
 //APLICA A leds, led, grilla
 function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propiedadIII, propiedadIV, propiedadV, propiedadVI, footer, foot){
-  
   // Mapeo de nombres de colores a valores CSS válidos
   const colorMap = {
     negro: 'black',
@@ -5424,14 +5071,11 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
   let displaySolucion = document.querySelector('#ctrl-gral .div-ctrl #solucion-porcentaje');  
   let displayTintaGral = document.querySelector(`#gral-display-${color}`)
   let displaySolucionGral = document.querySelector(`#display-general-${color}`)
-
   console.log('objetoGlobal:', objetoGlobal);
   console.log('almacenObjetos:', almacenObjetos);
   console.log('existe clave:', almacenObjetos[objetoGlobal]);
   console.log('color:', color);
-
   displaySolucion.textContent = almacenObjetos[objetoGlobal][color].nivelAgua.length + '%';
-
   displayTinta.textContent = almacenObjetos[objetoGlobal][color].nivelTinta.length + '%';
   // Primera iteración: Aplicar lógica a `#columna-70`
   for (let i = 1; i <= 22; i++) {
@@ -5460,7 +5104,6 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
     } 
     const lineaKey = `led-${i}`;
     const lineaSigue = rutaEntregaII[lineaKey];
-
     if (lineaSigue) {
       const rutaSigue = document.querySelectorAll(`#control-perfiles #led-${i} .led`);
       if (rutaSigue.length > 0) {
@@ -5488,8 +5131,6 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
       } 
     }
   }  
-
-
   // Cuarta iteración: Aplicar lógica a `#tanque-tinta y tanque general`
   const rutaEntregaIV = almacenObjetos[objetoGlobal][color][propiedadV];
   if (!rutaEntregaIV) {
@@ -5498,11 +5139,9 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
   }
   const rutaClonaTinta = document.querySelectorAll(`#ctrl-gral #tanque-tinta .lineas-tinta`);
   const rutaClonaGralTinta = document.querySelectorAll(`#footer-perfiles #footer-${color} #footer-${footer} .divs-grales-tinta-${color}`);
-
   // ← limpiar todo primero
   rutaClonaTinta.forEach(el => el.style.backgroundColor = '');
   rutaClonaGralTinta.forEach(el => el.style.backgroundColor = '');
-
   const elementosATintear = rutaEntregaIV.length;
   for (let index = rutaClonaTinta.length - 1; index >= rutaClonaTinta.length - elementosATintear && index >= 0; index--) {
     rutaClonaTinta[index].style.backgroundColor = amarillo;
@@ -5510,7 +5149,6 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
   for (let index = rutaClonaGralTinta.length - 1; index >= rutaClonaGralTinta.length - elementosATintear && index >= 0; index--) {
     rutaClonaGralTinta[index].style.backgroundColor = colorCSS;
   }
-
   // Quinta iteración: Aplicar lógica a `#tanque-agua y tanque general`  
   const rutaEntregaV = almacenObjetos[objetoGlobal][color][propiedadVI];
   if (!rutaEntregaV) {
@@ -5519,11 +5157,9 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
   }
   const rutaClonaAgua = document.querySelectorAll(`#ctrl-gral #tanque-solucion .lineas-solucion`);
   const rutaClonaGralAgua = document.querySelectorAll(`#footer-perfiles #footer-${color} #footer-${foot} .divs-grales-solucion-${color}`);
-
   // ← limpiar todo primero
   rutaClonaAgua.forEach(el => el.style.backgroundColor = '');
   rutaClonaGralAgua.forEach(el => el.style.backgroundColor = '');
-
   const elementosAAguar = rutaEntregaV.length;
   for (let index = rutaClonaAgua.length - 1; index >= rutaClonaAgua.length - elementosAAguar && index >= 0; index--) {
     rutaClonaAgua[index].style.backgroundColor = amarillo;
@@ -5531,7 +5167,6 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
   for (let index = rutaClonaGralAgua.length - 1; index >= rutaClonaGralAgua.length - elementosAAguar && index >= 0; index--) {
     rutaClonaGralAgua[index].style.backgroundColor = verdeAgua;
   }
-
   setTimeout(() => {
     displayTintaGral.textContent = almacenObjetos[objetoGlobal][color].nivelTinta.length + '%';
     displayTintaGral.style.top = 87 - (almacenObjetos[objetoGlobal][color].nivelTinta.length) + '%';
@@ -5543,9 +5178,6 @@ function muestraRenderObjetoGlobal(objeto, color, propiedad, propiedadII, propie
     });
   }, 1000);
 }
-
-
-
 function eliminarColores(){
   const lineasSolucion = document.querySelectorAll('.lineas-solucion');
   const lineasTinta = document.querySelectorAll('.lineas-tinta');
@@ -5563,8 +5195,6 @@ function eliminarColores(){
   for (let i = 0; i < lineasLed.length; i++) {
     lineasLed[i].style.backgroundColor = '';
   } 
-
-
 } 
 function desactivarClick(classElements) {
   if (!Array.isArray(classElements)) {
@@ -5584,14 +5214,11 @@ function desactivarClickTemporalmente(classElements, duracion) {
     console.error('Parámetros inválidos. Se espera un array de selectores y una duración en milisegundos.');
     return;
   }
-
   classElements.forEach(selector => {
     const botones = document.querySelectorAll(selector);
-    
     botones.forEach(boton => {
       boton.style.pointerEvents = 'none'; // Desactivar clics
     });
-
     // Reactivar después del tiempo especificado
     setTimeout(() => {
       botones.forEach(boton => {
@@ -5610,23 +5237,18 @@ function bloquearClick(event) {
 function limpiarColoresDeFondo() {
   // Lista de clases a recorrer
   const clases = ['.led-general', '.clase-dos', '.led', '.leds', '.lineas-tinta', '.lineas-solucion'];
-
   // Recorrer cada clase
   clases.forEach(clase => {
     // Seleccionar todos los elementos con la clase actual
     const elementos = document.querySelectorAll(clase);
-
     // Recorrer los elementos seleccionados
     elementos.forEach(elemento => {
       elemento.style.backgroundColor = ''; // Eliminar el color de fondo
     });
   });
-
   console.log('Colores de fondo eliminados para las clases:', clases.join(', '));
 }
 let inputBuscar = document.getElementById('input-buscar-perfil');
-
-
 listaClientes.addEventListener('mouseleave', () => {
   setTimeout(() => {
     const menuContextual = document.getElementById('menu-contextual');
@@ -5638,9 +5260,7 @@ listaClientes.addEventListener('mouseleave', () => {
     restablecerClick(['.base-datos']);
   }, 100);
 });
-
 const jobs = document.querySelectorAll('.jobs');
-
 function mostrarNombresDeObjetos() {
   flagAplicacion = true;
   if(interfazColor.style.display==='flex'){
@@ -5655,36 +5275,28 @@ function mostrarNombresDeObjetos() {
   if(getComputedStyle(conteJobTrack).display === 'flex'){
     listaColores.classList.add('posicion-simulador')
   }
-  
   const almacenJSON = localStorage.getItem('coloresRegistrados');
   if (!almacenJSON) {
     console.log("No se encontraron objetos almacenados en localStorage.");
     return;
   }
-
   const almacenRecuperado = JSON.parse(almacenJSON);
   const almacenCapitalizado = {};
-
   Object.keys(almacenRecuperado).forEach(nombreObjeto => {
     const nombreCapitalizado = capitalizarTexto(nombreObjeto);
     almacenCapitalizado[nombreCapitalizado] = almacenRecuperado[nombreObjeto];
   });
-
   localStorage.setItem('coloresRegistrados', JSON.stringify(almacenCapitalizado));
-
   // CAMBIO 1: vaciar solo los items (no toda la lista, para no borrar el buscador)
   const contenedorItems = document.getElementById('items-colores');
   contenedorItems.innerHTML = '';
-
   // Al abrir la lista, el buscador siempre empieza limpio
   if (buscadorLista) buscadorLista.value = '';
   const sinResultadosLista = listaColores.querySelector('.sin-resultados-lista');
   if (sinResultadosLista) sinResultadosLista.style.display = 'none';
-
   // ✅ Fix 1 — Eliminar menuContextual anterior si ya existe
   const menuAnterior = document.getElementById('menu-contextual');
   if (menuAnterior) menuAnterior.remove();
-
   // ✅ Fix 1 — Crear menuContextual una sola vez
   const menuContextual = document.createElement('div');
   menuContextual.id = 'menu-contextual';
@@ -5694,10 +5306,8 @@ function mostrarNombresDeObjetos() {
     const menuItem = document.createElement('div');
     menuItem.className = 'opcion';
     menuItem.textContent = opcion;
-
     menuItem.addEventListener('click', (event) => {
       menuContextual.style.display = 'none';
-
       if (opcion === 'Editar') {
         editarObjeto(menuContextual.dataset.nombreObjeto);
       } else if (opcion === 'Filtrar') {
@@ -5707,20 +5317,15 @@ function mostrarNombresDeObjetos() {
         eliminarObjeto(menuContextual.dataset.nombreObjeto);
       }
     });
-
     menuContextual.appendChild(menuItem);
-
   });
-
   // ✅ Fix 2 — Remover listeners anteriores antes de agregar nuevos
   document.removeEventListener('contextmenu', bloquearMenuPersonalizado);
   document.addEventListener('contextmenu', bloquearMenuPersonalizado);
-
   // ✅ Fix 2 — Usar una función nombrada para poder removerla
   const ocultarMenu = () => menuContextual.style.display = 'none';
   document.removeEventListener('click', ocultarMenu);
   document.addEventListener('click', ocultarMenu);
-
   Object.keys(almacenCapitalizado).forEach(nombreCapitalizado => {  
     const nuevoDiv = document.createElement('div');
     nuevoDiv.className = 'cliente-item';
@@ -5731,7 +5336,6 @@ function mostrarNombresDeObjetos() {
       const panelUno = document.getElementById('panel-uno');
       const perfilador = document.querySelector('#perfiles-color');
       blurOverlay.style.display='none'
-
       creaNombre.value = nombreCapitalizado;         
       const nombreCliente = document.querySelector('.nombre-cliente');
       nombreCliente.textContent = nombreCapitalizado;
@@ -5744,11 +5348,9 @@ function mostrarNombresDeObjetos() {
       objetoGlobal = nombreCapitalizado;
       console.log('OBJETO GLOBAL :', objetoGlobal);
       listaColores.style.display = 'none';
-
       if (!perfilador || getComputedStyle(perfilador).display === 'none') {
         mostrarBarraProgres(0.1, 33.5);
       }
-
       const btn = document.querySelector('#btn-execute');
       function parpadearBoton(elemento, duracion = 1000, intervalo = 50) {
         let encendido = false;
@@ -5770,52 +5372,40 @@ function mostrarNombresDeObjetos() {
       }
       parpadearBoton(btn);
     }
-
     nuevoDiv.addEventListener('contextmenu', (event) => {
       event.preventDefault();
       menuContextual.style.display = 'block';
       menuContextual.style.visibility = 'hidden';
-
       const menuAltura = menuContextual.offsetHeight;
       const menuAnchura = menuContextual.offsetWidth;
       const alturaVentana = window.innerHeight;
       const anchoVentana = window.innerWidth;
-
       let posX = event.pageX;
       let posY = event.pageY;
-
       if (posX + menuAnchura > anchoVentana) posX = anchoVentana - menuAnchura - 10;
       if (posY + menuAltura > alturaVentana) posY = alturaVentana - menuAltura - 10;
-
       menuContextual.style.left = `${posX}px`;
       menuContextual.style.top = `${posY}px`;
       menuContextual.style.visibility = 'visible';
       menuContextual.dataset.nombreObjeto = nombreCapitalizado;
     });  
-    
     nuevoDiv.addEventListener('click', manejarSeleccionItem);   
-
     // CAMBIO 2: las filas se agregan al contenedor nuevo
     contenedorItems.appendChild(nuevoDiv);
   });
-
   // ✅ Fix 3 — Listeners del menuContextual solo una vez
   menuContextual.addEventListener('mouseover', () => {
     listaColores.style.display = 'block';
     menuContextual.style.display = 'block';
   });
-
   menuContextual.addEventListener('mouseleave', () => {
     menuContextual.style.display = 'none';
   }); 
-
   listaColores.addEventListener('mouseleave', () => {
     // CAMBIO 3: si estás escribiendo en el buscador de la lista, no ocultar
     if (document.activeElement === document.getElementById('buscar-color-lista')) return;
-
     // Si el buscador anterior está en uso, no cierres nada
     if (inputBuscar && inputBuscar.style.display !== 'none' && document.activeElement === inputBuscar) return;
-
     listaColores.style.display = 'none';
     if (inputBuscar) inputBuscar.style.display = 'none';
     menuContextual.style.display = 'none';
@@ -5823,16 +5413,15 @@ function mostrarNombresDeObjetos() {
     blurOverlay.style.display = 'none';
   });
   console.log('Nombres de objetos mostrados en lista-clientes:', Object.keys(almacenCapitalizado));      
-    
   cortina.classList.remove('overlayRRHH')    
 }
-
 function buscarPerfil() {
   desactivarClick(['.cliente-item']);
-
   if (!inputBuscar) {
     inputBuscar = document.createElement('input');
+    inputBuscar.id = 'input-filtrar'
     inputBuscar.type = 'text';
+    inputBuscar.setAttribute('inputmode', 'none');
     inputBuscar.placeholder = 'Buscar perfil...';
     Object.assign(inputBuscar.style, {
       position: 'absolute',
@@ -5849,8 +5438,10 @@ function buscarPerfil() {
       width: '17vw',
     });
     document.body.appendChild(inputBuscar);
-
     // Se registra UNA sola vez
+    inputBuscar.addEventListener('blur', () => {
+      hideKeyboard()
+    }) 
     inputBuscar.addEventListener('input', () => {
       const texto = inputBuscar.value.trim().toLowerCase();
       document.querySelectorAll('.cliente-item').forEach(item => {
@@ -5860,7 +5451,6 @@ function buscarPerfil() {
     inputBuscar.addEventListener('focusin', () => {
       showKeyboard(-4)
     });   
-
     inputBuscar.addEventListener('mouseleave', () => {
       if (inputBuscar.value.trim() === '') {
         inputBuscar.style.display = 'none';
@@ -5868,16 +5458,12 @@ function buscarPerfil() {
       }
     });
   }
-
   // Reinicia el filtro anterior
   document.querySelectorAll('.cliente-item').forEach(item => {
     item.style.display = 'block';
   });
-
   inputBuscar.value = '';
   inputBuscar.style.display = 'block';
-  inputBuscar.focus();
-
   // Cierra el buscador al hacer clic fuera
   setTimeout(() => {
     const ocultarInput = (evento) => {
@@ -5890,7 +5476,6 @@ function buscarPerfil() {
     restablecerClick(['.cliente-item']);
   }, 500);
 }
-
 function eliminarObjeto(nombreObjeto) {
   document.getElementById('panel-uno').textContent = '';
   document.getElementById('panel-uno').style.backgroundColor=''
@@ -5898,30 +5483,23 @@ function eliminarObjeto(nombreObjeto) {
   document.querySelectorAll('.cliente-item').forEach(item => {
     item.style.filter = 'blur(15px)';
   });
-
   document.getElementById('alerta-nueve')?.remove();
-
   const divEliminacion = document.createElement('div');
   divEliminacion.id = 'alerta-nueve';
   document.body.appendChild(divEliminacion);
-
   // Crear elementos de la alerta
   const spanAnuncio = document.createElement('span');
   const nombreElemento = document.createElement('span');
   const spanConfirmar = document.createElement('button');
   const spanAbandonar = document.createElement('button');
-
   spanAnuncio.id = 'actual-nombre';
   spanAnuncio.textContent = 'Se eliminará definitivamente el perfil :'; 
-
   nombreElemento.id = 'name-span';
   nombreElemento.className =  'span-nueve'
   nombreElemento.textContent = `${nombreObjeto}`;
-
   spanConfirmar.textContent = 'Eliminar';
   spanConfirmar.id = 'perfil-eliminar';
   spanConfirmar.className =  'nueve-span'
-
   spanAbandonar.textContent = 'Abandonar'
   spanAbandonar.id = 'perfil-abandonar'
   spanAbandonar.className = 'nueve-span'
@@ -5929,14 +5507,10 @@ function eliminarObjeto(nombreObjeto) {
   divEliminacion.appendChild(nombreElemento);
   divEliminacion.appendChild(spanConfirmar);   
   divEliminacion.appendChild(spanAbandonar);
-
-  
   Object.assign(divEliminacion.style, {
     display: 'grid'
   });
-
   // Evento para confirmar la eliminación
-
   spanConfirmar.addEventListener('click', (e) => {
     e.stopPropagation();
     divEliminacion.remove();
@@ -5945,7 +5519,6 @@ function eliminarObjeto(nombreObjeto) {
     document.querySelectorAll('.cliente-item').forEach(item => {
       item.style.filter = 'none';
     });
-
     if (eliminado) {
       const aviso = document.querySelector('.alerta-botones');
       aviso.style.display = 'flex';
@@ -5953,143 +5526,126 @@ function eliminarObjeto(nombreObjeto) {
       aviso.style.left = '37vw';
       aviso.textContent = `El perfil : ${nombreObjeto} ha sido eliminado exitosamente.`;
       listaColores.style.display='none'
-
     }
   });
-
   spanAbandonar.addEventListener('click', (e) => {
     e.stopPropagation();
-    
     restablecerClick(['.cliente-item']);
     document.querySelectorAll('.cliente-item').forEach(item => {
       item.style.filter = 'none';
     });
     divEliminacion.style.display = 'none';
   });
-
   desactivarClickTemporalmente(['.nueve-span'], 500);
 }
-
-
 function eliminarPerfil(nombre) {
   // 1. Borrar de localStorage
   const colores = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
-
   if (!(nombre in colores)) {
     console.warn('No existe en coloresRegistrados:', nombre);
     return false;
   }
-
   delete colores[nombre];
   localStorage.setItem('coloresRegistrados', JSON.stringify(colores));
-
   // 2. Actualizar la variable en memoria
   almacenObjetos = colores;
-
   // 3. Quitar el item de la lista en pantalla
   document.querySelectorAll('.cliente-item').forEach(item => {
     if (item.textContent.trim() === nombre) item.remove();
   });
-
   return true;
 }
 
 function editarObjeto(nombreObjeto) {
-  const spanAviso = document.querySelector('#span-nombre');
+  // Evita contenedores duplicados u huérfanos
+  document.querySelectorAll('.contenedor-edicion').forEach(el => el.remove());
 
+  const spanAviso = document.querySelector('#span-nombre');
   // Input con el nombre actual
   const inputNuevoNombre = document.createElement('input');
   inputNuevoNombre.type = 'text';
-  if (!esDesktop){
+  if (!esDesktop) {
     inputNuevoNombre.setAttribute('inputmode', 'none');
-    showKeyboard(-4)
-  } 
+    inputNuevoNombre.addEventListener('focusin', () => {
+      showKeyboard(-4);
+    });
+    inputNuevoNombre.addEventListener('blur', () => {
+      hideKeyboard();
+    });
+  }
   inputNuevoNombre.value = nombreObjeto;
   inputNuevoNombre.id = 'input-edicion';
-
   // Botones
   const botonConfirmar = document.createElement('button');
   botonConfirmar.textContent = 'Guardar';
   botonConfirmar.className = 'edicion-span';
-
   const botonSalir = document.createElement('button');
   botonSalir.textContent = 'Salir';
   botonSalir.className = 'edicion-span';
-
   // Contenedor temporal de edición
   const contenedorEdicion = document.createElement('div');
   contenedorEdicion.classList.add('contenedor-edicion');
   contenedorEdicion.append(inputNuevoNombre, botonConfirmar, botonSalir);
-
-  // Cambio 1: en body (antes: listaClientes) y con posición propia,
-  // para que el mouseleave de la lista no lo oculte
+  // En body y con posición propia, para que el mouseleave de la lista no lo oculte
   document.body.appendChild(contenedorEdicion);
   Object.assign(contenedorEdicion.style, {
     display: 'grid',
     position: 'fixed',
-    width:'50%',
+    width: '50%',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     zIndex: '9900'
   });
 
-  /* inputNuevoNombre.focus(); */
+  // Enfocar una vez el input ya está en el DOM
+  if (!esDesktop) setTimeout(() => inputNuevoNombre.focus(), 100);
 
-  // Cambio 2: listener de Guardar reescrito
+  // Guardar
   botonConfirmar.addEventListener('click', (e) => {
     e.stopPropagation();
-
     const nuevoNombre = capitalizarTexto(inputNuevoNombre.value.trim());
-
     if (!nuevoNombre) {
       saltarAlerta('El perfil debe tener un nombre', 'perfilesColor');
       return;
     }
-
     // Mismo nombre: no hay nada que guardar
     if (nuevoNombre === nombreObjeto) {
       contenedorEdicion.remove();
       return;
     }
-
     const colores = JSON.parse(localStorage.getItem('coloresRegistrados')) || {};
-
     if (nuevoNombre in colores) {
       alertaOcho.style.display = 'flex';
       alertaOcho.style.zIndex = 5000;
       alertaOcho.textContent = 'Ya existe un perfil con ese nombre';
       return;
     }
-
     if (!(nombreObjeto in colores)) {
       console.warn('No existe en coloresRegistrados:', nombreObjeto);
       return;
     }
-
     // Reconstruye el objeto cambiando solo la clave, sin alterar el orden
     const actualizado = {};
     Object.keys(colores).forEach(k => {
       actualizado[k === nombreObjeto ? nuevoNombre : k] = colores[k];
     });
     localStorage.setItem('coloresRegistrados', JSON.stringify(actualizado));
-
     contenedorEdicion.remove();
     mostrarNombresDeObjetos();
-
     if (spanAviso) spanAviso.textContent = nuevoNombre;
     alertaSiete.style.display = 'grid';
     alertaSiete.style.zIndex = 5000;
   });
 
-  // Salir: queda igual que antes
+  // Salir
   botonSalir.addEventListener('click', (e) => {
     e.stopPropagation();
     document.querySelectorAll('.cliente-item').forEach(item => {
       item.style.filter = 'none';
     });
     const alertas = document.querySelectorAll('.cerrar');
-    contenedorEdicion.style.display = 'none';
+    contenedorEdicion.remove(); // antes: display = 'none'
     alertas.forEach(alerta => {
       alerta.style.display = 'none';
     });
@@ -6104,11 +5660,9 @@ function editarObjeto(nombreObjeto) {
 
 function ordenarListaClientes() {
   const elementos = Array.from(listaClientes.children);
-  
   elementos.sort((a, b) => {
     return a.textContent.localeCompare(b.textContent, 'es', { sensitivity: 'base' });
   });
-
   // Reordenar los elementos en el DOM
   elementos.forEach(elemento => listaClientes.appendChild(elemento));
 }
@@ -6152,15 +5706,12 @@ function consultarCapacidadAlamcenamiento() {
       totalUsed += ((localStorage[key].length + key.length) * 2); // Cada carácter ocupa 2 bytes
     }
   }
-
   // Capacidad total estimada
   const totalCapacity = 5 * 1024 * 1024; // 5 MB en bytes (ajustar si sabes la capacidad específica de tu navegador)
-
   // Mostrar resultados
   console.log(`Uso actual: ${(totalUsed / 1024).toFixed(2)} KB`);
   console.log(`Capacidad total: ${(totalCapacity / 1024).toFixed(2)} KB`);
   console.log(`Espacio disponible: ${((totalCapacity - totalUsed) / 1024).toFixed(2)} KB`);
-
   const flagsEstado = {
     flagNegro,
     flagCyan,
@@ -6169,12 +5720,9 @@ function consultarCapacidadAlamcenamiento() {
     flagEspecial,
     flagBarniz
   };
-  
   // Muestra el estado actual de las banderas en la consola
   console.log("Estado de las banderas:", flagsEstado);
-  
 }
-
 function traerAlmacenObjetos() {
   console.clear()
   // Recuperar el almacenamiento desde localStorage
@@ -6185,7 +5733,6 @@ function traerAlmacenObjetos() {
       almacenObjetos = JSON.parse(datosGuardados);
       console.log('almacenObjetos CARGADO:', almacenObjetos);
       // Mostrar la composición detallada del objeto
-
     } catch (error) {
       console.error('Error al parsear almacenObjetos desde localStorage:', error);
       almacenObjetos = {}; // En caso de error, inicializar vacío
@@ -6199,7 +5746,6 @@ function traerAlmacenObjetos() {
   console.log('objetoGlobal:', objetoGlobal);
   console.log('nombreProvisional:', nombreProvisional);
 }
-
 function moverFormulario() {
   const formulario = document.querySelector('#formulario-perfiles'); 
   formulario.style.display='none' 
@@ -6241,17 +5787,14 @@ function ocultarElemento(selectores) {
 function mostrarElemento(selectores) {
   const elementos = document.querySelectorAll(selectores); // Selecciona los elementos basados en el parámetro
   if (elementos.length === 0) return; // Si no hay elementos, salir
-
   elementos.forEach(elemento => {
     elemento.style.display = ''; // Asegura que sea visible antes de animar
     elemento.style.opacity = '0'; // Inicia en 0 para el efecto de aparición
   });
-
   let opacidad = 0;
   const duracion = 500; // 0.5 segundos
   const intervalo = 50;
   const incremento = intervalo / duracion;
-
   const animacion = setInterval(() => {
     opacidad += incremento;
     elementos.forEach(elemento => {
@@ -6263,9 +5806,7 @@ function mostrarElemento(selectores) {
     }
   }, intervalo);
 }
-
 document.querySelectorAll('.section').forEach((btn, index) => {
-
   btn.addEventListener('mouseover', () => {
     let buttBlur = document.querySelectorAll('.btn-sections')[index]
     if (buttBlur) {
@@ -6273,7 +5814,6 @@ document.querySelectorAll('.section').forEach((btn, index) => {
       btn.style.border = '1px solid rgb(111,111,111)'
     }
   })
-
   btn.addEventListener('mouseout', () => {
     let buttBlur = document.querySelectorAll('.btn-sections')[index]
     if (buttBlur) {
@@ -6282,67 +5822,51 @@ document.querySelectorAll('.section').forEach((btn, index) => {
     }
   })
 })
-
 // mueve botones mezcladores DA COLOR NARANJA Y COLOR A PANTALLAS RGB Y CMYK
 let values = { C: 0, M: 0, Y: 0, K: 0, A: 0, R: 0, G: 0, B: 0, W:0 };
 let red = 0, green = 0, blue = 0; 
 // ejecuta la función de inicialización de los sliders (initSliderCYK) para cada canal de color
-
-
 function initSliderCMYK(trackId, spanId, channel) {
   const track = document.getElementById(trackId);
   const thumb = track.querySelector(".slider-thumb-cmyk");
   const span = document.getElementById(spanId);
-
   let dragging = false;
-
   const updateFromClientY = (clientY) => {
     const rect = track.getBoundingClientRect();
     const offset = rect.bottom - clientY;
-
     const porcentaje = Math.max(
       0,
       Math.min(100, (offset / rect.height) * 100)
     );
-
     const pos =
       (porcentaje / 100) * (rect.height - thumb.offsetHeight);
-
     thumb.style.bottom = `${pos}px`;
     track.style.background = `linear-gradient(to top, #b8b8b8 ${porcentaje}%, #2e2e2e ${porcentaje}%)`;
-
     values[channel] = Math.round(porcentaje);
     if (span) span.textContent = `${values[channel]}%`;
-
     updateColorCMYK(channel);
   };
-
   const start = (e) => {
     e.preventDefault();
     dragging = true;
     thumb.setPointerCapture(e.pointerId);
     updateFromClientY(e.clientY);
   };
-
   const move = (e) => {
     if (!dragging) return;
     updateFromClientY(e.clientY);
   };
-
   const end = () => {
     dragging = false;
   };
-
   // Thumb
   thumb.addEventListener("pointerdown", start);
   thumb.addEventListener("pointermove", move);
   thumb.addEventListener("pointerup", end);
   thumb.addEventListener("pointercancel", end);
-
   // Track (permite tocar cualquier punto)
   track.addEventListener("pointerdown", start);
 }
-
 // Convierte los valores CMYKW a RGB y actualiza el color en 'colorBox' y los valores en labels e inputs.
 function updateColorCMYK(channel) { // CMYK
   let rgb = cmykwToRgb(values.C, values.M, values.Y, values.K, values.A);
@@ -6357,7 +5881,6 @@ function updateColorCMYK(channel) { // CMYK
   document.getElementById("input-y").value = values.Y.toFixed(0);
   document.getElementById("input-k").value = values.K.toFixed(0);
   document.getElementById("input-a").value = values.A.toFixed(0);
-
   // Asegurar que objetoGlobalColor y su estructura existan
   if (!objetoGlobalColor) {
     objetoGlobalColor = { CMYK: {} };
@@ -6385,29 +5908,22 @@ function normalizeCMYK(c, m, y, k) { // CMYK
 // Anima el movimiento de los sliders hasta un porcentaje destino en un tiempo determinado.
 function animarSlidersCMYK(sliderConfigs, duracion = 1000) {
   let startTime = null;
-
   function step(timestamp) {
     if (!startTime) startTime = timestamp;
     let progress = (timestamp - startTime) / duracion;
     if (progress > 1) progress = 1;
-
     sliderConfigs.forEach(({ trackId, spanId, channel, porcentajeDestino }) => {
       let track = document.getElementById(trackId);
       let thumb = track.querySelector(".slider-thumb-cmyk");
       let span = document.getElementById(spanId);
       let rect = track.getBoundingClientRect();
-      
       // Cálculo de la posición final según el porcentaje destino
       let endValue = (porcentajeDestino / 100) * (rect.height - thumb.offsetHeight);
       let newValue = progress * endValue;
-
       thumb.style.bottom = `${newValue}px`;
       let porcentaje = (newValue / (rect.height - thumb.offsetHeight)) * 100;
-
       track.style.background = `linear-gradient(to top, #b8b8b8 ${porcentaje}%, #2e2e2e ${porcentaje}%)`;
-
       values[channel] = Math.round(porcentaje); // ✅ Ahora W se mantiene en escala 0-100 como los demás      
-
       span.textContent = Math.round(values[channel]); 
     });
     updateColorCMYK();
@@ -6417,94 +5933,72 @@ function animarSlidersCMYK(sliderConfigs, duracion = 1000) {
   }
   requestAnimationFrame(step);
 }
-
 function initSliderRGB(trackId, spanId, channel) {
   const track = document.getElementById(trackId);
   const thumb = track.querySelector(".slider-thumb-rgb");
   const span = document.getElementById(spanId);
-
   let dragging = false;
-
   const updateFromClientY = (clientY) => {
     const rect = track.getBoundingClientRect();
     const offset = rect.bottom - clientY;
-
     const porcentaje = Math.max(0, Math.min(100, (offset / rect.height) * 100));
     const pos = (porcentaje / 100) * (rect.height - thumb.offsetHeight);
-
     thumb.style.bottom = `${pos}px`;
     track.style.background = `linear-gradient(to top, #b8b8b8 ${porcentaje}%, #2e2e2e ${porcentaje}%)`;
-
     values[channel] = Math.round((porcentaje / 100) * 255);
     span.textContent = values[channel];
-
     updateColorRGB();
   };
-
   const start = (e) => {
     e.preventDefault();
     dragging = true;
     thumb.setPointerCapture(e.pointerId);
     updateFromClientY(e.clientY);
   };
-
   const move = (e) => {
     if (!dragging) return;
     updateFromClientY(e.clientY);
   };
-
   const end = () => {
     dragging = false;
   };
-
   // Thumb
   thumb.addEventListener("pointerdown", start);
   thumb.addEventListener("pointermove", move);
   thumb.addEventListener("pointerup", end);
   thumb.addEventListener("pointercancel", end);
-
   // Track (mejora UX: tocar cualquier punto del track)
   track.addEventListener("pointerdown", start);
 }
-
 function updateColorRGB() {
   let rgba = `rgba(${values.R}, ${values.G}, ${values.B}, ${values.W / 255})`;
   document.getElementById("colorDisplay").style.backgroundColor = rgba;
-
   document.getElementById("c-span-rgb").textContent = values.R;
   document.getElementById("m-span-rgb").textContent = values.G;
   document.getElementById("y-span-rgb").textContent = values.B;
   document.getElementById("w-span-rgb").textContent = (values.W / 255).toFixed(2);
-
   document.getElementById("input-r").value = values.R;
   document.getElementById("input-g").value = values.G;
   document.getElementById("input-b").value = values.B;
   document.getElementById("input-w").value = values.W;
 }
-
 function animarSlidersRGB(sliderConfigs, duracion = 1000) {
   let startTime = null;
-
   function step(timestamp) {
     if (!startTime) startTime = timestamp;
     let progress = (timestamp - startTime) / duracion;
     if (progress > 1) progress = 1;
-
     sliderConfigs.forEach(({ trackId, spanId, channel, porcentajeDestino }) => {
       let track = document.getElementById(trackId);
       let thumb = track.querySelector(".slider-thumb-rgb");
       let span = document.getElementById(spanId);
       let rect = track.getBoundingClientRect();
-
       // 🔹 W ahora usa el mismo cálculo que los demás
       let endValue = (porcentajeDestino / 255) * (rect.height - thumb.offsetHeight);
       let newValue = progress * endValue;
-
       thumb.style.bottom = `${newValue}px`;
-
       let porcentaje = (newValue / (rect.height - thumb.offsetHeight)) * 100;
       track.style.background = `linear-gradient(to top, #b8b8b8 ${porcentaje}%, #2e2e2e ${porcentaje}%)`;
-
       values[channel] = Math.round((porcentaje / 100) * 255);
       span.textContent = values[channel];
     });
@@ -6521,7 +6015,6 @@ document.getElementById("animate-btn").addEventListener("click", () => {
   let gValue = parseInt(document.getElementById("input-g").value) || 0;
   let bValue = parseInt(document.getElementById("input-b").value) || 0;
   let wValue = parseInt(document.getElementById("input-w").value) || 0;
-
   animarSlidersRGB([
     { trackId: "slid-rojo-rgb", spanId: "c-span-rgb", channel: "R", porcentajeDestino: rValue },
     { trackId: "slid-verde-rgb", spanId: "m-span-rgb", channel: "G", porcentajeDestino: gValue },
@@ -6561,7 +6054,6 @@ document.getElementById("animate-btn-cmyk").addEventListener("mouseup", () => {
   let yValue = parseInt(document.getElementById("input-y").value) || 0;
   let kValue = parseInt(document.getElementById("input-k").value) || 0;
   let oValue = parseInt(document.getElementById("input-a").value) || 0;
-
   animarSlidersCMYK([
     { trackId: "slid-cian", spanId: "c-span", channel: "C", porcentajeDestino: cValue },
     { trackId: "slid-magenta", spanId: "m-span", channel: "M", porcentajeDestino: mValue },
@@ -6572,25 +6064,19 @@ document.getElementById("animate-btn-cmyk").addEventListener("mouseup", () => {
 });
 function animarColorSecuencia() {
   desactivarClick(['.butt-botones']);
-
   const botones = document.querySelectorAll(".btn-respaldo"); // Selecciona los botones de perfil  
-
   if (botones.length === 0) return;
-
   let r = 0, g = 255, b = 0; // Inicia en verde
   let fase = 0; // Controla las fases del ciclo
   let tiempoInicio = Date.now(); // Guarda el tiempo de inicio
-
   function actualizarColor() {
     botones.forEach(btn => {
       btn.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
     });
   }
-
   function iniciarTransicion(objetivoR, objetivoG, objetivoB, siguienteFase) {
     const intervalo = setInterval(() => {
       let tiempoTranscurrido = Date.now() - tiempoInicio;
-
       // Si han pasado 2000ms, forzar color verde y detener animación
       if (tiempoTranscurrido >= 2000) {
         clearInterval(intervalo);
@@ -6600,13 +6086,10 @@ function animarColorSecuencia() {
         actualizarColor();
         return;
       }
-
       if (r !== objetivoR) r += (r < objetivoR) ? 51 : -51;
       if (g !== objetivoG) g += (g < objetivoG) ? 51 : -51;
       if (b !== objetivoB) b += (b < objetivoB) ? 51 : -51;
-
       actualizarColor();
-
       if (r === objetivoR && g === objetivoG && b === objetivoB) {
         clearInterval(intervalo);
         setTimeout(() => {
@@ -6616,11 +6099,9 @@ function animarColorSecuencia() {
       }
     }, 1);
   }
-
   function ejecutarFase() {
     // Si ya pasaron 2000ms, no continuar con más transiciones
     if (Date.now() - tiempoInicio >= 1000) return;
-
     switch (fase) {
       case 0: iniciarTransicion(255, 255, 255, 1); break; // Verde → Blanco
       case 1: iniciarTransicion(255, 255, 0, 2); break;  // Blanco → Amarillo
@@ -6632,7 +6113,6 @@ function animarColorSecuencia() {
       case 7: iniciarTransicion(0, 255, 0, 0); break; // Blanco → Verde (reinicio)
     }
   }
-
   ejecutarFase(); // Iniciar la secuencia
   setTimeout(() => {
     botones.forEach(btn => {
@@ -6643,38 +6123,27 @@ function animarColorSecuencia() {
 }
 function animarSecuenciaPerfiles() {
   const perfilesFondo = document.querySelectorAll(".btn-respaldo");
-
-
   if (botonesPerfilColor.length === 0) return; // Si no hay elementos, no hacer nada
-
   let indice = 0;
-
   function cambiarColor() {
     if (indice >= botonesPerfilColor.length) return; // Si ya pasó por todos, detener ejecución
-
     const boton = botonesPerfilColor[indice]; // Selecciona el botón actual
     const botonFondo = perfilesFondo[indice]
     const colorOriginal = boton.style.backgroundColor; // Guarda su color original
-
     boton.style.backgroundColor = '#2bf22bc0'; // Lo cambia a verde
     botonFondo.style.backgroundColor = '#2bf22bc0'; // Lo cambia a verde
-
     setTimeout(() => {
       boton.style.backgroundColor = colorOriginal; // Lo regresa a su color original
       indice++; // Pasa al siguiente elemento
-
       cambiarColor(); // Llama a la función para el siguiente botón
     }, 145);
-
   }
-
   cambiarColor(); // Inicia la secuencia
 }
 function colorearRespaldos() {
   const respaldos = document.querySelectorAll('.btn-respaldo');
   const frentes   = botonesPerfilColor;
   if (!respaldos.length) return;
-
   // 1. Quitar color de fondo en ambos grupos
   respaldos.forEach(el => {
     el.style.backgroundColor = '';
@@ -6683,7 +6152,6 @@ function colorearRespaldos() {
   frentes.forEach(el => {
     el.style.backgroundColor = '';
   });
-
   // 2. Tras 100 ms aplicar verde a ambos grupos con intervalo de 0.1 s
   let i = 0;
   setTimeout(() => {
@@ -6702,7 +6170,6 @@ function colorearRespaldos() {
 function initDrag(elemento) {
   let isDragging = false;
   let offsetX, offsetY;
-
   elemento.addEventListener("mousedown", (e) => {
     if (e.target === elemento) {
       isDragging = true;
@@ -6710,18 +6177,15 @@ function initDrag(elemento) {
       offsetY = e.clientY - elemento.offsetTop;
     }
   });
-
   document.addEventListener("mousemove", (e) => {
     if (isDragging) {
       elemento.style.left = `${e.clientX - offsetX}px`;
       elemento.style.top = `${e.clientY - offsetY}px`;
     }
   });
-
   document.addEventListener("mouseup", () => {
     isDragging = false;
   });
-
   elemento.querySelectorAll("button, input[type='range']").forEach((btn) => {
     btn.addEventListener("mousedown", (e) => {
       e.stopPropagation();
@@ -6739,10 +6203,8 @@ function cmykFlotante() { // botones rojos
   document.querySelectorAll('.cmyRgb-group, .lbls-cmyRgb').forEach(el => {
     el.style.display = 'block';
   });     
-
   let padreControles = document.querySelector("#container-slider");
   let perfilador = document.querySelector('#perfiles-color')
-
   mezcladorColor.style.display = "grid";
   padreControles.style.display = 'grid';
   mezcladorColor.style.zIndex = 200
@@ -6759,11 +6221,9 @@ function rgbFlotante() { // botones rojos
    document.querySelectorAll('.btn-opcion, .lbls-cmyRgb').forEach(el => {
     el.style.display = 'block';
   });      
-
   let padreRgb = document.querySelector("#padre-rgb");
   let padreControles = document.querySelector("#padre-controles");
   let perfilador = document.querySelector('#perfiles-color')
-
   padreRgb.style.display = "grid";
   padreControles.style.display = 'grid';
   padreRgb.style.zIndex = 200
@@ -6773,7 +6233,6 @@ function initResize(contenedor, esquina) {
   const MIN_WIDTH = 200;
   const MIN_HEIGHT = 200;
   let isResizing = false, offsetX, offsetY;
-
   esquina.addEventListener("mousedown", (e) => {
     isResizing = true;
     offsetX = e.clientX;
@@ -6781,13 +6240,10 @@ function initResize(contenedor, esquina) {
     document.addEventListener("mousemove", resize);
     document.addEventListener("mouseup", stopResize);
   });
-
   function resize(e) {
     if (!isResizing) return;
-
     let nuevoAncho = e.clientX - contenedor.getBoundingClientRect().left;
     let nuevoAlto = e.clientY - contenedor.getBoundingClientRect().top;
-
     if (nuevoAncho >= MIN_WIDTH) {
       contenedor.style.width = `${nuevoAncho}px`;
     }
@@ -6795,7 +6251,6 @@ function initResize(contenedor, esquina) {
       contenedor.style.height = `${nuevoAlto}px`;
     }
   }
-
   function stopResize() {
     isResizing = false;
     document.removeEventListener("mousemove", resize);
@@ -6805,34 +6260,27 @@ function initResize(contenedor, esquina) {
 function resetBotonMezclador(parentContiner) {
   if (typeof parentContiner !== "string") return;
   parentContiner = parentContiner.trim().toLowerCase();
-
   // ✅ Usar el parámetro, no mezcladorColor
   const esCmyk = parentContiner === 'padre-cmyk';
-
   let sliders = document.querySelectorAll(esCmyk ? ".slider-thumb-cmyk" : ".slider-thumb-rgb");
-  
   sliders.forEach(mezclador => {
     mezclador.style.transition = "bottom 0.8s ease"; 
     mezclador.style.bottom = "0%"; 
     setTimeout(() => { mezclador.style.transition = ""; }, 800);
   });
-
   let colorElement = document.querySelector(esCmyk ? "#colorCMYK" : "#colorDisplay");
   if (colorElement) colorElement.style.backgroundColor = "";  
-
   if (typeof values !== "object") values = {};
   Object.assign(values, esCmyk ? 
     { C: 0, M: 0, Y: 0, K: 0, A: 0 } : 
     { R: 0, G: 0, B: 0, W: 0 }
   );
-
   let sliderTracks = document.querySelectorAll(esCmyk ? ".slider-track" : ".slider-track-rgb");
   sliderTracks.forEach(track => {
     track.style.transition = "background 0.8s ease";
     track.style.background = `linear-gradient(to top, #b8b8b8 0%, #2e2e2e 0%)`;
     setTimeout(() => { track.style.transition = ""; }, 800);
   });
-
   if (esCmyk) {
     updateColorCMYK();  
   } else {
@@ -6844,13 +6292,11 @@ function configurarBoton(selector, contenedor, callback) {
   const boton = document.querySelector(selector);
   const padre = document.querySelector(contenedor);
   if (!boton || !padre) return;
-
   boton.addEventListener('mousedown', () => {
     // Resetear todos los botones al estilo CSS original
     document.querySelectorAll('.cmyRgb-group').forEach(b => {
       b.style.backgroundColor = ''; // vacío => vuelve al color CSS
     });
-
     // Aplicar efecto solo al botón activo
     boton.style.backgroundColor = 'rgb(255,0,0)';
     // Ajustes al contenedor
@@ -6860,7 +6306,6 @@ function configurarBoton(selector, contenedor, callback) {
     padre.style.backgroundColor = '';
     if (callback) callback();
   });
-
   boton.addEventListener('mouseup', () => {
     boton.style.backgroundColor = ''; 
   });
@@ -6873,7 +6318,6 @@ function alternarTeccnologia(tecnologia) {
       if (mezcladorColor) {
         desaparecerElemento(panelControlCMYK.id)
         aparecerElemento(panelControlRGB.id)
-        
         if(mezcladorColor.style.display==='grid'){
           mezcladorColor.style.display='none'
           mezcladorColorRGB.style.display='grid'
@@ -6886,7 +6330,6 @@ function alternarTeccnologia(tecnologia) {
       if (mezcladorColorRGB) {
         desaparecerElemento(panelControlRGB.id)
         aparecerElemento(panelControlCMYK.id)
-
         if(mezcladorColorRGB.style.display==='grid'){
           mezcladorColorRGB.style.display='none'
           mezcladorColor.style.display='grid'
@@ -6902,26 +6345,21 @@ function ocultarElementoProgressivo(el, callback) {
   // aceptar id/selector o elemento
   if (typeof el === 'string') el = document.getElementById(el) || document.querySelector(el);
   if (!el) return;
-
   // estado inicial claro para animar
   el.style.transition = '';
   el.style.opacity = '1';
-
   const wasHidden = getComputedStyle(el).display === 'none';
   if (wasHidden) {
     // ya estaba oculto → terminar inmediatamente
     el.style.display = 'none';
     return;
   }
-
   // iniciar fade out
   requestAnimationFrame(() => {
     el.style.transition = 'opacity 0.5s ease';
     el.style.opacity = '0';
   });
-
   let timer = null;
-
   const finish = () => {
     if (timer) { clearTimeout(timer); timer = null; }
     // mantén oculto y deja el elemento en estado "neutro" (sin residuos) excepto display:none
@@ -6931,16 +6369,13 @@ function ocultarElementoProgressivo(el, callback) {
     el.style.visibility = '';
     if (typeof callback === 'function') callback();
   };
-
   const onTransitionEnd = (ev) => {
     if (ev.target !== el) return;               // ignorar transiciones de hijos
     if (ev.propertyName && ev.propertyName !== 'opacity') return;
     el.removeEventListener('transitionend', onTransitionEnd);
     finish();
   };
-
   el.addEventListener('transitionend', onTransitionEnd);
-
   // fallback si no ocurre transitionend
   const cs = getComputedStyle(el);
   const dur = (parseFloat((cs.transitionDuration || '0').split(',')[0]) || 0) * 1000;
@@ -6956,12 +6391,10 @@ function ocultarElementoProgressivo(el, callback) {
 }
 function mostrarElementoProgressivo(el) {
   if (!el) return;
-
   // resetear estilos previos
   el.style.transition = '';
   el.style.opacity = '0';
   el.style.display = 'grid';
-
   // también forzar a todos los hijos
   Array.from(el.querySelectorAll('*')).forEach(hijo => {
     hijo.style.transition = '';
@@ -6969,17 +6402,14 @@ function mostrarElementoProgressivo(el) {
     hijo.style.display = '';
     hijo.style.visibility = 'visible';
   });
-
   requestAnimationFrame(() => {
     el.style.transition = 'opacity 0.5s ease, transform 0.8s ease-in-out';
     el.style.opacity = '1';
-
     Array.from(el.querySelectorAll('*')).forEach(hijo => {
       hijo.style.transition = 'opacity 0.5s ease';
       hijo.style.opacity = '1';
     });
   });
-
   el.addEventListener("transitionend", () => {
     el.style.transition = '';
     Array.from(el.querySelectorAll('*')).forEach(hijo => {
@@ -6987,14 +6417,11 @@ function mostrarElementoProgressivo(el) {
     });
   }, { once: true });
 }
-
 function secuenciaAparicion(canal) {
   if (creadorPerfiles.style.display === 'none') {
     mostrarElementoProgressivo(creadorPerfiles)
-
     if(mezcladorColor)mezcladorColor.classList.add('move-padre-cmyk')
     if(mezcladorColorRGB)mezcladorColorRGB.classList.add('move-padre-cmyk')
-
     setTimeout(() => {
       creadorPerfiles.classList.add('move-mezclador')             
     }, 500);
@@ -7009,30 +6436,23 @@ buscaNombre.addEventListener('click', () => {
 let parpadeoActivo = null;
 function parpadearElemento(id,intervaloMs = 200, duracionMs = null) {
   detenerParpadeo();
-
   const el = document.getElementById(id);
   if (!el) return;
-
   const colorOriginal = getComputedStyle(el).backgroundColor;
   let alternar = false;
-
   const intervalo = setInterval(() => {
     el.style.backgroundColor = alternar
       ? colorOriginal
       : 'rgba(0,255,255,0.44)';
-
     alternar = !alternar;
   }, intervaloMs);
-
   let timeout = null;
-
   // Si se define duración total
   if (typeof duracionMs === 'number') {
     timeout = setTimeout(() => {
       detenerParpadeo();
     }, duracionMs);
   }
-
   parpadeoActivo = {
     el,
     intervalo,
@@ -7042,16 +6462,12 @@ function parpadearElemento(id,intervaloMs = 200, duracionMs = null) {
 }
 function detenerParpadeo() {
   if (!parpadeoActivo) return;
-
   clearInterval(parpadeoActivo.intervalo);
-
   if (parpadeoActivo.timeout) {
     clearTimeout(parpadeoActivo.timeout);
   }
-
   parpadeoActivo.el.style.backgroundColor =
     parpadeoActivo.colorOriginal;
-
   parpadeoActivo = null;
 }
 // BOTON BLANCO RGB
@@ -7060,58 +6476,46 @@ function crearPerfilColor() { // crear nuevo desde botón blanc
   const segundoImputRGB = document.querySelector('#input-g');
   const tercerImputRGB  = document.querySelector('#input-b');
   const cuartoImputRGB  = document.querySelector('#input-w');
-
   const primerImputCMYK  = document.querySelector('#input-c');
   const segundoImputCMYK = document.querySelector('#input-m');
   const tercerImputCMYK  = document.querySelector('#input-y');
   const cuartoImputCMYK  = document.querySelector('#input-k');
   const quintoImputCMYK  = document.querySelector('#input-a');
-
   // Capturar nombre del perfil
   let inputNombre = document.getElementById('nombre-Perfil').value.trim();
-
   if (!inputNombre) {
     parpadearElemento('nombre-Perfil');
     saltarAlerta('Por favor, ingrese un nombre válido','vacioRgb')
     return;
   }
-
   // Determinar prefijo según contenedor visible
   let prefijo = '';
-
   if (mezcladorColorRGB && mezcladorColorRGB.style.display === 'grid') {
     prefijo = 'RGB - ';
   } else if (mezcladorColor && mezcladorColor.style.display === 'grid') {
     prefijo = 'CMYK - ';
   }
-
   // Evitar duplicar prefijo
   if (prefijo && !inputNombre.startsWith(prefijo)) {
     inputNombre = prefijo + inputNombre;
   }
-
   // Capitalizar al final
   inputNombre = capitalizarTexto(inputNombre);
-
   // Validar si el perfil ya existe
   if (almacenObjetos[inputNombre]) {
     /* mostrarVentanaEmergente('Ya existe un perfil con este nombre'); */
     saltarAlerta('Ya existe un perfil con este nombre', 'perfilDeColor')
     return;
   }
-
   // Crear nueva instancia
   const nuevoObjeto = new objetoColores();
-
   // Almacenar en el almacén global
   almacenObjetos[inputNombre] = nuevoObjeto;
   objetoGlobal = inputNombre;
-
   if (!almacenObjetos[objetoGlobal]) {
     console.error('Error: No se pudo encontrar el perfil en almacenObjetos.');
     return;
   }
-
   // Asignar valores según el contenedor activo
   if (mezcladorColorRGB && mezcladorColorRGB.style.display === 'grid') {
     almacenObjetos[objetoGlobal].RGBA.R = parseInt(primerImputRGB.value, 10) || 0;
@@ -7119,7 +6523,6 @@ function crearPerfilColor() { // crear nuevo desde botón blanc
     almacenObjetos[objetoGlobal].RGBA.B = parseInt(tercerImputRGB.value, 10) || 0;
     almacenObjetos[objetoGlobal].RGBA.A = parseInt(cuartoImputRGB.value, 10) || 0;
   }
-
   if (mezcladorColor && mezcladorColor.style.display === 'grid') {
     almacenObjetos[objetoGlobal].CMYK.C = parseInt(primerImputCMYK.value, 10) || 0;
     almacenObjetos[objetoGlobal].CMYK.M = parseInt(segundoImputCMYK.value, 10) || 0;
@@ -7127,19 +6530,14 @@ function crearPerfilColor() { // crear nuevo desde botón blanc
     almacenObjetos[objetoGlobal].CMYK.K = parseInt(cuartoImputCMYK.value, 10) || 0;
     almacenObjetos[objetoGlobal].CMYK.A = parseInt(quintoImputCMYK.value, 10) || 0;
   }
-
   // Ordenar almacenObjetos alfabéticamente
   const almacenObjetosOrdenado = Object.keys(almacenObjetos).sort().reduce((obj, key) => {obj[key] = almacenObjetos[key];return obj;}, {});
-
   // Persistir en localStorage
   localStorage.setItem('coloresRegistrados',JSON.stringify(almacenObjetosOrdenado) );
-
   // Feedback visual
   mostrarVentanaEmergente('Perfil creado y almacenado');
-
   // Limpiar input
   document.getElementById('nombre-Perfil').value = '';
-
   // Refrescar estado
   traerAlmacenObjetos();
 }
@@ -7147,21 +6545,17 @@ function colorRenderizado(){
   if(mezcladorColorRGB.style.display = 'grid'){
     mezcladorColor.style.display = 'none'
     mezcladorColorRGB.style.display  = 'grid'
-
     setTimeout(() => {
       renderizaMezclaRGB()
     }, 100);
   }
-
   if(mezcladorColor.style.display = 'grid'){
     mezcladorColorRGB.style.display = 'none'
     mezcladorColor.style.display  = 'grid'
-
     setTimeout(() => {
       renderizaMezclaCMYK()
     }, 100);
   }
-  
 }
 function renderizaMezclaRGB() {
   // Verificar si almacenObjetos está definido
@@ -7171,17 +6565,14 @@ function renderizaMezclaRGB() {
     document.getElementById("mensajeEmergente").textContent = "Cargue la base de datos antes de generar el perfil de color";
   return;
   }
-
   console.log('almacenObjetos.objetoGlobal', almacenObjetos[objetoGlobal])
   // Extraer valores asegurando que existen, de lo contrario asignar 0
   let rValue = almacenObjetos[objetoGlobal].RGBA.R;
   let gValue = almacenObjetos[objetoGlobal].RGBA.G;
   let bValue = almacenObjetos[objetoGlobal].RGBA.B;
   let wValue = almacenObjetos[objetoGlobal].RGBA.A;
-
   // Verificar si los valores fueron obtenidos correctamente
   console.log("Valores RGBA extraídos:", { R: rValue, G: gValue, B: bValue, W: wValue });
-
   animarSlidersRGB([
     { trackId: "slid-rojo-rgb", spanId: "c-span-rgb", channel: "R", porcentajeDestino: rValue },
     { trackId: "slid-verde-rgb", spanId: "m-span-rgb", channel: "G", porcentajeDestino: gValue },
@@ -7198,7 +6589,6 @@ function renderizaMezclaCMYK() {
     document.getElementById("mensajeEmergente").textContent = "Cargue la base de datos antes de generar el perfil de color";
   return;
   }
-
   console.log('almacenObjetos.objetoGlobal', almacenObjetos.objetoGlobal)
   // Extraer valores asegurando que existen, de lo contrario asignar 0
   let cValue = almacenObjetos[objetoGlobal].CMYK.C;
@@ -7206,11 +6596,8 @@ function renderizaMezclaCMYK() {
   let yValue = almacenObjetos[objetoGlobal].CMYK.Y;
   let kValue = almacenObjetos[objetoGlobal].CMYK.K;
   let wValue = almacenObjetos[objetoGlobal].CMYK.A;
-
-
   // Verificar si los valores fueron obtenidos correctamente
   console.log("Valores CMYK extraídos:", { C: cValue, M: mValue, Y: yValue, K: kValue, A: wValue });
-
   animarSlidersCMYK([
     { trackId: "slid-cian", spanId: "c-span", channel: "C", porcentajeDestino: cValue },
     { trackId: "slid-magenta", spanId: "m-span", channel: "M", porcentajeDestino: mValue },
@@ -7219,27 +6606,20 @@ function renderizaMezclaCMYK() {
     { trackId: "slid-blanco", spanId: "w-span", channel: "A", porcentajeDestino: wValue }
   ]);
   traerAlmacenObjetos()
-
 }
 configurarBoton('#boton-seis', '#padre-cmyk', () => resetBotonMezclador('padre-cmyk'));
-
 configurarBoton('#boton-rgb', '#padre-rgb', () => resetBotonMezclador('padre-rgb'));
-
 configurarBoton('#boton-cmyk','#padre-cmyk', '')
 configurarBoton('#boton-rgb-alternar','#padre-rgb', '') 
-
 configurarBoton('#boton-rgb-salir','#padre-rgb', '')
 configurarBoton('#boton-cmyk-salir','#padre-cmyk', '')
-
 document.querySelector('#btn-salir-perfiles').addEventListener('click', alternarOcultarBotones);
-
 function alternarOcultarBotones() {
   cortina.classList.add('overlayRRHH')
   creadorPerfiles.classList.remove('move-mezclador')
   const mostrarFlex = (selector) => {
     document.querySelectorAll(selector).forEach(el => el.style.display = 'flex');
   };
-
   ['.lbl-cmyk', '.btnCmyk', '.lbl-opcion', '.btn-opcion'].forEach(mostrarFlex);
   setTimeout(() => {
     ocultarElementoProgressivo(creadorPerfiles)
@@ -7256,11 +6636,9 @@ document.querySelectorAll('.alterna-panel').forEach(btn => {
     }
     if(btn.id === 'exit-rgb'){
       desaparecerElemento(panelControlRGB.id)
-
     }
   });
 });
-
 document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{ 
   cortina.classList.add('overlayRRHH')
   let slidersCMYK = document.querySelector('#container-slider')
@@ -7284,7 +6662,6 @@ document.querySelector('#boton-rgb-alternar').addEventListener('mousedown',()=>{
     cortina.classList.remove('overlayRRHH')
   }, 1000);
 })
-
 document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
   cortina.classList.add('overlayRRHH')
   let slidersRGB = document.querySelector('#padre-controles')
@@ -7311,7 +6688,6 @@ document.querySelector('#boton-cmyk').addEventListener('mousedown',()=>{
 document.querySelector('#save-tecnology').addEventListener('click', ()=>{
   crearPerfilColor()
 })
-
 creaNombre.addEventListener('click', () => {
   document.querySelector('#nombre-Perfil').value = ''
   creaNombre.value = ''
@@ -7322,7 +6698,6 @@ creaNombre.addEventListener('click', () => {
   desactivarClick(['.butt-perfiles', '.estilo-1']);  
   mostrarNombresDeObjetos();
 });
-
 creaNombre.addEventListener('mouseleave', () => {
   setTimeout(() => {
   // Solo ocultar si el cursor NO está sobre listaClientes
@@ -7331,9 +6706,7 @@ creaNombre.addEventListener('mouseleave', () => {
   }
   }, 300);
 });
-
 function pintarColor() {
-  
   if (!creaNombre.value.trim()) {
       parpadearElemento("nombre-perfil-existe");
       saltarAlerta('Cargue la base de datos antes de generar el perfil de color','vacioCmyk')
@@ -7345,10 +6718,8 @@ function pintarColor() {
     }
     return;
   }
-
   const valor = creaNombre.value;
   console.log('VALOR : ', valor)
-
   if (valor.startsWith('Cmyk')) {
     alternarTeccnologia('cmyk')
     setTimeout(() => {
@@ -7366,7 +6737,6 @@ function observarCambioDisplay() {
   const observer = new MutationObserver(() => {
     const rgbVisible = getComputedStyle(document.getElementById('padre-rgb')).display === 'grid';
     const cmykVisible = getComputedStyle(document.getElementById('padre-cmyk')).display === 'grid';
-
     if (rgbVisible) {
       tecnologyRGB = true;
       tecnologyCMYK = false;
@@ -7381,24 +6751,18 @@ function observarCambioDisplay() {
 function mostrarBarraProgres(inicio, fin) {
   const barraProgreso = document.getElementById("barra-progreso-registro");
   const contenedor = document.getElementById("contenedor-registro");
-
   barraProgreso.style.width = inicio + "%";
-
   if (intervaloProgreso) return;
-
   contenedor.style.display = "grid";
-
   setTimeout(() => {
     intervaloProgreso = setInterval(() => {
       let anchoActual = parseFloat(barraProgreso.style.width) || 0;
       let nuevoAncho = anchoActual + 0.5;
-
       if (nuevoAncho > fin) {
         nuevoAncho = fin;
         clearInterval(intervaloProgreso);
         intervaloProgreso = null; // liberar referencia
       }
-
       barraProgreso.style.width = nuevoAncho + "%";
     }, 10);
   }, 100);
@@ -7419,18 +6783,15 @@ function ejecutarFase(opcion) {
 grupoBotsCrear.forEach(bot => {
   bot.addEventListener('mouseleave', () => {
     alertaTres.style.display = 'none';
-
     if (listaClientes.children.length === 0) {
       listaClientes.style.display = 'none';
       alertaMSG.style.display = 'none';
     } 
-
     if (lineaClientes && lineaClientes.children.length === 0) {
       lineaClientes.style.display = 'none';
     } else {
       alertaTres.style.display = 'none';
     }
-
     setTimeout(() => {
       // Solo ocultar si el cursor NO está sobre listaClientes
       if (!listaClientes.matches(':hover')) {
@@ -7440,68 +6801,55 @@ grupoBotsCrear.forEach(bot => {
     }, 300);
   });
 });
-
-
-
 function borrrrrrrrrrrarrrrrrrrrrrrrrrrrrrr(){
   const coleccionGraficos = document.querySelectorAll(".graphs-lines")
   coleccionGraficos.forEach(grafico => {
     grafico.style.display = 'flex'
   })
-
   const grafica9 = document.querySelector('#MiGrafica9');
   if (grafica9) {
     grafica9.style.opacity = 1;
     grafica9.style.display = 'flex';
     grafica9.style.visibility = 'visible';
   }
-
   const iconos = document.querySelector('#iconos');
   const contLineas = document.querySelector('#contLineas');
   const conteSecundario = document.querySelector('#conte-secundario');
   const conteBotones = document.querySelector('#conte-butts-graphs');
   const portaVisor = document.querySelector('#porta-visor');
   const portaImagen = document.querySelector("#porta-imagen");
-
   if (iconos) iconos.style.display = 'flex';
   if (contLineas) contLineas.style.display = 'grid';
   if (conteSecundario) conteSecundario.style.display = 'flex';
   if (conteBotones) conteBotones.style.display = 'grid';
   if (portaImagen) portaImagen.style.display = 'grid';
-
   aparecerElemento('porta-visor', 'grid');
-
   // ✅ Después de aparecerElemento
   setTimeout(() => {
     if (portaVisor && !portaVisor.classList.contains('modificarPosicion')) {
       portaVisor.classList.add('modificarPosicion');
     }
   }, 50);
-
   document.querySelector("#listaNombres").style.display = 'none';
   document.querySelector("#buscador-empleado").classList.add("ubicacion");
   document.querySelector("#visorImagen").classList.add('ubicar-visor');
   document.querySelector("#porta-visor > div.visor > span").classList.add('ubicado');
   document.querySelector("#porta-visor > div.visor > div.navegacion").classList.add('ancho');
 }
-
 function animarBotonesTorre() {
   const botones = document.querySelectorAll('.secuenciales');
   const total = botones.length;
-
   botones.forEach((btn, index) => {
     setTimeout(() => {
       btn.style.transition = 'transform 0.15s ease, background-color 0.15s ease';
       btn.style.transform = 'scale(0.7)';
       btn.style.backgroundColor = '#1e3aff';
       btn.style.color = 'white';
-
       setTimeout(() => {
         btn.style.transform = btn.classList.contains('activo')
           ? 'skewX(-8deg) scaleY(0.97) scale(1.2)'
           : 'scale(1.2)';
       }, 50);
-
       if (index === total - 1) {
         botones.forEach((b, i) => {
           setTimeout(() => {
@@ -7515,7 +6863,6 @@ function animarBotonesTorre() {
           }, 50 + (i * 20));
         });
       }
-
     }, index * 20);
   });
 }

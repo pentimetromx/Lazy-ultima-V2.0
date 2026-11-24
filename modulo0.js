@@ -29,12 +29,10 @@ const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');
 const botonVolver = document.getElementById('butt-links-II')
 const interfazToggle = document.querySelector('#btn-ver-listado')  
 const panelesDatos = document.querySelectorAll('.panel-datos')
-
 let contiVidDistribuidor = document.getElementById('conti-video-distribuidor')  
 let arrayButtsIniciales = ['bot-atras','bot-inicial','iniciar','bot-atras12']
 let padreFormularioNuevoIngreso = document.querySelector('#padre-formulario-empleado')  
 let panelUno = document.querySelector('#panel-uno')
-
 let formularioNuevoIngreso = document.querySelector('#formulario-empleado')  
 let miCanvas2 = document.getElementById('MiSegundaGrafica').getContext('2d')
 let miCanvas3 = document.getElementById('MiTerceraGrafica').getContext('2d')
@@ -58,17 +56,14 @@ let contiVidEntintador = document.getElementById('conti-video-entintador')
 let contImgsDistribuidor = document.getElementById("images-distribuidor")
 const actividadesLimpieza = document.getElementById('actividad-limpieza') 
 let buttRepuestIII = document.getElementById('conti-boton-repuestos-II')
+let buscadorDetalles = document.querySelector('#buscador-detalle');
+let almacenKaizen = document.querySelector("#panel-storage")
+let docEmpleado = document.querySelector("#doc-empl")
 let buttClientes = document.getElementById('first-job')
-
-
 const panelAdministrador = document.querySelector("#panel-admon")
-
 const padreAdministrativo = document.querySelector('#padre-carta-exterior')
-
 const padrePanelAdministrativo = document.querySelector('#padre-carta-exterior')
-
 const panelAdministrativo = document.querySelector('#carta-exterior')
-
 const imgsDistribuidor = document.getElementById('contImgDistribuidor')
 let buttRepuestV = document.getElementById('conti-boton-repuestos-III') 
 const verButtsInterfazIII = document.getElementById('butts_interfaz_3')
@@ -101,6 +96,8 @@ const panelDeBajas = document.querySelector('#panel-principal')
 const padreDos = document.getElementById('contenedor_padre_2')
 const padreTres = document.getElementById('contenedor_padre_3') 
 let cortinaBloqueo = document.querySelector('#cortina-bloqueo')
+let cortinaKaizen = document.querySelector('#overlay-kaizen')
+
 const botonesFicha = document.querySelectorAll('.fichas-butts')
 let contibotsDistriVI = document.getElementById('contenedor-8')
 let contiVidSmed = document.getElementById('conti-video-smed')
@@ -108,7 +105,7 @@ let contImageneSmed = document.getElementById('imgsIsopropil')
 let buttRepuestI = document.getElementById('butt-repuestos-I')
 /* let linkMaster = document.getElementById('link-master') */
 let linkAuxiliarMaster = document.getElementById('links-aux-master')
-
+let documentoActivador = document.querySelector("#input-documento")
 let conteBancada = document.getElementById('bancada-torre-II')
 const mezcladorColor = document.querySelector("#padre-cmyk")
 const mezcladorColorRGB = document.querySelector("#padre-rgb")
@@ -141,7 +138,6 @@ const nombreNuevo = document.querySelector("#nom-empl")
 let container1 = document.getElementById('container01')
 let nombreNuevoIngreso = document.getElementById('input-edicion')
 let nombreInterfazNuevao = document.getElementById('nameInput')
-
 const inputsMA = document.querySelectorAll('.dato-ma')
 let botIzquierda = document.getElementById('bot-atras')
 let botDerecha = document.getElementById('bot-atras12')
@@ -221,7 +217,6 @@ const spanGuide = document.getElementById('unicoide_triangulo')
 const spanGuideI = document.getElementById('unicoide_flecha')
 const cortina = document.getElementById('overlay-cortina');
 const granCortina = document.getElementById('overlay-general');
-
 const buttonRight2 = document.getElementById('buttonRight_2')  
 const buttonRight3 = document.getElementById('buttonRight_3')
 const buttReset2 = document.getElementById('buttonReset_2')  
@@ -285,7 +280,6 @@ const interfazColor = document.querySelector('#interfaz-perfiles')
 const interfazRRHH = document.querySelector('#padre-ingresos')
 const interfazMA = document.querySelector('#padre-ingresos-ma')
 const interfazVisor = document.querySelector('#padre-porta-visor')
-
 const inputDocumentoEmpleado = document.querySelector('#numDoc1')
 const entradas = document.querySelectorAll('.entrada-empleado');
 const botonBorrar = document.querySelector('#grid-numbers > div:nth-child(11)');
@@ -353,7 +347,6 @@ class objetoColores {
     this.RGBA = this.crearPropiedadRGBA(); // Agregar RGBA como un color más
     this.CMYK = this.crearPropiedadCMYK(); // Agregar CMYK como un color más
   }
- 
   // Método para crear la estructura repetitiva
   crearEstructura(prefijo, cantidad) {
     const estructura = {};
@@ -362,7 +355,6 @@ class objetoColores {
     }
     return estructura;
   }
-
   // Método para generar una estructura completa de color
   crearPropiedadColor() {
     return {
@@ -377,7 +369,6 @@ class objetoColores {
       posicionTopDisplay: 0
     };
   }
-
   // Método para crear la propiedad RGBA como un "color"
   crearPropiedadRGBA() {
     return {
@@ -387,7 +378,6 @@ class objetoColores {
       A: []
     };
   }
-
   // Método para crear la propiedad CMYK como un "color"
   crearPropiedadCMYK() {
     return {
@@ -406,7 +396,6 @@ let esDesktop = mediaDesktop.matches;
 mediaDesktop.addEventListener('change', e => {  
   esDesktop = e.matches;
 });
-
 document.addEventListener('click', (e) => {
   const contenedor = e.target.closest('.cont-userI');
   const linksMa = document.getElementById('links-ma');
@@ -414,18 +403,14 @@ document.addEventListener('click', (e) => {
     const img = contenedor.querySelector('img');
     const span = contenedor.querySelector('.lblNombres');
     if (!img || !span) return;
-
     const porta = document.getElementById('porta-imagen');
     const spanImg = porta.querySelector('.imagen-empleado');
     const spanNombre = porta.querySelector('.nombre-empleado');
-
     const src = img.getAttribute('data-src');
     const nombre = span.textContent.trim();
-
     spanImg.setAttribute('data-src', src);
     spanNombre.textContent = nombre;
     spanImg.innerHTML = `<img src="${src}" alt="${nombre}">`;
-
     const funciones = {
       'Carlos Mario Sanchez': 'updateCarlos',
       'Andres Felipe Montoya': 'updateAndres',
@@ -435,7 +420,6 @@ document.addEventListener('click', (e) => {
       'John Mario Mira Pineda': 'updateMario',
       'Ana Maria Duarte Pineda': 'updateAna'
     };
-
     const functionExe = funciones[nombre];
     if (functionExe) ejecutarFuncionEmpleado(functionExe);
   }
@@ -448,7 +432,6 @@ document.addEventListener('click', (e) => {
   if (linksMa && !linksMa.contains(e.target) && !(btnAreas && btnAreas.contains(e.target))) {
     linksMa.style.display = 'none';
   }  
-
   if (
     listaColores.style.display !== 'none' &&
     !listaColores.contains(e.target) &&
@@ -458,7 +441,6 @@ document.addEventListener('click', (e) => {
     cerrarListaColores();
   }  
 });
-
 function mostrarPorClaveLocalStore(clave) {
   const raw = JSON.parse(localStorage.getItem(clave)) || {};
   const data = Array.isArray(raw)
@@ -469,12 +451,9 @@ function mostrarPorClaveLocalStore(clave) {
   console.groupEnd();
 }
 function vaciarPorClaveLocalStore(clave, tipo = 'array') {
-
   const estructura = tipo === 'object' ? {} : [];
-
   localStorage.setItem(clave, JSON.stringify(estructura));
   if(clave==='kaizenRegistrados')console.log('Kaizen sin datos almacenados')
-
 }
 const listaLocalEmpleados = [
   'Diana Catalina Mira Londoño',
@@ -574,8 +553,6 @@ document.addEventListener("DOMContentLoaded", () => {
       lazyImage.src = lazyImage.dataset.src;
     });
   }
-
-  
   const lazyVideos = Array.from(document.querySelectorAll("video.lazy"));
   if ("IntersectionObserver" in window) {
     let lazyVideoObserver = new IntersectionObserver((entries, observer) => {
@@ -618,7 +595,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }, { once: true })
     });
   }
-
   const buttons = document.querySelectorAll('.Bot-inicio3, .Bot-inicio7');
   buttons.forEach(button => {
     button.addEventListener("mouseover", () => {
@@ -634,7 +610,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (toggleVideoButton && video) {
     toggleVideoButton.addEventListener("click", () => video.pause());
   }
-
   elementosDinamicamente('tanque-solucion', 100,'lineas-solucion');
   AelementosDinamicamente('tanque-tinta', 100, 'lineas-tinta');
   elementosDinamicamente('puntos', 22,'punto');
@@ -664,7 +639,6 @@ document.addEventListener("DOMContentLoaded", () => {
   idPadreCantidadClaseTextId('footer-10', 100, 'divs-grales-solucion-especial','clase-dos', '','','footer-10', 'especial', 'footer-9')
   idPadreCantidadClaseTextId('footer-11', 100, 'divs-grales-tinta-barniz','clase-dos', '','')
   idPadreCantidadClaseTextId('footer-12', 100, 'divs-grales-solucion-barniz','clase-dos', '','','footer-12', 'barniz', 'footer-11')
-
  const botonesLatentes = document.querySelectorAll('.butt-selector'); 
  const colorActual = document.querySelector('#current-Color');   
   botonesLatentes.forEach((boton,index) => {
@@ -709,7 +683,6 @@ document.addEventListener("DOMContentLoaded", () => {
           colorActual.style.color = 'rgb(200,200,200)'
           break;
       }
-
     });
   }); 
   document.querySelector('.alerta-perfil').addEventListener('click', function () {  
@@ -1035,8 +1008,6 @@ document.addEventListener("DOMContentLoaded", () => {
     alertaCrearPerfil()
   }
   })  
-
-
     function manejoGeneralIndividual(grilla,botoneraDinamica,actualBalanceColor,botonActual,claseColor,textoSpan,banderaActiva,index,indexSelector){
     const lineaLeds = document.querySelectorAll(`.grilla-${grilla}`);
     lineaLeds.forEach((elto, index) => { 
@@ -1112,9 +1083,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-  
-  
-
   function mostrarSecuenciaPerfiles(){
     manejoGeneralIndividual('negro',negro,estadoBalanceNegro,negroGeneral,'negro','NEGRO','flagNegro',1,0)  
     muestraRenderObjetoGlobal(objetoGlobal, 'negro', 'linea', 'lineaSeguidor', 'lineaGrilla', 'tanque-tinta', 'nivelTinta', 'nivelAgua', 1,2);  
@@ -1138,11 +1106,7 @@ document.addEventListener("DOMContentLoaded", () => {
       manejoGeneralIndividual('barniz',barniz,estadoBalanceBarniz,barnizGeneral,'especial','BARNIZ','flagBarniz',6,5)  
       muestraRenderObjetoGlobal(objetoGlobal, 'barniz', 'linea', 'lineaSeguidor', 'lineaGrilla', 'tanque-tinta', 'nivelTinta', 'nivelAgua', 11,12);
     }, 750);
-
   }
-
-
-
   irAconsola.addEventListener('click', () =>{
     nombreCliente.style.top=''
     let nombreDatos = document.querySelector('#cliente-nombre')
@@ -1160,12 +1124,10 @@ document.addEventListener("DOMContentLoaded", () => {
     elementos.forEach(elemento => {
       elemento.style.color = 'transparent'
     });
-
     const elementosPanel = document.querySelectorAll('.led-general');
     elementosPanel.forEach(elementoPanel => {
       elementoPanel.style.backgroundColor = 'transparent'
     });    
-
     container1.style.display = 'none'
     if(objetoGlobal === null || objetoGlobal === ''){nombreDatos.textContent = ''}
     setTimeout(() => {
@@ -1174,14 +1136,11 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       document.querySelector('.nombre-cliente').style.display='flex'
     }, 1500);
-
     setTimeout(() =>{
       objetoGlobal = document.querySelector('#cliente-nombre').textContent.trim();
-      
       mostrarSecuenciaPerfiles(); 
       restablecerClick(['.butt-perfiles', '.cabeza', '.mod-tinta']);                     
     }, 1550);
-
     botonesPerfilColor.forEach(elemento => {
     elemento.style.display = 'flex'; 
     });    
@@ -1189,49 +1148,38 @@ document.addEventListener("DOMContentLoaded", () => {
     irAconsola.style.display='none'
       restablecerClick(['.perfiles'])
   })
-  
   observarCambioDisplay()
 });
-
 function manejarLogica() {
   const inputs = document.querySelectorAll('.numero');
   let valoresIngresados = [0, 0, 0, 0];
-
   // ✅ Siempre mostrar los inputs para ingresar la contraseña
   inputs.forEach(input => {
     input.style.display = 'flex';
   });
-
   if (!esDesktop) {
     document.getElementById('img-logo').style.width = '100%';
   } else {
     document.getElementById('titulo-ancho').style.width = '100%';
   }
-
   // ✅ Aplicar las clases de movimiento a inputs y contraseña (ambos tamaños)
   document.getElementById('input1').classList.add('move-inputI');
   document.getElementById('input2').classList.add('move-inputII');
   document.getElementById('input3').classList.add('move-inputIII');
   document.getElementById('input4').classList.add('move-inputIV');
   document.getElementById('contraseña').classList.add('move-contraseña');
-
   if (inputs.length > 0) {
     inputs[0].focus();
   }
-
   function manejarEntrada(event) {
     const inputActual = event.target; 
     let valor = inputActual.value.replace(/\D/g, "");
-
     if (valor.length > 1) {
       valor = valor.charAt(0);
     }
-
     inputActual.value = valor;
-
     const indice = Array.from(inputs).indexOf(inputActual);
     valoresIngresados[indice] = valor ? parseInt(valor) : 0;
-
     setTimeout(() => {
       inputActual.value = '*';
       if (indice < inputs.length - 1) {
@@ -1246,14 +1194,12 @@ function manejarLogica() {
       inputs.forEach(input => input.value = '');
     }
   }
-
   //  Evitar no numéricos
   function validarTecla(event) {
     if (!/^\d$/.test(event.key) && event.key !== "Backspace" && event.key !== "Tab") {
       event.preventDefault();
     }
   }
-
   //  Asignar eventos
   inputs.forEach(input => {
     input.addEventListener('input', manejarEntrada);
@@ -1264,26 +1210,21 @@ function abrirInterfaz() {
   elementoPadre.classList.remove('move-oblicuosII')
   activarPantallaCompleta()  
   document.body.style.cursor = "none";
-
   const elementosExcluidos = [
     'videoBackgroundII','video-background','padre-interfaz',
     'franja-Blanca','subtitulo-I','descripcion-I','butt-Institucional',
     'agrupaOblicuos-XI','hijo-interaz-1','hijo-interaz-2','contFrente-V',
     'titulo-ancho','logo-grande','image-background'
   ];
-
   allContenedores.forEach(id => {
     const elemento = document.getElementById(id);
     if (elemento) {
       elemento.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
     }
   });
-
   elementoPadre.style.display='grid'
-
   const titulo = document.getElementById('subtitulo-I');
   const esMovil = (!esDesktop);
-
   const secuencia = esMovil 
     ? [
         () => elementoPadre.classList.remove('move-oblicuos'),
@@ -1307,11 +1248,9 @@ function abrirInterfaz() {
         () => alternarColorVerdeInverso(),
         () => document.body.style.cursor = ""
       ];
-
   const tiempos = esMovil 
     ? [0, 177, 177, 900, 1200, 1500, 1800, 1900, 2500]
     : [0, 177, 177, 1222, 2500, 2800, 3100, 3400, 4000];
-
   ejecutarSecuencia(secuencia, tiempos);
 }
 function ejecutarSecuencia(funciones, tiempos) {
@@ -1319,8 +1258,6 @@ function ejecutarSecuencia(funciones, tiempos) {
     setTimeout(fn, tiempos[i]);
   });
 }
-
-
 function obtenerElementoPantallaCompleta() {
   return (
     document.fullscreenElement ||
@@ -1332,9 +1269,7 @@ function obtenerElementoPantallaCompleta() {
 }
 function activarPantallaCompleta() {
   if (obtenerElementoPantallaCompleta()) return; // ya está en pantalla completa
-
   const docEl = document.documentElement;
-
   if (docEl.requestFullscreen) {
     docEl.requestFullscreen();
   } else if (docEl.webkitRequestFullscreen) {
@@ -1347,7 +1282,6 @@ function activarPantallaCompleta() {
 }
 function salirPantallaCompleta() {
   if (!obtenerElementoPantallaCompleta()) return; // no está en pantalla completa
-
   if (document.exitFullscreen) {
     document.exitFullscreen();
   } else if (document.webkitExitFullscreen) {
@@ -1358,7 +1292,6 @@ function salirPantallaCompleta() {
     document.msExitFullscreen();
   }
 }
-
 const btnFull = document.getElementById('iniciar');
 function actualizarBotonFull() {
   const activo = document.fullscreenElement || document.webkitFullscreenElement;
@@ -1366,7 +1299,6 @@ function actualizarBotonFull() {
 }
 document.addEventListener('fullscreenchange', actualizarBotonFull);
 document.addEventListener('webkitfullscreenchange', actualizarBotonFull);
-
 function VolveraInicio(){
   location.reload()
   idsArray = []
@@ -1374,12 +1306,10 @@ function VolveraInicio(){
 }
 function ElementosMaII(elementId){
   let elementosExcluidos = ['buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales','conti-boton'];
-
   allContenedores.forEach(id => {
     const elemento = document.getElementById(id);
     if (elemento) elemento.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
   });
-
   ['links-inicialesI','links-iniciales'].forEach(id => {
     const elemento = document.getElementById(id);
     if (elemento) {
@@ -1448,27 +1378,21 @@ function moverElementos(idsElementos, porcentajeLeft, porcentajeTop) {
       console.warn(`El elemento con ID "${id}" no existe.`);
       return;
     }
-
     el.style.display = "grid";
     el.style.opacity = "1";
     el.style.transition = el.style.transition || "transform 0.5s ease-in-out";
-
     const parent = el.offsetParent || document.body;
     const dx = parent.clientWidth  * (porcentajeLeft / 100);
     const dy = parent.clientHeight * (porcentajeTop  / 100);
-
     const prevX = parseFloat(el.dataset.movedX || "0");
     const prevY = parseFloat(el.dataset.movedY || "0");
-
     const newX = prevX + dx;
     const newY = prevY + dy;
-
     el.style.transform = `translate(${newX}px, ${newY}px)`;
     el.dataset.movedX = String(newX);
     el.dataset.movedY = String(newY);
   });
 }
-
 function restaurarPosicion(idsElementos) {
   idsElementos.forEach(id => {
     const el = document.getElementById(id);
@@ -1483,13 +1407,10 @@ function restaurarPosicion(idsElementos) {
   });
   turnGraphic = false;
 }
-
 function restaurarEstilosPadre(idContenedor) {
   let contenedor = document.getElementById(idContenedor);
-
   if (contenedor) {
     let elementosHijos = contenedor.querySelectorAll("*");
-
     elementosHijos.forEach(elemento => {
       elemento.removeAttribute("style");
     });
@@ -1512,12 +1433,10 @@ function restablecerPosiciones(claseElto) {
 }
 function aparecerColor(contenedor) {
   let padre = document.querySelector(contenedor);
-  
   // Restaurar la visibilidad antes de iniciar la animación
   padre.style.display = "grid";
   padre.style.opacity = "0";
   padre.style.transition = "opacity 1.5s ease";
-
   // Pequeño retraso para que la transición tenga efecto
   setTimeout(() => {
     padre.style.opacity = "1";
@@ -1625,30 +1544,25 @@ function changeButtonStyles(elementId, imgCont) {
     mostrarOcultar(excluidos);
     container1.style.display = 'grid';
   };
-
   const secciones = {
     'pantalla-tintero': () => {
       baseMostrar(['buscador','search-form','cont-links','links-inicialesI','links-iniciales','agrupaOblicuos-II','imgTorre','videoElement1-II']);
       const cont = document.getElementById('agrupaOblicuos-XXX');
       cont.classList.remove('activo');
       cont.style.display = 'none';
-
       aparecerElemento('pantalla-tintero','flex');
       setTimeout(() => reproducirVideo('vidTintero'), 500);
       setTimeout(() => crearOblicuos('agrupaOblicuos-XXX'), 1000);
-
       if (screenWidth < 500) {
         ejecutarVideoConOcultamiento('vidTintero', 977);
       } else {
         setTimeout(() => document.getElementById('vidTintero').style.display = 'none', 1000);
       }
     },
-
     'bateria-entintado-II': () => {
       baseMostrar(['buscador','search-form','contenedor-7','links-inicialesI','links-iniciales','video-entintado','videoElement1-II','bateria-entintado-II']);
       reproducirVideo('videoElement1-II');
       document.querySelectorAll('.boton-f').forEach((btn,i)=> setTimeout(() => btn.style.display='flex', i*10));
-
       if (screenWidth < 500) {
         ejecutarVideoConOcultamiento('videoElement1-II');
         contibotsDistri.classList.remove('move-up');
@@ -1657,14 +1571,12 @@ function changeButtonStyles(elementId, imgCont) {
         desplegarBotones();
       }
     },
-
     'bancada-torre-II': () => {
       baseMostrar(['buscador','search-form','conti-boton-repuestos','butt-repuestos','bancada-torre-II','links-inicialesI','links-iniciales','conti-video-bancada','plate-smed-I','contenedor-8','imgsIsopropil']);
       desactivarClicsPorUnTiempo(500);
       mostrarImagenes(imgCont);
       reproducirVideo('plate-smed-I');
       applyImageEffects('#isopropil1,#isopropil2,#isopropil3');
-
       if (screenWidth < 500) {
         baseMostrar(['buscador','search-form','conti-boton-repuestos-III','butt-repuestos-III','bancada-torre-II','links-inicialesI','links-iniciales','conti-video-bancada','plate-smed-I','contenedor-8','imgsIsopropil']);
         contVid.style.display = 'flex';
@@ -1677,16 +1589,13 @@ function changeButtonStyles(elementId, imgCont) {
         desplegarBotonesV();
       }
     },
-
     'sitema-humedad': () => {
       baseMostrar(['buscador','search-form','sitema-humedad','links-inicialesI','links-iniciales','sitio-en-construccion']);
       document.getElementById('butt-sitio').style.display = 'flex';
     }
   };
-
   const fn = secciones[elementId];
   if (fn) fn();
-
   idsArray = idsArray.filter(id => id !== elementId);
   idsArray.push(elementId);
   console.log(idsArray);
@@ -1720,7 +1629,6 @@ function desplegarBotones(){
     setTimeout(function(index) {
       buttonElements[index].style.display = 'flex'
   }, delay * i,i)}
-
   setTimeout(function () {
     transicionElementos()
   }, 477);
@@ -1732,7 +1640,6 @@ function desplegarBotonesII(){
     setTimeout(function(index) {
       buttonElements[index].style.display = 'flex'
   }, delay * i,i)}
-
   setTimeout(function () {
     transicionElementosII()
   }, 477);
@@ -1744,7 +1651,6 @@ function desplegarBotonesIII(){
     setTimeout(function(index) {
       buttonElements[index].style.display = 'flex'
   }, delay * i,i)}
-
   setTimeout(function () {
     transicionElementosIII()
   }, 477);
@@ -1756,7 +1662,6 @@ function desplegarBotonesIV(){
     setTimeout(function(index) {
       buttonElements[index].style.display = 'flex'
   }, delay * i,i)}
-
   setTimeout(function () {
     transicionElementosIV()
   }, 477);
@@ -1768,7 +1673,6 @@ function desplegarBotonesV(){
     setTimeout(function(index) {
       buttonElements[index].style.display = 'flex'
   }, delay * i,i)}
-
   setTimeout(function () {
     transicionElementosV()
   }, 477);
@@ -1818,7 +1722,6 @@ function building(){
 }
 const neumatica = document.getElementById('neumatica');
 const moveButton = document.getElementById('moveButton');
-
 function secuenciaEntrena(){
   let instrucciones = document.getElementById('instrucciones_manometro')
   let padre = document.getElementById('padre-1')
@@ -1840,15 +1743,12 @@ function secuenciaEntrena(){
     botonVolver.style.left=''
     let etiquetas = document.getElementById('etqts-festo')
     etiquetas.style.display='flex'
-
     padre.style.top='2vh'
     padre.style.left='0' 
-
     instrucciones.style.zIndex=13 
   }
   document.getElementById('context-menu').style.display='none'  
 }
-
 botonClick.addEventListener('mouseup', () => cierraContenedores('desbobinadorId', 'boton1'));
 botonClickII.addEventListener('mouseup', () => cierraContenedores('uTeñido', 'boton2'));
 botonClickIII.addEventListener('mouseup', () => cierraContenedores('alimentadorId', 'boton3'));
@@ -1859,7 +1759,6 @@ videoPrisma.addEventListener('mouseup', () =>{
 })
 function configurarInputSoloTexto(id) {
   const input = document.getElementById(id);
-
   input.addEventListener('click', () => {
     // breve retraso para permitir que se abra la lista
     setTimeout(() => {
@@ -1869,7 +1768,6 @@ function configurarInputSoloTexto(id) {
       } catch {}
     }, 60);
   });
-
   input.addEventListener('input', e => {
     e.target.value = e.target.value
       .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')
@@ -1882,11 +1780,9 @@ function generarCalendario(anio, mes) {
   calendario.innerHTML = ''; 
   const date = new Date(anio, mes);
   const diasEnMes = new Date(anio, mes + 1, 0).getDate();
-
   const header = document.createElement('div');
   header.style.textAlign = 'center';
   header.style.marginBottom = '6px';
-
   const selectMes = document.createElement('select');
   const nombresMeses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
   nombresMeses.forEach((n, i) => {
@@ -1896,7 +1792,6 @@ function generarCalendario(anio, mes) {
     if (i === mes) opt.selected = true;
     selectMes.appendChild(opt);
   });
-
   const selectAnio = document.createElement('select');
   const anioActual = new Date().getFullYear();
   for (let a = anioActual - 50; a <= anioActual + 10; a++) {
@@ -1906,16 +1801,13 @@ function generarCalendario(anio, mes) {
     if (a === anio) opt.selected = true;
     selectAnio.appendChild(opt);
   }
-
   header.appendChild(selectMes);
   header.appendChild(selectAnio);
   calendario.appendChild(header);
-
   const grid = document.createElement('div');
   grid.style.display = 'grid';
   grid.style.gridTemplateColumns = 'repeat(7, 2em)';
   grid.style.gap = '4px';
-
   for (let d = 1; d <= diasEnMes; d++) {
     const dia = document.createElement('div');
     dia.textContent = d;
@@ -1934,21 +1826,17 @@ function generarCalendario(anio, mes) {
     grid.appendChild(dia);
   }
   calendario.appendChild(grid);
-
   selectMes.addEventListener('change', () => generarCalendario(parseInt(selectAnio.value), parseInt(selectMes.value)));
   selectAnio.addEventListener('change', () => generarCalendario(parseInt(selectAnio.value), parseInt(selectMes.value)));
 }
-
 function agregarEmpleado() {
   if (flagEmpleado === false) {
     alternarColor(btnDblFlecha,btnAgregar);
     return;
   }
-
   // 1. Cargar colección directamente desde localStorage
   const empleadosKey = 'empleadosRegistrados';
   const empleadosLocal = JSON.parse(localStorage.getItem(empleadosKey)) || [];
-
   // 2. Captura de datos
   const nombre = document.getElementById('numDoc').value.trim();
   const documento = document.getElementById('numDoc1').value.trim();
@@ -1957,7 +1845,6 @@ function agregarEmpleado() {
   const equipo = document.getElementById('numDoc3')?.value.trim() || '';
   const fecha = document.getElementById('numDoc4').value.trim();
   const imagen = document.getElementById('numDoc6').value.trim();
-
   const identificados = document.getElementById('numDoc1-ma').value.trim();
   const corregidos = document.getElementById('numDoc2-ma').value.trim(); 
   const tipoA = document.getElementById('numDoc5-ma').value.trim();
@@ -1966,23 +1853,19 @@ function agregarEmpleado() {
   const adas = document.getElementById('numDoc7-ma').value.trim();
   const adt = document.getElementById('numDoc6-ma').value.trim();
   const lup = document.getElementById('numDoc8-ma').value.trim();
-
   // 3. Validaciones
   const imgEmpleado = document.getElementById('empleadoImg');
   const valor = inputArchivo.value.trim().toLowerCase();
-
   if (!nombre || !documento || !area || !cargo || !equipo || !fecha || !imagen) {
     parpadearElemento('numDoc');
     saltarAlerta('Ingrese nombre del empleado y complete los campos.', 'recursoNuevo')
     return; 
   }
-
   if (!valor.endsWith('.png') && !valor.endsWith('.jpg') && !valor.endsWith('.jpeg')) {
     parpadearElemento('nomEmpl');
     saltarAlerta('Ingrese documento del empleado.', 'recursoNuevo')
     return;
   }
-
   // 4. Verificar existencia en localStorage, NO en variable global
   const existe = empleadosLocal.some(emp => emp.documento === documento);
   if (existe) {
@@ -1990,21 +1873,16 @@ function agregarEmpleado() {
     console.log('Empleados en localStorage:', empleadosLocal);
     return;
   }
-
   // 5. Crear objeto
   const nuevoEmpleado = new Empleado(
     nombre, documento, area, cargo, equipo, fecha, imagen,
     identificados, corregidos, tipoA, tipoB, kaizen, adas, adt, lup
   );
-
   empleadoGlobal = nuevoEmpleado;
-
   // 6. Insertar en la colección local
   empleadosLocal.push(nuevoEmpleado);
-
   // 7. Guardar definitivamente
   localStorage.setItem(empleadosKey, JSON.stringify(empleadosLocal));
-
   // 8. Actualizar imagen renderizada
   if (imgEmpleado) {
     const ruta = imagen.startsWith('./') || imagen.startsWith('assets/')
@@ -2012,39 +1890,28 @@ function agregarEmpleado() {
       : `./assets/${imagen}`;
     imgEmpleado.src = ruta;
   }
-
   saltarAlerta('Empleado agregado y almacenado correctamente.', 'recursoNuevo')
   console.log('Empleado agregado:', nuevoEmpleado);
   console.log('Empleados en localStorage:', empleadosLocal);
   console.log('GLOBAL:', empleadoGlobal);
-
 }
-
 function llenarOpcionesKaizen() {
   const selectImagenKaizen = document.getElementById('imagen-kaizen');
   const contenedorKaizen = document.getElementById('kaizen-propuestos');
-
   if (!selectImagenKaizen || !contenedorKaizen) return;
-
   const valorActual = selectImagenKaizen.value;
-
   selectImagenKaizen.innerHTML = '<option value="">Seleccione...</option>';
-
   const celdas = contenedorKaizen.querySelectorAll('.cell');
-
   celdas.forEach(celda => {
     const img = celda.querySelector('img');
     if (!img) return;
-
     const ruta = img.dataset.src?.trim();
     if (!ruta) return;
-
     const option = document.createElement('option');
     option.value = ruta;
     option.textContent = ruta;
     selectImagenKaizen.appendChild(option);
   });
-
   if (valorActual) {
     selectImagenKaizen.value = valorActual;
   }
@@ -2054,33 +1921,24 @@ const selectImagenKaizen = document.getElementById('imagen-kaizen');
   const selectImagenKaizen = document.getElementById('imagen-kaizen');
   const contenedorKaizen = document.getElementById('kaizen-propuestos');
   const pantallaKaizen = document.getElementById('pantalla-kaizen');
-
   if (!selectImagenKaizen || !contenedorKaizen || !pantallaKaizen) return;
-
   const labelPantalla = pantallaKaizen.querySelector('label');
   const imgPantalla = pantallaKaizen.querySelector('img');
-
   if (!labelPantalla || !imgPantalla) return;
-
   selectImagenKaizen.addEventListener('click', llenarOpcionesKaizen);
-
   selectImagenKaizen.addEventListener('change', (e) => {
     const rutaSeleccionada = e.target.value.trim();
     if (!rutaSeleccionada) return;
-
     const celdaCoincidente = contenedorKaizen.querySelector(`img[data-src="${rutaSeleccionada}"]`)?.closest('.cell');
     const texto = celdaCoincidente?.querySelector('.label')?.textContent?.trim() || rutaSeleccionada;
-
     imgPantalla.src = rutaSeleccionada;
     imgPantalla.dataset.src = rutaSeleccionada;
     labelPantalla.textContent = texto;
   });
 })();
-
 function leerKaizen() {
   let datos;
   try { datos = JSON.parse(localStorage.getItem('kaizenRegistrados')); } catch { datos = null; }
-
   if (Array.isArray(datos)) {
     const empleados = Object.values(obtenerEmpleados());
     const objeto = {};
@@ -2095,33 +1953,27 @@ function leerKaizen() {
   }
   return datos || {};
 }
-
 function agregarKaizen() {
   const kaizenKey = 'kaizenRegistrados';
   const kaizenLocal = leerKaizen();
-
   const empleado = capitalizarTexto(document.getElementById('empleado').value.trim());  
   const documento = document.getElementById('documento-kaizen').value.trim();
   const propuesta = document.getElementById('mejora').value.trim();
   const fecha = document.getElementById('fecha').value.trim();
   const autogestionado = document.getElementById('autogestionado').value.trim();
   const imagen = document.getElementById('imagen-kaizen').value.trim();
-
   const participante1 = capitalizarTexto(document.getElementById('participante1').value.trim());
   const participante2 = capitalizarTexto(document.getElementById('participante2').value.trim());
   const participante3 = capitalizarTexto(document.getElementById('participante3').value.trim());
   const participante4 = capitalizarTexto(document.getElementById('participante4').value.trim());
   const participante5 = capitalizarTexto(document.getElementById('participante5').value.trim());
   const lider = capitalizarTexto(document.getElementById('lider').value.trim());
-  
   const equipo = document.getElementById('equipo').value.trim();
   const area = document.getElementById('area').value.trim();
-
   if (!empleado || !documento || !autogestionado || !propuesta || !imagen) {
     saltarAlerta('Hay campos sin diligenciar.', 'fichaTecnica');
     return;
   }
-
   const nuevoKaizen = {
     empleado,
     documento,
@@ -2138,29 +1990,21 @@ function agregarKaizen() {
     area,
     imagen
   };
-
   const propuestaNormalizada = propuesta.toLowerCase();
-
   const propuestaDuplicada = Object.values(kaizenLocal).some(kaizen =>
     (kaizen.propuesta || '').trim().toLowerCase() === propuestaNormalizada
   );
-  
-
   if (propuestaDuplicada) {
     saltarAlerta('Esta propuesta de Kaizen ya existe.', 'fichaTecnica');
     parpadearElemento('mejora', 150, 2500);
     return;
   }
-
   kaizenLocal[`${documento}-${Date.now()}`] = nuevoKaizen;
   localStorage.setItem(kaizenKey, JSON.stringify(kaizenLocal));
   saltarAlerta('Propuesta Kaizen registrada correctamente.', 'fichaTecnica');
-
   mostrarPropuestas(empleado);
 }
 // ---------- EVENTO ----------
-
-
 // helper para mostrar mensaje usando función si existe
 function mostrarVentanaMensaje(texto) {
   const cont = document.getElementById('msg-empleado');
@@ -2173,31 +2017,24 @@ function mostrarVentanaMensaje(texto) {
   }
   if (p) p.textContent = texto;
 }
-
 btnLimpiarMA.addEventListener('click', () =>{
-
   const img = document.getElementById('empleadoImg');
   const imgMA = document.getElementById('empleadoImg-ma');
-
   const contenedor = img?.closest('.imgEmpleado');
   const contenedorMA = imgMA?.closest('.imgEmpleado-ma');
   if (!img && !imgMA) return;
-
   if (img && contenedor) {
     img.src = '';
     contenedor.dataset.img = '';
   }
-
   if (imgMA && contenedorMA) {
     imgMA.src = '';
     contenedorMA.dataset.img = '';
   }
-
   const inputs = document.querySelectorAll('.verGraficos');
   inputs.forEach(input => {
     input.style.backgroundColor = '';
   });
-
   if(flagEmpleado === false){
     alternarColor(btnDblFlecha)
     return
@@ -2234,26 +2071,21 @@ function limpiarEntradas() {
   entradas.forEach(input => input.value = '');
   const img = document.getElementById('empleadoImg');
   const imgMA = document.getElementById('empleadoImg-ma');
-
   // Contenedores asociados
   const contenedor = img?.closest('.imgEmpleado');
   const contenedorMA = imgMA?.closest('.imgEmpleado-ma');
-
   // Si no existe ninguno, no hay trabajo que hacer
   if (!img && !imgMA) return;
-
   // Reset para el primero
   if (img && contenedor) {
     img.src = '';
     contenedor.dataset.img = '';
   }
-
   // Reset para el segundo
   if (imgMA && contenedorMA) {
     imgMA.src = '';
     contenedorMA.dataset.img = '';
   }
-  
   setTimeout(() => {
     if(esDesktop){
     if(inputMA)inputMA.focus()
@@ -2267,7 +2099,6 @@ document.querySelectorAll('.special-text').forEach(input => {
     this.value = this.value.replace(/(^|\s)\p{L}/gu, l => l.toUpperCase());
   });
 });
-
 document.querySelector('#borrarBoton4').addEventListener('click', ()=>{
   var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','panel-listado','panel-colores','panel-kaizen']; 
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -2277,9 +2108,7 @@ document.querySelector('#borrarBoton4').addEventListener('click', ()=>{
     }
   } 
   container1.style.display='grid';
-
 })
-
 const integrantes = Array.from(document.querySelectorAll('.first_table'));
 // Duración distinta para cada hijo (subida y bajada)
 const DURACIONES = [2800, 3500, 2200, 4000, 3100];
@@ -2290,7 +2119,6 @@ function animarHijo(el, duracion) {
     const start = performance.now();
     const desde = parseFloat(el.style.height) || 0;
     const hasta = el._subiendo ? 100 : 0;
-
     function step(now) {
       if (!running) { resolve(); return; }
       const t = Math.min((now - start) / duracion, 1);
@@ -2321,7 +2149,6 @@ function startAnim() {
   if (running) return;
   running = true;
   integrantes.forEach(h => h.style.height = '0%');
-
   integrantes.forEach((h, i) => {
     // Offset inicial aleatorio para que no arranquen todos desde 0 al mismo tiempo
     const delay = Math.random() * DURACIONES[i];
@@ -2346,7 +2173,6 @@ function animarHijoB(el, duracion) {
     const start = performance.now();
     const desde = parseFloat(el.style.height) || 0;
     const hasta = el._subiendo ? 100 : 0;
-
     function step(now) {
       if (!runningB) { resolve(); return; }
       const t = Math.min((now - start) / duracion, 1);
@@ -2376,7 +2202,6 @@ function startAnimB() {
   if (runningB) return;
   runningB = true;
   hijosB.forEach(h => h.style.height = '0%');
-
   hijosB.forEach((h, i) => {
     const delay = Math.random() * DURACIONES_B[i];
     h._subiendo = true;

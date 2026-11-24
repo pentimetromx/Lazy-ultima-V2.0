@@ -1,34 +1,22 @@
-
 <!DOCTYPE html>   
 <html>
-     
   <head>    
-              
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-
     <title>Lazy BACKUP</title> 
-    
     <link rel="stylesheet" href="./Matriz-1.css">
     <link rel="stylesheet" href="./Matriz-2.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">  
   </head>
-
-
  <body onload="manejarLogica()"> 
     <script></script> 
-
     <div id="info" style="position:fixed;bottom:10px;left:10px;color:white;background:black;padding:5px;font-family:monospace;z-index:9999;"></div>
-
     <header class="buscador" id="buscador">
-      
       <form id="search-form">
         <input type="text" id="search-input" placeholder="Buscar..."> 
         <datalist id="suggestions"></datalist>                                             
         <img data-src="./assets/lupa.jpg" class="busqueda lazy" alt="Buscar">    
       </form>
-
     </header>
     <div id="gran-cortina"></div>   
     <div id="over_size"></div>
@@ -36,32 +24,24 @@
     <div id="logo-grande">
       <img src="./assets/cadena logo big.png"  id="titulo-ancho" alt="logo"> 
     </div>
-    
     <div id="franja-Blanca">
       <img src="./assets/cadena logo.png" id="img-logo" class="lazy" alt="logo">
     </div> 
-
     <input id="input1" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric" autofocus>    
     <input id="input2" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">    
     <input id="input3" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">    
     <input id="input4" type="text" class="numero" maxlength="1" oninput="moveCursorToEnd(this)" inputmode="numeric">
-
     <div class="contraseña" id="contraseña"><span id="texto">Ingrese contraseña</span></div>
-
     <div id="cont-titulo">
       <h4 id="subtitulo-I">Aplicamos la transformación tecnológica</h4>
-
       <p id="descripcion-I">
         En cadena experimentamos internamente el crecimiento que ofrecemos a nuestros clientes<br>usando las mismas herramientas
         <button id="butt-Institucional"></button>
       </p>
-
       <span class="sub-arrow">
         <i class="fas fa-caret-down"></i>
       </span>
-      
       <div id="padre-inicio">
-
         <div id="agrupaOblicuos-XI" class="oblicuos-XI">
           <div id="contFrente-V" class="oblicuosInicio">
             <button class="Bot-inicio3 butts-inicio" id="butt-01110" onclick="abrirSeccionCalidad('cont-titulo-calidad')">Area Calidad</button>
@@ -77,11 +57,9 @@
           </div>
           <div id="contAtras-V" class="oblicuosInicio">
             <button class="Bot-inicio3 secuence" id="butt-7" onclick="mostrarElementos(['cont-titulo-operacion','container01','buscador','search-form','links-inicialesI','links-iniciales','cont-titulo-operacion','image-background'])">Area Operativa</button>
-
             <button class="Bot-inicio3-fondo" id="butt-8"></button> 
           </div>
         </div>
-
         <div id="padre-interfaz">
           <div id="video-offset-cadena">
             <video class="lazy" autoplay loop muted playsinline>
@@ -89,12 +67,9 @@
             </video>
           </div> 
           <div id="hijo-interaz-2" class="columna"></div>
-
         </div>
-
       </div>
     </div>
-
     <div id="cont-videojuegos" class="juegos-de-video">
       <div id="contMetrics" class="sinusoidales">
         <canvas id="sinusoidalCanvas" width="300" height="177"></canvas>
@@ -242,7 +217,6 @@
         <button class="buttons" id="button81"></button>                
       </div>
     </div>  
-    
     <div id="cont-titulo-operacion" style="display: none;">
       <h4 id="subtitulo-operacion">Aplicamos la transformación tecnológica</h4>
       <p id="descripcion-II">
@@ -264,16 +238,13 @@
         </div>
         <div id="contAtras-V" class="oblicuosInicio">
           <button class="Bot-inicio3 secuence" id="butt-7" onclick="mostrarElementos(['cont-titulo-operacion','container01','buscador','search-form','links-inicialesI','links-iniciales','cont-titulo-operacion','image-background'])">Area Operativa</button>
-
           <button class="Bot-inicio3-fondo" id="butt-8000"></button> 
         </div>  
-
         <div id="juego-V" class="oblicuosInicio">
           <button class="Bot-inicio3 secuence" id="butt-700" onclick="iniciaMove('')">Video Juego</button>
           <button class="Bot-inicio3-fondo" id="butt-9000"></button>
         </div>
       </div> 
-
       <div class="oblicuos-XI" id="agrupaOblicuos-XII">
         <div id="contMedio-V-operacion" class="contOblicuosTorre elemento-hijo">
           <button class="Bot-inicio3 secuence" id="butt-22" onclick="mostrarElementos(['pantalla-inicial','barras-inicio','barras-contenedor','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','torre-imp','tinter-o','bateria-entintado','gran-cortina'])">Offset</button>
@@ -326,7 +297,6 @@
         </div>
         <div id="contAtras-V" class="oblicuosInicio">
           <button class="Bot-inicio3 secuence" id="butt-7" onclick="mostrarElementos(['cont-titulo-operacion','container01','buscador','search-form','links-inicialesI','links-iniciales','cont-titulo-operacion','image-background'])">Area Operativa</button>
-
           <button class="Bot-inicio3-fondo" id="butt-80"></button>  
         </div> 
       </div>  
@@ -396,7 +366,6 @@
         </div>
         <div id="contAtras-V" class="oblicuosInicio">
           <button class="Bot-inicio3 secuence" id="butt-7" onclick="mostrarElementos(['cont-titulo-operacion','container01','buscador','search-form','links-inicialesI','links-iniciales','cont-titulo-operacion','image-background'])">Area Operativa</button>
-
           <button class="Bot-inicio3-fondo" id="butt-8"></button>  
         </div> 
       </div> 
@@ -482,22 +451,16 @@
         </div> 
       </div>
     </div>
-
     <div id="overlay-kaizen"></div>
-
     <video class="lazy" id="video-background" autoplay loop muted playsinline>
       <source data-src="./assets/galaxy.webm" type="video/webm"><source data-src="./assets/galaxy.mp4" type="video/mp4">
       Tu navegador no soporta el elemento de video.
     </video>
-
     <div id="links-inicialesI" class="links-inicialesI ocultos">      
-      
       <div id="titleContainerI" class="cont-titulo-pilares">
         <p id="textToColorI">Pilares<span>&#9660;</span></p>
       </div>  
-
       <ul id="linkListI" class="iridescent-element">
-
         <li onclick="ElementosMaII('conteneMantaut')">Mantenimiento Autonomo</li>
         <li>Educación y Entrenamiento</li>
         <li>Salud Seguridad y Ambiente</li>
@@ -506,7 +469,6 @@
         <li>Administrativo y soporte</li>
         <li onclick="decisionesEstrategicas()">Estrategia</li> 
         <li id="ingreso-padre">Ingresos / Resultados
-
           <ul id="links-auxiliar" class="auxiliar-links">
             <li>Job track</li> 
             <li>Administracion
@@ -523,34 +485,26 @@
                 <li>Integral</li>
                 <li>Bases datos</li> 
                 <li>Almacen datos</li> 
-
               </ul>
             </li>
-
           </ul>
-          
         </li>        
         <li onclick="cerrarPilares()">Salir</li> 
       </ul>
-
     </div>
-  
     <div class="links-iniciales ocultos" id="links-iniciales">
       <div id="titleContainer">
         <p id="textToColor">Entrenamientos <span>&#9660;</span></p>
       </div>
-      
       <ul id="linkList" class="iridescent-element">
         <li onclick="mostrarElementos(['pantalla-inicial','buscador','container01','search-form','toggleVideoButton','links-inicialesI','links-iniciales','desbobinadorId','uTeñidos','alimentadorId','unidProceso','rebobinador','gran-cortina'])">Impresion rotativa / flexográfica</li>   
         <li id="simulador-impresion">Impresion offset
-
           <ul id="links-registro" class="auxiliar-registro">
             <li>Simulador</li>
             <li>Ajuste registro</li>
             <li>Ajuste pinza</li>
             <li>Alineacion cilindros</li>
           </ul>
-          
         </li>
         <li onclick="abrirSeccionVariable('cont-variable')">Impresion variable</li>
         <li onclick="abrirSeccionPlanas('cont-plana')">Impresion plana</li>
@@ -562,7 +516,6 @@
             <li>Teoria del color</li>
             <li>Espectrofotometria</li>  
             <li>Montaje</li>
-
             <li class="has-submenu">Colorimetria
               <ul class="submenu-colorimetria">
                 <li>CMYK</li>
@@ -572,16 +525,13 @@
                 <li>Salir</li>
               </ul>
             </li>
-
             <li>Salir</li>
           </ul>
         </li>
         <li>Rotativa RK-300</li>
         <li onclick="cerrarPilares()">Salir</li>
       </ul>
-
     </div> 
-
     <div id="barras-inicio" class="contenedor-barras-inicio">
       <div class="barra-vertical-inicio">
         <div class="horiz-13-1"></div>
@@ -619,10 +569,7 @@
         <div class="horiz-9-5"></div>
       </div>
     </div>
-    
-    
     <div id="pantalla-inicial">
-      
       <div  id="desbobinadorId" class="torre">
         <div  id="cont-Verticales1">
           <button class="boton-b btn-bloque" id="boton1">DESBOBINADOR</button>
@@ -633,7 +580,6 @@
           <button id="boton6" class="boton-c" onclick="lubricacion('boton6')">Regulación neumática</button>
         </div>         
       </div>
-      
       <div id="uTeñidos" class="torre">  
         <div  id="cont-Verticales2">
           <button class="boton-b btn-bloque" id="boton7">UNIDAD TEÑIDO</button>
@@ -644,7 +590,6 @@
           <button class="boton-c" id="boton12" onclick="UnidadTeñido('boton12','boton7')">Depositos de anilina</button>
         </div>
       </div>
-
       <div id="alimentadorId" class="torre">
         <div  id="cont-Verticales33">
           <button class="boton-b btn-bloque" id="boton13">ALIMENTADOR</button>
@@ -675,7 +620,6 @@
           <button class="boton-c" id="boton30" onclick="UnidadRebonina('boton30','boton25')">Ajuste neumatico</button>
         </div>
       </div>  
-          
       <button id="toggleVideoButton">TORRE DE IMPRESIÓN</button> 
       <div id="torre-imp" class="torre-imp">
         <div id="tinter-o" class="unidad-torre">
@@ -687,7 +631,6 @@
           <button class="boton-e" id="boton35" onclick="UnidadTintero('boton35','tinteroButton')">Ajuste en topes</button>
           <button class="boton-e" id="boton36" onclick="UnidadTintero('boton36','tinteroButton')">Ajuste mecánico</button>
         </div>
-
         <div id="bateria-entintado" class="unidad-torre">  
           <button class="boton-d" id="bateriaButton" onclick="changeButtonStyles('bateria-entintado-II', 'contene-7')">BATERIA DE ENTINTADO</button>               
           <button class="boton-e" id="boton37" onclick="UnidadBateria('boton37','bateriaButton')">Diámetros y durezas</button>
@@ -696,24 +639,19 @@
           <button class="boton-e" id="boton40" onclick="UnidadBateria('boton40','bateriaButton')">Ajuste  rodillos distribuidores</button>
           <button class="boton-e" id="boton41" onclick="UnidadBateria('boton41','bateriaButton')">Ajuste rodillos de forma</button>                  
         </div>
-
         <div id="bancada-torre" class="unidad-torre">
           <button class="boton-d" id="bancadaButton" onclick="changeButtonStyles('bancada-torre-II','imgsIsopropil')">BANCADA DE TORRE</button>
           <button class="boton-e" id="boton42" onclick="UnidadTorre('boton42','bancadaButton')">Guía</button>                  
           <button class="boton-e" id="boton43" onclick="UnidadTorre('boton43','bancadaButton')">Ajuste</button>                  
         </div> 
-
         <div id="sis-humedad" class="unidad-torre">  
           <button class="boton-d" id="humedadButton" onclick="changeButtonStyles('sitema-humedad')">SISTEMA HUMEDAD</button>
           <button class="boton-e" id="boton44" onclick="UnidadSisHumedad('boton44','humedadButton')">Composición</button>                  
           <button class="boton-e" id="boton45" onclick="UnidadSisHumedad('boton45','humedadButton')">Graduación</button>                  
           <button class="boton-e" id="boton46" onclick="UnidadSisHumedad('boton46','humedadButton')">Ajustes</button>                   
         </div>
-
       </div> 
-
     </div>
-
     <div id="barras-contenedor" class="contenedor-barras">      
       <div class="barra-vertical barra-vertical-6">
         <div class="horiz-6-1"></div>
@@ -740,25 +678,16 @@
         <div class="horiz-3-3"></div>
       </div>
     </div>
-
-    
-
     <div id="container01" class="ocultos" data-display="grid">
       <button id="bot-atras" class="entrada-empleado" onclick="irContenedorAnterior('contPortPlaca')"></button>
       <button id="bot-inicial" class="entrada-empleado" onclick="abrirInterfaz()">Panel Inicio</button>
-
       <div class="grupo-botones">
         <button id="iniciar" class="entrada-empleado" onclick="activarPantallaCompleta()">Full</button>
         <button id="salir-full" class="entrada-empleado" onclick="salirPantallaCompleta()">Exit</button>
       </div>
-
       <button id="bot-atras12" class="entrada-empleado" onclick="irContenedorSiguiente()"></button>
     </div>
-
-
-
     <div id="pantalla-tintero"> 
-
       <div id="cont-links">
         <a href="#" class="custom-link" id="linkDistribuidor"onclick="showRepuesto('contImgDistribuidor','')">Rodillo distribuidor</a>
         <a href="#" class="custom-link" id="linkForma" onclick="showRepuesto('contImgEntintador','')">Rodillo forma</a>
@@ -766,22 +695,17 @@
         <a href="#" class="custom-link" id="linkManta" onclick="showRepuesto('contPortManta', 'videoTrain03')">Porta mantilla</a>
         <a href="#" class="custom-link" id="linkImpresor" onclick="showRepuesto('contImpresor', 'videoTrain01')">Cilindro impresor</a>
       </div>
-      
       <img data-src="./assets/Arriba abajo.jpg" class="lazy" id="imgTorre" alt="imagen-torre"> 
-
       <video class="lazy video-training" id="vidTintero" autoplay loop muted playsinline>
         <source data-src="./assets/Arriba abajo.webm" type="video/webm"><source data-src="./assets/Arriba abajo.mp4" type="video/mp4">
       </video>
-
       <div id="imgsRepuestos">
         <img data-src="./assets/galgas.jpg" class="image-trainings lazy" id="eje" onclick="ampliaIndicaciones('eje')" alt="eje">
         <img data-src="./assets/conico.jpg" class="image-trainings lazy" id="conico" onclick="ampliaIndicaciones('conico')" alt="cónico">
         <img data-src="./assets/reductor.jpg" class="image-trainings lazy" id="reductor" onclick="ampliaIndicaciones(2)" alt="reductor">
         <img data-src="./assets/reductorII.png" class="image-trainings lazy" id="reductor-II" onclick="ampliaIndicaciones(3)" alt="reductorII">
       </div>
-      
       <div id="agrupaOblicuos-XXX"></div>
-
       <div id="indicaciones-eje">
         <button class="boton-a" id="bot-indicaciones" style="text-align: center;margin-left: 97px;margin-top: 77px; z-index: 1;" onclick="ocultarIndicaciones('eje')">Volver</button>
         <header style="position: relative;margin-top: 57px;">
@@ -806,7 +730,6 @@
           <h1 style="font-family: 'GothamRounded', sans-serif;color: yellowgreen;text-align: left; ">EJE DESPLAZAMIENTO</h1>
           <h2 style="font-family: 'GothamRounded', sans-serif;color: yellowgreen;text-align: left; ">Acople</h2>
         </header>
-  
         <section id="secion-1" style="position: relative;margin-top: -17px;left: 11px;">
           <p>1. Ángulo de inclinación</pstyle=><br>
           <p>2. Relación de transmisión</p>
@@ -818,7 +741,6 @@
           <p>7. Capacidad de carga</p>
           <p>8. Lubricación</p>                                
         </section>
-
       </div>
     </div>    
     <div id="pantalla-frente"> 
@@ -829,7 +751,6 @@
         <img data-src="./assets/reductorII.png" class="lazy img-pantalla" alt="eje">
       </div>
       <img data-src="./assets/Arriba abajo.jpg" class="lazy" id="imgTorre-f" alt="imagen-torre">
-      
       <div id="agrupaOblicuos-XD"></div>
     </div>
     <div id="pantalla-mandos" style="display: none;">
@@ -840,7 +761,6 @@
         <img data-src="./assets/acople.jpg" class="lazy image-trainings rep-izquierda img-pantalla" alt="ejes">
       </div>
       <img data-src="./assets/Mandos.jpg" class="lazy" id="imgTorre-f" alt="imagen-torre">
-
       <div id="agrupaOblicuos-D">
       </div>  
     </div>
@@ -852,7 +772,6 @@
         <img data-src="./assets/piñonIII.jpg" class="lazy image-trainings rep-derecha img-pantalla" alt="ejes">
       </div>
       <img data-src="./assets/Transmision.jpg" class="lazy" id="imgTorre-f" alt="imagen-torre">
-
       <div id="agrupaOblicuos-DX">
       </div>
     </div>
@@ -864,13 +783,10 @@
         <img data-src="./assets/piñon trasero.jpg" class="lazy image-trainings rep-derecha img-pantalla" alt="ejes">
       </div>
       <img data-src="./assets/Atras.jpg" class="lazy" id="imgTorre-a" alt="imagen-torre">
-
       <div id="agrupaOblicuos-DXX">
       </div>
-
     </div>
     <div id="videosTraining" style="display: none;">
-
       <div class="videos-training" id="videos-training">
         <video class="lazy video-training" id="videoElement1" autoplay loop muted playsinline>
           <source data-src="./assets/Bateria de entintado.webm" type="video/webm"><source data-src="./assets/Bateria de entintado.mp4" type="video/mp4">
@@ -883,7 +799,6 @@
         </video>
       </div>
     </div>
-    
     <div id="sector-distribuidor">
       <div id="contenedor-7-V" class="contene-botones"> 
         <button class="boton-f" onclick="muestraRodillo('videoElement2','images-distribuidor')">Montaje distribuidor<div class="linea-horizontal"></div></button>                
@@ -893,7 +808,6 @@
         <button class="boton-f" onclick="muestraRodillo('videoElement6')">Montaje tomador <div class="linea-horizontal"></div></button>  
         <button class="boton-f" onclick="muestraRodillo('videoElement7')">Montaje distribuidor trasero <div class="linea-horizontal"></div></button>  
       </div>
-
       <div id="conti-video-distribuidor">
         <video class="lazy video-training" id="videoElement2" autoplay loop muted playsinline>
           <source data-src="./assets/Montaje distribuidor.webm" type="video/webm"><source data-src="./assets/Montaje distribuidor.mp4" type="video/mp4">
@@ -906,7 +820,6 @@
         <img data-src="./assets/DIstri-12.jpg" id="imageElement4" class="lazy image-trainings1" alt="Tornillo lupa">
         <img data-src="./assets/Distri-11.jpg" id="imageElement5" class="lazy image-trainings1" alt="Tuerca lupa">
       </div>
-
       <div id="conti-video-entintador">
         <video class="lazy video-training" id="videoElement3" autoplay loop muted playsinline>  
           <source data-src="./assets/Montaje entintador.webm" type="video/webm"><source data-src="./assets/Montaje entintador.mp4" type="video/mp4">
@@ -916,7 +829,6 @@
         <img data-src="./assets/Entintador.png" class="lazy image-trainings1" id="imageElement6" alt="Entintador">
         <img data-src="./assets/Rodamiento entintador.png" class="lazy image-trainings1" id="imageElement7" alt="Rodamiento entintador"><br>
       </div>
-
       <div id="conti-video-smed">
         <video class="lazy video-training" id="plate-smed" autoplay loop muted playsinline>
           <source data-src="./assets/plate smed.webm" type="video/webm"><source data-src="./assets/plate smed.mp4" type="video/mp4">
@@ -929,14 +841,11 @@
           <img data-src="./assets/rodillos prensa.png" class="lazy image-trainings1" id="imageElement44" alt="Rodamiento entintador">
           <img data-src="./assets/medidor.jpg" class="lazy image-trainings1" id="imageElement55" alt="Rodamiento entintador">
       </div>      
-
     </div>
     <div id="conti-boton-repuestos">
       <button class="butt-partes" id="butt-repuestos">PARTES  /  REPUESTOS</button>
     </div>
-
     <div id="conteneMantaut" class="mantAuto">
-      
       <div id="conti-boton">
         <button class="btn-torre secuenciales" onclick="deslizaContenedor('troubleshooting','troubleshoot')">SOLUCIONADOR</button>
         <button class="btn-torre secuenciales" onclick="deslizaContenedor('canvasContainer2','def1')">DEF. TIPO 1</button>
@@ -948,7 +857,6 @@
         <button class="btn-torre" onclick="resetBotns('troubleshoot')" style="background-color: red;color: white;">Reset</button>
         <button class="btn-torre" onclick="building()" style="background-color: red;color: white;">Show everything</button>             
       </div> 
-
       <div id="troubleshooting" class="contenedor-pariente class-line">
         <button class="miBoton" id="archivo" onclick="listaEntrenamientosII('archivo')">Largo de impresion</button>   
         <button class="miBoton" id="btt2" onclick="listaEntrenamientosII('btt2')">Aditivos solución de fuente</button>
@@ -959,10 +867,8 @@
         <button class="miBoton" id="btt7" onclick="listaEntrenamientosII('btt7')">Problemas de teñido</button>       
         <button class="miBoton" id="btt8" onclick="listaEntrenamientosII('btt8')">Seleccionar archivo</button>       
       </div>
-
       <canvas id="ctx"></canvas>
     </div>
-
     <div id="conti-boton-kaizen">
       <button class="butt-mautonomo-kaizen" id="btn17" onclick="rodillosKaizen('btn17','')">PROPUESTOS</button>
       <button class="butt-mautonomo-kaizen" id="btn12" onclick="rodillosKaizen('btn12','vidElem')">IMPLEMENTADOS</button>
@@ -1015,15 +921,11 @@
         <source data-src="./assets/kaizen vid.webm" type="video/webm"><source data-src="./assets/kaizen vid.mp4" type="video/mp4">
       </video>
     </div>
-
-
     <div id="kaizen-propuestos">
-
       <div class="cell" data-index="0">
         <label class="label">Salva manos en maquina colectora</label>
         <img data-src="./assets/kaizen colectora.jpg" class="lazy kaizen-img" alt="colectora">
       </div>
-      
       <div class="cell" data-index="1">
         <label class="label">Mejora en linea de ensamble</label>
         <img data-src="./assets/kaizen fresa.jpg" class="lazy kaizen-img" alt="colectora">
@@ -1068,14 +970,11 @@
         <label class="label">Menor esfuerzo : Maximo torque</label>
         <img data-src="./assets/kaizen community.jpg" class="lazy kaizen-img" alt="colecta">
       </div>
-      
     </div>
-
     <div id="pantalla-kaizen" class="cell-exterior">
       <label class="label">Filosofia kaizen japones</label>
       <img data-src="" class="lazy kaizen-img" alt="colecta">
     </div>
-
     <div id="lubricacion">
       <div class="conti-boton" id="conti-boton-desb"> 
         <button class="butt-mautonomo-desbobina image-trainings hidden" id="btn1" onclick="LubricaDesbobinador('btn1')">REMALINER</button>
@@ -1084,28 +983,21 @@
         <button class="butt-mautonomo-desbobina image-trainings hidden" id="btn4" onclick="LubricaDesbobinador('btn4')">TROQUELADORA</button>
         <button class="butt-mautonomo-desbobina image-trainings hidden" id="btn5" onclick="LubricaDesbobinador('btn5')">ENTREGA</button>          
       </div>
-
       <div id="frec-lubrica">  
-
         <div class="hijo1">
           <button id="lub-diario" class="labl-lub" onclick="lubricaDiario('lub-diario','labl1')"></button>
           <span id="labl1" class="labl-lub" style="display: none;">Frecuencia diaria</span>
         </div>
-
         <div class="hijo1">
           <button id="lub-semanal" class="labl-lub" onclick="lubricaDiario('lub-semanal','labl2')"></button>
           <span id="labl2" class="labl-lub" style="display: none;">Frecuencia semanal</span>
         </div>
-
         <div class="hijo1">
           <button id="lub-mensual" class="labl-lub" onclick="lubricaDiario('lub-mensual','labl3')"></button>
           <span id="labl3" class="labl-lub" style="display: none;">Frecuencia mensual</span>
         </div>
-        
       </div>
-
     </div>
-
     <div id="marco-lubricantes"></div>
     <div id="lubricantes" class="conte-lubrica ventana">
         <div id="titulo-lubrica">
@@ -1152,11 +1044,9 @@
             <span class="labl-lub" style="display: none;">Viscosidad 80 - 120</span>
           </div>
         </div>
-
     </div>
     <button id="butt-links-II" class="butt-links ventana" onclick="cerrarVentanasII()">Volver</button>
     <div id="lubri-I">
-
       <div id="vertical-lineI"></div>
       <div id="aceite">
         <span class="labl-class">ACEITE</span>
@@ -1190,9 +1080,7 @@
         <span class="labl-class labl-lub" style="display: none;">Grasera transmision</span>
         <span class="labl-class labl-lub" style="display: none;">Viscosidad 80 - 120</span>
       </div>
-
     </div>
-  
     <div id="inicio" class="genesis ventana">
       <div id="bis-abuelo" class="grand-father">
       <div id="padre-lubrica" class="contenedor-padre">
@@ -1213,32 +1101,26 @@
         <div class="item"><img data-src="./assets/rodamiento conico mandos 3.jpg" class="item-child lazy" alt="rodamiento"></div>
         <div class="item"><span class="labl-lub">Rodamiento Cónico de Precisión</span></div>
       </div>
-
       </div>
     </div>
     <div id="marco-teñido"></div> 
     <div id="marco-freno"></div>
-
     <div id="freno">
-      
       <div class="conti-boton" id="conti-boton-freno">
         <button class="butt-mautonomo-freno image-trainings" id="btn60" onclick="LubricaDesbobinador('btn60')">DESEMPEÑO</button>
         <button class="butt-mautonomo-freno image-trainings" id="btn70" onclick="LubricaDesbobinador('btn70')">ESTRUCTURA</button>
         <button class="butt-mautonomo-freno image-trainings" id="btn80" onclick="LubricaDesbobinador('btn80')">PARAMETROS</button>
       </div>
-
       <div id="cont-arriba-freno">
         <div id="freno-I">
           <span class="labl-class">FRENO</span>
         </div>        
-          
         <div id="vidFreno">
           <video class="lazy" id="freno-vid" autoplay loop muted playsinline>
             <source data-src="./assets/freno disco.webm" type="video/webm"><source data-src="./assets/freno disco.mp4" type="video/mp4">
           </video>
         </div>      
       </div>
-
       <div id="grilla-frena">
         <div class="siste-freno expand"><img data-src="./assets/sist neumatico.jpg" class="img-freno lazy" alt="rodamiento"></div>
         <div class="siste-freno expand"><img data-src="./assets/sist neumatico 1.jpg" class="img-freno lazy" alt="rodamiento"></div>
@@ -1250,32 +1132,23 @@
         <div class="siste-freno expand"><img data-src="./assets/sist neumatico 7.jpg" class="img-freno lazy" alt="rodamiento"></div>
         <div class="siste-freno expand"><img data-src="./assets/sist neumatico 8.jpg" class="img-freno lazy" alt="rodamiento"></div> 
       </div>
-        
     </div>
     <div id="uniteñido">
-      
       <div class="conti-boton" id="conti-boton-teñido">
         <button class="butt-mautonomo-teñido image-trainings" id="btn600" onclick="UnidadTeñido('btn600')">ACTUADORES</button>
         <button class="butt-mautonomo-teñido image-trainings" id="btn700" onclick="UnidadTeñido('btn700')">NEUMATICA</button>
         <button class="butt-mautonomo-teñido image-trainings" id="btn800" onclick="UnidadTeñido('btn800')">PARAMETROS</button>
       </div>
-
       <div id="cont-arriba">
-
         <div id="teñido-I">
           <span class="labl-class">GP TINTER</span>
         </div>
-
         <div id="vidTeñido">
           <video class="lazy" id="teñido-vid" autoplay loop muted playsinline> 
             <source data-src="./assets/vid-teñido.webm" type="video/webm"><source data-src="./assets/vid-teñido.mp4" type="video/mp4">
           </video>
         </div>
-    
       </div>
-
-        
-        
       <div id="grilla-teñido-hijo">
         <div class="imagen expand"><img data-src="./assets/sist neumatico.jpg" class="item-grilla lazy" alt="rodamiento"></div>
         <div class="imagen expand"><img data-src="./assets/sist neumatico 1.jpg" class="item-grilla lazy" alt="rodamiento"></div>
@@ -1287,33 +1160,25 @@
         <div class="imagen expand"><img data-src="./assets/sist neumatico 7.jpg" class="item-grilla lazy" alt="rodamiento"></div>
         <div class="imagen expand"><img data-src="./assets/sist neumatico 8.jpg" class="item-grilla lazy" alt="rodamiento"></div>
       </div>
-
-
     </div>  
     <div id="marco-repuestos"></div>
     <div id="marco-durezas"></div>
     <div id="rodilleria">
-      
       <div class="conti-boton" id="conti-boton-rodilleria">
         <button class="butt-mautonomo-rodilleria image-trainings" id="btn06" onclick="rodillosTeñido('btn06')">TIPOLOGIA</button>
         <button class="butt-mautonomo-rodilleria image-trainings" id="btn07" onclick="rodillosTeñido('btn07')">DUREZAS</button>
         <button class="butt-mautonomo-rodilleria image-trainings" id="btn08" onclick="rodillosTeñido('btn08')">MONTAJE</button>
       </div>
-
       <div id="cont-arriba-rodillos">
-
         <div id="rodillos-I">
           <span class="labl-class">GP TINTER</span>
         </div>
-
         <div id="vidRodillos">
           <video class="lazy video-training" id="rodilleria-vid" autoplay loop muted playsinline>
             <source data-src="./assets/tinter vid.webm" type="video/webm"><source data-src="./assets/tinter vid.mp4" type="video/mp4">
           </video>
         </div>
-        
       </div>
-
       <div id="padre-cuadricula" class="marco-2">
         <div  id="hijo-cuadricula" class="marco-1">
           <div><img data-src="./assets/tinter.jpg" class="rodillo lazy"  alt="freno"></div>  
@@ -1322,23 +1187,19 @@
           <div><img data-src="./assets/tinter 3.jpg" class="rodillo lazy" alt="freno"></div>  
         </div>
       </div>
-
       <div id="grilla-duro" class="grilla-dureza-hijo">
         <div class="duros"><img data-src="./assets/durometro 1.jpg" class="rodillo-durezas lazy" alt="freno"></div>
         <div class="duros"><img data-src="./assets/durometro 2.jpg" class="rodillo-durezas lazy" alt="freno"></div>
         <div class="duros"><img data-src="./assets/durometro 3.jpg" class="rodillo-durezas lazy" alt="freno"></div>
         <div class="duros"><img data-src="./assets/durometro 4.jpg" class="rodillo-durezas lazy"  alt="freno"></div>
       </div>
-
     </div>        
     <div id="contPortPlaca">
       <video class="lazy video-training" id="video-placa" autoplay loop muted playsinline>
         <source data-src="./assets/video-plancha-v2.webm" type="video/webm"><source data-src="./assets/video-plancha-v2.mp4" type="video/mp4">
       </video>
-
       <div id="agrupaOblicuos-DXXX">
       </div>
-
       <div id="placa">
         <img data-src="./assets/comparador caratula.png" class="image-trainings lazy">
         <img data-src="./assets/anodizado.jpg" class="image-trainings lazy" alt="placa">
@@ -1346,7 +1207,6 @@
       </div>
     </div>
     <div id="imagenes-plancha">
-
       <div class="imagen-container" id="imagen1">
         <img data-src="./assets/Porta plancha2.png" class="lazy imagesTorre " alt="porte plancha">
         <img data-src="./assets/Porta plancha.png" class="lazy imagesTorre " id="portPlaca" alt="porte plancha">
@@ -1368,9 +1228,7 @@
       <video class="lazy video-training" id="videoManta" autoplay loop muted playsinline>
         <source data-src="./assets/video-portaManta-v2.webm" type="video/webm"><source data-src="./assets/video-portaManta-v2.mp4" type="video/mp4">
       </video>
-
       <div id="agrupaOblicuos-XC"></div>
-
       <div id="manta">
         <img data-src="./assets/calibrador.png" class="lazy image-trainings "  alt="calibra">
         <img data-src="./assets/mantilla3.jpg" class="lazy image-trainings " alt="manta">
@@ -1399,9 +1257,7 @@
       <video class="lazy video-training" id="video-impresor" autoplay loop muted playsinline>
         <source data-src="./assets/video-impresor.webm" type="video/webm"><source data-src="./assets/video-impresor.mp4" type="video/mp4">
       </video>
-
       <div id="agrupaOblicuos-C"></div>
-
       <div id="impresorImg">
         <img data-src="./assets/medidor.jpg" class="lazy image-trainings" alt="manta">
         <img data-src="./assets/impresor.jpg" class="lazy image-trainings" alt="manta"> 
@@ -1409,7 +1265,6 @@
       </div> 
     </div>
     <div id="imagenes-impresor">
-
       <div class="contImPresor" id="forward"> 
         <img data-src="./assets/tensor cilindro.jpg" class="lazy imagesTorre imgImpresor " id="impresor" alt="porte plancha">
         <img data-src="./assets/tensor doblerosca.jpg" class="lazy imagesTorre imgImpresor " id="impresor1" alt="porte plancha">
@@ -1427,7 +1282,6 @@
         <img data-src="./assets/tensor avanzado.jpg" class="lazy imagesTorre imgImpresor " id="impresor7" alt="porte plancha">
       </div>
     </div>       
-    
     <div id="grilla-entintado">
       <div class="imgs-row expand"><img data-src="./assets/Distri-0.jpg" class="lazy image-trainings" alt="imgDistrib-4"></div>
       <div class="imgs-row expand"><img data-src="./assets/Distri-14.jpg" class="lazy image-trainings" alt="imgDistrib-17"></div>
@@ -1445,38 +1299,29 @@
       <div class="imgs-row expand"><img data-src="./assets/Distri-11.jpg" class="lazy image-trainings" alt="imgDistrib-14"></div>
       <div class="imgs-row expand"><img data-src="./assets/DIstri-12.jpg" class="lazy image-trainings" alt="imgDistrib-15"></div>
       <div class="imgs-row expand"><img data-src="./assets/Distri-13.jpg" class="lazy image-trainings" alt="imgDistrib-16"></div>
-    </div>
-                
+    </div>    
     <div id="grilla-corta-entintado">
       <div class="imgs-row expand"><img data-src="./assets/forma-1.jpg" class="lazy image-trainings" alt="imgDistrib-18"></div>
       <div class="imgs-row expand"><img data-src="./assets/forma-2.jpg" class="lazy image-trainings" alt="imgDistrib-19"></div>
       <div class="imgs-row expand"><img data-src="./assets/forma-3.jpg" class="lazy image-trainings" alt="imgDistrib-20"></div>
       <div class="imgs-row expand"><img data-src="./assets/forma-4.jpg" class="lazy image-trainings" alt="imgDistrib-21"></div>
     </div>  
-
-
     <div id="padre-variable">
-
       <div id="cont-variable">          
         <img data-src="./assets/IBM 4000.jpg" class="lazy child-section " alt="IBM4000">
         <video class="lazy child-section" autoplay loop muted playsinline controls>
           <source data-src="./assets/info-I.webm" type="video/webm"><source data-src="./assets/info-I.mp4" type="video/mp4">
         </video>
-
         <img data-src="./assets/IBM 5000.jpg" class="lazy child-section " alt="IBM4000">
         <video class="lazy child-section" autoplay loop muted playsinline controls>
           <source data-src="./assets/info-II.webm" type="video/webm"><source data-src="./assets/info-II.mp4" type="video/mp4">
         </video>
-
         <img data-src="./assets/info print.jpg" class="lazy child-section " alt="IBM4000">
         <video class="lazy child-section" autoplay loop muted playsinline controls>
           <source data-src="./assets/info-III.webm" type="video/webm"><source data-src="./assets/info-III.mp4" type="video/mp4">
         </video>
-        
       </div>
-
     </div>
-
     <div id="padre-plana">
       <div id="cont-plana">           
         <img data-src="./assets/sor-m.jpg" class="lazy child-section " alt="GTO52">
@@ -1493,7 +1338,6 @@
         </video>
       </div>
     </div>
-    
     <div id="cont-secador">
       <div class="video-container">
         <video class="lazy video-training" id="curado-uv" autoplay loop muted playsinline>
@@ -1506,17 +1350,12 @@
     </div>
     <div class="planet-container" id="planetary">
       <button id="shrinkButton" class="but-analitic">Iniciar</button> 
-
       <div id="padre-naranja">
-        
         <div id="tendencia-naranja">   
-                                                    
           <div class="item-naranja">
-
             <span class="second-lbl">Seccion prensas</span>
             <span class="span-extension"></span>
             <span class="first-lbl"></span>
-            
           </div>
           <div class="item-naranja">
             <span class="second-lbl">Seccion variable</span><span class="span-extension"></span><span class="first-lbl"></span>
@@ -1545,11 +1384,8 @@
           <div class="item-naranja">
             <span class="second-lbl">Seccion despachos</span><span class="span-extension"></span><span class="first-lbl"></span>
           </div>
-          
         </div>
-
       </div>  
-
       <div class="planet">
         <video class="lazy" autoplay loop muted playsinline>
           <source data-src="./assets/bancada torre.webm" type="video/webm"><source data-src="./assets/bancada torre.mp4" type="video/mp4">
@@ -1561,7 +1397,6 @@
       </video>
     </div>
     </div>
-
     <div id="bateria-entintado-II">
       <div id="contenedor-7" class="contene-botones">
         <button class="boton-f" onclick="muestraRodillo('videoElement2','images-distribuidor')">Montaje distribuidor<div class="linea-horizontal"></div></button>                
@@ -1577,7 +1412,6 @@
         </video>  
       </div>
     </div>
-
     <div id="bancada-torre-II">
       <div id="contenedor-8" class="contene-botones"> 
         <button class="boton-g">Estacion cassets<div class="linea-horizontal"></div></button>                
@@ -1603,7 +1437,6 @@
         <button class="boton-f " id="btt3">Alojamiento del casset <div class="linea-horizontal"></div></button>
         <button class="boton-f " id="btt4">Expulsión y halado<div class="linea-horizontal"></div></button>
       </div>
-      
       <div id="sitio-en-construccion">
         <p>Sitio en Construcción</p>
       </div>
@@ -1742,7 +1575,6 @@
         <video class="lazy vidTeoria video-training" id="vidCicodeliaII" autoplay loop muted playsinline >
           <source data-src="./assets/cicodelia.webm" type="video/webm"><source data-src="./assets/cicodelia.mp4" type="video/mp4">
         </video>    
-
         <div id="contDensito" class="contDensi">
           <div class='imgTeoria1'> <img data-src="./assets/densito906.jpg" class="lazy imgDensito" alt="pre10018"></div>
           <div class='imgTeoria1'> <img data-src="./assets/densito1.jpg" class="lazy imgDensito"  alt="pre1002"></div>
@@ -1779,11 +1611,9 @@
     </div>
     <div id="largoImpresion">
       <div id="contImgEntrenos" class="imgs-entrenos" style="display: flex;">  </div> 
-      
       <div id="linksMA">
         <div id="conte-links">
           <h2 style="margin-left: 20px;width: 517px;color: orange;">Largo de impresión ajustes preliminares</h2>
-
           <ol class="linksTraining" id="linkLis">
             <li><a href="#" id="link1" class="colorClick" data-imagen="imag11" onclick="imagenesPasoApaso('link1')">Asegurar PSI neumática</a></li>
             <li><a href="#" id="link2" class="colorClick" data-imagen="imag22" onclick="imagenesPasoApaso('link2')">Optimización al freno de bobina</a></li>
@@ -1791,20 +1621,15 @@
             <li><a href="#" id="link4" class="colorClick" data-imagen="imag44" onclick="imagenesPasoApaso('contImaginario-II')">Calibración / Limpieza / Rugosidad en INFEED</a></li>
             <li><a href="#" id="link5" class="colorClick" data-imagen="imag55" onclick="imagenesPasoApaso('puesta-punto')">Paso a paso puesta a punto</a></li>
         </ol>
-        
         </div>        
       </div>
-      
     </div> 
     <div id="contImaginario" class="ventana">
-      
       <div id="imag3" >
-
         <div class="conte-disco">
           <img data-src="./assets/neumatica3.jpg" class="lazy img-1" alt="neuma5">
           <h4>CARRERA DE CILINDRO </h4>
         </div>
-
         <div class="conte-disco">
           <img data-src="./assets/neumatica4.jpg" class="lazy img-1" alt="neuma6">
           <h4>ACOPLES DE CILINDRO</h4>
@@ -1853,7 +1678,6 @@
       <span class="etiqueta-mano">Puesta a punto en equilibrio</span>
       <span class="etiqueta-mano">Mantenimiento del circuito neumatico</span>
     </div>
-
     <div id="padre-1" class="ventana">
       <div id="imag1" class="img1">
         <img data-src="./assets/neumatica.jpg" class="lazy menu" id="image-1" alt="neuma1">
@@ -1863,7 +1687,6 @@
         <h6>PRESIÓN NEUMÁTICA 90 PSI</h6>
         <img data-src="./assets/neumatica2.jpg" class="lazy" id="image-2" alt="neuma2">
       </div>
-
       <div id="control-neumatico" class="guia-neumatica">
         <h1 class="casos-h1" >Estándar 1: Presión Nominal</h1>
         <p class="parrafo-casos">
@@ -1882,15 +1705,12 @@
           Se recomienda realizar un mantenimiento preventivo periódico para verificar y ajustar la presión neumática, asegurando un funcionamiento eficiente del cilindro y evitando posibles fallas y desgastes prematuros.
         </p>
       </div>
-
     </div>
-
     <div id="contBotCasos" class="contOblicuosTorre">
       <button class="Bot-inicio33" id="butt-17" onclick="tamaño100()">Cerrar</button>
       <button class="Bot-inicio33-fondo" id="butt-18"></button>  
     </div>
     <div id="padre-2" class="ventana">
-
       <div id="imag2" class="img1">
         <img data-src="./assets/freno.jpg" class="lazy" id="image-3" alt="neuma3">
         <h6>LIMPIEZA ZAPATAS<br>
@@ -1899,14 +1719,12 @@
           JUEGO EN EL EJE</h6>
         <img data-src="./assets/freno2.jpg" class="lazy" id="image-4" alt="neuma4"> 
       </div>  
-
       <div id="pneumatico">
         <video class="lazy" id="vid-pneumatic" autoplay loop muted playsinline>
           <source data-src="./assets/pneumatic video.webm" type="video/webm"><source data-src="./assets/pneumatic video.mp4" type="video/mp4">
         </video> 
       </div>
     </div>
-
     <div id="padre-instrucciones">
       <div id="puesta-punto" class="ventana guia-neumatica">
         <h1 class="casos-h1" >1. Inspección de la Máquina</h1>
@@ -1924,7 +1742,6 @@
         <h1 class="casos-h1" >4. Limpieza de Rodillos y Mantenimiento</h1>
         <p class="parrafo-casos">
           Realiza una limpieza exhaustiva de los rodillos. Utiliza soluciones de limpieza específicas para eliminar cualquier residuo de tinta seca que pueda afectar la calidad de impresión. Asimismo, realiza el mantenimiento regular según las recomendaciones del fabricante.     
-      
         </p>
         <h1 class="casos-h1" >5. Calibración del Sistema de Tintas </h1>
         <p class="parrafo-casos">
@@ -1952,7 +1769,6 @@
         </p>     
       </div>
     </div>
-
     <div id="contImaginario-II" class="ventana">
       <div id="rodillo-infeed" class="guia-neumatica">
         <h1 class="casos-h1" >1. Inspección Visual Regular</h1>
@@ -2003,30 +1819,22 @@
         <img data-src="./assets/grafilado5.jpg" class="lazy img-flex" id="imgGrafilado4" alt="neuma10">  
       </div>
     </div>
-    
     <div id="conte-butts-graphs">
       <button id="dynamic-graphs" class="estilo-igual">Dinamico</button>      
       <button id="static-graphs" class="estilo-igual">Estatico</button>
     </div>
-
     <div id="iconos">
       <h1 id="title-interfaz">Interfaz de seguimiento Mantenimiento Autonomo</h1>
-
       <div id="conte-secundario">
-        
         <div id="padre-porta-visor" class="special-border contenedor-visor">           
           <div id="porta-visor" class="contenedor-visor">
             <input id="buscador-empleado" type="text" placeholder="Buscar por nombre...">
-
             <div class="visor-top">
               <div id="visorImagen" class="visor-imagen">
                 <img src="" id="imagenVisor">
               </div>
-
               <div class="panel-nombres" id="listaNombres"></div>
-              
             </div>
-
             <div class="visor-footer">
               <div class="navegacion">
                 <button id="prevBtn">&#9664;</button>
@@ -2036,17 +1844,11 @@
           </div>        
         </div>        
       </div>
-      
       <div id="porta-imagen">
-
         <img class="imagen-empleado" src="./assets/" id="imagenDestino">
         <span class="nombre-empleado"></span>
-        
       </div>
-
-
       <div id="contLineas">
-
         <div id="canvasContainer4" class="graphs-lines">
           <canvas id="MiGrafica4"></canvas> 
         </div>         
@@ -2065,16 +1867,12 @@
         <div id="canvasContainer9" class="graphs-lines">
           <canvas id="MiGrafica9"></canvas>
         </div>   
-
       </div> 
-
       <div id="contLineas-II">
-
         <div id="butts-graphs">
           <button onclick="updateDinamicoII()">Dinamico</button>
           <button onclick="detenerDinamica()">Estatico</button>
         </div>
-
         <div id="canvasContainer4-II" class="graphs-employee" onclick="openGraphics('canvasContainer4-II')">
           <canvas id="MiGrafica4-II"  class="canva-graphs"></canvas> 
         </div> 
@@ -2093,10 +1891,8 @@
         <div id="canvasContainer9-II" class="graphs-employee" onclick="openGraphics('canvasContainer9-II')">
           <canvas id="MiGrafica9-II"  class="canva-graphs"></canvas>
         </div>  
-
       </div>
       <div class="contenedor-vertical" id="contenedor-vertical">
-
         <div class="cont-userI" id="icon-carlos-I">
           <img data-src="./assets/gato.png" class="lazy icono-user-I imgEmploye" alt="icono">
           <span class="lblNombres">Carlos Mario Sanchez</span> 
@@ -2131,8 +1927,6 @@
         </div>
       </div>  
     </div>
-    
-    
     <div id="father-employees" style="position: relative;display:none;">
       <div class="cont-user"  id="icon-carlos">
         <img data-src="./assets/silueta.png" class="lazy icono-user" id="img1" onclick="resultadosEmpleado('icon-carlos','updateCarlos','img1','true')" alt="icono">
@@ -2162,9 +1956,7 @@
         <img data-src="./assets/silueta.png" class="lazy icono-user" id="img7" onclick="resultadosEmpleado('icon-ana','updateAna','img7','true')" alt="icono">
         <span class="lblEmpleado">Ana Maria Duarte Pineda</span>
       </div>
-
     </div>
-
     <div id="padre-circle">
       <div id="circle" onclick="abrirAyudas()">
         <div class="line"></div>
@@ -2173,12 +1965,10 @@
       </div>    
       <h6 id="options">Opciones</h6>
     </div>
-
     <div id="conte-ayudas">
       <img data-src="./assets/ayudas.png" class="lazy" id="imagen-ayudas" onclick="alternarAyudas()" alt="">
       <h6 id="ayudas-video">Ayudas</h6>
     </div>
-
     <div class="contenedor" id="contiene-lineas"> 
       <div class="linea"></div>
       <div class="linea1"></div>
@@ -2186,15 +1976,12 @@
       <div class="linea3"></div>
       <div class="linea4"></div>
     </div>
-
     <div id="contenedorElementos">
       <div id="linea-1" class="conte-listado">Optimizar parámetros</div>
       <div id="linea-2" class="conte-listado">Análisis de patrones</div>
       <div id="linea-3" class="conte-listado">Reflectividad</div>
-
       <div class="conte-listado" id="ultimoElemento" onclick="muestraMenu()">Aplicaciones
         <span class="arow-direction"></span>
-
         <div id="segundaLista">
           <div id="linea-11" class="listado">Tratamiento 1</div>
           <div id="linea-14" class="listado" onclick="interfazAvance()">Comparación
@@ -2204,9 +1991,7 @@
           <div id="linea-13" class="listado">Análisis de datos</div>
           <div id="linea-15" class="listado">Ajuste de equipo</div>
         </div>
-
       </div>
-      
       <div id="linea-4" class="conte-listado">Datos densitométricos</div>
       <div id="linea-5" class="conte-listado">Técnica densitometrica</div>
       <div id="linea-6" class="conte-listado">Poblemas de medición </div>
@@ -2223,9 +2008,7 @@
       <div id="container_interfaz" class="container">
         <div  class="slider-button" id="button1"></div>
         <div id="guia_1" class="guide"></div>
-
         <div id="slider" class="slider-track"></div>
-
         <div id="slider_2" class="slider-track"></div>
         <div id="slider_3" class="slider-track"></div>  
         <div class="linea-numerada">
@@ -2469,13 +2252,10 @@
         <span class="texto_izquierdo">Salir</span>
       </div>      
     </div>
-
     <div id="general">  
-
       <div id="canvasContainer2" style="display: none;">
         <canvas id="MiGrafica"></canvas>
       </div> 
-
       <div id="wall_street_II" class="manejo">
         <div id="iniciador_7" class="horizontales"></div>
         <div id="iniciador_8" class="horizontales"></div>
@@ -2483,9 +2263,6 @@
         <div id="iniciador_10" class="horizontales"></div>
         <div id="iniciador_11" class="horizontales"></div>
       </div>
-
-
-
       <div id="nivel-superior" class="manejador">
         <div id="animatedDiv"    class="first_table"></div>
         <div id="animatedDivI"   class="first_table"></div>
@@ -2493,7 +2270,6 @@
         <div id="animatedDivIII" class="first_table"></div>
         <div id="animatedDivIV"  class="first_table"></div>
       </div> 
-
       <div id="nivel-inferior" class="manejador">
         <div class="second_table"></div>
         <div class="second_table"></div>
@@ -2501,10 +2277,6 @@
         <div class="second_table"></div>
         <div class="second_table"></div>
       </div>
-
-
-
-      
       <div id="nicho_spans" class="estilos manejo">
         <span id="pantalla" class="spans first_table estilos">5890</span>
         <span id="pantalla_II" class="spans first_table estilos">9832</span>
@@ -2512,9 +2284,7 @@
         <span id="pantalla_IV" class="spans first_table estilos">4987</span>
         <span id="pantalla_V" class="spans first_table estilos">0123</span>
       </div>  
-
       <div id="equalizer" class="manejo">
-
         <div id="column_1" class="column">
           <div id="line_1" class="lineas"></div>
           <div id="line_2" class="lineas"></div>
@@ -2531,7 +2301,6 @@
           <div id="line_13" class="lineas"></div>
           <div id="line_14" class="lineas"></div>
         </div>
-
         <div id="column_2">
           <span id="indic_1" class="column_spans">1</span><span id="indic_2" class="column_spans">2</span><span id="indic_3" class="column_spans">3</span>
           <span id="indic_4" class="column_spans">4</span><span id="indic_5" class="column_spans">5</span><span id="indic_6" class="column_spans">6</span>
@@ -2539,7 +2308,6 @@
           <span id="indic_3" class="column_spans">4</span><span id="indic_4" class="column_spans">3</span><span id="indic_5" class="column_spans">2</span>
           <span id="indic_6" class="column_spans">1</span><span id="indic_7" class="column_spans">0</span>
         </div>
-
         <div id="column_3" class="column">
           <div id="line_15" class="lineas"></div>
           <div id="line_16" class="lineas"></div>
@@ -2556,13 +2324,10 @@
           <div id="line_27" class="lineas"></div>
           <div id="line_28" class="lineas"></div>
         </div>
-        
       </div>
-
       <div id="contImagNeg">
         <img data-src="./assets/pixelate.jpg" id="imagPixelate" class="lazy" alt="Gráfico de Excel 6">
       </div>
-
       <div id="padre" class="manejo">
         <div id="barra" class="barras"></div>
         <div id="barra_I" class="barras"></div>
@@ -2588,7 +2353,6 @@
         <div id="barra_XXI" class="barras"></div>
         <div id="barra_XXII" class="barras"></div> 
       </div>
-
       <div id="patern" class="manejo">
         <div class="irisado" id="elem1"></div>
         <div class="irisado" id="elem2"></div>
@@ -2615,20 +2379,16 @@
         <div class="irisado" id="elem23"></div>
         <div class="irisado" id="elem24"></div>
       </div>
-
       <div id="contImagGraf">
         <img data-src="./assets/Excel.png" class="lazy" alt="Gráfico de Excel 6">
       </div>
-
       <div id="canvasContainer3">
         <canvas id="MiSegundaGrafica" class="canva-container"></canvas>
         <canvas id="MiTerceraGrafica" class="canva-container"></canvas>
         <canvas id="MiCuartaGrafica" class="canva-container"></canvas>  
         <canvas id="MiQuintaGrafica" class="canva-container"></canvas>              
       </div>
-
     </div>
-
     <ul id="context-menu" class="context-menu">
       <li>Historial</li>
       <li onclick="secuenciaEntrena()">Profundizar</li>
@@ -2636,7 +2396,6 @@
       <li>Ayudas</li>
       <li onclick="listaEntrenamientosII('archivo')">Volver</li> 
     </ul>
-
     <div id="metas-diarias">
       <div class="panel-header"><h3>Metas diarias</h3></div>
       <ol class="listado-actividades">
@@ -2673,13 +2432,9 @@
         <li><span class="indice">31.</span> Recuerda que cada día es una nueva oportunidad para mejorar.</li>
       </ol>
     </div>
-
     <div id="blur-layer"></div>
-
     <div id="padre-contenedor-global" class="special-border">
-
       <div id="contenedor-global">
-
         <div id="lista-maquinas">
           <span class="maquina">Rotativa 1<span class="indicador"></span></span>  
           <span class="maquina">Rotativa 2<span class="indicador"></span></span>
@@ -2695,7 +2450,6 @@
         </div>
         <span id="titulo-calendar" class="titulo-graf-ma"></span>
         <span id="titulo-mes" class="titulo-graf-ma"></span>  
-
         <div id="calendario-mes">
           <div class="semana">
             <div class="dia">1</div>
@@ -2743,8 +2497,6 @@
             <div class="dia vacio"></div>
           </div>
         </div>
-
-
         <div id="cont-span-semanas">
           <span class="span-semana">Graficar</span>
           <span class="span-semana">Mes</span>
@@ -2768,12 +2520,8 @@
           <div class="mes">Noviembre</div>
           <div class="mes">Diciembre</div>
         </div>
-        
-
         <div id="contenedor-1" class="sup-level">
-
           <div class="title">LEVEL <div class="sub-title">Week</div></div>
-
           <div class="container">
             <div class="bar-container"><div class="bar" style="height: 20%;"></div></div>
             <div class="bar-container"><div class="bar" style="height: 40%;"></div></div>
@@ -2783,27 +2531,18 @@
             <div class="bar-container"><div class="bar" style="height: 70%;"></div></div>
             <div class="bar-container"><div class="bar" style="height: 90%;"></div></div>
           </div>  
-
           <div class="litle-title">Service</div>
-          
         </div>
-
         <button class="but-job"></button>  
-
       </div>
-
     </div>
-
-
     <div id="simulador"> 
-
       <div id="butts-simulador" data-display="grid" class="sections">
         <div class="section">Section 1</div>
         <div class="section">Section 2</div> 
         <div class="section">Section 4</div>
         <div class="section">Section 5</div>
       </div>  
-
       <div class="digital-clock" id="clock">  
         00:00:00
       </div>       
@@ -2852,17 +2591,14 @@
           </div>
         </div>        
       </div>
-
       <div id="segunda-pantalla" class="indexado">
         <img id="loguito" data-src="./assets/loguito.png" class="lazy" alt="loguito">
         <div id="pantalla-1"></div>
         <div id="pantalla-2">
-  
           <div id="pantalla-6">
             <div id="panta-6-1" class="incremento"></div>
             <div id="panta-6-2" class="incremento"></div>
           </div>
-  
           <div id="butts-aux">
             <div class="incremento">0</div>
             <div class="incremento">0</div>
@@ -2880,7 +2616,6 @@
           <div id="sombra"></div>
           <div id="back-yellow"></div>
           <img id="emergency" class="emergencia" src="./assets/emergencia.png" alt="emergency">
-  
           <div id="component1">
             <button class="component incremento">
               <div class="equal"></div>
@@ -2910,7 +2645,6 @@
             <button class="intermitencia incremento"></button>
           </div>  
         </div>
-  
         <div id="pantalla-5">
           <div class="panta5-sub incremento">3000</div>
           <div class="panta5-sub incremento">3000</div>
@@ -2923,7 +2657,6 @@
         <img id="baliza" data-src="./assets/baliza.png" class="lazy" alt="">
       </div>   
       <div class="contenedor" id="conte-colors"></div>
-
       <div id="control-panel" class="indexado">
         <button onclick="girarElemento('top-left')">Seleccionar entrenamiento</button>
         <div class="rectangulo" id="miRectangulo">IBM 5000</div>
@@ -2935,14 +2668,11 @@
         <div class="rectangulo" id="miRectangulo6">rotatek RK-300</div>
       </div>
       <div id="interfaz-registro" class="indexado">
-
         <div id="pantalla-registro">
-
           <div id="butts-alternador">
             <button id="alterna1" class="alternador">Registro</button>
             <button id="alterna2" class="alternador">Guias de arrastre</button>   
           </div>
-
           <div id="sub-registros">
             <span class="conteo-grados" id="conteo-sup"></span>
             <div id="guia-1" class="botones-registro"> </div>
@@ -2965,15 +2695,11 @@
           </div>
           <div id="cuadro-guias"></div> 
         </div> 
-  
         <div id="pantalla-guias">
-  
         </div>
       </div>  
       <div id="blur-interfaz-perfiles"></div>   
-
       <div id="interfaz-perfiles">
-
         <span id="botonera-fondo" class="fondo-btn">
           <span id="spn-blur-1" class="btn-respaldo"></span>  
           <span id="spn-blur-2" class="btn-respaldo"></span>
@@ -2984,7 +2710,6 @@
           <span id="spn-blur-7" class="btn-respaldo"></span>
           <span id="spn-blur-8" class="btn-respaldo"></span>
         </span>
-
         <div id="botonera-frente">
           <button id="butt-perfil-tinta" class="butt-perfiles perfiles">Perfil general</button>
           <button id="butt-control-tinta" class="butt-perfiles perfiles">Perfil por color</button>
@@ -2995,11 +2720,9 @@
           <button id="boton-registro" class="butt-perfiles">Zona registro</button> 
           <button id="boton-prensas" class="butt-perfiles">Salir</button> 
         </div>
-  
         <div id="perfiles-entintado" class="perfiles-tinta">
           <div id="linea-profundidad-horizontal-3"></div>   
           <button id="selecc-gral"></button>
-  
           <div id="encabezado">
             <div class="cabeza" id="cabeza-negro"> <span class="texto-selectores">Negro</span></div>
             <div class="cabeza" id="cabeza-azul"><span class="texto-selectores">Cian</span></div>
@@ -3020,7 +2743,6 @@
           <div id="regla-especial" class="regla-perfil"></div>
           <div id="perfil-barniz" class="perfil"></div>
           <div id="regla-barniz" class="regla-perfil"></div>
-  
           <div id="footer-perfiles">
             <div id="footer-negro" class="foot">
               <div id="footer-1" class="foot-1"></div>
@@ -3059,12 +2781,9 @@
           </div>
         </div>
       </div> 
-
       <span id="cliente-nombre" class="nombre-cliente"></span>
       <div id="perfil-individual" class="perf-individual">
-
         <div id="inerfaz-ajuste-fino">
-          
           <div id="butts-selectores">
             <div class="butt-selector"><span class="texto-selectores">Negro</span></div>
             <div class="butt-selector"><span class="texto-selectores">Cian</span></div>
@@ -3073,13 +2792,11 @@
             <div class="butt-selector"><span class="texto-selectores">Especial</span></div>
             <div class="butt-selector"><span class="texto-selectores">Barniz</span></div>
           </div>  
-  
           <div id="indexado"></div>
           <div id="columna-70" class="columna-70">
           </div>
           <div id="puntos"></div>
           <div id="columna-30" class="columna-30"></div>
-
           <div id="ctrl-gral">
             <div class="div-ctrl"> <span id="tinta-perc"></span> </div>
             <div class="div-ctrl"> <span id="solucion-porcentaje"></span> </div>
@@ -3090,7 +2807,6 @@
             <div class="div-ctrl ctrl"></div>
             <div class="div-ctrl ctrl"></div> 
           </div>
-          
           <div id="seleccion-gral"></div>
           <div id="linea-profundidad-inf"></div>
           <div id="linea-profundidad-lateral"></div>
@@ -3101,9 +2817,7 @@
           <div id="linea-profundidad-vertical"></div>
           <div id="linea-profundidad-vertical-2"></div>
           <div id="linea-profundidad-horizontal"></div>
-  
         </div>
-        
         <div id="control-perfiles"></div>
         <span id="current-Color"></span>
         <div id="linea-profundidad-horizontal-2"></div>
@@ -3114,13 +2828,11 @@
           <span id="texto-perf-indiv" class="txt-perfiles">Perfil individual</span>
           <span id="texto-perf-todos" class="txt-perfiles">Perfiles</span>
           <span id="show-todos"></span>
-  
           <span id="info-perfiles">
             <span id="Reset-perfil" class="selec-perfil">Resetear perfil</span>
             <span id="Guardar-perfil" class="selec-perfil">Guardar perfil</span>
             <span id="Reset-perfil" class="selec-perfil">Modificar perfil</span>
           </span>
-  
           <span id="cont-modificadores" class="bot-modific">
             <span class="bot-perfil"></span>
             <span class="bot-perfil"></span>
@@ -3139,29 +2851,21 @@
         <div id="perfil-general" class="perfilador">
           <span id="texto-perf-indiv" class="txt-perfiles">Perfil general</span>
         </div>
-  
         <div id="dialogo-flotante">
           Espere mientras se actualiza el estado ...
         </div>
-  
       </div>
-
       <div id="contenedor-registro">
-        
         <div class="encabezado-registro">
           <span>Progreso en el registro :</span>   
           <span>Restzeit 14479 Std.</span>
         </div>
-        
         <div class="contenedor-hijo-registro">
           <div id="barra-progreso-registro"></div>
         </div>
       </div>
-
       <div id="unit-job-track">
-  
         <div id="job-files" class="files-job">  
-
           <div id="first-job" class="jobs">
             <span id="clientes" class="base-datos estilo-1">Cliente</span> <span id="panel-uno" class="base-datos datos-base"></span>
           </div>        
@@ -3185,16 +2889,12 @@
               </div>  
             </span>
           </div>
-          
           <button id="abandonar-perfiles" class="btn-abandonar">Abandonar</button>
           <button id="ir-consola" class="consola-ir">Ir a la consola</button>
-
         </div>
       </div>
-
       <div id="calculadora">
         <div class="drag-handle" aria-hidden="true"></div>
-        
         <div id="tirada">
           <div class="digito">
             <div id="resultado-calculadora">
@@ -3210,7 +2910,6 @@
               <span class="number"></span>
             </div>
           </div>
-    
           <div id="grid-numbers">
             <div class="grid-item">1</div>
             <div class="grid-item">2</div>
@@ -3222,20 +2921,16 @@
             <div class="grid-item">8</div>
             <div class="grid-item">9</div>
             <div class="grid-item">0</div>
-          
             <div class="eraser grid-item digito" data-action="backspace">⌫</div>
             <div id="entrar-cantidad" class="digito"></div>  
           </div>
         </div> 
-    
         <div id="conte-butts-calculadora">
           <div class="butts-calculadora estilo-2"></div>
           <div class="butts-calculadora"></div>   
         </div>    
       </div>
-
       <div id="lista-clientes" class="listado-clientes"></div>
-      
       <div id="lista-colores" class="listado-clientes">        
         <div class="buscador-lista">
           <input id="buscar-color-lista" type="search" placeholder="Buscar color..." autocomplete="off">
@@ -3243,7 +2938,6 @@
         <div class="sin-resultados-lista" style="display:none;">No se encontraron colores.</div>
         <div id="items-colores"></div>
       </div>      
-      
       <div id="lista-lineas" class="listado-lineas">
         <div>Valores</div>
         <div>Formas</div>
@@ -3262,28 +2956,23 @@
       <span class="alerta-vacio cerrar" id="alerta-tres">
         Debe seleccionar un cliente y linea de producto ...
       </span>
-
       <span class="alerta-normal cerrar" id="alerta-cinco">
       Click en ENTRAR para ingesar la informacion
       </span>
-      
       <span class="seis-alerta cerrar aviso-cargar" id="alerta-seis">
         No se ha cargado la base de datos
         <span id="perfil-existe" class="interno">Ir a base de datos</span>
         <span id="perfil-crear" class="interno">Crear perfil</span>
         <span class="interno">Salir</span>
       </span>
-  
       <div id="alerta-siete">
         <span id="actual-nombre">Nombre actualizado :</span>
         <span id="span-nombre" class="span-alerta"></span>
         <span id="perfil-cambio" class="span-alerta">Aceptar</span> 
       </div>  
-  
       <span id="alerta-ocho"class="alerta-normal cerrar">
         Ya existe un cliente con este nombre
       </span>   
-
       <span id="span-index" class="alerta-botones cerrar">
         Seleccione el color para perfilar
         <span>OK</span> 
@@ -3291,42 +2980,32 @@
       <span class="alerta-perfil cerrar"> 
         Seleccione el perfil para aplicarlo   
       </span>
-
       <div id="formulario-perfiles">
         <span id="span-creacion">Creacion de perfil</span>
         <span id="span-nombres">Nombre perfil / cliente</span> 
-  
         <input type="text" id="nombreCliente" inputmode="none" placeholder="Ingrese nombre de perfil">
-  
         <div class="botones">
           <button id="btn-crea-perfil">Crear Perfil</button>
         </div>
-
         <div class="btn-sale botones">
           <button onclick="ocultarConsultas()">Salir</button>
         </div>
-
       </div>  
-
       <div id="ventanaEmergente" class="oculta">
         <div id="hijoVentana" class="contenidoEmergente">
           <p id="mensajeEmergente">Por favor, ingrese un nombre válido</p>
           <button id="cerrarEmergente">Cerrar</button>
         </div>
       </div>
-      
       <div id="menu-derecha">
         <span class="option">Editar</span>
         <span class="option">Eliminar</span>
         <span class="option">Detalles</span>    
       </div>
-
       <div id="padre-rgb">
         <div class="esquina esquina-rgb"></div>
         <div id="colorDisplay"></div>   
-                 
         <div id="padre-controles" class="slider">
-
           <div class="slid-container">
             <span id="c-span-rgb">0</span>
             <div class="slider-track-rgb" id="slid-rojo-rgb">
@@ -3355,7 +3034,6 @@
             </div>
             <span class="tecno-color">A</span>
           </div> 
-    
           <button id="boton-rgb-crear" class="cmyRgb-group" onclick="secuenciaAparicion('rgb')"></button>
           <span id="lab-rgb-crear" class="lbls-cmyRgb">Crear</span> 
           <button id="boton-rgb" class="cmyRgb-group btn-opcion"></button>
@@ -3364,9 +3042,7 @@
           <span id="lab-alternar" class="lbls-cmyRgb lbl-opcion">CMYK</span>
           <button id="boton-rgb-salir" class="cmyRgb-group btn-opcion"></button>
           <span id="lab-salir-rgb" class="lbls-cmyRgb lbl-opcion">Salir</span>
-
         </div>
-        
         <div id="conte-triangulo-rgb">
           <div class="fila-rgb"></div>
           <div class="fila-rgb"></div>
@@ -3380,12 +3056,9 @@
           <div class="hijo-rgb"></div>
         </div>
       </div>
-
       <div id="padre-cmyk"> 
         <div class="esquina esquina-cmyk"></div>
-
         <div id="colorCMYK"></div> 
-        
         <div id="container-slider" class="slider">
           <div class="slider-group">
             <span id="c-span">0</span>
@@ -3415,7 +3088,6 @@
             </div>
             <span class="etq-cmyk">K</span>
           </div> 
-          
           <div class="slider-group">
             <span id="w-span">0</span>
             <div class="slider-track" id="slid-blanco">
@@ -3423,7 +3095,6 @@
             </div>
             <span class="etq-cmyk">A</span>
           </div> 
-
           <button id="boton-cmyk-crear" class="cmyRgb-group" onclick="secuenciaAparicion('cmyk')"></button>
           <span id="lab-cmyk-crear" class="lbls-cmyRgb">Crear</span>          
           <button id="boton-seis" class="cmyRgb-group btnCmyk"></button>
@@ -3432,7 +3103,6 @@
           <span id="lab-cmyk" class="lbls-cmyRgb lbl-cmyk">RGB</span> 
           <button id="boton-cmyk-salir" class="cmyRgb-group btnCmyk"></button> 
           <span id="lab-salir-cmyk" class="lbls-cmyRgb lbl-cmyk">Salir</span>
-
         </div>
         <div id="conte-triangulo-cmyk">
           <div class="fila-cmyk"></div>
@@ -3447,33 +3117,25 @@
           <div class="hijo-cmyk"></div>
         </div>
       </div>
-
       <div id="perfiles-color" class="formulario">
         <span id="span-crear">Administrador perfiles</span>
         <span id="span-nombres">Nombre perfil / color</span>  
         <input type="text" id="nombre-Perfil" inputmode="none" class="entrada-empleado storeText verGraficos" placeholder="Crear perfil">
         <input type="text" id="nombre-perfil-existe" placeholder="Buscar Perfil" inputmode="none">
         <div class="btns-crear">
-
           <button id="save-tecnology" class="mandos-color boton-perfil">Guardar</button>
           <button id="btn-execute" class="mandos-color boton-perfil" onclick="pintarColor()">Ejecutar</button>
           <button id="btn-crea-rgb" class="mandos-color boton-perfil" onclick="alternarTeccnologia('rgb')">rgba</button>
           <button class="mandos-color boton-perfil" id="btn-crea-cmyk" onclick="alternarTeccnologia('cmyk')">cmyk</button>
-
         </div>
         <div class="btn-sale botones">
           <button id="btn-salir-perfiles">Salir</button>
         </div>
       </div>  
-      
-      
       <div id="control-panel-rgb" class="panel-color">
-
         <span class="clase-ordenadora">Composición del color</span>
         <span class="clase-ordenadora">R :</span>
-
         <input id="input-r" type="text" inputmode="numeric" autocomplete="off" min="0" max="255">
-
         <button id="animate-btn" class="clase-ordenadora">Actualizar color</button>
         <span class="clase-ordenadora">G :</span>
         <input id="input-g" type="text" inputmode="numeric" autocomplete="off" min="0" max="255">
@@ -3483,10 +3145,8 @@
         <button id="exit-rgb" class="alterna-panel clase-ordenadora">Salir</button>
         <span class="clase-ordenadora">A :</span>
         <input id="input-w" type="text" inputmode="numeric" autocomplete="off" min="0" max="255">
-
       </div>    
       <div id="control-panel-cmyk" class="panel-color">  
-
         <span>Composición del color</span>
         <span class="etq-control">C :</span>
         <input id="input-c" type="text" inputmode="numeric" autocomplete="off" min="0" max="100">
@@ -3502,16 +3162,10 @@
         <span></span>
         <span class="etq-control">W :</span>
         <input id="input-a" type="text" inputmode="numeric" autocomplete="off" min="0" max="100">
-        
       </div>  
-
-      
     </div>  
-
-
     <div id="contenedor-2" class="calendar-container">
       <h2 class="month-title">March</h2>
-      
       <div class="calendar-grid">
         <div class="day-header">Su</div>
         <div class="day-header">Mo</div>
@@ -3564,47 +3218,37 @@
         <div></div>
       </div>
     </div>
-
     <div id="image-uno" class="img-solid">
       <img class="lazy" data-src="./assets/Tapa rotativa.png" alt="">
     </div> 
     <div id="image-tres" class="img-solid">
       <img class="lazy" data-src="./assets/Cureña rotativa.png" alt="">
     </div>
-     
     <div id="imagenes-sheeter" class="border-around">
-
       <div class="imagen-sheeter">
         <img id="img-cuchilla-1" class="lazy imagenes-cortador" data-src="./assets/Cuchilla_imagen.jpg" alt="">
         <img id="img-cuchilla-2" class="lazy imagenes-cortador" data-src="./assets/cuchilla_2.png" alt="">
       </div>
-
       <div class="imagen-sheeter">
         <img id="img-cuchilla-3" class="lazy imagenes-cortador" data-src="./assets/cuchilla_3.png" alt="">
         <img id="img-cuchilla-4" class="lazy imagenes-cortador" data-src="./assets/cuchilla_4.png" alt="">
       </div>  
-
     </div> 
-
     <div id="contenedor-sheeter" class="border-around">
       <video class="lazy" autoplay loop muted playsinline>
         <source data-src="./assets/explosionado.webm" type="video/webm"><source data-src="./assets/explosionado.mp4" type="video/mp4">
       </video>
-
     </div>
-
     <div id="video-cuchilla" class="vid-demo border-around">  
       <video class="lazy" id="videoElement1-II" autoplay loop muted playsinline>
         <source data-src="./assets/cuchilla video.webm" type="video/webm"><source data-src="./assets/cuchilla video.mp4" type="video/mp4">
       </video>  
     </div> 
-
     <div id="video-cuchilla-1" class="vid-demo border-around">
       <video class="lazy" autoplay loop muted playsinline>
         <source data-src="./assets/Cuhilla orificio.webm" type="video/webm"><source data-src="./assets/Cuhilla orificio.mp4" type="video/mp4">
       </video>
     </div>
-
     <div id="video-manta-render" class="border-around">
       <video class="lazy" autoplay loop muted playsinline>
         <source data-src="./assets/manta movement.webm" type="video/webm"><source data-src="./assets/manta movement.mp4" type="video/mp4">
@@ -3650,29 +3294,23 @@
         <source data-src="./assets/Desliza plancha.webm" type="video/webm"><source data-src="./assets/Desliza plancha.mp4" type="video/mp4">
       </video>
     </div>
-
     <div id="triada-videos">
-
       <div id="corte-ajuste" class="ajuste-corte">
         <video class="lazy" autoplay loop muted playsinline>
             <source data-src="./assets/Oscilacion.webm" type="video/webm"><source data-src="./assets/Oscilacion.mp4" type="video/mp4">
         </video>
       </div>
-
       <div id="corte-oscilacion" class="ajuste-corte">
         <video class="lazy" autoplay loop muted playsinline>
             <source data-src="./assets/Oscilacion3.webm" type="video/webm"><source data-src="./assets/Oscilacion3.mp4" type="video/mp4">
         </video>
       </div>
-
       <div id="ajuste-corte" class="ajuste-corte">
         <video class="lazy" autoplay loop muted playsinline>
           <source data-src="./assets/corte ajuste.webm" type="video/webm"><source data-src="./assets/corte ajuste.mp4" type="video/mp4">
         </video>
       </div>
-
     </div>
-
     <div id="video-insolacion" class="border-around">
       <video class="lazy" autoplay loop muted playsinline>
         <source data-src="./assets/Insolar punto plancha.webm" type="video/webm"><source data-src="./assets/Insolar punto plancha.mp4" type="video/mp4">
@@ -3718,26 +3356,17 @@
         <source data-src="./assets/Segmento tinta.webm" type="video/webm"><source data-src="./assets/Segmento tinta.mp4" type="video/mp4">
       </video>
     </div>
-    
     <nav id="formulario-cuenta" class="nav-industrial">
-
-      
       <div class="nav-tabs-strip" id="navTabsStrip">
-        
       </div>
-
-      
       <div class="nav-secondary">
         <div class="nav-secondary-header">
           <h3 id="navCatTitle">ÁREA</h3>
         </div>
-
         <div class="nav-secondary-items" id="navSecondaryItems">          
         </div>
       </div>
-
     </nav>
-
     <div id="contenedor-botonera" data-display="flex">
       <button class="btn-torre secuenciales">Torre 1</button>
       <button class="btn-torre secuenciales">Torre 2</button>
@@ -3745,22 +3374,17 @@
       <button class="btn-torre secuenciales">Torre 4</button>
       <button class="btn-torre secuenciales">Torre 5</button>
     </div>    
-
     <div id="visor-tools" class="image-viewer">
       <button class="nav left" onclick="prevImage()">&#10094;</button>
       <div class="image-container">
         <img id="mainImage" src="" alt="Imagen">
       </div>
       <button class="nav right" onclick="nextImage()">&#10095;</button>
-      
     </div>
-
     <div id="abuelo-grafica4">
-
       <div id="padre-grafica4" class="hijo-graficos">
         <canvas id="MiGrafica10"></canvas> 
       </div>
-
       <div id="padre-grafica5" class="hijo-graficos">
         <canvas id="MiGrafica11"></canvas> 
       </div>  
@@ -3770,41 +3394,30 @@
       <div id="padre-grafica7" class="hijo-graficos">
         <canvas id="MiGrafica13"></canvas> 
       </div>
-      
       <div id="padre-grafica8" class="hijo-graficos">
         <canvas id="MiGrafica14"></canvas> 
       </div> 
-           
       <div id="padre-grafica9" class="hijo-graficos">
         <canvas id="MiGrafica15"></canvas> 
       </div>
-
     </div>
-
     <div id="grafico-area" class="dashboard-grid current-graph">
       <div class="box box-1"></div>   
       <div class="box box-2">En exposicion</div>
-
       <div class="box box-3">
-
         <div class="slider-container">
           <label for="miSlider">Número de medios: <span id="sliderValor">0</span></label> 
           <input type="range" id="miSlider" min="0" max="100" value="0" step="1"> 
         </div> 
-
         <span id="mes-area">Mes</span>
-
         <div id="calendario-interfaz" class="calendario-interfaz"></div>
-        
       </div>
-
       <div class="box box-4">
         <span></span>
         <div id="padre-grafica10" class="hijo-graficos">
           <canvas id="MiGrafica16"></canvas> 
         </div> 
       </div>
-
       <div class="box box-5">
         <div id="info-interna"></div>
       </div>
@@ -3820,122 +3433,88 @@
       <div class="box box-9"></div>
     </div>
     <div id="abuelo-grafica12" class="current-graph">
-
       <div class="slider-treemap all">
-
         <div id="dias-grafico"  class="days-container"></div>
-
         <div id="leds-grafico" class="led-container"></div>
-
-
       </div>
-
       <div id="padre-grafica12">
         <canvas id="MiGrafica20"></canvas> 
       </div> 
-
       <div class="slider-map">
         <label for="slidTree">
           Número de medios: <span id="slider-map">0</span>
         </label>
         <input id="slidTree" type="range" min="1" max="7" step="1">
       </div>      
-
     </div>
-
     <div id="padre-ingresos" class="special-border">
-
       <div id="ingresos-sistema">
-
         <div class="encabezado">Perfil del Empleado</div>
-
         <div class="columna-izq">
-
           <div class="fila-ingreso">
             <label for="numDoc">Nombre empleado</label>
             <input type="text" id="numDoc" inputmode="none" class="entrada-empleado storeText verGraficos" title="Solo letras y espacios">
           </div>
-
           <div class="fila-ingreso">
             <label for="numDoc1">Número documento</label>
             <input type="text" id="numDoc1" inputmode="none" class="entrada-empleado storeText  verGraficos" data-multi>
           </div>
-
           <div class="fila-ingreso">
             <label for="numDoc2">Área corporativa</label>
             <input id="numDoc2" class="entrada-empleado storeText  verGraficos" data-multi>
           </div>
-
           <div class="fila-ingreso">
             <label for="numDoc5">Cargo</label>
             <input type="text" id="numDoc5" class="entrada-empleado storeText  verGraficos" data-multi>
           </div> 
-
           <div class="fila-ingreso">
             <label for="numDoc3">Equipo asignado</label>
             <input type="text" id="numDoc3" class="entrada-empleado storeText  verGraficos" data-multi>
-
           </div>
-
           <div class="fila-ingreso">
             <label for="numDoc4">Fecha ingreso</label>
             <input type="text" id="numDoc4" class="entrada-empleado storeText verGraficos">
           </div>  
-          
           <div class="fila-ingreso">
             <label for="numDoc6">Registro fotográfico</label>
             <input type="text"id="numDoc6"class="entrada-empleado storeText verGraficos" value="">
           </div>           
         </div>
         <div class="columna-centro"> 
-    
           <div class="imgEmpleado">
             <img src=""  id="empleadoImg" alt=""> 
           </div>
-
           <button id="nuevo-ingreso" class="entrada-empleado">Registrar</button>
           <button id="limpia-ingreso" class="entrada-empleado">Limpiar campos</button>
           <button id="modifica-ingreso" class="entrada-empleado">Modificar</button>
           <button id="salir-ingreso" class="entrada-empleado">Salir</button>
-
         </div>
-        
         <div class="columna-derecha">
           <label for="numDoc">Buscar</label>
-
           <input id="nomEmpl" inputmode="none" class="entrada-empleado verGraficos only-numbers"> 
-         
           <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso" type="button">Ir</button>
-
           <button id="recarga" class="cierra-graficos"></button>
-
           <button id="btn-metricas" class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
           <button class="cierra-graficos entrada-empleado"></button>
           <button class="cierra-graficos">Areas</button>
         </div>
       </div>    
-        
     </div>
     <!-- MANTENIMIENTO AUTONOMO -->
-
     <div id="padre-ingresos-ma" class="special-border"> 
-
       <div id="ingresos-sistema-ma">
         <div class="encabezado">
           Registro indicadores M.A
         </div>
         <div class="columna-izq-ma">
-
           <div class="fila-ingreso">
             <label for="numDoc-ma">Nombre empleado</label>
             <input type="text"  id="numDoc-ma" readonly inputmode="none" autocomplete="off" class="entrada-empleado verGraficos">
           </div>
-
           <div class="fila-ingreso">
             <label for="numDoc9-ma">Numero documento</label>
             <input type="text" id="numDoc9-ma" readonly inputmode="none" class="entrada-empleado verGraficos">
           </div>
-
           <div class="fila-ingreso-ma"> 
             <label for="numDoc1-ma">Defectos identificados</label>
             <select id="numDoc1-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable tabindex="3"></select>
@@ -3968,49 +3547,33 @@
             <label for="numDoc6">Lup</label>
             <select id="numDoc8-ma" class="entrada-empleado verGraficos limpiarInput" data-colorable tabindex="3"></select>
           </div>          
-      
         </div>
-
         <div class="columna-centro"> 
-
           <div class="imgEmpleado-ma">
             <img src=""  id="empleadoImg-ma" alt=""> 
           </div>
-
           <button for="numDoc" id="limpia-ingreso-ma" class="entrada-empleado">Limpiar campos</button>
           <button for="numDoc" id="nuevo-ingreso-ma" class="entrada-empleado" tabindex="11">Actualizar</button>
           <button for="numDoc" id="salir-ma" class="entrada-empleado" tabindex="11">Salir</button>
-
         </div>
-
         <div class="columna-derecha">
-
           <label for="numDoc">Buscar</label> 
           <input id="nomEmpl-ma" inputmode="none" class="entrada-empleado verGraficos only-numbers" data-multi tabindex="1">
           <button for="numDoc" class="ingresar entrada-empleado" id="lbl-ingreso-ma" tabindex="2" type="button">Ir</button>
-          
           <button id="recargaMA" class="cierra-graficos"></button>
-
-          
           <button class="metricas-empleado entrada-empleado">Métricas de desempeño</button>
           <button class="cierra-graficos entrada-empleado"></button>
           <button class="cierra-graficos">Areas</button>
-
         </div>
-
       </div>     
-      
     </div>
-
     <div id="calendario"></div>
     <div id="lista-imagenes"></div>
     <div id="msg-empleado" class="ventana-mensaje">
       <p>Perfil creado y almacenado</p>
       <button id="cerrarVentana">Cerrar</button>
     </div>
-
     <div id="abuelo-indicadores" class="abuelos current-graph" >
-
       <div id="columna-item">
         <span>Def. identificados :</span>
         <span>Def. corregidos :</span>
@@ -4023,9 +3586,7 @@
         <span> </span>
         <span> </span>
       </div>
-
       <div id="padre-indicadores">
-
         <div id="contenedor-indicador" class="indicadores">
           <span class="blockout"></span>
           <div id="led-identificados" class="led-indicador"></div>
@@ -4058,13 +3619,10 @@
           <span class="blockout"></span>
           <div id="led-lup" class="led-indicador"> </div>
         </div>
-
         <div></div>
         <div></div>
       </div>   
-    
     </div>
-
     <div id="links-ma">      
       <ul id="vinculos-ma" class="estilo-ma">
         <li>Mantenimiento Autonomo</li>
@@ -4075,109 +3633,78 @@
         <li>Procesos internos</li>
       </ul>
     </div>
-    
     <div id="ventana-alerta" class="alerta-ventana">
       <div class="alerta-contenido">
         <p class="alerta-texto" id="alerta-mensaje">Mensaje de alerta aquí...</p> 
         <button id="alerta-ok">Aceptar</button>
       </div>
     </div>
-
     <div id="padre-desempeños" class="current-graph">
-
       <div id="father-slider" class="slider-father all">
-
         <div id="daysContainer" class="days-container"></div>
-
         <div id="ledContainer" class="led-one"></div>
-
-
       </div>
-
       <div id="padre-grafica11" class="graphics-lines all">
         <canvas id="MiGrafica17"></canvas> 
       </div> 
-
       <div class="padre-slider">
-
         <label for="miSlid">
           Número de medios: <span id="slider-Valor">1</span>
         </label>
-
         <input type="range" id="miSlid" min="1" max="30" value="0" step="0.01">
-
       </div>
-
     </div>
-
     <div id="cortina-bloqueo" class="bloqueador"></div>
-
     <div id="fichas-tecnicas" class="ficha-tecnica"> 
-
       <div class="titulo-kaizen">
         <h3>Hoja de vida Kaizen</h3>
       </div>
-      
       <div>
-
         <form class="ficha-grid">
-
           <label for="empleado">Nombre del proponente</label>
           <select id="empleado" tabindex="101" class="opcion-empleado current-focus special-text">
             <option value="">Seleccione...</option>
           </select>
-
           <label for="documento-kaizen">Documento</label>
           <input id="documento-kaizen" tabindex="102" name="documento" type="text" >  
-
           <label for="mejora">Mejora propuesta</label>
           <input id="mejora" tabindex="103" class="opcion-empleado current-focus special-text" inputmode="none" type="text">
-
           <label for="fecha">Fecha de presentación</label>
           <input id="fecha" tabindex="104" type="date">
-
           <label for="autogestionado">Autogestionado</label>
           <select id="autogestionado" tabindex="105" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
             <option value="true">Sí</option>
             <option value="false">No</option>
           </select>
-
           <label for="participante1">Participante 1</label>
           <select id="participante1" tabindex="106" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
-
           <label for="participante2">Participante 2</label>
           <select id="participante2" tabindex="107" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
-
           <label for="participante3">Participante 3</label>
           <select id="participante3" tabindex="108" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
-
           <label for="participante4">Participante 4</label>
           <select id="participante4" tabindex="109" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
-
           <label for="participante5">Participante 5</label>
           <select id="participante5" tabindex="110" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
-
           <label for="imagen-kaizen">Imagen</label>
           <select id="imagen-kaizen" tabindex="111" class="opcion-empleado current-focus">
             <option value="">Seleccione...</option>
           </select>
-
           <label for="lider">Líder de área</label>
           <select id="lider" tabindex="112" class="opcion-empleado current-focus special-text">
             <option value="">Seleccione...</option>
           </select>          
-
           <label for="equipo">Equipo M.A</label>
           <select id="equipo" tabindex="113" class="opcion-empleado current-focus special-text">
             <option value="">Seleccione...</option>
@@ -4195,7 +3722,6 @@
             <option value="Vanguardia">Vanguardia</option>
             <option value="Escudo">Escudo</option>
           </select>      
-
           <label for="area">Área</label>
           <select id="area" tabindex="114" class="opcion-empleado current-focus special-text">
             <option value="">Seleccione...</option>
@@ -4208,11 +3734,8 @@
             <option value="Valores">Valores</option>
             <option value="Digital">Digital</option>
           </select>          
-
         </form>
-        
       </div>
-
       <div class="controller-fichas">
         <button id="boton-administrador" class="fichas-butts" type="button">Administrador</button>
         <button class="fichas-butts" type="button">Guardar</button>
@@ -4220,18 +3743,11 @@
         <button class="fichas-butts" type="button">Limpiar</button>
         <button class="fichas-butts" type="button">Buscar</button>
       </div>
-
     </div>
-
-    
     <div id="decisiones-estrategicas" class="panel-estrategico">
-
       <h3 class="titulo-panel">Decisiones Estratégicas Basadas en Datos</h3>
-
-
       <section class="bloque">
         <h3 class="subtitulo">Situación Actual</h3>
-
         <ul>
           <li>
             <strong>Decisiones estratégicas basadas en evidencia</strong>
@@ -4240,7 +3756,6 @@
               <li>Los juicios individuales varían según criterios personales, sesgos y contexto.</li>
             </ul>
           </li>
-
           <li>
             <strong>Enfoque subjetivo</strong>
             <ul>
@@ -4251,7 +3766,6 @@
               <li>Falta de trazabilidad del historial de desempeño.</li>
             </ul>
           </li>
-
           <li>
             <strong>Enfoque basado en datos</strong>
             <ul>
@@ -4262,7 +3776,6 @@
               <li>Detección de patrones, problemas recurrentes y oportunidades.</li>
             </ul>
           </li>
-
           <li>
             <strong>Beneficio para la gerencia</strong>
             <ul>
@@ -4272,7 +3785,6 @@
               <li>Anticipación de desviaciones antes de convertirse en fallas.</li>
             </ul>
           </li>
-
           <li>
             <strong>Conclusión</strong>
             <ul>
@@ -4281,7 +3793,6 @@
           </li>
         </ul>
       </section>
-
       <section class="bloque">
         <h3 class="subtitulo">Problemas del Enfoque Subjetivo</h3>
         <ul>
@@ -4290,7 +3801,6 @@
           <li>Dificultad para medir desempeño real.</li>
         </ul>
       </section>
-
       <section class="bloque">
         <h3 class="subtitulo">Ventajas del Enfoque Basado en Datos</h3>
         <ul>
@@ -4299,13 +3809,10 @@
           <li>Justificación transparente ante la gerencia.</li>
         </ul>
       </section>
-      
     </div>
-
     <div id="tree-map" class="treemap-wrapper">
       <canvas id="treemap"></canvas>
     </div>
-
    <div class="padre-inputs">
       <button id="borrarBoton" class="borrar-boton">RRHH</button>
       <button id="borrarBoton3" class="borrar-boton">Simulador</button>
@@ -4313,30 +3820,22 @@
       <button id="borrarBoton4" class="borrar-boton">Bases datos</button>
       <button id="borrarBoton5" class="borrar-boton" style="z-index: 9999;">New employee</button>
     </div>   
-
     <div id="padre-evento">
-
       <div class="contenido-alerta">
         <p class="alerta-texto" id="mensaje-alerta">Mensaje de alerta aquí...</p> 
         <button id="aceptar-evento" class="aceptar-evento">Aceptar</button>
         <button  id="denegar-evento" class="aceptar-evento">Cancelar</button>
       </div>
-
     </div>
-
     <div id="keyboard-wrapper">
       <div id="virtual-keyboard"></div>
       <button id="close-keyboard-btn">Cerrar teclado</button>
     </div>
     <!-- NUEVO INGRESO -->
     <div id="padre-formulario-empleado" class="special-border">
-
       <form id="formulario-empleado" class="form-empleado">
-
         <h2>Registro Empleados</h2>
-
         <div id="panel-empleado" class="grid">
-
           <div class="campo">
             <label>Nombre</label>
             <input id="nom-empl" name="nombre" class="estilo-empl special-text" required>
@@ -4404,54 +3903,37 @@
             <input inputmode="none" class="dato-ma estilo-empl input-especial only-numbers" name="lup">
           </div>                  
         </div>
-
         <div class="controller">
           <button type="button" id="registro-baja">Registrar</button>
           <button type="submit" id="buscar">Buscar</button>
           <button type="button" id="limpiar">Limpiar</button>
           <button type="button" id="salir">Salir</button>
         </div>
-
       </form> 
-
     </div>
-
-
     <div class="almacen-fotos">
-
       <div id="listaFotos"></div>
-      
       <div id="visorImagen-II" class="visor-imagen-II">
         <img src="" id="imagenVisor-II"> 
       </div>       
-
     </div>
-
     <div id="kaizen-buscador" class="buscador-kaizen">
-
       <div class="col-lista">
         <button class="btn-volver">Volver</button>
-
         <div class="input-propositor">
             <select id="propositores" class="opcion-empleado current-focus special-text">
               <option value="">Seleccione...</option>
             </select>
         </div>        
-
       </div>
-
       <div class="col-titulo">
         <h3>Kaizen propuestos</h3>
         <div class="lista-propuestas"></div>
       </div>
-
     </div>
-
     <div id="panel-principal" class="panel-baja">
-
       <p class="panel-titulo">Retirar empleado</p>
       <div class="panel-divisor"></div>
-
       <label class="input-label">Documento del empleado</label>
       <input id="input-baja" type="text" class="input-nombre entrada-empleado" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/>
       <p class="input-hint">Solo se permiten numeros.</p>
@@ -4460,38 +3942,27 @@
         <button id="btn-confirmar-baja" class="btn-baja">Dar de baja</button>
         <button id="btn-abandonar" class="btn-cancelar">Abandonar</button>
       </div>
-
     </div>  
-
     <div id="padre-carta-exterior" class="special-border">
-
       <div id="carta-exterior" class="card-outer">
-
         <div class="ident-empleado">
           <label class="card-label">Documento</label>
-          <input type="text" id="input-documento" inputmode="none" class="card-header only-numbers">
+          <input type="text" id="input-documento" inputmode="none" class="card-header only-numbers input-especial">
         </div>
-
         <div class="ident-empleado">
           <label class="card-label">Empleado</label>
           <input type="text" id="input-nombre" class="card-header only-numbers" disabled>
         </div>
-
-
         <div class="card-body">
-
           <div class="card-left">
-
             <div class="card-foto">
               <img id="imgAdministrar" src="./assets/silueta2.png"/>
             </div>
-
             <div class="card-botones">
               <button class="btn-primario">Activar</button>
               <button class="btn-secundario">Salir</button>
             </div>
           </div>
-
           <div class="card-right">
             <div class="aloja-boton"><button class="boton-seccion" id="boton-ma-card">M.A</button></div>
             <div class="aloja-boton"><button class="boton-seccion">Job Track</button></div>
@@ -4501,39 +3972,28 @@
             <div class="aloja-boton"><button class="boton-seccion">Historial</button></div>
             <div class="aloja-boton"><button class="boton-seccion">Reconocimientos</button></div>
           </div>
-
         </div>
-
       </div>      
-
     </div>
-
     <div id="panel-admon" class="panel-monitor">
-
       <div class="celda-pantalla">
         <span class="etiqueta-pantalla">Mantenimiento Autonomo</span>
         <div class="pantalla"></div>
       </div>
-
       <div class="celda-pantalla">
         <span class="etiqueta-pantalla">Pantalla 2</span>
         <div class="pantalla"></div>
       </div>
-
       <div class="celda-pantalla">
         <span class="etiqueta-pantalla">Pantalla 3</span>
         <div class="pantalla"></div>
       </div>
-
       <div class="celda-pantalla">
         <span class="etiqueta-pantalla">Pantalla 4</span>
         <div class="pantalla"></div>
       </div>
-
     </div>
-
     <div  id="padre-rrhh-marco" class="special-border">
-
       <div id="rrhh-marco" class="rrhh-wrapper">
         <h1>Nombres empleados</h1>
         <div class="list-container">
@@ -4548,17 +4008,12 @@
         <span class="error-msg" id="errorMsg"></span>
         <button id="searchBtn"></button>
       </div>       
-
     </div>
-
-    
     <div id="panel-listado" class="panel-datos">
       <button id="btn-ver-listado" type="button">Registro empleados</button>
       <p id="listado-total"></p>
-
       <div id="contenedor-tabla">
         <input id="buscar-nombre" type="search" placeholder="Buscar por nombre..." autocomplete="off">
-
         <div id="tabla-scroll">
           <table id="tabla-listado" style="display:none;">
             <thead id="listado-cabecera"></thead>
@@ -4568,23 +4023,18 @@
         </div>
       </div>
     </div> 
-
     <div id="panel-colores"class="panel-datos">
       <button id="btn-ver-colores" type="button">Perfiles de color</button>
       <p id="colores-total"></p>
-
       <div id="contenedor-colores">
         <input id="buscar-color" type="search" placeholder="Buscar por nombre..." autocomplete="off">
-
         <p id="sin-resultados-colores" style="display:none;">No se encontraron colores.</p>
         <ul id="listado-colores"></ul>
       </div>
     </div>
-
     <div id="panel-kaizen" class="panel-datos">
       <button id="btn-ver-kaizen" type="button">Registro kaizen</button>
       <p id="listado-total-kaizen"></p>
-
       <div id="contenedor-tabla-kaizen">
         <input id="buscar-kaizen" type="search" placeholder="Buscar por proponente..." autocomplete="off">
         <div id="tabla-scroll-kaizen">
@@ -4596,17 +4046,12 @@
         </div>
       </div>
     </div>
-    
-
-
-    
-    
     <div id="panel-storage" class="panel">
       <h2>Almacenamiento local</h2>
       <div id="grid-storage"></div>
       <h3 id="titulo-detalle"></h3>
       <h3 id="titulo-detalle"></h3>
-      <input id="buscador-detalle" type="text" placeholder="Buscar...">      
+      <input id="buscador-detalle" class="input-especial" type="text" placeholder="Buscar...">      
       <div id="contenedor-detalle">
         <table id="tabla-detalle">
           <thead id="detalle-cabecera"></thead>
@@ -4614,21 +4059,16 @@
         </table>
       </div>
     </div> 
-
     <div id="overlay-cortina" class="overlay"></div>
     <div id="overlay-general" class="overlay"></div>
-       
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@3.1.0"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-
     <script src="./modulo0.js" defer></script>
     <script src="./modulo1.js" defer></script>
     <script src="./modulo2.js" defer></script>
     <script src="./modulo3.js" defer></script>
     <script src="./modulo4.js" defer></script>
-
   </body>  
 </html>

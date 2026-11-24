@@ -16,7 +16,6 @@ function mostrarTodos() {
     }
   }
 }  
-
 // ── CONFIGURACIÓN DE CATEGORÍAS ──
 // El orden de items DEBE coincidir con el orden en configIndex[]
 const NAV_CATEGORIES = [
@@ -56,16 +55,13 @@ const NAV_CATEGORIES = [
     ]
   },
 ];
-
 // ── ESTADO ──
 let navActiveCat  = 0;
 let navActiveItem = null; // índice global en configIndex
-
 // ── REFERENCIAS DOM ──
 const navTabsStrip      = document.getElementById('navTabsStrip');
 const navCatTitle       = document.getElementById('navCatTitle');
 const navSecondaryItems = document.getElementById('navSecondaryItems');
-
 // Construye el índice global: item → índice en configIndex
 // (igual que el orden de los .etq-frm originales)
 function buildGlobalIndex() {
@@ -74,13 +70,11 @@ function buildGlobalIndex() {
   return idx; // ["Perfil cuchillas sheeter", "Montaje cuchilla sheeter", ...]
 }
 const GLOBAL_ORDER = buildGlobalIndex();
-
 function getGlobalIndex(catIdx, itemIdx) {
   let count = 0;
   for (let i = 0; i < catIdx; i++) count += NAV_CATEGORIES[i].items.length;
   return count + itemIdx;
 }
-
 // ── RENDERS ──
 function renderTabs() {
   navTabsStrip.innerHTML = '';
@@ -98,12 +92,10 @@ function renderTabs() {
     navTabsStrip.appendChild(btn);
   });
 }
-
 function renderSidebar() {
   const cat = NAV_CATEGORIES[navActiveCat];
   navCatTitle.textContent = cat.label.toUpperCase();
   navSecondaryItems.innerHTML = '';
-
   cat.items.forEach((itemName, localIdx) => {
     const globalIdx = getGlobalIndex(navActiveCat, localIdx);
     const btn = document.createElement('button');
@@ -113,38 +105,29 @@ function renderSidebar() {
     btn.addEventListener('click', () => {
       navActiveItem = globalIdx;
       renderSidebar(); // refresca estado activo
-
       const cfg = configIndex[globalIdx];
       if (!cfg) return;
-
       ocultarTodos([cfg.id]);
-
       document.querySelector('#formulario-cuenta').style.display = 'flex';
       document.querySelector('#buscador').style.display = 'flex';
       document.querySelector('#search-form').style.display = 'flex';
       document.querySelector('#contenedor-botonera').style.display = 'flex';
-
       container1.style.display = 'grid';
       linkIni1.style.display = 'block';
       linkIni2.style.display = 'block';
-
       const contenedor = document.querySelector(`#${cfg.id}`);
       if (contenedor) {
         contenedor.style.display = contenedor.tagName === 'DIV' ? 'grid' : 'block';
         reproducirVideoSiExiste(contenedor);
       }
-
       if (typeof cfg.extra === 'function') cfg.extra();
     });
-
     navSecondaryItems.appendChild(btn);
   });
 }
-
 // ── INICIALIZAR ──
 renderTabs();
 renderSidebar();
-
 document.querySelectorAll('.alternador').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.alternador').forEach(b => {
@@ -155,16 +138,13 @@ document.querySelectorAll('.alternador').forEach(btn => {
     btn.blur();
   });
 });
-
 document.querySelectorAll('.btn-torre').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.btn-torre').forEach(b => b.classList.remove('activo'));
     btn.classList.add('activo');
   });
 });
-
 const btnAreasNav = document.querySelector("#contenedor-botonera > button:nth-child(1)");
-
 btnAreasNav.addEventListener('click', () => {
   const nav = document.getElementById('formulario-cuenta');
   const estaVisible = nav.style.display === 'flex';
@@ -178,19 +158,14 @@ btnAreasNav.addEventListener('click', () => {
   container1.style.display = 'grid';
   nav.style.display = estaVisible ? 'none' : 'flex';
 });
-
-
 function alternarImagenes() {
   const imgUno = document.getElementById("image-uno");
   const imgDos = document.getElementById("image-tres");
-
   imgUno.style.opacity = "1"; // Asegurar que inicia visible
   imgDos.style.opacity = "0"; // Asegurar que inicia oculto
-
   // Aplicar transición de desvanecimiento
   imgUno.style.transition = "opacity 2s ease-in-out";
   imgDos.style.transition = "opacity 2s ease-in-out";
-
   setTimeout(() => {
       imgUno.style.opacity = "0"; // Se desvanece
       imgDos.style.opacity = "1"; // Aparece
@@ -219,7 +194,6 @@ labels.forEach(label => {
     label.classList.add('label-activa');
   });
 });
-
 const configIndex = [
   { id: 'imagenes-sheeter', extra: () => {
       document.querySelectorAll('.imagenes-cortador').forEach(img => {
@@ -233,7 +207,6 @@ const configIndex = [
   { id: 'triada-videos', extra: () => {
       document.querySelector('#triada-videos').style.display = 'grid';
       document.querySelectorAll('.ajuste-corte').forEach(el => el.style.display = 'block');
-
       document.querySelectorAll('#triada-videos video').forEach(video => {
         video.play().catch(e => console.warn('Autoplay bloqueado:', e));
       });
@@ -257,7 +230,6 @@ const configIndex = [
   { id: 'trinquete-multi' },
   { id: 'trinquete-rodillo-tintero' }  
 ];
-
 function reproducirVideoSiExiste(contenedor) {
   const video = contenedor.querySelector('video');
   if (!video) return;
@@ -274,39 +246,29 @@ function reproducirVideoSiExiste(contenedor) {
   }
 }
 const formularioCuenta = document.getElementById('formulario-cuenta');
-
 // BOTONES AZULES
 formularioCuenta.addEventListener('click', e => {
   const btn = e.target.closest('.etq-frm');
   if (!btn || !formularioCuenta.contains(btn)) return;
-
   const all = Array.from(formularioCuenta.querySelectorAll('.etq-frm'));
   const index = all.indexOf(btn);
-
   const cfg = configIndex[index]; 
   if (!cfg) return;        
- 
   ocultarTodos([cfg.id]);
-
   document.querySelector('#formulario-cuenta').style.display = 'grid';
   document.querySelector('#buscador').style.display = 'flex';
   document.querySelector('#search-form').style.displ='flex'
   container1.style.display='grid'
   linkIni1.style.display='block'
   linkIni2.style.display='block'
-
   const contenedor = document.querySelector(`#${cfg.id}`);
   if (contenedor) {
     contenedor.style.display = contenedor.tagName === 'DIV' ? 'grid' : 'block';
     reproducirVideoSiExiste(contenedor);
   }
-
   if (typeof cfg.extra === 'function') cfg.extra(); 
   aplicarEstiloActivo(e.target);
 });
-
-
-
 // Capturamos los 3 videos
 const video1 = document.querySelector('#corte-ajuste video');
 const video2 = document.querySelector('#corte-oscilacion video');
@@ -333,15 +295,11 @@ videos.forEach(video => {
     manejarClick(video);
   });
 });
-
 const alojamiento = document.getElementById("imagenes-sheeter");
 const imagenes = alojamiento.querySelectorAll("img");
-
 //PRIMER CLICK /////////////////////////////////////////////////////////////////////////////////////////////////
-
 imagenes.forEach((img, index) => {
   img.addEventListener("click", () => {
-
     if (index === 0 || index === 1) {
       ocultarTodos(['video-cuchilla','buscador','search-form','links-inicialesI','links-iniciales','container01'])
       document.querySelector('#formulario-cuenta').style.display = 'flex'
@@ -357,7 +315,6 @@ imagenes.forEach((img, index) => {
         }, { once: true })
       }
     }
-
     if (index === 2 || index === 3) {
       ocultarTodos(['video-cuchilla-1','buscador','search-form','links-inicialesI','links-iniciales','container01'])
       document.querySelector('#formulario-cuenta').style.display = 'flex'
@@ -373,22 +330,17 @@ imagenes.forEach((img, index) => {
         }, { once: true })
       }
     }
-
     imagenes.forEach(i => {
       i.style.display = "none";
     });
-
   });
 });
-
-
 videoSheeter.forEach(video => {
   video.addEventListener('click', () => {
     // Oculta todos los videos con clase 'vid-demo'
     document.querySelectorAll('.vid-demo').forEach(v => {
       v.style.display = 'none';
     });
-
     // Elimina la clase 'imagen-expandida' de todos los elementos con clase 'imagenes-cortador'
     document.querySelectorAll('.imagenes-cortador').forEach(img => {
       img.classList.remove('imagen-expandida');
@@ -470,11 +422,9 @@ function nextImage() {
 function mostrarAyudas(parametro) {
   // Mostrar el visor
   aparecerElemento("visor-tools", "grid")  
-
   // Resetear todas las banderas
   flagImgsVisor = false;
   flagImgsVisorII = false;
-
   // Activar solo la bandera correspondiente
   switch (parametro) {
     case 'visor':
@@ -487,7 +437,6 @@ function mostrarAyudas(parametro) {
       console.warn('Parámetro inválido');
       return;
   }
-
   // Reiniciar posición y mostrar la primera imagen
   actualPosicion = 0;
   let selectedArray;
@@ -501,18 +450,14 @@ function mostrarAyudas(parametro) {
   }
   showImage(actualPosicion, selectedArray);
 }
-
 function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
   container1.style.display = 'grid';
-
   activarPantallaCompleta();
   allContenedores.forEach(id => {
     const elem = document.getElementById(id);
     if (!elem) return;
-  
     document.querySelectorAll('#container01 > button')
     .forEach(btn => btn.style.backgroundColor = '');
-
     if (visibles.includes(id)) {
       const dataDisplay = elem.getAttribute("data-display");
       elem.style.display = dataDisplay || tipoDisplayDefecto; 
@@ -520,10 +465,8 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
       elem.style.display = "none";
     }
   }); 
-
   if (visibles.length === 0) return; // No hay elementos visibles, salir.
   const elementId = visibles[0];
-
   const spans = document.querySelectorAll('.etq-frm');
   spans.forEach(span => {
     span.style.backgroundColor = '';
@@ -554,7 +497,6 @@ function mostrarElementos(visibles = [], tipoDisplayDefecto = "flex") {
     break;
   }
 }
-
 function ocultarGranCortina() {
   setTimeout(() => {
     const cortina = document.getElementById('gran-cortina'); 
@@ -575,17 +517,14 @@ function resaltarDiaSeleccionado(diaClicado) {
     dia.style.backgroundColor = '';
     dia.style.color = ''; 
   });
-
   diaClicado.style.backgroundColor = '#00cc88';
   diaClicado.style.color = 'black';
 }
-
 document.querySelectorAll('.day-cell').forEach(dia => {
   dia.addEventListener('click', () => {
     resaltarDiaSeleccionado(dia);
   });
 });
-
 function actualizarAlturaBarra(contenedorPadre, nuevaAltura) {
   // Verifica si el contenedor tiene un hijo con la clase .bar
   const barra = contenedorPadre.querySelector('.bar');
@@ -597,22 +536,17 @@ function actualizarAlturaBarra(contenedorPadre, nuevaAltura) {
 }
 let hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
 let hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';
-
 diasMes.forEach(dia => {
   dia.addEventListener('click', () => {
     console.warn('')
     const numeroDia = parseInt(dia.textContent.trim());
     const alturas = datosPorDia[numeroDia];
-
-
     if (!hayMesActivo || !hayMaquinaActiva) {
       alternarColor(firstMachine, secondMachine, 2000);
       saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos');
       return;
     }
-
     if (!alturas) return;
-
     alturas.forEach((altura, i) => {
       setTimeout(() => {
         actualizarAlturaBarra(contenedores[i], altura);
@@ -620,13 +554,10 @@ diasMes.forEach(dia => {
     });
   });
 });
-
 function resaltarSecuencial() {
   const spans = document.querySelectorAll('#formulario-cuenta .etq-frm');
-
   // Opcional: limpiar estado previo
   spans.forEach(s => s.classList.remove('activo'));
-
   spans.forEach((span, index) => {
     // Cada span inicia 10 ms después del anterior (superpuestos)
     setTimeout(() => {
@@ -640,10 +571,8 @@ function resaltarSecuencial() {
 }
 function resaltarSecuencialVariable() {
   const spans = document.querySelectorAll('#cont-variable .child-section');
-
   // Opcional: limpiar estado previo
   spans.forEach(s => s.classList.remove('activa'));
-
   spans.forEach((span, index) => {
     // Cada span inicia 10 ms después del anterior (superpuestos)
     setTimeout(() => {
@@ -657,10 +586,8 @@ function resaltarSecuencialVariable() {
 }
 function resaltarSecuencialDemo() {
   const spans = document.querySelectorAll('.item-naranja .item-naranja');
-
   // Opcional: limpiar estado previo
   spans.forEach(s => s.classList.remove('activa'));
-
   spans.forEach((span, index) => {
     // Cada span inicia 10 ms después del anterior (superpuestos)
     setTimeout(() => {
@@ -678,19 +605,15 @@ function crearGraficoMes() {
   const padreGrafica10 = document.querySelector('#padre-grafica4'); 
   padreGrafica10.style.display = 'flex';
   const canvas = document.getElementById('MiGrafica10');
-
   // Destruir gráfico previo (idéntico a función que sí funciona)
   if (chart13) {
     chart13.destroy();
     chart13 = null;
   }
-
   // Ocultar y mostrar con un delay EXACTO igual al gráfico que sí funciona
   canvas.style.display = 'none';
   setTimeout(() => (canvas.style.display = 'block'), 100);
-
   const ctx = canvas.getContext('2d');
-
   // Configuración alineada con la otra función (misma estructura general)
   const configBase = {
     type: 'bar',
@@ -748,7 +671,6 @@ function crearGraficoMes() {
       }
     }
   };
-
   chart13 = new Chart(ctx, configBase);
 }
 let miCanvas13 = document.getElementById('MiGrafica11').getContext('2d')
@@ -757,19 +679,15 @@ function crearGraficoSemana() {
   const padreGrafica11 = document.querySelector('#padre-grafica5')
   padreGrafica11.style.display='flex'
   const canvas = document.getElementById('MiGrafica11');
-
   // 1️⃣ Destruir si ya existe
   if (chart14) {
     chart14.destroy();
     chart14 = null;
   }
-
   // 2️⃣ Ocultar/mostrar con transición (opcional)
   canvas.style.display = 'none';
   setTimeout(() => canvas.style.display = 'block', 100);
-
   const ctx = canvas.getContext('2d');
-
   // 3️⃣ Configuración del gráfico
   const configBase = {
     type: 'bar',
@@ -797,7 +715,6 @@ function crearGraficoSemana() {
           fill: false,
           tension: 0.2
         }
-
       ]
     },
     options: {
@@ -828,35 +745,28 @@ function crearGraficoSemana() {
           grid: { display: false },
           ticks: { display: true }, // sin leyendas verticales
           ticks: { color: '#fff', font: { size: 7 } }
-
         }
       }
     }
   };
-
   chart14 = new Chart(ctx, configBase);
 }
 let miCanvas14 = document.getElementById('MiGrafica12').getContext('2d')
 let chart15;
-
 let miCanvas15 = document.getElementById('MiGrafica13').getContext('2d')
 let chart16;
 function crearGraficoApilado() {
   const padreGrafica13 = document.querySelector('#padre-grafica7')
   padreGrafica13.style.display='flex'
   const canvas = document.getElementById('MiGrafica13');
-
   // 1️⃣ Destruir si ya existe
   if (chart16) {
     chart16.destroy(); 
     chart16 = null;
   }
-
   canvas.style.display = 'none';
   setTimeout(() => canvas.style.display = 'block', 100);
-
   const ctx = canvas.getContext('2d');
-
   const configArea = {
     type: 'line', // tipo "line" con relleno para áreas apiladas
     data: {
@@ -959,8 +869,6 @@ function crearGraficoApilado() {
       }
     }
   };
-
-  
   // 4️⃣ Crear el nuevo gráfico
   chart16 = new Chart(ctx, configArea);
 }
@@ -970,18 +878,14 @@ function crearGraficoOperadores() {
   const padreGrafica10 = document.querySelector('#padre-grafica8')
   padreGrafica10.style.display='flex'
   const canvas = document.getElementById('MiGrafica14');
-
   // 1️⃣ Destruir si ya existe
   if (chart17) {
     chart17.destroy();
     chart17 = null;
   }
-
   canvas.style.display = 'none';
   setTimeout(() => canvas.style.display = 'block', 100);
-
   const ctx = canvas.getContext('2d');
-
   const configZona = {
     type: 'bar',
     data: {
@@ -1039,31 +943,23 @@ function crearGraficoOperadores() {
     },
     plugins: [ChartDataLabels]
   };
-
-  
-
   // 4️⃣ Crear el nuevo gráfico
   chart17 = new Chart(ctx, configZona);
 }
 let miCanvas17 = document.getElementById('MiGrafica15').getContext('2d')    
 let chart18;
-
 function crearGraficoParticipacion() {
   const padreGrafica12 = document.querySelector('#padre-grafica6');
   padreGrafica12.style.display = 'flex';
   const canvas = document.getElementById('MiGrafica12');
-
   // Destruir grafico previo
   if (chart15) {
     chart15.destroy();
     chart15 = null;
   }
-
   canvas.style.display = 'none';
   setTimeout(() => canvas.style.display = 'block', 100);
-
   const ctx = canvas.getContext('2d');
-
   const configLine = {
     type: 'line',
     data: {
@@ -1112,9 +1008,7 @@ function crearGraficoParticipacion() {
       }
     }
   };
-
   chart15 = new Chart(ctx, configLine);
-
 }
 function obtenerDiasDelMes(nombreMes) {
   switch (nombreMes.toLowerCase()) {
@@ -1137,8 +1031,6 @@ function obtenerDiasDelMes(nombreMes) {
       return 30; // valor por defecto en caso de error
   }
 }
-
-
 function activarBlur(nivelBlur = 1, nivelZ = 2005, top = null, left = null, ancho = null, alto = null) {
   blurOverlay.style.display = 'block';
   blurOverlay.style.backdropFilter = `blur(${nivelBlur}px)`;
@@ -1149,36 +1041,27 @@ function activarBlur(nivelBlur = 1, nivelZ = 2005, top = null, left = null, anch
   if (ancho !== null) blurOverlay.style.width = ancho;
   if (alto !== null) blurOverlay.style.height = alto;
 }
-
-
 function desactivarBlur() {
   blurOverlay.style.display = 'none';
   blurOverlay.style.backdropFilter = '';
   blurOverlay.style.webkitBackdropFilter = '';
   blurOverlay.style.zIndex = '';
 }
-
 function crearGraficoLleno() {
   const padreGrafica11 = document.querySelector('#padre-grafica9');
   const linksMA = document.querySelector('#links-inicialesI');
   const linkLista = document.querySelector('#links-iniciales');
   const buscador = document.querySelector('#buscador');
-
   padreGrafica11.style.display = 'flex';
   const canvas = document.getElementById('MiGrafica15');
-
   // Destruir gráfico previo
   if (chart18) {
     chart18.destroy();
     chart18 = null;
   }
-
   canvas.style.display = 'none';
   setTimeout(() => (canvas.style.display = 'block'), 100);
-
   const ctx = canvas.getContext('2d');
-
-  
   const configZona = {
     type: 'line',
     data: {
@@ -1234,9 +1117,6 @@ function crearGraficoLleno() {
       }
     }
   };
-
-
-
   chart18 = new Chart(ctx, configZona);
 }
 const capas = {
@@ -1265,18 +1145,14 @@ const primerSpan = document.querySelector('.box-7');
 primerSpan.addEventListener('click', () => {
   // Función genérica para quitar blur a varios selectores
   desactivarBlur()
-  
   document.querySelectorAll('.titulo-graf-ma').forEach(el => el.classList.remove('blur'));
   document.querySelector('#grafico-area').style.display='none'
   const buscador  = document.getElementById('buscador');
   mostrar(linkIni1, linkIni1, buscador);
   padreLinks.style.display='none'
 });
-
 document.querySelectorAll('.span-semana').forEach((span, index) => {
-
   span.addEventListener('click', () => {
-
     document.querySelectorAll('.span-semana').forEach(s => {
       s.style.backgroundColor = '';
       s.style.color = 'rgb(144,144,144)';
@@ -1284,35 +1160,28 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
     span.style.backgroundColor ='rgb(40, 180, 110)';
     span.style.color ='#0a1630';
     const azul = 'rgb(90, 160, 220)';
-    
     const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
     const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
-
     if (!hayMesActivo || !hayMaquinaActiva){
       alternarColor(firstMachine,secondMachine,2000)
       saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
       return;
     }
-
     const abueloGrafica = document.querySelector('#abuelo-grafica4');
-    
     Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
       hijo.style.display = '';
       hijo.style.visibility = 'visible';
       hijo.style.opacity = '1';
     });
-
     switch (index) {
       case 0: {
         const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
         const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
-
         if (!hayMesActivo || !hayMaquinaActiva){
           alternarColor(firstMachine,secondMachine,2000)
           saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
           return;
         }
-
         if (panelAbierto) {
           desaparecerElemento('abuelo-grafica4', 'grid');
           document.querySelector("#contenedor-global").classList.remove('move-panel-ma');
@@ -1320,25 +1189,20 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
           panelAbierto = false;
           return;
         }  
-
         /* document.querySelectorAll('.span-semana').forEach(semana => {
           semana.style.backgroundColor = '';
         }); */
-
         const abueloGrafica = document.querySelector('#abuelo-grafica4');
         Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
           hijo.style.display = '';
           hijo.style.visibility = 'visible';
           hijo.style.opacity = '1';
         });
-
         document.querySelector("#contenedor-global").classList.add('move-panel-ma');
         document.querySelector("#padre-contenedor-global").classList.add('move-panel-ma');
-
         setTimeout(() => {
           aparecerElemento('abuelo-grafica4', 'grid');
         }, 400);
-
         setTimeout(() => {
           const pasos = [
             crearGraficoMes,
@@ -1354,9 +1218,7 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
             delay += 150;
           }
         }, 1100);
-
         panelAbierto = true;
-        
       }
       case 1:
         crearGraficoMes();
@@ -1376,43 +1238,32 @@ document.querySelectorAll('.span-semana').forEach((span, index) => {
       case 6:
         crearGraficoLleno();
       break;      
-
       default:
     }
   });
-  
 });
-
 const mesCalendario = document.getElementById('calendario-mes');
 mesCalendario.addEventListener('click', (e) => {
   const dia = e.target.closest('.dia');
-  
   if (!dia || dia.classList.contains('vacio')) return;
-
   // quitar estado activo a todos
   mesCalendario.querySelectorAll('.dia.activo')
     .forEach(d => d.classList.remove('activo'));
-
   // activar el clicado
   dia.classList.add('activo');
 });
-
 const btnDynamic = document.getElementById('dynamic-graphs');
 const btnStatic = document.getElementById('static-graphs');
-
 // Maneja tanto click de ratón como toque táctil
 ['click','touchstart'].forEach(ev => {
   btnDynamic.addEventListener(ev, updateDinamico, {passive:true});
 });
-
 ['click','touchstart'].forEach(ev => {
   btnStatic.addEventListener(ev, detenerDinamica, {passive:true});
 });
-
 function generarBotoneraDias(selector = '.calendario-interfaz', days = 30, startOffset = 0, onSelect) {
   const container = document.querySelector(selector);
   if (!container) return null;
-
   while (container.firstChild) container.removeChild(container.firstChild);
   const frag = document.createDocumentFragment();
   for (let i = 0; i < startOffset; i++) {
@@ -1421,7 +1272,6 @@ function generarBotoneraDias(selector = '.calendario-interfaz', days = 30, start
     ph.setAttribute('aria-hidden', 'true');
     frag.appendChild(ph);
   }
-
   const botones = [];
   for (let i = 1; i <= days; i++) {
     const day = document.createElement('div');
@@ -1433,17 +1283,14 @@ function generarBotoneraDias(selector = '.calendario-interfaz', days = 30, start
   // Función para crear o recrear el gráfico
   function createchart19(data, options) {
     const ctx = document.querySelector('#miCanvas').getContext('2d');
-
     // Si ya existe, lo destruimos primero
     if (chart19) chart19.destroy();
-
     chart19 = new Chart(ctx, {
       type: 'line', // o tu tipo
       data,
       options
     });
     }
-
     // Lógica de selección de días
     day.addEventListener('click', () => {
       botones.forEach(b => {
@@ -1452,7 +1299,6 @@ function generarBotoneraDias(selector = '.calendario-interfaz', days = 30, start
       });
       day.style.backgroundColor = 'white';
       day.style.color = 'black';
-
       if (typeof onSelect === 'function') {
         const index = Number(day.dataset.index);
         onSelect(index);
@@ -1460,23 +1306,18 @@ function generarBotoneraDias(selector = '.calendario-interfaz', days = 30, start
       const span = document.querySelector('.box-4 span');
       span.style.height = '';      
     });
-
-
     day.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         day.click();
       }
     });
-
     botones.push(day);
     frag.appendChild(day);
   }
-
   container.appendChild(frag);
   return botones; // array de botones creados
 }
-
 function resetChart() {
   if (chart19) {
     chart19.destroy();
@@ -1537,10 +1378,8 @@ let miCanvas18 = document.getElementById('MiGrafica16').getContext('2d');
 let chart19 = null; 
 function createchart19(data, options) {
   const ctx = document.querySelector('#miCanvas').getContext('2d');
-
   // Si ya existe, lo destruimos primero
   if (chart19) chart19.destroy();
-
   chart19 = new Chart(ctx, {
     type: 'line', // o tu tipo
     data,
@@ -1549,7 +1388,6 @@ function createchart19(data, options) {
 }
 function crearGraficoAreas() {
   const ctx = document.getElementById('MiGrafica16').getContext('2d');
-
   if (!chart19) {
     chart19 = new Chart(ctx, {
       type: 'line',
@@ -1609,20 +1447,17 @@ function cambiarFuente(indice) {
   chart19.data.datasets[0].data = fuentesDeDatos[indice];
   chart19.update();
 }
-
 const teclasInterfaz = document.querySelectorAll('.child-calendar');
 teclasInterfaz.forEach(tecla => {
   // Inicializa estilos
   tecla.style.color = '';
   tecla.style.backgroundColor = '';
-
   tecla.addEventListener('click', () => {
     // Resetear todas
     teclasInterfaz.forEach(t => {
       t.style.backgroundColor = '';
       t.style.color = '';
     });
-
     // Aplicar a la clicada
     tecla.style.backgroundColor = 'white';
     tecla.style.color = 'black';
@@ -1630,7 +1465,6 @@ teclasInterfaz.forEach(tecla => {
     document.querySelector('.box-2').style.color = '#ff7fbd';
   });
 });
-
 const slider = document.getElementById('miSlider');
 const valor = document.getElementById('sliderValor')
 slider.addEventListener('input', () => {
@@ -1643,7 +1477,6 @@ function destroyChart(chartInstance) {
     chartInstance.destroy();
   }
 }
-
 const visorI = document.getElementById('imagenVisor');
 const listado = document.getElementById('listaNombres');
 const buscador = document.getElementById('buscador-empleado');
@@ -1652,48 +1485,37 @@ const visorImagen = document.querySelector('#visorImagen span:first-child');
 const visorTexto = document.querySelector('.visor > span');
 const nombres = Array.from(document.querySelectorAll('#listaNombres span')); 
 const visor = document.getElementById('imagenVisor');
-
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 let permitirEliminarImagen = true;
-
 const spansI = document.querySelector('.nombre-empleado');
 if (spansI) {
   spansI.addEventListener('click', () => {
     spansI.textContent = '';
   });
 }
-
 function mostrarEmpleado(index) {
   const listado = document.getElementById('listaNombres');
   const spans = listado.querySelectorAll('span'); // solo los de la lista dinámica
   const span = spans[index];
   if (!span) return;
-
   const imgSrc = span.getAttribute('data-img');
   if (!imgSrc) return; // evita errores si no tiene ruta
-
   const visorI = document.getElementById('visorImagen');
   const visorTexto = document.getElementById('visorTexto');
   const porta = document.getElementById('porta-imagen');
   const spanImg = porta.querySelector('.imagen-empleado');
   const spanNombre = porta.querySelector('.nombre-empleado');
-
   visorI.innerHTML = `<img src="${imgSrc}" alt="${span.textContent}">`;
   visorTexto.textContent = span.textContent;
-
   spanImg.innerHTML = `<img src="${imgSrc}" alt="${span.textContent}">`;
   spanNombre.textContent = span.textContent;
-
   indiceActual = index;
 }
 indiceActual = index;
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CLICK / MOUSELEAVE EN LISTADO DE NOMBRES / M.A
-
 let fotoFijada = null;
- 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const imagennesColaboradores = [
   { ruta: "./assets/cadena logo.png", nombre: "Monica Muñoz Sepulveda" },
@@ -1708,44 +1530,35 @@ const imagennesColaboradores = [
   { ruta: "./assets/gato.png", nombre: "Roberto Diaz" },
   { ruta: "./assets/icono1.png", nombre: "Paola Herrera" }
 ]
-
 const imgEmpleado = document.getElementById('empleadoImg');
 const btnMostrar = document.getElementById('btnMostrar');
 const inputFoto = document.getElementById('input-foto-empl'); 
 const previewFoto = document.getElementById('empleadoImg'); 
-
 // CLICK EN IMAGEN EN SOLITARIO INICIAL
 // CON TRANSSICIONES
 visor.addEventListener('click', (e) => {
   moverLista=true
   detenerDinamica()
   moverVisor()
-
   setTimeout(() => {
     const padreEmpleados = document.querySelector('#father-employees');
     const padreImagenes = document.querySelector('.contenedor-visor'); 
     if (e.target.tagName !== 'IMG') return;
-
     const visor = document.getElementById('visorImagen');
     const imgSrc = e.target.getAttribute('src');
     const segundoSpan = visor.querySelector('span:nth-child(2)');
     if (!imgSrc) return;
-
     // ← copia la imagen al destino
     const imagenDestino = document.getElementById('imagenDestino');
     if (imagenDestino) imagenDestino.src = imgSrc;
-
     imagenSeleccionada = imgSrc;
     nombreSeleccionado = segundoSpan ? segundoSpan.textContent.trim() : '';
-
     // obtener los spans actuales en el momento del clic
     const nombres = Array.from(document.querySelectorAll('#listaNombres span'));
     const span = indiceActual !== null ? nombres[indiceActual] : null;
     if (!span) return; // evita el error si no existe
-
     padreEmpleados.style.display = 'none';
     buscador.value=''
-
     switch (span.textContent) {
       case 'Monica Muñoz Sepulveda':
         console.log('NOMBRE EN SPAN:',span.textContent)
@@ -1771,34 +1584,28 @@ visor.addEventListener('click', (e) => {
         resultadosEmpleado('icon-ana', 'updateAna', 'img7', 'true');
         break;
     }
-
     setTimeout(() => {
       permitirEliminarImagen = true;
     }, 100);
-
     const coleccionGraficos = document.querySelectorAll(".graphs-lines")
     coleccionGraficos.forEach(grafico => {
       grafico.style.display = 'flex'
     })
-
     const grafica9 = document.querySelector('#MiGrafica9');
     if (grafica9) {
       grafica9.style.opacity = 1;
       grafica9.style.display = 'flex';
       grafica9.style.visibility = 'visible';
     }
-
     const iconos = document.querySelector('#iconos');
     const conteSecundario = document.querySelector('#conte-secundario');
     const conteBotones = document.querySelector('#conte-butts-graphs');
     const portaVisor = document.querySelector('#porta-visor');
     const portaImagen = document.querySelector("#porta-imagen");
-
     if (iconos) iconos.style.display = 'flex';
     if (conteSecundario) conteSecundario.style.display = 'flex';
     if (conteBotones) conteBotones.style.display = 'grid';
     if (portaImagen) portaImagen.style.display = 'grid';
-
     document.querySelector("#listaNombres").style.display = 'none';
     document.querySelector("#buscador-empleado").classList.add("ubicacion");
     document.querySelector("#visorImagen").classList.add('ubicar-visor');
@@ -1806,14 +1613,11 @@ visor.addEventListener('click', (e) => {
   setTimeout(() => {
     const contLineas = document.querySelector('#contLineas');
     if (contLineas) contLineas.style.display = 'grid';
-
     const coleccionGraficas = document.querySelectorAll(".graphs-lines");
-
     coleccionGraficas.forEach((grafico, index) => {
       grafico.style.display = 'flex';
       grafico.style.transform = 'scale(0)';
       grafico.style.transition = `transform 0.6s ease ${index * 0.10}s`;
-
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           grafico.style.transform = 'scale(1)';
@@ -1821,8 +1625,6 @@ visor.addEventListener('click', (e) => {
       });
     });
   }, 700);
-
-
 });
 function resetMoverElementos(idsElementos) {
   idsElementos.forEach(id => {
@@ -1831,13 +1633,11 @@ function resetMoverElementos(idsElementos) {
       console.warn(`El elemento con ID "${id}" no existe.`);
       return;
     }
-
     // ✅ Limpiar exactamente lo que moverElementos aplicó
     el.style.display    = '';
     el.style.opacity    = '';
     el.style.transition = '';
     el.style.transform  = '';
-
     // ✅ Limpiar los data attributes de posición acumulada
     delete el.dataset.movedX;
     delete el.dataset.movedY;
@@ -1845,31 +1645,24 @@ function resetMoverElementos(idsElementos) {
 }
 function resetGraficos() {
   const contBotones = document.querySelector('#conte-butts-graphs');
-
   // ✅ Limpiar estilos inline
   contBotones.style.display    = '';
   contBotones.style.opacity    = '';
   contBotones.style.transition = '';
   contBotones.style.transform  = '';
-
   // ✅ Limpiar data attributes de posición
   delete contBotones.dataset.movedX;
   delete contBotones.dataset.movedY;
-
   graficos.forEach((grafico) => {
-
     // ✅ Eliminar clases de movimiento y oculto
     grafico.classList.remove(...MOVE_ELEMENT);
     grafico.classList.remove('oculto');
-
     // ✅ Limpiar estilos inline aplicados por el click
     grafico.style.opacity = '1';
     grafico.style.transform = '';
     grafico.style.transition = '';
-
     // ✅ Limpiar flag de transición
     grafico.dataset.transitioning = 'false';
-
     // ✅ Restaurar canvas
     const canvas = grafico.querySelector('canvas');
     if (canvas) {
@@ -1878,10 +1671,8 @@ function resetGraficos() {
       canvas.style.transition = '';
     }
   });
-  
   resetMoverElementos(["conte-butts-graphs"]);
 }
-
 function reubicarVisor(){
   document.querySelector('#conte-secundario').style.display='flex'
   document.querySelector('.visor').style.width='100%'
@@ -1899,13 +1690,10 @@ function reubicarVisor(){
   padreRgb.style.border='1px solid #1e90ff'
   visorImg.style.width='100%'
   visorImg.style.marginLeft= '-0.1vw'
-
   setTimeout(() => {
   document.querySelector('.panel-nombres').style.display='none'          
   }, 10);
-
 }
-
 function ingresoEmpleado(){
   calculadoraSimulador=true
   const excluidos = ['ingresos-sistema','buscador','search-form','links-inicialesI','links-iniciales','container01'];
@@ -1918,13 +1706,11 @@ function ingresoEmpleado(){
   cortina.classList.remove('overlayRRHH')
   const inputs = document.querySelectorAll('.verGraficos');
   const hijo = document.getElementById('ingresos-sistema');
-
   flagEmpleado = true
   interfazRRHH.removeAttribute('style');
   hijo.removeAttribute('style');  
   ["padre-ingresos","ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
   limpiarEntradas()
-
   setTimeout(() => {
     if (!esDesktop) {
       inputs.forEach(input => {                                                                                                                             
@@ -1943,7 +1729,6 @@ function ingresoEmpleado(){
         height: '45vh',
         parentSelector: '#simulador'
       });
-
     } else{
       inputs.forEach(input => {
         if (input.tagName === 'INPUT' && input.id !== 'numDoc' && input.id !== 'numDoc1') {
@@ -1953,7 +1738,6 @@ function ingresoEmpleado(){
     }    
   }, 350);  
 }
-
 function ingresoEmpleadoMA(idElement){  
   calculadoraSimulador=true
   const excluidos = [
@@ -1969,13 +1753,11 @@ function ingresoEmpleadoMA(idElement){
     input.style.backgroundColor = '';
   });
   activarBlur(0,9)
-
   flagEmpleado = true
   interfazMA.removeAttribute('style');
   hijo.removeAttribute('style');
   ["padre-ingresos-ma","ingresos-sistema-ma"].forEach(id => aparecerElemento(id, "grid"));
   limpiarEntradas()
-
   setTimeout(() => {
     if (!esDesktop) {
       inputs.forEach(input => {
@@ -1983,11 +1765,9 @@ function ingresoEmpleadoMA(idElement){
           input.readOnly = true;
         }
       });
-    
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
       calculadora.classList.remove('move-calculadora-up')
-
       reUbicarElemento('calculadora', {
         display: 'grid',
         left: '44vw',
@@ -1996,7 +1776,6 @@ function ingresoEmpleadoMA(idElement){
         height: '45vh',
         parentSelector: '#simulador'
       });
-
     } else{
       inputs.forEach(input => {
         if (input.tagName === 'INPUT' && input.id !== 'numDoc-ma' && input.id !== 'numDoc9-ma') {
@@ -2005,7 +1784,6 @@ function ingresoEmpleadoMA(idElement){
       });      
     }   
   }, 350); 
-
   if (!idsArray.includes(idElement)) {
     idsArray.push(idElement);
     console.log(idsArray);
@@ -2027,9 +1805,7 @@ const soloNumerosInputs = [
 // Lógica reutilizable
 function limpiarYCapitalizar(e) {
   let valor = e.target.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]/g, '');
-
   valor = valor.toLowerCase().replace(/(^|\s)\p{L}/gu, letra => letra.toUpperCase());
-
   e.target.value = valor;
 }
 const names = [
@@ -2096,32 +1872,23 @@ const inputsVarios = [
 ];
 inputsVarios.forEach(({ input, lift }) => {
   if (!input) return;
-
   if (!esDesktop) input.setAttribute('readonly', '');
-
   input.addEventListener('focusin', () => {
     if (!esDesktop) showKeyboard(lift);
   });
-
   input.addEventListener('blur', () => {
     if (!esDesktop) hideKeyboard();
   });
-
   input.addEventListener('input', limpiarYCapitalizar);
-  
 });
 function permitirSoloNumeros(e) {
   const input = e.target;
-
   if (input.tagName !== 'INPUT') return;   // ignora select, option y demás
-
   input.value = input.value.replace(/\D/g, '');
-
   if (input.value.length > 1 && !input.hasAttribute('data-multi')) {
     input.value = input.value.slice(-1);
   }
 }
-
 soloNumerosInputs.forEach(input => {
   if (input) input.addEventListener('focusin', permitirSoloNumeros);
 });
@@ -2131,9 +1898,7 @@ const restablecerEstilos = el => {
   const nodo = typeof el === 'string'
     ? document.getElementById(el)
     : el;
-
   if (!nodo) return;
-
   nodo.removeAttribute('style');
 };
 const reUbicarElemento = (
@@ -2143,14 +1908,11 @@ const reUbicarElemento = (
   const nodo = typeof el === 'string'
     ? document.getElementById(el)
     : el;
-
   if (!nodo) return;
-
   if (parentSelector) {
     const padre = document.querySelector(parentSelector);
     if (padre) padre.style.display = 'block';
   }
-
   Object.assign(nodo.style, {
     display,
     left,
@@ -2171,9 +1933,7 @@ const configCalculadora = {
 const soloNumerosSet = new Set(soloNumerosInputs);
 interfazMA.addEventListener('focusin', e => {
   const target = e.target;
-
   if (target.tagName !== 'INPUT') return;
-
   if (!soloNumerosSet.has(target)) return;
 });
 document.querySelectorAll('.fila-ingreso-ma > input').forEach(input => {
@@ -2185,41 +1945,30 @@ document.querySelectorAll('.fila-ingreso-ma > input').forEach(input => {
 });
 document.addEventListener('input', (e) => {
   if (!e.target.classList.contains('only-numbers')) return;
-
   e.target.value = e.target.value.replace(/\D/g, '');
-
   if (!esDesktop) {
     ubicaCalculadoraSegunContexto();
   }
 });
-
 inputRRHH.addEventListener('click',() =>{
   if(!esDesktop) ubicaCalculadoraSegunContexto()
 })
 inputRRHH.addEventListener('focusin',() =>{
   if(!esDesktop) ubicaCalculadoraSegunContexto()
 })
-
-
 //nomEmpl-ma
 inputMA.addEventListener('click', (e) => {
   if(!esDesktop){ubicaCalculadoraSegunContexto()}
 });
-
 const inputsColorGeneral = document.querySelectorAll('.panel-color > input');
-
 const soloNumeros = (value) => value.replace(/\D/g, '');
-
 // NUEVO: detecta si el dispositivo es táctil
 const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-
 inputsColorGeneral.forEach(input => {
-
   // NUEVO: en táctiles evita que se abra el teclado nativo
   if (esTactil) {
     input.setAttribute('readonly', true);
   }
-
   // NUEVO: al intentar enfocar en táctil, fuerza blur y abre tu calculadora
   input.addEventListener('focus', (e) => {
     if (esTactil) {
@@ -2227,48 +1976,33 @@ inputsColorGeneral.forEach(input => {
       if (!esDesktop) ubicaCalculadoraSegunContexto();
     }
   });
-
   input.addEventListener('click', (e) => {
-
     const target = e.target;
-
     target.value = soloNumeros(target.value);
-
     if (!esDesktop) {
       ubicaCalculadoraSegunContexto();
       calculadora.zindex=220
     }
   });
-
   input.addEventListener('input', (e) => {
     const target = e.target;
-
     target.value = soloNumeros(target.value);
-
     if (!esDesktop) {
       ubicaCalculadoraSegunContexto();
     }
   });
-
   input.addEventListener('blur', (e) => {
     const next = document.activeElement;
-
     // Si el foco quedó dentro de la calculadora no ocultar
     if (next && next.closest('#calculadora')) return;
-
     const target = e.target;
     target.value = soloNumeros(target.value);
-
     if (!esDesktop) {
       hideCalculator();
     }
-
   }); 
-
 });
-
 const contextoActivo = () =>[interfazRRHH, interfazMA,mezcladorColor,mezcladorColorRGB].some(el => el && el.getBoundingClientRect().width > 0 && el.getBoundingClientRect().height > 0);
-
 document.addEventListener('pointerdown', (e) => {
   if (esDesktop) return;
   if (!listaClientes.contains(e.target)) {
@@ -2276,28 +2010,22 @@ document.addEventListener('pointerdown', (e) => {
     cortina.style.display = 'none';
     listaClientes.style.display = 'none';
   }
-
   if (!contextoActivo()) return;
-
   const clickDentroCalculadora = calculadora.contains(e.target);
   const clickEnItemsMA = [...entradas].some(el => el.contains(e.target));
   const clickEnInputColor = e.target.closest('.panel-color > input');
-
   if (!clickDentroCalculadora && !clickEnItemsMA && !clickEnInputColor) {
     hideCalculator();
   }
 });
-
 document.querySelector('#recarga').addEventListener('click',()=>{
   if(flagEmpleado === false){
     alternarColor(btnDblFlecha,btnRecarga,500)
     return
   }
-
   ingresoEmpleado()
 });
 document.querySelector('#recargaMA').addEventListener('click', ingresoEmpleadoMA);
-
 document.querySelector('#cerrarVentana').addEventListener('click', () =>{
   traerElementos('.ocultos')
   document.querySelector('#container01').style.display='grid'
@@ -2322,7 +2050,6 @@ btnDblFlecha.addEventListener('click', ()=>{
 const inputArchivo = document.getElementById('numDoc6');
 let escala = 1;
 // BOTON ROJO
-
 function restaurarPosicionPadreIngresos() {
   const padre = document.getElementById('padre-ingresos');
   if (!padre) return;
@@ -2333,7 +2060,6 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
   const inputs = document.querySelectorAll('.fila-ingreso .storeText');
   const img = document.querySelector('.imgEmpleado img');
   const valor = inputArchivo.value.trim().toLowerCase();
-
   for (const input of inputs) {
     if (input.value==='') {
       parpadearElemento('nomEmpl');
@@ -2341,7 +2067,6 @@ function moverPadreIngresos(porcentajeX, porcentajeY) {
       flagEmpleado = true
       return;
     }
-
   }
   eliminarCalendario('.calendario-interfaz');
   const padre = document.getElementById('padre-ingresos');
@@ -2369,7 +2094,6 @@ btnMetricas.addEventListener('click', ()=>{
       flagEmpleado = true
       return;
     }
-
   }
   console.log('BANDERA : ', flagEmpleado)
   interfazRRHH.style.transform = `translate(${desplazamientoX * -1}px, ${desplazamientoY * -1}px) scale(1)`;    
@@ -2379,14 +2103,11 @@ btnMetricas.addEventListener('click', ()=>{
     inputRRHH.disabled = true;
   }
 })
-
 function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
   const contenedor = document.querySelector(contenedorSelector);
   if (!contenedor) return;
-
   // Vaciar estructura generada dinámicamente
   contenedor.innerHTML = '';
-
   // Opcional: limpiar texto del mes
   const spanMes = document.querySelector('#mes-area');
   if (spanMes) spanMes.textContent = '';
@@ -2394,7 +2115,6 @@ function eliminarCalendario(contenedorSelector = '.calendario-interfaz') {
 function traerElementos(selectores) {
   const elementos = document.querySelectorAll(selectores);
   if (!elementos.length) return;
-
   elementos.forEach(el => {
     // Recuperar el display original o usar block por defecto
     const displayOriginal = el.dataset.displayOriginal || 'block';
@@ -2404,14 +2124,11 @@ function traerElementos(selectores) {
 function insertarGrafico(idContenedor, idCanvas) {
   const contenedor = document.getElementById(idContenedor);
   if (!contenedor) return console.error(`No existe el contenedor con id: ${idContenedor}`);
-
   const canvas = document.createElement('canvas');
   canvas.id = idCanvas;
-
   // Limpia contenido previo del contenedor
   contenedor.innerHTML = '';
   contenedor.appendChild(canvas);
-
   // Ejemplo de creación de gráfico (usa Chart.js)
   const ctx = canvas.getContext('2d');
   new Chart(ctx, {
@@ -2422,7 +2139,6 @@ function insertarGrafico(idContenedor, idCanvas) {
         label: 'Ejemplo',
         data: [10, 20, 30, 17, 23, 9, 5, 27],
         backgroundColor: 'rgba(38,15,136)'
-        
       }]
     },
     options: {
@@ -2432,15 +2148,12 @@ function insertarGrafico(idContenedor, idCanvas) {
     }
   });
 }
-
 // CLICK EN EL INPUT REGISTRO FOTOGRAFICO
 inputFoto.addEventListener('click', () => {
   generarListaFotos()
 });
-
 const visorContenedor = document.querySelector('#visorImagen-II');
 const imagenVisor = document.querySelector('#imagenVisor-II');
-
 function generarListaFotos() {
   const almacen = document.querySelector('.almacen-fotos');
   almacen.classList.remove('oculto');   // quitar ocultamiento previo
@@ -2458,8 +2171,6 @@ function generarListaFotos() {
   });
   listaFotos.classList.remove('oculto');
 }
-
-
 listaFotos.addEventListener('mouseover', e => {
   const item = e.target.closest('[data-ruta]');
   if (!item) return;
@@ -2475,12 +2186,10 @@ listaFotos.addEventListener('click', e => {
   listaFotos.classList.add('oculto');
   blurOverlay.style.display = 'none';
 });
-
 listaFotos.addEventListener('mouseleave', () => {
   document.querySelector('.almacen-fotos').classList.add('oculto')
   blurOverlay.style.display='none'
 });
-
 /**************************************************************************************************************** */ 
 document.querySelector('#borrarBoton').addEventListener('click', () =>{
     elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','padre-rrhh-marco','rr-hh']  
@@ -2494,21 +2203,15 @@ document.querySelector('#borrarBoton').addEventListener('click', () =>{
   interfazRecursos.classList.remove('activo')
   padreNuevaInterfaz.removeAttribute('style');
   padreNuevaInterfaz.classList.remove('move-new-employee')  
-
   container1.style.display='grid'
   activarPantallaCompleta()
-
   aparecerElemento('padre-rrhh-marco', "flex");
   setTimeout(() => {
     aparecerElemento('rrhh-marco', "flex");    
   }, 300);
 })
-
 const wrapper = document.querySelector('#calculadora');
-
-
 /******************************************************************************************************************** */
-
 const contenedoresLineas = document.querySelectorAll('#contenedor-indicador');
 function waitUntilFull(contenedor, blockout, anchoTotal, timeout = 2000) {
   // Espera hasta que blockout.offsetWidth sea ~ anchoTotal (tolerancia 1px)
@@ -2535,15 +2238,12 @@ function waitUntilFull(contenedor, blockout, anchoTotal, timeout = 2000) {
 function reducirBlockout(contenedor) {
   const blockout = contenedor.querySelector('.blockout');
   if (!blockout) return;
-
   // Si ya está ocupada, evitar reiniciar
   if (contenedor.dataset.busy === "true") return;
   contenedor.dataset.busy = "true";
-
   // Medir ancho real y fijarlo como ancho inicial en px
   const anchoTotal = contenedor.offsetWidth;
   blockout.style.width = `${anchoTotal}px`;
-
   // Esperar hasta que DOM/render haya aplicado ese ancho (seguro)
   waitUntilFull(contenedor, blockout, anchoTotal, 1500).then(() => {
     // Parametros de animación
@@ -2551,17 +2251,14 @@ function reducirBlockout(contenedor) {
     const intervaloMs = 50;   // intervalo de paso (mantengo tu ritmo)
     const pasos = Math.max(1, Math.round(duracionMs / intervaloMs));
     const paso = anchoTotal / pasos;
-
     let progreso = anchoTotal;
     const intervalo = setInterval(() => {
       progreso -= paso;
-
       if (progreso <= 0) {
         progreso = 0;
         clearInterval(intervalo);
         contenedor.dataset.busy = "false"; // liberar
       }
-
       // Aplicar en px (redondeado para evitar sub-píxeles raros)
       blockout.style.width = `${Math.max(0, Math.round(progreso))}px`;
     }, intervaloMs);
@@ -2584,14 +2281,12 @@ function ocultar() {
     }
   }, 300);  
 }
-
 btnAreas.addEventListener('click', (e) => {
   e.stopPropagation();   
   if(flagEmpleado === true){
     alternarColor(btnMetricas,btnAreas,500)
     return
   }
-
   if (inputNombre.value === '') {
     parpadearElemento('nomEmpl');
     saltarAlerta('Debe ingresar un numero de documento', 'detieneArea');
@@ -2600,7 +2295,6 @@ btnAreas.addEventListener('click', (e) => {
     mostrar(padreLinks);
   }
 });
-
 padreLinks.addEventListener('mouseenter', () => {
   dentro = true;
   mostrar();
@@ -2610,7 +2304,6 @@ padreLinks.addEventListener('mouseleave', () => {
   ocultar();
 });
 primerItem.addEventListener('click', () =>{
-
   const padres = document.querySelector('#grafico-area')  
   padres.style.display = 'block';
     Array.from(padres.querySelectorAll('*')).forEach(hijo => {
@@ -2618,9 +2311,7 @@ primerItem.addEventListener('click', () =>{
     hijo.style.visibility = 'visible';
     hijo.style.opacity = '1';
   });
-
   alternarResultados('abuelo-indicadores')
-
   setTimeout(() => {
     aplicarLedsDesdeEmpleado(empleadoGlobal.documento);
   }, 1300);
@@ -2633,7 +2324,6 @@ segundoItem.addEventListener('click', () =>{
   padreLinks.style.display='none'
   alternarResultados('padre-desempeños')
 })
-
 tercerItem.addEventListener('click', () =>{
   padreLinks.style.display='none'
   alternarResultados('abuelo-grafica12')
@@ -2641,23 +2331,17 @@ tercerItem.addEventListener('click', () =>{
     crearGraficoTreeMap()
   }, 350);
 })
-
 function aplicarLedsDesdeEmpleado(documento) {
-
   const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados'));
-
   if (!almacen) {
     console.error('No existe empleadosRegistrados en localStorage');
     return;
   }
-
   const empleado = almacen[documento];
-
   if (!empleado) {
     console.error(`No se encontró el empleado con documento: ${documento}`);
     return;
   }
-
   const campos = [
     'identificados',
     'corregidos',
@@ -2668,18 +2352,11 @@ function aplicarLedsDesdeEmpleado(documento) {
     'adt',
     'lup'
   ];
-
   const valores = campos.map(prop => Number(empleado[prop] ?? 0));
-
   aplicarLeds(valores);
-
   console.log('EMPLEADO GLOBAL : ',empleadoGlobal.documento)
   console.log('EMPLEADO GLOBAL : ',empleadoGlobal)
-
-
 }
-
-
 function aplicarLeds(valores) {
   const ids = [
     'led-identificados',
@@ -2691,43 +2368,31 @@ function aplicarLeds(valores) {
     'led-adt',
     'led-lup'
   ];
-
   ids.forEach((id, index) => {
     const cantidad = valores[index];
     const contenedor = document.getElementById(id);
-
     contenedor.innerHTML = ''; // limpiar antes
-
     for (let i = 0; i < cantidad; i++) {
       const celda = document.createElement('div');
       celda.classList.add('led-celda', 'led-verdes');
       contenedor.appendChild(celda);
     }
   });
-
   contenedoresLineas.forEach(contenedor => {
   const blockout = contenedor.querySelector('.blockout');
   if (!blockout) return;
-
   // Aseguramos ancho inicial real
   const anchoTotal = contenedor.offsetWidth;
   blockout.style.width = `${anchoTotal}px`;
-
   reducirBlockout(contenedor);
   });        
-    
 }
-
 function   cargarEmpleadoMA() {
   const valorBusqueda = inputMA.value.trim();
-
   if (!valorBusqueda) {
     console.log('NO HAY VALOR DE BUSQUEDA');
     return;
   }
-
-
-  
   const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
   const empleado = empleados[String(valorBusqueda).trim()];
   if (!empleado) {
@@ -2735,11 +2400,8 @@ function   cargarEmpleadoMA() {
     empleadoGlobal = null;
     return;
   }
-
-
   // Guardar en variable global
   empleadoGlobal = empleado;
-
   // Rellenar inputs destino
   const inputNombreMA        = document.getElementById('numDoc-ma');
   const inputDocumentoMA     = document.getElementById('numDoc9-ma');
@@ -2751,7 +2413,6 @@ function   cargarEmpleadoMA() {
   const inputAdtMA           = document.getElementById('numDoc6-ma');
   const inputLupMA           = document.getElementById('numDoc8-ma');
   const inputKaizenMA        = document.getElementById('numDoc4-ma');
-
   if (inputNombreMA)         inputNombreMA.value        = capitalizarTexto(empleado.nombre || '');
   if (inputDocumentoMA)      inputDocumentoMA.value     = empleado.documento     || valorBusqueda;
   if (inputIdentificadosMA)  inputIdentificadosMA.value = empleado.identificados || '';
@@ -2762,24 +2423,18 @@ function   cargarEmpleadoMA() {
   if (inputAdtMA)            inputAdtMA.value           = empleado.adt           || '';
   if (inputLupMA)            inputLupMA.value           = empleado.lup           || '';
   if (inputKaizenMA)         inputKaizenMA.value        = empleado.kaizen        || '';
-
   // Cargar imagen
   const imgElemento = document.getElementById('empleadoImg-ma');
-
   if (!empleadoGlobal) {
     console.warn('empleadoGlobal está vacío o es null');
     return;
   } 
-
   if (!imgElemento) {
     console.warn('Elemento #empleadoImg-ma no existe en el DOM');
     return;
   }
-
   console.log('Valor original de imagen:', empleadoGlobal.imagen);
-
   let rutaImagen = empleadoGlobal.imagen?.trim() || '';
-
   if (!rutaImagen) {
     console.log('No hay ruta en el objeto. Usando silueta.');
     rutaImagen = './assets/silueta.png';
@@ -2790,15 +2445,12 @@ function   cargarEmpleadoMA() {
   console.log('Ruta final que intenta cargar:', rutaImagen);
   imgElemento.src = rutaImagen;
 }
-
 document.querySelector('#lbl-ingreso-ma').addEventListener('click', infoEmpleadoPorSector('mantAutonomo'));
 document.querySelector('#lbl-ingreso').addEventListener('click', infoEmpleadoPorSector('recursoHumano'));
-
 function infoEmpleadoPorSector(infoSector) {
   return function () {
     switch (infoSector) {
       case 'mantAutonomo': {
-
         if (!inputMA || inputMA.value.trim() === '') {
           saltarAlerta('Ingrese numero de documento', 'autonomoIngreso');
           parpadearElemento('nomEmpl-ma');
@@ -2815,17 +2467,13 @@ function infoEmpleadoPorSector(infoSector) {
           cargarEmpleadoMA();
           setTimeout(aplicarColoresInputs, 250);
         }
-
         break;
       }
       case 'recursoHumano': {
-        
         console.log(
           'Contenido de localStorage empleadosRegistrados:', JSON.parse(localStorage.getItem('empleadosRegistrados'))
         );
-
         const valor = inputRRHH.value.trim();
-        
         // Validación inicial
         if (!valor) {
           saltarAlerta('Debe ingresar un número de documento.', 'recursoDocumento')
@@ -2835,11 +2483,9 @@ function infoEmpleadoPorSector(infoSector) {
           return;
         }else{
           calculadora.classList.remove('move-calculadora-up')
-
           const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
           const empleadoEncontrado = empleados[valor];
           if (empleadoEncontrado) {
-
             document.getElementById('numDoc').value = capitalizarTexto(empleadoEncontrado.nombre || '');            
             document.getElementById('numDoc1').value = empleadoEncontrado.documento;
             document.getElementById('numDoc2').value = empleadoEncontrado.area;
@@ -2847,7 +2493,6 @@ function infoEmpleadoPorSector(infoSector) {
             document.getElementById('numDoc4').value = empleadoEncontrado.fecha;
             document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
             document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
-
             document.getElementById('numDoc-ma').value = capitalizarTexto(empleadoEncontrado.nombre || '');            
             document.getElementById('numDoc9-ma').value = empleadoEncontrado.documento;
             document.getElementById('numDoc1-ma').value = empleadoEncontrado.identificados;
@@ -2858,7 +2503,6 @@ function infoEmpleadoPorSector(infoSector) {
             document.getElementById('numDoc8-ma').value = empleadoEncontrado.lup;
             document.getElementById('numDoc7-ma').value = empleadoEncontrado.adas;
             document.getElementById('numDoc6-ma').value = empleadoEncontrado.adt;  
-
             const imgElemento = document.getElementById('empleadoImg');
             if (imgElemento) {
               let rutaImagen = empleadoEncontrado.imagen?.trim() || '';
@@ -2869,7 +2513,6 @@ function infoEmpleadoPorSector(infoSector) {
               }
               imgElemento.src = rutaImagen;
             }
-
           } else {
             saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn')
           }
@@ -2877,12 +2520,9 @@ function infoEmpleadoPorSector(infoSector) {
           console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal)
           break;
         }
-
       }
     };
-
   }
-
 }
 // ACTUALIAR DATOS MANT. AUT
 document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
@@ -2893,7 +2533,6 @@ document.querySelector('#nuevo-ingreso-ma').addEventListener('click',()=>{
     parpadearElemento('nomEmpl-ma');
   }
 }) 
-
 function actualizarIdentificadosMA(sector) {
   if(sector === 'M.A'){
     const nombreInput = document.getElementById('numDoc-ma');
@@ -2906,7 +2545,6 @@ function actualizarIdentificadosMA(sector) {
     const adaInput    = document.getElementById('numDoc7-ma');
     const adtInput    = document.getElementById('numDoc6-ma');
     const lupInput    = document.getElementById('numDoc8-ma');
-
     const nombreBusqueda = nombreInput.value.trim();
     const documentoBusqueda = docInput.value.trim();
     const nuevoIdentificado = identInput.value.trim();
@@ -2917,25 +2555,19 @@ function actualizarIdentificadosMA(sector) {
     const nuevoAda          = adaInput.value.trim();
     const nuevoAdt          = adtInput.value.trim();
     const nuevoLup        = lupInput.value.trim();
-
     if (!documentoBusqueda || !nuevoIdentificado || !nuevoCorregido || !nuevoTipoA || !nuevoTipoB || !nuevoKaizen || !nuevoAda || !nuevoAdt || !nuevoLup) {
       saltarAlerta('Faltan datos para continuar.', 'recursoFaltante')
       return;
     }
-
     let empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};    
-
     console.log('Estado inicial de empleadosRegistrados:', empleados);
-
     console.log('Buscando documento:', JSON.stringify(documentoBusqueda));
     console.log('Documentos guardados:', Object.keys(empleados));
-
     const empleado = empleados[documentoBusqueda];
     if (!empleado) {
       saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn');
       return;
     }
-
     // Actualizar propiedad
     empleado.nombre = capitalizarTexto(nombreBusqueda);
     empleado.identificados = nuevoIdentificado;
@@ -2946,15 +2578,11 @@ function actualizarIdentificadosMA(sector) {
     empleado.adas = nuevoAda;
     empleado.adt = nuevoAdt;
     empleado.lup = nuevoLup;
-
     empleadoGlobal = empleado
-
     console.log('Empleado actualizado:', empleado);
     saltarAlerta('Empleado actualizado','recursosActualizar')
-
     // Guardar cambios
     localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
-
     // Verificación final
     const verificacion = JSON.parse(localStorage.getItem('empleadosRegistrados'));
     console.log('Estado final en localStorage:', verificacion);
@@ -2967,7 +2595,6 @@ function actualizarIdentificadosMA(sector) {
     const fechaInput  = document.getElementById('numDoc4');
     const equipoInput = document.getElementById('numDoc3');
     const fotoInput   = document.getElementById('numDoc6');
-
     const documentoBusqueda = docInput.value.trim();
     const nuevoIdentificado = capitalizarTexto(nombInput.value.trim());    
     const nuevoArea         = areaInput.value.trim();
@@ -2975,29 +2602,22 @@ function actualizarIdentificadosMA(sector) {
     const nuevoFecha        = fechaInput.value.trim();
     const nuevoEquipo       = equipoInput.value.trim();
     const nuevoFoto         = fotoInput.value.trim(); 
-
     // Validación básica
     if (!documentoBusqueda) {
       parpadearElemento('nomEmpl');
       saltarAlerta('Ingrese documento del empleado.', 'recursoNuevo')
       return;
     }
-
     // 1. Cargar empleados
     const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
-
     console.log('Estado inicial empleados:', empleados);
-
     // 2. Buscar empleado por documento
     const empleado = empleados[documentoBusqueda];
-
     if (!empleado) {
       saltarAlerta('Documento no registrado en BD..', 'recursoNuevo')
       return;
     }
-
     console.log('Empleado encontrado:', empleado);
-
     // 3. Actualizar propiedades usando lo que hay en los inputs AHORA MISMO
     empleado.nombre   = nuevoIdentificado;
     empleado.documento = documentoBusqueda;
@@ -3006,35 +2626,25 @@ function actualizarIdentificadosMA(sector) {
     empleado.fecha    = nuevoFecha;
     empleado.equipo   = nuevoEquipo;
     empleado.imagen   = nuevoFoto;
-
     // 4. Actualizar variable global
     empleadoGlobal = { ...empleado };
-
     console.log('Empleado actualizado:', empleadoGlobal);
-
     // 5. Guardar en localStorage
     localStorage.setItem('empleadosRegistrados', JSON.stringify(empleados));
-
     const verificacion = JSON.parse(localStorage.getItem('empleadosRegistrados'));
     console.log('Estado final localStorage:', verificacion);
     saltarAlerta('Empleado actualizado correctamente.','actualizado')
   }
-  
-
-
 }
-
 function limpiarEmpleadosRegistrados() {
   localStorage.setItem('empleadosRegistrados', JSON.stringify({}));
   console.log('empleadosRegistrados se ha vaciado:', JSON.parse(localStorage.getItem('empleadosRegistrados')));
 }
 function mostrarLocalStorageComoJSON() {
   const resultado = {};
-
   for (let i = 0; i < localStorage.length; i++) {
     const clave = localStorage.key(i);
     const valor = localStorage.getItem(clave);
-
     try {
       // Intentar parsear JSON; si no es JSON, se deja como texto plano
       resultado[clave] = JSON.parse(valor);
@@ -3042,7 +2652,6 @@ function mostrarLocalStorageComoJSON() {
       resultado[clave] = valor;
     }
   }
-
   console.log(JSON.stringify(resultado, null, 2));
 }
 function mostrarVentanaMensaje(texto) {
@@ -3054,9 +2663,7 @@ document.getElementById('alerta-ok').addEventListener('click', () => {
   if (inputRRHH instanceof HTMLElement) {
     inputRRHH.focus();
   }
-
 });
-
 let chart20 = null;
 let valorActual = 0; 
 let valorObjetivo = 0;
@@ -3096,7 +2703,6 @@ const series = [
 function crearLedsOne(contenedorLeds) {
   const container = document.getElementById(contenedorLeds);
   container.innerHTML = '';
-
   for (let i = 0; i < 7; i++) {
     const led = document.createElement('div');
     if(contenedorLeds === 'ledContainer'){
@@ -3104,14 +2710,12 @@ function crearLedsOne(contenedorLeds) {
     }else{
       led.classList.add('led-treemap');
     } 
-    
     container.appendChild(led);
   }
 }
 function crearLeds(contenedorLeds) {
   const container = document.getElementById(contenedorLeds);
   container.innerHTML = '';
-
   for (let i = 0; i < 30; i++) {
     const led = document.createElement('div');
     if(contenedorLeds === 'ledContainer'){
@@ -3119,20 +2723,16 @@ function crearLeds(contenedorLeds) {
     }else{
       led.classList.add('led-treemap');
     } 
-    
     container.appendChild(led);
   }
 }
-
 function crearDias(contenedorDias) {
   const container = document.getElementById(contenedorDias);
   container.innerHTML = '';
-
   for (let i = 1; i <= 30; i++) {
     const day = document.createElement('div');
     if(contenedorDias === 'daysContainer')day.classList.add('day-number');
     if(contenedorDias === 'dias-grafico')day.classList.add('day-treemap');
-
     day.textContent = i;
     container.appendChild(day);
   }
@@ -3140,84 +2740,64 @@ function crearDias(contenedorDias) {
 function crearDiasOne(contenedorDias) {
   const container = document.getElementById(contenedorDias);
   container.innerHTML = '';
-
   for (let i = 1; i <= 7; i++) {
     const day = document.createElement('div');
     if(contenedorDias === 'daysContainer')day.classList.add('day-number');
     if(contenedorDias === 'dias-grafico')day.classList.add('day-treemap');
-
     day.textContent = i;
     container.appendChild(day);
   }
 }
-
 //INPUTS DESLIZADORES
 const sliderTree = document.getElementById('slidTree');
 const sliderGraf = document.getElementById('miSlid');
-
 //ETIQUETAS PARA ELVALOR
 const spanValor = document.getElementById('slider-Valor');
 const spanValorTree = document.getElementById('slider-map');
-
 function actualizarDiasYLedsTreeMap(valor) {
   const leds = document.querySelectorAll('.led-treemap');
   const dias = document.querySelectorAll('.day-treemap');
-
   const currentIndex = valor - 1;
-
   leds.forEach((led, index) => {
     led.classList.toggle('led-on', index === currentIndex);
   });
-
   dias.forEach((day, index) => {
     day.classList.toggle('day-on', index === currentIndex);
   });
 }
-
 function actualizarDiasYLeds(valor) {
   const leds = document.querySelectorAll('.led-graphs');
   const dias = document.querySelectorAll('.day-number');
-
   const currentIndex = valor - 1;
-
   leds.forEach((led, index) => {
     led.classList.toggle('led-on', index === currentIndex);
   });
-
   dias.forEach((day, index) => {
     day.classList.toggle('day-on', index === currentIndex);
   });
 }
-
 // GRAFICO TREEMAP
 crearLeds('leds-grafico')
 crearLedsOne('leds-grafico')
 crearDias('dias-grafico')
 crearDiasOne('dias-grafico')
-
 // GRAFICO BARRAS
 crearLeds('ledContainer')
 crearDias('daysContainer')
 crearGraficoOperacion()
-
 sliderTree.addEventListener('input', () => {
   if (!chart21) return;
-
   const valor = Math.floor(Number(sliderTree.value));
   spanValorTree.textContent = valor;
-
   actualizarTreeMapPorSlider(valor);
   actualizarDiasYLedsTreeMap(valor);
 });
-
 let chart21 = null;
 function crearGraficoTreeMap() {
   const ctx = document.getElementById('MiGrafica20').getContext('2d');
-
   if (chart21) {
     chart21.destroy();
   }
-
   chart21 = new Chart(ctx, {
     type: 'treemap',
     data: {
@@ -3228,12 +2808,10 @@ function crearGraficoTreeMap() {
         spacing: 0,
         borderWidth: 0.5,
         borderColor: '#ffffff',
-
         backgroundColor: ctx => {
           const item = ctx.raw;
           return item ? CATEGORY_COLORS[item.g] : '#ffffff';
         },
-
         labels: {
           display: true,
           formatter: ctx => CATEGORY_LABELS[ctx.raw.g] || '',
@@ -3255,22 +2833,18 @@ function crearGraficoTreeMap() {
 }
 function actualizarTreeMapPorSlider(valor){
   const index = Math.min(valor, series.length - 1);
-
   const nuevaData = treeData.map((item, i) => ({
     ...item,
     value: series[index][i] ?? 0
   }));
-
   chart21.data.datasets[0].tree = nuevaData;
   chart21.update();
 }
 function crearGraficoTreeMap() {
   const ctx = document.getElementById('MiGrafica20').getContext('2d');
-
   if (chart21) {
     chart21.destroy();
   }
-
   chart21 = new Chart(ctx, {
     type: 'treemap',
     data: {
@@ -3281,12 +2855,10 @@ function crearGraficoTreeMap() {
         spacing: 0,
         borderWidth: 0.5,
         borderColor: '#ffffff',
-
         backgroundColor: ctx => {
           const item = ctx.raw;
           return item ? CATEGORY_COLORS[item.g] : '#ffffff';
         },
-
         labels: {
           display: true,
           formatter: ctx => CATEGORY_LABELS[ctx.raw.g] || '',
@@ -3308,25 +2880,19 @@ function crearGraficoTreeMap() {
 }
 sliderGraf.addEventListener('input', () => {
   if (!chart20) return;
-
   const valor = Math.round(Number(sliderGraf.value));
   spanValor.textContent = valor;
-
   // Seguridad: si el slider supera las series definidas
   const index = Math.min(valor, series.length - 1);
-
   // Actualizar gráfico con la serie correspondiente
   chart20.data.datasets[0].data = [...series[index]];
   chart20.update();
-
   actualizarDiasYLeds(valor);
 });
 function crearGraficoOperacion() {
   const canvas = document.getElementById('MiGrafica17');
   const ctx = canvas.getContext('2d');
-
   const dataInicial = [0,0,0,0];
-
   chart20 = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -3378,21 +2944,16 @@ function crearGraficoOperacion() {
 }
 function animarTransicion() {
   if (!animando) return;
-
   // interpolación: suaviza desplazamiento (0.15 es un buen punto medio)
   valorActual += (valorObjetivo - valorActual) * 0.15;
-
   // redondeo visual para leds y gráfico
   const valorRedondeado = Math.round(valorActual);
-
   // aplica a gráfico
   chart20.data.datasets[0].data =
     chart20.data.datasets[0].data.map(() => valorRedondeado);
   chart20.update();
-
   // aplica a leds y días
   actualizarDiasYLeds(valorRedondeado);
-
   // condición para terminar la animación
   if (Math.abs(valorObjetivo - valorActual) < 0.01) {
     valorActual = valorObjetivo;
@@ -3422,33 +2983,26 @@ function alternarResultados(selector) {
 function animarHumanEye() {
   if (!interfazColor) return;
   revertirInterfazPerfiles()
-
   // valores iniciales (vh)
   let height = 0.1;
   let top = 50;
-
   const targetHeight = 90;
   const targetTop = 5;
-
   // "velocidad base" en vh por frame para la parte del top (ajustable)
   const baseTopSpeed = 1.7;
-
   function step() {
     const remainingHeight = targetHeight - height; // >0 si falta crecer
     const remainingTop = top - targetTop;         // >0 si falta bajar
-
     // si ambos necesitan moverse, aplicamos dh = 2 * dtop
     if (remainingTop > 0 && remainingHeight > 0) {
       // intentamos mover top por baseTopSpeed, pero lo limitamos por lo que quede
       let dTop = Math.min(baseTopSpeed, remainingTop);
       let dHeight = dTop * 2;
-
       // si queremos aumentar más height del que queda, ajustamos ambos proporcionalmente
       if (dHeight > remainingHeight) {
         dHeight = remainingHeight;
         dTop = dHeight / 2; // mantenemos la relación dh = 2 * dtop
       }
-
       top -= dTop;
       height += dHeight;
     } else if (remainingHeight > 0) {
@@ -3462,85 +3016,65 @@ function animarHumanEye() {
       top -= dTop;
       height = targetHeight;
     }
-
     // aplicar estilos (misma frame)
     interfazColor.style.height = height + 'vh';
     interfazColor.style.top = top + 'vh';
-
     // continuar hasta que ambos hayan llegado a su objetivo
     if (height < targetHeight || top > targetTop) {
       requestAnimationFrame(step);
     }
   }
-
   requestAnimationFrame(step);
 }
 function animarHorizontalEye() {
   if (!interfazColor) return;
   revertirInterfazPerfiles()
-
   let left = 50;     // vw inicial
   let width = 1;     // vw inicial
-
   const targetLeft = 1;
   const targetWidth = 95;
-
   // velocidad base (reducción del left por frame)
   const baseX = 1.7;
-
   function step() {
     const remainingLeft  = left - targetLeft;     // cuánto falta para llegar a 1
     const remainingWidth = targetWidth - width;   // cuánto falta para llegar a 95
-
     if (remainingLeft > 0 && remainingWidth > 0) {
-
       // queremos mover:
       // dLeft  = baseX
       // dWidth = 2 * baseX
       let dLeft = Math.min(baseX, remainingLeft);
       let dWidth = dLeft * 2;
-
       // si dWidth excede el objetivo de width, corregimos ambos
       if (dWidth > remainingWidth) {
         dWidth = remainingWidth;
         dLeft = dWidth / 2;
       }
-
       left -= dLeft;
       width += dWidth;
     }
-
     interfazColor.style.left = `${left}%`;
     interfazColor.style.width = `${width}%`;
-
     if (left > targetLeft || width < targetWidth) {
       requestAnimationFrame(step);
     }
   }
-
   requestAnimationFrame(step);
 }
 function revertirInterfazPerfiles() {
   const respaldos = document.querySelectorAll('.btn-respaldo');
   if (!respaldos.length) return;
-
   // 1. Quitar color de fondo en ambos grupos
   respaldos.forEach(el => {
     el.style.backgroundColor = '';
     el.style.height = '';
   });
-
   if (!interfazColor) return;
-
   const propiedades = ['height', 'width', 'top', 'left'];
-
   const limpiar = (el) => {
     propiedades.forEach(prop => el.style.removeProperty(prop));
   };
-
   // limpiar el elemento raíz
   limpiar(interfazColor);
-
   // limpiar todos los hijos y nietos
   const descendants = interfazColor.querySelectorAll('*');
   descendants.forEach(el => limpiar(el));
@@ -3564,20 +3098,17 @@ const primerSubListaRRHH = subListaRRHH[1]
 const primerhijoSubListaRRHH = hijoSubListaRRHH[0]
 const segundohijoSubListaRRHH = hijoSubListaRRHH[1]
 const tercerhijoSubListaRRHH = hijoSubListaRRHH[2]
-
 const linksAuxiliar = document.getElementById('links-auxiliar');
 const linksPadre = document.querySelector('#linkListI')
 const linksPadreColor = document.querySelector('#linkList')
 const septimoIzquierda = listaIzquierda[7]; 
 let masTiempo = null;
 if (listaIzquierda.length >= 9) {
-
   septimoIzquierda.addEventListener('mouseenter', () => {
     masTiempo = setTimeout(() => {
       linksAuxiliar.style.display = 'block';
     }, 250);
   });
-
   septimoIzquierda.addEventListener('mouseleave', () => {
     if (masTiempo) {
       clearTimeout(masTiempo);
@@ -3588,31 +3119,23 @@ if (listaIzquierda.length >= 9) {
 }
 linksAuxiliar.addEventListener('mouseleave', (e) => {
   const destino = e.relatedTarget;
-
   // Si vuelve al noveno elemento, no cerrar
   if (septimoIzquierda.contains(destino)) return;
-
   setTimeout(() => {
     linksAuxiliar.style.display = 'none';
   }, 350);
 });
 /******************************************************************************************************************************************************* */
-
-
 const listaDerecha = document.querySelectorAll('#linkList > li');
 const listarDos = document.querySelectorAll('#links-color > li');
-
 const linksRegistro = document.getElementById('links-registro');
 const linksRgbaCmyk = document.getElementById('links-registro');
-
 const primeroDerecha = listaDerecha[1]
 const sextoDerecha = listaDerecha[6];
 const cuartoDerecha = listarDos[4];
-
 const linksColor = sextoDerecha.querySelector('#links-color');
 const linksTec = cuartoDerecha.querySelector('.submenu-colorimetria'); 
 let sobreTiempo = null;
-
 simulador.addEventListener('click', (e) => {
   activarPantallaCompleta()
   document.querySelector('#calculadora').style.display='none'
@@ -3620,13 +3143,11 @@ simulador.addEventListener('click', (e) => {
   // solo se ejecuta si el click fue directamente en el li padre
   if (e.target !== simulador) return;
   iniciarAnimaciones();
-
   if (!idsArray.includes('simulador')) {
     idsArray.push('simulador');
     console.log(idsArray);
   }
 });
-
 if (!primeroDerecha || !linksRgbaCmyk || !linksRegistro) {
   throw new Error('Elemento requerido no encontrado');
 }
@@ -3675,7 +3196,6 @@ cuartoDerecha.addEventListener('mouseleave', () => {
   }
   linksTec.style.display = 'none';
 });
-
 primerSubListaRRHH.addEventListener('mouseenter', () => {
   sobreTiempo = setTimeout(() => {
     document.querySelector('#empleado-ingreso').style.display='block'
@@ -3686,12 +3206,10 @@ primerSubListaRRHH.addEventListener('mouseleave', () => {
     document.querySelector('#empleado-ingreso').style.display='none'
   }, 250);
 });
-
 primerhijoSubListaRRHH.addEventListener('click', () => {
   activarPantallaCompleta()
   mostrarInterfazIngreso('nuevoIngreso')
 });
-
 segundohijoSubListaRRHH.addEventListener('click', () => {
   activarPantallaCompleta()
   ingresoEmpleado()
@@ -3705,7 +3223,6 @@ tercerhijoSubListaRRHH.addEventListener('click', () => {
       inputBaja.focus();
     } 
   }, 100);
-  
   var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI']; 
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i]) 
@@ -3719,7 +3236,6 @@ tercerhijoSubListaRRHH.addEventListener('click', () => {
   linkListI.style.display='none'  
   panelDeBajas.classList.add('activo')
   aparecerElemento(panelDeBajas.id, 'block') 
-
   if (!esDesktop) {
     documentoEmplEliminar.setAttribute('inputmode', 'none');
     documentoEmplEliminar.setAttribute('readonly', true);
@@ -3757,7 +3273,6 @@ hijosMaster.forEach((li, index) => {
       if (document.querySelector('#btn-ver-listado').dataset.abierto === 'true') {
         renderizarListado();
       }
-
       var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','panel-listado','panel-colores','panel-kaizen'];
       for (var i = 0; i < allContenedores.length; i++) {
         var elemento = document.getElementById(allContenedores[i]);
@@ -3780,7 +3295,6 @@ hijosMaster.forEach((li, index) => {
       }
       dibujarAlmacen()
     }
-     
   });
 });
 hijosColor.forEach((li, index) => {
@@ -3821,7 +3335,6 @@ hijosTec.forEach((li, index) => {
         idsArray.push('rgb');
         console.log(idsArray);
       }  
-              
     }
   });
 });
@@ -3844,12 +3357,11 @@ function mostrarMaster(elementId){
   panelAdministrativo.classList.add('activo')
   aparecerElemento("carta-exterior", "grid");
   aparecerElemento("padre-carta-exterior", "flex");
-  if(!esDesktop)document.querySelector("#input-documento").readOnly = true;
+  if(!esDesktop) documentoActivador.readOnly = true;
   setTimeout(() => {
     document.querySelector('#carta-exterior > .ident-empleado > input').value=''    
     document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
   }, 500);
-
   if (!idsArray.includes(elementId)) {
     idsArray.push(elementId);
     console.log(idsArray);
@@ -3859,18 +3371,12 @@ document.querySelector("#salir-ma").addEventListener('click',()=>{
   desaparecerElemento(interfazMA.id, 'grid')
   blurOverlay.style.display='none'
 })
-document.querySelector("#input-documento").addEventListener('click',()=>{
+documentoActivador.addEventListener('click',()=>{
   deBajaActivo=false
   if (!esDesktop) {
     if (!padreAdministrativo.classList.contains('move-carta-exterior')) ubicaCalculadoraSegunContexto();
   }
 })
-document.querySelector("#input-documento").addEventListener('blur', () => {
-  if (!esDesktop) {
-    calculadora.classList.remove('move-calculadora-up-ingreso')
-    hideCalculator();
-  }
-});
 const mostrarRegistro = document.querySelector('#links-registro > li:nth-child(2)')
 mostrarRegistro.addEventListener('click', () =>{
   mostrarElementos(['butts-simulador','simulador','search-form','buscador','links-inicialesI','links-iniciales'])
@@ -3884,7 +3390,6 @@ function aplicarColoresInputs() {
       return;
     }
     const value = Number(select.value);
-
     if (value <= 4) {
       select.style.backgroundColor = '#D64545';
       select.style.color = '#FFFFFF';
@@ -3898,18 +3403,13 @@ function aplicarColoresInputs() {
   });
   // Elimina el setTimeout salvo que sepas qué es inputMA y por qué se limpia
 }
-
-
 function aplicarColorPorValor(input) {
   const value = Number(input.value);
-
   if (Number.isNaN(value)) {
     input.style.backgroundColor = '';
     return;
   }
-
   let color;
-
   if (value <= 4) {
     color = '#CC3333';
     input.style.color = '#FFFFFF'; 
@@ -3920,9 +3420,6 @@ function aplicarColorPorValor(input) {
     color = '#8CE15B';
     input.style.color = '#000000';
   }
-
-  
-
   input.style.backgroundColor = color;
 }
 document.addEventListener('blur', (e) => {
@@ -3943,11 +3440,9 @@ const INDICADORES = [
 function contarLeds(id, total = 10) {
   const contenedor = document.getElementById(id);
   if (!contenedor) return { verdes: 0, sinColor: total };
-
   const verdes = contenedor.querySelectorAll(
     '.led-celda.led-verdes'
   ).length;
-
   return {
     verdes,
     sinColor: total - verdes
@@ -3955,11 +3450,9 @@ function contarLeds(id, total = 10) {
 }
 function obtenerEstadoLeds() {
   const estado = {};
-
   INDICADORES.forEach((id) => {
     estado[id] = contarLeds(id);
   });
-
   return estado;
 }
 //*********************************************************************************************************************** */
@@ -3979,9 +3472,7 @@ function normalizarColorCeldas() {
   Object.entries(estadoIndicadores).forEach(([id, verdes]) => {
     const contenedor = document.getElementById(id);
     if (!contenedor) return;
-
     const colorFinal = colorPorCantidadVerdes(verdes);
-
     contenedor
       .querySelectorAll('.led-celda.led-verdes')
       .forEach((celda) => {
@@ -3995,22 +3486,17 @@ function aplicarNormalizacionDeColores() {
   document.querySelectorAll('.led-indicador').forEach(indicador => {
     if (indicador.children.length === 0) {
       let parpadeos = 0;
-
       const parpadear = () => {
         if (parpadeos >= 3) return;
-
         indicador.style.backgroundColor = '#CC3333';
-
         setTimeout(() => {
           indicador.style.backgroundColor = '';
-
           setTimeout(() => {
             parpadeos++;
             parpadear();
           }, 200);
         }, 200);
       };
-
       parpadear();
     }
   });
@@ -4029,7 +3515,6 @@ const MOVE_CLASSES = [
   'move-kaizen-9',
   'move-kaizen-10',
   'move-kaizen-11'
-
 ];
 const contKaizen = document.querySelector('#kaizen-propuestos');
 const kaizens = [...contKaizen.querySelectorAll('.cell')];
@@ -4038,17 +3523,15 @@ kaizens.forEach((grafico, index) => {
 });
 //CLICK EN LAS 6 IMAGENES KAIZEN
 imgsKaizen.addEventListener('click', (e) => {
-  document.querySelector("#overlay-kaizen").style.display='block'
+  cortinaKaizen.style.display='block'
   const focusables = document.querySelectorAll('.current-focus')
   focusables.forEach(focusable =>{focusable.value=''})
   imgsKaizen.classList.add('ocultar-padre');
   imgsKaizen.style.zIndex = '100';
   const cellSeleccionada = e.target.closest('.cell');
   if (!cellSeleccionada || !imgsKaizen.contains(cellSeleccionada)) return;
-
   desactivarClick(['.cell']);
   activarPantallaCompleta() 
-
   if(turnBlock === false){
     turnBlock = true
   }
@@ -4062,36 +3545,27 @@ imgsKaizen.addEventListener('click', (e) => {
     cortina.classList.remove('overlayKaizen')
     cortina.style.display = '';
     cortina.classList.add('overlayImagenesKaizen');
-
   }, 500); 
-
   const index = Number(cellSeleccionada.dataset.index);
-
   kaizens.forEach((grafico, i) => {
     const esActivo = grafico === cellSeleccionada;
-
     // limpiar clases de movimiento
     grafico.classList.remove(...MOVE_ELEMENT);
-
     // marcar estado lógico
     grafico.classList.toggle('oculto', !esActivo);
-
     // visibilidad real (canvas incluido)
     const opacity = esActivo ? '1' : '0';
     grafico.style.opacity = opacity;
     scrollToTopById('kaizen-propuestos')
-
     // aplicar movimiento solo al activo
     if (esActivo) {
       grafico.classList.add(MOVE_CLASSES[index]);
     }
-
   });  
   setTimeout(() => {
     restablecerClick(['.cell']);  
   }, 2500);
 });
-
 //*********************************************************************************************************************** */
 function aplicarEstilo(elemento, estilos) {
   if (!elemento) return;
@@ -4121,7 +3595,6 @@ const CATEGORY_LABELS = {
   D: 'Desarrollo',
   E: 'Cumplimiento'
 };
-
 let inputActivo = null;
 function onFocusIn(e) {
   if (e.target.matches('.columna-izq-ma input, .columna-derecha input')) {
@@ -4130,11 +3603,9 @@ function onFocusIn(e) {
 }
 function onGridClick(e) {  
   const boton = e.target;
-
   if (!boton.classList.contains('grid-item')) return;
   if (!inputActivo) return;
   if(inputActivo.id !=='nomEmpl-ma' && inputActivo.id !=='nomEmpl')inputActivo.value=''
-
   const valor = boton.textContent.trim();
   inputActivo.value += valor;
 }
@@ -4149,7 +3620,6 @@ function desactivarLogicaMobile() {
 }
 mediaDesktop.addEventListener('change', e => {
   esDesktop = e.matches;
-
   if (!esDesktop) {
     activarLogicaMobile();
   } else {
@@ -4175,7 +3645,6 @@ const ordenInputsRGB = [
   'input-b',
   'input-w',
 ];
-
 const ordenInputsCMYK = [
   'animate-btn-cmyk',
   'input-c',
@@ -4200,7 +3669,6 @@ let indiceFoco = 0;
 // SOLO TACTILES
 function avanzarFoco() {
   indiceFoco++;
-
   if(interfazMA.style.display==='grid'){
     // Si quieres ciclo continuo:
     if (indiceFoco >= ordenInputs.length) {
@@ -4212,45 +3680,32 @@ function avanzarFoco() {
     const siguienteInput = document.getElementById(ordenInputs[indiceFoco]);
     siguienteInput.value=''
     siguienteInput?.focus();
-
     parpadearElemento(siguienteInput.id)
-
     if(siguienteInput.id==='nuevo-ingreso-ma'){
       return
     }
   }
   if (panelControlCMYK.style.display === 'grid') {
-
     if (indiceFoco >= ordenInputsCMYK.length) {
       indiceFoco = 0;
     }
-
     const siguienteInput = document.getElementById(ordenInputsCMYK[indiceFoco]);
-
     if (!siguienteInput) return; // ← protección obligatoria
-
     siguienteInput.focus();
     siguienteInput.value=0
     parpadearElemento(siguienteInput.id,150,2500);
-
   }
   if (panelControlRGB.style.display === 'grid') {
-
     if (indiceFoco >= ordenInputsRGB.length) {
       indiceFoco = 0;
     }
-
     const siguienteInput = document.getElementById(ordenInputsRGB[indiceFoco]);
-
     if (!siguienteInput) return; // ← protección obligatoria
-
     siguienteInput.focus();
     siguienteInput.value=0
     parpadearElemento(siguienteInput.id,150,2500);
-
   } 
   if (formularioNuevoIngreso.style.display === 'block') {
-
     if (indiceFoco >= ordenInputsNuevoIngreso.length) {
       indiceFoco = 0;
     }
@@ -4259,7 +3714,6 @@ function avanzarFoco() {
     siguienteInput.focus();
   }  
 }  
-
 /* ===============================
    Sincronizar índice con foco real
    =============================== */
@@ -4281,21 +3735,16 @@ document.addEventListener('focusin', e => {
     lastFocusedInput = e.target;
   }
 });
-
-
 function createKeyboard(layout) {
   keyboard.innerHTML = '';
-
   layout.forEach(rowLetters => {
     const row = document.createElement('div');
     row.className = 'keyboard-row';
-
     rowLetters.forEach(letter => {
       const key = document.createElement('button');
       key.type = 'button';
       key.className = 'key';
       key.tabIndex = -1;
-
       if (letter === 'space') {
         key.classList.add('key-space');
         key.innerHTML = '<div class="space-bar"></div>';
@@ -4305,13 +3754,10 @@ function createKeyboard(layout) {
       } else {
         key.textContent = letter;
       }
-
       const DELETE_INITIAL_DELAY = 400;
       const DELETE_REPEAT_RATE = 60;
-
       let deleteTimeout = null;
       let deleteInterval = null;
-
       const deleteCharacter = () => {
         if (!lastFocusedInput) return;
         const input = lastFocusedInput;
@@ -4323,7 +3769,6 @@ function createKeyboard(layout) {
         input.focus();
         input.dispatchEvent(new Event('input', { bubbles: true })); // ✅ 1
       };
-
       key.addEventListener('touchstart', (e) => {
         e.preventDefault();
         if (!lastFocusedInput) return;
@@ -4331,7 +3776,6 @@ function createKeyboard(layout) {
         const startPos = input.selectionStart ?? input.value.length;
         const endPos = input.selectionEnd ?? input.value.length;
         const value = input.value;
-
         if (letter === 'backspace') {
           deleteCharacter();
           deleteTimeout = setTimeout(() => {
@@ -4339,7 +3783,6 @@ function createKeyboard(layout) {
           }, DELETE_INITIAL_DELAY);
           return;
         }
-
         if (letter === 'space') {
           input.value = value.slice(0, startPos) + ' ' + value.slice(endPos);
           input.selectionStart = input.selectionEnd = startPos + 1;
@@ -4347,7 +3790,6 @@ function createKeyboard(layout) {
           input.dispatchEvent(new Event('input', { bubbles: true })); // ✅ 2
           return;
         }
-
         const prevChar = value[startPos - 1];
         const shouldUppercase = startPos === 0 || prevChar === ' ';
         const char = shouldUppercase ? letter.toUpperCase() : letter;
@@ -4356,7 +3798,6 @@ function createKeyboard(layout) {
         input.focus();
         input.dispatchEvent(new Event('input', { bubbles: true })); // ✅ 3
       });
-
       key.addEventListener('mousedown', (e) => {
         e.preventDefault();
         if (!lastFocusedInput) return;
@@ -4364,7 +3805,6 @@ function createKeyboard(layout) {
         const startPos = input.selectionStart ?? input.value.length;
         const endPos = input.selectionEnd ?? input.value.length;
         const value = input.value;
-
         if (letter === 'backspace') {
           deleteCharacter();
           deleteTimeout = setTimeout(() => {
@@ -4372,7 +3812,6 @@ function createKeyboard(layout) {
           }, DELETE_INITIAL_DELAY);
           return;
         }
-
         if (letter === 'space') {
           input.value = value.slice(0, startPos) + ' ' + value.slice(endPos);
           input.selectionStart = input.selectionEnd = startPos + 1;
@@ -4380,7 +3819,6 @@ function createKeyboard(layout) {
           input.dispatchEvent(new Event('input', { bubbles: true })); // ✅ 4
           return;
         }
-
         const prevChar = value[startPos - 1];
         const shouldUppercase = startPos === 0 || prevChar === ' ';
         const char = shouldUppercase ? letter.toUpperCase() : letter;
@@ -4389,43 +3827,34 @@ function createKeyboard(layout) {
         input.focus();
         input.dispatchEvent(new Event('input', { bubbles: true })); // ✅ 5
       });
-
       const stopDeleting = () => {
         clearTimeout(deleteTimeout);
         clearInterval(deleteInterval);
         deleteTimeout = null;
         deleteInterval = null;
       };
-
       key.addEventListener('touchend', stopDeleting);
       key.addEventListener('touchcancel', stopDeleting);
       key.addEventListener('mouseup', stopDeleting);
       key.addEventListener('mouseleave', stopDeleting);
-
       const presionar = () => key.classList.add('presionada');
       const soltar = () => setTimeout(() => key.classList.remove('presionada'), 120);
-
       key.addEventListener('touchstart', presionar, { passive: true });
       key.addEventListener('mousedown', presionar);
       ['touchend', 'touchcancel', 'mouseup', 'mouseleave'].forEach(ev =>
         key.addEventListener(ev, soltar)
       );      
-
       row.appendChild(key);
     });
-
     keyboard.appendChild(row);
   });
 }
-
 function handleKeyPress(letter) {
   if (!lastFocusedInput) return;
-
   const input = lastFocusedInput;
   const start = input.selectionStart;
   const end = input.selectionEnd;
   const value = input.value;
-
   // BACKSPACE
   if (letter === '⌫') {
     if (start === end && start > 0) {
@@ -4439,18 +3868,14 @@ function handleKeyPress(letter) {
       input.selectionStart =
       input.selectionEnd = start;
     }
-
     input.focus();
     return;
   }
-
   // LETRAS / ESPACIO
   input.value =
     value.slice(0, start) + letter + value.slice(end);
-
   input.selectionStart =
   input.selectionEnd = start + 1;
-
   input.focus();
 }
 createKeyboard(keyboardLayout);
@@ -4463,12 +3888,10 @@ document.addEventListener('focusin', e => {
     lastFocusedInput = e.target;
   }
 });
-
 function showKeyboard(lift = -9) {
   keyboardWrapper.style.setProperty('--keyboard-lift', `${lift}vh`);
   keyboardWrapper.classList.add('is-visible');
 }
-
 function hideKeyboard() {
   keyboardWrapper.classList.remove('is-visible');
   keyboardWrapper.style.removeProperty('--keyboard-width');
@@ -4588,61 +4011,60 @@ function ubicaCalculadoraSegunContexto(){
     setTimeout(() => {
       calculadora.classList.add('move-calculadora-up-ingreso');
     }, 100);
-  }    
+  }
+  if(!esDesktop && almacenKaizen.style.display==='grid'){
+    document.querySelector("#simulador").style.display='flex'    
+    calculadora.classList.remove('move-calculadora-up-ingreso')
+    calculadora.style.display='grid'
+    calculadora.style.left='15vw'
+    calculadora.style.top='127vh'
+    calculadora.style.height='45vh'
+    calculadora.style.width='40vw'
+    calculadora.style.zIndex = 1000;
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up-ingreso');
+    }, 100);
+    /* document.querySelector("#buscador-detalle").focus() */
+  }   
 }
 const clamp = (val, min, max) =>
   Math.min(max, Math.max(min, val));
-
 const normalizarInput = (input) => {
   input.value = input.value.replace(/\D/g, '');
   if (input.value === '') return;
-
   const min = Number(input.min) || 0;
   const max = Number(input.max) || 255;
-
   input.value = clamp(parseInt(input.value, 10), min, max);
 };
 document.addEventListener('input', (e) => {
   if (!e.target.matches('.panel-color > input')) return;
-
   normalizarInput(e.target);
-
   if (!esDesktop) {
     ubicaCalculadoraSegunContexto();
   }
 });
 document.addEventListener('blur', (e) => {
   if (!e.target.matches('.panel-color > input')) return;
-
   normalizarInput(e.target);
 }, true);
 /* ***************************************************************************************************************************************** */
 //Bloque para aplicar clase que agranda imagen en primer click , segundo click normaliza tamaño
-
 function activarGrid(grid){
-
   grid.addEventListener('click', (e)=>{
-
     const item = e.target.closest('.expand');
     if(!item) return;
-
     const activo = grid.querySelector('.expand-activo');
-
     if(activo && activo === item){
       item.classList.remove('expand-activo');
       grid.classList.remove('modo-unico');
       return;
     }
-
     if(activo){
       activo.classList.remove('expand-activo');
     }
-
     item.classList.add('expand-activo');
     grid.classList.add('modo-unico');
-
   });
-
 }
 activarGrid(document.getElementById('grilla-teñido-hijo'));
 activarGrid(document.getElementById('grilla-entintado'));
@@ -4650,9 +4072,6 @@ activarGrid(document.getElementById('grilla-corta-entintado'));
 activarGrid(document.getElementById('grilla-frena'));
 /* ***************************************************************************************************************************************** */
 let activeInput = null;
-
-
-
 // ── Fuera de mostrarListaClientes, solo una vez ──────────────
 listaClientes.addEventListener('pointerdown', (e) => {
   cortina.style.display = 'block';
@@ -4665,7 +4084,6 @@ listaClientes.addEventListener('pointerdown', (e) => {
   if (activeInput) activeInput.value = item.dataset.nombre;
   objetoGlobal = item.dataset.nombre;
   listaClientes.style.display = 'none';
-
   const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
   const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
   if (empleado?.imagen) {
@@ -4677,7 +4095,6 @@ listaClientes.addEventListener('pointerdown', (e) => {
     cortina.style.display = 'none';
   }, 500);
 });
-
 listaClientes.addEventListener('click', (e) => {
   const item = e.target.closest('.cliente-item');
   if (!item) return;
@@ -4687,7 +4104,6 @@ listaClientes.addEventListener('click', (e) => {
   if (activeInput) activeInput.value = item.dataset.nombre;
   objetoGlobal = item.dataset.nombre;
   listaClientes.style.display = 'none';
-
   const almacen = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
   const empleado = Object.values(almacen).find(e => e.nombre === objetoGlobal);
   if (empleado?.imagen) {
@@ -4695,22 +4111,18 @@ listaClientes.addEventListener('click', (e) => {
     document.querySelector("#porta-visor > div.visor > span").textContent = capitalizarTexto(empleado.nombre);
   }
 });
-
 let moverLista = false
 function mostrarListaClientes(seccion) {
   listaClientes.style.display = 'flex';
   listaClientes.style.zIndex = 2010;  
   listaClientes.innerHTML = '';
-
   const almacenJSON = localStorage.getItem('empleadosRegistrados');
   if (!almacenJSON) {
     saltarAlerta('El almacenamiento y la base de datos están vacíos', 'listadoClientes');
     return;
   }
-
   const almacen = JSON.parse(almacenJSON);
   const empleados = Object.values(almacen);
-
   empleados.forEach(empleado => {
     if (!empleado) return;
     const item = document.createElement('div');
@@ -4719,7 +4131,6 @@ function mostrarListaClientes(seccion) {
     item.dataset.nombre = empleado.nombre;
     listaClientes.appendChild(item);
   });
-
   switch(seccion){
     case 'listadoClientes':
     break
@@ -4743,7 +4154,6 @@ function mostrarListaClientes(seccion) {
     break
   }
 }
-
 function capturarInput(e){
   console.log('ARCHIV O4: function capturarInput(e)')
   if (e.target.tagName === 'INPUT') {
@@ -4753,7 +4163,6 @@ function capturarInput(e){
 }
 fichaGrid.addEventListener('focusin', capturarInput);   // teclado / foco real
 fichaGrid.addEventListener('pointerdown', capturarInput); // mouse + touch
-
 function configurarInput(input) {
   var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','simulador','conti-boton-kaizen']; 
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -4764,7 +4173,6 @@ function configurarInput(input) {
   }
   imgsKaizen.style.display='grid'
   fichasTecnicas.style.display='grid'
-
   switch (input.id) {
     case 'empleado':
     case 'participante1':
@@ -4787,13 +4195,11 @@ function configurarInput(input) {
     case 'autogestionado':
       (() => {
         const autogestionadoEl = document.getElementById('autogestionado');
-
         autogestionadoEl.addEventListener('change', (e) => {
           const valor = e.target.value === 'true';
         });
       })();
       break;
-
       input.maxLength = 40;
       break;
     case 'lider':
@@ -4807,29 +4213,21 @@ function configurarInput(input) {
       break;
   }
 }
-
 /* ***************************************************************************************************************************************** */
-
 document.querySelector('#registro-baja').addEventListener('click', () => {
-
   const inputsIngresoEmpl = formularioNuevoIngreso.querySelectorAll('input, select');
-
   const existeVacio = [...inputsIngresoEmpl].some(input => input.value.trim() === '');
   if (existeVacio) {
     saltarAlerta('Existen campos sin diligenciar', 'nuevoEmpleado');
     return;
   }  
-
   const datos = new FormData(formularioNuevoIngreso);
   const documento = String(datos.get('documento')).trim();
-
   const empleados = obtenerEmpleados();
-
   if (empleados[documento]) {
     saltarAlerta('El empleado ya existe en la BD', 'nuevoEmpleado');
     return;
   }
-
   const empleado = new Empleado(
     capitalizarTexto(String(datos.get('nombre')).trim()),
     documento,
@@ -4847,25 +4245,19 @@ document.querySelector('#registro-baja').addEventListener('click', () => {
     Number(datos.get('adt')),
     Number(datos.get('lup'))
   );
-
   guardarEmpleado(empleado);
 });
-
 function obtenerEmpleados() {
   let crudo;
   try { crudo = JSON.parse(localStorage.getItem('empleadosRegistrados')); }
   catch { crudo = null; }
-
   const lista = Array.isArray(crudo) ? crudo : Object.values(crudo || {});
   const empleados = {};
-
   lista.forEach(emp => {
     if (emp && emp.documento) empleados[String(emp.documento).trim()] = emp;
   });
   return empleados;
 }
-
-
 function guardarEmpleado(empleado){
   const empleados = obtenerEmpleados();
   empleados[empleado.documento] = empleado;
@@ -4874,26 +4266,19 @@ function guardarEmpleado(empleado){
   saltarAlerta('Empleado registrado','exitoRegistro')
   console.log(empleados)
 }
-
 function mostrarTablaLocalStorage(clave){
-
   const datos = JSON.parse(localStorage.getItem(clave));
-
   if (!datos){
     console.warn('No existe información en localStorage para la clave:', clave);
     return;
   }
-
   const lista = Object.entries(datos).map(([key, value]) => ({
     objeto: clave,
     id: key,
     ...value
   }));
-
   console.table(lista);
-
 }
-
 function eliminarClaveLocalStorage(clave){
   if (!localStorage.getItem(clave)) {
     console.warn(`La clave "${clave}" no existe en localStorage`);
@@ -4902,7 +4287,6 @@ function eliminarClaveLocalStorage(clave){
   localStorage.removeItem(clave);
   console.log(`Clave "${clave}" eliminada de localStorage`);
 }
-
 const limpiarBtn = document.getElementById('limpiar');
 limpiarBtn.addEventListener('click', () => {
   inputNuevoEmpl.forEach(input => input.value = '');
@@ -4929,7 +4313,6 @@ function mostrarInterfazIngreso(elementId){
   inputNuevoEmpl.forEach(input => input.value = '');
   ["formulario-empleado"].forEach(id => aparecerElemento(id, "block"));
   ["padre-formulario-empleado"].forEach(id => aparecerElemento(id, "flex"));
-
   setTimeout(() => {
     if (!esDesktop) {
       inputsMA.forEach(input => {                                                                                                                             
@@ -4937,11 +4320,9 @@ function mostrarInterfazIngreso(elementId){
           input.readOnly = true; 
         }
       });      
-
       calculadora.classList.remove('move-calculadora-1')
       calculadora.classList.remove('move-calculadora')
       calculadora.classList.remove('move-calculadora-up')
-
       reUbicarElemento('calculadora', {
         display: 'grid',
         left: '40vw',
@@ -4950,7 +4331,6 @@ function mostrarInterfazIngreso(elementId){
         height: '45vh',
         parentSelector: '#simulador'
       });
-
     } else{
       inputsMA.forEach(input => {
         if (input.tagName === 'INPUT' && input.id !== 'numDoc' && input.id !== 'numDoc1') {
@@ -4971,14 +4351,12 @@ function bloquearEdicion(){
 function habilitarEdicion(){
   bloqueador.style.display='none'
 }
-
 document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
   const cells = imgsKaizen.querySelectorAll('.cell');
   const lbl = pantallaKaizen.querySelector('label');
   const img = pantallaKaizen.querySelector('img');
   btn.addEventListener('click', () => {
     btn.removeAttribute('style');
-
     if (index === 0) {
       fichasTecnicas.classList.remove('activo')
       setTimeout(() => {
@@ -5000,15 +4378,15 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
       agregarKaizen();
     }
     if (index === 2) {
-      fichaGrid.reset();
-      desaparecerElemento("fichas-tecnicas")
-      bloqueador.style.display='none' 
-      rodillosKaizen('btn17','')   
-      imgsKaizen.classList.remove('ocultar-padre');
-      
+      setTimeout(() => {
+        fichaGrid.reset();
+        desaparecerElemento("fichas-tecnicas")
+        bloqueador.style.display='none' 
+        rodillosKaizen('btn17','')   
+        imgsKaizen.classList.remove('ocultar-padre');
+      },300);
     }
     if (index === 3) {
-   
       fichaGrid.reset();  
     }
     if (index === 4) {
@@ -5020,9 +4398,7 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
       img.dataset.src = '';
     }    
   });
-
 });
-
 const idsSelect = [
   'propositores',
   'empleado',
@@ -5034,42 +4410,32 @@ const idsSelect = [
   'lider'
 ];
 //empleados pára mostrar en los select
-
 function setSelectValue(id, value) {
   const select = document.getElementById(id);
   if (!select) return;
-
   // asegurar opciones cargadas
   if (select.dataset.loaded !== 'true') {
     cargarEmpleados(select);
   }
-
   // verificar existencia
   const existe = [...select.options].some(opt => opt.value === value);
-
   if (!existe && value) {
     const option = document.createElement('option');
     option.value = value;
     option.textContent = value;
     select.appendChild(option);
   }
-
   select.value = value || '';
 }
 // función para filtrar kaizen
 function mostrarPropuestas(nombre) {
-
   contenedorPropuesta.innerHTML = '';
-
   const kaizenRaw = JSON.parse(localStorage.getItem('kaizenRegistrados')) || [];
   console.log('KAIZEN EN LOCAL STORE : ',kaizenRaw)
-
   const kaizenArray = Array.isArray(kaizenRaw)
     ? kaizenRaw
     : Object.values(kaizenRaw);
-
   const filtrados = kaizenArray.filter(k => k.empleado === nombre);
-
   if (filtrados.length === 0) {
     const div = document.createElement('div');
     div.className = 'propuesta-vacia';  // ← clase para el estado vacío
@@ -5077,7 +4443,6 @@ function mostrarPropuestas(nombre) {
     contenedorPropuesta.appendChild(div);
     return;
   }
-
   filtrados.forEach(k => {
     const div = document.createElement('div');
     div.className = 'propuesta-item';   // ← clase agregada
@@ -5101,20 +4466,16 @@ botonesFicha.forEach(btn => {
 function cargarFichaTecnica(kaizen) {
   const ficha = document.getElementById('fichas-tecnicas');
   ficha.style.display = 'grid';
-
   document.getElementById('mejora').value = kaizen.propuesta || '';
   document.getElementById('fecha').value = kaizen.fecha || '';
   document.getElementById('autogestionado').value = kaizen.autogestionado || '';
   document.getElementById('equipo').value = kaizen.equipo || '';
   document.getElementById('area').value = kaizen.area || '';
-
   llenarOpcionesKaizen();
-
   const selectImagenKaizen = document.getElementById('imagen-kaizen');
   if (selectImagenKaizen) {
     selectImagenKaizen.value = kaizen.imagen || '';
   }
-
   setSelectValue('lider', kaizen.lider);
   setSelectValue('empleado', kaizen.empleado);
   setSelectValue('participante1', kaizen.participante1);
@@ -5122,23 +4483,18 @@ function cargarFichaTecnica(kaizen) {
   setSelectValue('participante3', kaizen.participante3);
   setSelectValue('participante4', kaizen.participante4);
   setSelectValue('participante5', kaizen.participante5);
-
   const visorKaizen = document.querySelector('.cell-exterior img');
   const nombreKaizen = document.querySelector('.cell-exterior label');
-
   pantallaKaizen.style.display = 'grid';
   cortina.classList.remove('overlayImagenesKaizen');
   cortina.style.display = '';
   cortina.classList.add('overlayKaizen');
-
   if (visorKaizen && nombreKaizen) {
     nombreKaizen.textContent = kaizen.propuesta || '';
-
     // Limpia estado anterior
     visorKaizen.onload = null;
     visorKaizen.onerror = null;
     visorKaizen.classList.remove('loaded', 'sin-imagen');
-
     if (kaizen.imagen) {
       visorKaizen.onload = () => visorKaizen.classList.add('loaded');
       visorKaizen.onerror = () => {
@@ -5154,26 +4510,18 @@ function cargarFichaTecnica(kaizen) {
       visorKaizen.classList.add('sin-imagen');
     }
   }
-
   desaparecerElemento('kaizen-buscador');
 }
-
-function cargarEmpleados(select) {
+function cargarEmpleados(select) {  
   if (select.dataset.loaded === 'true') return;
-
   const raw = JSON.parse(localStorage.getItem('empleadosRegistrados'));
-  console.log(raw)
-  
   // Convertir a array sin importar cómo esté guardado
   const empleados = Array.isArray(raw) ? raw : Object.values(raw || {});
-
   select.innerHTML = '';
-
-  const defaultOption = document.createElement('option');
+  const defaultOption = document.createElement('option');  
   defaultOption.value = '';
   defaultOption.textContent = 'Seleccione...';
   select.appendChild(defaultOption);
-
   empleados
     .filter(empleado => empleado && empleado.nombre)
     .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es', { sensitivity: 'base' }))    
@@ -5182,16 +4530,14 @@ function cargarEmpleados(select) {
       option.value = empleado.nombre;
       option.textContent = capitalizarTexto(empleado.nombre);
       select.appendChild(option);
+      option.style.backgroundColor='#1e2a3a'
     });
   select.dataset.loaded = 'true';
 }
-
 idsSelect.forEach(id => {
   const select = document.getElementById(id);
   if (!select) return;
-
   switch (id) {
-
     case 'propositores':
       select.addEventListener('click', () => cargarEmpleados(select));
       select.addEventListener('change', (e) => {
@@ -5200,7 +4546,6 @@ idsSelect.forEach(id => {
         mostrarPropuestas(nombre);
       });
       break;
-
     case 'participante1':
     case 'participante2':
     case 'participante3':
@@ -5212,11 +4557,9 @@ idsSelect.forEach(id => {
       break;
   }
 });
-
 document.querySelector('.btn-volver').addEventListener('click',()=>{
   desaparecerElemento('kaizen-buscador');
 })
-
 /******************************************************************************************************************************************* */
 function scrollToTopById(id) {
   const element = document.getElementById(id);
@@ -5232,28 +4575,23 @@ document.querySelector('#btn-abandonar').addEventListener('click', () => {
 //BOTON ROJO DAR DE BAJA
 document.querySelector('#btn-confirmar-baja').addEventListener('click', () => {
   let btnMostrar = document.querySelector('#btn-mostrar-baja')
-
   if (interfazRRHH && inputNombre.value === '') {
     saltarAlerta('Debe mostrar el Empleado', 'baja');
     alternarColor(btnMostrar,null,1500)
     return;
   }   
-
   const nombreInput = documentoEmplEliminar.value.trim();
   if (!nombreInput) {
       saltarAlerta('ingrese numero de documento', 'baja') 
     return;
   }
   // 1. extraer de localStorage
-
   const empleados = obtenerEmpleados();
   if (!empleados[nombreInput]) {
     saltarAlerta('Documento no registrado', 'baja') 
     return;
   }
-
   traerEmpleadoaEliminar()
-
   setTimeout(() => {
     const actuales = obtenerEmpleados();
     delete actuales[nombreInput];
@@ -5264,8 +4602,6 @@ document.querySelector('#btn-confirmar-baja').addEventListener('click', () => {
     console.log('Registro actualizado:', actuales);
     saltarAlerta('Empleado eliminado en BD', 'baja') 
   }, 1000);
-  
-
 });
 // BOTON MOSTRAR EN INTERFAZ BONITA
 document.querySelector("#btn-mostrar-baja").addEventListener('click', () => {
@@ -5273,35 +4609,27 @@ document.querySelector("#btn-mostrar-baja").addEventListener('click', () => {
   calculadora.classList.remove('move-calculadora-up-eliminar')
   cortina.classList.add('overlayBaja')
 });
-
 function traerEmpleadoaEliminar(){
   let valor = documentoEmplEliminar.value
-
   interfazRRHH.style.transform = '';
   documentoEmplEliminar.value.trim();
-
   if (!valor) {
     saltarAlerta('Debe ingresar un número de documento.', 'recursoDocumento');
     parpadearElemento('nomEmpl');
     flagEmpleado = true;
     return; // detiene todo lo demás
   }
-
   // solo se ejecuta si hay valor
-
   const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
   const empleadoEncontrado = empleados[valor];
-
   if (!empleadoEncontrado) {
         saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn');
         return
       }else{
-
     ["padre-ingresos", "ingresos-sistema"].forEach(id => aparecerElemento(id, "grid"));
     interfazRRHH.style.left = '53vw';
     document.querySelector("#nomEmpl").value = valor;
     calculadora.classList.remove('move-calculadora-up');
-
     document.getElementById('numDoc').value = empleadoEncontrado.nombre;
     document.getElementById('numDoc1').value = empleadoEncontrado.documento;
     document.getElementById('numDoc2').value = empleadoEncontrado.area;
@@ -5309,7 +4637,6 @@ function traerEmpleadoaEliminar(){
     document.getElementById('numDoc4').value = empleadoEncontrado.fecha;
     document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
     document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
-
     document.getElementById('numDoc-ma').value = empleadoEncontrado.nombre;
     document.getElementById('numDoc9-ma').value = empleadoEncontrado.documento;
     document.getElementById('numDoc1-ma').value = empleadoEncontrado.identificados;
@@ -5320,7 +4647,6 @@ function traerEmpleadoaEliminar(){
     document.getElementById('numDoc8-ma').value = empleadoEncontrado.lup;
     document.getElementById('numDoc7-ma').value = empleadoEncontrado.adas;
     document.getElementById('numDoc6-ma').value = empleadoEncontrado.adt;  
-
     const imgElemento = document.getElementById('empleadoImg');
     if (imgElemento) {
       let rutaImagen = empleadoEncontrado.imagen?.trim() || '';
@@ -5334,26 +4660,14 @@ function traerEmpleadoaEliminar(){
     panelDeBajas.classList.add('move-panel-salir');
     restablecerClick(['.btn-baja'])
   }
-
 }
 const btnAdministrador = document.querySelector("#boton-administrador")
 const accionesAceptar = {
-  contenedor: () => {
-    console.log('logica muy extensa para contenedor');
-  },
-  flexografia: () => {
-    console.log('logica muy extensa para flexografia');   
-  },
-  lithografia: () => {
-    console.log('logica muy extensa para lithografia');              
-  },
   reseteo: () => {
     const contenedor = document.getElementById('botonera-fondo');
     const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');  
-
     vaciarObjeto()
     vaciarAlmacenObjetos()
-
     colecciones.forEach((elemento) => {
       elemento.style.backgroundColor = '';
     });
@@ -5373,7 +4687,6 @@ const accionesAceptar = {
             elemento.style.display = 'block';
           });
         }
-
         objetoGlobal = {}
       }, 1000);
     });
@@ -5401,12 +4714,11 @@ const accionesAceptar = {
         documentoEmplEliminar.focus()        
       }     
     }, 750);
-
   }, 
   recursoNn: () => {
     inputRRHH.value=''
     inputRRHH.focus();
-    document.querySelector("#input-documento").focus()
+    documentoActivador.focus()
   }, 
   recursoNuevo: () => {
     inputRRHH.value=''
@@ -5532,7 +4844,7 @@ const accionesAceptar = {
     setTimeout(() => {
       documentoEmplEliminar.value=''
       documentoEmplEliminar.focus() 
-      document.querySelector("#input-documento").focus() 
+      documentoActivador.focus() 
     }, 250);  
   }, 
   eliminarEmpl: () =>{
@@ -5550,20 +4862,9 @@ const accionesAceptar = {
     buscaNombre.value = '';
     buscaNombre.focus();
   },  
-
 };
 const accionesCancelar = {
-  contenedor: () => {
-    console.log('logica muy extensa para contenedor');
-  },
-  flexografia: () => {
-    console.log('logica muy extensa para flexografia');  
-  },
-  lithografia: () => {
-    console.log('logica muy extensa para lithografia');            
-  },
   reseteo: () => {
-
     alertasPerfiles.forEach(alertaPerfiles => {
       alertaPerfiles.style.opacity = '0';
       setTimeout(() => {
@@ -5571,23 +4872,20 @@ const accionesCancelar = {
         botonesPerfilColor.forEach(elemento => {           
           elemento.style.display = 'block';
         });
-        
         const contenedor = document.getElementById('botonera-fondo');
         if (contenedor) {
           contenedor.querySelectorAll('*').forEach(elemento => {
             elemento.style.display = 'block';
           });
         }
-    
       }, 1000);
     });
     restablecerClick(['.butt-perfiles'])
-
   },
   recursosConfirmar: () => {
     cargarEmpleadoMA();
   setTimeout(() => {
-    aplicarColoresInputs();
+    aplicarColoresInputs(); 
   }, 250);    
   },
   fichasTecnicas: () => {
@@ -5599,10 +4897,8 @@ function saltarAlerta(texto, padre) {
   const mensaje = document.querySelector('#mensaje-alerta');
   const aceptar = document.querySelector('#aceptar-evento');
   const cancelar = document.querySelector('#denegar-evento'); 
-
   const el = document.querySelector("#padre-evento > div");
   if (el) el.removeAttribute('style');  
-  
   mostrarElemento('#padre-evento');
   mostrarElemento('.contenido-alerta');
   modal.classList.remove('reseteo');
@@ -5628,25 +4924,6 @@ function saltarAlerta(texto, padre) {
   aceptar.focus();
   if (alertaGlobal === 'lineas') {
     cancelar.style.display = 'none';
-  }
-  if (alertaGlobal === 'contenedor') {
-    cancelar.style.display = 'none';
-
-    aceptar.onmouseenter = () => {
-      aceptar.style.color = 'red';
-    };
-    aceptar.onmouseleave = () => {
-      aceptar.style.color = '';
-    };
-    modal.style.backgroundColor='blue'
-  }
-  if (alertaGlobal === 'flexografia') {
-    cancelar.onmouseenter = () => {
-      cancelar.style.color = 'red';
-    };
-    cancelar.onmouseleave = () => {
-      cancelar.style.color = '';
-    };
   }
   if (alertaGlobal === 'reseteo') {
     modal.classList.add('reseteo');
@@ -5762,7 +5039,6 @@ function saltarAlerta(texto, padre) {
     accionesCancelar[padre]?.();
     aceptar.onclick = null;
     cancelar.onclick = null;
-
     ocultarElemento('.contenido-alerta');          
     ocultarElemento('#padre-evento');
   };
@@ -5773,30 +5049,25 @@ function saltarAlerta(texto, padre) {
       saltarAlerta(resultado.siguienteAlerta.texto, resultado.siguienteAlerta.tipo);
       return;
     }
-
     cerrar();
   };
   cancelar.onclick = cerrar;
 }
 function limpiarFormulario() {
-  
   const inputs = [
     'numDoc', 'numDoc1', 'numDoc2', 
     'numDoc5', 'numDoc3', 'numDoc4', 'numDoc6', 'nomEmpl'
   ];
-
   inputs.forEach((id, index) => {
     setTimeout(() => {
       const input = document.getElementById(id);
       if (input) input.value = '';
     }, index * 150);
   });
-
   // Limpiar imagen con el último delay
   setTimeout(() => {
     const img = document.getElementById('empleadoImg');
     if (img) img.src = '';
-
     const imgMa = document.getElementById('empleadoImg-ma');
     if (imgMa) imgMa.src = '';
   }, inputs.length * 140);
@@ -5811,19 +5082,12 @@ documentoEmplEliminar.addEventListener('touchstart', (e) => {
   documentoEmplEliminar.focus();
   if(!esDesktop)ubicaCalculadoraSegunContexto();
 }, { passive: false });
-documentoEmplEliminar.addEventListener('blur', () => {
-  if (!esDesktop) {
-    hideCalculator();
-  }
-});
 let deBajaActivo = false
 document.querySelector("#boton-ma-card").addEventListener('click',()=>{
-
   if(!deBajaActivo && !padreAdministrativo.classList.contains('move-carta-exterior')){
     saltarAlerta('Debe activar el empleado','docuMaster')
     return    
   }
-
   var elementosExcluidos = ['links-inicialesI','links-iniciales','buscador','search-form'] 
   for (var i = 0; i < allContenedores.length; i++) { 
     var element = document.getElementById(allContenedores[i])  
@@ -5831,7 +5095,6 @@ document.querySelector("#boton-ma-card").addEventListener('click',()=>{
       element.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   } 
-  
   container1.style.display='grid'
   padreAdministrativo.style.display='flex'
   panelAdministrativo.style.display='grid'
@@ -5892,11 +5155,9 @@ btnActivar.addEventListener('click', function () {
     document.querySelector("#grafico-area").classList.remove('activo')
     panelAdministrador.style.display='none'
   }
-      
   const valor = cardInput.value.trim();  
   const empleados = JSON.parse(localStorage.getItem('empleadosRegistrados')) || {};
   const empleadoEncontrado = empleados[valor];
-
   if (empleadoEncontrado) {
     deBajaActivo = true
     document.getElementById('input-nombre').value = capitalizarTexto(empleadoEncontrado.nombre || '');       
@@ -5906,7 +5167,6 @@ btnActivar.addEventListener('click', function () {
     document.getElementById('numDoc4').value = empleadoEncontrado.fecha;
     document.getElementById('numDoc5').value = empleadoEncontrado.cargo;
     document.getElementById('numDoc6').value = empleadoEncontrado.imagen || './assets/';
-
     document.getElementById('numDoc-ma').value = capitalizarTexto(empleadoEncontrado.nombre || '')    
     document.getElementById('numDoc9-ma').value = empleadoEncontrado.documento;
     document.getElementById('numDoc1-ma').value = empleadoEncontrado.identificados;
@@ -5917,7 +5177,6 @@ btnActivar.addEventListener('click', function () {
     document.getElementById('numDoc8-ma').value = empleadoEncontrado.lup;
     document.getElementById('numDoc7-ma').value = empleadoEncontrado.adas;
     document.getElementById('numDoc6-ma').value = empleadoEncontrado.adt;  
-
     const imgElemento = document.getElementById('imgAdministrar');
     if (imgElemento) {
       let rutaImagen = empleadoEncontrado.imagen?.trim() || '';
@@ -5927,14 +5186,11 @@ btnActivar.addEventListener('click', function () {
         rutaImagen = `./assets/${rutaImagen}`;
       }
       imgElemento.src = rutaImagen;
-
       empleadoGlobal = empleadoEncontrado
       console.log('TRANSFERIDO A GLOBAL :', empleadoGlobal)
     }
-
     padreAdministrativo.classList.remove('move-carta-exterior')
     document.querySelector('.panel-monitor').classList.remove('activo')    
-
   } else {
     saltarAlerta('Empleado no encontrado en la BD.', 'recursoNn')
     cardImg.src = './assets/silueta2.png';
@@ -5957,21 +5213,12 @@ document.querySelector("#carta-exterior > div > div.card-left > div.card-botones
     document.querySelector("#padre-carta-exterior").classList.remove('activo')
     desactivarBlur()    
   }, 1500);
-
   const img = document.getElementById('imgAdministrar');
   img.src='./assets/silueta1.png'
-
 }) 
-document.querySelector("#doc-empl").addEventListener('click', () => {
+docEmpleado.addEventListener('click', () => {
   if (!esDesktop) {
     ubicaCalculadoraSegunContexto();
-  }
-});
-document.querySelector("#doc-empl").addEventListener('blur', () => {
-  if (!esDesktop) {
-    calculadora.classList.remove('move-calculadora-up-ingreso')
-    calculadora.classList.remove('move-calculadora-down')
-    hideCalculator();
   }
 });
 inputsMA.forEach(el => {
@@ -5984,9 +5231,7 @@ inputsMA.forEach(el => {
       hideCalculator();
     }
   });  
-
 });
-
 document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',()=>{
   activarPantallaCompleta()
    var elementosExcluidos = ['buscador','search-form','links-iniciales','links-inicialesI','contenedor-botonera']; 
@@ -6008,16 +5253,13 @@ document.querySelector("#linkList > li:nth-child(8)").addEventListener('click',(
 })
 let panelAbierto = false;
 document.querySelector("#contenedor-global .but-job").addEventListener('click', () => {
-
     const hayMesActivo = document.getElementById('titulo-mes').textContent.trim() !== '';
     const hayMaquinaActiva = document.getElementById('titulo-calendar').textContent.trim() !== '';    
-
     if (!hayMesActivo || !hayMaquinaActiva){
       alternarColor(firstMachine,secondMachine,2000)
       saltarAlerta('Seleccione una Maquina y el Mes para generar informes', 'lanzaGrafos')
       return;
     }
-
   if (panelAbierto) {
     desaparecerElemento('abuelo-grafica4', 'grid');
     document.querySelector("#contenedor-global").classList.remove('move-panel-ma');
@@ -6025,25 +5267,20 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
     panelAbierto = false;
     return;
   }  
-
   /* document.querySelectorAll('.span-semana').forEach(semana => {
     semana.style.backgroundColor = '';
   }); */
-
   const abueloGrafica = document.querySelector('#abuelo-grafica4');
   Array.from(abueloGrafica.querySelectorAll('*')).forEach(hijo => {
     hijo.style.display = '';
     hijo.style.visibility = 'visible';
     hijo.style.opacity = '1';
   });
-
   document.querySelector("#contenedor-global").classList.add('move-panel-ma');
   document.querySelector("#padre-contenedor-global").classList.add('move-panel-ma');
-
   setTimeout(() => {
     aparecerElemento('abuelo-grafica4', 'grid');
   }, 400);
-
   setTimeout(() => {
     const pasos = [
       crearGraficoMes,
@@ -6059,10 +5296,9 @@ document.querySelector("#contenedor-global .but-job").addEventListener('click', 
       delay += 150;
     }
   }, 1100);
-
   panelAbierto = true;
 });
-document.querySelector("#overlay-kaizen").addEventListener('click',()=>{
+cortinaKaizen.addEventListener('click',()=>{
   if(fichasTecnicas.style.zIndex === '2110')return
   saltarAlerta('Ejecutar como administrador','fichasTecnicas')
 })
@@ -6101,7 +5337,6 @@ function moverVisor() {
     busqueda.style.width='114%'
     busqueda.style.height='10%'
     busqueda.style.marginLeft='-7%'
-
   }else{
     navArrow.style.marginLeft='23%'
     navArrow.style.width='161%'
@@ -6112,7 +5347,6 @@ function moverVisor() {
     busqueda.style.width='110%'
     busqueda.style.height='10%'
   }
-
 }
 function normalize(s) {
   return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -6131,13 +5365,11 @@ function hideSuggestions() {
   suggestBox.innerHTML = "";
   suggestBox.classList.remove("visible");
 }
-
 function showSuggestions(matches, query) {
   suggestBox.innerHTML = matches.map(n =>
     `<div class="suggestion-item" data-name="${n}">${highlightMatch(n, query)}</div>`
   ).join("");
   suggestBox.classList.add("visible");
-
   // Al hacer clic en una sugerencia se dispara el scroll directamente
   suggestBox.querySelectorAll(".suggestion-item").forEach(item => {
     item.addEventListener("click", () => {
@@ -6149,28 +5381,20 @@ function showSuggestions(matches, query) {
       setTimeout(() => {
         padreNuevaInterfaz.classList.remove('move-new-employee')
       }, 300);
-
     });
   });
 }
-
 nameInput.addEventListener("input", () => {
   errorMsg.textContent = "";
   const query = nameInput.value.trim();
-
   if (!query) { hideSuggestions(); return; }
-
   const matches = names.filter(n => normalize(n).includes(normalize(query)));
-
   if (matches.length === 0) { hideSuggestions(); return; }
-
   showSuggestions(matches, query);
 });
-
 nameInput.addEventListener("keydown", e => {
   if (e.key === "Enter") startSearch();
 });
-
 nameInput.addEventListener('blur', () => {
   hideKeyboard()
   padreNuevaInterfaz.classList.remove('move-new-employee')
@@ -6179,18 +5403,6 @@ nameInput.addEventListener('blur', () => {
     nameInput.value=''  
   }, 500);
 });
-
-/* nameInput.addEventListener('touchstart', () => {
-  nameInput.value=''  
-  if(!esDesktop){
-    keyboardWrapper.style.left='39vw'
-    keyboardWrapper.style.setProperty('--keyboard-width', '33vw');
-    document.querySelector('#padre-rrhh-marco').classList.add('move-new-employee')
-    nameInput.readOnly = true; 
-  }
-  showKeyboard()  
-}); */
-
 nameInput.addEventListener('touchstart', () => {
   console.log('click')
   nameInput.value = '';
@@ -6225,28 +5437,22 @@ function animateScroll(target) {
   btn.disabled = true;
   resultName.classList.remove("visible");
   resultName.textContent = "—";
-
   buildList();
   ul.style.transform = "translateY(0px)";
-
   const items = ul.querySelectorAll("li");
   let targetIdx = -1;
   for (let i = PAD_ITEMS; i < PAD_ITEMS + names.length; i++) {
     if (items[i]?.textContent === target) { targetIdx = i; break; }
   }
-
   if (targetIdx < 0) { btn.disabled = false; return; }
-
   const finalY = -(targetIdx - Math.floor(VISIBLE / 2)) * ITEM_H;
   let startTime = null;
-
   function animate(ts) {
     if (!startTime) startTime = ts;
     const elapsed  = ts - startTime;
     const progress = Math.min(elapsed / DURATION, 1);
     const eased    = easeInOut(progress);
     ul.style.transform = `translateY(${finalY * eased}px)`;
-
     if (progress < 1) {
       requestAnimationFrame(animate);
     } else {
@@ -6261,40 +5467,32 @@ function animateScroll(target) {
       }
     }
   }
-
   requestAnimationFrame(animate);
 }
 function startSearch() {
   errorMsg.textContent = "";
   hideSuggestions();
-
   const query = nameInput.value.trim();
-
   if (!query) {
     errorMsg.textContent = "Escribe un nombre primero.";
     return;
   }
-
   const matches = names.filter(n => normalize(n).includes(normalize(query)));
-
   if (matches.length === 0) {
     errorMsg.textContent = `No se encontró "${query}" en la lista.`;
     return;
   }
-
   // Si hay exactamente una coincidencia o el texto ingresado es un nombre exacto, anima directo
   const exact = names.find(n => normalize(n) === normalize(query));
   if (exact) {
     animateScroll(exact);
     return;
   }
-
   if (matches.length === 1) {
     nameInput.value = matches[0];
     animateScroll(matches[0]);
     return;
   }
-
   // Si hay varias, muestra las opciones para que el usuario elija
   errorMsg.textContent = "Hay varias coincidencias, selecciona una de la lista.";
   showSuggestions(matches, query);
@@ -6303,7 +5501,6 @@ buildList();
 //*******************************************************************************************************************
 function aplicarColorSemaforo(select) {
   const valor = Number(select.value);
-
   if (valor <= 4) {
     select.style.backgroundColor = '#CC3333';   // rojo: 0 a 4
     select.style.color = '#FFFFFF';
@@ -6315,28 +5512,22 @@ function aplicarColorSemaforo(select) {
     select.style.color = '#000000';
   }
 }
-
 function crearOpcionesNumericas(selectId, min = 0, max = 30) {
   const select = document.getElementById(selectId);
   if (!select) return;
-
   select.innerHTML = '';
-
   for (let i = min; i <= max; i++) {
     const opt = document.createElement('option');
     opt.value = i;
     opt.textContent = i;
     select.appendChild(opt);
   }
-
   select.addEventListener('change', () => aplicarColorSemaforo(select));
 }
-
 const CAMPOS = [
   'nombre', 'documento', 'area', 'cargo', 'equipo', 'fecha', 'imagen',
   'identificados', 'corregidos', 'tipoA', 'tipoB', 'kaizen', 'adas', 'adt', 'lup'
 ];
-
 // REGISTRO DE EMPLEADOS
 interfazToggle.addEventListener('click', () => {
   const boton = document.querySelector('#btn-ver-listado');
@@ -6344,20 +5535,15 @@ interfazToggle.addEventListener('click', () => {
   const contenedor = document.querySelector('#contenedor-tabla');
   const total = document.querySelector('#listado-total');
   const abrir = boton.dataset.abierto !== 'true';
-
   traerAlFrente(panel);
-
   if (abrir) renderizarListado();
-
   contenedor.style.display = abrir ? 'block' : 'none';
   total.style.display = abrir ? 'block' : 'none';
   boton.dataset.abierto = String(abrir);
   boton.textContent = abrir ? 'Cerrar empleados registrados' : 'Registro empleados';
   panel.classList.toggle('expandido', abrir);
-  
 });
 let zActual = 10;
-
 function traerAlFrente(panel) {
   zActual += 1;
   panel.style.zIndex = zActual;
@@ -6375,7 +5561,6 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
   const contenedor = document.querySelector('#contenedor-colores');
   const total = document.querySelector('#colores-total');
   const lista = document.querySelector('#listado-colores');
-
   // Si está desplegado, vuelve al estado inicial
   if (boton.dataset.abierto === 'true') {
     contenedor.style.display = 'none';
@@ -6385,9 +5570,7 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
     panel.classList.remove('expandido');
     return;
   }
-
   panel.classList.add('expandido');
-
   // Si está contraído, lee los datos y despliega
   let colores = {};
   try {
@@ -6395,17 +5578,13 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
   } catch {
     colores = {};
   }
-
   const nombres = Object.keys(colores).sort();
   lista.innerHTML = '';
-
   nombres.forEach(nombre => {
     const item = document.createElement('li');
-
     const titulo = document.createElement('div');
     titulo.textContent = capitalizarTexto(nombre)
     item.appendChild(titulo);
-
     const detalle = document.createElement('pre');
     detalle.textContent = JSON.stringify(colores[nombre], null, 2);
     detalle.style.display = 'none';
@@ -6414,14 +5593,11 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
     detalle.style.whiteSpace = 'pre-wrap';
     detalle.style.color = '#9aa2ab';
     item.appendChild(detalle);
-
     titulo.addEventListener('click', () => {
       detalle.style.display = detalle.style.display === 'none' ? 'block' : 'none';
     });
-
     lista.appendChild(item);
   });
-
   total.textContent = `Total: ${nombres.length} perfiles de color`;
   total.style.display = 'block';
   contenedor.style.display = 'block';
@@ -6438,7 +5614,6 @@ document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
   const cabecera   = document.querySelector('#listado-cabecera-kaizen');
   const cuerpo     = document.querySelector('#listado-cuerpo-kaizen');
   const buscador   = document.querySelector('#buscar-kaizen');
-
   // Si está desplegado, vuelve al estado inicial
   if (boton.dataset.abierto === 'true') {
     contenedor.style.display = 'none';
@@ -6448,7 +5623,6 @@ document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
     boton.textContent = 'Registro kaizen';
     return;
   }
-
   // Si está contraído, lee los datos y despliega
   let datos = [];
   try {
@@ -6458,7 +5632,6 @@ document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
     datos = [];
   }
   datos = datos.filter(Boolean);
-
   // Columnas que se muestran (ajusta, quita o reordena a tu gusto)
   const columnas = [
     { clave: 'empleado',        titulo: 'Proponente' },
@@ -6476,7 +5649,6 @@ document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
     { clave: 'equipo',          titulo: 'Equipo M.A' },
     { clave: 'area',            titulo: 'Área' }
   ];
-
   // Encabezado
   const filaCabecera = document.createElement('tr');
   columnas.forEach(col => {
@@ -6485,7 +5657,6 @@ document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
     filaCabecera.appendChild(th);
   });
   cabecera.replaceChildren(filaCabecera);
-
   // Filas
   buscador.value = '';
   const columnasNombre = ['empleado', 'participante1', 'participante2', 'participante3', 'participante4', 'participante5', 'lider'];
@@ -6500,7 +5671,6 @@ document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
     return tr;
   });
   cuerpo.replaceChildren(...filas);  
-
   total.textContent = `Total: ${datos.length} kaizen`;
   total.style.display = 'block';
   tabla.style.display = 'table';
@@ -6514,32 +5684,25 @@ function activarBuscador({ inputId, cabeceraId, cuerpoId, sinResultId, columna =
   const cabecera  = document.getElementById(cabeceraId);
   const cuerpo    = document.getElementById(cuerpoId);
   const sinResult = document.getElementById(sinResultId);
-
   if (!buscador || !cabecera || !cuerpo || !sinResult) {
     console.warn('activarBuscador: falta algún elemento para', inputId);
     return;
   }
-
   const normalizar = t =>
     (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-
   function filtrar() {
     const q = normalizar(buscador.value);
-
     const ths = [...cabecera.querySelectorAll('th')];
     let idx = ths.findIndex(th => normalizar(th.textContent) === normalizar(columna));
     if (idx < 0) idx = 0;
-
     let visibles = 0;
     cuerpo.querySelectorAll('tr').forEach(tr => {
       const coincide = !q || normalizar(tr.children[idx]?.textContent).includes(q);
       tr.style.display = coincide ? '' : 'none';
       if (coincide) visibles++;
     });
-
     sinResult.style.display = (q && visibles === 0) ? 'block' : 'none';
   }
-
   buscador.addEventListener('input', filtrar);
   new MutationObserver(filtrar).observe(cuerpo, { childList: true });
 }
@@ -6557,10 +5720,8 @@ function renderizarListado() {
   const cuerpo = document.querySelector('#listado-cuerpo');
   const tabla = document.querySelector('#tabla-listado');
   const total = document.querySelector('#listado-total');
-
   cabecera.innerHTML = '';
   cuerpo.innerHTML = '';
-
   const filaCab = document.createElement('tr');
   CAMPOS.forEach(campo => {
     const th = document.createElement('th');
@@ -6568,7 +5729,6 @@ function renderizarListado() {
     filaCab.appendChild(th);
   });
   cabecera.appendChild(filaCab);
-
   empleados.forEach(emp => {
     const fila = document.createElement('tr');
     CAMPOS.forEach(campo => {
@@ -6580,19 +5740,16 @@ function renderizarListado() {
     });
     cuerpo.appendChild(fila);
   });
-
   total.textContent = `Total: ${empleados.length} empleados`;
   tabla.style.display = empleados.length ? 'table' : 'none';
 }
 function dibujarAlmacen() {
   const grid = document.querySelector('#grid-storage');
   grid.innerHTML = '';
-
   Object.keys(localStorage).forEach(clave => {
     const texto = localStorage.getItem(clave);
     let tipo = 'texto';
     let elementos = '-';
-
     try {
       const dato = JSON.parse(texto);
       if (Array.isArray(dato)) {
@@ -6603,37 +5760,26 @@ function dibujarAlmacen() {
         elementos = Object.keys(dato).length;
       }
     } catch {}
-
     const tarjeta = document.createElement('div');
     tarjeta.className = 'tarjeta';
-
     const titulo = document.createElement('h3');
     titulo.textContent = clave;
-
     const info = document.createElement('p');
     info.textContent = `Tipo: ${tipo}`;
-
     const cantidad = document.createElement('p');
     cantidad.textContent = `Elementos: ${elementos}`;
-
     const tamano = document.createElement('p');
     tamano.textContent = `Caracteres: ${texto.length}`;
-
     tarjeta.append(titulo, info, cantidad, tamano);
-
     tarjeta.addEventListener('click', () => {
       document.querySelectorAll('.tarjeta').forEach(t => t.classList.remove('activa'));
       tarjeta.classList.add('activa');
-
       document.querySelector('#titulo-detalle').textContent = clave;
-
       let dato;
       try { dato = JSON.parse(texto); } catch { dato = texto; }
-
       mostrarTabla(dato && typeof dato === 'object' ? dato : { valor: dato }, clave);
       prepararBuscador(clave);
     });
-
     grid.appendChild(tarjeta); 
   });
 }
@@ -6642,14 +5788,11 @@ function mostrarTabla(dato, nombreClave) {
   const cuerpo = document.querySelector('#detalle-cuerpo');
   cabecera.innerHTML = '';
   cuerpo.innerHTML = '';
-
   const entradas = Object.entries(dato);
   const sonObjetos = entradas.length > 0 && entradas.every(([, v]) => v && typeof v === 'object');
-
   // Si cada elemento es un objeto: una fila por elemento. Si no: una sola fila.
   const filas = sonObjetos ? entradas : [['', dato]];
   const columnas = [...new Set(filas.flatMap(([, fila]) => Object.keys(fila)))];
-
   const filaCab = document.createElement('tr');
   (sonObjetos ? ['clave', ...columnas] : columnas).forEach(nombre => {
     const th = document.createElement('th');
@@ -6657,10 +5800,8 @@ function mostrarTabla(dato, nombreClave) {
     filaCab.appendChild(th);
   });
   cabecera.appendChild(filaCab);
-
   filas.forEach(([clave, fila]) => {
     const tr = document.createElement('tr');
-
     if (sonObjetos) {
       const tdClave = document.createElement('td');
       tdClave.textContent = nombreClave === 'kaizenRegistrados'
@@ -6668,11 +5809,9 @@ function mostrarTabla(dato, nombreClave) {
       : clave;
       tr.appendChild(tdClave);
     }
-
     columnas.forEach(col => {
       const valor = fila[col];
       const td = document.createElement('td');
-
       if (valor && typeof valor === 'object') {
         td.textContent = Array.isArray(valor)
           ? `[ ${valor.length} ]`
@@ -6686,7 +5825,6 @@ function mostrarTabla(dato, nombreClave) {
       }
       tr.appendChild(td);
     });
-
     cuerpo.appendChild(tr);
   });
 }
@@ -6698,19 +5836,15 @@ const FILTROS = {
 let filtroActual = null;
 function prepararBuscador(clave) {
   const input = document.querySelector('#buscador-detalle');
-  const config = FILTROS[clave] || { columna: 'clave', placeholder: 'Buscar por nombre...' };
-
+  const config = FILTROS[clave] || { columna: 'clave', placeholder: 'Buscar por documento...' };
   const columnas = [...document.querySelectorAll('#detalle-cabecera th')].map(th => th.textContent);
   const indice = columnas.indexOf(config.columna);
-
   input.value = '';
-
   if (indice === -1) {            // la tabla no tiene esa columna (volume, muted...)
     input.style.display = 'none';
     filtroActual = null;
     return;
   }
-
   input.style.display = 'block';
   input.placeholder = config.placeholder;
   input.inputMode = config.numerico ? 'numeric' : 'text';
@@ -6718,18 +5852,19 @@ function prepararBuscador(clave) {
 }
 document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
   if (!filtroActual) return;
-
   let texto = e.target.value;
   if (filtroActual.numerico) {
     texto = texto.replace(/\D/g, '');     // solo dígitos
     e.target.value = texto;
   }
   texto = texto.trim().toLowerCase();
-
   document.querySelectorAll('#detalle-cuerpo tr').forEach(fila => {
     const celda = fila.children[filtroActual.indice].textContent.toLowerCase();
     fila.style.display = celda.includes(texto) ? '' : 'none';
   });
+});
+buscadorDetalles.addEventListener('focusin', () => {
+  if(!esDesktop) ubicaCalculadoraSegunContexto()
 });
 // IIFE Para empleados  
 (() => {
@@ -6737,27 +5872,21 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
   const cabecera  = document.getElementById('listado-cabecera');
   const cuerpo    = document.getElementById('listado-cuerpo');
   const sinResult = document.getElementById('sin-resultados');
-
   const normalizar = t =>
     (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-
   function filtrarListado() {
     const q = normalizar(buscador.value);
-
     const ths = [...cabecera.querySelectorAll('th')];
     let idx = ths.findIndex(th => normalizar(th.textContent) === 'nombre');
     if (idx < 0) idx = 0;
-
     let visibles = 0;
     cuerpo.querySelectorAll('tr').forEach(tr => {
       const coincide = !q || normalizar(tr.children[idx]?.textContent).includes(q);
       tr.style.display = coincide ? '' : 'none';
       if (coincide) visibles++;
     });
-
     sinResult.style.display = (q && visibles === 0) ? 'block' : 'none';
   }
-
   buscador.addEventListener('input', filtrarListado);
   new MutationObserver(filtrarListado).observe(cuerpo, { childList: true });
 })();
@@ -6766,13 +5895,10 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
   const buscador  = document.getElementById('buscar-color');
   const lista     = document.getElementById('listado-colores');
   const sinResult = document.getElementById('sin-resultados-colores');
-
   const normalizar = t =>
     (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-
   function filtrarColores() {
     const q = normalizar(buscador.value);
-
     let visibles = 0;
     lista.querySelectorAll('li').forEach(li => {
       const nombre = li.querySelector('div')?.textContent ?? '';
@@ -6780,10 +5906,8 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
       li.style.display = coincide ? '' : 'none';
       if (coincide) visibles++;
     });
-
     sinResult.style.display = (q && visibles === 0) ? 'block' : 'none';
   }
-
   buscador.addEventListener('input', filtrarColores);
   new MutationObserver(filtrarColores).observe(lista, { childList: true });
 })();
@@ -6791,49 +5915,40 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
 (() => {
   const sinResult = listaColores?.querySelector('.sin-resultados-lista');
   if (!listaColores || !buscadorLista || !sinResult) return;
-
   const normalizar = t =>
   (t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-
   function filtrar() {
     const q = normalizar(buscadorLista.value);
     let visibles = 0;
-
     listaColores.querySelectorAll('.cliente-item').forEach(item => {
       const coincide = !q || normalizar(item.textContent).includes(q);
       item.style.display = coincide ? '' : 'none';
       if (coincide) visibles++;
     });
-
     sinResult.style.display = (q && visibles === 0) ? 'block' : 'none';
-
   }
-
   buscadorLista.addEventListener('input', filtrar);
-
   listaColores.addEventListener('mouseleave', () => {
     if (document.activeElement === buscadorLista) return;
     buscadorLista.value = '';
     filtrar();
   }); 
-
   buscadorLista.addEventListener('blur', () => {
+    console.log('ESTE ES ................')
     if (!listaColores.matches(':hover')) {
       buscadorLista.value = '';
       filtrar();
+      hideKeyboard(9)
+      listaColores.style.display='none'
     }
   });
 })();
-
 buscadorLista.addEventListener('focusin',() =>{
   if(!esDesktop) showKeyboard(-5)
 });
-
-
 function cerrarListaColores() {
   if (document.activeElement === buscadorLista) return;
   if (inputBuscar && inputBuscar.style.display !== 'none' && document.activeElement === inputBuscar) return;
-
   listaColores.style.display = 'none';
   if (inputBuscar) inputBuscar.style.display = 'none';
   const menu = document.getElementById('menu-contextual');
@@ -6841,11 +5956,9 @@ function cerrarListaColores() {
   restablecerClick(['.base-datos']);
   blurOverlay.style.display = 'none';
 }
-
 function crearListaDesplegable(inputId, listaId, opciones) {
   const input = document.getElementById(inputId);
   const lista = document.getElementById(listaId);
-
   function generar() {
     lista.innerHTML = '';
     opciones.forEach(texto => {
@@ -6857,7 +5970,6 @@ function crearListaDesplegable(inputId, listaId, opciones) {
       lista.appendChild(item);
     });
   }
-
   input.addEventListener('click', (e) => {
     e.stopPropagation();
     const estabaOculta = lista.classList.contains('oculto');
@@ -6868,7 +5980,6 @@ function crearListaDesplegable(inputId, listaId, opciones) {
       lista.classList.remove('oculto');
     }
   });
-
   lista.addEventListener('click', (e) => {
     const item = e.target.closest('.item-lista');
     if (!item) return;
@@ -6876,12 +5987,10 @@ function crearListaDesplegable(inputId, listaId, opciones) {
     input.dispatchEvent(new Event('change', { bubbles: true }));
     lista.classList.add('oculto');
   });
-
   lista.addEventListener('mouseleave', () => {
     lista.classList.add('oculto');
   });  
 }
-
 // Cerrar al hacer clic fuera o con Escape (una sola vez, global)
 document.addEventListener('click', () =>
   document.querySelectorAll('.lista-desplegable').forEach(l => l.classList.add('oculto'))
@@ -6890,8 +5999,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape')
     document.querySelectorAll('.lista-desplegable').forEach(l => l.classList.add('oculto'));
 });
-
-
 // Datos
 const areas = [
   'Recursos Humanos', 'Finanzas', 'Mercadeo', 'Ventas', 'Producción',
@@ -6926,12 +6033,9 @@ const equipos = [
   'Rotatek Universal 850 Web-Offset Press',
   'Rotatek RK-250 Plus Roll-to-Roll Offset Press'
 ];
-
 crearListaDesplegable('input-equipo-empl', 'listaEquipos', equipos);
 crearListaDesplegable('input-area-empl', 'listaAreas', areas);
 crearListaDesplegable('input-cargo-empl', 'listaCargos', cargos);
-
-
 crearOpcionesNumericas('numDoc1-ma');
 crearOpcionesNumericas('numDoc2-ma');
 crearOpcionesNumericas('numDoc5-ma');
@@ -6940,8 +6044,6 @@ crearOpcionesNumericas('numDoc4-ma');
 crearOpcionesNumericas('numDoc7-ma');
 crearOpcionesNumericas('numDoc6-ma');
 crearOpcionesNumericas('numDoc8-ma');
-
-
 function borrrrrrarrrr(){
     ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
   const padreBotonera = document.querySelector('#botonera-frente')
@@ -6958,7 +6060,6 @@ function borrrrrrarrrr(){
   desactivarClick(['.butt-perfiles'])
   restablecerClick(['.estilo-1', '.butt-revierte'])
   document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
-  
   conteJobTrack.style.display='flex'
   document.querySelectorAll('.datos-base').forEach((elemento) => { 
     elemento.textContent = ''
@@ -6967,7 +6068,6 @@ function borrrrrrarrrr(){
     conteJobTrack.classList.add('move-job-track') 
   }, 100);
 }
-
 document.querySelector("#borrarBoton3").addEventListener('click', (e)=>{
   activarPantallaCompleta()
   document.querySelector('#calculadora').style.display='none'
@@ -6975,10 +6075,8 @@ document.querySelector("#borrarBoton3").addEventListener('click', (e)=>{
   // solo se ejecuta si el click fue directamente en el li padre
   if (e.target.id !== "borrarBoton3") return;
   iniciarAnimaciones();
-
   if (!idsArray.includes('simulador')) {
     idsArray.push('simulador');
     console.log(idsArray);
   }
 })
-

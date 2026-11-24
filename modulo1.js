@@ -1,4 +1,3 @@
-
 const seccionesMap = new Map([
   ['desbobinadorId', 0],
   ['uTeñido', 1],
@@ -6,24 +5,19 @@ const seccionesMap = new Map([
   ['unidProceso', 3],
   ['rebobinador', 4]
 ]);  
-
 function cierraContenedores(elementId, buttonID) {
   const pantallaInicial = document.getElementById('pantalla-inicial'); 
-
   // Reiniciar estilos de todos los botones
   document.querySelectorAll('.boton-c').forEach(boton => {
     boton.style = '';
   });
-
   if (firstClick) {
     if (elementId && !idsArray.includes(elementId)) {
       idsArray.push(elementId);
       console.log(idsArray);
     }
-
     if (pantallaInicial && seccionesMap.has(elementId)) {
       const visibleIndex = seccionesMap.get(elementId);
-
       [...pantallaInicial.children].forEach((child, i) => {
         child.style.display = i === visibleIndex ? 'flex' : 'none';
         child.style.position = i === visibleIndex ? 'relative' : '';
@@ -31,14 +25,12 @@ function cierraContenedores(elementId, buttonID) {
         document.querySelector('#barras-contenedor').style.display='none'                   
       }); 
     }
-
     if (buttonID) {
       const botonAsociado = document.getElementById(buttonID);
       if (botonAsociado) {
         botonAsociado.style.display = 'block';
       }
     }
-
     firstClick = false;
   } else {
     mostrarElementos([
@@ -184,7 +176,6 @@ function muestraRodillo (vidElem, imgCont){
     idsArray.push(vidElem);
     console.log(idsArray);
   }
-
   break;  
   case 'videoElement5' :
     var elementosExcluidos = ['buscador','search-form','sector-smed','contenedor-7-VII','links-iniciales','links-inicialesI']; 
@@ -198,7 +189,6 @@ function muestraRodillo (vidElem, imgCont){
     setTimeout(() => {
       applyImageEffects()
     }, 200) 
-    
     for (const video of videoElements) {
       if (video.id === vidElem) {
         video.style.display = 'block'
@@ -209,7 +199,6 @@ function muestraRodillo (vidElem, imgCont){
         video.pause()
       }
     }
-
   break; 
   case 'videoElement6' :
     var elementosExcluidos = ['buscador','search-form','sector-smed','contenedor-7-VII','links-iniciales','links-inicialesI']; 
@@ -244,12 +233,10 @@ function muestraHumedad(){
 }
 async function applyImageEffects(selector) {
   const imageElements = document.querySelectorAll(selector);
-
   if (imageElements.length === 0) {
     console.warn('No images found for selector:', selector);
     return;
   }
-
   // 🔧 Resetear posición inicial como en el CSS antes de animar
   imageElements.forEach((img, index) => {
     img.style.display = 'block';             // Aseguras visibilidad
@@ -257,7 +244,6 @@ async function applyImageEffects(selector) {
     img.style.transform = 'translateY(0)';   // Posición inicial como en CSS
     img.style.transition = 'transform 0.7s'; // Define transición suave
   });
-
   // 🔄 Animar desplazamiento vertical escalonado
   for (let i = 1; i < imageElements.length; i++) {
     await delay(100);
@@ -277,7 +263,6 @@ function alternarVisibilidad(docId) {
     elementosParaAlternar[i].style.display = "none";
   }
   }
-
 }
 function mostrarBotMa(id) {
   var elemento = document.getElementById(id)
@@ -340,42 +325,32 @@ function showRepuesto(elementId) {
       }
     }
   };
-
   const cfg = config[elementId];
   if (!cfg) return;
-
   // ocultar/mostrar
   for (const id of allContenedores) {
     const el = document.getElementById(id);
     if (el) el.style.display = cfg.excluidos.includes(id) ? 'flex' : 'none';
   }
-
   container1.style.display = 'grid';
-
   if (cfg.grid) {
     const grid = document.getElementById(cfg.grid);
     if (grid) grid.style.display = 'grid';
   }
-
   if (cfg.transicion) manejarTransicion(...cfg.transicion);
   if (cfg.extra) cfg.extra();
-
   if (!idsArray.includes(elementId)) {
     idsArray.push(elementId);
     console.log(idsArray);
   }
 }
-
 function cargarColaboradoresDesdeStorage() {
   const almacenJSON = localStorage.getItem('empleadosRegistrados');
   if (!almacenJSON) return [];
-
   const almacen = JSON.parse(almacenJSON);
-
   const almacenArray = Array.isArray(almacen) 
     ? almacen 
     : Object.values(almacen);
-
     return almacenArray
     .filter(empleado => empleado && empleado.nombre)
     .map(empleado => ({
@@ -384,12 +359,8 @@ function cargarColaboradoresDesdeStorage() {
       nombre: empleado.nombre || "Sin nombre"
     }));
 }
-
 let colaboradores = cargarColaboradoresDesdeStorage();
-
-
 document.addEventListener('DOMContentLoaded', () => {
-
   const cuartoHijo   = document.getElementById('ultimoElemento');
   const segundaLista = document.getElementById('segundaLista');
   if (!cuartoHijo || !segundaLista) return;
@@ -414,7 +385,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const saliendoDeTodo =
       !destino ||
       (!cuartoHijo.contains(destino) && !segundaLista.contains(destino));
-
     if (saliendoDeTodo) {
       scheduleHide();
     }
@@ -484,18 +454,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let indiceActual = 0;
   let fotoFijada = null;
   // --- construir lista dinámica ---
-
-
   function pintarLista() {
     listadoNombres.innerHTML = '';
     colaboradores = cargarColaboradoresDesdeStorage();
-
     colaboradores.forEach((emp, i) => {
     const span = document.createElement('span');
     span.textContent = capitalizarTexto(emp.nombre);   // ← único cambio
     span.dataset.img = emp.ruta;
     span.dataset.index = i;
-
     span.addEventListener('mouseenter', () => {
       indiceActual = i;
       mostrarEmpleadoPorIndice(i, { fijar: false });
@@ -517,44 +483,32 @@ document.addEventListener('DOMContentLoaded', () => {
         mostrarEmpleadoObj(emp);
       }
     });
-
     listadoNombres.appendChild(span); // ← primero agrega al DOM
-
     });
   }
-
   pintarLista();
-
   window.pintarLista = pintarLista;
-
   // ✅ Fuera del forEach — todos los spans ya están en el DOM
   document.querySelector('#listaNombres').addEventListener('touchend', (e) => {
     e.preventDefault();
     const span = e.target.closest('span');
     if (!span) return;
-
     const i = Number(span.dataset.index);
     indiceActual = i;
-
     // ✅ Limpia el estilo inline de TODOS los spans dentro de la lista
     document.querySelectorAll('#listaNombres span').forEach(s => {
       s.removeAttribute('style');
     });
-
     // ✅ Aplica amarillo solo al span actual
     span.style.color = 'white';
     span.style.background = 'linear-gradient(90deg, rgb(21, 101, 192), rgb(30, 144, 255))';
-
     // Lee de colaboradores directamente
     const emp = colaboradores[i];
     if (!emp) return;
-
     const imgEl = document.getElementById('imagenVisor');
     imgEl.src = emp.ruta || emp.imagen || '';
-
     mostrarEmpleadoPorIndice(i, { fijar: false });
   }, { passive: false });
-  
   // --- navegación Prev / Next ---
   prevBtn.addEventListener('click', () => {
     const spans = listadoNombres.querySelectorAll('span');
@@ -568,40 +522,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const nuevo = Math.min(spans.length - 1, indiceActual + 1);
     mostrarEmpleadoPorIndice(nuevo, { fijar: false });
   });
-
   const esTactil = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   if (!esDesktop && esTactil) {
     campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
   }
-
-  campoBusqueda.addEventListener('blur', () => {
-    if(!esDesktop) hideKeyboard()
+  [campoBusqueda, inputPerfil, docEmpleado, buscadorDetalles, documentoActivador, documentoEmplEliminar].forEach(input => {
+    input?.addEventListener('blur', () => {
+      if (esDesktop) return;
+      if (input === campoBusqueda || input === inputPerfil) {
+        hideKeyboard();
+      } else {
+        calculadora.classList.remove('move-calculadora-up-ingreso', 'move-calculadora-down');
+        hideCalculator();
+      }
+    });
   });
-
-
   // --- funciones auxiliares ---
   // muestra por índice (usa los spans actuales). opción {fijar: true} para setear fotoFijada
-  
   function mostrarEmpleadoPorIndice(index, opts = { fijar: false }) {
     const spans = listadoNombres.querySelectorAll('span');
     const span = spans[index];
     if (!span) return;
-
     // ✅ Lee directamente de colaboradores en lugar del dataset
     const emp = colaboradores[index];
     if (!emp) return;
-    
     const imgSrc = emp.ruta || emp.imagen;
     if (!imgSrc) return;
-
     img.src = imgSrc;
     indiceActual = Number(span.dataset.index ?? index);
-
     if (opts.fijar) {
       if (emp) fotoFijada = emp;
     }
   }  
-
   // muestra usando el objeto de colaboradores (click o buscador)
   function mostrarEmpleadoObj(emp) {
     if (!emp) return;
@@ -614,8 +566,6 @@ document.addEventListener('DOMContentLoaded', () => {
     img.src = '';
   }  
 });
-
-
 function showNextInputChec() {
 var conteneChecks = document.getElementById('contChecks')
 if (conteneChecks.style.display === 'block') {
@@ -634,7 +584,17 @@ if (actualtIndex < input.length) {
 setTimeout(showNextInputChec, 37)  
 }
 }
-function mantAutonomo (idElement) {
+function mantAutonomo(idElement) {
+  console.log('esDesktop:', esDesktop);
+  if (!esDesktop) {
+    console.log('con delay');
+    setTimeout(() => ejecutarMantAutonomo(idElement), 1000);
+  } else {
+    console.log('sin delay');
+    ejecutarMantAutonomo(idElement);
+  }
+}
+function ejecutarMantAutonomo(idElement) {
   var conteLinksI = document.getElementById('links-inicialesI')
   switch (idElement) {
     case 'troubleshooting':       
@@ -867,7 +827,6 @@ function deslizarChecks(idElement) {
   }
   console.log(arrayPosicionnador)
   var contenedor2 = document.getElementById('canvasContainer2')  
-
   if (contenedor1) {
     contenedor1.style.display = 'flex'
     contenedor1.style.left = '1200px'
@@ -881,7 +840,6 @@ function deslizarChecks(idElement) {
       var progreso = (tiempo - inicioTiempo) / duracion;
       var izquierda = inicio + progreso * (destino - inicio)
       contenedor1.style.left = izquierda + 'px'
-
       if (progreso < 1) {
         requestAnimationFrame(animar)
       } else {
@@ -903,7 +861,6 @@ function deslizarCanvas3(idElement) {
   console.log(arrayPosicionnador)
   var contenedor1 = document.getElementById('canvasContainer3')
   var contenedor2 = document.getElementById('contChecks')
-
   if (contenedor1) {
     contenedor1.style.display = 'block'
     contenedor1.style.left = '1200px'
@@ -912,13 +869,11 @@ function deslizarCanvas3(idElement) {
     var velocidad = 300;
     var duracion = Math.abs(destino - inicio) / velocidad * 100;
     var inicioTiempo = null;
-
     function animar(tiempo) {
       if (!inicioTiempo) inicioTiempo = tiempo;
       var progreso = (tiempo - inicioTiempo) / duracion;
       var izquierda = inicio + progreso * (destino - inicio)
       contenedor1.style.left = izquierda + 'px'
-
       if (progreso < 1) {
         requestAnimationFrame(animar)
       } else {
@@ -979,13 +934,11 @@ function muestraTorres(seleccion) {
       contOblicuoT.style.display = 'flex'
       contOblicuoT.style.marginTop = '3px'
       contOblicuoT.style.marginLeft = '3px'   
-
       const elementoMandosFrente = document.getElementById('pantalla-frente')
       if (elementoMandosFrente) {  
         elementoMandosFrente.style.display = 'block'
         elementoMandosFrente.style.marginRight = '150px'
       }
-
       if (!idsArray.includes(seleccion)) {
         idsArray.push(seleccion)
         console.log(idsArray)
@@ -1032,26 +985,21 @@ function crearOblicuos(contenedorId) {
     { label: 'Servicio', id: 'pantalla-servicio' },
     { label: 'Atras', id: 'pantalla-atras' }
   ];
-
   const contenedor = document.getElementById(contenedorId);
   contenedor.innerHTML = ''; // Limpiar por si acaso
-
   opciones.forEach((opcion, index) => {
     const div = document.createElement('div');
     div.className = 'cont-oblicuos';
     div.id = `oblicuo-tintero-${index + 1}-${contenedorId}`;
-
     div.innerHTML = `
       <button class="Bot-inicio2">${opcion.label}</button>
       <button class="Bot-inicio2-fondo"></button>
     `;
     contenedor.appendChild(div);
     aparecerElemento("agrupaOblicuos-XXX", "grid");
-
     // 🔧 Lógica de color y llamada a muestraTorresI
     const botonPrincipal = div.querySelector('.Bot-inicio2');
     const botonesFondo = div.querySelectorAll('.Bot-inicio2-fondo');
-
     if (botonPrincipal) {
       botonPrincipal.addEventListener('click', () => {
         activarPantallaCompleta()
@@ -1059,11 +1007,9 @@ function crearOblicuos(contenedorId) {
         const estiloPrincipal = getComputedStyle(botonPrincipal);
         const colorOriginal = estiloPrincipal.backgroundColor;
         const colorTextoOriginal = estiloPrincipal.color;
-
         // Cambiar a verde temporalmente
         botonPrincipal.style.backgroundColor = 'rgb(0,255,0)';
         botonPrincipal.style.color = 'black';
-
         // Cambiar a gris oscuro los botones fondo
         const coloresOriginalesFondo = [];
         botonesFondo.forEach(botonFondo => {
@@ -1071,19 +1017,15 @@ function crearOblicuos(contenedorId) {
           coloresOriginalesFondo.push(estiloFondo.backgroundColor);
           botonFondo.style.backgroundColor = 'rgb(50,50,50)';
         });
-
         // Restaurar colores después de 100ms
         setTimeout(() => {
           botonPrincipal.style.backgroundColor = colorOriginal;
           botonPrincipal.style.color = colorTextoOriginal;
-
           botonesFondo.forEach((botonFondo, i) => {
             botonFondo.style.backgroundColor = coloresOriginalesFondo[i];
           });
-
           // ⚙️ Llama a muestraTorresI después del efecto visual
           muestraTorresI(opcion.id);
-
         }, 100);
       });
     }
@@ -1096,14 +1038,11 @@ function muestraTorresI(elementId) {
     'pantalla-servicio': 'agrupaOblicuos-IV',
     'pantalla-atras': 'agrupaOblicuos-V'
   };
-
   const imagsTinter = document.getElementById('imgsRepuestos');
   seccionTintero.style.display = 'none';
   imagsTinter.style.display = 'none';
-
   const oblicuoId = pantallas[elementId];
   if (!oblicuoId) return console.warn('Elemento no reconocido:', elementId);
-
   const oblicuosMap = {
     'pantalla-frente': 'agrupaOblicuos-XD',
     'pantalla-mandos': 'agrupaOblicuos-D',
@@ -1113,7 +1052,6 @@ function muestraTorresI(elementId) {
   if (oblicuosMap[elementId]) {
     crearOblicuos(oblicuosMap[elementId]);
   }
-
   const elementosExcluidos = [
     'buscador',
     'search-form',
@@ -1122,7 +1060,6 @@ function muestraTorresI(elementId) {
     'links-iniciales',
     oblicuoId
   ];
-
   // Mostrar/ocultar contenedores
   allContenedores.forEach(id => {
     const el = document.getElementById(id);
@@ -1130,9 +1067,7 @@ function muestraTorresI(elementId) {
       el.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
     }
   });
-
   container1.style.display = 'grid';
-
   // Ajustes para pantallas pequeñas
   if (screenWidth < 500) {
     const oblicuo = document.getElementById(oblicuoId);
@@ -1140,7 +1075,6 @@ function muestraTorresI(elementId) {
       oblicuo.style.left = '77%';
     }
   }
-
   // Manejo de idsArray
   const index = idsArray.indexOf(elementId);
   if (index !== -1) {
@@ -1156,27 +1090,21 @@ function crearOblicuosPlaca(contenedorId) {
     { label: 'Servicio', id: 'imagen3' },
     { label: 'Atras', id: 'imagen4' }
   ];
-
   const contenedor = document.getElementById(contenedorId);
   contenedor.innerHTML = ''; // Limpiar el contenedor por si acaso
-
   opciones.forEach((opcion, index) => {
     const div = document.createElement('div');
     div.className = 'cont-oblicuos';
     div.id = `oblicuo-tintero-${20 + index + 1}`;
-
     div.innerHTML = `
       <button class="Bot-inicio2">${opcion.label}</button>
       <button class="Bot-inicio2-fondo"></button>
     `;
-
     contenedor.appendChild(div);
     aparecerElemento("agrupaOblicuos-DXXX","grid")
-
     // Lógica de color + llamada a ladosPlancha
     const botonPrincipal = div.querySelector('.Bot-inicio2');
     const botonesFondo = div.querySelectorAll('.Bot-inicio2-fondo');
-
     if (botonPrincipal) {
       botonPrincipal.addEventListener('click', () => {
         activarPantallaCompleta()
@@ -1184,11 +1112,9 @@ function crearOblicuosPlaca(contenedorId) {
         const estiloPrincipal = getComputedStyle(botonPrincipal);
         const colorOriginal = estiloPrincipal.backgroundColor;
         const colorTextoOriginal = estiloPrincipal.color;
-
         // Cambiar a verde temporalmente
         botonPrincipal.style.backgroundColor = 'rgb(0,255,0)';
         botonPrincipal.style.color = 'black';
-
         // Cambiar fondo a gris oscuro temporalmente
         const coloresOriginalesFondo = [];
         botonesFondo.forEach(botonFondo => {
@@ -1196,16 +1122,13 @@ function crearOblicuosPlaca(contenedorId) {
           coloresOriginalesFondo.push(estiloFondo.backgroundColor);
           botonFondo.style.backgroundColor = 'rgb(50,50,50)';
         });
-
         setTimeout(() => {
           // Restaurar colores originales
           botonPrincipal.style.backgroundColor = colorOriginal;
           botonPrincipal.style.color = colorTextoOriginal;
-
           botonesFondo.forEach((botonFondo, i) => {
             botonFondo.style.backgroundColor = coloresOriginalesFondo[i];
           });
-
           // Llamar a ladosPlancha después del efecto visual
           ladosPlancha(opcion.id);
         }, 100);
@@ -1215,7 +1138,6 @@ function crearOblicuosPlaca(contenedorId) {
 }
 function ladosPlancha(elementId) {
   if (!elementId) return console.warn('elementId no proporcionado');
-
   // Definir elementos base a excluir (comunes a todos los casos)
   const elementosBase = [
     'buscador',
@@ -1226,10 +1148,8 @@ function ladosPlancha(elementId) {
     'links-inicialesI',
     'imagenes-plancha'
   ];
-
   // Agregar dinámicamente el elementId correspondiente (imagen1, imagen2, etc.)
   const elementosExcluidos = [...elementosBase, elementId];
-
   // Mostrar/ocultar contenedores según el filtro
   allContenedores.forEach(id => {
     const elemento = document.getElementById(id);
@@ -1237,14 +1157,11 @@ function ladosPlancha(elementId) {
       elemento.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
     }
   });
-
   // Mostrar el container principal
   container1.style.display = 'grid';
-
   // Manejar idsArray sin duplicados
   idsArray = idsArray.filter(id => id !== elementId);
   idsArray.push(elementId);
-
   console.log(idsArray);
 }
 function crearOblicuosMantilla(contenedorId) {
@@ -1254,26 +1171,21 @@ function crearOblicuosMantilla(contenedorId) {
     { label: 'Servicio', id: 'mantilla3' },
     { label: 'Atras', id: 'mantilla4' }
   ];
-
   const contenedor = document.getElementById(contenedorId);
   contenedor.innerHTML = ''; // Limpiar el contenedor por si acaso
-
   opciones.forEach((opcion, index) => {
     const div = document.createElement('div');
     div.className = 'cont-oblicuos';
     div.id = `oblicuo-tintero-${25 + index}`; // Genera IDs 25, 26, 27, 28
-
     div.innerHTML = `
       <button class="Bot-inicio2">${opcion.label}</button>
       <button class="Bot-inicio2-fondo"></button>
     `;
-
     contenedor.appendChild(div);
     aparecerElemento("agrupaOblicuos-XC", "grid");
     // Lógica de colores + llamada a ladosMantilla
     const botonPrincipal = div.querySelector('.Bot-inicio2');
     const botonesFondo = div.querySelectorAll('.Bot-inicio2-fondo');
-
     if (botonPrincipal) {
       botonPrincipal.addEventListener('click', () => {
         activarPantallaCompleta()        
@@ -1281,11 +1193,9 @@ function crearOblicuosMantilla(contenedorId) {
         const estiloPrincipal = getComputedStyle(botonPrincipal);
         const colorOriginal = estiloPrincipal.backgroundColor;
         const colorTextoOriginal = estiloPrincipal.color;
-
         // Cambiar temporalmente a verde
         botonPrincipal.style.backgroundColor = 'rgb(0,255,0)';
         botonPrincipal.style.color = 'black';
-
         // Cambiar fondo a gris oscuro temporalmente
         const coloresOriginalesFondo = [];
         botonesFondo.forEach(botonFondo => {
@@ -1293,16 +1203,13 @@ function crearOblicuosMantilla(contenedorId) {
           coloresOriginalesFondo.push(estiloFondo.backgroundColor);
           botonFondo.style.backgroundColor = 'rgb(50,50,50)';
         });
-
         setTimeout(() => {
           // Restaurar colores
           botonPrincipal.style.backgroundColor = colorOriginal;
           botonPrincipal.style.color = colorTextoOriginal;
-
           botonesFondo.forEach((botonFondo, i) => {
             botonFondo.style.backgroundColor = coloresOriginalesFondo[i];
           });
-
           // Llama a ladosMantilla
           ladosMantilla(opcion.id);
         }, 100);
@@ -1317,7 +1224,6 @@ function ladosMantilla(elementId) {
     'mantilla3': ['manta4', 'manta5'],
     'mantilla4': ['manta6', 'manta7']
   };
-
   const elementosExcluidos = [
     'buscador',
     'search-form',
@@ -1327,7 +1233,6 @@ function ladosMantilla(elementId) {
     'links-inicialesI',
     'links-iniciales'
   ];
-
   // Mostrar/ocultar contenedores
   allContenedores.forEach(id => {
     const el = document.getElementById(id);
@@ -1335,7 +1240,6 @@ function ladosMantilla(elementId) {
       el.style.display = elementosExcluidos.includes(id) ? 'flex' : 'none';
     }
   });
-
   // Ocultar video y preparar imágenes
   const contChildManta = document.getElementById('imagenes-manta');
   const imgsManta = document.querySelectorAll('.imgMant');
@@ -1346,7 +1250,6 @@ function ladosMantilla(elementId) {
   videoCaucho.pause();
   videoCaucho.style.display = 'none';
   contChildManta.style.display = 'flex';
-
   // Mostrar sólo las imágenes correspondientes a la mantilla
   imgsManta.forEach(imagen => {
     if (mapaMantillas[elementId]?.includes(imagen.id)) {
@@ -1355,12 +1258,10 @@ function ladosMantilla(elementId) {
       imagen.style.display = 'none';
     }
   });
-
   // Manejo de versión móvil
   if (screenWidth < 500) {
     imgsMantasI.style.marginLeft = '-22%';
   }
-
   // Manejo de idsArray sin duplicados
   idsArray = idsArray.filter(id => id !== elementId);
   idsArray.push(elementId);
@@ -1373,25 +1274,20 @@ function crearOblicuosImpresor(contenedorId) {
     { label: 'Servicio', id: 'service' },
     { label: 'Atras', id: 'back' }
   ];
-
   const contenedor = document.getElementById(contenedorId);
   contenedor.innerHTML = ''; // Limpiar el contenedor por si acaso
-
   opciones.forEach((opcion, index) => {
     const div = document.createElement('div');
     div.className = 'cont-oblicuos';
     div.id = `oblicuo-tintero-${29 + index}`; // IDs 29,30,31,32
-
     div.innerHTML = `
       <button class="Bot-inicio2">${opcion.label}</button>
       <button class="Bot-inicio2-fondo"></button>
     `;
-
     contenedor.appendChild(div);
     aparecerElemento("agrupaOblicuos-C", "grid");
     const botonPrincipal = div.querySelector('.Bot-inicio2');
     const botonesFondo = div.querySelectorAll('.Bot-inicio2-fondo');
-
     if (botonPrincipal) {
       botonPrincipal.addEventListener('click', () => {
         activarPantallaCompleta()        
@@ -1399,11 +1295,9 @@ function crearOblicuosImpresor(contenedorId) {
         const estiloPrincipal = getComputedStyle(botonPrincipal);
         const colorOriginal = estiloPrincipal.backgroundColor;
         const colorTextoOriginal = estiloPrincipal.color;
-
         // Cambiar a verde temporalmente
         botonPrincipal.style.backgroundColor = 'rgb(0,255,0)';
         botonPrincipal.style.color = 'black';
-
         // Cambiar fondo de los botones secundarios a gris oscuro
         const coloresOriginalesFondo = [];
         botonesFondo.forEach(botonFondo => {
@@ -1411,19 +1305,15 @@ function crearOblicuosImpresor(contenedorId) {
           coloresOriginalesFondo.push(estiloFondo.backgroundColor);
           botonFondo.style.backgroundColor = 'rgb(50,50,50)';
         });
-
         // Restaurar colores después de 100ms y llamar a ladosImpresor
         setTimeout(() => {
           botonPrincipal.style.backgroundColor = colorOriginal;
           botonPrincipal.style.color = colorTextoOriginal;
-
           botonesFondo.forEach((botonFondo, i) => {
             botonFondo.style.backgroundColor = coloresOriginalesFondo[i];
           });
-
           // ⚙️ Llamar a la función principal del impresor
           ladosImpresor(opcion.id);
-
         }, 100);
       });
     }
@@ -1434,14 +1324,12 @@ function ladosImpresor(elementId) {
     console.warn('elementId no proporcionado');
     return;
   }
-
   const mapaImpresor = {
     'forward': ['impresor', 'impresor1'],
     'comands': ['impresor2', 'impresor3'],
     'service': ['impresor4', 'impresor5'],
     'back': ['impresor6', 'impresor7']
   };
-
   const elementosBase = [
     'buscador',
     'search-form',
@@ -1453,7 +1341,6 @@ function ladosImpresor(elementId) {
     'imagenes-impresor',
     elementId
   ];
-
   // Mostrar u ocultar contenedores
   allContenedores.forEach(id => {
     const elemento = document.getElementById(id);
@@ -1461,11 +1348,9 @@ function ladosImpresor(elementId) {
       elemento.style.display = elementosBase.includes(id) ? 'flex' : 'none';
     }
   });
-
   // Mostrar imágenes específicas del impresor
   const imgsImpresor = document.querySelectorAll('.imgImpresor');
   const idsAMostrar = mapaImpresor[elementId] || [];
-
   imgsImpresor.forEach(imagen => {
     imagen.style.display = idsAMostrar.includes(imagen.id) ? 'block' : 'none';
   });
@@ -1473,7 +1358,6 @@ function ladosImpresor(elementId) {
   // Manejo de idsArray sin duplicados
   idsArray = idsArray.filter(id => id !== elementId);
   idsArray.push(elementId);
-
   console.log(idsArray);
 }
 function videosImpresor(videoId) {
@@ -1503,7 +1387,6 @@ function videosImpresor(videoId) {
       } 
     })
     break;
-
     default: 
   } 
 } 
@@ -1520,7 +1403,6 @@ function iniciarAnimaciones(){
   document.querySelectorAll('.butt-perfiles, .btn-respaldo').forEach(elemento => {
      elemento.style.display = 'block';
   })
-  
   setTimeout(() => {
     aparecerElemento("interfaz-perfiles", "flex")
     animarHorizontalEye() 
@@ -1576,14 +1458,11 @@ function abrirSeccionAdministrativa(elementId) {
       element.style.display = 'none'
     }
   });
-
   setTimeout(function () {
     cambiarColoresConRetraso();
   }, 100);
-
   contAdministrar.style.display = 'flex'
   container1.style.display = 'flex'
-
   var elementosOblicuos = document.getElementsByClassName('oblicuosInicio')
   var arrayOblicuos = Array.from(elementosOblicuos)
   for (var i = 0; i < arrayOblicuos.length; i++) {
@@ -1618,7 +1497,6 @@ function abrirSeccionComercial(elementId) {
   setTimeout(function () {
     cambiarColoresConRetrasoII();
   }, 100);
-
   for (var i = 0; i < arrayButtsIniciales.length; i++) {
     var botonId = arrayButtsIniciales[i];
     var boton = document.getElementById(botonId);
@@ -1647,7 +1525,6 @@ function abrirSeccionCalidad(elementId){
   setTimeout(function () {
     cambiarColoresConRetrasoIII();
   }, 100);
-
   for (var i = 0; i < arrayButtsIniciales.length; i++) {
   var botonId = arrayButtsIniciales[i];
   var boton = document.getElementById(botonId);
@@ -1668,7 +1545,6 @@ function cambiarColoresConRetraso() {
   function cambiarColorConRetraso(indice) {
     document.getElementById(arrayButtsRutilantes[indice]).style.backgroundColor = 'black';
     indice++;
-
     if (indice < arrayButtsRutilantes.length) {
       setTimeout(function () {
         cambiarColorConRetraso(indice);
@@ -1677,7 +1553,6 @@ function cambiarColoresConRetraso() {
       devolverColoresConRetraso();
     }
   }
-
   setTimeout(function () {
     cambiarColorConRetraso(0);
   }, 7);
@@ -1700,7 +1575,6 @@ function cambiarColoresConRetrasoIII() {
   function cambiarColorConRetrasoIII(indice) {
     document.getElementById(arrayButtsRutilantesIII[indice]).style.backgroundColor = 'black';
     indice++;
-
     if (indice < arrayButtsRutilantesIII.length) {
       setTimeout(function () {
         cambiarColorConRetrasoIII(indice);
@@ -1731,7 +1605,6 @@ function cambiarColoresConRetrasoII() {
   function cambiarColorConRetrasoII(indice) {
     document.getElementById(arrayButtsRutilantesII[indice]).style.backgroundColor = 'black';
     indice++;
-
     if (indice < arrayButtsRutilantesII.length) {
       setTimeout(function () {
         cambiarColorConRetrasoII(indice);
@@ -1770,7 +1643,6 @@ function devolverColoresConRetrasoI() {
       }, 77);
     }
   }
-
   setTimeout(function () {
     cambiarColorConRetrasoI(0);
   }, 77);
@@ -1789,7 +1661,6 @@ function devolverColoresConRetrasoIII() {
     cambiarColorConRetrasoIII(0);
   }, 77);
 }
-
 function abrirSeccionVariable(elementId){
   activarPantallaCompleta()
   clearAllIntervals()
@@ -1803,7 +1674,6 @@ function abrirSeccionVariable(elementId){
   }
   container1.style.display='grid'
   document.getElementById('cont-variable').style.display='grid'
-
   setTimeout(() => {
     resaltarSecuencialVariable()
   }, 1100);
@@ -1887,7 +1757,6 @@ function manejarTransicion(movilId, destinoId, marcoId, delay) {
   const movil = document.getElementById(movilId);
   const destino = document.getElementById(destinoId);
   const marco = document.getElementById(marcoId);
-
   if (!movil || !destino || !marco) {
     console.warn("Alguno de los elementos no existe:", { movilId, destinoId, marcoId });
     return;
@@ -1896,42 +1765,32 @@ function manejarTransicion(movilId, destinoId, marcoId, delay) {
   moveElement(movil, destino, marcoId);
   document.body.style.zoom = "100%";
   container1.style.left = '';
-
   setTimeout(() => {
     marco.style.display = 'flex';
     movil.style.display = 'none';
   }, delay);
-
   setTimeout(() => {
     marco.classList.add("apagado");
   }, delay + 1);
 }
-
 document.getElementById('shrinkButton').addEventListener('click', function() {
   const items = document.querySelectorAll('.span-extension');
-
   items.forEach(function(item) {
-
     // El padre real que contiene .first-lbl
     const parent = item.closest('.item-naranja');
     const label = parent.querySelector('.first-lbl');
-
     const initialWidth = item.offsetWidth;
     let width = initialWidth;
     const decrement = width / 25;
-
     const interval = setInterval(function() {
       width -= decrement;
-
       if (width <= 5) {
         width = 5;
         clearInterval(interval);
-
         setTimeout(function() {
           item.style.width = initialWidth + 'px';
           label.textContent = initialWidth/2 + ' %';
         }, 500);
-
       } else {
         item.style.width = width + 'px';
         label.textContent = Math.round(width) + '%';
@@ -1939,7 +1798,6 @@ document.getElementById('shrinkButton').addEventListener('click', function() {
     }, 16);
   });
 });
-
 function abrirPilarMA(){
   linkListI.style.display = "none";    
   for (var i = 0; i < allContenedores.length; i++) {
@@ -1958,7 +1816,6 @@ function abrirPilarMA(){
     }, delay * i,i)
   }    
 }
-
 let videosReproduciendose = 0;
 function abrirPrepress(elementId) {
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','pre-prensa','primerCont','imgs-prepress','conte-botDensitoII'] 
@@ -1983,34 +1840,24 @@ function abrirPrepress(elementId) {
   setTimeout(() => {
     showButtonsTeoriaConRetraso()   
   }, 25);
-
   var videos = padreVidPress.getElementsByTagName('video');
   for (var i = 0; i < videos.length; i++) {
     videos[i].style.display = 'flex';
   }
-
   document.body.style.zoom = "100%"
-
   function verificarVideos() {
     videosReproduciendose++;
-
     if (videosReproduciendose === 3) {
       reproducirVideo('vidCicodelia');
     }
   }
-
   ['vid01', 'vid02', 'vid03'].forEach(id => {
-
     const video = document.getElementById(id);
-
     video.addEventListener('playing', verificarVideos, {
       once: true
     });
-
     reproducirVideo(id);
-
   });
-
   if (typeof elementId !== 'undefined') {
     const index = idsArray.indexOf(elementId);
     if (index !== -1) {
@@ -2036,10 +1883,8 @@ function abrirDensitometria(elementId){
     'cuartoContDensito',
     'linkList'
   ];
-
   for (var i = 0; i < allContenedores.length; i++) {
     var elemento = document.getElementById(allContenedores[i]);
-
     if (elemento) {
       elemento.style.display =
         elementosExcluidos.includes(allContenedores[i])
@@ -2047,9 +1892,7 @@ function abrirDensitometria(elementId){
           : 'none';
     }
   }
-
   container1.style.display = 'grid';
-
   var conteBotsDensito = [
     'bot-densi-1',
     'bot-densi-2',
@@ -2058,68 +1901,48 @@ function abrirDensitometria(elementId){
     'bot-densi-5',
     'bot-densi-6'
   ];
-
   for (var i = 0; i < conteBotsDensito.length; i++) {
     var botDensitometria = document.getElementById(conteBotsDensito[i]);
-
     if (botDensitometria) {
       botDensitometria.style.display = 'flex';
     }
   }
-
   document.body.style.zoom = "100%";
   container1.style.left = '';
   contieneLinks.style.display = 'none';
-
   setTimeout(() => {
     showButtonsDensitoConRetraso();
   }, 77);
-
   const imagenesDensito = document.querySelectorAll('.imgDensito');
-
   imagenesDensito.forEach((imagen) => {
     imagen.style.display = 'flex';
   });
-
   let imagenesCargadas = 0;
-
   function verificarImagenes() {
-
     imagenesCargadas++;
-
     if (imagenesCargadas === imagenesDensito.length) {
-
       var vidDensitometria = document.getElementById('vidCicodeliaII');
-
       vidDensitometria.style.display = 'flex';
       vidDensitometria.pause();
-
       setTimeout(function() {
         vidDensitometria.currentTime = 0;
         vidDensitometria.play();
       }, 77);
     }
   }
-
   imagenesDensito.forEach((imagen) => {
-
     if (imagen.complete) {
       verificarImagenes();
     } else {
       imagen.addEventListener('load', verificarImagenes, { once: true });
       imagen.addEventListener('error', verificarImagenes, { once: true });
     }
-
   });
-
   if (typeof elementId !== 'undefined') {
-
     const index = idsArray.indexOf(elementId);
-
     if (index !== -1) {
       idsArray.splice(index, 1);
     }
-
     idsArray.push(elementId);
     console.log(idsArray);
   }
@@ -2132,7 +1955,6 @@ function muestraVidPrisma(eltoHtml) {
   var circulo = document.getElementById('circle')
   var circulo1 = document.getElementById('padre-circle')
   circulo1.style.display='flex'
-
   var conteAyudas = document.getElementById('conte-ayudas')
   var primerAyuda = document.getElementById('imagen-ayudas')
   const videoComponent = document.getElementById(eltoHtml)
@@ -2140,9 +1962,7 @@ function muestraVidPrisma(eltoHtml) {
   conteAyudas.style.display = 'flex'
   circulo.style.display = 'flex'
   document.getElementById('padre-circle').removeAttribute('style')
-
   let arrayVideos = ['vid06','prisma-vid-II','vid04','vid05']   
-
   arrayVideos.forEach(videoId => {
     let videoElement = document.getElementById(videoId)
     if (videoElement) {
@@ -2150,7 +1970,6 @@ function muestraVidPrisma(eltoHtml) {
       videoElement.classList.remove('move-video-up')
     }
   })
-
   if(screenWidth < 500){
     var elementosExcluidos = ['buscador','search-form','vidCicodelia','nicho-videos','padre-circle','circle','options','conte-ayudas','imagen-ayudas','ayudas-video']  
     for (var i = 0; i < allContenedores.length; i++) { 
@@ -2197,15 +2016,12 @@ function muestraVidPrisma(eltoHtml) {
   } 
 }
 let ejecutando = false;
-
 let imagenAyudas = document.getElementById('imagen-ayudas')
   let contenedorElementos = document.getElementById('contenedorElementos')
-
 function alternarAyudas() {
   document.getElementById('segundaLista').style.display='none'
   document.getElementById('ventana-lateral').style.display='none'
   imagenAyudas.classList.remove('pressed');
-
   if (ejecutando) {
     return;
   }
@@ -2228,7 +2044,6 @@ imagenAyudas.addEventListener('mouseleave',()=>{
   // Solo ocultar si el cursor NO está sobre listaClientes
   if (!contenedorElementos.matches(':hover')) {
     contenedorElementos.style.display = 'none';
-    
   }
 }, 300);
 })
@@ -2708,7 +2523,6 @@ function irContenedorAnterior() {
     break;
     case 'padre-cmyk':
       let slidersCMYK = document.querySelector('#container-slider')
-
       var elementosExcluidos = ['colorCMYK','container-slider','padre-cmyk','simulador'] 
       for (var i = 0; i < allContenedores.length; i++) { 
         var element = document.getElementById(allContenedores[i])
@@ -2772,7 +2586,6 @@ function irContenedorAnterior() {
       activarPantallaCompleta()
       mostrarInterfazIngreso('nuevoIngreso')
     break        
-
     default:
   } 
   let elementoEliminado = idsArray.pop();
@@ -3121,7 +2934,6 @@ function irContenedorSiguiente() {
     break; 
     case 'padre-cmyk':
       let slidersCMYK = document.querySelector('#container-slider')
-
       var elementosExcluidos = ['colorCMYK','container-slider','padre-cmyk','simulador'] 
       for (var i = 0; i < allContenedores.length; i++) { 
         var element = document.getElementById(allContenedores[i])
@@ -3137,7 +2949,6 @@ function irContenedorSiguiente() {
     break;
     case 'padre-rgb':
       let slidersRGB = document.querySelector('#padre-controles')
-
       var elementosExcluidos = ['colorDisplay','padre-controles','padre-rgb','simulador'] 
       for (var i = 0; i < allContenedores.length; i++) { 
         var element = document.getElementById(allContenedores[i])  
@@ -3185,10 +2996,8 @@ function irContenedorSiguiente() {
       activarPantallaCompleta()
       mostrarInterfazIngreso('nuevoIngreso')
     break        
-
     default:
   } 
-
   idsArrayEliminados.pop();
   console.log('2.', idsArrayEliminados)
 }
@@ -3200,12 +3009,10 @@ function listaEntrenamientosII(btnList) {
   troublesh.style.top = '';
   troublesh.style.left = '';
   document.body.style.zoom = "100%";
-
   enlacesIDs.forEach(id => {
     const enlace = document.getElementById(id);
     if (enlace) enlace.style.color = 'white';
   });
-
   const mostrarElementos = (excluidos = []) => {
     allContenedores.forEach(id => {
       const el = document.getElementById(id);
@@ -3215,8 +3022,6 @@ function listaEntrenamientosII(btnList) {
     contiButtRepuest.style.display = 'flex';
     troublesh.style.display = 'grid';
   };
-
-
   const actualizarBotones = (btnActivo) => {
     contiBtt.forEach(id => {
       const boton = document.getElementById(id);
@@ -3225,7 +3030,6 @@ function listaEntrenamientosII(btnList) {
     });
   };
   document.querySelector('#conti-boton').removeAttribute('style');      
-
   switch (btnList) {
     case 'archivo':
       mostrarElementos(['buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos','linksMA','linkLis','conti-boton']);
@@ -3248,11 +3052,9 @@ function listaEntrenamientosII(btnList) {
                         'links-inicialesI','links-iniciales','largoImpresion','contImgEntrenos']);
       actualizarBotones(btnList);
       break;
-
     default:
       break;
   }
-
   document.getElementById('context-menu').style.display = 'none';
 }
 function listaEntrenamientos(){
@@ -3260,10 +3062,8 @@ function listaEntrenamientos(){
   var contTraining = document.getElementById('largoImpresion')
   var contBotMA = document.getElementById('conti-boton')
   var contLinksMA = document.getElementById('linksMA')
-
   videoBackground.pause()
   videoBackground.style.display = 'none' 
-
   var elementosExcluidos = ['buscador','search-form','conteneMantaut','links-inicialesI','links-iniciales']         
   for (var i = 0; i < allContenedores.length; i++) { 
     var elemento = document.getElementById(allContenedores[i])  
@@ -3315,7 +3115,6 @@ function imagenesPasoApaso(id) {
   aparecerElemento("butt-links-II", "flex");
   // Reinicio de clases activas
   [padre1, padre2, padre3, botonVolver].forEach(p => p.classList.remove("activo"));
-
   // Ajuste general de zoom y posición
   document.body.style.zoom = (screenWidth < 500) ? "100%" : "67%";
   conteLink.style.left = '30.5vw';
@@ -3328,7 +3127,6 @@ function imagenesPasoApaso(id) {
     });
       document.querySelector("#linksMA").style.top='24vh'
   }
-
   const pasos = {
     link1: {
       excluidos: [ 'conteneMantaut', 'butt-links-II', 'largoImpresion', 'linksMA', 'linkLis', 'imag1', 'contImgEntrenos', 'control-neumatico', 'padre-1'],
@@ -3339,7 +3137,6 @@ function imagenesPasoApaso(id) {
         aparecerElemento("padre-1", "flex");
         setTimeout(() => animateScroll('control-neumatico'), 800);
       }
-      
     },
     link2: {
       excluidos: ['linksMA', 'butt-links-II', 'linkLis', 'conteneMantaut', 'largoImpresion', 'contImgEntrenos', 'padre-2', 'imag2', 'pneumatico', 'contImaginario-III'],
@@ -3382,10 +3179,8 @@ function imagenesPasoApaso(id) {
       }
     }
   };
-
   const paso = pasos[id];
   if (!paso) return console.warn('ID no reconocido:', id);
-
   // Mostrar/ocultar contenedores
   allContenedores.forEach(elId => {
     const el = document.getElementById(elId);
@@ -3398,15 +3193,11 @@ function imagenesPasoApaso(id) {
   troublesh.style.top='25vh'
   // Ejecutar acción específica del paso
   paso.accion();
-
-
-
   // Resaltar botón activo
   Array.from(botones).forEach(b => b.style.color = (b.id === id) ? '#28a745' : '');
 }
 function lubricacion(buttId) {
   alternarButtsDesbobinador(buttId);
-
   const mostrarElementos = (excepciones) => {
     allContenedores.forEach(id => {
       const el = document.getElementById(id);
@@ -3416,7 +3207,6 @@ function lubricacion(buttId) {
     });
     container1.style.display = 'grid';
   };
-
   switch (buttId) {
     case 'boton2': {
       const excepciones = [
@@ -3428,7 +3218,6 @@ function lubricacion(buttId) {
       eliminarEstilos('.butt-mautonomo-desbobina');
       break;
     }
-
     case 'boton3': {
       const excepciones = [
         'buscador', 'search-form', 'links-inicialesI', 'links-iniciales',
@@ -3439,7 +3228,6 @@ function lubricacion(buttId) {
       eliminarEstilos('.butt-mautonomo-freno');
       break;
     }
-
     case 'boton4':
     case 'boton5':
     case 'boton6': {
@@ -3451,7 +3239,6 @@ function lubricacion(buttId) {
       palpitarBoton('desbobinadorId');
       break;
     }
-
     default:
       // No hacer nada si el ID no coincide con ningún caso
       break;
@@ -3495,7 +3282,6 @@ function alternarBotones(grupoIds, idActivo) {
   grupoIds.forEach(id => {
     const boton = document.getElementById(id);
     if (!boton) return;
-
     if (id === idActivo) {
       boton.style.background = '#28A745';
       boton.style.boxShadow = 'inset 5px 15px 5px rgba(0, 0, 0, 0.8)';
@@ -3539,7 +3325,6 @@ function LubricaDesbobinador(idButt) {
     if (button === idButt) {
       document.getElementById(button).style.backgroundColor = 'rgba(217, 255, 0, 1)'
       document.getElementById(button).style.color = 'black'
-
     } else {
       document.getElementById(button).style.backgroundColor= '#333333'
       document.getElementById(button).style.color = 'white'
@@ -3556,7 +3341,6 @@ function LubricaDesbobinador(idButt) {
       element.style.display = "block"; 
     }
   }); 
-
   switch (idButt) {
     case 'btn1':
       var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','lubricacion','conti-boton-desb']  
@@ -3574,7 +3358,6 @@ function LubricaDesbobinador(idButt) {
     case 'btn2':
       var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','pantalla-inicial','desbobinadorId','lubricacion','conti-boton-desb']  
       let elementosGrid =['inicio','bis-abuelo','padre-lubrica']
-      
       for (var i = 0; i < allContenedores.length; i++) { 
         var elemento = document.getElementById(allContenedores[i])  
         if (elemento) {
@@ -3594,7 +3377,6 @@ function LubricaDesbobinador(idButt) {
         botonVolver.style.display='flex'
         botonVolver.style.top='64vh'
       }
-
     break; 
     case 'btn3':
     var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','conti-boton-desb','desbobinadorId','lubricacion','padre-lubrica','pantalla-inicial']  
@@ -3681,7 +3463,6 @@ function LubricaDesbobinador(idButt) {
 } 
 function UnidadTeñido(buttId) {
   alternarButtsTeñido(buttId);
-
   const mostrarElementos = (excepciones) => {
     allContenedores.forEach(id => {
       const el = document.getElementById(id);
@@ -3691,7 +3472,6 @@ function UnidadTeñido(buttId) {
     });
     container1.style.display = 'grid';
   };
-
   switch (buttId) {
     case 'boton8': {
       const excepciones = [
@@ -3724,7 +3504,6 @@ function UnidadTeñido(buttId) {
       palpitarBoton('uTeñidos');
       break;
     }
-
     case 'btn600': {
       const excepciones = [
         'buscador', 'search-form', 'links-inicialesI', 'links-iniciales',
@@ -3736,7 +3515,6 @@ function UnidadTeñido(buttId) {
       gridTeñido.style.display = 'grid';
      break;
     }
-
     case 'btn700':
     case 'btn800': {
       const excepciones = [
@@ -3748,7 +3526,6 @@ function UnidadTeñido(buttId) {
       alternarButtsnPneumatic(buttId);
       break;
     }
-
     default:
       // No hacer nada si no coincide con ningún caso
       break;
@@ -3757,7 +3534,6 @@ function UnidadTeñido(buttId) {
 function mostrartBotonesIntervalo(className) {
   const buttons = document.querySelectorAll(`.${className}`);
   buttons.forEach(button => button.style.visibility = 'hidden');
-
   let delay = 0;
   buttons.forEach(button => {
     setTimeout(() => {
@@ -3769,7 +3545,6 @@ function mostrartBotonesIntervalo(className) {
 }
 function UnidadAlimenta(buttId) {
   alternarButtsfeed(buttId);
-
   const mostrarElementos = (excepciones) => {
     allContenedores.forEach(id => {
       const el = document.getElementById(id);
@@ -3779,7 +3554,6 @@ function UnidadAlimenta(buttId) {
     });
     container1.style.display = 'grid';
   };
-
   switch (buttId) {
     case 'boton14':
     case 'boton15':
@@ -3794,7 +3568,6 @@ function UnidadAlimenta(buttId) {
       palpitarBoton('alimentadorId');
       break;
     }
-
     default:
       // No hacer nada si no coincide con ningún caso
       break;
@@ -3802,7 +3575,6 @@ function UnidadAlimenta(buttId) {
 }
 function UnidadProceso(buttId) {
   alternarButtsUnit(buttId);
-
   const elementosExcluidos = [
     'buscador',
     'search-form',
@@ -3811,7 +3583,6 @@ function UnidadProceso(buttId) {
     'pantalla-inicial',
     'unidProceso'
   ];
-
   const botonesValidos = ['boton20', 'boton21', 'boton22', 'boton23', 'boton24'];
   if (botonesValidos.includes(buttId)) {
     for (let i = 0; i < allContenedores.length; i++) {
@@ -3826,7 +3597,6 @@ function UnidadProceso(buttId) {
 }
 function UnidadRebonina(buttId) {
   alternarButtsRebobina(buttId);
-
   const elementosExcluidos = [
     'buscador',
     'search-form',
@@ -3835,7 +3605,6 @@ function UnidadRebonina(buttId) {
     'pantalla-inicial',
     'rebobinador'
   ];
-
   const botonesValidos = ['boton26', 'boton27', 'boton28', 'boton29', 'boton30'];
   if (botonesValidos.includes(buttId)) {
     for (let i = 0; i < allContenedores.length; i++) {
@@ -3880,7 +3649,6 @@ function UnidadTintero(buttId,btnIniId){
           currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
         }else{
           currentElement.style.backgroundColor = ''
-
         }
       }
       for (var i = 0; i < botsDesplegables.length; i++) {
@@ -3890,7 +3658,6 @@ function UnidadTintero(buttId,btnIniId){
           currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
         }else{
           currentElement.style.backgroundColor = ''
-
         }
       }
       botsDesplegables.forEach(boton => {
@@ -3899,7 +3666,6 @@ function UnidadTintero(buttId,btnIniId){
           botDesplegable.style.backgroundColor = '#333333'
           }
         })      
-
       showButtonsUTeñidoconRetraso()
       break;
       case 'boton9' :
@@ -3925,24 +3691,20 @@ function UnidadTintero(buttId,btnIniId){
             currentElement.style.backgroundColor = 'rgba(255,0,255, 1)'                              
           }else{
             currentElement.style.backgroundColor = ''
-
           }
         }
         showButtonsRodilleria()      
       break; 
-
         for (var i = 0; i < contenedorPadre.children.length; i++) {
           var hijo = contenedorPadre.children[i]
           hijo.style.display = 'none'
         }
-
         var contiBotonTeñido = document.getElementById('conti-boton-teñido')
         if (contiBotonTeñido) {
             contiBotonTeñido.style.display = 'flex'
         }
         for (var i = 0; i < contiBotonTeñido.children.length; i++) {
             var hijo = contiBotonTeñido.children[i]
-    
             if (hijo.tagName.toLowerCase() === 'button') {
                 hijo.style.display = 'flex'
             }
@@ -3954,7 +3716,6 @@ function UnidadTintero(buttId,btnIniId){
             currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
           }else{
             currentElement.style.backgroundColor = '#333333'
-  
           }
         }
         showButtonsUTeñidoconRetraso()        
@@ -3968,14 +3729,11 @@ function UnidadBateria(buttId,btnIniId){
   var botsTorre = ['boton1','boton7','boton13','boton19','boton25',]
   var botsUnidadT = ['boton37','boton38','boton39','boton40','boton41']
   var contiDesbobina = document.getElementById('desbobinadorId')
-
   var computedStyleUteñido = window.getComputedStyle(contiDesbobina);
   if (computedStyleUteñido.display === 'flex') {
     palpitarBotonBateria()
   }
-
   if(alimenta.style.display === 'none'){
-
     switch (buttId) {
       case 'boton8' :
         var computedStyleUteñido = window.getComputedStyle(contiDesbobina);
@@ -3998,7 +3756,6 @@ function UnidadBateria(buttId,btnIniId){
           currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
         }else{
           currentElement.style.backgroundColor = ''
-
         }
       }
       for (var i = 0; i < botsDesplegables.length; i++) {
@@ -4008,7 +3765,6 @@ function UnidadBateria(buttId,btnIniId){
           currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
         }else{
           currentElement.style.backgroundColor = ''
-
         }
       }
       botsDesplegables.forEach(boton => {
@@ -4017,7 +3773,6 @@ function UnidadBateria(buttId,btnIniId){
           botDesplegable.style.backgroundColor = '#333333'
           }
         })      
-
       showButtonsUTeñidoconRetraso()
       break;
       case 'boton9' :
@@ -4043,17 +3798,14 @@ function UnidadBateria(buttId,btnIniId){
             currentElement.style.backgroundColor = 'rgba(255,0,255, 1)'                              
           }else{
             currentElement.style.backgroundColor = ''
-
           }
         }
         showButtonsRodilleria()      
       break; 
-
         for (var i = 0; i < contenedorPadre.children.length; i++) {
           var hijo = contenedorPadre.children[i]
           hijo.style.display = 'none'
         }
-
         var contiBotonTeñido = document.getElementById('conti-boton-teñido')
         if (contiBotonTeñido) {
             contiBotonTeñido.style.display = 'flex'
@@ -4071,7 +3823,6 @@ function UnidadBateria(buttId,btnIniId){
             currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
           }else{
             currentElement.style.backgroundColor = '#333333'
-  
           }
         }
         showButtonsUTeñidoconRetraso()        
@@ -4112,7 +3863,6 @@ function UnidadTorre(buttId,btnIniId){
           currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
         }else{
           currentElement.style.backgroundColor = ''
-
         }
       }
       for (var i = 0; i < botsDesplegables.length; i++) {
@@ -4122,7 +3872,6 @@ function UnidadTorre(buttId,btnIniId){
           currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
         }else{
           currentElement.style.backgroundColor = ''
-
         }
       }
       botsDesplegables.forEach(boton => {
@@ -4131,7 +3880,6 @@ function UnidadTorre(buttId,btnIniId){
           botDesplegable.style.backgroundColor = '#333333'
           }
         })      
-
       showButtonsUTeñidoconRetraso()
       break;
       case 'boton9' :
@@ -4157,17 +3905,14 @@ function UnidadTorre(buttId,btnIniId){
             currentElement.style.backgroundColor = 'rgba(255,0,255, 1)'                              
           }else{
             currentElement.style.backgroundColor = ''
-
           }
         }
         showButtonsRodilleria()      
       break; 
-
         for (var i = 0; i < contenedorPadre.children.length; i++) {
           var hijo = contenedorPadre.children[i]
           hijo.style.display = 'none'
         }
-
         var contiBotonTeñido = document.getElementById('conti-boton-teñido')
         if (contiBotonTeñido) {
             contiBotonTeñido.style.display = 'flex'
@@ -4185,7 +3930,6 @@ function UnidadTorre(buttId,btnIniId){
             currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
           }else{
             currentElement.style.backgroundColor = '#333333'
-  
           }
         }
         showButtonsUTeñidoconRetraso()        
@@ -4226,7 +3970,6 @@ function UnidadSisHumedad(buttId,btnIniId){
           currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
         }else{
           currentElement.style.backgroundColor = ''
-
         }
       }
       for (var i = 0; i < botsDesplegables.length; i++) {
@@ -4236,7 +3979,6 @@ function UnidadSisHumedad(buttId,btnIniId){
           currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
         }else{
           currentElement.style.backgroundColor = ''
-
         }
       }
       botsDesplegables.forEach(boton => {
@@ -4245,7 +3987,6 @@ function UnidadSisHumedad(buttId,btnIniId){
           botDesplegable.style.backgroundColor = '#333333'
           }
         })      
-
       showButtonsUTeñidoconRetraso()
       break;
       case 'boton9' :
@@ -4271,17 +4012,14 @@ function UnidadSisHumedad(buttId,btnIniId){
             currentElement.style.backgroundColor = 'rgba(255,0,255, 1)'                              
           }else{
             currentElement.style.backgroundColor = ''
-
           }
         }
         showButtonsRodilleria()      
       break; 
-
         for (var i = 0; i < contenedorPadre.children.length; i++) {
           var hijo = contenedorPadre.children[i]
           hijo.style.display = 'none'
         }
-
         var contiBotonTeñido = document.getElementById('conti-boton-teñido')
         if (contiBotonTeñido) {
             contiBotonTeñido.style.display = 'flex'
@@ -4299,7 +4037,6 @@ function UnidadSisHumedad(buttId,btnIniId){
             currentElement.style.backgroundColor = 'rgba(255,0,0, 1)'                              
           }else{
             currentElement.style.backgroundColor = '#333333'
-  
           }
         }
         showButtonsUTeñidoconRetraso()        
@@ -4318,7 +4055,6 @@ function rodillosTeñido(botId) {
       hijo.style.display = 'none'
     }
   }
-
   switch(botId) {
     case 'btn06':
       var elementosExcluidos = ['buscador','search-form','cont-links','links-inicialesI','links-iniciales','pantalla-inicial','uTeñidos','rodilleria','vidRodillos','rodilleria-vid','conti-boton-rodilleria','cont-arriba-rodillos','abuelo-cuadricula','padre-cuadricula']  
@@ -4353,7 +4089,6 @@ function rodillosTeñido(botId) {
         botonVolver.style.display='flex'
         botonVolver.style.top='77vh'
       }
-      
     break;
     case 'btn08':
       var childContainers = rodilleria.children;
@@ -4425,7 +4160,6 @@ function lubricaDiario(butId,labelId){
       }
     break;
     case 'lub-semanal':
-      
     break;
     case 'lub-mensual':
     break;
@@ -4440,11 +4174,9 @@ function ubicaPerfilPequeño(idEmpleado){
   var contSecundario = document.getElementById('contenedor-vertical')
   var contUserElements = document.getElementsByClassName('cont-user')
   var colorIndex = 0;
-
   for (var j = 0; j < contUserElements.length; j++) {
     contUserElements[j].style.display = 'none';
   }
-
   if(screenWidth < 500){
     for (var i = 0; i < contUserElements.length; i++) {
       var element = contUserElements[i]
@@ -4469,7 +4201,6 @@ function ubicaPerfilPequeño(idEmpleado){
 function ubicaPerfil(idEmpleado) {
   var contUserElements = document.getElementsByClassName('cont-user')   
   var contSecundario = document.getElementById('conte-secundario')
-
   if(screenWidth > 500){
     for (var i = 0; i < contUserElements.length; i++) { 
       var element = contUserElements[i]
@@ -4497,7 +4228,6 @@ function ubicaPerfil(idEmpleado) {
         element.style.left = '2vw'
       } else {
         element.style.display = 'none'
-
       }
     }
   }
@@ -4506,7 +4236,6 @@ let llamadaEjecutada = false;
 var intervaloActualizarII = null;  
 var intervaloActualizar = null;
 let intervaloProgreso = null;
-
 function resultadosMaquina(elementId){
   var elementosExcluidos = ['buscador','search-form','links-inicialesI','links-iniciales','title-interfaz']
   for (var i = 0; i < allContenedores.length; i++) { 
@@ -4515,21 +4244,17 @@ function resultadosMaquina(elementId){
       elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none'
     }
   }
-  
   ['.maquina', '.mes', '.indicador','.span-semana'].forEach(selector => {
     document.querySelectorAll(selector).forEach(el => el.removeAttribute('style'));
   });
-
   document.querySelectorAll('.titulo-graf-ma').forEach(el => {
     el.textContent = '';
   });
-
   ["lista-maquinas", "meses", "calendario-mes", "cont-span-semanas", "titulo-calendar", "titulo-mes", "contenedor-global", "padre-contenedor-global"].forEach(id => aparecerElemento(id, "grid"));
   destruirCharts()
   container1.style.display='grid'
   document.querySelector("#contenedor-global").classList.remove('move-panel-ma')
   document.querySelector("#padre-contenedor-global").classList.remove('move-panel-ma')
-
   setTimeout(() => {
     document.querySelectorAll(".dia").forEach(d => {
         d.style.backgroundColor = "";
@@ -4537,54 +4262,44 @@ function resultadosMaquina(elementId){
         d.classList.remove('activo');
     });   
   }, 1000);
-
   if (!idsArray.includes(elementId)) {
     idsArray.push(elementId);
     console.log(idsArray);
   }  
 }
-
 document.querySelectorAll('.maquina').forEach((maquina, index) => {
   const rotativas = ['ROTATIVA 1','ROTATIVA 2','ROTATIVA 3','ROTATIVA 4'];
   maquina.addEventListener('click', () => {
-
     // restaurar estilos de todos los padres
     document.querySelectorAll('.maquina').forEach(m => {
       m.removeAttribute('style');
     });
-
     // restaurar color inicial de todos los hijos
     document.querySelectorAll('.indicador').forEach(i => {
       i.removeAttribute('style');   // vuelve al color del CSS
     });
-
     // aplicar color al padre seleccionado
     maquina.style.backgroundColor ='rgb(20,40,60)';
     maquina.style.color = 'rgb(90,160,220)';
     maquina.style.fontWeight='bold'
-
     // aplicar color al hijo seleccionado
     const hijo = maquina.querySelector('.indicador');
     if (hijo) hijo.style.backgroundColor = 'rgb(0,191,255)';
-
     // actualizar título
     const titulo = document.querySelector('#titulo-calendar');
     titulo.style.display = 'flex';
     titulo.textContent = maquina.firstChild.textContent.trim();
-
     const abuelo = document.getElementById('abuelo-grafica4');
     Array.from(abuelo.children).forEach(hijo => {
       abuelo.style.display='none'
       hijo.style.display = 'none';     // los ocultamos
     });
-
     [chart16, chart15, chart14, chart13].forEach((chart, i, arr) => {
       if (chart) {
         chart.destroy();
         arr[i] = null; // solo nulifica en el array local
       }
     });
-
     document.querySelectorAll('.maquina').forEach((maquina, index) => {
       maquina.addEventListener('click', () => {
         const nombre = rotativas[index];
@@ -4597,7 +4312,6 @@ let imagenSeleccionada = null;
 let nombreSeleccionado = null;
 // CICK IMAGENES VERTICALES
 function resultadosEmpleado(idEmpleado, functionExe, icono, state) {
-
   detenerDinamica();
   verificarPosicionTop(['conte-butts-graphs']); 
   mostrarImagenSuperior();
@@ -4617,15 +4331,12 @@ function resultadosEmpleado(idEmpleado, functionExe, icono, state) {
 // === Auxiliares ===
 function mostrarImagenSuperior(imagenClicada) {
   if (!imagenSeleccionada) return;
-
   const destino = document.getElementById('porta-imagen');
   const spanImagen = destino.querySelector('.imagen-empleado');
   const spanNombre = destino.querySelector('.nombre-empleado');
-
   spanImagen.setAttribute('data-src', imagenSeleccionada);
   spanImagen.innerHTML = `<img src="${imagenSeleccionada}" alt="foto">`;
   if (nombreSeleccionado) spanNombre.textContent = nombreSeleccionado;
-
   // ✅ Elimina listener anterior antes de agregar uno nuevo
   spanImagen.removeEventListener('click', handleSpanImagenClick);
   spanImagen.addEventListener('click', handleSpanImagenClick);
@@ -4725,18 +4436,15 @@ function resultadosMA(identificador){
   }
   container1.style.display='grid'
   document.querySelector("#padre-porta-visor").classList.remove('modificarPosicion')
-
   document.querySelector("#porta-visor").classList.remove('modificarPosicion')
   document.querySelector("#buscador-empleado").classList.remove("ubicacion"); 
   document.querySelector("#visorImagen").classList.remove('ubicar-visor') 
-
   const padre = document.querySelector('.contenedor-visor');
   padre.removeAttribute('style');
   padre.querySelectorAll('*').forEach(hijo => hijo.removeAttribute('style'));
   document.body.style.zoom = "100%";
   ["padre-porta-visor"].forEach(id => aparecerElemento(id, "flex"));  
   ["porta-visor"].forEach(id => aparecerElemento(id, "flex"));
-
   var contiUsers = document.getElementsByClassName('cont-user'); 
   for (var i = 0; i < contiUsers.length; i++) {
     var usuario = contiUsers[i];
@@ -4833,7 +4541,6 @@ function resultadosMA(identificador){
         });
         return;
       }
-
       const matches = lista_empleados
         .filter(e => e && e.nombre)
         .map(e => capitalizarTexto(e.nombre))   // ← único cambio
@@ -4842,19 +4549,16 @@ function resultadosMA(identificador){
         dropdown.style.display = 'none';
         return;
       }
-
       matches.forEach(nombre => {
         const item = document.createElement('div');
         item.className = 'ac-item';
         item.style.fontSize = '10px';
         const regex = new RegExp(`(${query})`, 'gi');
         item.innerHTML = nombre.replace(regex, '<mark>$1</mark>');
-
         item.addEventListener('mousedown', (e) => {
           e.preventDefault();
           inputLimpio.value = nombre;
           dropdown.style.display = 'none';
-
           const spans = document.querySelectorAll('#listaNombres span');
           spans.forEach(s => {
             s.style.background = '';
@@ -4862,7 +4566,6 @@ function resultadosMA(identificador){
             s.style.borderRadius = '';
             s.style.padding = '';
           });
-
           const spanObjetivo = [...spans].find(s => s.textContent.trim() === nombre);
           if (spanObjetivo) {
             spanObjetivo.style.background = 'linear-gradient(90deg, #1565c0, #1e90ff)';
@@ -4870,7 +4573,6 @@ function resultadosMA(identificador){
             spanObjetivo.style.borderRadius = '6px';
             spanObjetivo.style.padding = '4px 10px';
             spanObjetivo.style.transition = 'all 0.3s ease';
-
             const panel = document.querySelector('#listaNombres');
             const offsetSpan = spanObjetivo.offsetTop;
             const alturaPanel = panel.clientHeight;
@@ -4881,10 +4583,8 @@ function resultadosMA(identificador){
           }
           hideKeyboard()
         });
-
         dropdown.appendChild(item);
       });
-
       dropdown.style.width = `${inputLimpio.offsetWidth}px`;
       dropdown.style.display = 'block';
     });
@@ -4910,7 +4610,6 @@ function resultadosMA(identificador){
 function aumentarTamaño(element, factor, tiempo) {
   const originalWidth = element.clientWidth;
   const originalHeight = element.clientHeight;
-
   element.style.transition = `transform ${tiempo}s`;
   element.style.transform = `scale(${factor})`;
   setTimeout(() => {
@@ -4943,7 +4642,6 @@ function graficosAutomaticos(idGrafico){
   for (var i = 0; i < idsMA.length; i++) {
     var elto = idsMA[i]
     var elemento = document.getElementById(elto)
-    
     if (elto === idGrafico) {
       elemento.style.display = 'block'      
     }
@@ -4955,12 +4653,9 @@ document.getElementById('titleContainerI').addEventListener(eventoEntradaI, () =
     document.getElementById('links-inicialesI').style.display = 'block';
     document.getElementById('linkListI').style.display = 'block';
   }
-
   let padreLinks = document.getElementById('links-inicialesI');
   let conteLinks = document.getElementById('linkListI');
-
   if (!esDesktop) {
-
     const elementosNoIncluidos = [
       'buscador',
       'search-form',
@@ -4969,13 +4664,9 @@ document.getElementById('titleContainerI').addEventListener(eventoEntradaI, () =
       'linkList',
       'linkListI'
     ];
-
     for (let i = 0; i < allContenedores.length; i++) {
-
       const elemento = document.getElementById(allContenedores[i]);
-
       if (!elemento) continue;
-
       if (elementosNoIncluidos.includes(allContenedores[i])) {
         elemento.style.filter = '';
       } else {
@@ -4984,31 +4675,23 @@ document.getElementById('titleContainerI').addEventListener(eventoEntradaI, () =
         }
       }
     }
-
     container1.style.display = 'grid';
-
     setTimeout(() => {
       padreLinks.style.display = 'block';
       conteLinks.style.display = 'block';
     }, 400);
-
   } else {
-
     padreLinks.style.display = 'block';
     linkListI.style.display = 'block';
     padre.style.display = 'block';
   }
-
 });
 const eventoEntrada = esDesktop ? 'mouseenter' : 'touchstart';
 document.getElementById('titleContainer').addEventListener(eventoEntrada, () => {
-
   let padreLinks = document.getElementById('links-iniciales');
   let conteLinks = document.getElementById('linkList');
-
   if (!esDesktop) {
     console.warn('aquie')
-
     const elementosNoIncluidos = [
       'buscador',
       'search-form',
@@ -5017,13 +4700,9 @@ document.getElementById('titleContainer').addEventListener(eventoEntrada, () => 
       'linkList',
       'linkListI'
     ];
-
     for (let i = 0; i < allContenedores.length; i++) {
-
       const elemento = document.getElementById(allContenedores[i]);
-
       if (!elemento) continue;
-
       if (elementosNoIncluidos.includes(allContenedores[i])) {
         elemento.style.filter = '';
       } else {
@@ -5032,21 +4711,15 @@ document.getElementById('titleContainer').addEventListener(eventoEntrada, () => 
         }
       }
     }
-
     container1.style.display = 'grid';
-
     setTimeout(() => {
       padreLinks.style.display = 'block';
       conteLinks.style.display = 'block';
     }, 400);
-
   } else {
-
     padreLinks.style.display = 'block';
     conteLinks.style.display = 'block';
-
   }
-
 });
 let intervaloAltura = null; 
 let intervaloAlturaI = null;

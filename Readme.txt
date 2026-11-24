@@ -176,6 +176,19 @@ git pull origin main
 
 - HACER LO MISMO CON EL TECLADO (ESTOY POR AHORA CON LA POSICION DEL TECLADO EN EL MEZCLADOR DE COLORES)
 
+- MEJORAR ESTA LOGICA AL OCULTAR ELEMENTOS
+
+  buscadorLista.addEventListener('blur', () => {
+    if (!listaColores.matches(':hover')) {
+      buscadorLista.value = '';
+      listaColores.style.display='none'
+      filtrar();
+      hideKeyboard(9)
+    }
+  });
+
+
+
 
 
 
