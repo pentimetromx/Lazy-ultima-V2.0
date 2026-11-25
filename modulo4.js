@@ -4024,8 +4024,25 @@ function ubicaCalculadoraSegunContexto(){
     setTimeout(() => {
       calculadora.classList.add('move-calculadora-up-ingreso');
     }, 100);
-    /* document.querySelector("#buscador-detalle").focus() */
-  }   
+  }  
+if(!esDesktop && fichasTecnicas.style.display==='grid'){
+  document.querySelector("#simulador").style.display='flex'
+  document.querySelector("#simulador").zIndex= 9999
+  calculadora.classList.remove('.move-calculadora-up-kaizen')
+  calculadora.style.left='15vw'
+  calculadora.style.top='127vh'   // igual que almacenKaizen
+  calculadora.style.height='45vh'
+  calculadora.style.width='49vw'
+  calculadora.style.zIndex = 9999;  // por encima del panel (2110)
+  setTimeout(() => {
+    document.querySelector("#simulador").style.display='flex'
+    calculadora.style.display='grid'
+  }, 50);
+  setTimeout(() => {
+    calculadora.classList.add('.move-calculadora-up-kaizen');
+  }, 150);
+}
+
 }
 const clamp = (val, min, max) =>
   Math.min(max, Math.max(min, val));
@@ -4357,14 +4374,20 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
   const img = pantallaKaizen.querySelector('img');
   btn.addEventListener('click', () => {
     btn.removeAttribute('style');
-    if (index === 0) {
-      fichasTecnicas.classList.remove('activo')
+    if (index === 0) { // BUSCAR
       setTimeout(() => {
-        fichasTecnicas.classList.add('activo')
-        fichasTecnicas.style.zIndex = '2110'
-      }, 500);
+        document.querySelector("#kaizen-buscador").style.display = 'grid'
+        contenedorPropuesta.innerHTML = '';
+        propositores.selectedIndex = 0;
+        lbl.textContent = ''
+        img.removeAttribute('src');
+        img.dataset.src = '';
+      }, 300);
     }
-    if (index === 1) {
+    if (index === 1) { // LIMPIAR
+      fichaGrid.reset();
+    }
+    if (index === 2) { // GUARDAR
       let inputsFichaTecnica = document.querySelectorAll('#fichas-tecnicas .ficha-grid input, #fichas-tecnicas .ficha-grid select');
       for (const input of inputsFichaTecnica) {
         if (input.value.trim() === '') {
@@ -4377,29 +4400,22 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
       bloqueador.style.display = 'block';
       agregarKaizen();
     }
-    if (index === 2) {
+    if (index === 3) { // SALIR
+      fichaGrid.reset();
+      desaparecerElemento("fichas-tecnicas")
+      bloqueador.style.display = 'none'
+      rodillosKaizen('btn17', '')
+      imgsKaizen.classList.remove('ocultar-padre');
+    }
+    if (index === 4) { // ADMINISTRADOR
+      fichasTecnicas.classList.remove('activo')
       setTimeout(() => {
-        fichaGrid.reset();
-        desaparecerElemento("fichas-tecnicas")
-        bloqueador.style.display='none' 
-        rodillosKaizen('btn17','')   
-        imgsKaizen.classList.remove('ocultar-padre');
-      },300);
+        fichasTecnicas.classList.add('activo')
+        fichasTecnicas.style.zIndex = '2110'
+      }, 500);
     }
-    if (index === 3) {
-      fichaGrid.reset();  
-    }
-    if (index === 4) {
-      document.querySelector("#kaizen-buscador").style.display='grid'
-      contenedorPropuesta.innerHTML = '';
-      propositores.selectedIndex = 0;;
-      lbl.textContent=''
-      img.removeAttribute('src');
-      img.dataset.src = '';
-    }    
   });
-});
-const idsSelect = [
+});const idsSelect = [
   'propositores',
   'empleado',
   'participante1',
@@ -4409,6 +4425,22 @@ const idsSelect = [
   'participante5',
   'lider'
 ];
+documentoKaizen.addEventListener('focusin', () => {
+  setTimeout(() => {
+    document.querySelector("#simulador").style.display = 'flex';
+    calculadora.classList.remove('move-calculadora-up-kaizen');
+    calculadora.style.display = 'grid';
+    calculadora.style.left = '15vw';
+    calculadora.style.top = '127vh';
+    calculadora.style.height = '49vh';
+    calculadora.style.width = '40vw';
+    calculadora.style.zIndex = 9999;
+  }, 50);
+  setTimeout(() => {
+    calculadora.classList.add('move-calculadora-up-kaizen');    
+  }, 150);
+});
+
 //empleados pára mostrar en los select
 function setSelectValue(id, value) {
   const select = document.getElementById(id);
@@ -5847,7 +5879,7 @@ function prepararBuscador(clave) {
   }
   input.style.display = 'block';
   input.placeholder = config.placeholder;
-  input.inputMode = config.numerico ? 'numeric' : 'text';
+  input.inputMode = esDesktop ? (config.numerico ? 'numeric' : 'text') : 'none';
   filtroActual = { indice, numerico: config.numerico };
 }
 document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
@@ -5862,10 +5894,27 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
     const celda = fila.children[filtroActual.indice].textContent.toLowerCase();
     fila.style.display = celda.includes(texto) ? '' : 'none';
   });
+
 });
+
 buscadorDetalles.addEventListener('focusin', () => {
-  if(!esDesktop) ubicaCalculadoraSegunContexto()
+  if (esDesktop) return;
+
+  const nombre = document
+    .querySelector('#grid-storage .tarjeta.activa h3')
+    ?.textContent.trim();
+
+  const esTexto = nombre === 'coloresRegistrados';
+
+  if (esTexto) {
+    hideCalculator();
+    showKeyboard(-15);
+  } else {
+    hideKeyboard();
+    ubicaCalculadoraSegunContexto();
+  }
 });
+
 // IIFE Para empleados  
 (() => {
   const buscador  = document.getElementById('buscar-nombre');

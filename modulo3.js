@@ -8,7 +8,15 @@ document.addEventListener('keydown', function(event) {
       }, 200);
       break
       case 'Z':
-        activarPantallaCompleta()  
+        console.log(esDesktop)
+        document.querySelector("#simulador").style.display='flex'    
+        calculadora.classList.remove('move-calculadora-up-ingreso')
+        calculadora.style.display='grid'
+        calculadora.style.left='15vw'
+        calculadora.style.top='27vh'
+        calculadora.style.height='45vh'
+        calculadora.style.width='40vw'
+        calculadora.style.zIndex = 9999;
       break;  
       case 'H':
         vaciarPorClaveLocalStore('empleadosRegistrados', tipo = 'array')
@@ -4757,14 +4765,17 @@ digitos.forEach((elemento) => {
     }, 200);
   }else { // CALCULADORA ESPECIAL
     console.warn('NO ES HEIDELBERG')
+    console.log('lastFocusedInput:', lastFocusedInput?.id, '| action:', elemento.dataset.action)
     if (!lastFocusedInput) return;
     const input = lastFocusedInput;
     if (elemento.dataset.action === 'backspace') {
+      console.log('backspace pulsado, valor antes:', input.value);
       const value = input.value ?? '';
       if (!value.length) return;
       input.value = value.slice(0, -1);
       input.selectionStart = input.selectionEnd = input.value.length;
-      return; // evitar que continúe la inserción
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      return;
     }
     const numero = elemento.textContent;
     const end = input.value.length;
@@ -4782,9 +4793,11 @@ digitos.forEach((elemento) => {
         input.value = clamp(parseInt(input.value, 10), min, max);
       }
     }
+    input.dispatchEvent(new Event('input', { bubbles: true })); // <-- nuevo
   }
   });
 });
+
 alertaTres.addEventListener('click', ()=> {
   restablecerClick(['.butt-perfiles', '.estilo-1']);
 })
@@ -4913,6 +4926,7 @@ const deleteLastCharacter = (target) => {
   const newValue = value.slice(0, -1);
   if ('value' in target) {
     target.value = newValue;
+    target.dispatchEvent(new Event('input', { bubbles: true }));
   } else {
     target.textContent = newValue;
   }

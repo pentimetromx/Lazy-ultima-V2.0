@@ -35,7 +35,7 @@ function desaparecerElemento(id) {
   contenedor.classList.remove("activo");
   contenedor.classList.add("cerrando");
   // Espera a que termine la animación y oculta
-  const duracion = 1000; // ms, debe coincidir con el CSS
+  const duracion = 500; // ms, debe coincidir con el CSS
   setTimeout(() => {
     contenedor.style.display = "none";
     contenedor.classList.remove("cerrando");
@@ -999,7 +999,6 @@ function rodillosKaizen(idButton,vidElem) {
           cell.classList.remove(`move-kaizen-${index}`);
         }
       });
-      /* desaparecerElemento('fichas-tecnicas') */
       const padreLineas = document.querySelector('#kaizen-propuestos');
       padreLineas.style.display = 'grid';
       padreLineas.querySelectorAll('*').forEach(hijo => {

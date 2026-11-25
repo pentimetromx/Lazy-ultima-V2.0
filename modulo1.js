@@ -526,15 +526,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!esDesktop && esTactil) {
     campoBusqueda.setAttribute('readonly', true); // evita teclado nativo
   }
-  [campoBusqueda, inputPerfil, docEmpleado, buscadorDetalles, documentoActivador, documentoEmplEliminar].forEach(input => {
+  [campoBusqueda, inputPerfil, docEmpleado, buscadorDetalles, documentoActivador, documentoEmplEliminar, documentoKaizen].forEach(input => {
     input?.addEventListener('blur', () => {
       if (esDesktop) return;
       if (input === campoBusqueda || input === inputPerfil) {
         hideKeyboard();
       } else {
-        calculadora.classList.remove('move-calculadora-up-ingreso', 'move-calculadora-down');
+        calculadora.classList.remove('move-calculadora-up-ingreso', 'move-calculadora-down', 'move-calculadora-up-kaizen');
         hideCalculator();
       }
+      if (input === buscadorDetalles) {
+        hideCalculator();
+        hideKeyboard();
+      } else if (input === campoBusqueda || input === inputPerfil) {
+        hideKeyboard();
+      } else {
+        calculadora.classList.remove('move-calculadora-up-ingreso', 'move-calculadora-down','move-calculadora-up-kaizen');
+        hideCalculator();
+      }      
     });
   });
   // --- funciones auxiliares ---

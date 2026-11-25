@@ -3666,7 +3666,7 @@
             <option value="">Seleccione...</option>
           </select>
           <label for="documento-kaizen">Documento</label>
-          <input id="documento-kaizen" tabindex="102" name="documento" type="text" >  
+          <input id="documento-kaizen" inputmode="none" class="input-especial" tabindex="102" name="documento" type="text" >  
           <label for="mejora">Mejora propuesta</label>
           <input id="mejora" tabindex="103" class="opcion-empleado current-focus special-text" inputmode="none" type="text">
           <label for="fecha">Fecha de presentación</label>
@@ -3737,11 +3737,12 @@
         </form>
       </div>
       <div class="controller-fichas">
-        <button id="boton-administrador" class="fichas-butts" type="button">Administrador</button>
+        <button class="fichas-butts" type="button">Buscar</button>
+        <button class="fichas-butts" type="button">Limpiar</button>
         <button class="fichas-butts" type="button">Guardar</button>
         <button class="fichas-butts" type="button">Salir</button>
-        <button class="fichas-butts" type="button">Limpiar</button>
-        <button class="fichas-butts" type="button">Buscar</button>
+        <button id="boton-administrador" class="fichas-butts" type="button">Administrador</button>
+
       </div>
     </div>
     <div id="decisiones-estrategicas" class="panel-estrategico">

@@ -170,7 +170,29 @@ git push
 git checkout main
 git pull origin main
 
-======                        ===============================
+
+====== BLUR EN INPUTS VARIOS (Modulo1.js)===============================
+
+  [campoBusqueda, inputPerfil, docEmpleado, buscadorDetalles, documentoActivador, documentoEmplEliminar, documentoKaizen].forEach(input => {
+    input?.addEventListener('blur', () => {
+      if (esDesktop) return;
+      if (input === campoBusqueda || input === inputPerfil) {
+        hideKeyboard();
+      } else {
+        calculadora.classList.remove('move-calculadora-up-ingreso', 'move-calculadora-down', 'move-calculadora-up-kaizen');
+        hideCalculator();
+      }
+    });
+  });
+
+====== INPUTS CANTIDAD DE DIGITOS INDEFINIDA (Modulo1.js)===============================
+
+agregar la clase "input-especial" al input en el HTML : 
+
+<input type="text" id="input-documento" inputmode="none" class="input-especial" readonly>
+
+
+
 
 - VERIFICAR TODAS LAS POSICIONES DESDE DONDE SE LLAMA ALA CALCULADORA
 
