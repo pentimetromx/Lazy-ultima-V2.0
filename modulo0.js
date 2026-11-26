@@ -437,6 +437,7 @@ document.addEventListener('click', (e) => {
     listaColores.style.display !== 'none' &&
     !listaColores.contains(e.target) &&
     !e.target.closest('#clientes') &&
+    !e.target.closest('#' + creaNombre.id) &&    
     !e.target.closest('#menu-contextual')
   ) {
     cerrarListaColores();

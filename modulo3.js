@@ -8,15 +8,10 @@ document.addEventListener('keydown', function(event) {
       }, 200);
       break
       case 'Z':
-        console.log(esDesktop)
-        document.querySelector("#simulador").style.display='flex'    
-        calculadora.classList.remove('move-calculadora-up-ingreso')
-        calculadora.style.display='grid'
-        calculadora.style.left='15vw'
-        calculadora.style.top='27vh'
-        calculadora.style.height='45vh'
-        calculadora.style.width='40vw'
-        calculadora.style.zIndex = 9999;
+    setTimeout(() => {
+      mostrarNombresDeObjetos()
+      debugger
+    }, 111);
       break;  
       case 'H':
         vaciarPorClaveLocalStore('empleadosRegistrados', tipo = 'array')
@@ -4764,37 +4759,30 @@ digitos.forEach((elemento) => {
       digitos.forEach(d => d.style.pointerEvents = 'auto');
     }, 200);
   }else { // CALCULADORA ESPECIAL
-    console.warn('NO ES HEIDELBERG')
-    console.log('lastFocusedInput:', lastFocusedInput?.id, '| action:', elemento.dataset.action)
-    if (!lastFocusedInput) return;
-    const input = lastFocusedInput;
-    if (elemento.dataset.action === 'backspace') {
-      console.log('backspace pulsado, valor antes:', input.value);
-      const value = input.value ?? '';
-      if (!value.length) return;
-      input.value = value.slice(0, -1);
-      input.selectionStart = input.selectionEnd = input.value.length;
-      input.dispatchEvent(new Event('input', { bubbles: true }));
-      return;
-    }
-    const numero = elemento.textContent;
-    const end = input.value.length;
-    input.selectionStart = end;
-    input.selectionEnd = end;
-    input.value = input.value + numero;
-    input.selectionStart = input.selectionEnd = input.value.length;
-    if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
-      const clamp = (val, min, max) =>
-        Math.min(max, Math.max(min, val));
-      input.value = input.value.replace(/\D/g, '');
-      if (input.value !== '' && input.id !== 'input-baja' && input.id !== 'doc-empl' && !input.classList.contains('input-especial')) {
-        const min = Number(input.min) || 0;
-        const max = Number(input.max) || 100;
-        input.value = clamp(parseInt(input.value, 10), min, max);
-      }
-    }
-    input.dispatchEvent(new Event('input', { bubbles: true })); // <-- nuevo
+  if (!lastFocusedInput) return;
+  escribiendoCalc = true;
+  setTimeout(() => { escribiendoCalc = false; }, 150);
+
+  const input = lastFocusedInput;
+  if (elemento.dataset.action === 'backspace') {
+    const value = input.value ?? '';
+    if (!value.length) return;
+    input.value = value.slice(0, -1);
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    return;
   }
+  input.value = input.value + elemento.textContent;
+  if (input.id !== 'nomEmpl' && input.id !== 'nomEmpl-ma' && input.id !== 'numDoc1') {
+    const clamp = (val, min, max) => Math.min(max, Math.max(min, val));
+    input.value = input.value.replace(/\D/g, '');
+    if (input.value !== '' && input.id !== 'input-baja' && input.id !== 'doc-empl' && !input.classList.contains('input-especial')) {
+      const min = Number(input.min) || 0;
+      const max = Number(input.max) || 100;
+      input.value = clamp(parseInt(input.value, 10), min, max);
+    }
+  }
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+}
   });
 });
 
@@ -4939,28 +4927,34 @@ if (esDesktop) {
 }
 if (!esDesktop) {
   inputPerfil.setAttribute('readonly', true);
+
   botonBorrar.addEventListener('touchstart', (e) => {
     e.preventDefault();
+    escribiendoCalc = true; 
+
     document.querySelectorAll('.number').forEach(el => {
       el.textContent = '';
     });
     const target = lastFocusedInput;
     if (!target) return;
-    // borrar carácter primero
+
     deleteLastCharacter(target);
-    // luego limpiar estado interno
     limpiarBase();
-    // iniciar repetición progresiva
+
     deleteTimeout = setTimeout(() => {
       deleteInterval = setInterval(() => {
         deleteLastCharacter(target);
       }, DELETE_REPEAT_RATE);
     }, DELETE_INITIAL_DELAY);
   });
-  botonBorrar.addEventListener('touchend', stopDeleting);
-  botonBorrar.addEventListener('touchcancel', stopDeleting);
-}
 
+  const soltarBorrar = () => {
+    stopDeleting();
+    setTimeout(() => { escribiendoCalc = false; }, 150);   // pequeño margen tras soltar
+  };
+  botonBorrar.addEventListener('touchend', soltarBorrar);
+  botonBorrar.addEventListener('touchcancel', soltarBorrar);
+}
 document.querySelector('#abandonar-perfiles').addEventListener('click', () => {
   alertaMSG.style.display = 'none';
   conteJobTrack.style.display = 'none';
@@ -6703,13 +6697,13 @@ document.querySelector('#save-tecnology').addEventListener('click', ()=>{
   crearPerfilColor()
 })
 creaNombre.addEventListener('click', () => {
-  document.querySelector('#nombre-Perfil').value = ''
+ document.querySelector('#nombre-Perfil').value = ''
   creaNombre.value = ''
   botonesPerfilColor.forEach(elemento => {   
     elemento.style.display = 'block';   
   });
   limpiarColoresDeFondo()
-  desactivarClick(['.butt-perfiles', '.estilo-1']);  
+  desactivarClick(['.butt-perfiles', '.estilo-1']); 
   mostrarNombresDeObjetos();
 });
 creaNombre.addEventListener('mouseleave', () => {

@@ -7979,7 +7979,7 @@ background-color: #3FEF9C;
   width:89%;
   height:60%;
   gap: 10px;
-  margin:auto;
+  margin:10px 12px;
 }
 .controller-fichas button{
   position: relative;
@@ -7994,11 +7994,17 @@ background-color: #3FEF9C;
   box-shadow: 0 0 9px rgba(30, 144, 255, 0.35);
   transition: background 0.2s ease, box-shadow 0.25s, transform 0.15s ease;
 }
-#fichas-tecnicas > div.controller-fichas > button:nth-child(1){
+#fichas-tecnicas > div:nth-child(1){
+  margin-top: 7%;
+}
+#fichas-tecnicas > div.controller-fichas > button:nth-child(3){
   background: linear-gradient(180deg, #1e90ff, #1565c0);
   box-shadow: 0 0 14px rgba(30, 144, 255, 0.55);
   border: 1px solid #5bb8ff;
   color: #ffffff;
+}
+#fichas-tecnicas > div.controller-fichas > button:nth-child(5){
+  margin-left:33% ;
 }
 .ficha-grid label {
   font-size: 0.8rem;

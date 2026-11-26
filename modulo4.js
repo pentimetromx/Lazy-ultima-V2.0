@@ -3360,7 +3360,7 @@ function mostrarMaster(elementId){
   if(!esDesktop) documentoActivador.readOnly = true;
   setTimeout(() => {
     document.querySelector('#carta-exterior > .ident-empleado > input').value=''    
-    document.querySelector('#carta-exterior > .ident-empleado > input').focus()   
+    /* document.querySelector('#carta-exterior > .ident-empleado > input').focus() */   
   }, 500);
   if (!idsArray.includes(elementId)) {
     idsArray.push(elementId);
@@ -3898,11 +3898,14 @@ function hideKeyboard() {
   keyboardWrapper.style.removeProperty('--keyboard-left');
   keyboardWrapper.style.removeProperty('--keyboard-lift');  
 }
+let escribiendoCalc = false;
 function hideCalculator() {
+  if (escribiendoCalc) return;
   calculadora.classList.add('move-calculadora-down');  
   detenerParpadeo()
 }
 function ubicaCalculadoraSegunContexto(){
+  if (escribiendoCalc) return;
   restablecerEstilos('calculadora');
   calculadora.classList.remove('move-calculadora')
   calculadora.classList.remove('move-calculadora-1')
@@ -5562,6 +5565,7 @@ const CAMPOS = [
 ];
 // REGISTRO DE EMPLEADOS
 interfazToggle.addEventListener('click', () => {
+  const buscador  = document.getElementById('buscar-nombre');
   const boton = document.querySelector('#btn-ver-listado');
   const panel = document.querySelector('#panel-listado');
   const contenedor = document.querySelector('#contenedor-tabla');
@@ -5574,6 +5578,14 @@ interfazToggle.addEventListener('click', () => {
   boton.dataset.abierto = String(abrir);
   boton.textContent = abrir ? 'Cerrar empleados registrados' : 'Registro empleados';
   panel.classList.toggle('expandido', abrir);
+  buscador.value = '';
+  if (!esDesktop && buscador) buscador.setAttribute('inputmode', 'none');
+  buscador.addEventListener('focusin', () => {
+    if (!esDesktop) showKeyboard(-15);
+  });
+  buscador.addEventListener('blur', () => {
+    if (!esDesktop) hideKeyboard();
+  });    
 });
 let zActual = 10;
 function traerAlFrente(panel) {
@@ -5588,6 +5600,7 @@ linkMaster.addEventListener('mouseleave', () => {
 });
 // REGISTRO DE COLORES
 document.querySelector('#btn-ver-colores').addEventListener('click', () => {
+  const buscador  = document.getElementById('buscar-color');
   const panel = document.querySelector('#panel-colores');
   const boton = document.querySelector('#btn-ver-colores');
   const contenedor = document.querySelector('#contenedor-colores');
@@ -5635,8 +5648,17 @@ document.querySelector('#btn-ver-colores').addEventListener('click', () => {
   contenedor.style.display = 'block';
   boton.dataset.abierto = 'true';
   boton.textContent = 'Cerrar colores registrados';
+  buscador.value = '';
+  if (!esDesktop && buscador) buscador.setAttribute('inputmode', 'none');
+  buscador.addEventListener('focusin', () => {
+    if (!esDesktop) showKeyboard(-15);
+  });
+  buscador.addEventListener('blur', () => {
+    if (!esDesktop) hideKeyboard();
+  });   
 });
 // REGISTRO KAIZEN
+
 document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
   const panel      = document.querySelector('#panel-kaizen');            // CAMBIO 1: nueva constante
   const boton      = document.querySelector('#btn-ver-kaizen');
@@ -5710,6 +5732,13 @@ document.querySelector('#btn-ver-kaizen').addEventListener('click', () => {
   panel.classList.add('expandido');                                      // CAMBIO 3: se amplía
   boton.dataset.abierto = 'true';
   boton.textContent = 'Cerrar kaizen registrados';
+  if (!esDesktop && buscador) buscador.setAttribute('inputmode', 'none');
+  buscador.addEventListener('focusin', () => {
+    if (!esDesktop) showKeyboard(-15);
+  });
+  buscador.addEventListener('blur', () => {
+    if (!esDesktop) hideKeyboard();
+  });   
 });
 function activarBuscador({ inputId, cabeceraId, cuerpoId, sinResultId, columna = 'nombre' }) {
   const buscador  = document.getElementById(inputId);
@@ -5894,18 +5923,13 @@ document.querySelector('#buscador-detalle').addEventListener('input', (e) => {
     const celda = fila.children[filtroActual.indice].textContent.toLowerCase();
     fila.style.display = celda.includes(texto) ? '' : 'none';
   });
-
 });
-
 buscadorDetalles.addEventListener('focusin', () => {
   if (esDesktop) return;
-
   const nombre = document
     .querySelector('#grid-storage .tarjeta.activa h3')
     ?.textContent.trim();
-
   const esTexto = nombre === 'coloresRegistrados';
-
   if (esTexto) {
     hideCalculator();
     showKeyboard(-15);

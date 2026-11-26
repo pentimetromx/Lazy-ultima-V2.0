@@ -6242,13 +6242,14 @@ top: 44%;
 }
 #carta-exterior {
   position: absolute;
-  display: grid;
+  display: none;
   grid-template-rows: 11% 11% 78%;
   border-radius: 13px;
-  border: 1px solid white;
+  border: 0.5px solid rgba(100, 140, 255, 0.25);
   box-sizing: border-box;
-  background-color: #1e2a3a;
-  border: 0.5px solid #3e4451;
+  background: linear-gradient(180deg, #14233a, #0f1a2b);
+  color: #F2F4F8;
+  box-shadow: 0 0 28px rgba(59, 102, 217, 0.22);
   padding: 18px;
   gap: 15px;
   top: 1vh;
@@ -6256,11 +6257,11 @@ top: 44%;
   width: 30vw;
   height: 51vh;
   z-index: 300;
-  display: none;
   transform: scale(0);
   transform-origin: center;
   transition: transform 1s ease, filter 0.5s ease;
 }
+
 .card-body {
   position: relative;
   display: grid;
@@ -6272,14 +6273,14 @@ top: 44%;
   width: auto;
 }
 .card-header {
-  color: #67e8f9;              /* cian claro, legible sobre #334155 */
-  font-size: 0.6em;            /* un poco más grande que 0.5em */
+  color: #67e8f9;
+  font-size: 0.6em;
   letter-spacing: .02em;
   height: 96%;
   width: 119%;
   border-radius: 4px;
-  background-color: #334155;
-  border: 0.5px solid #3e4451;
+  border: 0.5px solid rgba(30, 144, 255, 0.35);
+  background-color: #0f1a2b;
   outline: none;
   transition: border-color 0.2s;
   padding-left: 8px;
@@ -6324,8 +6325,8 @@ top: 44%;
   position: relative;
   display: grid;
   grid-template-rows: 85% 15%;
-  background: #334155;
-  border: 0.5px solid rgba(80, 120, 220, 0.3);
+  border: 0.5px solid rgba(30, 144, 255, 0.35);
+  background-color: #0f1a2b;
   box-sizing: border-box;
   padding: 19px;
   gap: 13px;
@@ -6345,13 +6346,14 @@ top: 44%;
   display: grid;
   height: 89%;
   grid-template-rows: repeat(7,1fr);
-  background: #334155;
-  border: 0.5px solid rgba(80, 120, 220, 0.3);
+  border: 0.5px solid rgba(30, 144, 255, 0.35);
+  background-color: #0f1a2b;
   box-sizing: border-box;
   gap: 3px;
   padding: 7px;
   border-radius: 6px;
 }
+
 .boton-seccion {
   background-color: rgba(200, 200, 200, 0.7);
   box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.6), inset -2px -2px 4px rgba(0, 0, 0, 0.25), 2px 2px 6px rgba(0, 0, 0, 0.3);
