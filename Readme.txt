@@ -209,6 +209,8 @@ agregar la clase "input-especial" al input en el HTML :
     }
   });
 
+- EN INTERFAZ DE KAIZENS LA CALCULADORA SE ESTA COMPORTANDO COMO : 	esHeidelberg
+
 
 
 

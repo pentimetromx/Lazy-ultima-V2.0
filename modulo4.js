@@ -4429,19 +4429,22 @@ document.querySelectorAll('.controller-fichas button').forEach((btn, index) => {
   'lider'
 ];
 documentoKaizen.addEventListener('focusin', () => {
-  setTimeout(() => {
-    document.querySelector("#simulador").style.display = 'flex';
-    calculadora.classList.remove('move-calculadora-up-kaizen');
-    calculadora.style.display = 'grid';
-    calculadora.style.left = '15vw';
-    calculadora.style.top = '127vh';
-    calculadora.style.height = '49vh';
-    calculadora.style.width = '40vw';
-    calculadora.style.zIndex = 9999;
-  }, 50);
-  setTimeout(() => {
-    calculadora.classList.add('move-calculadora-up-kaizen');    
-  }, 150);
+  if(!esDesktop){
+    setTimeout(() => {
+      documentoKaizen.setAttribute('inputmode', 'none')
+      document.querySelector("#simulador").style.display = 'flex';
+      calculadora.classList.remove('move-calculadora-up-kaizen');
+      calculadora.style.display = 'grid';
+      calculadora.style.left = '15vw';
+      calculadora.style.top = '127vh';
+      calculadora.style.height = '49vh';
+      calculadora.style.width = '40vw';
+      calculadora.style.zIndex = 9999;
+    }, 50);
+    setTimeout(() => {
+      calculadora.classList.add('move-calculadora-up-kaizen');    
+    }, 150);
+  }
 });
 
 //empleados pára mostrar en los select
@@ -6005,6 +6008,7 @@ buscadorDetalles.addEventListener('focusin', () => {
     if (document.activeElement === buscadorLista) return;
     buscadorLista.value = '';
     filtrar();
+    listaColores.style.display='none'
   }); 
   buscadorLista.addEventListener('blur', () => {
     console.log('ESTE ES ................')
@@ -6012,7 +6016,7 @@ buscadorDetalles.addEventListener('focusin', () => {
       buscadorLista.value = '';
       filtrar();
       hideKeyboard(9)
-      listaColores.style.display='none'
+      /* listaColores.style.display='none' */
     }
   });
 })();
@@ -6117,33 +6121,10 @@ crearOpcionesNumericas('numDoc4-ma');
 crearOpcionesNumericas('numDoc7-ma');
 crearOpcionesNumericas('numDoc6-ma');
 crearOpcionesNumericas('numDoc8-ma');
-function borrrrrrarrrr(){
-    ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
-  const padreBotonera = document.querySelector('#botonera-frente')
-  padreBotonera.style.display='grid'
-  conteJobTrack.classList.remove('move-job-track')
-  var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7'] 
-  for (var i = 0; i < allContenedores.length; i++) {
-    var elemento = document.getElementById(allContenedores[i])  
-    if (elemento) {
-      elemento.style.display = elementosExcluidos.includes(allContenedores[i]) ? 'flex' : 'none' 
-    }
-  }
-  container1.style.display = 'none'
-  desactivarClick(['.butt-perfiles'])
-  restablecerClick(['.estilo-1', '.butt-revierte'])
-  document.getElementById('boton-reseteo').style.pointerEvents = 'auto';
-  conteJobTrack.style.display='flex'
-  document.querySelectorAll('.datos-base').forEach((elemento) => { 
-    elemento.textContent = ''
-  });  
-  setTimeout(() => {
-    conteJobTrack.classList.add('move-job-track') 
-  }, 100);
-}
+
 document.querySelector("#borrarBoton3").addEventListener('click', (e)=>{
   activarPantallaCompleta()
-  document.querySelector('#calculadora').style.display='none'
+/*   document.querySelector('#calculadora').style.display='none'
   restablecerClick(['.butt-perfiles']);
   // solo se ejecuta si el click fue directamente en el li padre
   if (e.target.id !== "borrarBoton3") return;
@@ -6151,5 +6132,8 @@ document.querySelector("#borrarBoton3").addEventListener('click', (e)=>{
   if (!idsArray.includes('simulador')) {
     idsArray.push('simulador');
     console.log(idsArray);
-  }
+  } */
+
+  aparecerElemento("fichas-tecnicas", "grid") 
+
 })

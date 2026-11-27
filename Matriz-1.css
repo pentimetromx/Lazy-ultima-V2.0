@@ -7293,23 +7293,6 @@ background-color:rgb(25, 144, 255);
     width: auto;
     height: auto;
 }
-#padre-formulario-empleado {
-  position: relative;
-  display: flex;
-  border-radius: 20px;
-  top: 7vh;
-  left: 29vw;
-  width: 42.1vw;
-  height: 83vh;
-  background-color: #0b1220;
-  box-sizing: border-box;
-  padding: 9px;
-  z-index: 10;
-  transform: scale(0);
-  transform-origin: center;
-  transition: transform 1s ease;
-  box-shadow: 0 0 28px rgba(59, 102, 217, 0.22);
-}
 #padre-formulario-empleado > * {
     border-radius: 11px;                 /* 20px menos los 9px de padding */
 }
@@ -7949,10 +7932,10 @@ background-color: #3FEF9C;
   position: absolute;
   display: grid;
   grid-template-rows: 5% 85% 10%;
-  top: 16.5vh;
+  top: 14.5vh;
   left: 14vw;
   width: 44vw;
-  height: 70vh;
+  height: 75vh;
   background: linear-gradient(180deg, #14233a, #0f1a2b);
   padding: 16px;
   border-radius: 20px;
@@ -7965,46 +7948,15 @@ background-color: #3FEF9C;
   transform-origin: center;
   box-shadow: 0 0 28px rgba(59, 102, 217, 0.22);
   border: 0.5px solid rgba(100, 140, 255, 0.25);
-}
-.titulo-kaizen h3{
+}.titulo-kaizen h3{
   font-size: 1.45em;
   font-weight: 700;
   line-height: 1.1;
   text-align: center;
 }
-.controller-fichas{
-  position:relative;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  width:89%;
-  height:60%;
-  gap: 10px;
-  margin:10px 12px;
-}
-.controller-fichas button{
-  position: relative;
-  width: 100%;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.6em;
-  color: #5bb8ff;
-  border: 1px solid #1e90ff;
-  overflow: hidden;
-  background: transparent;  
-  box-shadow: 0 0 9px rgba(30, 144, 255, 0.35);
-  transition: background 0.2s ease, box-shadow 0.25s, transform 0.15s ease;
-}
+
 #fichas-tecnicas > div:nth-child(1){
-  margin-top: 7%;
-}
-#fichas-tecnicas > div.controller-fichas > button:nth-child(3){
-  background: linear-gradient(180deg, #1e90ff, #1565c0);
-  box-shadow: 0 0 14px rgba(30, 144, 255, 0.55);
-  border: 1px solid #5bb8ff;
-  color: #ffffff;
-}
-#fichas-tecnicas > div.controller-fichas > button:nth-child(5){
-  margin-left:33% ;
+  margin-top: 1vh;
 }
 .ficha-grid label {
   font-size: 0.8rem;

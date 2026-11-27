@@ -24,6 +24,7 @@ const btnDblFlecha = document.querySelector('.columna-derecha button:nth-child(6
 const btnAreas = document.querySelector('.columna-derecha button:nth-child(7)')
 const firstMachine = document.querySelector('#lista-maquinas span:nth-child(1)')
 const mediaDesktop = window.matchMedia('(pointer: fine) and (min-width: 1025px)');
+const padreBotonera = document.querySelector('#botonera-frente')
 const documentoKaizen = document.getElementById('documento-kaizen')
 const linkMaster = document.querySelector("#links-auxiliar > li:nth-child(5)")
 const alertasPerfiles = document.querySelectorAll('.alerta-perfiles');

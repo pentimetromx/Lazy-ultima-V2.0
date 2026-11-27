@@ -2775,7 +2775,6 @@ document.getElementById('butt-control-tinta').addEventListener('click', () =>{
 let calculadoraSimulador = false
 document.getElementById('butt-job-track').addEventListener('click', () =>{
   ["panel-uno", "panel-dos"].forEach(id => document.getElementById(id)?.removeAttribute("style"));
-  const padreBotonera = document.querySelector('#botonera-frente')
   padreBotonera.style.display='grid'
   conteJobTrack.classList.remove('move-job-track')
   var elementosExcluidos = ['simulador','unit-job-track','interfaz-perfiles', 'boton-perfiles' , 'boton-reseteo','abandonar-perfiles','spn-blur-1','spn-blur-2','spn-blur-3','spn-blur-4','spn-blur-5','spn-blur-6','spn-blur-7','spn-blur-8'] 
@@ -4632,11 +4631,18 @@ buttsJobs.forEach(boton => {
     calculadora.classList.remove('subir'); 
     switch(boton.id) {
       case 'clientes':
+        setTimeout(() => {
+          debugger
+        }, 777);
         if (!esDesktop) buscadorLista.setAttribute('inputmode', 'none');
         if(lineaClientes.style.display==='block') lineaClientes.style.display='none'
         listaClientes.removeAttribute('style');     
         desactivarClick(['.butt-perfiles', '.estilo-1']);       
         mostrarNombresDeObjetos();
+        padreBotonera.addEventListener('click', () => {
+          if (listaColores) listaColores.style.display = 'none';
+          hideKeyboard();
+        }, { once: true });
       break;
       case 'lineas':
         if(listaColores.style.display==='flex') listaColores.style.display='none'
@@ -5379,6 +5385,7 @@ function mostrarNombresDeObjetos() {
         }, duracion);
       }
       parpadearBoton(btn);
+      hideKeyboard()
     }
     nuevoDiv.addEventListener('contextmenu', (event) => {
       event.preventDefault();
